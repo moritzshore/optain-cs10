@@ -22,6 +22,7 @@ We will need the following packages for this chapter:
 require(mapview)
 require(sf)
 require(raster)
+require(dplyr) # dplyr must be loaded after SF to avoid conflict
 ```
 
 ## High-Resolution Digital Elevation Model (DEM)
@@ -143,7 +144,7 @@ No documentation exists on the source of the channels layer, all we know is that
 
 ```{r, channel_plot}
 channel_path <- 'model_data/input/line/cs10_channels.shp'
-channels <- read_sf(channel_path) %>% select("type")
+channels <- read_sf(channel_path) %>% dplyr::select("type")
 plot(channels)
 ```
 
