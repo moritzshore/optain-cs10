@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 7 WIP | OPTAIN CS-10</title>
+  <meta name="description" content="A description of the project setup for OPTAIN case study 10" />
+  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 7 WIP | OPTAIN CS-10" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="A description of the project setup for OPTAIN case study 10" />
+  <meta name="github-repo" content="moritzshore/optain-cs10" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 7 WIP | OPTAIN CS-10" />
+  
+  <meta name="twitter:description" content="A description of the project setup for OPTAIN case study 10" />
+  
+
+<meta name="author" content="Moritz Shore, Csilla Farkas" />
+
+
+<meta name="date" content="2023-05-19" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="landuse.lum-update.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.1.2/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.1.2/leaflet-providers-plugin.js"></script>
+<link href="libs/HomeButton-0.0.1/home-button.css" rel="stylesheet" />
+<script src="libs/HomeButton-0.0.1/home-button.js"></script>
+<script src="libs/HomeButton-0.0.1/easy-button-src.min.js"></script>
+<script src="libs/clipboard-0.0.1/setClipboardText.js"></script>
+<link href="libs/mapviewCSS-0.0.1/mapview-popup.css" rel="stylesheet" />
+<link href="libs/mapviewCSS-0.0.1/mapview.css" rel="stylesheet" />
+<script src="libs/plotly-binding-4.10.1/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.27/datatables.js"></script>
+<link href="libs/dt-core-1.12.1/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.12.1/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.12.1/js/jquery.dataTables.min.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="bootstrap.min.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">The OPTAIN-CS10 Project</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html"><i class="fa fa-check"></i><b>2</b> Model setup with SWATBuildR</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#high-resolution-digital-elevation-model-dem"><i class="fa fa-check"></i><b>2.1</b> High-Resolution Digital Elevation Model (DEM)</a></li>
+<li class="chapter" data-level="2.2" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#processing-the-basin-boundary"><i class="fa fa-check"></i><b>2.2</b> Processing the Basin Boundary</a></li>
+<li class="chapter" data-level="2.3" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#processing-the-land-layer"><i class="fa fa-check"></i><b>2.3</b> Processing the Land layer</a></li>
+<li class="chapter" data-level="2.4" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#processing-the-channels"><i class="fa fa-check"></i><b>2.4</b> Processing the Channels</a></li>
+<li class="chapter" data-level="2.5" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#processing-the-dem"><i class="fa fa-check"></i><b>2.5</b> Processing the DEM</a></li>
+<li class="chapter" data-level="2.6" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#processing-soil-data"><i class="fa fa-check"></i><b>2.6</b> Processing soil data</a></li>
+<li class="chapter" data-level="2.7" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#calculating-land-unit-connectivity"><i class="fa fa-check"></i><b>2.7</b> Calculating land unit connectivity</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#eliminate-land-object-connections-with-small-flow-fractions"><i class="fa fa-check"></i><b>2.7.1</b> Eliminate land object connections with small flow fractions:</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#calculating-channelreservoir-connectivity"><i class="fa fa-check"></i><b>2.8</b> Calculating channel/reservoir connectivity</a>
+<ul>
+<li class="chapter" data-level="2.8.1" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#calculating-the-water-object-connectivity"><i class="fa fa-check"></i><b>2.8.1</b> Calculating the water object connectivity</a></li>
+<li class="chapter" data-level="2.8.2" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#checking-the-water-objects-for-infinite-loops"><i class="fa fa-check"></i><b>2.8.2</b> Checking the water objects for infinite loops</a></li>
+</ul></li>
+<li class="chapter" data-level="2.9" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#terrain-properties"><i class="fa fa-check"></i><b>2.9</b> Terrain properties</a></li>
+<li class="chapter" data-level="2.10" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#generate-land-object-swat-input-tables"><i class="fa fa-check"></i><b>2.10</b> Generate land object SWAT+ input tables</a></li>
+<li class="chapter" data-level="2.11" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#generate-water-object-swat-input-tables"><i class="fa fa-check"></i><b>2.11</b> Generate water object SWAT+ input tables</a></li>
+<li class="chapter" data-level="2.12" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#build-aquifer-input"><i class="fa fa-check"></i><b>2.12</b> Build aquifer input</a></li>
+<li class="chapter" data-level="2.13" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#add-point-source-inputs"><i class="fa fa-check"></i><b>2.13</b> Add point source inputs</a></li>
+<li class="chapter" data-level="2.14" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#create-swat-sqlite-database"><i class="fa fa-check"></i><b>2.14</b> Create SWAT+ sqlite database</a>
+<ul>
+<li class="chapter" data-level="2.14.1" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#write-the-swateditor-project-database"><i class="fa fa-check"></i><b>2.14.1</b> Write the SWAT+Editor project database</a></li>
+</ul></li>
+<li class="chapter" data-level="2.15" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#todo"><i class="fa fa-check"></i><b>2.15</b> TODO</a></li>
+<li class="chapter" data-level="2.16" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#link-aquifers-and-channels-with-geomorphic-flow"><i class="fa fa-check"></i><b>2.16</b> Link aquifers and channels with geomorphic flow</a></li>
+</ul></li>
+<li class="part"><span><b>I Model parameterization</b></span></li>
+<li class="chapter" data-level="3" data-path="climate-inputs-and-weather-generator.html"><a href="climate-inputs-and-weather-generator.html"><i class="fa fa-check"></i><b>3</b> Climate inputs and weather generator</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="climate-inputs-and-weather-generator.html"><a href="climate-inputs-and-weather-generator.html#preperation-and-loading-data"><i class="fa fa-check"></i><b>3.1</b> Preperation and loading data</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="climate-inputs-and-weather-generator.html"><a href="climate-inputs-and-weather-generator.html#required-packages"><i class="fa fa-check"></i><b>3.1.1</b> Required packages</a></li>
+<li class="chapter" data-level="3.1.2" data-path="climate-inputs-and-weather-generator.html"><a href="climate-inputs-and-weather-generator.html#load-in-the-files-and-load-svatools-template"><i class="fa fa-check"></i><b>3.1.2</b> Load in the file(s) and load svatools template</a></li>
+<li class="chapter" data-level="3.1.3" data-path="climate-inputs-and-weather-generator.html"><a href="climate-inputs-and-weather-generator.html#proof-the-station"><i class="fa fa-check"></i><b>3.1.3</b> Proof the station</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="climate-inputs-and-weather-generator.html"><a href="climate-inputs-and-weather-generator.html#creating-the-weather-generator"><i class="fa fa-check"></i><b>3.2</b> Creating the weather generator</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="adding-weather-data-to-swat-project.html"><a href="adding-weather-data-to-swat-project.html"><i class="fa fa-check"></i><b>4</b> Adding weather data to SWAT project</a></li>
+<li class="chapter" data-level="5" data-path="crop-map-generations.html"><a href="crop-map-generations.html"><i class="fa fa-check"></i><b>5</b> Crop map generations</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="crop-map-generations.html"><a href="crop-map-generations.html#farm-and-field-area"><i class="fa fa-check"></i><b>5.1</b> Farm and field area</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="crop-map-generations.html"><a href="crop-map-generations.html#calculate-farm-area-and-assign-ids"><i class="fa fa-check"></i><b>5.1.1</b> Calculate Farm area and assign IDs</a></li>
+<li class="chapter" data-level="5.1.2" data-path="crop-map-generations.html"><a href="crop-map-generations.html#calculate-field-area-and-assign-ids"><i class="fa fa-check"></i><b>5.1.2</b> Calculate Field area and assign IDs</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="crop-map-generations.html"><a href="crop-map-generations.html#generate-crop-map-from-farm-data"><i class="fa fa-check"></i><b>5.2</b> Generate crop map from farm data</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="crop-map-generations.html"><a href="crop-map-generations.html#tidy-up-the-source-data"><i class="fa fa-check"></i><b>5.2.1</b> Tidy up the source data:</a></li>
+<li class="chapter" data-level="5.2.2" data-path="crop-map-generations.html"><a href="crop-map-generations.html#tidy-up-the-buildr-output"><i class="fa fa-check"></i><b>5.2.2</b> Tidy up the BuildR output</a></li>
+<li class="chapter" data-level="5.2.3" data-path="crop-map-generations.html"><a href="crop-map-generations.html#field-classification"><i class="fa fa-check"></i><b>5.2.3</b> Field classification</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="crop-map-generations.html"><a href="crop-map-generations.html#extrapolating-the-crop-rotation"><i class="fa fa-check"></i><b>5.3</b> Extrapolating the crop rotation</a></li>
+<li class="chapter" data-level="5.4" data-path="crop-map-generations.html"><a href="crop-map-generations.html#joining-the-land-layer-with-the-crop-rotation-data"><i class="fa fa-check"></i><b>5.4</b> Joining the land layer with the crop rotation data</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="landuse.lum-update.html"><a href="landuse.lum-update.html"><i class="fa fa-check"></i><b>6</b> Landuse.lum update</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="landuse.lum-update.html"><a href="landuse.lum-update.html#data-preperation"><i class="fa fa-check"></i><b>6.1</b> Data preperation</a></li>
+<li class="chapter" data-level="6.2" data-path="landuse.lum-update.html"><a href="landuse.lum-update.html#setting-cal_group"><i class="fa fa-check"></i><b>6.2</b> Setting <code>cal_group</code></a></li>
+<li class="chapter" data-level="6.3" data-path="landuse.lum-update.html"><a href="landuse.lum-update.html#setting-plnt_com"><i class="fa fa-check"></i><b>6.3</b> Setting <code>plnt_com</code></a></li>
+<li class="chapter" data-level="6.4" data-path="landuse.lum-update.html"><a href="landuse.lum-update.html#setting-mgt"><i class="fa fa-check"></i><b>6.4</b> Setting <code>mgt</code></a></li>
+<li class="chapter" data-level="6.5" data-path="landuse.lum-update.html"><a href="landuse.lum-update.html#setting-urb_ro"><i class="fa fa-check"></i><b>6.5</b> Setting <code>urb_ro</code></a></li>
+<li class="chapter" data-level="6.6" data-path="landuse.lum-update.html"><a href="landuse.lum-update.html#setting-urban"><i class="fa fa-check"></i><b>6.6</b> Setting <code>urban</code></a></li>
+<li class="chapter" data-level="6.7" data-path="landuse.lum-update.html"><a href="landuse.lum-update.html#setting-mannings-n-ovn"><i class="fa fa-check"></i><b>6.7</b> Setting Manning’s n (<code>ovn</code>)</a>
+<ul>
+<li class="chapter" data-level="6.7.1" data-path="landuse.lum-update.html"><a href="landuse.lum-update.html#setting-cn2"><i class="fa fa-check"></i><b>6.7.1</b> Setting <code>cn2</code>:</a></li>
+<li class="chapter" data-level="6.7.2" data-path="landuse.lum-update.html"><a href="landuse.lum-update.html#setting-cons_prac"><i class="fa fa-check"></i><b>6.7.2</b> Setting <code>cons_prac</code></a></li>
+<li class="chapter" data-level="6.7.3" data-path="landuse.lum-update.html"><a href="landuse.lum-update.html#setting-tile"><i class="fa fa-check"></i><b>6.7.3</b> Setting <code>tile</code></a></li>
+<li class="chapter" data-level="6.7.4" data-path="landuse.lum-update.html"><a href="landuse.lum-update.html#setting-sep"><i class="fa fa-check"></i><b>6.7.4</b> Setting <code>sep</code></a></li>
+<li class="chapter" data-level="6.7.5" data-path="landuse.lum-update.html"><a href="landuse.lum-update.html#setting-vfs"><i class="fa fa-check"></i><b>6.7.5</b> Setting <code>vfs</code></a></li>
+<li class="chapter" data-level="6.7.6" data-path="landuse.lum-update.html"><a href="landuse.lum-update.html#setting-grww"><i class="fa fa-check"></i><b>6.7.6</b> Setting <code>grww</code></a></li>
+<li class="chapter" data-level="6.7.7" data-path="landuse.lum-update.html"><a href="landuse.lum-update.html#setting-bmp"><i class="fa fa-check"></i><b>6.7.7</b> Setting <code>bmp</code></a></li>
+<li class="chapter" data-level="6.7.8" data-path="landuse.lum-update.html"><a href="landuse.lum-update.html#writing-changes"><i class="fa fa-check"></i><b>6.7.8</b> Writing Changes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="wip.html"><a href="wip.html"><i class="fa fa-check"></i><b>7</b> WIP</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="wip.html"><a href="wip.html#channel-parameters-revised"><i class="fa fa-check"></i><b>7.1</b> Channel parameters revised</a></li>
+<li class="chapter" data-level="7.2" data-path="wip.html"><a href="wip.html#crop-parameters-verified"><i class="fa fa-check"></i><b>7.2</b> Crop parameters verified</a></li>
+<li class="chapter" data-level="7.3" data-path="wip.html"><a href="wip.html#soil-physical-parameters-in-final-form"><i class="fa fa-check"></i><b>7.3</b> Soil physical parameters in final form</a></li>
+<li class="chapter" data-level="7.4" data-path="wip.html"><a href="wip.html#soil-chemical-parameters-in-final-form"><i class="fa fa-check"></i><b>7.4</b> Soil chemical parameters in final form</a></li>
+<li class="chapter" data-level="7.5" data-path="wip.html"><a href="wip.html#impoundment-parameters-defined"><i class="fa fa-check"></i><b>7.5</b> Impoundment parameters defined</a></li>
+<li class="chapter" data-level="7.6" data-path="wip.html"><a href="wip.html#water-diversions-defined"><i class="fa fa-check"></i><b>7.6</b> Water diversions defined</a></li>
+<li class="chapter" data-level="7.7" data-path="wip.html"><a href="wip.html#point-sources-parameters-added"><i class="fa fa-check"></i><b>7.7</b> Point sources parameters added</a></li>
+<li class="chapter" data-level="7.8" data-path="wip.html"><a href="wip.html#tile-drainage-parameters-defined"><i class="fa fa-check"></i><b>7.8</b> Tile drainage parameters defined</a></li>
+<li class="chapter" data-level="7.9" data-path="wip.html"><a href="wip.html#atmospheric-deposition-defined"><i class="fa fa-check"></i><b>7.9</b> Atmospheric deposition defined</a></li>
+<li class="chapter" data-level="7.10" data-path="wip.html"><a href="wip.html#additional-settings-verified"><i class="fa fa-check"></i><b>7.10</b> Additional settings verified</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">OPTAIN CS-10</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="wip" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">Chapter 7</span> WIP<a href="wip.html#wip" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="channel-parameters-revised" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">7.1</span> Channel parameters revised<a href="wip.html#channel-parameters-revised" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>This an ongoing unresolved issue <a href="https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/49">#49</a></p>
+</div>
+<div id="crop-parameters-verified" class="section level2 hasAnchor" number="7.2">
+<h2><span class="header-section-number">7.2</span> Crop parameters verified<a href="wip.html#crop-parameters-verified" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="soil-physical-parameters-in-final-form" class="section level2 hasAnchor" number="7.3">
+<h2><span class="header-section-number">7.3</span> Soil physical parameters in final form<a href="wip.html#soil-physical-parameters-in-final-form" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="soil-chemical-parameters-in-final-form" class="section level2 hasAnchor" number="7.4">
+<h2><span class="header-section-number">7.4</span> Soil chemical parameters in final form<a href="wip.html#soil-chemical-parameters-in-final-form" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="impoundment-parameters-defined" class="section level2 hasAnchor" number="7.5">
+<h2><span class="header-section-number">7.5</span> Impoundment parameters defined<a href="wip.html#impoundment-parameters-defined" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="water-diversions-defined" class="section level2 hasAnchor" number="7.6">
+<h2><span class="header-section-number">7.6</span> Water diversions defined<a href="wip.html#water-diversions-defined" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="point-sources-parameters-added" class="section level2 hasAnchor" number="7.7">
+<h2><span class="header-section-number">7.7</span> Point sources parameters added<a href="wip.html#point-sources-parameters-added" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="tile-drainage-parameters-defined" class="section level2 hasAnchor" number="7.8">
+<h2><span class="header-section-number">7.8</span> Tile drainage parameters defined<a href="wip.html#tile-drainage-parameters-defined" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="atmospheric-deposition-defined" class="section level2 hasAnchor" number="7.9">
+<h2><span class="header-section-number">7.9</span> Atmospheric deposition defined<a href="wip.html#atmospheric-deposition-defined" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="additional-settings-verified" class="section level2 hasAnchor" number="7.10">
+<h2><span class="header-section-number">7.10</span> Additional settings verified<a href="wip.html#additional-settings-verified" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div class="csl-entry">
+Schürz, Christoph, Natalja Čerkasova, Csilla Farkas, Attila Nemes, Plunge, Michael Strauch, Brigitta Szabó, and Mikołaj Piniewski. 2022. <span>“SWAT+ Modeling Protocol for the Assessment of Water and Nutrient Retention Measures in Small Agricultural Catchments,”</span> December. <a href="https://doi.org/10.5281/ZENODO.7463395">https://doi.org/10.5281/ZENODO.7463395</a>.
+</div>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="landuse.lum-update.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/05-wip.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
