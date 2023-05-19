@@ -446,7 +446,7 @@ This file is messy, but we can see our soil names are in the column "SNAM"
 ```{r}
 soil_map_shp$SNAM %>% head()
 # we only need to keep the soil name, ID, and its geometry.
-soil_map_shp <- soil_map_shp %>% dplyr::dplyr::select(SOIL_ID, SNAM, geometry)
+soil_map_shp <- soil_map_shp %>% dplyr::select(SOIL_ID, SNAM, geometry)
 ```
 Ok so we've got our spatial data loaded in, just for fun, lets have a
 look at this soil IDs:
