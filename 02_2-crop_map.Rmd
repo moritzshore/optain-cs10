@@ -7,6 +7,9 @@ chapter.
 
 ```{r, message=FALSE}
 require(sf)
+require(dplyr)
+require(readr)
+require(stringr)
 require(mapview)
 require(readxl)
 require(reshape2)
@@ -91,7 +94,7 @@ We are converting the source data to tidy format in the following code snippet
   # unstable, TODO fix!
   colnames(crop_area)[6] <- "crop_area_percent"
 
-  crop_tidy <- left_join(crop_names, crop_area, by = c("farm_id", "year", "area_daa","pastrure_area_daa", "crop_status")) %>% select(-crop_status)
+  crop_tidy <- left_join(crop_names, crop_area, by = c("farm_id", "year", "area_daa","pastrure_area_daa", "crop_status")) %>% dplyr::select(-crop_status)
 
    # unstable, TODO fix!
   colnames(crop_tidy)[3] <- "farm_area_daa"
@@ -115,13 +118,13 @@ fields <-
   read_csv(
     "model_data/input/crop/buildr_landuse_dissolved_into_fields.csv",
     show_col_types = F
-  ) %>% select(type, farm_id, field_area_daa)
+  ) %>% dplyr::select(type, farm_id, field_area_daa)
 
 farms <-
   read_csv(
     "model_data/input/crop/buildr_landuse_dissolved_into_farms.csv",
     show_col_types = F
-  ) %>% select(type, farm_id , farm_area_)
+  ) %>% dplyr::select(type, farm_id , farm_area_)
 # fix farm_area_
 
 # unstable, fix!
@@ -136,7 +139,7 @@ reported_data <- left_join(fields, farms, by = "farm_id")
 # unstable, fix!
 colnames(reported_data)[1] <- "field_id"
 
-reported_data <- reported_data %>% select(field_id, farm_id, field_area_daa, farm_area_daa)
+reported_data <- reported_data %>% dplyr::select(field_id, farm_id, field_area_daa, farm_area_daa)
 
 datatable(reported_data)
 ```
@@ -196,7 +199,7 @@ for(c_year in years){
       # Set all fields to winter wheat.
       
       farm_fields <- hru_filter %>%
-        select(farm_id, field_id, farm_area_daa, field_area_daa) %>%
+        dplyr::select(farm_id, field_id, farm_area_daa, field_area_daa) %>%
         arrange(desc(field_area_daa))
       
       farm_fields$crop = "wwht"
@@ -231,7 +234,7 @@ for(c_year in years){
 
     # Extract relevant fields
     farm_fields <- hru_filter %>%
-      select(farm_id, field_id, farm_area_daa, field_area_daa) %>%
+      dplyr::select(farm_id, field_id, farm_area_daa, field_area_daa) %>%
       # and sort by area
       arrange(desc(field_area_daa))
 
@@ -243,7 +246,7 @@ for(c_year in years){
     # decision we made.)
     has_meadow <- (classed_fields %>% filter(field_id %in% farm_fields$field_id)
                    %>% filter(crop == "meadow") %>%
-                     select(field_id) %>% pull() %>% length() > 0)
+                     dplyr::select(field_id) %>% pull() %>% length() > 0)
     
     
     ### Determining how much land the crops should cover. 
@@ -293,7 +296,7 @@ for(c_year in years){
       previously_pasture <- classed_fields %>%
         filter(field_id %in% farm_fields$field_id) %>%
         filter(crop == "meadow") %>%
-        select(field_id) %>% pull()
+        dplyr::select(field_id) %>% pull()
 
       if (length(previously_pasture) > 0) {
         # if some of the fields were previously pasture, they are set to pasture
@@ -304,7 +307,7 @@ for(c_year in years){
         # We save the amount of area the meadow crops cover, so that we can 
         # adjust the other "SHOULD BE" fractions correctly.
         custom_actual <- farm_fields %>% filter(crop == "meadow") %>%
-          select(field_area_daa) %>% pull() %>% sum(na.rm = T)
+          dplyr::select(field_area_daa) %>% pull() %>% sum(na.rm = T)
         
         crop_coverage$actual[which(crop_coverage$crop=="meadow")] = custom_actual
       }
@@ -342,7 +345,7 @@ for(c_year in years){
         # Determine/UPDATE the current actual coverage of the crop (sum)
         crop_coverage$actual[crop_index] <-
           farm_fields %>% filter(crop == c_crop) %>%
-          select(field_area_daa) %>% sum()
+          dplyr::select(field_area_daa) %>% sum()
       }
       
       # Calculate the difference between crop SHOULD BE coverage and ACTUAL
@@ -373,7 +376,7 @@ for(c_year in years){
     for (c_crop in crop_coverage$crop) {
       crop_index <- which(c_crop ==  crop_coverage$crop)
       crop_coverage$actual[crop_index] <-
-        farm_fields %>% filter(crop == c_crop) %>% select(field_area_daa) %>% sum()
+        farm_fields %>% filter(crop == c_crop) %>% dplyr::select(field_area_daa) %>% sum()
     }
     
     # save the year of this crop assignment in the dataframe
@@ -420,7 +423,7 @@ for(c_field_id in field_ids) {
   
   crop_rotation <- tibble(field = c_field_id)
   crops <- classed_fields %>% filter(field_id == c_field_id) %>%
-    select(crop) %>% t() %>% as_tibble(.name_repair = "minimal")
+    dplyr::select(crop) %>% t() %>% as_tibble(.name_repair = "minimal")
   
   colnames(crops) <- c("y_2016", "y_2017", "y_2018", "y_2019")
   
@@ -447,7 +450,7 @@ For OPTAIN, the crop rotation needs to span from 1988 to 2020. We currently have
 crop_rotation <- read_csv("model_data/input/crop/cs10_crop_rotation.csv",
                           show_col_types = F)
 
-rotation <- crop_rotation %>% select(-field)
+rotation <- crop_rotation %>% dplyr::select(-field)
 
 crop_rotation_extrapolated <-
   cbind(crop_rotation,
