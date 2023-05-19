@@ -1,5 +1,6 @@
 # Script initialization --------------------------------------------
 # PLEASE DO NOT CHANGE THESE SETTINGS
+### Narrator: He changes these settings.....
 # ------------------------------------------------------------------
 
 # Load R functions -------------------------------------------------
@@ -32,8 +33,8 @@ install_load(sf_1.0-8, sfheaders_0.4.0, lwgeom_0.2-8, terra_1.7-3,
 install_load(DBI_1.1.3, RSQLite_2.2.15)
 
 ## Initialize whitebox tools which are used for several 
-## raster data analyses
+## raster data analyses (this does not work for me)
 wbt_exe <- list.files(path = find.package("whitebox"), 
                       pattern = 'whitebox_tools.exe', 
                       recursive = TRUE, full.names = TRUE)
-wbt_init(exe_path = wbt_exe)
+wbt_init(exe_path = "C:/Users/mosh/AppData/Local/Programs/R/R-4.2.2/library/whitebox/WBT/whitebox_tools.exe")
