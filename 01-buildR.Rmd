@@ -1,16 +1,18 @@
 # Model setup with SWATBuildR
 
-The OPTAIN project is using the COCOA approach @schürz2022 and as such, needs to use the `SWATBuildR` package to calculate the connectivity between HRUs in the catchment. This chapter covers this process.
+The OPTAIN project is using the COCOA approach @schürz2022 and as such, needs to
+use the `SWATBuildR` package to calculate the connectivity between HRUs in the
+catchment. This chapter covers this process.
 
 We will define the location of our project here:
 
-```{r}
+```{r, projectpath}
 project_path <- 'model_data/cs10_setup'
 ```
 
 And give it the name:
 
-```{r}
+```{r, projname}
 project_name <- 'optain-cs10'
 ```
 
@@ -18,22 +20,23 @@ Much of this documentation has been lost to time.
 
 We will need the following packages for this chapter:
 
-```{r, message=FALSE}
+```{r, libraries, message=FALSE}
 require(mapview)
 require(sf)
+require(raster)
 ```
 
 ## High-Resolution Digital Elevation Model (DEM)
 
 The high-resolution DEM is the basis for calculation of water connectivity, among other things. Most of the documentation of the creation of the DEM for CS10 has been lost to the sands of time. All we know is that it is located here:
 
-```{r}
+```{r, dempath}
 dem_path <- "model_data/input/elevation/dtm3_ns_v5.tif"
 ```
 
-```{r, message=FALSE}
+```{r, plotdemraster, message=FALSE}
 
-plot(raster::raster(dem_path), main = "CS10 DEM, UTM32N")
+plot(raster(dem_path), main = "CS10 DEM, UTM32N")
 
 ```
 
@@ -45,11 +48,11 @@ To our knowledge, it has a 10 meter resolution. 1 meter resolution was available
 
 The basin boundary has presumably been created using the defined outlet point of the catchment and the DEM. No more is currently known about this file other than that it is located here:
 
-```{r}
+```{r, boundpath}
 bound_path <- "model_data/input/shape/cs10_basin.shp"
 ```
 
-```{r, message=FALSE, echo=FALSE}
+```{r, watershedplot, message=FALSE, echo=FALSE}
 bound_sf <- read_sf(bound_path)
 bound_sf$Id = "CS10 Basin"
 bound_map <- mapview(bound_sf, color = "black", col.regions = "orange", alpha.region = .2)
@@ -62,7 +65,7 @@ The following code and commentary is from version `1.5.12`, written by Christoph
 
 Another note: there are currently issues with White box which are being resolved.
 
-```{r, message=FALSE}
+```{r, sourceBuildRinit, message=FALSE}
 source('model_data/swat_buildR/init.R')
 ```
 
@@ -70,13 +73,13 @@ BuildR recommends all layers to be in the same CRS, if we set `project_layer` to
 
 > The input layers might be in different coordinate reference systems (CRS). It is recommended to project all layers to the same CRS and check them before using them as model inputs. The model setup process checks if the layer CRSs differ from the one of the basin boundary. By setting 'proj_layer \<- TRUE' the layer is projected if the CRS is different. If FALSE different CRS trigger an error.
 
-```{r}
+```{r, projlayerbool}
 project_layer <- TRUE
 ```
 
 First, we read in and check the basin boundary and run some checks
 
-```{r}
+```{r, checkbound}
 bound <- read_sf(bound_path) %>% select()
 set_proj_crs(bound, data_path)
 check_polygon_topology(layer = bound, data_path =  data_path, label = 'basin', 
@@ -87,19 +90,19 @@ check_polygon_topology(layer = bound, data_path =  data_path, label = 'basin',
 
 Our land layer is located here:
 
-```{r}
+```{r, landpath}
 land_path <- "model_data/input/land/CS10_LU.shp"
 ```
 
 Documentation on its creation does not exist.
 
-```{r, message=F, echo=F}
+```{r, maplanduse, message=F, echo=F}
 mapview(read_sf(land_path), zcol = "KGB", legend = FALSE)
 ```
 
 We had an issue with the classification of the land uses. For the OPTAIN project, all agricultural fields must have a unique ID, and our land uses only had the ID of the given farm `KGB` (which had many different fields). To remedy this, new IDs were generated with the format `a_###f_#` where `a_` represents the farm, and `f_` represents the respective field of that farm. The farm names needed to be shortened because the SWAT+ model often cannot handle long ID names (longer than 16 characters)
 
-```{r}
+```{r, readfarmid}
 readr::read_csv("model_data/farm_id/a_f_id.csv", show_col_types = F) %>% head()
 ```
 
@@ -107,7 +110,7 @@ This was done in a simple QGIS workflow of dissolving by farm, splitting from si
 
 This is our map with the new `type` IDs:
 
-```{r, message=FALSE}
+```{r, lumap2, message=FALSE}
 lu_map <- mapview(read_sf(land_path), zcol = "type", legend = FALSE)
 
 lu_map
@@ -353,12 +356,12 @@ Build the HRU SWAT+ input files and write them into `data_path/tables.sqlite`
 Add wetlands to the HRUs and build the wetland input files and write them
 into `data_path/tables.sqlite`
 
-```{r}
+```{r, wetland_landuse}
 wetland_landuse <- c('wehb', 'wetf', 'wetl', 'wetn')
 ```
 
 
-```{r}
+```{r, add_wetlands}
 #add_wetlands(data_path, wetland_landuse)
 ```
 
@@ -366,32 +369,32 @@ wetland_landuse <- c('wehb', 'wetf', 'wetl', 'wetn')
 
 Build the SWAT+ cha input files and write them into `data_path/tables.sqlite`
 
-```{r}
+```{r, build_cha_input}
 #build_cha_input(data_path)
 ```
 
 Build the SWAT+ res input files and write them into `data_path/tables.sqlite`
 
-```{r}
+```{r, build_res_input}
 #build_res_input(data_path)
 ```
 
 Build SWAT+ routing unit con_out based on 'land_connect_fraction'.
 
-```{r}
+```{r, build_rout_con_out}
 #build_rout_con_out(data_path)
 ```
 
 Build the SWAT+ rout_unit input files and write them into
 `data_path/tables.sqlite`
 
-```{r}
+```{r, build_rout_input}
 #build_rout_input(data_path)
 ```
 
 Build the SWAT+ LSU input files and write them into `data_path/tables.sqlite`
 
-```{r}
+```{r, build_ls_unit_input}
 #build_ls_unit_input(data_path)
 ```
 
@@ -401,7 +404,7 @@ Build the SWAT+ aquifer input files for a single aquifer for the entire
 catchment. The connectivity to the channels with geomorphic flow must be added
 after writing the txt input files. 
 **This is not implemented in the script yet.**
-```{r}
+```{r, build_single_aquifer_files}
 #build_single_aquifer_files(data_path)
 ```
 
@@ -410,11 +413,11 @@ after writing the txt input files.
 The point source locations are provided with a point
 vector layer in the path 'point_path'. 
 
-```{r}
+```{r, point_path}
 point_path <- 'model_data/input/point/cs10_pointsource.shp'
 ```
 
-```{r}
+```{r, pointsoucemap}
 point_sf <- read_sf(point_path)
 point_map <- mapview(point_sf, zcol = "GRAD_P", cex = "GRAD_N")
 point_map+channel_map+bound_map
@@ -422,7 +425,7 @@ point_map+channel_map+bound_map
 
 Maximum distance of a point source to a channel or a reservoir to be included as
 a point source object (recall) in the model setup
-```{r}
+```{r, max_point_dist}
 max_point_dist <- 500 #meters
 ```
 
@@ -432,7 +435,7 @@ must be named as `<name>_<interval>.csv`, where `<name>` must be the name of a
 point `int` the vector layer and `<interval>` must be one of `const`, `yr`,
 `mon`, or `day` depending on the time intervals in the input data.
 
-```{r}
+```{r, add_point_sources}
 #add_point_sources(point_path, data_path, max_point_dist)
 ```
 
@@ -443,7 +446,7 @@ point `int` the vector layer and `<interval>` must be one of `const`, `yr`,
 The database will be located the 'project_path'. After writing the database it
 can be opened and edited with the SWAT+Editor.
 
-```{r}
+```{r, create_swatplus_database}
 #create_swatplus_database(project_path, project_name)
 ```
 
@@ -467,10 +470,10 @@ writing the model text input files with the SWAT+Editor.
 
 Path of the TxtInOut folder (project folder where the SWAT+ text files are
 written with the SWAT+Editor)
-```{r}
+```{r, txtpath}
 txt_path <- '../swat_runs/txtinouit/'
 ```
 
-```{r}
+```{r, linkaqui}
 #link_aquifer_channels(txt_path)
 ```
