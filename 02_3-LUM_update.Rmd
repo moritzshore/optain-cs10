@@ -1,0 +1,872 @@
+# Landuse.lum update
+
+This section covers the modifications made to the landuse file. For some reason
+it was written in a tutorial fashion, as if the reader were new to R.
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+We require `tidyverse` for this since we will be using many of its
+functions.
+
+```{r, message=FALSE}
+require(tidyverse)
+require(reshape2)
+```
+
+## Data preperation
+
+We read in the land use file. We want to set `skip = 1` to ignore the
+SWAT+editor text, and set `header = T`. We then convert it to a `tibble`
+format for better printing to console
+
+```{r, eval}
+landuse_lum <-
+  read.table("model_data/cs10_setup/temp_landuse.lum", skip = 1, header = T) %>% tibble::as_tibble()
+```
+
+```{r lum_tab, tidy=FALSE, echo=FALSE}
+knitr::kable(
+  head(landuse_lum, 10), caption = 'The landuse.lum file, post BuildR',
+  booktabs = TRUE
+)
+```
+
+Our `field_id` for our cropland does not match `name` of `landuse_lum`
+so we need to parse it out, we can do this many ways, but a safe way is
+to split it by "\_" and combine the first 3 splits with that same
+underscore: 
+
+```{r}
+
+splitted <- landuse_lum$name %>% str_split("_")
+
+landuse_lum$field_id <-
+  paste(splitted %>% map(1), splitted %>% map(2), splitted %>% map(3), sep = "_")
+
+head(landuse_lum$field_id)
+```
+But wait, this does not work for our "non-fields". So lets find out
+which ones they are, and set them to `NA`
+
+```{r}
+not_fields <- which(!grepl(x=landuse_lum$field_id, "a_"))
+landuse_lum$field_id[not_fields] <- NA
+```
+
+So, what non-fields do we have?
+
+```{r}
+
+landuse_lum$name[not_fields]
+```
+
+Good to know. We'll keep that in mind.
+
+## Setting `cal_group`
+
+There is no info on this column, so we are going to leave it as `null`.
+
+## Setting `plnt_com`
+
+This step will be done by SWATFarmR (ref that header here!)
+
+## Setting `mgt`
+
+This step will be done by SWATFarmR (ref that header here!)
+
+## Setting `urb_ro`
+
+We want to set the `urb_ro` column for all urban land uses (in our case
+this would be `urml` and `utrn`) to `usgs_reg`. We can do this like so:
+
+```{r}
+
+landuse_lum$urb_ro[which(landuse_lum$name %in% c("urml_lum", "utrn_lum"))] <-
+  "usgs_reg"
+```
+
+
+```{r urbro_tab, tidy=FALSE, echo=FALSE}
+prev <- landuse_lum[which(landuse_lum$name %in% c("urml_lum", "utrn_lum")), ]
+
+knitr::kable(
+  head(prev, 10), caption = 'Changing `urb_ro` in the landuse file',
+  booktabs = TRUE
+)
+```
+
+Very good. In our case this was only two -- could be done by hand, but
+that will not be the case for all of our land uses.
+
+## Setting `urban`
+
+This one is easy, we set our `urban` column to an urban parameter set of
+the same name. The rest we leave as `null`
+
+```{r}
+landuse_lum$urban[which(landuse_lum$name =="utrn_lum")] <- "utrn"
+landuse_lum$urban[which(landuse_lum$name =="urml_lum")] <- "urml"
+```
+```{r urbro_tab, tidy=FALSE, echo=FALSE}
+# how did we do?
+prev<- landuse_lum[which(landuse_lum$name =="urml_lum"),]
+knitr::kable(
+  head(prev, 10), caption = 'Changing `urban` in the landuse file',
+  booktabs = TRUE
+)
+```
+
+Lets make sure other land uses still have `null`:
+
+```{r, tidy=FALSE, echo=F}
+knitr::kable(landuse_lum[which(landuse_lum$name == "frst_lum"), ], caption = 'Landuse `frst` in the landuse file',
+             booktabs = TRUE)
+```
+
+Looks good.
+
+## Setting Manning's n (`ovn`)
+
+Lets get the easy ones out of the way
+
+```{r}
+landuse_lum$ov_mann[which(landuse_lum$name =="past_lum")] <- "densegrass"
+landuse_lum$ov_mann[which(landuse_lum$name =="rngb_lum")] <- "rangeland_20cover"
+landuse_lum$ov_mann[which(landuse_lum$name =="urml_lum")] <- "urban_rubble"
+landuse_lum$ov_mann[which(landuse_lum$name =="urtn_lum")] <- "urban_asphalt"
+```
+
+Don't fall asleep yet! For `wetf` we want `forest_heavy` but with a
+higher value. this means we need to add a new entry. And since we are
+doing this fancy Rmarkdown stuff, we're going to do it with code! Lets
+jump in and get at this file. (REMEBER TO REMOVE THE TEMP)
+
+```{r}
+ovn_table_path <- "model_data/cs10_setup/temp_ovn_table.lum"
+ovn_table <- readLines(ovn_table_path)
+```
+
+Good, now where is this forest heavy entry? and what does the format
+look like?
+
+```{r}
+index <- grepl(x=ovn_table, "forest_heavy") %>% which %>% min()
+
+ovn_table[c(2, index)] %>% print()
+```
+
+Now, lets make our own and add it in. But only if it doesn't exist it
+(Like if the script has been run before...)
+
+```{r}
+if(grepl(x = ovn_table, "forest_heavy_cs10") %>% which %>% length() == 0) {
+  entry <-
+    "forest_heavy_cs10      0.90000       0.80000       0.95000  Forest_heavy_mod"
+  ovn_table <- c(ovn_table, entry)
+}
+```
+
+Did it work? Yes:
+
+```{r}
+ovn_table %>% tail()
+```
+
+Now lets write this new table
+
+```{r}
+writeLines(ovn_table, con = ovn_table_path)
+```
+
+And now we can enter our wetland class:
+
+```{r}
+landuse_lum$ov_mann[which(landuse_lum$name =="wetf_lum")] <- "forest_heavy_cs10"
+```
+
+For the fields we are going to need the crop rotation info which we created in 
+section (!ref)
+
+```{r, tidy=TRUE}
+crop_rotation <- read_csv("model_data/input/crop/cs10_crop_rotation.csv",
+    show_col_types = F)
+
+head(crop_rotation)
+```
+
+We have decided to classify `ovn` based on the degree to which a crop
+rotation contains `meadow`, conventional crops (`wwht`, `pota`), and
+conservation crops (all others). To do this we need to analyze the crop
+rotation.
+
+Now it gets a little complicated, but trust me its not actually as bad
+as it looks. We need to count how many times certain crops show up in
+the crop rotation of **a certain field**. Lets do it for **conventional
+crops** first.
+
+Now, lets get into it
+
+```{r}
+conv_crop_count <- crop_rotation %>% melt(. ,"field") %>% group_by(field) %>%
+  filter(value %in% c("wwht", "pota")) %>% count() %>% rename(conv = n)
+
+head(conv_crop_count)
+```
+
+What happened here? well we took our `crop_rotation`, and melted it by
+`field` using `melt`. This function converts the data into [*tidy
+format*](https://r4ds.had.co.nz/tidy-data.html). This format makes it
+easier to apply the following operations on **a field basis**. What does
+this look like?
+
+```{r}
+crop_rotation %>% melt(. ,"field") %>% arrange(field) %>% head()
+```
+
+`melt` is a function from `reshape2` which is why we
+`required` it. And what does that "`.`" mean in there, to the left of
+`"field"`?? That is a code word for the object to the left of the "pipe"
+(in this case `crop_rotation`). the pipe is "`%>%`" and passes the
+object to the left of it, into the function to the right of it. [*look
+it up*](https://r4ds.had.co.nz/pipes.html)!
+
+When `arranged` by field, we can see that every field gets one entry per
+crop per year. This is a good format to count how many times we have a
+certain type of crop on a field.
+
+Next we `group_by` the `field` -- this means all the following
+operations will be done on a **field basis**. Then we filter our `value`
+(which is the crop name). For conventional we needed to filter in any
+fields with the crop `"wwht"` or `"pota"`.
+
+What does this look like?
+
+```{r}
+crop_rotation %>% melt(. ,"field") %>% group_by(field) %>%
+  filter(value %in% c("wwht", "pota"))
+```
+
+Looks good. We only have crops with winter wheat and potatoes, for every
+year. Exactly what we need, now we just need to `count()` them.
+
+```{r}
+conv_crop_count <- crop_rotation %>% melt(. ,"field") %>% group_by(field) %>%
+  filter(value %in% c("wwht", "pota")) %>% count()
+
+head(conv_crop_count)
+```
+
+And we are back where we started! See, not that complicated. One last
+thing we need to do is rename `n` to `conv`, we do that like so:
+
+```{r}
+conv_crop_count <- crop_rotation %>% melt(. ,"field") %>% group_by(field) %>% 
+  filter(value %in% c("wwht", "pota")) %>% count() %>% rename(conv = n)
+
+head(conv_crop_count)
+```
+
+Now lets go ahead and do the same thing for the two other categories:
+`cons` and`meadow`.
+
+```{r}
+meadow_crop_count <- crop_rotation %>% melt(. ,"field") %>% group_by(field) %>%
+  filter(value == "meadow" ) %>% count() %>%
+  rename(meadow = n)
+
+cons_crop_count <- crop_rotation %>% melt(. ,"field") %>% group_by(field) %>%
+  filter(!(value %in% c("wwht", "pota", "meadow"))) %>% count() %>%
+  rename(cons = n)
+
+cons_crop_count %>% head()
+
+meadow_crop_count %>% head()
+
+```
+
+`meadow` was a simple filter, all we have to do was grab crops with the
+`meadow` name. For `cons` crops, we just grabbed the remaining crops
+that were not `conv` or `meadow`.
+
+Great. We have these 3 separate, we need to combine them. we can do that
+with `left_join` and join by the `field` column which contains our IDs
+
+```{r}
+# create a base dataframe to join to
+crop_fractions <- crop_rotation %>% select(field) %>% distinct()
+
+# join our 3 data frames
+crop_fractions <- left_join(crop_fractions, conv_crop_count, by = "field")
+crop_fractions <- left_join(crop_fractions, cons_crop_count, by = "field")
+crop_fractions <- left_join(crop_fractions, meadow_crop_count, by = "field")
+
+# lets have a look
+crop_fractions %>% head()
+```
+
+That does not look good! when it seems like when the `count` is 0, it is
+returned as `NA`. Lets fix that...
+
+```{r}
+crop_fractions <- crop_fractions %>%
+  mutate(cons = ifelse(is.na(cons), 0, cons))
+crop_fractions <- crop_fractions %>%
+  mutate(conv = ifelse(is.na(conv), 0, conv))
+crop_fractions <- crop_fractions %>%
+  mutate(meadow = ifelse(is.na(meadow), 0, meadow))
+```
+
+What are we doing here? we are `mutating` the the 3 columns using an
+`ifelse` statement. The statement is simple. If the value `is.na` then
+we set it to `0`. Otherwise, we set it to the same value it had before.
+
+did it work?
+
+```{r}
+crop_fractions %>% head()
+```
+
+Very good. Now we need to decide what to classify our fields at. lets
+Define some `functions` to do that.
+
+```{r}
+is_meadow <- function(conv, cons, meadow) {
+  ((meadow > cons) & (meadow > conv)) %>% return()
+}
+
+is_cons <- function(conv, cons, meadow) {
+  ((cons >= meadow) & (cons > conv)) %>% return()
+}
+
+is_conv <- function(conv, cons, meadow) {
+  ((conv >= meadow) & (conv >= cons)) %>% return()
+}
+
+```
+
+The `&` sign means that both conditions need to be met. and `>=` you
+should know already. Lets use those functions in action. lets do the
+meadow first. We will create a new dataframe from crop fractions, named
+`field_class`.
+
+```{r}
+field_class <- crop_fractions %>% mutate(meadow = is_meadow(conv,cons,meadow))
+
+head(field_class)
+```
+
+Ok, so none of those first 6 fields are `meadow` dominated. What about
+`cons`? (lets stick with our `field_class` dataframe and just keep
+adding on)
+
+```{r}
+field_class <- field_class %>% mutate(cons = is_cons(conv,cons,meadow))
+head(field_class)
+```
+
+Nope, not `cons` either. Then it must be `conv` dominant.
+
+```{r}
+field_class <- field_class %>% mutate(conv = is_conv(conv,cons,meadow))
+
+field_class %>% head()
+
+```
+
+Correct! now lets just double check that we didnt have any cases where
+`all` are `TRUE` or where `all` are `FALSE`
+
+```{r}
+field_class %>% select(conv, cons, meadow) %>% isTRUE %>% all()
+
+field_class %>% select(conv, cons, meadow) %>% isFALSE() %>% all()
+
+```
+
+looks good to me! carry on:
+
+We have our field classifications now, they will be very useful to us
+later. Lets `pull` them out of our dataframe to store them as a nice
+`list`.
+
+```{r}
+cons_fields <- field_class %>% filter(cons) %>% select(field) %>% pull()
+conv_fields <- field_class %>% filter(conv) %>% select(field) %>% pull()
+meadow_fields <- field_class %>% filter(meadow) %>% select(field) %>% pull()
+
+cons_fields %>% head()
+conv_fields %>% head()
+meadow_fields %>% head()
+
+```
+
+Fantastic! Now that was a big task, but it makes the next bit very easy.
+Lets assign the correct `ovn` to the types of fields we have classified:
+
+###### Agricultural Fields: Meadow
+
+```{r}
+landuse_lum$ov_mann[which(landuse_lum$field_id %in% meadow_fields)] <- "shortgrass"
+```
+
+###### Agricultural Fields: Conventional
+
+```{r}
+landuse_lum$ov_mann[which(landuse_lum$field_id %in% conv_fields)] <- "convtill_nores"
+```
+
+###### Agricultural Fields: Conservational
+
+```{r}
+landuse_lum$ov_mann[which(landuse_lum$field_id %in% cons_fields)] <- "falldisk_res"
+```
+
+#### Forest
+
+Now all we need to do is the forest. We have decided we want
+`forest_heavy` on good soils, and `forest_light` on poor soils... you
+know what that means! We need to get *geo-spatial!*
+
+Lets load the packages for that!
+
+```{r}
+require(sf)
+```
+
+We are going to need our soil data, lets load in it:
+
+```{r}
+# path to soil data shape file:
+
+# parent directory of our working directory:
+soil_map <- paste0(parent_dir, "/input_files/soil/shp/soil_map_UTM32N.shp")
+
+soil_map_shp <- sf::read_sf(soil_map)
+
+# this file is messy, but we can see our soil names are in the column "SNAM"
+soil_map_shp$SNAM %>% head()
+
+# we only need to keep the soil name, ID, and its geometry.
+soil_map_shp <- soil_map_shp %>% dplyr::select(SOIL_ID, SNAM, geometry)
+
+```
+
+Ok so we've got our spatial data loaded in, just for fun, lets have a
+look at this soil names:
+
+```{r}
+
+ plot(soil_map_shp["SOIL_ID"], main = "CS10 Soil map")
+```
+
+Sweet.
+
+But we also need to know where our landuses are... So lets open the file
+`SWATbuildR` has prepared for us:
+
+```{r}
+lu_map <- paste0(parent_dir, "/swat_buildR/output/cs10/data/vector/land.shp")
+
+lu_map_shp <- read_sf(lu_map)
+
+plot(lu_map_shp["type"], main = "CS10 Landuse")
+
+```
+
+Ok -- we have the location of the land use, and the location of the
+soils, but we are interested in **soil depth** for classifying our
+forests into **good** and **bad**. Where can we find this data?
+`usersoil.csv` of course! in the column `SOL_ZMX`. Lets go get that
+
+```{r}
+usersoil_path <- paste0(parent_dir, "/input_files/soil/Usersoil_Krakstad.csv")
+
+usersoil <- read_csv(usersoil_path, show_col_types = F)
+
+usersoil %>% head()
+
+```
+
+Now, let us `left_join` the soil map with `SOL_ZMX`, by connecting the
+`SOIL_ID`.
+
+```{r}
+
+# we only need the soil name and depth
+soil_depth <- usersoil %>% dplyr::select(OBJECTID, SNAM, SOL_ZMX)
+
+# "rename" a column so that we have matching columns for the left_join
+soil_depth$SOIL_ID <- soil_depth$OBJECTID
+
+soil_depth_map <- dplyr::left_join(soil_map_shp, soil_depth, by = "SOIL_ID")
+
+plot(soil_depth_map["SOL_ZMX"], main = "CS10 soil depth", key.pos = 1)
+
+```
+
+Now, we need to connect our land use map to our soil depth map:
+
+```{r}
+
+soil_depth_map2 <- soil_depth_map %>%
+  dplyr::select(SOIL_ID, SNAM.x, SOL_ZMX, geometry)
+
+# are the coordinate reference systems the same (TRUE?)
+st_crs(lu_map_shp) == st_crs(soil_depth_map)
+
+joined_map <- st_join(lu_map_shp, soil_depth_map2)
+
+```
+
+Lets have a look at what we've got
+
+```{r}
+
+plot(joined_map["SOL_ZMX"], main = "CS10 Land Layer, soil depth (mm)")
+
+```
+
+We are done with the geospatial analysis, so we can drop the geometries:
+
+```{r}
+lu_sol_depth <- st_drop_geometry(joined_map)
+
+# and we only need to keep the ID (id), land use (type) and soil depth (SOL_ZMX)
+
+lu_soil <- lu_sol_depth %>% dplyr::select(id, type, SOL_ZMX)
+
+head(lu_soil)
+```
+
+And this is the moment, dear reader... where our coder realized his
+mistake:
+
+```{r}
+lu_soil %>% dplyr::select(type) %>% dplyr::filter(!grepl(x = type, "a_")) %>%
+  unique()
+
+```
+
+```{r, include=FALSE}
+require(crayon)
+```
+
+```{r}
+
+
+cat(red(bold(italic(underline(
+    "We cant have good and bad forests based on soil types...\n
+    because we only have one forest land use type.. YOU FOOL!\n"
+  )))))
+```
+
+Well that settles it then. We will just use `forest_medium` for all
+`frst`. We can only change this if we go back to `buildR` and define
+more generic forest classes.
+
+```{r}
+landuse_lum$ov_mann[which(landuse_lum$name =="frst_lum")] <- "forest_med"
+```
+
+#### Summary
+
+With all that data processing out of the way, lets have a quick look at
+what we've done:
+
+```{r}
+landuse_lum$ov_mann[which(landuse_lum$name == "past_lum")] <-
+  "densegrass"
+landuse_lum$ov_mann[which(landuse_lum$name == "rngb_lum")] <-
+  "rangeland_20cover"
+landuse_lum$ov_mann[which(landuse_lum$name == "urml_lum")] <-
+  "urban_rubble"
+landuse_lum$ov_mann[which(landuse_lum$name == "urtn_lum")] <-
+  "urban_asphalt"
+landuse_lum$ov_mann[which(landuse_lum$name == "frst_lum")] <-
+  "forest_med"
+landuse_lum$ov_mann[which(landuse_lum$field_id %in% meadow_fields)] <-
+  "shortgrass"
+landuse_lum$ov_mann[which(landuse_lum$field_id %in% conv_fields)] <-
+  "convtill_nores"
+landuse_lum$ov_mann[which(landuse_lum$field_id %in% cons_fields)] <-
+  "falldisk_res"
+landuse_lum$ov_mann[which(landuse_lum$name == "wetf_lum")] <-
+  "forest_heavy_cs10"
+```
+
+Sweet. Next column..
+
+### Setting `cn2`:
+
+You know the drill -- I am sure you know how to read this code by now.
+
+```{r}
+# Brush-brush-weed-grass_mixture_with_brush_the_major_element (poor)
+landuse_lum$cn2[which(landuse_lum$name == "rngb_lum")] <- "brush_p"
+
+# Woods (poor)
+landuse_lum$cn2[which(landuse_lum$name == "wetf_lum")] <- "wood_p"
+
+# Paved_streets_and_roads;_open_ditches_(incl._right-of-way)
+landuse_lum$cn2[which(landuse_lum$name == "utrn_lum")] <- "paveroad"
+
+# Paved_parking_lots_roofs_driveways_etc_(excl_right-of-way)
+landuse_lum$cn2[which(landuse_lum$name == "urml_lum")] <- "urban"
+
+# Woods (fair)
+landuse_lum$cn2[which(landuse_lum$name == "frst_lum")] <- "wood_f"
+
+# Pasture_grassland_or_range-continuous_forage_for_grazing
+landuse_lum$cn2[which(landuse_lum$name == "past_lum")] <- "pastg_g"
+
+# Meadow-continuous_grass_protected_from_grazing_mowed_for_hay
+landuse_lum$cn2[which(landuse_lum$field_id %in% meadow_fields)] <-
+  "pasth"
+
+# Row_crops
+landuse_lum$cn2[which(landuse_lum$field_id %in% cons_fields)] <-
+  "rc_conterres_g"
+
+# Row_crops
+landuse_lum$cn2[which(landuse_lum$field_id %in% conv_fields)] <-
+  "rc_strow_p"
+```
+
+### Setting `cons_prac`
+
+For this, we need to add some custom entries to the database:
+
+```{r}
+cons_prac_path <- paste0(parent_dir, "/swat_setup/cons_practice.lum")
+cons_prac <- readLines(cons_prac_path)
+cons_prac[1:3] %>% print()
+```
+
+Let us do it in a way so that it is only added if it doesn't exist yet:
+
+```{r}
+if(grepl(x = cons_prac, "agri_conv") %>% which %>% length() == 0) {
+  entry <-
+    "agri_conv          1.00000      60.00000  no_convervation"
+  cons_prac <- c(cons_prac, entry)
+}
+
+if (grepl(x = cons_prac, "agri_part_conv") %>% which %>% length() == 0) {
+  entry <-
+    "agri_part_conv     0.85000      60.00000  75_percent_convential"
+  cons_prac <- c(cons_prac, entry)
+}
+
+if (grepl(x = cons_prac, "agri_half") %>% which %>% length() == 0) {
+  entry <-
+    "agri_half          0.70000      50.00000  50_percent_convential"
+  cons_prac <- c(cons_prac, entry)
+}
+
+if (grepl(x = cons_prac, "agri_part_cons") %>% which %>% length() == 0) {
+  entry <-
+    "agri_part_cons     0.50000      30.00000  75_percent_consveration"
+  cons_prac <- c(cons_prac, entry)
+}
+
+if (grepl(x = cons_prac, "agri_cons") %>% which %>% length() == 0) {
+  entry <-
+    "agri_cons     0.30000      30.00000  100_percent_consveration"
+  cons_prac <- c(cons_prac, entry)
+}
+
+if (grepl(x = cons_prac, "past_cons") %>% which %>% length() == 0) {
+  entry <-
+    "past_cons   0.1   60   pasture"
+  cons_prac <- c(cons_prac, entry)
+}
+
+if (grepl(x = cons_prac, "rngb_cons") %>% which %>% length() == 0) {
+  entry <-
+    "rngb_cons   0.2   60   rangeland"
+  cons_prac <- c(cons_prac, entry)
+}
+
+if (grepl(x = cons_prac, "frst_cons") %>% which %>% length() == 0) {
+  entry <-
+    "frst_cons   0.1   60   forest"
+  cons_prac <- c(cons_prac, entry)
+}
+
+if (grepl(x = cons_prac, "urml_cons") %>% which %>% length() == 0) {
+  entry <-
+    "urml_cons   1   60   cs10urban"
+  cons_prac <- c(cons_prac, entry)
+}
+
+if (grepl(x = cons_prac, "utrn_cons") %>% which %>% length() == 0) {
+  entry <-
+    "utrn_cons   1   60   road"
+  cons_prac <- c(cons_prac, entry)
+}
+
+if (grepl(x = cons_prac, "cs10_meadow") %>% which %>% length() == 0) {
+  entry <-
+    "cs10_meadow   0.2   60   cs10_meadow"
+  cons_prac <- c(cons_prac, entry)
+}
+
+if (grepl(x = cons_prac, "wetf_cons") %>% which %>% length() == 0) {
+  entry <-
+    "wetf_cons   0.05   30   wetlands"
+  cons_prac <- c(cons_prac, entry)
+}
+
+if (grepl(x = cons_prac, "cs10_sed_pond") %>% which %>% length() == 0) {
+  entry <-
+    "cs10_sed_pond   0.1   30   cs10_sed_pond"
+  cons_prac <- c(cons_prac, entry)
+}
+
+if (grepl(x = cons_prac, "cs10_cons_wetl") %>% which %>% length() == 0) {
+  entry <-
+    "cs10_cons_wetl   0.1   30   cs10_cons_wetl"
+  cons_prac <- c(cons_prac, entry)
+}
+
+if (grepl(x = cons_prac, "cs10_buff_grass") %>% which %>% length() == 0) {
+  entry <-
+    "cs10_buff_grass   0.25   10   cs10_buff_grass"
+  cons_prac <- c(cons_prac, entry)
+}
+
+if (grepl(x = cons_prac, "cs_10_buff_wood") %>% which %>% length() == 0) {
+  entry <-
+    "cs_10_buff_wood   0.2   10   cs_10_buff_wood"
+  cons_prac <- c(cons_prac, entry)
+}
+```
+
+And write the updated file:
+
+```{r}
+writeLines(cons_prac, con = cons_prac_path)
+```
+
+Now we need to define the 0, 25, 50, 75, 100 percent conventional crops.
+We can use our old "crop_fractions" dataframe:
+
+```{r}
+head(crop_fractions)
+```
+
+Lets derive which fields get classified as what
+
+```{r}
+p100_conv <- crop_fractions %>% filter(conv==4) %>% select(field) %>% pull()
+p75_conv <- crop_fractions %>% filter(conv==3) %>% select(field) %>% pull()
+p50_conv <- crop_fractions %>% filter(conv==2) %>% select(field) %>% pull()
+p25_conv <- crop_fractions %>% filter(conv==1) %>% select(field) %>% pull()
+p0_conv <- crop_fractions %>% filter(conv==0) %>% select(field) %>% pull()
+```
+
+Now we can assign the all the land uses
+
+```{r}
+# Agricultural
+landuse_lum$cons_prac[which(landuse_lum$field_id %in% p100_conv)] <-
+  "agri_conv"
+landuse_lum$cons_prac[which(landuse_lum$field_id %in% p75_conv)] <-
+  "agri_part_conv"
+landuse_lum$cons_prac[which(landuse_lum$field_id %in% p50_conv)] <-
+  "agri_half"
+landuse_lum$cons_prac[which(landuse_lum$field_id %in% p25_conv)] <-
+  "agri_part_cons"
+landuse_lum$cons_prac[which(landuse_lum$field_id %in% p0_conv)] <-
+  "agri_cons"
+
+# Meadow
+landuse_lum$cons_prac[which(field_class$meadow)] <-
+  "cs10_meadow"
+
+# Generic
+landuse_lum$cons_prac[which(landuse_lum$name == "past_lum")] <-
+  "past_cons"
+landuse_lum$cons_prac[which(landuse_lum$name == "rngb_lum")] <-
+  "rngb_cons"
+landuse_lum$cons_prac[which(landuse_lum$name == "frst_lum")] <-
+  "frst_cons"
+landuse_lum$cons_prac[which(landuse_lum$name == "urml_lum")] <-
+  "urml_cons"
+landuse_lum$cons_prac[which(landuse_lum$name == "utrn_lum")] <-
+  "utrn_cons"
+landuse_lum$cons_prac[which(landuse_lum$name == "wetf_lum")] <-
+  "wetf_cons"
+
+# Measures
+landuse_lum$cons_prac[which(landuse_lum$name == "cs10_sed_pond")] <-
+  "cs10_sed_pond"
+landuse_lum$cons_prac[which(landuse_lum$name == "cs10_cons_wetl")] <-
+  "cs10_cons_wetl"
+landuse_lum$cons_prac[which(landuse_lum$name == "cs10_buff_grass")] <-
+  "cs10_buff_grass"
+landuse_lum$cons_prac[which(landuse_lum$name == "cs_10_buff_wood")] <-
+  "cs_10_buff_wood"
+```
+
+### Setting `tile`
+
+This column has already been completed by `SWATbuildR`
+
+<!-- >  "swat-cs10/swat-buildR/" -->
+
+### Setting `sep`
+
+This column has been left as `null`
+
+### Setting `vfs`
+
+This column has been left as `null`
+
+### Setting `grww`
+
+This column has been left as `null`
+
+### Setting `bmp`
+
+This column has been left as `null`
+
+### Writing Changes
+
+We are done with our modifications however, we need to remove the `field_id`
+column
+
+```{r}
+landuse_lum <- landuse_lum %>% select(-field_id)
+```
+
+lets take a look at the final product:
+```{r}
+head(landuse_lum)
+```
+
+Lets write out changes
+
+```{r}
+write.table(landuse_lum, file = "landuse_new.lum", sep = "\t", quote = F, row.names = F)
+
+#write.table(landuse_lum, file = "../sql_free_zone/hru/landuse.lum", sep = "\t", quote = F, row.names = F)
+#write.table(landuse_lum, file = "../sql_free_zone/exe/landuse.lum", sep = "\t", quote = F, row.names = F)
+#write.table(landuse_lum, file = "../swat_setup/landuse.lum", sep = "\t", quote = F, row.names = F)
+
+```
+
+But wait -- we need to keep that pesky header, otherwise the FarmR will be very angry with us.
+
+```{r}
+lum_lines <- readLines("landuse_new.lum")
+
+header <- "header header header HEADER, delete me and you will regret it FOREVER!"
+
+lum_lines2<- c(header,lum_lines)
+
+writeLines(text = lum_lines2, con = "landuse_new.lum")
+```
+Done!
