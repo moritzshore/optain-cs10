@@ -410,25 +410,25 @@ meadow_fields %>% head()
 Fantastic! Now that was a big task, but it makes the next bit very easy.
 Lets assign the correct `ovn` to the types of fields we have classified:
 
-###### Agricultural Fields: Meadow
+### Agricultural Fields: Meadow
 
 ```{r}
 landuse_lum$ov_mann[which(landuse_lum$field_id %in% meadow_fields)] <- "shortgrass"
 ```
 
-###### Agricultural Fields: Conventional
+### Agricultural Fields: Conventional
 
 ```{r}
 landuse_lum$ov_mann[which(landuse_lum$field_id %in% conv_fields)] <- "convtill_nores"
 ```
 
-###### Agricultural Fields: Conservational
+### Agricultural Fields: Conservational
 
 ```{r}
 landuse_lum$ov_mann[which(landuse_lum$field_id %in% cons_fields)] <- "falldisk_res"
 ```
 
-#### Forest
+### Forest
 
 Now all we need to do is the forest. We have decided we want
 `forest_heavy` on good soils, and `forest_light` on poor soils... you
@@ -559,7 +559,7 @@ more generic forest classes.
 landuse_lum$ov_mann[which(landuse_lum$name =="frst_lum")] <- "forest_med"
 ```
 
-#### Summary
+### Summary
 
 With all that data processing out of the way, lets have a quick look at
 what we've done:
@@ -587,7 +587,7 @@ landuse_lum$ov_mann[which(landuse_lum$name == "wetf_lum")] <-
 
 Sweet. Next column..
 
-### Setting `cn2`:
+## Setting `cn2`:
 
 You know the drill -- I am sure you know how to read this code by now.
 
@@ -623,7 +623,7 @@ landuse_lum$cn2[which(landuse_lum$field_id %in% conv_fields)] <-
   "rc_strow_p"
 ```
 
-### Setting `cons_prac`
+## Setting `cons_prac`
 
 For this, we need to add some custom entries to the database:
 
@@ -801,27 +801,27 @@ landuse_lum$cons_prac[which(landuse_lum$name == "cs_10_buff_wood")] <-
   "cs_10_buff_wood"
 ```
 
-### Setting `tile`
+## Setting `tile`
 
 This column has already been completed by `SWATbuildR` in (!ref)
 
-### Setting `sep`
+## Setting `sep`
 
 This column has been left as `null`
 
-### Setting `vfs`
+## Setting `vfs`
 
 This column has been left as `null`
 
-### Setting `grww`
+## Setting `grww`
 
 This column has been left as `null`
 
-### Setting `bmp`
+## Setting `bmp`
 
 This column has been left as `null`
 
-### Writing Changes
+## Writing Changes
 
 We are done with our modifications however, we need to remove the
 `field_id` column
