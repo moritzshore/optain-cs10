@@ -2,12 +2,13 @@ fig:nice-fig
 tab:nice-tab
 eq:binom
 thm:tri
-about
+introduction
 usage
 render-book
 preview-book
-swatbuildr
+model-setup-with-swatbuildr
 high-resolution-digital-elevation-model-dem
+basin-boundary
 cross
 chapters-and-sub-chapters
 captioned-figures-and-tables

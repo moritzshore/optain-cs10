@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>OPTAIN CS-10</title>
+  <title>Chapter 2 Model setup with SWATBuildR | OPTAIN CS-10</title>
   <meta name="description" content="A description of the project setup for OPTAIN case study 10" />
   <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="OPTAIN CS-10" />
+  <meta property="og:title" content="Chapter 2 Model setup with SWATBuildR | OPTAIN CS-10" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="A description of the project setup for OPTAIN case study 10" />
   <meta name="github-repo" content="moritzshore/optain-cs10" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="OPTAIN CS-10" />
+  <meta name="twitter:title" content="Chapter 2 Model setup with SWATBuildR | OPTAIN CS-10" />
   
   <meta name="twitter:description" content="A description of the project setup for OPTAIN case study 10" />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="model-setup-with-swatbuildr.html"/>
+<link rel="prev" href="index.html"/>
+<link rel="next" href="cross.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -218,36 +218,61 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">OPTAIN CS-10</h1>
-<p class="author"><em>Moritz Shore, Csilla Farkas</em></p>
-<p class="date"><em>2023-05-19</em></p>
+<div id="model-setup-with-swatbuildr" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Chapter 2</span> Model setup with SWATBuildR<a href="model-setup-with-swatbuildr.html#model-setup-with-swatbuildr" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>The OPTAIN project is using the COCOA approach <span class="citation">Schürz et al. (<a href="#ref-schürz2022" role="doc-biblioref">2022</a>)</span> and as such, needs to use the <code>SWATBuildR</code> package to calculate the connectivity between HRUs in the catchment. This chapter covers this process.</p>
+<p>We will define the location of our project here:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="model-setup-with-swatbuildr.html#cb3-1" aria-hidden="true" tabindex="-1"></a>project_path <span class="ot">&lt;-</span> <span class="st">&#39;model_data/cs10_setup&#39;</span></span></code></pre></div>
+<p>And give it the name:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="model-setup-with-swatbuildr.html#cb4-1" aria-hidden="true" tabindex="-1"></a>project_name <span class="ot">&lt;-</span> <span class="st">&#39;optain-cs10&#39;</span></span></code></pre></div>
+<p>Much of this documentation has been lost to time.</p>
+<div id="high-resolution-digital-elevation-model-dem" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> High-Resolution Digital Elevation Model (DEM)<a href="model-setup-with-swatbuildr.html#high-resolution-digital-elevation-model-dem" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The high-resolution DEM is the basis for calculation of water connectivity, among other things. Most of the documentation of the creation of the DEM for CS10 has been lost to the sands of time. All we know is that it is located here:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="model-setup-with-swatbuildr.html#cb5-1" aria-hidden="true" tabindex="-1"></a>dem_path <span class="ot">&lt;-</span> <span class="st">&quot;model_data/input/elevation/dtm3_ns_v5.tif&quot;</span></span></code></pre></div>
+<p>To our knowledge, it has a 10 meter resolution. 1 meter resolution was available but there seems to have been issues with using it. It is definitely preferable to use the 1m DEM as certain important information can be lost with (max allowed resolution) of 10m, see Figure <a href="#fig:dempic"><strong>??</strong></a>.</p>
+<div class="figure">
+<img src="figures/1mdemvs10.png" alt="" />
+<p class="caption">#fig:dempic An example of a hydrologically effective landscape features being lost due to coarse DEM resolution. From<span class="citation">(<a href="#ref-schürz2022" role="doc-biblioref">Schürz et al. 2022</a>)</span></p>
 </div>
-<div id="introduction" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">Chapter 1</span> Introduction<a href="index.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>This is the documentation for the OPTAIN-CS10 Project.</p>
-<div id="usage" class="section level2 hasAnchor" number="1.1">
-<h2><span class="header-section-number">1.1</span> Usage<a href="index.html#usage" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Each <strong>bookdown</strong> chapter is an .Rmd file, and each .Rmd file can contain one (and only one) chapter. A chapter <em>must</em> start with a first-level heading: <code># A good chapter</code>, and can contain one (and only one) first-level heading.</p>
-<p>Use second-level and higher headings within chapters like: <code>## A short section</code> or <code>### An even shorter section</code>.</p>
-<p>The <code>index.Rmd</code> file is required, and is also your first book chapter. It will be the homepage when you render the book.</p>
 </div>
-<div id="render-book" class="section level2 hasAnchor" number="1.2">
-<h2><span class="header-section-number">1.2</span> Render book<a href="index.html#render-book" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>You can render the HTML version of this example book without changing anything:</p>
-<ol style="list-style-type: decimal">
-<li><p>Find the <strong>Build</strong> pane in the RStudio IDE, and</p></li>
-<li><p>Click on <strong>Build Book</strong>, then select your output format, or select “All formats” if you’d like to use multiple formats from the same book source files.</p></li>
-</ol>
-<p>Or build the book from the R console:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1" aria-hidden="true" tabindex="-1"></a>bookdown<span class="sc">::</span><span class="fu">render_book</span>()</span></code></pre></div>
-<p>To render this example to PDF as a <code>bookdown::pdf_book</code>, you’ll need to install XeLaTeX. You are recommended to install TinyTeX (which includes XeLaTeX): <a href="https://yihui.org/tinytex/" class="uri">https://yihui.org/tinytex/</a>.</p>
-</div>
-<div id="preview-book" class="section level2 hasAnchor" number="1.3">
-<h2><span class="header-section-number">1.3</span> Preview book<a href="index.html#preview-book" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>As you work, you may start a local server to live preview this HTML book. This preview will update as you edit the book when you save individual .Rmd files. You can start the server in a work session by using the RStudio add-in “Preview book”, or from the R console:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="index.html#cb2-1" aria-hidden="true" tabindex="-1"></a>bookdown<span class="sc">::</span><span class="fu">serve_book</span>()</span></code></pre></div>
+<div id="basin-boundary" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Basin Boundary<a href="model-setup-with-swatbuildr.html#basin-boundary" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The basin boundary has presumably been created using the defined outlet point of the catchment and the DEM. No more is currently known about this file other than that it is located here:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="model-setup-with-swatbuildr.html#cb6-1" aria-hidden="true" tabindex="-1"></a>bound_path <span class="ot">&lt;-</span> <span class="st">&quot;model_data/input/shape/cs10_basin.shp&quot;</span></span></code></pre></div>
+<p>We will begin using the <code>SWATBuildR</code> Package by initializing its functions. (Note: this package is currently unfinished, which is why this step is necessary).</p>
+<p>The following code is from version <code>1.5.12</code>, and written by Christoph Schuerz.</p>
+<p>Another note: there are currently issues with White box which are being resolved.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="model-setup-with-swatbuildr.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&#39;model_data/swat_buildR/init.R&#39;</span>)</span></code></pre></div>
+<pre><code>## Warning in fun(libname, pkgname): GEOS versions differ: lwgeom has 3.9.1 sf has
+## 3.9.3</code></pre>
+<pre><code>## Warning in fun(libname, pkgname): PROJ versions differ: lwgeom has 7.2.1 sf has
+## 8.2.1</code></pre>
+<p>First, we read in and check the basin boundary</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="model-setup-with-swatbuildr.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read and prepare input data --------------------------------------</span></span>
+<span id="cb10-2"><a href="model-setup-with-swatbuildr.html#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Basin boundary</span></span>
+<span id="cb10-3"><a href="model-setup-with-swatbuildr.html#cb10-3" aria-hidden="true" tabindex="-1"></a>bound <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(bound_path) <span class="sc">%&gt;%</span> <span class="fu">select</span>()</span>
+<span id="cb10-4"><a href="model-setup-with-swatbuildr.html#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set_proj_crs</span>(bound, data_path)</span>
+<span id="cb10-5"><a href="model-setup-with-swatbuildr.html#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">check_polygon_topology</span>(<span class="at">layer =</span> bound, <span class="at">data_path =</span>  data_path, <span class="at">label =</span> <span class="st">&#39;basin&#39;</span>, </span>
+<span id="cb10-6"><a href="model-setup-with-swatbuildr.html#cb10-6" aria-hidden="true" tabindex="-1"></a>                       <span class="at">n_feat =</span> <span class="dv">1</span>, <span class="at">checks =</span> <span class="fu">c</span>(F,T,T,T,F,F,F,F))</span></code></pre></div>
+<pre><code>## Running topological checks and modifications for the basin layer:
+## 
+## Analyzing basin layer for specific number of features...
+##   ✔  Number of features correct.
+## Analyzing basin layer for MULTIPOLYGON features...
+##   ✔  No MULTIPOLYGON features identified.
+## Analyzing basin layer for invalid features...
+##   ✔  No invalid features identified.
+## 
+## 
+##   ✔  All checks successful! Saving checked basin layer.</code></pre>
 
+</div>
+</div>
+<h3>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-schürz2022" class="csl-entry">
+Schürz, Christoph, Natalja Čerkasova, Csilla Farkas, Attila Nemes, Plunge, Michael Strauch, Brigitta Szabó, and Mikołaj Piniewski. 2022. <span>“SWAT+ Modeling Protocol for the Assessment of Water and Nutrient Retention Measures in Small Agricultural Catchments,”</span> December. <a href="https://doi.org/10.5281/ZENODO.7463395">https://doi.org/10.5281/ZENODO.7463395</a>.
 </div>
 </div>
             </section>
@@ -255,8 +280,8 @@ div.csl-indent {
           </div>
         </div>
       </div>
-
-<a href="model-setup-with-swatbuildr.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="cross.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -287,7 +312,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/index.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/01-buildR.Rmd",
 "text": "Edit"
 },
 "history": {
