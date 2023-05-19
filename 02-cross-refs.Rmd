@@ -1,11 +1,9 @@
-# Model parameterization with SWAT+ Edtior
+# (PART) Model parameterization {-}
+
+# Climate inputs and weather generator
 
 Hello world
-
-## Climate inputs and weather generator
-
-## Landuse.lum update
-
+  
 ## Channel parameters revised
 
 ## Crop parameters verified

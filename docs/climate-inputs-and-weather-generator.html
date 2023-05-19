@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="model-setup-with-swatbuildr.html"/>
-<link rel="next" href="a-chapter.html"/>
+<link rel="next" href="landuse.lum-update.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -52,6 +52,22 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.1.2/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.1.2/leaflet-providers-plugin.js"></script>
+<link href="libs/HomeButton-0.0.1/home-button.css" rel="stylesheet" />
+<script src="libs/HomeButton-0.0.1/home-button.js"></script>
+<script src="libs/HomeButton-0.0.1/easy-button-src.min.js"></script>
+<script src="libs/clipboard-0.0.1/setClipboardText.js"></script>
+<link href="libs/mapviewCSS-0.0.1/mapview-popup.css" rel="stylesheet" />
+<link href="libs/mapviewCSS-0.0.1/mapview.css" rel="stylesheet" />
 
 
 <style type="text/css">
@@ -206,7 +222,7 @@ div.csl-indent {
 <li class="chapter" data-level="3.9" data-path="climate-inputs-and-weather-generator.html"><a href="climate-inputs-and-weather-generator.html#atmospheric-deposition-defined"><i class="fa fa-check"></i><b>3.9</b> Atmospheric deposition defined</a></li>
 <li class="chapter" data-level="3.10" data-path="climate-inputs-and-weather-generator.html"><a href="climate-inputs-and-weather-generator.html#additional-settings-verified"><i class="fa fa-check"></i><b>3.10</b> Additional settings verified</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="a-chapter.html"><a href="a-chapter.html"><i class="fa fa-check"></i><b>4</b> A chapter</a></li>
+<li class="chapter" data-level="4" data-path="landuse.lum-update.html"><a href="landuse.lum-update.html"><i class="fa fa-check"></i><b>4</b> Landuse.lum update</a></li>
 <li class="chapter" data-level="5" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html"><i class="fa fa-check"></i><b>5</b> Footnotes and citations</a>
 <ul>
 <li class="chapter" data-level="5.1" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html#footnotes"><i class="fa fa-check"></i><b>5.1</b> Footnotes</a></li>
@@ -279,10 +295,10 @@ div.csl-indent {
 <h2><span class="header-section-number">3.10</span> Additional settings verified<a href="climate-inputs-and-weather-generator.html#additional-settings-verified" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Refers to chapter 3.11 in The Protocol</p>
 <p>dontt miss Table <a href="climate-inputs-and-weather-generator.html#tab:nice-tab">3.1</a>.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="climate-inputs-and-weather-generator.html#cb1-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(</span>
-<span id="cb1-2"><a href="climate-inputs-and-weather-generator.html#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(pressure, <span class="dv">10</span>), <span class="at">caption =</span> <span class="st">&#39;Here is a nice table!&#39;</span>,</span>
-<span id="cb1-3"><a href="climate-inputs-and-weather-generator.html#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">booktabs =</span> <span class="cn">TRUE</span></span>
-<span id="cb1-4"><a href="climate-inputs-and-weather-generator.html#cb1-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="climate-inputs-and-weather-generator.html#cb61-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(</span>
+<span id="cb61-2"><a href="climate-inputs-and-weather-generator.html#cb61-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(pressure, <span class="dv">10</span>), <span class="at">caption =</span> <span class="st">&#39;Here is a nice table!&#39;</span>,</span>
+<span id="cb61-3"><a href="climate-inputs-and-weather-generator.html#cb61-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">booktabs =</span> <span class="cn">TRUE</span></span>
+<span id="cb61-4"><a href="climate-inputs-and-weather-generator.html#cb61-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <table>
 <caption><span id="tab:nice-tab">Table 3.1: </span>Here is a nice table!</caption>
 <thead>
@@ -343,7 +359,7 @@ div.csl-indent {
         </div>
       </div>
 <a href="model-setup-with-swatbuildr.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="a-chapter.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="landuse.lum-update.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -397,6 +413,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
