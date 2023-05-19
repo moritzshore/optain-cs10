@@ -1,0 +1,17 @@
+# SWATBuildR
+
+The OPTAIN project is using the COCOA approach @schürz2022 and as such, needs to use the `SWATBuildR` package to calculate the connectivity between HRUs in the catchment. This chapter covers this process.
+
+Much of this documentation has been lost to time.
+
+## High-Resolution Digital Elevation Model (DEM)
+
+The high-resolution DEM is the basis for calculation of water connectivity, among other things. Most of the documentation of the creation of the DEM for CS10 has been lost to the sands of time. All we know is that it is located here:
+
+```{r}
+dem_path <- "model_data/input/elevation/dtm3_ns_v5.tif"
+```
+
+To our knowledge, it has a 10 meter resolution. 1 meter resolution was available but there seems to have been issues with using it. It is definitely preferable to use the 1m DEM as certain important information can be lost with (max allowed resolution) of 10m, see Figure \@ref(fig:dempic).
+
+![#fig:dempic An example of a hydrologically effective landscape features being lost due to coarse DEM resolution. From[@schürz2022]](figures/1mdemvs10.png)
