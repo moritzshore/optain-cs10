@@ -18,10 +18,3 @@ github-repo: moritzshore/optain-cs10
 This is the documentation for the OPTAIN-CS10 Project. It is currently incomplete. **Click the Arrow on the right to continue!**
 
 ![](figures/banner.png)
-
-```{r include=FALSE}
-# automatically create a bib database for R packages
-knitr::write_bib(c(
-  .packages(), 'bookdown', 'knitr', 'rmarkdown'
-), 'packages.bib')
-```
