@@ -1,38 +1,85 @@
-# (PART) Model parameterization {-}
+# (PART) Model parameterization {.unnumbered}
 
 # Climate inputs and weather generator
 
-Hello world
-  
-## Channel parameters revised
+## Preperation and loading data
 
-## Crop parameters verified
+To add weather and climate data to our SWAT project, we will use `svatools`
 
-## Soil physical parameters in final form
+### Required packages
 
-## Soil chemical parameters in final form
-
-## Impoundment parameters defined
-
-## Water diversions defined
-
-## Point sources parameters added
-
-## Tile drainage parameters defined
-
-## Atmospheric deposition defined
-
-## Additional settings verified
-
-Refers to chapter 3.11 in The Protocol
-
-
-
-dontt miss Table \@ref(tab:nice-tab).
-
-```{r nice-tab, tidy=FALSE}
-knitr::kable(
-  head(pressure, 10), caption = 'Here is a nice table!',
-  booktabs = TRUE
-)
+```{r, message=FALSE}
+require(euptf2) # devtools::install_github("tkdweber/euptf2") 
+require(svatools) # devtools::install_github("biopsichas/svatools")
+require(readr)
+require(readxl)
+require(sf)
+require(mapview)
 ```
+
+### Load in the file(s) and load svatools template
+
+First we load in the template and fill it in with our values and rename it to "cs10_weather_data.xlsx". This is not done within R.
+
+```{r}
+#temp_path <- system.file("extdata", "weather_data.xlsx", package = "svatools")
+# /// fill out this template and save "cs10_weather_data.xlsx" ///
+```
+
+We are using the following projection for this project:
+
+```{r}
+epgs_code = 25832
+```
+
+Now we can load it in with Svatools.
+
+```{r}
+met_lst <- load_template(template_path = "model_data/input/met/cs10_weather_data.xlsx", epgs_code)
+```
+
+### Proof the station
+
+```{r, svatool_plot_weather}
+plot_weather(met_lst, "PCP", "month", "sum")
+```
+
+Checking the location of the station:
+
+```{r}
+basin_path <- "model_data/input/shape/cs10_basin.shp"
+basin <- st_transform(st_read(basin_path), epgs_code) %>%
+  mutate(NAME = "Basin")
+
+stations <- st_transform(met_lst$stations, epgs_code)
+mapview(stations) + mapview(basin)
+```
+
+## Creating the weather generator
+
+We only have one weather station, which means only one weather generator.
+
+```{r}
+wgn <- prepare_wgn(met_lst, 
+                   TMP_MAX = met_lst$data$ID1$TMP_MAX, 
+                   TMP_MIN = met_lst$data$ID1$TMP_MIN, 
+                   PCP = met_lst$data$ID1$PCP, 
+                   RELHUM = met_lst$data$ID1$RELHUM, 
+                   WNDSPD = met_lst$data$ID1$WNDSPD, 
+                   MAXHHR = met_lst$data$ID1$MAXHHR, 
+                   SLR = met_lst$data$ID1$SLR)
+
+write.csv(wgn$wgn_st, "model_data/input/met/as_wgn_st.csv", row.names = FALSE, quote = FALSE)
+
+write.csv(wgn$wgn_data, "model_data/input/met/as_wgn_data.csv", row.names = FALSE, quote = FALSE)
+```
+
+# Adding weather data to SWAT project
+
+Currently, this throws an error -- Cannot tell why, but might not be an issue because it still writes the files that we need. Because the buildR script is currently broken, we cannot evaluate the following code
+
+```{r, eval=FASE}
+db_path <- "model_data/cs10_setup/optain-cs10/...sqlite"
+add_weather(db_path, met_lst, wgn)
+```
+
