@@ -100,13 +100,15 @@ Interactive land use map of CS10 by Farm ID
 
 We had an issue with the classification of the land uses. For the OPTAIN project, all agricultural fields must have a unique ID, and our land uses only had the ID of the given farm `KGB` (which had many different fields). To remedy this, new IDs were generated with the format `a_###f_#` where `a_` represents the farm, and `f_` represents the respective field of that farm. The farm names needed to be shortened because the SWAT+ model often cannot handle long ID names (longer than 16 characters)
 
+Note, the potential measures polygons were not counted as individual fields, which is why `SP_ID` does not match up with `field_ID` -- This is by design.
+
 ```{r, readfarmid}
 readr::read_csv("model_data/farm_id/a_f_id.csv", show_col_types = F) %>% head()
 ```
 
 This was done in a simple QGIS workflow of dissolving by farm, splitting from single part to multipart, and then adding an iterating ID per farm field. This workflow could be replicated in R, and then shown here. It is under consideration...
 
-This is our map with the new `type` IDs:
+This is our map with the new `type` IDs.
 
 ```{r, lumap2, message=FALSE}
 lu_map <- mapview(read_sf(land_path), zcol = "type", legend = FALSE)
@@ -114,7 +116,7 @@ lu_map <- mapview(read_sf(land_path), zcol = "type", legend = FALSE)
 lu_map
 ```
 
-interactive land use map of CS10 by Field ID
+Interactive land use map of CS10 by Field ID
 
 BuildR will now run some checks on our land layer.
 
