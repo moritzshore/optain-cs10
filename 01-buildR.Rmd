@@ -26,7 +26,7 @@ dem_path <- "model_data/input/elevation/dtm3_ns_v5.tif"
 
 To our knowledge, it has a 10 meter resolution. 1 meter resolution was available but there seems to have been issues with using it. It is definitely preferable to use the 1m DEM as certain important information can be lost with (max allowed resolution) of 10m, see Figure \@ref(fig:dempic).
 
-![#fig:dempic An example of a hydrologically effective landscape features being lost due to coarse DEM resolution. From[@schürz2022]](figures/1mdemvs10.png)
+![ #label:dempic An example of a hydrologically effective landscape features being lost due to coarse DEM resolution. From[@schürz2022]](figures/1mdemvs10.png)
 
 ## Basin Boundary
 
@@ -55,4 +55,18 @@ bound <- read_sf(bound_path) %>% select()
 set_proj_crs(bound, data_path)
 check_polygon_topology(layer = bound, data_path =  data_path, label = 'basin', 
                        n_feat = 1, checks = c(F,T,T,T,F,F,F,F))
+```
+
+## Land layer
+
+```{r}
+land_path <- '../input_files/landuse/cs10_lu_id_fixed.shp'
+land_path <- "model_data/input/"
+```
+
+```{r}
+land <- read_sf(land_path) %>% 
+  check_layer_attributes(., type_to_lower = FALSE) %>%
+  check_project_crs(layer = ., data_path =  data_path, proj_layer = project_layer, 
+                    label = 'land', type = 'vector')
 ```
