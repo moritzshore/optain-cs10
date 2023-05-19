@@ -1,0 +1,28 @@
+# Crop map generations
+
+As OPTAIN takes into account the individual field, we need to know what is
+growing on which field and when. Unfortunately our data foundation for this task
+is quite lackluster, but we will try out best to do so. in the following
+chapter.
+
+## Farm and field area
+
+We have data based on what area certain crops have per farm. In order to relate
+this to our spatial land use map, we require the area of both the farms, and 
+the fields within these farms.
+
+### Calculate Farm area and assign IDs
+
+This stage has been completed in QGIS. An R-implementation is being
+considered.
+
+### Calculate Field area and assign IDs
+
+This stage has been completed in QGIS. An R-implementation is being
+considered.
+
+## Generate crop map from farm data
+
+The following script takes information from reporting farm, and their
+respective area in the SWAT+ setup, and combines these data sets to
+generate a plausible crop rotation.
