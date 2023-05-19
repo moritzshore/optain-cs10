@@ -19,9 +19,8 @@ Much of this documentation has been lost to time.
 We will need the following packages for this chapter:
 
 ```{r, message=FALSE}
-library(raster)
-library(sf)
-library(mapview)
+require(mapview)
+require(sf)
 ```
 
 ## High-Resolution Digital Elevation Model (DEM)
@@ -34,7 +33,7 @@ dem_path <- "model_data/input/elevation/dtm3_ns_v5.tif"
 
 ```{r, message=FALSE}
 
-plot(raster(dem_path), main = "CS10 DEM, UTM32N")
+plot(raster::raster(dem_path), main = "CS10 DEM, UTM32N")
 
 ```
 
@@ -50,8 +49,11 @@ The basin boundary has presumably been created using the defined outlet point of
 bound_path <- "model_data/input/shape/cs10_basin.shp"
 ```
 
-```{r}
-mapview(read_sf(bound_path))
+```{r, message=FALSE, echo=FALSE}
+bound_sf <- read_sf(bound_path)
+bound_sf$Id = "CS10 Basin"
+bound_map <- mapview(bound_sf, color = "black", col.regions = "orange", alpha.region = .2)
+bound_map
 ```
 
 We will begin using the `SWATBuildR` Package by initializing its functions. (Note: this package is currently unfinished, which is why this step is necessary).
@@ -81,9 +83,73 @@ Our land layer is located here:
 land_path <- "model_data/input/land/CS10_LU.shp"
 ```
 
+Documentation on its creation does not exist.
+
+```{r, message=F, echo=F}
+mapview(read_sf(land_path), zcol = "KGB", legend = FALSE)
+```
+
+We had an issue with the classification of the land uses. For the OPTAIN project, all agricultural fields must have a unique ID, and our land uses only had the ID of the given farm `KGB` (which had many different fields). To remedy this, new IDs were generated with the format `a_###f_#` where `a_` represents the farm, and `f_` represents the respective field of that farm. The farm names needed to be shortened because the SWAT+ model often cannot handle long ID names (longer than 16 characters)
+
+```{r}
+readr::read_csv("model_data/farm_id/a_f_id.csv", show_col_types = F) %>% head()
+```
+
+This was done in a simple QGIS workflow of dissolving by farm, splitting from single part to multipart, and then adding an iterating ID per farm. This workflow could be replicated in R, and shown here. It is under consideration.
+
+This is our map with the new `type` IDs:
+
+```{r, message=FALSE}
+lu_map <- mapview(read_sf(land_path), zcol = "type", legend = FALSE)
+
+lu_map
+```
+
+BuildR will now run some checks on our land layer:
+
 ```{r}
 land <- read_sf(land_path) %>% 
   check_layer_attributes(., type_to_lower = FALSE) %>%
   check_project_crs(layer = ., data_path =  data_path, proj_layer = project_layer, 
                     label = 'land', type = 'vector')
+
+check_polygon_topology(layer = land, data_path =  data_path, label = 'land', 
+                       area_fct =  0.00, cvrg_frc = 99.9,
+                       checks = c(T,F,T,T,T,T,T,T))
+```
+
+BuildR splits the land layer into HRU (land) and reservoir (water) objects
+
+```{r}
+split_land_layer(data_path)
+```
+
+## Channels
+
+No documentation exists on the source of the channels layer, all we know is that it is located here:
+
+```{r}
+channel_path <- 'model_data/input/line/cs10_channels.shp'
+channels <- read_sf(channel_path) %>% select("type")
+plot(channels)
+```
+
+BuildR runs some checks:
+
+```{r}
+ channel <- read_sf(channel_path) %>% 
+    check_layer_attributes(., type_to_lower = TRUE) %>% 
+    check_project_crs(layer = ., data_path =  data_path, proj_layer = project_layer, 
+                      label = 'channel', type = 'vector')
+  ## Check function saves layer into data/vector after all checks were successful
+  check_line_topology(layer = channel, data_path = data_path, 
+                      label = 'channel', length_fct = 0, can_cross = FALSE)
+```
+And gives this output:
+```{r}
+
+channels <- read_sf("model_data/cs10_setup/optain-cs10/data/vector/channel.shp")
+channel_map <- mapview(channels, zcol = "type")
+
+bound_map+channel_map
 ```
