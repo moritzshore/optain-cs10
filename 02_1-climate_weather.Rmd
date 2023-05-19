@@ -8,7 +8,7 @@ To add weather and climate data to our SWAT project, we will use `svatools`
 
 ### Required packages
 
-```{r, message=FALSE}
+```{r, loadpacks_climweath, message=FALSE}
 require(euptf2) # devtools::install_github("tkdweber/euptf2") 
 require(svatools) # devtools::install_github("biopsichas/svatools")
 require(readr)
@@ -78,7 +78,7 @@ write.csv(wgn$wgn_data, "model_data/input/met/as_wgn_data.csv", row.names = FALS
 
 Currently, this throws an error -- Cannot tell why, but might not be an issue because it still writes the files that we need. Because the buildR script is currently broken, we cannot evaluate the following code
 
-```{r, eval=FASE}
+```{r, eval=FASLE}
 db_path <- "model_data/cs10_setup/optain-cs10/...sqlite"
 add_weather(db_path, met_lst, wgn)
 ```
