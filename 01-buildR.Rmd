@@ -1,6 +1,6 @@
 # Model setup with SWATBuildR
 
-The OPTAIN project is using the COCOA approach @schürz2022 and as such, needs to use the `SWATBuildR` package to calculate the connectivity between HRUs in the catchment. This chapter covers this process.
+The OPTAIN project is using the COCOA approach (ref!) schurz2022 and as such, needs to use the `SWATBuildR` package to calculate the connectivity between HRUs in the catchment. This chapter covers this process.
 
 We will define the location of our project here:
 
@@ -23,6 +23,12 @@ require(mapview)
 require(sf)
 require(raster)
 require(dplyr) # dplyr must be loaded after SF to avoid conflict
+```
+
+If this flag is set to true, the markdown file will actually run buildR, which
+could take about 4 hours!
+```{r}
+run_code = FALSE
 ```
 
 ## High-Resolution Digital Elevation Model (DEM)
@@ -49,7 +55,7 @@ The basin boundary has presumably been created using the defined outlet point of
 bound_path <- "model_data/input/shape/cs10_basin.shp"
 ```
 
-```{r, watershedplot, message=FALSE, echo=FALSE}
+```{r, watershedplot, message=FALSE, echo=FALSE, eval=TRUE}
 bound_sf <- read_sf(bound_path)
 bound_sf$Id = "CS10 Basin"
 bound_map <- mapview(bound_sf, color = "black", col.regions = "orange", alpha.region = .2)
@@ -62,7 +68,7 @@ The following code and commentary is from version `1.5.12`, written by Christoph
 
 Another note: there are currently issues with White box which are being resolved.
 
-```{r, sourceBuildRinit, message=FALSE}
+```{r, sourceBuildRinit, message=FALSE, eval=run_code}
 source('model_data/swat_buildR/init.R')
 ```
 
@@ -76,7 +82,7 @@ project_layer <- TRUE
 
 We read in and check the basin boundary and run some checks
 
-```{r, checkbound}
+```{r, checkbound, eval=run_code}
 bound <- read_sf(bound_path) %>% select()
 set_proj_crs(bound, data_path)
 check_polygon_topology(layer = bound, data_path =  data_path, label = 'basin', 
@@ -121,7 +127,7 @@ Interactive land use map of CS10 by Field ID
 
 BuildR will now run some checks on our land layer.
 
-```{r, check_layer_attributes1}
+```{r, check_layer_attributes1, eval=run_code}
 land <- read_sf(land_path) %>% 
   check_layer_attributes(., type_to_lower = FALSE) %>%
   check_project_crs(layer = ., data_path =  data_path, proj_layer = project_layer, 
@@ -134,7 +140,7 @@ check_polygon_topology(layer = land, data_path =  data_path, label = 'land',
 
 BuildR splits the land layer into HRU (land) and reservoir (water) objects
 
-```{r, split_land_layer}
+```{r, split_land_layer, eval=run_code}
 split_land_layer(data_path)
 ```
 
@@ -150,7 +156,7 @@ plot(channels)
 
 BuildR runs some checks:
 
-```{r, channelcheck}
+```{r, channelcheck, eval=run_code}
  channel <- read_sf(channel_path) %>% 
     check_layer_attributes(., type_to_lower = TRUE) %>% 
     check_project_crs(layer = ., data_path =  data_path,
@@ -180,13 +186,13 @@ id_res_out <- NULL
 
 Running connectivity checks between channels and reservoirs:
 
-```{r, check_cha_res_connectivity}
+```{r, check_cha_res_connectivity, eval=run_code}
 check_cha_res_connectivity(data_path, id_cha_out, id_res_out)
 ```
 
 Checking if any defined channel ids for drainage from land objects do not exist
 
-```{r, check_land_drain_ids}
+```{r, check_land_drain_ids, eval=run_code}
 check_land_drain_ids(data_path)
 ```
 
@@ -194,7 +200,7 @@ check_land_drain_ids(data_path)
 
 BuildR loads and checks the DEM, and saves it.
 
-```{r, procDEM, message=FALSE}
+```{r, procDEM, message=FALSE, eval=run_code}
 dem <- rast(dem_path) %>% 
   check_project_crs(layer = ., data_path =  data_path, proj_layer = project_layer, 
                     label = 'dem', type = 'raster')
@@ -238,7 +244,7 @@ NOTE: THIS IS CURRENTLY BROKEN, WITH ERROR MESSAGE:
 
 > Warning: Cannot find coordinate operations from `EPSG:2583` ["unnamed",EDATUM[""], CS[Cartesian,2], AXIS["(E)", east, ORDER[1], LENGTHUNIT["unknown", 1]], AXIS["(N)", north, ORDER[2], LENGTHUNIT["unknown", 1]]]' (GDAL error 6) Error: [project] Cannot do this transformation
 
-```{r, checksoil1}
+```{r, checksoil1, eval=run_code}
 soil <- rast(soil_layer_path) %>% 
   check_project_crs(layer = ., data_path =  data_path, proj_layer = project_layer, 
                     label = 'soil', type = 'raster')
