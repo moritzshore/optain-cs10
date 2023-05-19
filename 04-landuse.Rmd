@@ -16,6 +16,7 @@ require(tidyverse)
 require(reshape2)
 require(sf)
 require(DT)
+require(dplyr) # require dplyr last to overwrite plyr coun()
 ```
 
 ## Data preperation
@@ -214,7 +215,7 @@ Now, lets get into it
 
 ```{r}
 conv_crop_count <- crop_rotation %>% melt(. ,"field") %>% group_by(field) %>%
-  filter(value %in% c("wwht", "pota")) %>% count() %>% rename(conv = n)
+  filter(value %in% c("wwht", "pota")) %>% dplyr::count() %>% dplyr::rename(conv = n)
 
 head(conv_crop_count)
 ```
@@ -257,7 +258,7 @@ year. Exactly what we need, now we just need to `count()` them.
 
 ```{r}
 conv_crop_count <- crop_rotation %>% melt(. ,"field") %>% group_by(field) %>%
-  filter(value %in% c("wwht", "pota")) %>% count()
+  filter(value %in% c("wwht", "pota")) %>% dplyr::count()
 
 head(conv_crop_count)
 ```
@@ -267,7 +268,7 @@ thing we need to do is rename `n` to `conv`, we do that like so:
 
 ```{r}
 conv_crop_count <- crop_rotation %>% melt(. ,"field") %>% group_by(field) %>% 
-  filter(value %in% c("wwht", "pota")) %>% count() %>% rename(conv = n)
+  filter(value %in% c("wwht", "pota")) %>% dplyr::count() %>% dplyr::rename(conv = n)
 
 head(conv_crop_count)
 ```
@@ -277,12 +278,12 @@ Now lets go ahead and do the same thing for the two other categories:
 
 ```{r paged.print=TRUE}
 meadow_crop_count <- crop_rotation %>% melt(. ,"field") %>% group_by(field) %>%
-  filter(value == "meadow" ) %>% count() %>%
-  rename(meadow = n)
+  filter(value == "meadow" ) %>% dplyr::count() %>%
+  dplyr::rename(meadow = n)
 
 cons_crop_count <- crop_rotation %>% melt(. ,"field") %>% group_by(field) %>%
-  filter(!(value %in% c("wwht", "pota", "meadow"))) %>% count() %>%
-  rename(cons = n)
+  filter(!(value %in% c("wwht", "pota", "meadow"))) %>% dplyr::count() %>%
+  dplyr::rename(cons = n)
 
 cons_crop_count %>% head()
 
