@@ -41,7 +41,7 @@ To our knowledge, it has a 10 meter resolution. 1 meter resolution was available
 
 ![#label:dempic An example of a hydrologically effective landscape features being lost due to coarse DEM resolution. From[@schürz2022]](figures/1mdemvs10.png)
 
-## Basin Boundary
+## Processing the Basin Boundary
 
 The basin boundary has presumably been created using the defined outlet point of the catchment and the DEM. No more is currently known about this file other than that it is located here:
 
@@ -66,6 +66,14 @@ Another note: there are currently issues with White box which are being resolved
 source('model_data/swat_buildR/init.R')
 ```
 
+BuildR recommends all layers to be in the same CRS, if we set `project_layer` to `FALSE`, it will throw an error when this is not the case:
+
+> The input layers might be in different coordinate reference systems (CRS). It is recommended to project all layers to the same CRS and check them before using them as model inputs. The model setup process checks if the layer CRSs differ from the one of the basin boundary. By setting 'proj_layer \<- TRUE' the layer is projected if the CRS is different. If FALSE different CRS trigger an error.
+
+```{r}
+project_layer <- TRUE
+```
+
 First, we read in and check the basin boundary and run some checks
 
 ```{r}
@@ -75,7 +83,7 @@ check_polygon_topology(layer = bound, data_path =  data_path, label = 'basin',
                        n_feat = 1, checks = c(F,T,T,T,F,F,F,F))
 ```
 
-## Land layer
+## Processing the Land layer
 
 Our land layer is located here:
 
@@ -105,7 +113,7 @@ lu_map <- mapview(read_sf(land_path), zcol = "type", legend = FALSE)
 lu_map
 ```
 
-BuildR will now run some checks on our land layer:
+BuildR will now run some checks on our land layer.
 
 ```{r}
 land <- read_sf(land_path) %>% 
@@ -124,7 +132,7 @@ BuildR splits the land layer into HRU (land) and reservoir (water) objects
 split_land_layer(data_path)
 ```
 
-## Channels
+## Processing the Channels
 
 No documentation exists on the source of the channels layer, all we know is that it is located here:
 
@@ -145,11 +153,104 @@ BuildR runs some checks:
   check_line_topology(layer = channel, data_path = data_path, 
                       label = 'channel', length_fct = 0, can_cross = FALSE)
 ```
-And gives this output:
-```{r}
 
+And gives this output:
+
+```{r}
 channels <- read_sf("model_data/cs10_setup/optain-cs10/data/vector/channel.shp")
 channel_map <- mapview(channels, zcol = "type")
-
 bound_map+channel_map
 ```
+
+BuildR then checks the connectivity between the channels and reservoirs. For this we need to define our `id_cha_out` and `id_res_out`.
+
+> Variable `id_cha_out` sets the outlet point of the catchment. Either define a channel OR a reservoir as the final outlet. If channel then assign `id_cha_out` with the respective id from the channel layer. If reservoir then assign the respective id from the land layer to id_res_out, otherwise leave as `NULL`
+
+```{r}
+id_cha_out <- 37
+id_res_out <- NULL
+```
+
+Running connectivity checks between channels and reservoirs:
+
+```{r}
+check_cha_res_connectivity(data_path, id_cha_out, id_res_out)
+```
+
+Checking if any defined channel ids for drainage from land objects do not exist
+
+```{r}
+check_land_drain_ids(data_path)
+```
+
+## Processing the DEM
+
+BuildR loads and checks the DEM, and saves it.
+
+```{r, message=FALSE}
+dem <- rast(dem_path) %>% 
+  check_project_crs(layer = ., data_path =  data_path, proj_layer = project_layer, 
+                    label = 'dem', type = 'raster')
+
+check_raster_coverage(rst = dem, vct_layer = 'land', data_path = data_path, 
+                      label = 'dem', cov_frc = 0.95)
+
+save_dem_slope_raster(dem, data_path)
+```
+
+## Processing soil data
+
+Our soil map is located here:
+
+```{r}
+soil_layer_path  <- 'model_data/input/soil/soil_layer.tif'
+```
+
+No documentation exists on its creation.
+
+```{r, echo = F}
+plot(raster(soil_layer_path), main = "CS10 soil map UTM32N")
+```
+
+The soil data and lookup path are located here:
+
+```{r}
+soil_lookup_path <- 'model_data/input/soil/soil_lookup.csv'
+soil_data_path   <- 'model_data/input/soil/UserSoil_Krakstad.csv'
+```
+
+Not much documentation exists here either. Some can be found in the excel sheet:
+
+```{r, echo = F}
+"model_data/input/soil/swatsoil2.xlsx"
+```
+
+BuildR reads in the soil data, performs checks, processes, and saves.
+
+NOTE: THIS IS CURRENTLY BROKEN, WITH ERROR MESSAGE:
+
+> Warning: Cannot find coordinate operations from `EPSG:2583`
+["unnamed",EDATUM[""], CS[Cartesian,2], AXIS["(E)", east, ORDER[1],
+LENGTHUNIT["unknown", 1]], AXIS["(N)", north, ORDER[2], LENGTHUNIT["unknown",
+1]]]' (GDAL error 6) Error: [project] Cannot do this transformation
+
+```{r}
+soil <- rast(soil_layer_path) %>% 
+  check_project_crs(layer = ., data_path =  data_path, proj_layer = project_layer, 
+                    label = 'soil', type = 'raster')
+check_raster_coverage(rst = soil, vct_layer = 'hru', data_path = data_path, 
+                      label = 'soil', cov_frc = 0.75)
+# BROKEN
+#save_soil_raster(soil, data_path)
+
+# added soil.tif from back when it used to work
+```
+
+BuildR then generates a table with aggregated elevation, slope, soil for HRU
+units.
+
+```{r}
+#broken, using old soil.tif
+aggregate_hru_dem_soil(data_path)
+```
+
