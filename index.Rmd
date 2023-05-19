@@ -1,4 +1,4 @@
---- 
+---
 title: "OPTAIN CS-10"
 author: "Moritz Shore, Csilla Farkas"
 date: "`r Sys.Date()`"
@@ -13,11 +13,11 @@ link-citations: yes
 github-repo: moritzshore/optain-cs10
 ---
 
-# About
+# Introduction
 
-Hello world
+This is the documentation for the OPTAIN-CS10 Project.
 
-## Usage 
+## Usage
 
 Each **bookdown** chapter is an .Rmd file, and each .Rmd file can contain one (and only one) chapter. A chapter *must* start with a first-level heading: `# A good chapter`, and can contain one (and only one) first-level heading.
 
@@ -29,9 +29,9 @@ The `index.Rmd` file is required, and is also your first book chapter. It will b
 
 You can render the HTML version of this example book without changing anything:
 
-1. Find the **Build** pane in the RStudio IDE, and
+1.  Find the **Build** pane in the RStudio IDE, and
 
-1. Click on **Build Book**, then select your output format, or select "All formats" if you'd like to use multiple formats from the same book source files.
+2.  Click on **Build Book**, then select your output format, or select "All formats" if you'd like to use multiple formats from the same book source files.
 
 Or build the book from the R console:
 
@@ -48,7 +48,6 @@ As you work, you may start a local server to live preview this HTML book. This p
 ```{r eval=FALSE}
 bookdown::serve_book()
 ```
-
 
 ```{r include=FALSE}
 # automatically create a bib database for R packages
