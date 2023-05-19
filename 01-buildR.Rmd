@@ -16,6 +16,14 @@ project_name <- 'optain-cs10'
 
 Much of this documentation has been lost to time.
 
+We will need the following packages for this chapter:
+
+```{r, message=FALSE}
+library(raster)
+library(sf)
+library(mapview)
+```
+
 ## High-Resolution Digital Elevation Model (DEM)
 
 The high-resolution DEM is the basis for calculation of water connectivity, among other things. Most of the documentation of the creation of the DEM for CS10 has been lost to the sands of time. All we know is that it is located here:
@@ -24,9 +32,15 @@ The high-resolution DEM is the basis for calculation of water connectivity, amon
 dem_path <- "model_data/input/elevation/dtm3_ns_v5.tif"
 ```
 
+```{r, message=FALSE}
+
+plot(raster(dem_path), main = "CS10 DEM, UTM32N")
+
+```
+
 To our knowledge, it has a 10 meter resolution. 1 meter resolution was available but there seems to have been issues with using it. It is definitely preferable to use the 1m DEM as certain important information can be lost with (max allowed resolution) of 10m, see Figure \@ref(fig:dempic).
 
-![ #label:dempic An example of a hydrologically effective landscape features being lost due to coarse DEM resolution. From[@schürz2022]](figures/1mdemvs10.png)
+![#label:dempic An example of a hydrologically effective landscape features being lost due to coarse DEM resolution. From[@schürz2022]](figures/1mdemvs10.png)
 
 ## Basin Boundary
 
@@ -34,6 +48,10 @@ The basin boundary has presumably been created using the defined outlet point of
 
 ```{r}
 bound_path <- "model_data/input/shape/cs10_basin.shp"
+```
+
+```{r}
+mapview(read_sf(bound_path))
 ```
 
 We will begin using the `SWATBuildR` Package by initializing its functions. (Note: this package is currently unfinished, which is why this step is necessary).
@@ -46,11 +64,9 @@ Another note: there are currently issues with White box which are being resolved
 source('model_data/swat_buildR/init.R')
 ```
 
-First, we read in and check the basin boundary
+First, we read in and check the basin boundary and run some checks
 
 ```{r}
-# Read and prepare input data --------------------------------------
-## Basin boundary
 bound <- read_sf(bound_path) %>% select()
 set_proj_crs(bound, data_path)
 check_polygon_topology(layer = bound, data_path =  data_path, label = 'basin', 
@@ -59,9 +75,10 @@ check_polygon_topology(layer = bound, data_path =  data_path, label = 'basin',
 
 ## Land layer
 
+Our land layer is located here:
+
 ```{r}
-land_path <- '../input_files/landuse/cs10_lu_id_fixed.shp'
-land_path <- "model_data/input/"
+land_path <- "model_data/input/land/CS10_LU.shp"
 ```
 
 ```{r}
