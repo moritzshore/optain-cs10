@@ -231,10 +231,10 @@ div.csl-indent {
 <h2><span class="header-section-number">2.1</span> High-Resolution Digital Elevation Model (DEM)<a href="swatbuildr.html#high-resolution-digital-elevation-model-dem" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The high-resolution DEM is the basis for calculation of water connectivity, among other things. Most of the documentation of the creation of the DEM for CS10 has been lost to the sands of time. All we know is that it is located here:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="swatbuildr.html#cb3-1" aria-hidden="true" tabindex="-1"></a>dem_path <span class="ot">&lt;-</span> <span class="st">&quot;model_data/input/elevation/dtm3_ns_v5.tif&quot;</span></span></code></pre></div>
-<p>To our knowledge, it has a 10 meter resolution. 1 meter resolution was available but there seems to have been issues with using it. It is definitely preferable to use the 1m DEM as certain important information can be lost with (max allowed resolution) of 10m, see Figure 1 <a href="swatbuildr.html#fig:dempic">2.1</a>.</p>
-<div class="figure"><span style="display:block;" id="fig:dempic"></span>
+<p>To our knowledge, it has a 10 meter resolution. 1 meter resolution was available but there seems to have been issues with using it. It is definitely preferable to use the 1m DEM as certain important information can be lost with (max allowed resolution) of 10m, see Figure <a href="#fig:dempic"><strong>??</strong></a>.</p>
+<div class="figure">
 <img src="figures/1mdemvs10.png" alt="" />
-<p class="caption">Figure 2.1:  An example of a hydrologically effective landscape features being lost due to coarse DEM resolution.</p>
+<p class="caption">#fig:dempic An example of a hydrologically effective landscape features being lost due to coarse DEM resolution. From<span class="citation">(<a href="#ref-schürz2022" role="doc-biblioref">Schürz et al. 2022</a>)</span></p>
 </div>
 
 </div>
