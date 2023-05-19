@@ -1,7 +1,8 @@
 # Landuse.lum update
 
-This section covers the modifications made to the landuse file. For some reason
-it was written in a tutorial fashion, as if the reader were new to R.
+This section covers the modifications made to the landuse file. For some
+reason it was written in a tutorial fashion, as if the reader were new
+to R.
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -13,6 +14,8 @@ functions.
 ```{r, message=FALSE}
 require(tidyverse)
 require(reshape2)
+require(sf)
+require(DT)
 ```
 
 ## Data preperation
@@ -36,7 +39,7 @@ knitr::kable(
 Our `field_id` for our cropland does not match `name` of `landuse_lum`
 so we need to parse it out, we can do this many ways, but a safe way is
 to split it by "\_" and combine the first 3 splits with that same
-underscore: 
+underscore:
 
 ```{r}
 
@@ -47,6 +50,7 @@ landuse_lum$field_id <-
 
 head(landuse_lum$field_id)
 ```
+
 But wait, this does not work for our "non-fields". So lets find out
 which ones they are, and set them to `NA`
 
@@ -87,7 +91,6 @@ landuse_lum$urb_ro[which(landuse_lum$name %in% c("urml_lum", "utrn_lum"))] <-
   "usgs_reg"
 ```
 
-
 ```{r urbro_tab, tidy=FALSE, echo=FALSE}
 prev <- landuse_lum[which(landuse_lum$name %in% c("urml_lum", "utrn_lum")), ]
 
@@ -109,7 +112,8 @@ the same name. The rest we leave as `null`
 landuse_lum$urban[which(landuse_lum$name =="utrn_lum")] <- "utrn"
 landuse_lum$urban[which(landuse_lum$name =="urml_lum")] <- "urml"
 ```
-```{r urbro_tab, tidy=FALSE, echo=FALSE}
+
+```{r urbro_tab2, tidy=FALSE, echo=FALSE}
 # how did we do?
 prev<- landuse_lum[which(landuse_lum$name =="urml_lum"),]
 knitr::kable(
@@ -186,10 +190,10 @@ And now we can enter our wetland class:
 landuse_lum$ov_mann[which(landuse_lum$name =="wetf_lum")] <- "forest_heavy_cs10"
 ```
 
-For the fields we are going to need the crop rotation info which we created in 
-section (!ref)
+For the fields we are going to need the crop rotation info which we
+created in section (!ref)
 
-```{r, tidy=TRUE}
+```{r paged.print=TRUE, tidy=TRUE}
 crop_rotation <- read_csv("model_data/input/crop/cs10_crop_rotation.csv",
     show_col_types = F)
 
@@ -217,20 +221,20 @@ head(conv_crop_count)
 
 What happened here? well we took our `crop_rotation`, and melted it by
 `field` using `melt`. This function converts the data into [*tidy
-format*](https://r4ds.had.co.nz/tidy-data.html). This format makes it
+format*](https://r4ds.had.co.nz/tidy-data.html) (ref). This format makes it
 easier to apply the following operations on **a field basis**. What does
 this look like?
 
-```{r}
+```{r paged.print=TRUE}
 crop_rotation %>% melt(. ,"field") %>% arrange(field) %>% head()
 ```
 
-`melt` is a function from `reshape2` which is why we
-`required` it. And what does that "`.`" mean in there, to the left of
-`"field"`?? That is a code word for the object to the left of the "pipe"
-(in this case `crop_rotation`). the pipe is "`%>%`" and passes the
-object to the left of it, into the function to the right of it. [*look
-it up*](https://r4ds.had.co.nz/pipes.html)!
+`melt` is a function from `reshape2` which is why we `required` it. And
+what does that "`.`" mean in there, to the left of `"field"`?? That is a
+code word for the object to the left of the "pipe" (in this case
+`crop_rotation`). the pipe is "`%>%`" and passes the object to the left
+of it, into the function to the right of it. [*look it
+up*](https://r4ds.had.co.nz/pipes.html)! (!ref)
 
 When `arranged` by field, we can see that every field gets one entry per
 crop per year. This is a good format to count how many times we have a
@@ -271,7 +275,7 @@ head(conv_crop_count)
 Now lets go ahead and do the same thing for the two other categories:
 `cons` and`meadow`.
 
-```{r}
+```{r paged.print=TRUE}
 meadow_crop_count <- crop_rotation %>% melt(. ,"field") %>% group_by(field) %>%
   filter(value == "meadow" ) %>% count() %>%
   rename(meadow = n)
@@ -295,7 +299,7 @@ with `left_join` and join by the `field` column which contains our IDs
 
 ```{r}
 # create a base dataframe to join to
-crop_fractions <- crop_rotation %>% select(field) %>% distinct()
+crop_fractions <- crop_rotation %>% dplyr::select(field) %>% distinct()
 
 # join our 3 data frames
 crop_fractions <- left_join(crop_fractions, conv_crop_count, by = "field")
@@ -324,7 +328,7 @@ we set it to `0`. Otherwise, we set it to the same value it had before.
 
 did it work?
 
-```{r}
+```{r paged.print=TRUE}
 crop_fractions %>% head()
 ```
 
@@ -351,7 +355,7 @@ should know already. Lets use those functions in action. lets do the
 meadow first. We will create a new dataframe from crop fractions, named
 `field_class`.
 
-```{r}
+```{r paged.print=TRUE}
 field_class <- crop_fractions %>% mutate(meadow = is_meadow(conv,cons,meadow))
 
 head(field_class)
@@ -361,14 +365,14 @@ Ok, so none of those first 6 fields are `meadow` dominated. What about
 `cons`? (lets stick with our `field_class` dataframe and just keep
 adding on)
 
-```{r}
+```{r paged.print=TRUE}
 field_class <- field_class %>% mutate(cons = is_cons(conv,cons,meadow))
 head(field_class)
 ```
 
 Nope, not `cons` either. Then it must be `conv` dominant.
 
-```{r}
+```{r paged.print=TRUE}
 field_class <- field_class %>% mutate(conv = is_conv(conv,cons,meadow))
 
 field_class %>% head()
@@ -379,22 +383,22 @@ Correct! now lets just double check that we didnt have any cases where
 `all` are `TRUE` or where `all` are `FALSE`
 
 ```{r}
-field_class %>% select(conv, cons, meadow) %>% isTRUE %>% all()
+field_class %>% dplyr::select(conv, cons, meadow) %>% isTRUE %>% all()
 
-field_class %>% select(conv, cons, meadow) %>% isFALSE() %>% all()
+field_class %>% dplyr::select(conv, cons, meadow) %>% isFALSE() %>% all()
 
 ```
 
-looks good to me! carry on:
+Looks good to me! carry on:
 
 We have our field classifications now, they will be very useful to us
 later. Lets `pull` them out of our dataframe to store them as a nice
 `list`.
 
 ```{r}
-cons_fields <- field_class %>% filter(cons) %>% select(field) %>% pull()
-conv_fields <- field_class %>% filter(conv) %>% select(field) %>% pull()
-meadow_fields <- field_class %>% filter(meadow) %>% select(field) %>% pull()
+cons_fields <- field_class %>% filter(cons) %>% dplyr::select(field) %>% pull()
+conv_fields <- field_class %>% filter(conv) %>% dplyr::select(field) %>% pull()
+meadow_fields <- field_class %>% filter(meadow) %>% dplyr::select(field) %>% pull()
 
 cons_fields %>% head()
 conv_fields %>% head()
@@ -429,36 +433,26 @@ Now all we need to do is the forest. We have decided we want
 `forest_heavy` on good soils, and `forest_light` on poor soils... you
 know what that means! We need to get *geo-spatial!*
 
-Lets load the packages for that!
-
-```{r}
-require(sf)
-```
-
 We are going to need our soil data, lets load in it:
 
 ```{r}
-# path to soil data shape file:
-
-# parent directory of our working directory:
-soil_map <- paste0(parent_dir, "/input_files/soil/shp/soil_map_UTM32N.shp")
-
-soil_map_shp <- sf::read_sf(soil_map)
-
-# this file is messy, but we can see our soil names are in the column "SNAM"
-soil_map_shp$SNAM %>% head()
-
-# we only need to keep the soil name, ID, and its geometry.
-soil_map_shp <- soil_map_shp %>% dplyr::select(SOIL_ID, SNAM, geometry)
+soil_map <- "model_data/input/soil/soil_map_UTM32N.shp"
+soil_map_shp <- read_sf(soil_map)
 
 ```
 
-Ok so we've got our spatial data loaded in, just for fun, lets have a
-look at this soil names:
+This file is messy, but we can see our soil names are in the column "SNAM"
 
 ```{r}
+soil_map_shp$SNAM %>% head()
+# we only need to keep the soil name, ID, and its geometry.
+soil_map_shp <- soil_map_shp %>% dplyr::dplyr::select(SOIL_ID, SNAM, geometry)
+```
+Ok so we've got our spatial data loaded in, just for fun, lets have a
+look at this soil IDs:
 
- plot(soil_map_shp["SOIL_ID"], main = "CS10 Soil map")
+```{r}
+plot(soil_map_shp["SOIL_ID"], main = "CS10 Soil map")
 ```
 
 Sweet.
@@ -467,7 +461,7 @@ But we also need to know where our landuses are... So lets open the file
 `SWATbuildR` has prepared for us:
 
 ```{r}
-lu_map <- paste0(parent_dir, "/swat_buildR/output/cs10/data/vector/land.shp")
+lu_map <- "model_data/cs10_setup/optain-cs10/data/vector/land.shp"
 
 lu_map_shp <- read_sf(lu_map)
 
@@ -480,20 +474,18 @@ soils, but we are interested in **soil depth** for classifying our
 forests into **good** and **bad**. Where can we find this data?
 `usersoil.csv` of course! in the column `SOL_ZMX`. Lets go get that
 
-```{r}
-usersoil_path <- paste0(parent_dir, "/input_files/soil/Usersoil_Krakstad.csv")
+```{r paged.print=TRUE}
+usersoil_path <- "model_data/input/soil/UserSoil_Krakstad.csv"
 
 usersoil <- read_csv(usersoil_path, show_col_types = F)
 
 usersoil %>% head()
-
 ```
 
 Now, let us `left_join` the soil map with `SOL_ZMX`, by connecting the
 `SOIL_ID`.
 
 ```{r}
-
 # we only need the soil name and depth
 soil_depth <- usersoil %>% dplyr::select(OBJECTID, SNAM, SOL_ZMX)
 
@@ -509,7 +501,6 @@ plot(soil_depth_map["SOL_ZMX"], main = "CS10 soil depth", key.pos = 1)
 Now, we need to connect our land use map to our soil depth map:
 
 ```{r}
-
 soil_depth_map2 <- soil_depth_map %>%
   dplyr::select(SOIL_ID, SNAM.x, SOL_ZMX, geometry)
 
@@ -540,7 +531,7 @@ lu_soil <- lu_sol_depth %>% dplyr::select(id, type, SOL_ZMX)
 head(lu_soil)
 ```
 
-And this is the moment, dear reader... where our coder realized his
+And this is the moment, dear reader... where our coder realized his big
 mistake:
 
 ```{r}
@@ -549,12 +540,9 @@ lu_soil %>% dplyr::select(type) %>% dplyr::filter(!grepl(x = type, "a_")) %>%
 
 ```
 
-```{r, include=FALSE}
+```{r, eval = FALSE}
+
 require(crayon)
-```
-
-```{r}
-
 
 cat(red(bold(italic(underline(
     "We cant have good and bad forests based on soil types...\n
@@ -639,7 +627,8 @@ landuse_lum$cn2[which(landuse_lum$field_id %in% conv_fields)] <-
 For this, we need to add some custom entries to the database:
 
 ```{r}
-cons_prac_path <- paste0(parent_dir, "/swat_setup/cons_practice.lum")
+# TODO: remove temp!!!!
+cons_prac_path <- "model_data/cs10_setup/temp_cons_practice.lum"
 cons_prac <- readLines(cons_prac_path)
 cons_prac[1:3] %>% print()
 ```
@@ -760,11 +749,11 @@ head(crop_fractions)
 Lets derive which fields get classified as what
 
 ```{r}
-p100_conv <- crop_fractions %>% filter(conv==4) %>% select(field) %>% pull()
-p75_conv <- crop_fractions %>% filter(conv==3) %>% select(field) %>% pull()
-p50_conv <- crop_fractions %>% filter(conv==2) %>% select(field) %>% pull()
-p25_conv <- crop_fractions %>% filter(conv==1) %>% select(field) %>% pull()
-p0_conv <- crop_fractions %>% filter(conv==0) %>% select(field) %>% pull()
+p100_conv <- crop_fractions %>% filter(conv==4) %>% dplyr::select(field) %>% pull()
+p75_conv <- crop_fractions %>% filter(conv==3) %>% dplyr::select(field) %>% pull()
+p50_conv <- crop_fractions %>% filter(conv==2) %>% dplyr::select(field) %>% pull()
+p25_conv <- crop_fractions %>% filter(conv==1) %>% dplyr::select(field) %>% pull()
+p0_conv <- crop_fractions %>% filter(conv==0) %>% dplyr::select(field) %>% pull()
 ```
 
 Now we can assign the all the land uses
@@ -813,9 +802,7 @@ landuse_lum$cons_prac[which(landuse_lum$name == "cs_10_buff_wood")] <-
 
 ### Setting `tile`
 
-This column has already been completed by `SWATbuildR`
-
-<!-- >  "swat-cs10/swat-buildR/" -->
+This column has already been completed by `SWATbuildR` in (!ref)
 
 ### Setting `sep`
 
@@ -835,38 +822,40 @@ This column has been left as `null`
 
 ### Writing Changes
 
-We are done with our modifications however, we need to remove the `field_id`
-column
+We are done with our modifications however, we need to remove the
+`field_id` column
 
 ```{r}
-landuse_lum <- landuse_lum %>% select(-field_id)
+landuse_lum <- landuse_lum %>% dplyr::select(-field_id)
 ```
 
 lets take a look at the final product:
+
 ```{r}
-head(landuse_lum)
+datatable(landuse_lum)
 ```
 
 Lets write out changes
 
 ```{r}
-write.table(landuse_lum, file = "landuse_new.lum", sep = "\t", quote = F, row.names = F)
 
-#write.table(landuse_lum, file = "../sql_free_zone/hru/landuse.lum", sep = "\t", quote = F, row.names = F)
-#write.table(landuse_lum, file = "../sql_free_zone/exe/landuse.lum", sep = "\t", quote = F, row.names = F)
-#write.table(landuse_lum, file = "../swat_setup/landuse.lum", sep = "\t", quote = F, row.names = F)
+new_lum_path <- "model_data/cs10_setup/temp_lum_new.lum"
+
+write.table(landuse_lum, file = new_lum_path, sep = "\t", quote = F, row.names = F)
 
 ```
 
-But wait -- we need to keep that pesky header, otherwise the FarmR will be very angry with us.
+But wait -- we need to keep that pesky header, otherwise the FarmR will
+be very angry with us.
 
 ```{r}
-lum_lines <- readLines("landuse_new.lum")
+lum_lines <- readLines(new_lum_path)
 
 header <- "header header header HEADER, delete me and you will regret it FOREVER!"
 
 lum_lines2<- c(header,lum_lines)
 
-writeLines(text = lum_lines2, con = "landuse_new.lum")
+writeLines(text = lum_lines2, con = new_lum_path)
 ```
+
 Done!
