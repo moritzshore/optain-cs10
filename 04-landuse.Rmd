@@ -12,6 +12,7 @@ We require `tidyverse` for this since we will be using many of its
 functions.
 
 ```{r, message=FALSE}
+require(mapview)
 require(tidyverse)
 require(reshape2)
 require(sf)
@@ -69,19 +70,21 @@ landuse_lum$name[not_fields]
 
 Good to know. We'll keep that in mind.
 
-## Setting `cal_group`
+## Assigning landuse values
+
+### Setting `cal_group`
 
 There is no info on this column, so we are going to leave it as `null`.
 
-## Setting `plnt_com`
+### Setting `plnt_com`
 
 This step will be done by SWATFarmR (ref that header here!)
 
-## Setting `mgt`
+### Setting `mgt`
 
 This step will be done by SWATFarmR (ref that header here!)
 
-## Setting `urb_ro`
+### Setting `urb_ro`
 
 We want to set the `urb_ro` column for all urban land uses (in our case
 this would be `urml` and `utrn`) to `usgs_reg`. We can do this like so:
@@ -104,7 +107,7 @@ knitr::kable(
 Very good. In our case this was only two -- could be done by hand, but
 that will not be the case for all of our land uses.
 
-## Setting `urban`
+### Setting `urban`
 
 This one is easy, we set our `urban` column to an urban parameter set of
 the same name. The rest we leave as `null`
@@ -132,7 +135,7 @@ knitr::kable(landuse_lum[which(landuse_lum$name == "frst_lum"), ], caption = 'La
 
 Looks good.
 
-## Setting Manning's n (`ovn`)
+### Setting Manning's n (`ovn`)
 
 Lets get the easy ones out of the way
 
@@ -410,25 +413,25 @@ meadow_fields %>% head()
 Fantastic! Now that was a big task, but it makes the next bit very easy.
 Lets assign the correct `ovn` to the types of fields we have classified:
 
-### Agricultural Fields: Meadow
+#### Agricultural Fields: Meadow
 
 ```{r}
 landuse_lum$ov_mann[which(landuse_lum$field_id %in% meadow_fields)] <- "shortgrass"
 ```
 
-### Agricultural Fields: Conventional
+#### Agricultural Fields: Conventional
 
 ```{r}
 landuse_lum$ov_mann[which(landuse_lum$field_id %in% conv_fields)] <- "convtill_nores"
 ```
 
-### Agricultural Fields: Conservational
+#### Agricultural Fields: Conservational
 
 ```{r}
 landuse_lum$ov_mann[which(landuse_lum$field_id %in% cons_fields)] <- "falldisk_res"
 ```
 
-### Forest
+#### Forest
 
 Now all we need to do is the forest. We have decided we want
 `forest_heavy` on good soils, and `forest_light` on poor soils... you
@@ -453,12 +456,12 @@ Ok so we've got our spatial data loaded in, just for fun, lets have a
 look at this soil IDs:
 
 ```{r}
-plot(soil_map_shp["SOIL_ID"], main = "CS10 Soil map")
+mapview(soil_map_shp, zcol = "SNAM")
 ```
 
 Sweet.
 
-But we also need to know where our landuses are... So lets open the file
+But we also need to know where our land uses are... So lets open the file
 `SWATbuildR` has prepared for us:
 
 ```{r}
@@ -466,8 +469,7 @@ lu_map <- "model_data/cs10_setup/optain-cs10/data/vector/land.shp"
 
 lu_map_shp <- read_sf(lu_map)
 
-plot(lu_map_shp["type"], main = "CS10 Landuse")
-
+mapview(lu_map_shp, zcol = "type")
 ```
 
 Ok -- we have the location of the land use, and the location of the
@@ -495,8 +497,7 @@ soil_depth$SOIL_ID <- soil_depth$OBJECTID
 
 soil_depth_map <- dplyr::left_join(soil_map_shp, soil_depth, by = "SOIL_ID")
 
-plot(soil_depth_map["SOL_ZMX"], main = "CS10 soil depth", key.pos = 1)
-
+mapview(soil_depth_map, zcol = "SOL_ZMX")
 ```
 
 Now, we need to connect our land use map to our soil depth map:
@@ -516,8 +517,7 @@ Lets have a look at what we've got
 
 ```{r}
 
-plot(joined_map["SOL_ZMX"], main = "CS10 Land Layer, soil depth (mm)")
-
+mapview(joined_map, zcol = "SOL_ZMX")
 ```
 
 We are done with the geospatial analysis, so we can drop the geometries:
@@ -559,7 +559,7 @@ more generic forest classes.
 landuse_lum$ov_mann[which(landuse_lum$name =="frst_lum")] <- "forest_med"
 ```
 
-### Summary
+#### Summary
 
 With all that data processing out of the way, lets have a quick look at
 what we've done:
@@ -587,7 +587,7 @@ landuse_lum$ov_mann[which(landuse_lum$name == "wetf_lum")] <-
 
 Sweet. Next column..
 
-## Setting `cn2`:
+### Setting `cn2`:
 
 You know the drill -- I am sure you know how to read this code by now.
 
@@ -623,7 +623,7 @@ landuse_lum$cn2[which(landuse_lum$field_id %in% conv_fields)] <-
   "rc_strow_p"
 ```
 
-## Setting `cons_prac`
+### Setting `cons_prac`
 
 For this, we need to add some custom entries to the database:
 
@@ -801,23 +801,23 @@ landuse_lum$cons_prac[which(landuse_lum$name == "cs_10_buff_wood")] <-
   "cs_10_buff_wood"
 ```
 
-## Setting `tile`
+### Setting `tile`
 
 This column has already been completed by `SWATbuildR` in (!ref)
 
-## Setting `sep`
+### Setting `sep`
 
 This column has been left as `null`
 
-## Setting `vfs`
+### Setting `vfs`
 
 This column has been left as `null`
 
-## Setting `grww`
+### Setting `grww`
 
 This column has been left as `null`
 
-## Setting `bmp`
+### Setting `bmp`
 
 This column has been left as `null`
 

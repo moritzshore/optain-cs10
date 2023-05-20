@@ -17,7 +17,7 @@ require(tibble)
 require(DT)
 ```
 
-## Farm and field area
+## Calculating Farm and Field Area
 
 We have data based on what area certain crops have per farm. In order to relate
 this to our spatial land use map, we require the area of both the farms, and 
@@ -57,7 +57,7 @@ field_area_map <- mapview(field_area_sf, zcol = "type")
 field_area_map
 ```
 
-## Generate crop map from farm data
+## Generating the Crop Rotation
 
 The following algorithm takes information from reporting farm, and their
 respective area in the SWAT+ setup, and combines these data sets to
@@ -440,7 +440,7 @@ write_csv(x = crop_rotation, file = "model_data/input/crop/cs10_crop_rotation.cs
 
 ```
 
-## Extrapolating the crop rotation
+## Extrapolating the Crop Rotation
 
 For OPTAIN, the crop rotation needs to span from 1988 to 2020. We currently have
 2016 to 2019.
@@ -467,7 +467,7 @@ crop_rotation_extrapolated <-
 colnames(crop_rotation_extrapolated) <- c("field", paste0("y_", 1988:2020))
 ```
 
-## Joining the land layer with the crop rotation data
+## Merging crop rotation with BuildR output
 
 The output of `SWATbuildR` "land.shp" needs to be connected to the newly
 generated crop map.
