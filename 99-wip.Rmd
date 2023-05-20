@@ -1,0 +1,23 @@
+# WIP
+
+## Channel parameters revised
+
+This an ongoing unresolved issue [#49](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/49)
+
+## Crop parameters verified
+
+## Soil physical parameters in final form
+
+## Soil chemical parameters in final form
+
+## Impoundment parameters defined
+
+## Water diversions defined
+
+## Point sources parameters added
+
+## Tile drainage parameters defined
+
+## Atmospheric deposition defined
+
+## Additional settings verified
