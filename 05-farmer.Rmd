@@ -14,9 +14,12 @@ We also require the following packages:
 
 ```{r, message=FALSE}
 require(DT)
+require(gifski)
+require(ggplot2)
 require(readr)
 require(stringr)
 require(magrittr)
+#remotes::install_github("chrisschuerz/SWATfarmR")
 require(SWATfarmR)
 ```
 
@@ -46,7 +49,7 @@ source('model_data/swat_farmR/functions_write_SWATfarmR_input.R')
 
 ### Input files
 
-### Land use map with crop information
+#### Land use map with crop information
 
 This map has the following requirements:
 
@@ -75,10 +78,43 @@ lu_shp <- 'model_data/input/crop/land_with_cr.shp'
 
 lu <- st_drop_geometry(read_sf(lu_shp))
 
-datatable(lu %>% head(50))
+datatable(
+  lu %>% head(50),
+  extensions = "Scroller",
+  options = list(scrollY = 200, scroller = TRUE)
+)
 ```
 
-### Management operation schedules for each crop
+The crop rotation looks like this:
+
+
+```{r, cro_gif, echo = FALSE, animation.hook='gifski', fig.cap="Generated crop rotation for CS10."}
+
+lu_sf <- read_sf(lu_shp)
+
+years <- paste0("y_", 2016:2019)
+
+for (year in years) {
+  index <- which(colnames(lu_sf) == year)
+  lu_sf_filt <- lu_sf[c(index,length(lu_sf))]
+  
+  plot <- ggplot(data = lu_sf_filt) +
+    geom_sf(color = "black", aes(fill = get(year)))+
+    guides(fill=guide_legend(title=year))+
+    ggtitle("CS10 Catchment", "crop rotation")+
+    theme(legend.position="right")+
+      theme(axis.text.x=element_blank(), #remove x axis labels
+        axis.ticks.x=element_blank(), #remove x axis ticks
+        axis.text.y=element_blank(),  #remove y axis labels
+        axis.ticks.y=element_blank()  #remove y axis ticks
+        )
+  
+  print(plot)
+}
+```
+
+
+#### Management operation schedules for each crop
 
 ..or, if available, crop-management type.
 
@@ -97,10 +133,12 @@ mgt_csv <- 'model_data/input/management/mgt_crops_CS10.csv'
 
 mgt_crop <- read.csv(mgt_csv)
 
-datatable(mgt_crop)
+datatable(mgt_crop,
+          extensions = "Scroller",
+          options = list(scrollY = 200, scroller = TRUE))
 ```
 
-### Management operation schedules for generic land-use classes
+#### Management operation schedules for generic land-use classes
 
 Usually all non-cropland classes with vegetation cover
 
@@ -193,13 +231,13 @@ check_date_conflicts1()
 
 Build schedules for crop sequences (Messages disabled)
 
-```{r, message=FALSE}
+```{r, results='hide'}
 rota_schedules <- build_rotation_schedules()
 ```
 
 Check for date conflicts in the full rotation schedule. (Messages disabled)
 
-```{r message=FALSE, warning=TRUE}
+```{r results='hide', warning=TRUE}
 check_date_conflicts2()
 ```
 
@@ -207,13 +245,13 @@ Solve minor date conflicts (where only a few days/weeks are overlapping)
 
 (Messages disabled)
 
-```{r message=FALSE, warning=TRUE}
+```{r results='hide', warning=TRUE}
 rota_schedules <- solve_date_conflicts()
 ```
 
 Check again for date conflicts (Messages disabled)
 
-```{r message=FALSE, warning=TRUE}
+```{r results='hide', warning=TRUE}
 check_date_conflicts2()
 ```
 
@@ -230,7 +268,11 @@ The output of this pre-processing stage is loaded in from this file:
 farmR_input <- readr::read_csv("model_data/input/management/farmR_input.csv",
                                show_col_types = F)
 
-datatable(head(farmR_input, 50))
+datatable(
+  head(farmR_input, 50),
+  extensions = "Scroller",
+  options = list(scrollY = 200, scroller = TRUE)
+)
 ```
 
 TODO: Figure out why this is an issue. Are you using the wrong buildR output
@@ -344,7 +386,6 @@ EVAL FALSE as BuildR script is still broken
 
 ```{r, eval=FALSE}
 cs10$schedule_operations(start_year = 2010, end_year = 2020, n_schedule = 2)
-
 ```
 
 ## Write Operations
