@@ -15,6 +15,4 @@ github-repo: moritzshore/optain-cs10
 
 # Introduction
 
-This is the documentation for the OPTAIN-CS10 Project. It is currently incomplete. **Click the Arrow on the right to continue!**
-
-![](figures/banner.png)
+This is the documentation for the OPTAIN-CS10 Project. It is currently a work in progress.
