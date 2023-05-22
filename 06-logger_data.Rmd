@@ -1,5 +1,3 @@
-# (PART) Field Sites
-
 # Field Site Loggers
 
 ## Introduction

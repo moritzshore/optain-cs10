@@ -1,5 +1,3 @@
-# (PART) Model parameterization
-
 # Climate inputs and weather generator
 
 ## Preperation and loading data
