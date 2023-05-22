@@ -1,0 +1,6 @@
+id,SOIL_ID,SNAM.x,Id,SNAM.y,SOL_ZMX,HYDGRP,TEXTURE
+600413,23,ST,0,Sea_dep_thick,800,C,sandy loam
+600411,1,AB,0,ARdy,1000,C,loamy_sand
+600410,20,RGah,0,GLum-ar,1000,B,sandy_loam
+600409,13,Humic,0,GLch-hu-sl,1000,D,silty_clay_loam
+600408,13,Humic,0,GLch-hu-sl,1000,D,silty_clay_loam
