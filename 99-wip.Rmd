@@ -1,6 +1,6 @@
-# WIP
+# Model Parameterization
 
-## WIP
+These sections are not detailed enough to warrant their own dedicated chapter.
 
 ### Channel parameters revised
 
@@ -8,18 +8,68 @@ This an ongoing unresolved issue [#49](https://gitlab.nibio.no/moritzshore/swat-
 
 ### Crop parameters verified
 
+The results of this step can be found in file `plannts.plt` and discussions to this topic can be found in issue [#27](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/27). Detailed documentation is currently unavailable.
+
 ### Soil physical parameters in final form
+
+This has been mentioned in issue [#28](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/28), and has been closed without discussion. Seems like the parameters are in final form, but no further documentation exists at this point.
 
 ### Soil chemical parameters in final form
 
+This step will be verified in issue [#46](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/46). It has been discussed in [#19](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/19).
+
+The following changes have been implemented, but are subject to change:
+
+| Parameter    | Default | CS10 |
+|--------------|---------|------|
+| `lab_p`      | 5       | 20   |
+| `nitrate`    | 7       | 8.5  |
+| `inorgp`     | 3.5     | 35.1 |
+| `watersol_p` | 0.15    | 0.4  |
+
+: Changes made to `soilnut1` of `nutrients.sol`
+
+An R implementation is being considered.
+
 ### Impoundment parameters defined
+
+Has been postponed by [#20](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/20), will be dealt with in [#54](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/54)
 
 ### Water diversions defined
 
+Deemed as not relevant for this catchment
+
 ### Point sources parameters added
+
+Is an ongoing issue in [#21](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/21)
 
 ### Tile drainage parameters defined
 
+Is an ongoing issue in [#53](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/53)
+
 ### Atmospheric deposition defined
 
+Has been done with `svatools`. An R implementation is being considered.
+
 ### Additional settings verified
+
+Refers to chapter 3.11 in The Protocol and files `parameters.bsn` `codes.bsn`
+Has been discussed in [#22](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/22)
+
+More in-depth documentation and an R implementation are being considered
+
+The following changes have been made:
+
+| Parameter   | Default | CS10 |
+|-------------|---------|------|
+| `pet`       | 1       | 2    |
+| `rte_cha`   | 0       | 1    |
+| `cn`        | 0       | 1    |
+| `tiledrain` | 0       | 1    |
+| `soil_p`    | 0       | 1    |
+| `atmo_dep`  | a       | m    |
+|             |         |      |
+
+: Changes made to `codes.bsn`
+
+(TODO: Fill in more data from the GitLab Issue)
