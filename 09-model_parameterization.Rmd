@@ -2,6 +2,11 @@
 
 These sections are not detailed enough to warrant their own dedicated chapter.
 
+## Parameter Changes
+
+These sections mostly involve changing a few parameter values and are therefore
+in small sub sections without R-code. Some of this might change later.
+
 ### Channel parameters revised
 
 This an ongoing unresolved issue [#49](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/49)
