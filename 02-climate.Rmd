@@ -1,4 +1,4 @@
-# (PART) Model parameterization {.unnumbered}
+# (PART) Model parameterization
 
 # Climate inputs and weather generator
 
