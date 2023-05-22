@@ -1,3 +1,9 @@
+---
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
 # Model Verification
 
 ## Preparation
@@ -31,7 +37,6 @@ saveRDS(veri_no_stress, "model_data/swat_doctR/verification_runs/veri_no_stress.
 ```{r}
 veri_no_stress <- readRDS("model_data/swat_doctR/verification_runs/veri_no_stress.rds")
 ```
-
 
 ## Analysis of simulated climate variables
 
@@ -83,10 +88,10 @@ veri_no_stress <- readRDS("model_data/swat_doctR/verification_runs/veri_no_stres
     [Additional
     settings](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/22)).
 
-> See issue
-> [#39](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/39)
+    > See issue
+    > [#39](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/39)
 
--   Large implausibilities in the weather inputs can be identified in
+4.  Large implausibilities in the weather inputs can be identified in
     analyses of annual basin averages of the simulated climate
     variables. **Simulated annual and average values of climate
     variables must be comparable to observation data and/or region
@@ -94,14 +99,14 @@ veri_no_stress <- readRDS("model_data/swat_doctR/verification_runs/veri_no_stres
     precipitation can indicate errors in the input file or an
     inappropriate assignment of weather stations to spatial units.
 
-> Have not checked this yet (!!!)
+    > Have not checked this yet (!!!)
 
--   If the lapse rate option is active (Read more in Additional
+5.  If the lapse rate option is active (Read more in Additional
     settings), it may be another potential reason for deviations from
     observations.
 
-> We are tracking this topic in issue #39
-> ([link](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/39)).
+    > We are tracking this topic in issue #39
+    > ([link](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/39)).
 
 ### Lapse rate on:
 
@@ -119,8 +124,8 @@ veri_no_stress <- readRDS("model_data/swat_doctR/verification_runs/veri_no_stres
     input files (and if provided in the solar radiation, relative
     humidity and wind speed inputs).
 
-> We are tracking this topic in issue #39
-> ([link](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/39)).
+    > We are tracking this topic in issue #39
+    > ([link](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/39)).
 
 -   `SWATdoctR` provides the function `plot_climate_annual()` to analyse
     the annual simulated basin averages of climate variables.
@@ -135,7 +140,7 @@ plot(fig1)
 
 > Are these values plausible?
 
-[**ANSWER**]{.underline}: NO, no eplant ET. [[see issue #48]{.underline}](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/48){style="font-size: 11pt;"}
+[**ANSWER**]{.underline}: Are they Csilla?
 
 -   The **second panel** shows the precipitation fractions rainfall
     (`rainfall`) and snowfall (`snofall`).
@@ -165,8 +170,8 @@ but are they plausible? Csilla]{.underline}
 > Are these values plausible?
 
 [**ANSWER**]{.underline}: resolved in
-[#42](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/42),
- Csilla plausible?
+[#42](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/42), Csilla
+plausible?
 
 -   The **sixth panel** shows the annual sums of solar radiation. A
     comparison to literature values of annual solar radiation sums for
@@ -175,8 +180,8 @@ but are they plausible? Csilla]{.underline}
 > Are these values plausible?
 
 [**ANSWER**]{.underline}: Yes, values for the Oslo area seem to be
-around [4000 MJ](https://re.jrc.ec.europa.eu/pvg_tools/en/) -- Csilla
-do you agree?
+around [4000 MJ](https://re.jrc.ec.europa.eu/pvg_tools/en/) -- Csilla do
+you agree?
 
 -   The analysis of mean monthly precipitation (output variable
     `precip`), snowfall (output variable `snofall`) and snow melt
@@ -211,9 +216,7 @@ SWATdoctR::plot_monthly_snow(sim_verify = veri_no_stress)
     values. Then the use of a simpler method for the calculation of PET
     can be a valid solution.
 
-> We are currently using PM-PET, which could be a problem since we don't
-> have RH or Wind. This is being discussed in issue #42
-> ([link](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/42)).
+> We do not need a simpler method since we have the required data
 
 ------------------------------------------------------------------------
 
