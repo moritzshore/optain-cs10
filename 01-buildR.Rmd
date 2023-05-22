@@ -23,26 +23,18 @@ require(mapview)
 require(sf)
 require(raster)
 require(dplyr) # dplyr must be loaded after SF to avoid conflict
-require(ggplot2)
 ```
 
-```{r}
-sf_theme <- theme(axis.text.x=element_blank(), #remove x axis labels
-        axis.ticks.x=element_blank(), #remove x axis ticks
-        axis.text.y=element_blank(),  #remove y axis labels
-        axis.ticks.y=element_blank()  #remove y axis ticks
-        )
-```
-
-If this flag is set to true, the markdown file will actually run buildR, which could take about 4 hours!
-
+If this flag is set to true, the markdown file will actually run buildR, which
+could take about 4 hours!
 ```{r}
 run_code = FALSE
 ```
 
 ## Processing input data
 
-SWATBuildR reads input data, performs some checks on it, and saves it in a compatible format for subsequent calculations. Little documentation exists on the creation of these data sets. IF you have any information to add, feel free to do so.
+SWATBuildr reads input data, performs some checks on it, and saves it in
+a compatible format for subseqent calculations. Little documentation exists on the creation of these datasets. IF you have any information to add, feel free to do so. 
 
 ### High-Resolution Digital Elevation Model (DEM)
 
@@ -52,13 +44,13 @@ The high-resolution DEM is the basis for calculation of water connectivity, amon
 dem_path <- "model_data/input/elevation/dtm3_ns_v5.tif"
 ```
 
-```{r, plotdemraster, message=FALSE, fig.align = "center", fig.cap="CS10 Digital elevation model (DEM)."}
-plot(raster(dem_path))
+```{r, plotdemraster, message=FALSE}
+plot(raster(dem_path), main = "CS10 DEM, UTM32N")
 ```
 
 To our knowledge, it has a 10 meter resolution. 1 meter resolution was available but there seems to have been issues with using it. It is definitely preferable to use the 1m DEM as certain important information can be lost with (max allowed resolution) of 10m.
 
-![An example of a hydrologically effective landscape features being lost due to coarse DEM resolution. From [@schürz2022]](figures/1mdemvs10.png)
+![ An example of a hydrologically effective landscape features being lost due to coarse DEM resolution. From[@schürz2022]](figures/1mdemvs10.png)
 
 ### Processing the Basin Boundary
 
@@ -68,12 +60,11 @@ The basin boundary has presumably been created using the defined outlet point of
 bound_path <- "model_data/input/shape/cs10_basin.shp"
 ```
 
-```{r, watershedplot, message=FALSE, echo=FALSE, eval=TRUE, fig.align='center', fig.cap="CS10 Basin, caclulated from the DEM."}
+```{r, watershedplot, message=FALSE, echo=FALSE, eval=TRUE}
 bound_sf <- read_sf(bound_path)
-
-basin <- ggplot(bound_sf) + geom_sf() + sf_theme
-
-print(basin)
+bound_sf$Id = "CS10 Basin"
+bound_map <- mapview(bound_sf, color = "black", col.regions = "orange", alpha.region = .2)
+bound_map
 ```
 
 We will begin using the `SWATBuildR` Package by initializing its functions. (Note: this package is currently unfinished, which is why this step is necessary).
@@ -114,16 +105,10 @@ land_path <- "model_data/input/land/CS10_LU.shp"
 Documentation on its creation does not exist.
 
 ```{r, maplanduse, message=F, echo=F, fig.align='center', fig.cap="Land use map of CS10 by Farm ID"}
-lu_shp <- read_sf(land_path)
-
-lu_map <-ggplot(lu_shp) + geom_sf(aes(fill = type)) + sf_theme +
-  theme(legend.position = "none")
-
-print(lu_map)
-
+mapview(read_sf(land_path), zcol = "KGB", legend = FALSE)
 ```
 
-Land use map of CS10 by Farm ID
+Interactive land use map of CS10 by Farm ID
 
 We had an issue with the classification of the land uses. For the OPTAIN project, all agricultural fields must have a unique ID, and our land uses only had the ID of the given farm `KGB` (which had many different fields). To remedy this, new IDs were generated with the format `a_###f_#` where `a_` represents the farm, and `f_` represents the respective field of that farm. The farm names needed to be shortened because the SWAT+ model often cannot handle long ID names (longer than 16 characters)
 
@@ -134,6 +119,16 @@ readr::read_csv("model_data/farm_id/a_f_id.csv", show_col_types = F) %>% head()
 ```
 
 This was done in a simple QGIS workflow of dissolving by farm, splitting from single part to multipart, and then adding an iterating ID per farm field. This workflow could be replicated in R, and then shown here. It is under consideration...
+
+This is our map with the new `type` IDs.
+
+```{r, lumap2, message=FALSE}
+lu_map <- mapview(read_sf(land_path), zcol = "type", legend = FALSE)
+
+lu_map
+```
+
+Interactive land use map of CS10 by Field ID
 
 BuildR will now run some checks on our land layer.
 
@@ -158,14 +153,10 @@ split_land_layer(data_path)
 
 No documentation exists on the source of the channels layer, all we know is that it is located here:
 
-```{r, channel_plot, fig.cap="CS10 Channels, including surface (cha) and subsurface channels (sub)", fig.align='center'}
+```{r, channel_plot}
 channel_path <- 'model_data/input/line/cs10_channels.shp'
 channels <- read_sf(channel_path) %>% dplyr::select("type")
-
-channel_map <- ggplot()+geom_sf(data= bound_sf)+geom_sf(data = channels, mapping = aes(color = type))+sf_theme
-
-channel_map
-
+plot(channels)
 ```
 
 BuildR runs some checks:
@@ -179,6 +170,14 @@ BuildR runs some checks:
 
 check_line_topology(layer = channel, data_path = data_path,
                     label = 'channel', length_fct = 0, can_cross = FALSE)
+```
+
+And gives this output:
+
+```{r, channelmap2}
+channels <- read_sf("model_data/cs10_setup/optain-cs10/data/vector/channel.shp")
+channel_map <- mapview(channels, zcol = "type")
+bound_map+channel_map
 ```
 
 BuildR then checks the connectivity between the channels and reservoirs. For this we need to define our `id_cha_out` and `id_res_out`.
@@ -227,11 +226,11 @@ soil_layer_path  <- 'model_data/input/soil/soil_layer.tif'
 
 No documentation exists on its creation.
 
-```{r, soilmapraster, echo = F, fig.align='center', fig.cap="CS10 Soil map"}
-plot(raster(soil_layer_path))
+```{r, soilmapraster, echo = F}
+plot(raster(soil_layer_path), main = "CS10 soil map UTM32N")
 ```
 
-The soil data and look-up path are located here:
+The soil data and lookup path are located here:
 
 ```{r, soil_lookup_path}
 soil_lookup_path <- 'model_data/input/soil/soil_lookup.csv'
@@ -275,7 +274,7 @@ Read and prepare the soil input tables and a soil/hru id table and write them in
 #build_soil_data(soil_lookup_path, soil_data_path, data_path)
 ```
 
-## Calculating Contiguous Object Connectivity
+### Calculating Contiguous Object Connectivity
 
 SWATBuildR follows COCOA. This section contains the calculations. You can read more about it in the protocol (ref).
 
@@ -425,13 +424,10 @@ The point source locations are provided with a point vector layer in the path 'p
 point_path <- 'model_data/input/point/cs10_pointsource.shp'
 ```
 
-```{r, pointsoucemap, fig.align='center', fig.cap="CS10 Point Sources, colored by Phosphorous emission and sized by Nitrogen emission"}
+```{r, pointsoucemap}
 point_sf <- read_sf(point_path)
 point_map <- mapview(point_sf, zcol = "GRAD_P", cex = "GRAD_N")
-
-mapview(bound_sf, alpha.regions = 0.2)+point_map
-
-
+point_map+channel_map+bound_map
 ```
 
 Map of point sources, colored by (assumed) phosphorous and size by (assumed) Nitrogren
@@ -477,5 +473,3 @@ txt_path <- '../swat_runs/txtinouit/'
 ```{r, linkaqui}
 #link_aquifer_channels(txt_path)
 ```
-
-...
