@@ -131,6 +131,14 @@ initializing-farmr
 calculating-antecedent-precipitation-index
 scheduling-operations
 write-operations
+model-verification
+preparation
+generate-model-run
+load-model-run
+analysis-of-simulated-climate-variables
+lapse-rate-on
+lapse-rate-off
+simulation-of-management-operations
 wip
 wip-1
 channel-parameters-revised
