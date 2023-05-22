@@ -14,7 +14,6 @@ We also require the following packages:
 
 ```{r, message=FALSE}
 require(DT)
-require(gifski)
 require(ggplot2)
 require(readr)
 require(stringr)
@@ -84,35 +83,6 @@ datatable(
   options = list(scrollY = 200, scroller = TRUE)
 )
 ```
-
-The crop rotation looks like this:
-
-
-```{r, cro_gif, echo = FALSE, animation.hook='gifski', fig.cap="Generated crop rotation for CS10."}
-
-lu_sf <- read_sf(lu_shp)
-
-years <- paste0("y_", 2016:2019)
-
-for (year in years) {
-  index <- which(colnames(lu_sf) == year)
-  lu_sf_filt <- lu_sf[c(index,length(lu_sf))]
-  
-  plot <- ggplot(data = lu_sf_filt) +
-    geom_sf(color = "black", aes(fill = get(year)))+
-    guides(fill=guide_legend(title=year))+
-    ggtitle("CS10 Catchment", "crop rotation")+
-    theme(legend.position="right")+
-      theme(axis.text.x=element_blank(), #remove x axis labels
-        axis.ticks.x=element_blank(), #remove x axis ticks
-        axis.text.y=element_blank(),  #remove y axis labels
-        axis.ticks.y=element_blank()  #remove y axis ticks
-        )
-  
-  print(plot)
-}
-```
-
 
 #### Management operation schedules for each crop
 
