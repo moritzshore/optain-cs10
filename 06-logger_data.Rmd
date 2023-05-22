@@ -12,6 +12,32 @@ as a tangentially related antecedent precipitation index (API) model for use
 in the SWAT+ modelling work, related to scheduling management operations
 using SWATFarmR .
 
+### Prerequisites
+
+The following packages are required for this chapter:
+
+```{r, message=FALSE}
+require(readr) # for reading in data
+require(dplyr) # for manipulating data
+require(stringr) # for manipulating text
+require(purrr) # for extracting from nested lists
+require(plotly) # for diagnostic plotting
+require(lubridate) # for date conversions
+require(reshape2) # for data conversions
+require(wesanderson) # plot colors
+require(DT) # for tables
+require(mapview) # for plotting
+require(sf) # for shapefiles
+
+show_rows <- 500 # number of rows to show in the tables
+```
+
+As well as the following custom functions:
+
+```{r}
+source("model_data/code/plot_logger.R")
+```
+
 ### Locations
 
 The loggers are described as such:
@@ -27,31 +53,17 @@ The loggers are described as such:
 And are located here:
 
 ```{r}
-#TODO
-show_rows <- 500
+
+field_sites_shp <- read_sf("model_data/field_sites/geospatial/cs10_field_sites.shp")
+basin_shp <- read_sf("model_data/input/shape/cs10_basin.shp")
+
+basin_map <- mapview(basin_shp, alpha.regions = .1, legend = FALSE)
+field_map <- mapview(field_sites_shp, legend = FALSE)
+
+basin_map+field_map
+
 ```
 
-### Prerequisites
-
-The following packages are required for this chapter:
-
-```{r, message=FALSE}
-require(readr) # for reading in data
-require(dplyr) # for manipulating data
-require(stringr) # for manipulating text
-require(purrr) # for extracting from nested lists
-require(plotly) # for diagnostic plotting
-require(lubridate) # for date conversions
-require(reshape2) # for data conversions
-require(wesanderson) # plot colors
-require(DT) # for tables
-```
-
-As well as the following custom functions:
-
-```{r}
-source("model_data/code/plot_logger.R")
-```
 
 ## Loading in observed data.
 
