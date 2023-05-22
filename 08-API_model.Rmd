@@ -37,10 +37,12 @@ A quick (non-evaluated) code block to show how a python environment can
 be created for use in Rmarkdown/Reticulate.
 
 ```{r, include = TRUE, eval=FALSE}
+# install miniconda 
+install_miniconda() 
 
 # create conda environment for your project
 
-conda_create("cs10_env", # environemtn name 
+conda_create("cs10_env", # environment name 
               packages = c("pandas", "numpy", "scipy"), # required packages
               conda = "auto")
 
