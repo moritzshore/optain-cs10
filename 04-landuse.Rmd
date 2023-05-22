@@ -1,3 +1,9 @@
+---
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
 # Landuse.lum update
 
 This section covers the modifications made to the landuse file. For some
@@ -8,16 +14,23 @@ to R.
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-We require `tidyverse` for this since we will be using many of its
-functions.
-
 ```{r, message=FALSE}
-require(mapview)
 require(tidyverse)
 require(reshape2)
 require(sf)
 require(DT)
-require(dplyr) # require dplyr last to overwrite plyr coun()
+require(dplyr) # require dplyr last to overwrite plyr count()
+require(ggplot2)
+```
+
+ggplot theme(s):
+
+```{r}
+sf_theme <- theme(axis.text.x=element_blank(), #remove x axis labels
+        axis.ticks.x=element_blank(), #remove x axis ticks
+        axis.text.y=element_blank(),  #remove y axis labels
+        axis.ticks.y=element_blank()  #remove y axis ticks
+        )
 ```
 
 ## Data preperation
@@ -78,11 +91,13 @@ There is no info on this column, so we are going to leave it as `null`.
 
 ### Setting `plnt_com`
 
-This step will be done by SWATFarmR (ref that header here!)
+This step will be done by SWATFarmR
+\@ref(scheduling-managment-with-swatfarmr).
 
 ### Setting `mgt`
 
-This step will be done by SWATFarmR (ref that header here!)
+This step will be done by SWATFarmR
+\@ref(scheduling-managment-with-swatfarmr).
 
 ### Setting `urb_ro`
 
@@ -195,7 +210,7 @@ landuse_lum$ov_mann[which(landuse_lum$name =="wetf_lum")] <- "forest_heavy_cs10"
 ```
 
 For the fields we are going to need the crop rotation info which we
-created in section (!ref)
+created in section \@ref(crop-map-generation).
 
 ```{r paged.print=TRUE, tidy=TRUE}
 crop_rotation <- read_csv("model_data/input/crop/cs10_crop_rotation.csv",
@@ -225,9 +240,9 @@ head(conv_crop_count)
 
 What happened here? well we took our `crop_rotation`, and melted it by
 `field` using `melt`. This function converts the data into [*tidy
-format*](https://r4ds.had.co.nz/tidy-data.html) (ref). This format makes it
-easier to apply the following operations on **a field basis**. What does
-this look like?
+format*](https://r4ds.had.co.nz/tidy-data.html) [@wickham2014]. This
+format makes it easier to apply the following operations on **a field
+basis**. What does this look like?
 
 ```{r paged.print=TRUE}
 crop_rotation %>% melt(. ,"field") %>% arrange(field) %>% head()
@@ -238,7 +253,7 @@ what does that "`.`" mean in there, to the left of `"field"`?? That is a
 code word for the object to the left of the "pipe" (in this case
 `crop_rotation`). the pipe is "`%>%`" and passes the object to the left
 of it, into the function to the right of it. [*look it
-up*](https://r4ds.had.co.nz/pipes.html)! (!ref)
+up*](https://r4ds.had.co.nz/pipes.html)!
 
 When `arranged` by field, we can see that every field gets one entry per
 crop per year. This is a good format to count how many times we have a
@@ -433,125 +448,9 @@ landuse_lum$ov_mann[which(landuse_lum$field_id %in% cons_fields)] <- "falldisk_r
 
 #### Forest
 
-Now all we need to do is the forest. We have decided we want
-`forest_heavy` on good soils, and `forest_light` on poor soils... you
-know what that means! We need to get *geo-spatial!*
-
-We are going to need our soil data, lets load in it:
-
-```{r}
-soil_map <- "model_data/input/soil/soil_map_UTM32N.shp"
-soil_map_shp <- read_sf(soil_map)
-
-```
-
-This file is messy, but we can see our soil names are in the column "SNAM"
-
-```{r}
-soil_map_shp$SNAM %>% head()
-# we only need to keep the soil name, ID, and its geometry.
-soil_map_shp <- soil_map_shp %>% dplyr::select(SOIL_ID, SNAM, geometry)
-```
-Ok so we've got our spatial data loaded in, just for fun, lets have a
-look at this soil IDs:
-
-```{r}
-mapview(soil_map_shp, zcol = "SNAM")
-```
-
-Sweet.
-
-But we also need to know where our land uses are... So lets open the file
-`SWATbuildR` has prepared for us:
-
-```{r}
-lu_map <- "model_data/cs10_setup/optain-cs10/data/vector/land.shp"
-
-lu_map_shp <- read_sf(lu_map)
-
-mapview(lu_map_shp, zcol = "type")
-```
-
-Ok -- we have the location of the land use, and the location of the
-soils, but we are interested in **soil depth** for classifying our
-forests into **good** and **bad**. Where can we find this data?
-`usersoil.csv` of course! in the column `SOL_ZMX`. Lets go get that
-
-```{r paged.print=TRUE}
-usersoil_path <- "model_data/input/soil/UserSoil_Krakstad.csv"
-
-usersoil <- read_csv(usersoil_path, show_col_types = F)
-
-usersoil %>% head()
-```
-
-Now, let us `left_join` the soil map with `SOL_ZMX`, by connecting the
-`SOIL_ID`.
-
-```{r}
-# we only need the soil name and depth
-soil_depth <- usersoil %>% dplyr::select(OBJECTID, SNAM, SOL_ZMX)
-
-# "rename" a column so that we have matching columns for the left_join
-soil_depth$SOIL_ID <- soil_depth$OBJECTID
-
-soil_depth_map <- dplyr::left_join(soil_map_shp, soil_depth, by = "SOIL_ID")
-
-mapview(soil_depth_map, zcol = "SOL_ZMX")
-```
-
-Now, we need to connect our land use map to our soil depth map:
-
-```{r}
-soil_depth_map2 <- soil_depth_map %>%
-  dplyr::select(SOIL_ID, SNAM.x, SOL_ZMX, geometry)
-
-# are the coordinate reference systems the same (TRUE?)
-st_crs(lu_map_shp) == st_crs(soil_depth_map)
-
-joined_map <- st_join(lu_map_shp, soil_depth_map2)
-
-```
-
-Lets have a look at what we've got
-
-```{r}
-
-mapview(joined_map, zcol = "SOL_ZMX")
-```
-
-We are done with the geospatial analysis, so we can drop the geometries:
-
-```{r}
-lu_sol_depth <- st_drop_geometry(joined_map)
-
-# and we only need to keep the ID (id), land use (type) and soil depth (SOL_ZMX)
-
-lu_soil <- lu_sol_depth %>% dplyr::select(id, type, SOL_ZMX)
-
-head(lu_soil)
-```
-
-And this is the moment, dear reader... where our coder realized his big
-mistake:
-
-```{r}
-lu_soil %>% dplyr::select(type) %>% dplyr::filter(!grepl(x = type, "a_")) %>%
-  unique()
-
-```
-
-```{r, eval = FALSE}
-
-require(crayon)
-
-cat(red(bold(italic(underline(
-    "We cant have good and bad forests based on soil types...\n
-    because we only have one forest land use type.. YOU FOOL!\n"
-  )))))
-```
-
-Well that settles it then. We will just use `forest_medium` for all
+Initially we wanted certain classes for the forest land use based on how
+good the soil quality was. But to do this, we would need multiple land
+uses, which we do not have. We will just use `forest_medium` for all
 `frst`. We can only change this if we go back to `buildR` and define
 more generic forest classes.
 
@@ -803,7 +702,8 @@ landuse_lum$cons_prac[which(landuse_lum$name == "cs_10_buff_wood")] <-
 
 ### Setting `tile`
 
-This column has already been completed by `SWATbuildR` in (!ref)
+This column has already been completed by `SWATbuildR` in
+\@ref(generate-swat-input)
 
 ### Setting `sep`
 
