@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>OPTAIN CS-10</title>
+  <title>Chapter 11 Model Parameterization | OPTAIN CS-10</title>
   <meta name="description" content="A description of the project setup for OPTAIN case study 10" />
   <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="OPTAIN CS-10" />
+  <meta property="og:title" content="Chapter 11 Model Parameterization | OPTAIN CS-10" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="A description of the project setup for OPTAIN case study 10" />
   <meta name="github-repo" content="moritzshore/optain-cs10" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="OPTAIN CS-10" />
+  <meta name="twitter:title" content="Chapter 11 Model Parameterization | OPTAIN CS-10" />
   
   <meta name="twitter:description" content="A description of the project setup for OPTAIN case study 10" />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
+<link rel="prev" href="model-verification.html"/>
 
-<link rel="next" href="model-setup-with-swatbuildr.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -381,23 +381,157 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">OPTAIN CS-10</h1>
-<p class="author"><em>Moritz Shore, Csilla Farkas</em></p>
-<p class="date"><em>2023-05-22</em></p>
+<div id="model-parameterization" class="section level1 hasAnchor" number="11">
+<h1><span class="header-section-number">Chapter 11</span> Model Parameterization<a href="model-parameterization.html#model-parameterization" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>These sections are not detailed enough to warrant their own dedicated chapter.</p>
+<div id="channel-parameters-revised" class="section level3 hasAnchor" number="11.0.1">
+<h3><span class="header-section-number">11.0.1</span> Channel parameters revised<a href="model-parameterization.html#channel-parameters-revised" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This an ongoing unresolved issue <a href="https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/49">#49</a></p>
 </div>
-<div id="introduction" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">Chapter 1</span> Introduction<a href="index.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>This is the documentation for the OPTAIN-CS10 Project. It is currently a work in progress.</p>
+<div id="crop-parameters-verified" class="section level3 hasAnchor" number="11.0.2">
+<h3><span class="header-section-number">11.0.2</span> Crop parameters verified<a href="model-parameterization.html#crop-parameters-verified" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The results of this step can be found in file <code>plannts.plt</code> and discussions to this topic can be found in issue <a href="https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/27">#27</a>. Detailed documentation is currently unavailable.</p>
+</div>
+<div id="soil-physical-parameters-in-final-form" class="section level3 hasAnchor" number="11.0.3">
+<h3><span class="header-section-number">11.0.3</span> Soil physical parameters in final form<a href="model-parameterization.html#soil-physical-parameters-in-final-form" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This has been mentioned in issue <a href="https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/28">#28</a>, and has been closed without discussion. Seems like the parameters are in final form, but no further documentation exists at this point.</p>
+</div>
+<div id="soil-chemical-parameters-in-final-form" class="section level3 hasAnchor" number="11.0.4">
+<h3><span class="header-section-number">11.0.4</span> Soil chemical parameters in final form<a href="model-parameterization.html#soil-chemical-parameters-in-final-form" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This step will be verified in issue <a href="https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/46">#46</a>. It has been discussed in <a href="https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/19">#19</a>.</p>
+<p>The following changes have been implemented, but are subject to change:</p>
+<table>
+<caption>Changes made to <code>soilnut1</code> of <code>nutrients.sol</code></caption>
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Default</th>
+<th>CS10</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>lab_p</code></td>
+<td>5</td>
+<td>20</td>
+</tr>
+<tr class="even">
+<td><code>nitrate</code></td>
+<td>7</td>
+<td>8.5</td>
+</tr>
+<tr class="odd">
+<td><code>inorgp</code></td>
+<td>3.5</td>
+<td>35.1</td>
+</tr>
+<tr class="even">
+<td><code>watersol_p</code></td>
+<td>0.15</td>
+<td>0.4</td>
+</tr>
+</tbody>
+</table>
+<p>An R implementation is being considered.</p>
+</div>
+<div id="impoundment-parameters-defined" class="section level3 hasAnchor" number="11.0.5">
+<h3><span class="header-section-number">11.0.5</span> Impoundment parameters defined<a href="model-parameterization.html#impoundment-parameters-defined" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Has been postponed by <a href="https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/20">#20</a>, will be dealt with in <a href="https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/54">#54</a></p>
+</div>
+<div id="water-diversions-defined" class="section level3 hasAnchor" number="11.0.6">
+<h3><span class="header-section-number">11.0.6</span> Water diversions defined<a href="model-parameterization.html#water-diversions-defined" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Deemed as not relevant for this catchment</p>
+</div>
+<div id="point-sources-parameters-added" class="section level3 hasAnchor" number="11.0.7">
+<h3><span class="header-section-number">11.0.7</span> Point sources parameters added<a href="model-parameterization.html#point-sources-parameters-added" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Is an ongoing issue in <a href="https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/21">#21</a></p>
+</div>
+<div id="tile-drainage-parameters-defined" class="section level3 hasAnchor" number="11.0.8">
+<h3><span class="header-section-number">11.0.8</span> Tile drainage parameters defined<a href="model-parameterization.html#tile-drainage-parameters-defined" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Is an ongoing issue in <a href="https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/53">#53</a></p>
+</div>
+<div id="atmospheric-deposition-defined" class="section level3 hasAnchor" number="11.0.9">
+<h3><span class="header-section-number">11.0.9</span> Atmospheric deposition defined<a href="model-parameterization.html#atmospheric-deposition-defined" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Has been done with <code>svatools</code>. An R implementation is being considered.</p>
+</div>
+<div id="additional-settings-verified" class="section level3 hasAnchor" number="11.0.10">
+<h3><span class="header-section-number">11.0.10</span> Additional settings verified<a href="model-parameterization.html#additional-settings-verified" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Refers to chapter 3.11 in The Protocol and files <code>parameters.bsn</code> <code>codes.bsn</code>
+Has been discussed in <a href="https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/22">#22</a></p>
+<p>More in-depth documentation and an R implementation are being considered</p>
+<p>The following changes have been made:</p>
+<table>
+<caption>Changes made to <code>codes.bsn</code></caption>
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Default</th>
+<th>CS10</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>pet</code></td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td><code>rte_cha</code></td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td><code>cn</code></td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td><code>tiledrain</code></td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td><code>soil_p</code></td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td><code>atmo_dep</code></td>
+<td>a</td>
+<td>m</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>(TODO: Fill in more data from the GitLab Issue)</p>
 
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div class="csl-entry">
+<span>“GroPoint Profile Multi Segment Soil Moisture &amp; Temperature Profiling Probe Operation Manual.”</span> 2023, March.
+</div>
+<div class="csl-entry">
+Patrignani, Andres. 2020. <em>PyNotes for Environmental Scientists</em>. Zenodo. <a href="https://doi.org/10.5281/ZENODO.3731389">https://doi.org/10.5281/ZENODO.3731389</a>.
+</div>
+<div class="csl-entry">
+Schürz, Christoph, Natalja Čerkasova, Csilla Farkas, Attila Nemes, Plunge, Michael Strauch, Brigitta Szabó, and Mikołaj Piniewski. 2022. <span>“SWAT+ Modeling Protocol for the Assessment of Water and Nutrient Retention Measures in Small Agricultural Catchments,”</span> December. <a href="https://doi.org/10.5281/ZENODO.7463395">https://doi.org/10.5281/ZENODO.7463395</a>.
+</div>
+<div class="csl-entry">
+Wickham, Hadley. 2014. <span>“Tidy Data.”</span> <em>Journal of Statistical Software</em> 59 (10). <a href="https://doi.org/10.18637/jss.v059.i10">https://doi.org/10.18637/jss.v059.i10</a>.
+</div>
+</div>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
+<a href="model-verification.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
-<a href="model-setup-with-swatbuildr.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -428,7 +562,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/index.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/99-wip.Rmd",
 "text": "Edit"
 },
 "history": {
