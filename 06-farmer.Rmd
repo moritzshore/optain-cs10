@@ -1,7 +1,5 @@
 # Scheduling Managment with SWATFarmR
 
-## Introduction
-
 WIP: Every field in the OPTAIN SWAT setup needs its own management. We will
 use the SWATFarmR package to define it. 
 
@@ -358,7 +356,7 @@ EVAL FALSE as BuildR script is still broken
 cs10$schedule_operations(start_year = 2010, end_year = 2020, n_schedule = 2)
 ```
 
-## Write Operations
+### Write Operations
 
 EVAL FALSE as BuildR script is still broken
 
