@@ -4,13 +4,7 @@
 
 ## Introduction
 
-This chapter is concerned with preparing the measured data for the
-OPTAIN field scale models. This will involve loading the data,
-transforming it into a usable format, and performing a quality check.
-The end of this chapter will result in data fit for use in SWAP as well
-as a tangentially related antecedent precipitation index (API) model for use
-in the SWAT+ modelling work, related to scheduling management operations
-using SWATFarmR .
+This chapter is concerned with preparing the measured data for the OPTAIN field scale models. This will involve loading the data, transforming it into a usable format, and performing a quality check. The end of this chapter will result in data fit for use in SWAP as well as a tangentially related antecedent precipitation index (API) model for use in the SWAT+ modelling work, related to scheduling management operations using SWATFarmR .
 
 ### Prerequisites
 
@@ -42,13 +36,13 @@ source("model_data/code/plot_logger.R")
 
 The loggers are described as such:
 
-1. Logger3(600409): deep rocky sand (forest?)
+1.  Logger3(600409): deep rocky sand (forest?)
 
-2. Logger4(600410): Tormods farm (agri)
+2.  Logger4(600410): Tormods farm (agri)
 
-3. Logger2(600411): John Ivar lower area (agri)
+3.  Logger2(600411): John Ivar lower area (agri)
 
-4. Logger1(600413): John Ivar behind the barn (agri)
+4.  Logger1(600413): John Ivar behind the barn (agri)
 
 And are located here:
 
@@ -64,12 +58,9 @@ basin_map+field_map
 
 ```
 
-
 ## Loading in observed data.
 
-To start we need to load in our data from the *GroPoint Profile* data
-loggers. The logger is approx. 1m long and has 7 temperature sensors,
-and 6 soil moisture sensors located along its segments. @gropoint2023
+To start we need to load in our data from the *GroPoint Profile* data loggers. The logger is approx. 1m long and has 7 temperature sensors, and 6 soil moisture sensors located along its segments. @gropoint2023
 
 ```{r, echo = FALSE, fig.align='center', fig.cap= "GroPoint Segment Schematic (GroPoint Profile User Manual, Page 6)"}
 knitr::include_graphics("figures/gropoint_segments.png")
@@ -79,12 +70,9 @@ knitr::include_graphics("figures/gropoint_segments.png")
 knitr::include_graphics("figures/gropoint_temp.png")
 ```
 
-The logger data has been modified before import into R. The file names
-have been changed and column headers have been added. Missing values
-stored as "Error" have been removed.
+The logger data has been modified before import into R. The file names have been changed and column headers have been added. Missing values stored as "Error" have been removed.
 
-Columns headers have assigned with variable name, depth, and unit of
-depth separated by an underscore.
+Columns headers have assigned with variable name, depth, and unit of depth separated by an underscore.
 
 ```{r}
 path <- "model_data/field_sites/loggers/data/"
@@ -120,10 +108,7 @@ datatable(
 )
 ```
 
-We need to force the date time column into the correct format. We can do
-this with the following command. (*Please note, this has been done for
-region:* `United States` *this code may need to be adjusted to fit your
-regional settings*)
+We need to force the date time column into the correct format. We can do this with the following command. (*Please note, this has been done for region:* `United States` *this code may need to be adjusted to fit your regional settings*)
 
 ```{r}
 data$datetime <- data$datetime %>% 
@@ -132,8 +117,7 @@ data$datetime <- data$datetime %>%
 
 ## Data Re-structuring
 
-For ease of use in R, we will re-structure the data to be in "tidy"
-format (Read more: [@wickham2014]).
+For ease of use in R, we will re-structure the data to be in "tidy" format (Read more: [@wickham2014]).
 
 ```{r}
 # grab the measured variable column headers
@@ -168,9 +152,7 @@ datatable(
 
 ### Summarize to Daily Means
 
-As SWAP is a daily time step model, we do not need the hourly
-resolution, and can therefore simplify our analysis. We first need to
-parse out a (daily) date column
+As SWAP is a daily time step model, we do not need the hourly resolution, and can therefore simplify our analysis. We first need to parse out a (daily) date column
 
 ```{r}
 data_melt$date <- data_melt$datetime %>% as.Date()
@@ -185,18 +167,13 @@ daily_data <- data_melt %>% group_by(date, var, depth, site) %>%
 
 Additional notes:
 
--   The values are rounded to one decimal place, as this is is the
-    precision limit of the Logger.
+-   The values are rounded to one decimal place, as this is is the precision limit of the Logger.
 
--   The averaging is performed per date, variable, depth, and site (for
-    obvious reasons)
+-   The averaging is performed per date, variable, depth, and site (for obvious reasons)
 
--   The functionality of `.groups = "drop_last"` is unknown to me,
-    however it does not change anything other than quieting a warning
-    message.
+-   The functionality of `.groups = "drop_last"` is unknown to me, however it does not change anything other than quieting a warning message.
 
--   The data is "ungrouped" at the end, to avoid problems with plotting
-    the data (with plotly) later on.
+-   The data is "ungrouped" at the end, to avoid problems with plotting the data (with plotly) later on.
 
 Data preview:
 
@@ -210,13 +187,9 @@ datatable(
 
 ### Including Air Temperature and Precipitation Data
 
-We are going to add the temp / precipitation data from out SWAT+ setup to give
-us insight on temperature and moisture dynamics for the data quality check.
+We are going to add the temp / precipitation data from out SWAT+ setup to give us insight on temperature and moisture dynamics for the data quality check.
 
-Also important to note, is that all this code is only necessary, because
-of the strange format SWAT+ uses for its weather input. If it would just
-use a standard format (like everything else) then all this would not be
-needed.
+Also important to note, is that all this code is only necessary, because of the strange format SWAT+ uses for its weather input. If it would just use a standard format (like everything else) then all this would not be needed.
 
 Reading in the SWAT source precipitation data:
 
@@ -247,8 +220,7 @@ LAST_DOY <-  swat_pcp[length(swat_pcp$V1),][[2]]-1
 LAST_YEAR <- swat_pcp[length(swat_pcp$V1),][[1]]
 ```
 
-Converting these to an R format. Note that R uses a 0-based index *only
-for* dates. (very confusing!).
+Converting these to an R format. Note that R uses a 0-based index *only for* dates. (very confusing!).
 
 ```{r}
 first_day <- as.Date(FIRST_DOY, origin = paste0(FIRST_YEAR, "-01-01"))
@@ -285,7 +257,6 @@ tmp_data <- tibble(date = date_range,
 tmp_data <- tmp_data %>% filter(date %in% daily_data$date)
 ```
 
-
 ```{r, echo = F, fig.align='center', fig.cap= "Temperature range and precipitation for CS10"}
 
 yrange <- c(pcp_data$pcp, tmp_data$tmp_max, tmp_data$tmp_min)
@@ -321,12 +292,11 @@ axis(side = 4, at = pretty(range(pcp_data$pcp)))
 mtext("mm", side = 4, line = 3)  
 ```
 
-Note: this does (yet) include data from 2023, even though the loggers
-do.
+Note: this does (yet) include data from 2023, even though the loggers do.
 
 ## Data quality check
 
-In this section we are proofing the quality of the data. 
+In this section we are proofing the quality of the data.
 
 ### Logger 600409 "Deep Rocky Sand"
 
@@ -336,17 +306,17 @@ plot_logger(daily_data, "600409", pcp_data, tmp_data)
 
 #### Soil Temperature
 
-* Remove first few days with unrealistic data
+-   Remove first few days with unrealistic data
 
 #### Soil Moisture Content
 
-* First few days need to be removed
-* 150mm depth seems usable before Sept2022 -- However Attila (instrument installer) mentioned this sensor might be in the air (which would explain low moisture levels), so potentially useless
-* 350mm depth seems usable, breaks around/after Sept2022
-* 450mm depth seems useless, constantly getting wetter for an entire year, spiking post Sept2022
-* 600mm depth seems useless, constantly getting wetter for an entire year, spiking post Sept2022
-* 750mm depth seems useless, constantly getting wetter for an entire year.
-* 900mm depth seems useless, constantly getting wetter for an entire year.
+-   First few days need to be removed
+-   150mm depth seems usable before Sept2022 -- However Attila (instrument installer) mentioned this sensor might be in the air (which would explain low moisture levels), so potentially useless
+-   350mm depth seems usable, breaks around/after Sept2022
+-   450mm depth seems useless, constantly getting wetter for an entire year, spiking post Sept2022
+-   600mm depth seems useless, constantly getting wetter for an entire year, spiking post Sept2022
+-   750mm depth seems useless, constantly getting wetter for an entire year.
+-   900mm depth seems useless, constantly getting wetter for an entire year.
 
 ### Logger 600410 "Tormods farm"
 
@@ -356,14 +326,14 @@ plot_logger(daily_data, "600410", pcp_data, tmp_data)
 
 #### Soil Temperature
 
-* Remove first few days with unrealistic data
+-   Remove first few days with unrealistic data
 
 #### Soil Moisture Content
 
-* First few days need to be removed
-* Depth 150 probably useless, as sensor is in free air. (According to Attila)
-* Logger seems to have broken Sometime after Sept1 2022, for all depth levels.
-* Data pre-Sept22 seems usable (Csilla ?)
+-   First few days need to be removed
+-   Depth 150 probably useless, as sensor is in free air. (According to Attila)
+-   Logger seems to have broken Sometime after Sept1 2022, for all depth levels.
+-   Data pre-Sept22 seems usable (Csilla ?)
 
 ### Logger 600411 "John Ivar Lower Area"
 
@@ -373,15 +343,15 @@ plot_logger(daily_data, "600411", pcp_data, tmp_data)
 
 #### Soil Temperature
 
-* Need to remove the first few days
-* Need to remove the malfunction in April-May 2022
+-   Need to remove the first few days
+-   Need to remove the malfunction in April-May 2022
 
 #### Soil Moisture Content
 
-* First few days need to be removed
-* Need to remove the malfunction in April-May 2022
-* Depths 150 is out of soil, must be removed. 
-* Logger seems to have broken August 16th, 2022, data seems useful before that date (Csilla, agree?)
+-   First few days need to be removed
+-   Need to remove the malfunction in April-May 2022
+-   Depths 150 is out of soil, must be removed.
+-   Logger seems to have broken August 16th, 2022, data seems useful before that date (Csilla, agree?)
 
 ### Logger 600413 "John Ivar behind the barn"
 
@@ -391,13 +361,13 @@ plot_logger(daily_data, "600413", pcp_data, tmp_data)
 
 #### Soil Temperature
 
-* Remove the first few days with unrealistic data
+-   Remove the first few days with unrealistic data
 
 #### Soil Moisture Content
 
-* Remove first few days
-* Remove 150mm, seems out of earth
-* Hard to tell when sensor broke, earliest June 24th, latest Sept.12 2022, what do you think Csilla ?
+-   Remove first few days
+-   Remove 150mm, seems out of earth
+-   Hard to tell when sensor broke, earliest June 24th, latest Sept.12 2022, what do you think Csilla ?
 
 ## Data Cleanup
 
@@ -410,8 +380,7 @@ start_date <- "2021-11-01"
 data_clean <- daily_data %>% filter(date > start_date) 
 ```
 
-To be on the safe side, I am setting the logger cut-off date to XXXXXXXXX
-This could be tuned "per logger" later on if one feels confident.
+To be on the safe side, I am setting the logger cut-off date to XXXXXXXXX This could be tuned "per logger" later on if one feels confident.
 
 ```{r}
 cut_off_date <- "2022-08-14"
@@ -427,7 +396,6 @@ pcp_data_clean <- pcp_data_clean %>% filter(date < cut_off_date)
 tmp_data_clean <- tmp_data %>% filter(date > start_date) 
 tmp_data_clean <- tmp_data_clean %>% filter(date < cut_off_date) 
 ```
-
 
 We will remove the 150 mm depth SMC measurement, as it was not submerged properly in the soil, and is therefore of little use. The temperature reading might be useful, so we will keep it.
 
@@ -470,7 +438,6 @@ plot_logger(data_clean, "600411", pcp_data_clean, tmp_data_clean)
 
 No logger specific cleanup required
 
-
 ### Saving the cleaned data
 
 We can now save our cleaned up data. We will do so in CSV form
@@ -480,4 +447,3 @@ write_csv(data_clean, file = "model_data/field_sites/loggers/clean/logger_data_d
 
 write_csv(pcp_data_clean, file = "model_data/field_sites/loggers/clean/pcp_data_clean.csv")
 ```
-
