@@ -37,6 +37,7 @@ require(reshape2)
 require(remotes)
 require(dplyr)
 require(data.table)
+require(DT)
 ```
 
 And the following functions:
@@ -125,7 +126,7 @@ datatable(mgt_generic)
 #### Simulation Period
 
 ```{r}
-start_y <- 1988 # starting year (consider at least 3 years for warm-up!)
+start_y <- 2010 # starting year (consider at least 3 years for warm-up!)
 end_y <- 2020 # ending year
 ```
 
@@ -187,25 +188,25 @@ additional_h_yr_sch_existing <- 'n' # 'y' (yes), 'n' (no)
 
 Check for correct positioning of 'skip' line
 
-```{r}
+```{r, eval = FALSE}
 check_skip <- check_skip_position()
 ```
 
 Check for date conflicts in single crop schedules
 
-```{r}
+```{r, eval = FALSE}
 check_date_conflicts1()
 ```
 
 Build schedules for crop sequences (Messages disabled)
 
-```{r, results='hide'}
+```{r, results='hide', eval = FALSE}
 rota_schedules <- build_rotation_schedules()
 ```
 
 Check for date conflicts in the full rotation schedule. (Messages disabled)
 
-```{r results='hide', warning=TRUE}
+```{r results='hide', warning=TRUE, eval = FALSE}
 check_date_conflicts2()
 ```
 
@@ -213,20 +214,20 @@ Solve minor date conflicts (where only a few days/weeks are overlapping)
 
 (Messages disabled)
 
-```{r results='hide', warning=TRUE}
+```{r results='hide', warning=TRUE, eval = FALSE}
 rota_schedules <- solve_date_conflicts()
 ```
 
 Check again for date conflicts (Messages disabled)
 
-```{r results='hide', warning=TRUE}
+```{r results='hide', warning=TRUE, eval = FALSE}
 check_date_conflicts2()
 ```
 
 ### Writing input data
 
 Write the SWAT farmR input table 
-```{r}
+```{r, eval = FALSE}
 write_farmR_input()
 ```
 
@@ -288,63 +289,7 @@ cs10$read_management(file = "farmR_input/farmR_input2.csv")
 
 ## Calculating Antecedent Precipitation Index
 
-USING TEMPORARY API: This needs to be replaced with a proper model. See
-issue [#17](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/17)
-
-EVAL FALSE as BuildR script is still broken
-
-```{r, eval = FALSE}
-
-# Load dplyr. We will use functions such as 'mutate' and 'select'.
-library(dplyr)
-# Extract the precipitation from the farmr project
-pcp <- cs10$.data$variables$pcp
-
-# Extract the hydrologic soil group values for all HRUs
-hsg <- select(cs10$.data$meta$hru_attributes, hru, hyd_grp)
-
-# Calculate api values for the hsg classes A to D
-api_A <- variable_decay(variable = pcp, n_steps = -5, decay_rate = 1)
-api_B <- variable_decay(variable = pcp, n_steps = -5, decay_rate = 0.8)
-api_C <- variable_decay(variable = pcp, n_steps = -5, decay_rate = 0.7)
-api_D <- variable_decay(variable = pcp, n_steps = -5, decay_rate = 0.5)
-
-# Bind the data together into one api table and name them with the hsgs
-api <- bind_cols(api_A, api_B, api_C, api_D)
-names(api) <- c('api_A', 'api_B', 'api_C', 'api_D')
-
-# To add the variable to the farmR you have to tell it which variables are
-# assigned to which HRUs
-hru_asgn <- mutate(hsg, api = paste0('api_', hyd_grp)) %>% select(hru, api)
-  
-# Add the variable api to the farmR project
-cs10$add_variable(data = api, name = 'api', assign_unit = hru_asgn, overwrite = T)
-
-```
-
-From @patrignani2020:
-
-The API is a well-known, parsimonious, recursive model for predicting
-soil moisture solely based on precipitation records. The API is commonly
-implemented using daily precipitation records, but it is possible to
-work at finer temporal scales (e.g. hourly) if both precipitation (model
-input) and soil moisture (for validation purposes) are available. The
-equation describing the simples version of the model is:
-
-$$API_{t} = \alpha API_{t-1} + P_t$$\
-$API_t$: Soil water content at time $t$ (today)
-
-$API_{t-1}$: Soil water content at time $t-1$ (yesterday)
-
-$\alpha$: Loss coefficient. Range between 0 and 1
-
-$P_t$: Precipitation at time $t$ (today)
-
-Following Python code modified from @patrignani2020 ([[read
-more]{.underline}](https://soilwater.github.io/pynotes-agriscience/notebooks/antecedent_precipitation_index.html))
-
-Just do it in R... bokeh wont place nice and we need to do some annoying
-time date stuff
+TODO loading API from section REF
 
 ....
 
