@@ -1,0 +1,225 @@
+# Model Verification
+
+## Preparation
+
+Loading required packages, defining paths, and loading objects.
+
+```{r, message=FALSE}
+
+# Install/Update SWATdoctR if needed:
+# remotes::install_git('https://git.ufz.de/schuerz/swatdoctr', force = FALSE)
+require(SWATdoctR)
+
+```
+
+### Generate Model Run
+
+```{r, eval=FALSE}
+veri_no_stress <-
+  SWATdoctR::run_swat_verification(
+    project_path = ppath,
+    nostress = 0,
+    keep_folder = F,
+    outputs = "wb"
+  )
+
+saveRDS(veri_no_stress, "model_data/swat_doctR/verification_runs/veri_no_stress.rds")
+```
+
+### Load Model Run
+
+```{r}
+veri_no_stress <- readRDS("model_data/swat_doctR/verification_runs/veri_no_stress.rds")
+```
+
+
+## Analysis of simulated climate variables
+
+[*Modified from the Protocol:*]{.underline}
+
+-   The climate variables daily precipitation and daily minimum/maximum
+    temperatures are **required** inputs of a SWAT+ model setup (more
+    info: protocol section 2.4).
+
+> We have these present.
+
+-   Further climate inputs such as solar radiation, relative humidity
+    and wind speed are **optional** input variables and can be essential
+    for the calculation of the potential evapotranspiration (PET).
+
+> We have these, see issue #42
+> ([link](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/42))
+
+-   Climate inputs are grouped to weather stations in a model setup and
+    are assigned to spatial objects (HRUs, channels, reservoirs, etc.)
+    with the `nearest neighbor` method.
+
+> We only have 1 weather station so this is not of great relevance.
+
+-   The input of weather data and the assignment of climate variables to
+    spatial objects can be sources for several issues which must be
+    analysed:
+
+1.  Data structure of the climate input tables, units of the climate
+    variable, no data flag, etc. was wrong and can result in
+    unrealistically small or large values of the climate variables in
+    the simulation.
+
+    > Does not seem to be the case in our data
+
+2.  The nearest neighbor assignment allocates weather stations to
+    spatial objects where the weather records do not represent the
+    actual weather conditions in a spatial object well. This can for
+    example be an issue in complex terrain.
+
+    > Should not be a concern for us (for now) since we only have a
+    > single met station
+
+3.  The selected method for the calculation of PET results in an
+    under/overestimation of PET when compared to estimates of PET for
+    the region. In such cases other methods for the simulation of PET
+    which are included in SWAT+ should be tested if they better fit the
+    regional conditions and available weather inputs (see more
+    [Additional
+    settings](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/22)).
+
+> See issue
+> [#39](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/39)
+
+-   Large implausibilities in the weather inputs can be identified in
+    analyses of annual basin averages of the simulated climate
+    variables. **Simulated annual and average values of climate
+    variables must be comparable to observation data and/or region
+    specific literature values**. Any larger [deviations]{.underline} of
+    precipitation can indicate errors in the input file or an
+    inappropriate assignment of weather stations to spatial units.
+
+> Have not checked this yet (!!!)
+
+-   If the lapse rate option is active (Read more in Additional
+    settings), it may be another potential reason for deviations from
+    observations.
+
+> We are tracking this topic in issue #39
+> ([link](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/39)).
+
+### Lapse rate on:
+
+```{r}
+# TODO, fix #43 first
+```
+
+### Lapse rate off:
+
+```{r}
+# TODO, fix #43 first
+```
+
+-   Over or underestimated PET can indicate errors in the temperature
+    input files (and if provided in the solar radiation, relative
+    humidity and wind speed inputs).
+
+> We are tracking this topic in issue #39
+> ([link](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/39)).
+
+-   `SWATdoctR` provides the function `plot_climate_annual()` to analyse
+    the annual simulated basin averages of climate variables.
+
+```{r fig1, fig.width=8.3, fig.height=11.7}
+fig1 <- SWATdoctR::plot_climate_annual(veri_no_stress)
+plot(fig1)
+```
+
+-   The **first panel** shows ET fractions. Current version of SWAT+
+    often has implausible ET fractions!
+
+> Are these values plausible?
+
+[**ANSWER**]{.underline}: NO, no eplant ET. [[see issue #48]{.underline}](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/48){style="font-size: 11pt;"}
+
+-   The **second panel** shows the precipitation fractions rainfall
+    (`rainfall`) and snowfall (`snofall`).
+
+> Are these values plausible?
+
+[**ANSWER**]{.underline}: resolved in issue #43
+([link](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/43)) --
+but are they plausible Csilla?
+
+-   The **third panel** shows the annual temperature values.
+
+> Are these values plausible?
+
+[**ANSWER:**]{.underline} *YES* Csilla do you agree?
+
+-   The **fourth panel** shows the relative humidity values.
+
+> Are these values plausible?
+
+[**ANSWER**]{.underline}**:** resolved in issue #42
+[([link](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/42)),
+but are they plausible? Csilla]{.underline}
+
+-   The **fifth panel** shows wind speed.
+
+> Are these values plausible?
+
+[**ANSWER**]{.underline}: resolved in
+[#42](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/42),
+ Csilla plausible?
+
+-   The **sixth panel** shows the annual sums of solar radiation. A
+    comparison to literature values of annual solar radiation sums for
+    the region can indicate issues in this input.
+
+> Are these values plausible?
+
+[**ANSWER**]{.underline}: Yes, values for the Oslo area seem to be
+around [4000 MJ](https://re.jrc.ec.europa.eu/pvg_tools/en/) -- Csilla
+do you agree?
+
+-   The analysis of mean monthly precipitation (output variable
+    `precip`), snowfall (output variable `snofall`) and snow melt
+    (output variable `snomlt`) sums and their comparison with region
+    specific information (or in the best case observations) provides
+    insight in seasonal dynamics of the precipitation input.
+    Particularly in snow impacted catchments a first verification of
+    snowfall is valuable to see whether precipitation in solid form is
+    simulated, a snow storage can build up and cause increased spring
+    runoff through snow melt. The hydrological cycle of some catchments
+    may be dominated by spring flood events which must be reflected by
+    the simulated processes. Any observed implausibility in such
+    analysis can indicate issues in the weather inputs or require to pay
+    attention in the calibration of model parameters which control the
+    simulation of snow processes (`snofall_tmp`, `snomelt_tmp`,
+    `snomelt_lag`).
+
+> CS10, a Boreal catchment, is impacted by snow melt -- this is relevant
+> to the verification
+
+```{r}
+SWATdoctR::plot_monthly_snow(sim_verify = veri_no_stress)
+```
+
+> This has been resolved in issue #43.
+> ([link](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/43)).
+> Are these values plausible csilla?
+
+-   In situations where not all required climate inputs are available
+    which are necessary to estimate PET with PM method the estimates
+    will be more uncertain and annual PET sums may differ to regional
+    values. Then the use of a simpler method for the calculation of PET
+    can be a valid solution.
+
+> We are currently using PM-PET, which could be a problem since we don't
+> have RH or Wind. This is being discussed in issue #42
+> ([link](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/42)).
+
+------------------------------------------------------------------------
+
+**STATUS**: Waiting on climate verification before continuing to the
+next step:
+
+## Simulation of management operations
+
+*waiting on step 1...*
