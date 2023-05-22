@@ -1,12 +1,16 @@
+fig:plotdemraster
+fig:watershedplot
+fig:maplanduse
+fig:soilmapraster
 fig:lumap
 fig:farmidfig
-tab:unnamed-chunk-29
-fig:unnamed-chunk-72
+tab:unnamed-chunk-30
 fig:unnamed-chunk-73
-fig:unnamed-chunk-90
+fig:unnamed-chunk-74
 fig:unnamed-chunk-91
+fig:unnamed-chunk-92
 fig:soilmapplot
-fig:unnamed-chunk-109
+fig:unnamed-chunk-110
 introduction
 model-setup-with-swatbuildr
 processing-input-data
@@ -32,7 +36,6 @@ create-swat-sqlite-database
 write-the-swateditor-project-database
 todo
 link-aquifers-and-channels-with-geomorphic-flow
-part-model-parameterization
 climate-inputs-and-weather-generator
 preperation-and-loading-data
 required-packages
@@ -72,7 +75,6 @@ setting-vfs
 setting-grww
 setting-bmp
 writing-changes
-part-field-sites
 field-site-loggers
 introduction-1
 prerequisites
