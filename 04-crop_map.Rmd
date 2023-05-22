@@ -36,7 +36,7 @@ lu_sf <- read_sf("model_data/cs10_setup/optain-cs10/data/vector/land.shp")
 
 lu_map <- ggplot() + geom_sf(lu_sf, mapping = aes(fill = type)) + theme(legend.position = "left") + sf_theme + theme(legend.position = "none")
 
-lu_map
+print(lu_map)
 ```
 
 ### Calculate Field Area and Assign IDs
@@ -47,7 +47,9 @@ considered.
 ```{r, farmidfig, fig.align='center', fig.cap="Farms in the CS10 catchment, colored by ID"}
 farm_area_sf <- read_sf("model_data/input/crop/buildr_output_dissolved_into_farms.shp")
 
-ggplot() + geom_sf(farm_area_sf, mapping = aes(fill = farm_id)) + theme(legend.position = "none") +sf_theme
+field_lu_plot <- ggplot() + geom_sf(farm_area_sf, mapping = aes(fill = farm_id)) + theme(legend.position = "none") +sf_theme
+
+print(field_lu_plot)
 ```
 
 ### Calculate Field area and assign IDs
