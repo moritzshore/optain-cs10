@@ -4,10 +4,6 @@ This section covers the modifications made to the landuse file. For some
 reason it was written in a tutorial fashion, as if the reader were new
 to R.
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
 ```{r, message=FALSE}
 require(tidyverse)
 require(reshape2)
