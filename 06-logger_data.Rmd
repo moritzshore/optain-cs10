@@ -1,8 +1,6 @@
-# Field Site Loggers
+# (PART) Field Sites
 
-```{r setup, include=FALSE}
-show_rows <- 1000
-```
+# Field Site Loggers
 
 ## Introduction
 
@@ -52,7 +50,7 @@ require(DT) # for tables
 As well as the following custom functions:
 
 ```{r}
-source("code/plot_logger.R")
+source("model_data/code/plot_logger.R")
 ```
 
 ## Loading in observed data.
@@ -77,7 +75,7 @@ Columns headers have assigned with variable name, depth, and unit of
 depth separated by an underscore.
 
 ```{r}
-path <- "../field_sites_data/data/"
+path <- "model_data/field_sites/loggers/data/"
 ```
 
 Loading the data and modifying it is performed with `readr` and `dplyr`.
@@ -211,9 +209,10 @@ needed.
 Reading in the SWAT source precipitation data:
 
 ```{r}
-swat_pcp <- read.table("../../swat_setup/sta_id1.pcp", skip = 3, header = F, sep = "\t") %>% as_tibble()
+# TODO remove temp
+swat_pcp <- read.table("model_data/cs10_setup/temp_sta_id1.pcp", skip = 3, header = F, sep = "\t") %>% as_tibble()
 
-swat_tmp <- read.table("../../swat_setup/sta_id1.tmp", skip = 3, header = F, sep = "\t") %>% as_tibble()
+swat_tmp <- read.table("model_data/cs10_setup/temp_sta_id1.tmp", skip = 3, header = F, sep = "\t") %>% as_tibble()
 ```
 
 Data preview:
@@ -308,11 +307,6 @@ lines(tmp_data$date, y = tmp_data$tmp_min, col = "blue")
 
 axis(side = 4, at = pretty(range(pcp_data$pcp)))     
 mtext("mm", side = 4, line = 3)  
-
-
-
-
-
 ```
 
 Note: this does (yet) include data from 2023, even though the loggers
@@ -467,17 +461,11 @@ No logger specific cleanup required
 
 ### Saving the cleaned data
 
-```{r, include=FALSE}
-# removing vars we dont need anymore
-rm(data, data_melt, swat_pcp, res, pcp_data, log_600409, log_600410, log_600411, log_600413, daily_data)
-rm(path, mea_var, datasheets, date_range, first_day, last_day, FIRST_DOY, FIRST_YEAR, LAST_DOY, LAST_YEAR, remove_dates)
-```
-
 We can now save our cleaned up data. We will do so in CSV form
 
 ```{r}
-write_csv(data_clean, file = "output/logger_data_daily_clean.csv")
+write_csv(data_clean, file = "model_data/field_sites/loggers/clean/logger_data_daily_clean.csv")
 
-write_csv(pcp_data_clean, file = "output/pcp_data_clean.csv")
+write_csv(pcp_data_clean, file = "model_data/field_sites/loggers/clean/pcp_data_clean.csv")
 ```
 
