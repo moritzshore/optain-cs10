@@ -1,0 +1,139 @@
+---
+title: "Part 2: Field site properties"
+author: "Moritz Shore"
+date: "May 15th, 2023"
+output: 
+  html_document: 
+    toc: yes
+    css: _bookdown_files/rmd_files/bootstrap.min.css
+    toc_depth: 2
+editor_options: 
+  markdown: 
+    wrap: 72
+bibliography:  _bookdown_files/rmd_files/references.bib
+---
+
+# Part 2: Field site properties
+
+## Determining the HSG group of the logger sites
+
+```{r, message=FALSE}
+require(sf)
+require(readr)
+require(DT)
+require(dplyr)
+require(mapview)
+```
+
+We load the soi map of the area.
+
+```{r}
+soil_map <- "../../input_files/soil/shp/soil_map_UTM32N.shp"
+soil_map_shp <- read_sf(soil_map)
+```
+
+We will crop it by the watershed. Therefore we load the water shed
+
+```{r}
+cs10_basin_path <- "../../input_files/shape/cs10_basin.shp"
+cs10_basin <- read_sf(cs10_basin_path)
+```
+
+And crop by by basin. (current not sure of the effect of constant geometry)
+
+```{r, message=FALSE}
+st_agr(soil_map_shp) = "constant"
+st_agr(cs10_basin) = "constant"
+
+soil_map_shp <- st_intersection(soil_map_shp,cs10_basin, )
+
+mapview(soil_map_shp, zcol="SNAM")
+```
+
+We need information on the soil itself. This is found in our user table. We only
+need the hydrologic soil group (HSG) `HYDGRP`, but we will keep the soil depth
+`SOL_ZMX` and soil texture `TEXTURE` just in case
+
+```{r}
+usersoil_path <- "../../input_files/soil/UserSoil_Krakstad.csv"
+usersoil <- read_csv(usersoil_path, show_col_types = F)
+usersoil <- usersoil %>% dplyr::select(OBJECTID, SNAM, SOL_ZMX, HYDGRP, TEXTURE)
+# "
+```
+
+```{r, echo = FALSE}
+datatable(usersoil,
+          extensions = "Scroller",
+          options = list(scrollY = 200, scroller = TRUE)
+)
+```
+
+We can combine the two data sets with a left join by soil ID / Object ID
+
+```{r}
+usersoil$SOIL_ID <- usersoil$OBJECTID
+
+usersoil <- usersoil %>% dplyr::select(-OBJECTID)
+
+soil_propery_map <- dplyr::left_join(soil_map_shp, usersoil, by = "SOIL_ID")
+
+HSG_map <- mapview(soil_propery_map, zcol="HYDGRP", layer.name = "HSG")
+HSG_map
+```
+
+Now we need the locations of the field sites. These are stored as points in the
+following file:
+
+```{r}
+cs10_field_sites_path <- "../../input_files/point/cs10_field_sites.shp"
+cs10_field_sites <- read_sf(cs10_field_sites_path)
+```
+
+We are going to join the attributes using a spatial join
+
+```{r}
+field_sites_attr <- st_join(cs10_field_sites, soil_propery_map)
+```
+
+Here is the result:
+
+```{r, echo = FALSE, fig.cap="Field site locations of CS10"}
+fs_map <-
+  mapview(
+    field_sites_attr,
+    zcol = "HYDGRP",
+    color = "black",
+    layer.name = "Field Sites", cex = 8,
+    label = "id",
+    lwd = 3, legend = FALSE
+  )
+
+fs_map+HSG_map
+```
+
+We have two sites covering C and D, and one site covering B. This covers all
+existing HSGs in the catchment, which is good. We can save this information in
+a dataframe.
+
+```{r}
+field_site_attr_df <- st_drop_geometry(field_sites_attr)
+
+datatable(field_site_attr_df)
+```
+We will write this into our output folder
+
+```{r}
+write_csv(x = field_site_attr_df, file = "output/field_site_attr_df.csv")
+```
+
+And save our soil property map, and field site points (with attributes)
+
+```{r, messages=FALSE}
+write_sf(field_sites_attr, "output/field_site_attr_map.shp")
+write_sf(soil_propery_map, "output/soil_propery_map.shp")
+```
+
+
+## References
+
+

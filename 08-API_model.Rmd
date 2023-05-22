@@ -1,0 +1,290 @@
+---
+title: 'Part 3: API Calculation'
+author: "Moritz Shore"
+date: "May 18th, 2023"
+output:
+  pdf_document:
+    toc: yes
+    toc_depth: '2'
+  html_document:
+    toc: yes
+    css: _bookdown_files/rmd_files/bootstrap.min.css
+    toc_depth: 2
+editor_options:
+  markdown:
+    wrap: 72
+bibliography: _bookdown_files/rmd_files/references.bib
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::knit_engines$set(python = reticulate::eng_python)
+```
+
+## Pre-requirements
+
+Required R packages
+
+```{r, message=FALSE}
+require(readr)
+require(dplyr)
+require(hydroGOF)
+library(reticulate) # Required Python packages: "pandas", "numpy", "scipy"
+
+source("code/plot_api.R")
+source("code/calc_api.R")
+
+```
+
+```{r, include = FALSE}
+
+# creates conda environment for your project
+
+# conda_create("cs10_env",
+#               packages = c("pandas", "numpy", "scipy"),
+#               conda = "auto")
+
+
+
+#conda_python("cs10_env") # returns the .exe python path for your environment
+
+
+#usethis::edit_r_environ()
+
+#RETICULATE_PYTHON="YOUR ENVIRONMENT PATH/python.exe"
+
+#restart
+
+
+#py_config()
+
+# If everything is right, you should get something like:
+# 
+# python: YOUR ENVIRONMENT PATH/python.exe libpython: YOUR ENVIRONMENT PATH/python39.dll pythonhome: YOUR ENVIRONMENT PATH version: 3.9.7 (default, Sep 16 2021, 16:59:28) [MSC v.1916 64 bit (AMD64)] Architecture: 64bit numpy: YOUR ENVIRONMENT PATH\lib\site-packages\numpy numpy_version: 1.21.2
+# 
+# After this it should work :)
+```
+
+## Introduction
+
+SWATFarmR cannot account for operations based on values modeled by
+SWAT+, such as soil moisture. This is because FarmR does not run the
+model itself, and creates all the management schedules based on measured
+climate data. This means we need to relate our measured climate data to
+our soil moisture. A method to do this is called the Antecedent
+Precipitation Index. Which is what we will creating for CS10 in this
+part
+
+## Antecedent Precipitation Index
+
+From @patrignani2020
+
+The API is a well-known, parsimonious, recursive model for predicting
+soil moisture solely based on precipitation records. The API is commonly
+implemented using daily precipitation records, but it is possible to
+work at finer temporal scales (e.g. hourly) if both precipitation (model
+input) and soil moisture (for validation purposes) are available. The
+equation describing the simple version of the model is:
+
+$$API_{t} = \alpha API_{t-1} + P_t$$\
+$API_t$: Soil water content at time $t$ (today)
+
+$API_{t-1}$: Soil water content at time $t-1$ (yesterday)
+
+$\alpha$: Loss coefficient. Range between 0 and 1
+
+$P_t$: Precipitation at time $t$ (today)
+
+## Loading data
+
+We will load out data from the previous steps. (ref)
+
+```{r}
+logger_data <- read_csv("output/logger_data_daily_clean.csv", show_col_types=F)
+# we only need SMC for this part
+logger_data = logger_data %>% filter(var == "smc")
+
+site_attributes <- read_csv("output/field_site_attr_df.csv", show_col_types=F)
+
+pcp_data <- read_csv("output/pcp_data_clean.csv", show_col_types = F)
+
+head(site_attributes)
+```
+
+We will calculate the model per Hydrologic soil group (HSG), and start
+with B, which was measured by logger 600410.
+
+```{r}
+b_data <- logger_data %>% filter(site == "600410")
+```
+
+## Calculating the total water content
+
+We need to calculate the total water content of the profile from the
+depth measurements from the following depths:
+
+```{r}
+unique(b_data$depth)
+```
+
+Following code is modified from @patrignani2020 ([[read
+more]{.underline}](https://soilwater.github.io/pynotes-agriscience/notebooks/antecedent_precipitation_index.html))
+
+This calculation could be improved by considering the soil horizons.
+
+```{r}
+a <- b_data %>% filter(depth == "300") %>% select(value)
+b <- b_data %>% filter(depth == "450") %>% select(value)
+c <- b_data %>% filter(depth == "600") %>% select(value)
+d <- b_data %>% filter(depth == "750") %>% select(value)
+e <- b_data %>% filter(depth == "900") %>% select(value)
+
+total_water_content <- 
+  a * .35 + # from 0 to 35
+  b * .15 + # from 35 to 50
+  c * .15 + # from 55 to 65
+  d * .15 + # from 65 to 80
+  e * .20   # from 80 to 100
+
+b_col <- tibble(b_data %>% filter(depth == "300") %>% select(date), total_water_content)
+
+```
+
+And we can add the precipitation data fro step 01. (REF)
+
+```{r}
+b_col <- left_join(b_col, pcp_data, by = "date")
+
+plot_api(obs = b_col, title = "HSG B total water content")
+```
+
+Saving the data
+
+```{r}
+write_csv(b_col, "output/twc.csv")
+```
+
+## Defining API model
+
+*"Create a function containing both the API and the gamma model so that
+we can optimize the function parameters:"*
+
+The value is capped at the max val of the source data (50). This could
+be improved by capping per site
+
+```{python}
+def api_model(P,alpha=0.97,ini=36.8):
+    api = [ini]
+    for t in range(1,len(P)):
+      append_val = api[t-1]*alpha + P[t]
+      if append_val > 50:
+        append_val = 50
+      api.append(append_val)
+    
+    return api
+```
+
+Load in our data:
+
+```{python}
+import pandas as pd
+df = pd.read_csv('output/twc.csv')
+df = df[['date','value','pcp']]
+df.head()
+```
+
+As a test, we will calculate the predictions with an alpha of 0.95:
+
+```{python}
+import pandas as pd
+from scipy.optimize import curve_fit
+
+# guess
+storage_guessed = api_model(df['pcp'], alpha=0.95, ini=36.8)
+
+# write to text
+dates = df[['date']]
+guess = pd.DataFrame(dates.values.tolist(),storage_guessed)
+guess.to_csv("output/first_guess.csv")
+
+```
+
+Now we can have a look at it in R
+
+```{r}
+guess <- read_csv("output/first_guess.csv",
+                  show_col_types = F,
+                  skip = 1, col_names = c("val", "date"))
+
+plot_api(api_vals = guess, obs = b_col, title = "HSG-B API guessed")
+```
+
+Now we optimize the alpha parameter using `scipy` `curve_fit`.
+
+```{python}
+par_opt, par_cov = curve_fit(api_model, df['pcp'], df['value'], p0=[0.95,100])
+
+print('Annual mean alpha value is',round(par_opt[0],2))
+```
+
+Now we can calculate the API using the optimized parameter.
+
+```{python}
+import numpy as np
+
+storage_optimized = api_model(df['pcp'],par_opt[0],par_opt[1])
+
+# Mean Absolute Error
+MAE = np.mean(np.abs(df['value'] - storage_optimized))
+print('Mean annual error =', round(MAE,1),'cm')
+```
+
+And save the data for R
+
+```{python}
+dates = df[['date']]
+api_optimized = pd.DataFrame(dates.values.tolist(),storage_optimized)
+api_optimized.to_csv("output/api_optimized.csv")
+```
+
+And have a look in R:
+
+```{r}
+optimized <- read_csv("output/api_optimized.csv",
+                      show_col_types = F,
+                      skip = 1, col_names = c("val", "date"))
+
+plot_api(api_vals = optimized, obs = b_col, title = "HSG-B API optimized")
+```
+
+Not great, but also not surprising considering no account for snow melt
+has been done, nor do we have good logger data.
+
+We will define this workflow in a function `calc_api.R` and run it for
+the next loggers.
+
+```{r}
+calc_api(logger_id = "600409")
+```
+
+This is the logger with broken data, so no surprise that the optimizer
+failed.
+
+```{r}
+calc_api(logger_id = "600410")
+```
+
+```{r}
+calc_api(logger_id = "600411")
+```
+
+```{r}
+calc_api(logger_id = "600413")
+```
+
+It seems all the values are around 0.99... so analysis not very (yet)
+useful.
+
+BUG: allow to calculate with NA values in the validation data (400611)
+
+## References
