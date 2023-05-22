@@ -1,68 +1,13 @@
 ---
-title: 'Part 3: API Calculation'
-author: "Moritz Shore"
-date: "May 18th, 2023"
-output:
-  pdf_document:
-    toc: yes
-    toc_depth: '2'
-  html_document:
-    toc: yes
-    css: _bookdown_files/rmd_files/bootstrap.min.css
-    toc_depth: 2
-editor_options:
-  markdown:
+editor_options: 
+  markdown: 
     wrap: 72
-bibliography: _bookdown_files/rmd_files/references.bib
 ---
 
+# Antecedent Precipitation Index
+
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
 knitr::knit_engines$set(python = reticulate::eng_python)
-```
-
-## Pre-requirements
-
-Required R packages
-
-```{r, message=FALSE}
-require(readr)
-require(dplyr)
-require(hydroGOF)
-library(reticulate) # Required Python packages: "pandas", "numpy", "scipy"
-
-source("code/plot_api.R")
-source("code/calc_api.R")
-
-```
-
-```{r, include = FALSE}
-
-# creates conda environment for your project
-
-# conda_create("cs10_env",
-#               packages = c("pandas", "numpy", "scipy"),
-#               conda = "auto")
-
-
-
-#conda_python("cs10_env") # returns the .exe python path for your environment
-
-
-#usethis::edit_r_environ()
-
-#RETICULATE_PYTHON="YOUR ENVIRONMENT PATH/python.exe"
-
-#restart
-
-
-#py_config()
-
-# If everything is right, you should get something like:
-# 
-# python: YOUR ENVIRONMENT PATH/python.exe libpython: YOUR ENVIRONMENT PATH/python39.dll pythonhome: YOUR ENVIRONMENT PATH version: 3.9.7 (default, Sep 16 2021, 16:59:28) [MSC v.1916 64 bit (AMD64)] Architecture: 64bit numpy: YOUR ENVIRONMENT PATH\lib\site-packages\numpy numpy_version: 1.21.2
-# 
-# After this it should work :)
 ```
 
 ## Introduction
@@ -75,9 +20,61 @@ our soil moisture. A method to do this is called the Antecedent
 Precipitation Index. Which is what we will creating for CS10 in this
 part
 
+As a heads up, this section requires Python!
+
+### Pre-requirements
+
+Required R packages
+
+```{r, message=FALSE}
+require(readr)
+require(dplyr)
+require(hydroGOF)
+library(reticulate) # Required Python packages: "pandas", "numpy", "scipy"
+
+source("model_data/code/plot_api.R")
+source("model_data/code/calc_api.R")
+
+```
+
+### Setting up Python for R/Rmarkdown
+
+A quick (non-evaluated) code block to show how a python environment can
+be created for use in Rmarkdown/Reticulate.
+
+```{r, include = TRUE, eval=FALSE}
+
+# create conda environment for your project
+
+conda_create("cs10_env", # environemtn name 
+              packages = c("pandas", "numpy", "scipy"), # required packages
+              conda = "auto")
+
+
+conda_python("cs10_env") # returns the .exe python path for your environment
+
+# you need to change your R environment path in this file
+usethis::edit_r_environ()
+
+# RETICULATE_PYTHON="YOUR ENVIRONMENT PATH/python.exe"
+
+# restart your R session.
+
+py_config()
+
+# If everything is right, you should get something like:
+
+# python: YOUR ENVIRONMENT PATH/python.exe libpython: YOUR ENVIRONMENT
+# PATH/python39.dll pythonhome: YOUR ENVIRONMENT PATH version: 3.9.7 (default,
+# Sep 16 2021, 16:59:28) [MSC v.1916 64 bit (AMD64)] Architecture: 64bit numpy:
+# YOUR ENVIRONMENT PATH\lib\site-packages\numpy numpy_version: 1.21.2
+
+# After this it should work :)
+```
+
 ## Antecedent Precipitation Index
 
-From @patrignani2020
+From [@patrignani2020]
 
 The API is a well-known, parsimonious, recursive model for predicting
 soil moisture solely based on precipitation records. The API is commonly
@@ -95,18 +92,23 @@ $\alpha$: Loss coefficient. Range between 0 and 1
 
 $P_t$: Precipitation at time $t$ (today)
 
-## Loading data
+### Loading data
 
 We will load out data from the previous steps. (ref)
 
 ```{r}
-logger_data <- read_csv("output/logger_data_daily_clean.csv", show_col_types=F)
+logger_data <- read_csv("model_data/field_sites/loggers/clean/logger_data_daily_clean.csv",
+                        show_col_types=F)
+
 # we only need SMC for this part
 logger_data = logger_data %>% filter(var == "smc")
 
-site_attributes <- read_csv("output/field_site_attr_df.csv", show_col_types=F)
+site_attributes <-
+  read_csv("model_data/field_sites/output/field_site_attr_df.csv",
+           show_col_types = F)
 
-pcp_data <- read_csv("output/pcp_data_clean.csv", show_col_types = F)
+pcp_data <- read_csv("model_data/field_sites/loggers/clean/pcp_data_clean.csv",
+                     show_col_types = F)
 
 head(site_attributes)
 ```
@@ -118,7 +120,7 @@ with B, which was measured by logger 600410.
 b_data <- logger_data %>% filter(site == "600410")
 ```
 
-## Calculating the total water content
+### Calculating the total water content
 
 We need to calculate the total water content of the profile from the
 depth measurements from the following depths:
@@ -161,10 +163,10 @@ plot_api(obs = b_col, title = "HSG B total water content")
 Saving the data
 
 ```{r}
-write_csv(b_col, "output/twc.csv")
+write_csv(b_col, "model_data/field_sites/output/twc.csv")
 ```
 
-## Defining API model
+### Defining API model
 
 *"Create a function containing both the API and the gamma model so that
 we can optimize the function parameters:"*
@@ -188,7 +190,7 @@ Load in our data:
 
 ```{python}
 import pandas as pd
-df = pd.read_csv('output/twc.csv')
+df = pd.read_csv('model_data/field_sites/output/twc.csv')
 df = df[['date','value','pcp']]
 df.head()
 ```
@@ -205,14 +207,14 @@ storage_guessed = api_model(df['pcp'], alpha=0.95, ini=36.8)
 # write to text
 dates = df[['date']]
 guess = pd.DataFrame(dates.values.tolist(),storage_guessed)
-guess.to_csv("output/first_guess.csv")
+guess.to_csv("model_data/field_sites/output/first_guess.csv")
 
 ```
 
 Now we can have a look at it in R
 
 ```{r}
-guess <- read_csv("output/first_guess.csv",
+guess <- read_csv("model_data/field_sites/output/first_guess.csv",
                   show_col_types = F,
                   skip = 1, col_names = c("val", "date"))
 
@@ -244,13 +246,13 @@ And save the data for R
 ```{python}
 dates = df[['date']]
 api_optimized = pd.DataFrame(dates.values.tolist(),storage_optimized)
-api_optimized.to_csv("output/api_optimized.csv")
+api_optimized.to_csv("model_data/field_sites/output/api_optimized.csv")
 ```
 
 And have a look in R:
 
 ```{r}
-optimized <- read_csv("output/api_optimized.csv",
+optimized <- read_csv("model_data/field_sites/output/api_optimized.csv",
                       show_col_types = F,
                       skip = 1, col_names = c("val", "date"))
 
@@ -286,5 +288,3 @@ It seems all the values are around 0.99... so analysis not very (yet)
 useful.
 
 BUG: allow to calculate with NA values in the validation data (400611)
-
-## References
