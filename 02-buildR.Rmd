@@ -1,6 +1,6 @@
 # Model setup with SWATBuildR
 
-The OPTAIN project is using the COCOA approach (ref!) schurz2022 and as such, needs to use the `SWATBuildR` package to calculate the connectivity between HRUs in the catchment. This chapter covers this process.
+The OPTAIN project is using the COCOA approach [@schürz2022] and as such, needs to use the `SWATBuildR` package to build the SWAT+ model setup and calculate the connectivity between HRUs in the catchment. This chapter covers this process.
 
 We will define the location of our project here:
 
@@ -14,17 +14,17 @@ And give it the name:
 project_name <- 'optain-cs10'
 ```
 
-Much of this documentation has been lost to time.
-
 We will need the following packages for this chapter:
 
 ```{r, libraries, message=FALSE}
 require(mapview)
 require(sf)
 require(raster)
-require(dplyr) # dplyr must be loaded after SF to avoid conflict
+require(dplyr)
 require(ggplot2)
 ```
+
+This is a custom theme we will use in many GGplots:
 
 ```{r}
 sf_theme <- theme(axis.text.x=element_blank(), #remove x axis labels
@@ -34,7 +34,7 @@ sf_theme <- theme(axis.text.x=element_blank(), #remove x axis labels
         )
 ```
 
-If this flag is set to true, the markdown file will actually run buildR, which could take about 4 hours!
+If this flag is set to true, the following code will actually run buildR, which could take about 4 hours!
 
 ```{r}
 run_code = FALSE
@@ -42,7 +42,7 @@ run_code = FALSE
 
 ## Processing input data
 
-SWATBuildR reads input data, performs some checks on it, and saves it in a compatible format for subsequent calculations. Little documentation exists on the creation of these data sets. IF you have any information to add, feel free to do so.
+SWATBuildR reads input data, performs some checks on it, and saves it in a compatible format for subsequent calculations. Little documentation exists on the creation of these data sets. IF you have any information to add, feel free to do so!
 
 ### High-Resolution Digital Elevation Model (DEM)
 
@@ -116,20 +116,18 @@ Documentation on its creation does not exist.
 ```{r, maplanduse, message=F, echo=F, fig.align='center', fig.cap="Land use map of CS10 by Farm ID"}
 lu_shp <- read_sf(land_path)
 
-lu_map <-ggplot(lu_shp) + geom_sf(aes(fill = type)) + sf_theme +
+lu_map <- ggplot(lu_shp) + geom_sf(aes(fill = type)) + sf_theme +
   theme(legend.position = "none")
 
 print(lu_map)
 
 ```
 
-Land use map of CS10 by Farm ID
-
 We had an issue with the classification of the land uses. For the OPTAIN project, all agricultural fields must have a unique ID, and our land uses only had the ID of the given farm `KGB` (which had many different fields). To remedy this, new IDs were generated with the format `a_###f_#` where `a_` represents the farm, and `f_` represents the respective field of that farm. The farm names needed to be shortened because the SWAT+ model often cannot handle long ID names (longer than 16 characters)
 
 Note, the potential measures polygons were not counted as individual fields, which is why `SP_ID` does not match up with `field_ID` -- This is by design.
 
-```{r, readfarmid}
+```{r paged.print=TRUE}
 readr::read_csv("model_data/farm_id/a_f_id.csv", show_col_types = F) %>% head()
 ```
 
@@ -156,13 +154,14 @@ split_land_layer(data_path)
 
 ### Processing the Channels
 
-No documentation exists on the source of the channels layer, all we know is that it is located here:
+No documentation exists on the creation of the channels layer, all we know is that it is located here:
 
-```{r, channel_plot, fig.cap="CS10 Channels, including surface (cha) and subsurface channels (sub)", fig.align='center'}
+```{r, channel_plot, fig.cap="CS10 Channels, including surface and subsurface channels", fig.align='center'}
 channel_path <- 'model_data/input/line/cs10_channels.shp'
 channels <- read_sf(channel_path) %>% dplyr::select("type")
 
-channel_map <- ggplot()+geom_sf(data= bound_sf)+geom_sf(data = channels, mapping = aes(color = type))+sf_theme
+channel_map <- ggplot() + geom_sf(data = bound_sf) + 
+  geom_sf(data = channels, mapping = aes(color = type)) + sf_theme
 
 channel_map
 
@@ -183,7 +182,7 @@ check_line_topology(layer = channel, data_path = data_path,
 
 BuildR then checks the connectivity between the channels and reservoirs. For this we need to define our `id_cha_out` and `id_res_out`.
 
-> Variable `id_cha_out` sets the outlet point of the catchment. Either define a channel OR a reservoir as the final outlet. If channel then assign `id_cha_out` with the respective id from the channel layer. If reservoir then assign the respective id from the land layer to id_res_out, otherwise leave as `NULL`
+"Variable `id_cha_out` sets the outlet point of the catchment. Either define a channel OR a reservoir as the final outlet. If channel then assign `id_cha_out` with the respective id from the channel layer. If reservoir then assign the respective id from the land layer to id_res_out, otherwise leave as `NULL`"
 
 ```{r, chaidout}
 id_cha_out <- 37
@@ -206,7 +205,7 @@ check_land_drain_ids(data_path)
 
 BuildR loads and checks the DEM, and saves it.
 
-```{r, procDEM, message=FALSE, eval=run_code}
+```{r, procDEM, message=TRUE, eval=run_code}
 dem <- rast(dem_path) %>% 
   check_project_crs(layer = ., data_path =  data_path, proj_layer = project_layer, 
                     label = 'dem', type = 'raster')
@@ -227,7 +226,7 @@ soil_layer_path  <- 'model_data/input/soil/soil_layer.tif'
 
 No documentation exists on its creation.
 
-```{r, soilmapraster, echo = F, fig.align='center', fig.cap="CS10 Soil map"}
+```{r soilrastermapplot, fig.align='center', fig.cap="CS10, message=FALSE, warning=FALSE, soilmapraster, echo=F}
 plot(raster(soil_layer_path))
 ```
 
@@ -240,9 +239,7 @@ soil_data_path   <- 'model_data/input/soil/UserSoil_Krakstad.csv'
 
 Not much documentation exists here either. Some can be found in the excel sheet:
 
-```{r, soildocupath, echo = F}
-"model_data/input/soil/swatsoil2.xlsx"
-```
+`~/model_data/input/soil/swatsoil2.xlsx`
 
 BuildR reads in the soil data, performs checks, processes, and saves.
 
@@ -257,9 +254,9 @@ soil <- rast(soil_layer_path) %>%
 check_raster_coverage(rst = soil, vct_layer = 'hru', data_path = data_path, 
                       label = 'soil', cov_frc = 0.75)
 # BROKEN
-#save_soil_raster(soil, data_path)
+save_soil_raster(soil, data_path)
 
-# added soil.tif from back when it used to work
+
 ```
 
 BuildR then generates a table with aggregated elevation, slope, soil for HRU units.
