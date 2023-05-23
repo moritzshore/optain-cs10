@@ -414,7 +414,7 @@ Build the SWAT+ aquifer input files for a single aquifer for the entire catchmen
 #build_single_aquifer_files(data_path)
 ```
 
-## Add point source inputs
+### Add point source inputs
 
 The point source locations are provided with a point vector layer in the path 'point_path'.
 
@@ -445,9 +445,9 @@ Point source records can automatically be added from files in the same folder as
 #add_point_sources(point_path, data_path, max_point_dist)
 ```
 
-## Create SWAT+ sqlite database
+### Create SWAT+ sqlite database
 
-### Write the SWAT+Editor project database
+#### Write the SWAT+Editor project database
 
 The database will be located the 'project_path'. After writing the database it can be opened and edited with the SWAT+Editor.
 
