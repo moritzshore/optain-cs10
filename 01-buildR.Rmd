@@ -63,7 +63,8 @@ dem_path <- "model_data/input/elevation/dtm3_ns_v5.tif"
 
 ```{r, plotdemraster, message=FALSE, fig.align = "center", fig.cap="CS10 Digital elevation model (DEM)."}
 dem_rast <- raster::raster(dem_path)
-plot(dem_rast)
+# disabled due to scoping problems from buildR script
+#plot(dem_rast)
 ```
 
 To our knowledge, it has a 10 meter resolution. 1 meter resolution was available but there seems to have been issues with using it. It is definitely preferable to use the 1m DEM as certain important information can be lost with (max allowed resolution) of 10m.
@@ -260,7 +261,9 @@ file.remove('NULL')
 Here is the result:
 
 ```{r, fig_cs10dem_cropped, fig.align='center', fig.cap= "CS10 DEM cropped to basin area"}
-plot(cropped_basin)
+# disabled due to scoping problems from buildR script
+
+#plot(cropped_basin)
 ```
 
 ### Processing soil data
@@ -274,7 +277,9 @@ soil_layer_path  <- 'model_data/input/soil/soil_layer.tif'
 No documentation exists on its creation.
 
 ```{r soilrastermapplot, fig.align='center', fig.cap="CS10 Soil map", message=FALSE, warning=FALSE, echo=T}
-plot(raster::raster(soil_layer_path))
+# disabled due to scoping problems from buildR script
+
+#plot(raster::raster(soil_layer_path))
 ```
 
 The soil data and look-up path are located here:
