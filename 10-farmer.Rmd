@@ -1,9 +1,9 @@
-# Scheduling Managment with SWATFarmR
+# SWATFarmR Management Schedules
 
 WIP: Every field in the OPTAIN SWAT setup needs its own management. We will
 use the SWATFarmR package to define it. 
 
-### Pre-requirements
+**Pre-requirements**
 
 The creation of management schedules with `SWATfarmR` requires a SWAT+
 model setup created by the `SWATbuildR` package.
