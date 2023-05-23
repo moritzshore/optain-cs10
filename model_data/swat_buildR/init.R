@@ -24,6 +24,8 @@ dir.create(paste0(data_path, '/raster'), recursive = T, showWarnings = FALSE)
 ## Check if the installed R version is greater than the required one
 check_r_version('4.2.1')
 
+
+
 ## Install and load R packages
 install_load(crayon_1.5.1, dplyr_1.0.10, forcats_0.5.1, ggplot2_3.3.6,
              lubridate_1.8.0, purrr_1.0.0, readr_2.1.2, readxl_1.4.0,
@@ -33,8 +35,9 @@ install_load(sf_1.0-8, sfheaders_0.4.0, lwgeom_0.2-8, terra_1.7-3,
 install_load(DBI_1.1.3, RSQLite_2.2.15)
 
 ## Initialize whitebox tools which are used for several 
-## raster data analyses (this does not work for me)
+## raster data analyses
 wbt_exe <- list.files(path = find.package("whitebox"), 
                       pattern = 'whitebox_tools.exe', 
                       recursive = TRUE, full.names = TRUE)
-wbt_init(exe_path = "C:/Users/mosh/AppData/Local/Programs/R/R-4.2.2/library/whitebox/WBT/whitebox_tools.exe")
+wbt_init(exe_path = "C:/Users/mosh/AppData/Roaming/R/data/R/whitebox/WBT/whitebox_tools.exe")
+

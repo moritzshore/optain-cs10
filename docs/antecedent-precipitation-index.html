@@ -191,7 +191,6 @@ div.csl-indent {
 <li><a href="./">The OPTAIN-CS10 Project</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
 <li class="chapter" data-level="1" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html"><i class="fa fa-check"></i><b>1</b> Model setup with SWATBuildR</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#processing-input-data"><i class="fa fa-check"></i><b>1.1</b> Processing input data</a>
@@ -271,7 +270,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="5" data-path="field-site-loggers.html"><a href="field-site-loggers.html"><i class="fa fa-check"></i><b>5</b> Field Site Loggers</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="field-site-loggers.html"><a href="field-site-loggers.html#introduction-1"><i class="fa fa-check"></i><b>5.1</b> Introduction</a>
+<li class="chapter" data-level="5.1" data-path="field-site-loggers.html"><a href="field-site-loggers.html#introduction"><i class="fa fa-check"></i><b>5.1</b> Introduction</a>
 <ul>
 <li class="chapter" data-level="5.1.1" data-path="field-site-loggers.html"><a href="field-site-loggers.html#prerequisites"><i class="fa fa-check"></i><b>5.1.1</b> Prerequisites</a></li>
 <li class="chapter" data-level="5.1.2" data-path="field-site-loggers.html"><a href="field-site-loggers.html#locations"><i class="fa fa-check"></i><b>5.1.2</b> Locations</a></li>
@@ -303,7 +302,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="7" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html"><i class="fa fa-check"></i><b>7</b> Antecedent Precipitation Index</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html#introduction-2"><i class="fa fa-check"></i><b>7.1</b> Introduction</a>
+<li class="chapter" data-level="7.1" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html#introduction-1"><i class="fa fa-check"></i><b>7.1</b> Introduction</a>
 <ul>
 <li class="chapter" data-level="7.1.1" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html#pre-requirements"><i class="fa fa-check"></i><b>7.1.1</b> Pre-requirements</a></li>
 <li class="chapter" data-level="7.1.2" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html#setting-up-python-for-rrmarkdown"><i class="fa fa-check"></i><b>7.1.2</b> Setting up Python for R/Rmarkdown</a></li>
@@ -384,8 +383,8 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="antecedent-precipitation-index" class="section level1 hasAnchor" number="7">
 <h1><span class="header-section-number">Section 7</span> Antecedent Precipitation Index<a href="antecedent-precipitation-index.html#antecedent-precipitation-index" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="introduction-2" class="section level2 hasAnchor" number="7.1">
-<h2><span class="header-section-number">7.1</span> Introduction<a href="antecedent-precipitation-index.html#introduction-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="introduction-1" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">7.1</span> Introduction<a href="antecedent-precipitation-index.html#introduction-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>SWATFarmR cannot account for operations based on values modeled by
 SWAT+, such as soil moisture. This is because FarmR does not run the
 model itself, and creates all the management schedules based on measured
@@ -397,47 +396,47 @@ part</p>
 <div id="pre-requirements" class="section level3 hasAnchor" number="7.1.1">
 <h3><span class="header-section-number">7.1.1</span> Pre-requirements<a href="antecedent-precipitation-index.html#pre-requirements" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Required R packages</p>
-<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="antecedent-precipitation-index.html#cb198-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(readr)</span>
-<span id="cb198-2"><a href="antecedent-precipitation-index.html#cb198-2" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(dplyr)</span>
-<span id="cb198-3"><a href="antecedent-precipitation-index.html#cb198-3" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(hydroGOF)</span>
-<span id="cb198-4"><a href="antecedent-precipitation-index.html#cb198-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reticulate) <span class="co"># Required Python packages: &quot;pandas&quot;, &quot;numpy&quot;, &quot;scipy&quot;</span></span>
-<span id="cb198-5"><a href="antecedent-precipitation-index.html#cb198-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb198-6"><a href="antecedent-precipitation-index.html#cb198-6" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;model_data/code/plot_api.R&quot;</span>)</span>
-<span id="cb198-7"><a href="antecedent-precipitation-index.html#cb198-7" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;model_data/code/calc_api.R&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="antecedent-precipitation-index.html#cb208-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(readr)</span>
+<span id="cb208-2"><a href="antecedent-precipitation-index.html#cb208-2" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(dplyr)</span>
+<span id="cb208-3"><a href="antecedent-precipitation-index.html#cb208-3" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(hydroGOF)</span>
+<span id="cb208-4"><a href="antecedent-precipitation-index.html#cb208-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reticulate) <span class="co"># Required Python packages: &quot;pandas&quot;, &quot;numpy&quot;, &quot;scipy&quot;</span></span>
+<span id="cb208-5"><a href="antecedent-precipitation-index.html#cb208-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb208-6"><a href="antecedent-precipitation-index.html#cb208-6" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;model_data/code/plot_api.R&quot;</span>)</span>
+<span id="cb208-7"><a href="antecedent-precipitation-index.html#cb208-7" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;model_data/code/calc_api.R&quot;</span>)</span></code></pre></div>
 </div>
 <div id="setting-up-python-for-rrmarkdown" class="section level3 hasAnchor" number="7.1.2">
 <h3><span class="header-section-number">7.1.2</span> Setting up Python for R/Rmarkdown<a href="antecedent-precipitation-index.html#setting-up-python-for-rrmarkdown" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A quick (non-evaluated) code block to show how a python environment can
 be created for use in Rmarkdown/Reticulate.</p>
-<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="antecedent-precipitation-index.html#cb199-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install miniconda </span></span>
-<span id="cb199-2"><a href="antecedent-precipitation-index.html#cb199-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install_miniconda</span>() </span>
-<span id="cb199-3"><a href="antecedent-precipitation-index.html#cb199-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb199-4"><a href="antecedent-precipitation-index.html#cb199-4" aria-hidden="true" tabindex="-1"></a><span class="co"># create conda environment for your project</span></span>
-<span id="cb199-5"><a href="antecedent-precipitation-index.html#cb199-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb199-6"><a href="antecedent-precipitation-index.html#cb199-6" aria-hidden="true" tabindex="-1"></a><span class="fu">conda_create</span>(<span class="st">&quot;cs10_env&quot;</span>, <span class="co"># environment name </span></span>
-<span id="cb199-7"><a href="antecedent-precipitation-index.html#cb199-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">packages =</span> <span class="fu">c</span>(<span class="st">&quot;pandas&quot;</span>, <span class="st">&quot;numpy&quot;</span>, <span class="st">&quot;scipy&quot;</span>), <span class="co"># required packages</span></span>
-<span id="cb199-8"><a href="antecedent-precipitation-index.html#cb199-8" aria-hidden="true" tabindex="-1"></a>              <span class="at">conda =</span> <span class="st">&quot;auto&quot;</span>)</span>
-<span id="cb199-9"><a href="antecedent-precipitation-index.html#cb199-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb199-10"><a href="antecedent-precipitation-index.html#cb199-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb199-11"><a href="antecedent-precipitation-index.html#cb199-11" aria-hidden="true" tabindex="-1"></a><span class="fu">conda_python</span>(<span class="st">&quot;cs10_env&quot;</span>) <span class="co"># returns the .exe python path for your environment</span></span>
-<span id="cb199-12"><a href="antecedent-precipitation-index.html#cb199-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb199-13"><a href="antecedent-precipitation-index.html#cb199-13" aria-hidden="true" tabindex="-1"></a><span class="co"># you need to change your R environment path in this file</span></span>
-<span id="cb199-14"><a href="antecedent-precipitation-index.html#cb199-14" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">edit_r_environ</span>()</span>
-<span id="cb199-15"><a href="antecedent-precipitation-index.html#cb199-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb199-16"><a href="antecedent-precipitation-index.html#cb199-16" aria-hidden="true" tabindex="-1"></a><span class="co"># RETICULATE_PYTHON=&quot;YOUR ENVIRONMENT PATH/python.exe&quot;</span></span>
-<span id="cb199-17"><a href="antecedent-precipitation-index.html#cb199-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb199-18"><a href="antecedent-precipitation-index.html#cb199-18" aria-hidden="true" tabindex="-1"></a><span class="co"># restart your R session.</span></span>
-<span id="cb199-19"><a href="antecedent-precipitation-index.html#cb199-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb199-20"><a href="antecedent-precipitation-index.html#cb199-20" aria-hidden="true" tabindex="-1"></a><span class="fu">py_config</span>()</span>
-<span id="cb199-21"><a href="antecedent-precipitation-index.html#cb199-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb199-22"><a href="antecedent-precipitation-index.html#cb199-22" aria-hidden="true" tabindex="-1"></a><span class="co"># If everything is right, you should get something like:</span></span>
-<span id="cb199-23"><a href="antecedent-precipitation-index.html#cb199-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb199-24"><a href="antecedent-precipitation-index.html#cb199-24" aria-hidden="true" tabindex="-1"></a><span class="co"># python: YOUR ENVIRONMENT PATH/python.exe libpython: YOUR ENVIRONMENT</span></span>
-<span id="cb199-25"><a href="antecedent-precipitation-index.html#cb199-25" aria-hidden="true" tabindex="-1"></a><span class="co"># PATH/python39.dll pythonhome: YOUR ENVIRONMENT PATH version: 3.9.7 (default,</span></span>
-<span id="cb199-26"><a href="antecedent-precipitation-index.html#cb199-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Sep 16 2021, 16:59:28) [MSC v.1916 64 bit (AMD64)] Architecture: 64bit numpy:</span></span>
-<span id="cb199-27"><a href="antecedent-precipitation-index.html#cb199-27" aria-hidden="true" tabindex="-1"></a><span class="co"># YOUR ENVIRONMENT PATH\lib\site-packages\numpy numpy_version: 1.21.2</span></span>
-<span id="cb199-28"><a href="antecedent-precipitation-index.html#cb199-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb199-29"><a href="antecedent-precipitation-index.html#cb199-29" aria-hidden="true" tabindex="-1"></a><span class="co"># After this it should work :)</span></span></code></pre></div>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="antecedent-precipitation-index.html#cb209-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install miniconda </span></span>
+<span id="cb209-2"><a href="antecedent-precipitation-index.html#cb209-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install_miniconda</span>() </span>
+<span id="cb209-3"><a href="antecedent-precipitation-index.html#cb209-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb209-4"><a href="antecedent-precipitation-index.html#cb209-4" aria-hidden="true" tabindex="-1"></a><span class="co"># create conda environment for your project</span></span>
+<span id="cb209-5"><a href="antecedent-precipitation-index.html#cb209-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb209-6"><a href="antecedent-precipitation-index.html#cb209-6" aria-hidden="true" tabindex="-1"></a><span class="fu">conda_create</span>(<span class="st">&quot;cs10_env&quot;</span>, <span class="co"># environment name </span></span>
+<span id="cb209-7"><a href="antecedent-precipitation-index.html#cb209-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">packages =</span> <span class="fu">c</span>(<span class="st">&quot;pandas&quot;</span>, <span class="st">&quot;numpy&quot;</span>, <span class="st">&quot;scipy&quot;</span>), <span class="co"># required packages</span></span>
+<span id="cb209-8"><a href="antecedent-precipitation-index.html#cb209-8" aria-hidden="true" tabindex="-1"></a>              <span class="at">conda =</span> <span class="st">&quot;auto&quot;</span>)</span>
+<span id="cb209-9"><a href="antecedent-precipitation-index.html#cb209-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb209-10"><a href="antecedent-precipitation-index.html#cb209-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb209-11"><a href="antecedent-precipitation-index.html#cb209-11" aria-hidden="true" tabindex="-1"></a><span class="fu">conda_python</span>(<span class="st">&quot;cs10_env&quot;</span>) <span class="co"># returns the .exe python path for your environment</span></span>
+<span id="cb209-12"><a href="antecedent-precipitation-index.html#cb209-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb209-13"><a href="antecedent-precipitation-index.html#cb209-13" aria-hidden="true" tabindex="-1"></a><span class="co"># you need to change your R environment path in this file</span></span>
+<span id="cb209-14"><a href="antecedent-precipitation-index.html#cb209-14" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">edit_r_environ</span>()</span>
+<span id="cb209-15"><a href="antecedent-precipitation-index.html#cb209-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb209-16"><a href="antecedent-precipitation-index.html#cb209-16" aria-hidden="true" tabindex="-1"></a><span class="co"># RETICULATE_PYTHON=&quot;YOUR ENVIRONMENT PATH/python.exe&quot;</span></span>
+<span id="cb209-17"><a href="antecedent-precipitation-index.html#cb209-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb209-18"><a href="antecedent-precipitation-index.html#cb209-18" aria-hidden="true" tabindex="-1"></a><span class="co"># restart your R session.</span></span>
+<span id="cb209-19"><a href="antecedent-precipitation-index.html#cb209-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb209-20"><a href="antecedent-precipitation-index.html#cb209-20" aria-hidden="true" tabindex="-1"></a><span class="fu">py_config</span>()</span>
+<span id="cb209-21"><a href="antecedent-precipitation-index.html#cb209-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb209-22"><a href="antecedent-precipitation-index.html#cb209-22" aria-hidden="true" tabindex="-1"></a><span class="co"># If everything is right, you should get something like:</span></span>
+<span id="cb209-23"><a href="antecedent-precipitation-index.html#cb209-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb209-24"><a href="antecedent-precipitation-index.html#cb209-24" aria-hidden="true" tabindex="-1"></a><span class="co"># python: YOUR ENVIRONMENT PATH/python.exe libpython: YOUR ENVIRONMENT</span></span>
+<span id="cb209-25"><a href="antecedent-precipitation-index.html#cb209-25" aria-hidden="true" tabindex="-1"></a><span class="co"># PATH/python39.dll pythonhome: YOUR ENVIRONMENT PATH version: 3.9.7 (default,</span></span>
+<span id="cb209-26"><a href="antecedent-precipitation-index.html#cb209-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Sep 16 2021, 16:59:28) [MSC v.1916 64 bit (AMD64)] Architecture: 64bit numpy:</span></span>
+<span id="cb209-27"><a href="antecedent-precipitation-index.html#cb209-27" aria-hidden="true" tabindex="-1"></a><span class="co"># YOUR ENVIRONMENT PATH\lib\site-packages\numpy numpy_version: 1.21.2</span></span>
+<span id="cb209-28"><a href="antecedent-precipitation-index.html#cb209-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb209-29"><a href="antecedent-precipitation-index.html#cb209-29" aria-hidden="true" tabindex="-1"></a><span class="co"># After this it should work :)</span></span></code></pre></div>
 </div>
 </div>
 <div id="antecedent-precipitation-index-1" class="section level2 hasAnchor" number="7.2">
@@ -457,21 +456,21 @@ equation describing the simple version of the model is:</p>
 <div id="loading-data-1" class="section level3 hasAnchor" number="7.2.1">
 <h3><span class="header-section-number">7.2.1</span> Loading data<a href="antecedent-precipitation-index.html#loading-data-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We will load out data from the previous steps. (ref)</p>
-<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="antecedent-precipitation-index.html#cb200-1" aria-hidden="true" tabindex="-1"></a>logger_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;model_data/field_sites/loggers/clean/logger_data_daily_clean.csv&quot;</span>,</span>
-<span id="cb200-2"><a href="antecedent-precipitation-index.html#cb200-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">show_col_types=</span>F)</span>
-<span id="cb200-3"><a href="antecedent-precipitation-index.html#cb200-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb200-4"><a href="antecedent-precipitation-index.html#cb200-4" aria-hidden="true" tabindex="-1"></a><span class="co"># we only need SMC for this part</span></span>
-<span id="cb200-5"><a href="antecedent-precipitation-index.html#cb200-5" aria-hidden="true" tabindex="-1"></a>logger_data <span class="ot">=</span> logger_data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(var <span class="sc">==</span> <span class="st">&quot;smc&quot;</span>)</span>
-<span id="cb200-6"><a href="antecedent-precipitation-index.html#cb200-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb200-7"><a href="antecedent-precipitation-index.html#cb200-7" aria-hidden="true" tabindex="-1"></a>site_attributes <span class="ot">&lt;-</span></span>
-<span id="cb200-8"><a href="antecedent-precipitation-index.html#cb200-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_csv</span>(<span class="st">&quot;model_data/field_sites/output/field_site_attr_df.csv&quot;</span>,</span>
-<span id="cb200-9"><a href="antecedent-precipitation-index.html#cb200-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">show_col_types =</span> F)</span>
-<span id="cb200-10"><a href="antecedent-precipitation-index.html#cb200-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb200-11"><a href="antecedent-precipitation-index.html#cb200-11" aria-hidden="true" tabindex="-1"></a>pcp_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;model_data/field_sites/loggers/clean/pcp_data_clean.csv&quot;</span>,</span>
-<span id="cb200-12"><a href="antecedent-precipitation-index.html#cb200-12" aria-hidden="true" tabindex="-1"></a>                     <span class="at">show_col_types =</span> F)</span>
-<span id="cb200-13"><a href="antecedent-precipitation-index.html#cb200-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb200-14"><a href="antecedent-precipitation-index.html#cb200-14" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(site_attributes)</span></code></pre></div>
-<pre><code>## # A tibble: 5 × 8
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="antecedent-precipitation-index.html#cb210-1" aria-hidden="true" tabindex="-1"></a>logger_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;model_data/field_sites/loggers/clean/logger_data_daily_clean.csv&quot;</span>,</span>
+<span id="cb210-2"><a href="antecedent-precipitation-index.html#cb210-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">show_col_types=</span>F)</span>
+<span id="cb210-3"><a href="antecedent-precipitation-index.html#cb210-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb210-4"><a href="antecedent-precipitation-index.html#cb210-4" aria-hidden="true" tabindex="-1"></a><span class="co"># we only need SMC for this part</span></span>
+<span id="cb210-5"><a href="antecedent-precipitation-index.html#cb210-5" aria-hidden="true" tabindex="-1"></a>logger_data <span class="ot">=</span> logger_data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(var <span class="sc">==</span> <span class="st">&quot;smc&quot;</span>)</span>
+<span id="cb210-6"><a href="antecedent-precipitation-index.html#cb210-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb210-7"><a href="antecedent-precipitation-index.html#cb210-7" aria-hidden="true" tabindex="-1"></a>site_attributes <span class="ot">&lt;-</span></span>
+<span id="cb210-8"><a href="antecedent-precipitation-index.html#cb210-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_csv</span>(<span class="st">&quot;model_data/field_sites/output/field_site_attr_df.csv&quot;</span>,</span>
+<span id="cb210-9"><a href="antecedent-precipitation-index.html#cb210-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">show_col_types =</span> F)</span>
+<span id="cb210-10"><a href="antecedent-precipitation-index.html#cb210-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb210-11"><a href="antecedent-precipitation-index.html#cb210-11" aria-hidden="true" tabindex="-1"></a>pcp_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;model_data/field_sites/loggers/clean/pcp_data_clean.csv&quot;</span>,</span>
+<span id="cb210-12"><a href="antecedent-precipitation-index.html#cb210-12" aria-hidden="true" tabindex="-1"></a>                     <span class="at">show_col_types =</span> F)</span>
+<span id="cb210-13"><a href="antecedent-precipitation-index.html#cb210-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb210-14"><a href="antecedent-precipitation-index.html#cb210-14" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(site_attributes)</span></code></pre></div>
+<pre><code>## # A tibble: 5 x 8
 ##       id SOIL_ID SNAM.x    Id SNAM.y        SOL_ZMX HYDGRP TEXTURE        
 ##    &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;           &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;          
 ## 1 600413      23 ST         0 Sea_dep_thick     800 C      sandy loam     
@@ -481,38 +480,38 @@ equation describing the simple version of the model is:</p>
 ## 5 600408      13 Humic      0 GLch-hu-sl       1000 D      silty_clay_loam</code></pre>
 <p>We will calculate the model per Hydrologic soil group (HSG), and start
 with B, which was measured by logger 600410.</p>
-<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="antecedent-precipitation-index.html#cb202-1" aria-hidden="true" tabindex="-1"></a>b_data <span class="ot">&lt;-</span> logger_data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(site <span class="sc">==</span> <span class="st">&quot;600410&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="antecedent-precipitation-index.html#cb212-1" aria-hidden="true" tabindex="-1"></a>b_data <span class="ot">&lt;-</span> logger_data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(site <span class="sc">==</span> <span class="st">&quot;600410&quot;</span>)</span></code></pre></div>
 </div>
 <div id="calculating-the-total-water-content" class="section level3 hasAnchor" number="7.2.2">
 <h3><span class="header-section-number">7.2.2</span> Calculating the total water content<a href="antecedent-precipitation-index.html#calculating-the-total-water-content" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We need to calculate the total water content of the profile from the
 depth measurements from the following depths:</p>
-<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="antecedent-precipitation-index.html#cb203-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(b_data<span class="sc">$</span>depth)</span></code></pre></div>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="antecedent-precipitation-index.html#cb213-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(b_data<span class="sc">$</span>depth)</span></code></pre></div>
 <pre><code>## [1] &quot;300&quot; &quot;450&quot; &quot;600&quot; &quot;750&quot; &quot;900&quot;</code></pre>
 <p>Following code is modified from <span class="citation">Patrignani (<a href="#ref-patrignani2020" role="doc-biblioref">2020</a>)</span> (<a href="https://soilwater.github.io/pynotes-agriscience/notebooks/antecedent_precipitation_index.html"><u>read
 more</u></a>)</p>
 <p>This calculation could be improved by considering the soil horizons.</p>
-<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="antecedent-precipitation-index.html#cb205-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> b_data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(depth <span class="sc">==</span> <span class="st">&quot;300&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(value)</span>
-<span id="cb205-2"><a href="antecedent-precipitation-index.html#cb205-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> b_data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(depth <span class="sc">==</span> <span class="st">&quot;450&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(value)</span>
-<span id="cb205-3"><a href="antecedent-precipitation-index.html#cb205-3" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> b_data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(depth <span class="sc">==</span> <span class="st">&quot;600&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(value)</span>
-<span id="cb205-4"><a href="antecedent-precipitation-index.html#cb205-4" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> b_data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(depth <span class="sc">==</span> <span class="st">&quot;750&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(value)</span>
-<span id="cb205-5"><a href="antecedent-precipitation-index.html#cb205-5" aria-hidden="true" tabindex="-1"></a>e <span class="ot">&lt;-</span> b_data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(depth <span class="sc">==</span> <span class="st">&quot;900&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(value)</span>
-<span id="cb205-6"><a href="antecedent-precipitation-index.html#cb205-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb205-7"><a href="antecedent-precipitation-index.html#cb205-7" aria-hidden="true" tabindex="-1"></a>total_water_content <span class="ot">&lt;-</span> </span>
-<span id="cb205-8"><a href="antecedent-precipitation-index.html#cb205-8" aria-hidden="true" tabindex="-1"></a>  a <span class="sc">*</span> .<span class="dv">35</span> <span class="sc">+</span> <span class="co"># from 0 to 35</span></span>
-<span id="cb205-9"><a href="antecedent-precipitation-index.html#cb205-9" aria-hidden="true" tabindex="-1"></a>  b <span class="sc">*</span> .<span class="dv">15</span> <span class="sc">+</span> <span class="co"># from 35 to 50</span></span>
-<span id="cb205-10"><a href="antecedent-precipitation-index.html#cb205-10" aria-hidden="true" tabindex="-1"></a>  c <span class="sc">*</span> .<span class="dv">15</span> <span class="sc">+</span> <span class="co"># from 55 to 65</span></span>
-<span id="cb205-11"><a href="antecedent-precipitation-index.html#cb205-11" aria-hidden="true" tabindex="-1"></a>  d <span class="sc">*</span> .<span class="dv">15</span> <span class="sc">+</span> <span class="co"># from 65 to 80</span></span>
-<span id="cb205-12"><a href="antecedent-precipitation-index.html#cb205-12" aria-hidden="true" tabindex="-1"></a>  e <span class="sc">*</span> .<span class="dv">20</span>   <span class="co"># from 80 to 100</span></span>
-<span id="cb205-13"><a href="antecedent-precipitation-index.html#cb205-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb205-14"><a href="antecedent-precipitation-index.html#cb205-14" aria-hidden="true" tabindex="-1"></a>b_col <span class="ot">&lt;-</span> <span class="fu">tibble</span>(b_data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(depth <span class="sc">==</span> <span class="st">&quot;300&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(date), total_water_content)</span></code></pre></div>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="antecedent-precipitation-index.html#cb215-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> b_data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(depth <span class="sc">==</span> <span class="st">&quot;300&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(value)</span>
+<span id="cb215-2"><a href="antecedent-precipitation-index.html#cb215-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> b_data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(depth <span class="sc">==</span> <span class="st">&quot;450&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(value)</span>
+<span id="cb215-3"><a href="antecedent-precipitation-index.html#cb215-3" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> b_data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(depth <span class="sc">==</span> <span class="st">&quot;600&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(value)</span>
+<span id="cb215-4"><a href="antecedent-precipitation-index.html#cb215-4" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> b_data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(depth <span class="sc">==</span> <span class="st">&quot;750&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(value)</span>
+<span id="cb215-5"><a href="antecedent-precipitation-index.html#cb215-5" aria-hidden="true" tabindex="-1"></a>e <span class="ot">&lt;-</span> b_data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(depth <span class="sc">==</span> <span class="st">&quot;900&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(value)</span>
+<span id="cb215-6"><a href="antecedent-precipitation-index.html#cb215-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb215-7"><a href="antecedent-precipitation-index.html#cb215-7" aria-hidden="true" tabindex="-1"></a>total_water_content <span class="ot">&lt;-</span> </span>
+<span id="cb215-8"><a href="antecedent-precipitation-index.html#cb215-8" aria-hidden="true" tabindex="-1"></a>  a <span class="sc">*</span> .<span class="dv">35</span> <span class="sc">+</span> <span class="co"># from 0 to 35</span></span>
+<span id="cb215-9"><a href="antecedent-precipitation-index.html#cb215-9" aria-hidden="true" tabindex="-1"></a>  b <span class="sc">*</span> .<span class="dv">15</span> <span class="sc">+</span> <span class="co"># from 35 to 50</span></span>
+<span id="cb215-10"><a href="antecedent-precipitation-index.html#cb215-10" aria-hidden="true" tabindex="-1"></a>  c <span class="sc">*</span> .<span class="dv">15</span> <span class="sc">+</span> <span class="co"># from 55 to 65</span></span>
+<span id="cb215-11"><a href="antecedent-precipitation-index.html#cb215-11" aria-hidden="true" tabindex="-1"></a>  d <span class="sc">*</span> .<span class="dv">15</span> <span class="sc">+</span> <span class="co"># from 65 to 80</span></span>
+<span id="cb215-12"><a href="antecedent-precipitation-index.html#cb215-12" aria-hidden="true" tabindex="-1"></a>  e <span class="sc">*</span> .<span class="dv">20</span>   <span class="co"># from 80 to 100</span></span>
+<span id="cb215-13"><a href="antecedent-precipitation-index.html#cb215-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb215-14"><a href="antecedent-precipitation-index.html#cb215-14" aria-hidden="true" tabindex="-1"></a>b_col <span class="ot">&lt;-</span> <span class="fu">tibble</span>(b_data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(depth <span class="sc">==</span> <span class="st">&quot;300&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(date), total_water_content)</span></code></pre></div>
 <p>And we can add the precipitation data fro step 01. (REF)</p>
-<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="antecedent-precipitation-index.html#cb206-1" aria-hidden="true" tabindex="-1"></a>b_col <span class="ot">&lt;-</span> <span class="fu">left_join</span>(b_col, pcp_data, <span class="at">by =</span> <span class="st">&quot;date&quot;</span>)</span>
-<span id="cb206-2"><a href="antecedent-precipitation-index.html#cb206-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb206-3"><a href="antecedent-precipitation-index.html#cb206-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_api</span>(<span class="at">obs =</span> b_col, <span class="at">title =</span> <span class="st">&quot;HSG B total water content&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-124-1.png" width="672" /></p>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="antecedent-precipitation-index.html#cb216-1" aria-hidden="true" tabindex="-1"></a>b_col <span class="ot">&lt;-</span> <span class="fu">left_join</span>(b_col, pcp_data, <span class="at">by =</span> <span class="st">&quot;date&quot;</span>)</span>
+<span id="cb216-2"><a href="antecedent-precipitation-index.html#cb216-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb216-3"><a href="antecedent-precipitation-index.html#cb216-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_api</span>(<span class="at">obs =</span> b_col, <span class="at">title =</span> <span class="st">&quot;HSG B total water content&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-126-1.png" width="672" /></p>
 <p>Saving the data</p>
-<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="antecedent-precipitation-index.html#cb207-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(b_col, <span class="st">&quot;model_data/field_sites/output/twc.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="antecedent-precipitation-index.html#cb217-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(b_col, <span class="st">&quot;model_data/field_sites/output/twc.csv&quot;</span>)</span></code></pre></div>
 </div>
 <div id="defining-api-model" class="section level3 hasAnchor" number="7.2.3">
 <h3><span class="header-section-number">7.2.3</span> Defining API model<a href="antecedent-precipitation-index.html#defining-api-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -520,20 +519,20 @@ more</u></a>)</p>
 we can optimize the function parameters:”</em></p>
 <p>The value is capped at the max val of the source data (50). This could
 be improved by capping per site</p>
-<div class="sourceCode" id="cb208"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb208-1"><a href="antecedent-precipitation-index.html#cb208-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> api_model(P,alpha<span class="op">=</span><span class="fl">0.97</span>,ini<span class="op">=</span><span class="fl">36.8</span>):</span>
-<span id="cb208-2"><a href="antecedent-precipitation-index.html#cb208-2" aria-hidden="true" tabindex="-1"></a>    api <span class="op">=</span> [ini]</span>
-<span id="cb208-3"><a href="antecedent-precipitation-index.html#cb208-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>,<span class="bu">len</span>(P)):</span>
-<span id="cb208-4"><a href="antecedent-precipitation-index.html#cb208-4" aria-hidden="true" tabindex="-1"></a>      append_val <span class="op">=</span> api[t<span class="op">-</span><span class="dv">1</span>]<span class="op">*</span>alpha <span class="op">+</span> P[t]</span>
-<span id="cb208-5"><a href="antecedent-precipitation-index.html#cb208-5" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> append_val <span class="op">&gt;</span> <span class="dv">50</span>:</span>
-<span id="cb208-6"><a href="antecedent-precipitation-index.html#cb208-6" aria-hidden="true" tabindex="-1"></a>        append_val <span class="op">=</span> <span class="dv">50</span></span>
-<span id="cb208-7"><a href="antecedent-precipitation-index.html#cb208-7" aria-hidden="true" tabindex="-1"></a>      api.append(append_val)</span>
-<span id="cb208-8"><a href="antecedent-precipitation-index.html#cb208-8" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb208-9"><a href="antecedent-precipitation-index.html#cb208-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> api</span></code></pre></div>
+<div class="sourceCode" id="cb218"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb218-1"><a href="antecedent-precipitation-index.html#cb218-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> api_model(P,alpha<span class="op">=</span><span class="fl">0.97</span>,ini<span class="op">=</span><span class="fl">36.8</span>):</span>
+<span id="cb218-2"><a href="antecedent-precipitation-index.html#cb218-2" aria-hidden="true" tabindex="-1"></a>    api <span class="op">=</span> [ini]</span>
+<span id="cb218-3"><a href="antecedent-precipitation-index.html#cb218-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>,<span class="bu">len</span>(P)):</span>
+<span id="cb218-4"><a href="antecedent-precipitation-index.html#cb218-4" aria-hidden="true" tabindex="-1"></a>      append_val <span class="op">=</span> api[t<span class="op">-</span><span class="dv">1</span>]<span class="op">*</span>alpha <span class="op">+</span> P[t]</span>
+<span id="cb218-5"><a href="antecedent-precipitation-index.html#cb218-5" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> append_val <span class="op">&gt;</span> <span class="dv">50</span>:</span>
+<span id="cb218-6"><a href="antecedent-precipitation-index.html#cb218-6" aria-hidden="true" tabindex="-1"></a>        append_val <span class="op">=</span> <span class="dv">50</span></span>
+<span id="cb218-7"><a href="antecedent-precipitation-index.html#cb218-7" aria-hidden="true" tabindex="-1"></a>      api.append(append_val)</span>
+<span id="cb218-8"><a href="antecedent-precipitation-index.html#cb218-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb218-9"><a href="antecedent-precipitation-index.html#cb218-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> api</span></code></pre></div>
 <p>Load in our data:</p>
-<div class="sourceCode" id="cb209"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb209-1"><a href="antecedent-precipitation-index.html#cb209-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb209-2"><a href="antecedent-precipitation-index.html#cb209-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">&#39;model_data/field_sites/output/twc.csv&#39;</span>)</span>
-<span id="cb209-3"><a href="antecedent-precipitation-index.html#cb209-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df[[<span class="st">&#39;date&#39;</span>,<span class="st">&#39;value&#39;</span>,<span class="st">&#39;pcp&#39;</span>]]</span>
-<span id="cb209-4"><a href="antecedent-precipitation-index.html#cb209-4" aria-hidden="true" tabindex="-1"></a>df.head()</span></code></pre></div>
+<div class="sourceCode" id="cb219"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb219-1"><a href="antecedent-precipitation-index.html#cb219-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb219-2"><a href="antecedent-precipitation-index.html#cb219-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">&#39;model_data/field_sites/output/twc.csv&#39;</span>)</span>
+<span id="cb219-3"><a href="antecedent-precipitation-index.html#cb219-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df[[<span class="st">&#39;date&#39;</span>,<span class="st">&#39;value&#39;</span>,<span class="st">&#39;pcp&#39;</span>]]</span>
+<span id="cb219-4"><a href="antecedent-precipitation-index.html#cb219-4" aria-hidden="true" tabindex="-1"></a>df.head()</span></code></pre></div>
 <pre><code>##          date   value  pcp
 ## 0  2021-11-02  36.880  0.3
 ## 1  2021-11-03  36.930  1.1
@@ -541,76 +540,76 @@ be improved by capping per site</p>
 ## 3  2021-11-05  37.025  0.0
 ## 4  2021-11-06  37.030  0.7</code></pre>
 <p>As a test, we will calculate the predictions with an alpha of 0.95:</p>
-<div class="sourceCode" id="cb211"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb211-1"><a href="antecedent-precipitation-index.html#cb211-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb211-2"><a href="antecedent-precipitation-index.html#cb211-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> curve_fit</span>
-<span id="cb211-3"><a href="antecedent-precipitation-index.html#cb211-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb211-4"><a href="antecedent-precipitation-index.html#cb211-4" aria-hidden="true" tabindex="-1"></a><span class="co"># guess</span></span>
-<span id="cb211-5"><a href="antecedent-precipitation-index.html#cb211-5" aria-hidden="true" tabindex="-1"></a>storage_guessed <span class="op">=</span> api_model(df[<span class="st">&#39;pcp&#39;</span>], alpha<span class="op">=</span><span class="fl">0.95</span>, ini<span class="op">=</span><span class="fl">36.8</span>)</span>
-<span id="cb211-6"><a href="antecedent-precipitation-index.html#cb211-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb211-7"><a href="antecedent-precipitation-index.html#cb211-7" aria-hidden="true" tabindex="-1"></a><span class="co"># write to text</span></span>
-<span id="cb211-8"><a href="antecedent-precipitation-index.html#cb211-8" aria-hidden="true" tabindex="-1"></a>dates <span class="op">=</span> df[[<span class="st">&#39;date&#39;</span>]]</span>
-<span id="cb211-9"><a href="antecedent-precipitation-index.html#cb211-9" aria-hidden="true" tabindex="-1"></a>guess <span class="op">=</span> pd.DataFrame(dates.values.tolist(),storage_guessed)</span>
-<span id="cb211-10"><a href="antecedent-precipitation-index.html#cb211-10" aria-hidden="true" tabindex="-1"></a>guess.to_csv(<span class="st">&quot;model_data/field_sites/output/first_guess.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb221"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb221-1"><a href="antecedent-precipitation-index.html#cb221-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb221-2"><a href="antecedent-precipitation-index.html#cb221-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> curve_fit</span>
+<span id="cb221-3"><a href="antecedent-precipitation-index.html#cb221-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb221-4"><a href="antecedent-precipitation-index.html#cb221-4" aria-hidden="true" tabindex="-1"></a><span class="co"># guess</span></span>
+<span id="cb221-5"><a href="antecedent-precipitation-index.html#cb221-5" aria-hidden="true" tabindex="-1"></a>storage_guessed <span class="op">=</span> api_model(df[<span class="st">&#39;pcp&#39;</span>], alpha<span class="op">=</span><span class="fl">0.95</span>, ini<span class="op">=</span><span class="fl">36.8</span>)</span>
+<span id="cb221-6"><a href="antecedent-precipitation-index.html#cb221-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb221-7"><a href="antecedent-precipitation-index.html#cb221-7" aria-hidden="true" tabindex="-1"></a><span class="co"># write to text</span></span>
+<span id="cb221-8"><a href="antecedent-precipitation-index.html#cb221-8" aria-hidden="true" tabindex="-1"></a>dates <span class="op">=</span> df[[<span class="st">&#39;date&#39;</span>]]</span>
+<span id="cb221-9"><a href="antecedent-precipitation-index.html#cb221-9" aria-hidden="true" tabindex="-1"></a>guess <span class="op">=</span> pd.DataFrame(dates.values.tolist(),storage_guessed)</span>
+<span id="cb221-10"><a href="antecedent-precipitation-index.html#cb221-10" aria-hidden="true" tabindex="-1"></a>guess.to_csv(<span class="st">&quot;model_data/field_sites/output/first_guess.csv&quot;</span>)</span></code></pre></div>
 <p>Now we can have a look at it in R</p>
-<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="antecedent-precipitation-index.html#cb212-1" aria-hidden="true" tabindex="-1"></a>guess <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;model_data/field_sites/output/first_guess.csv&quot;</span>,</span>
-<span id="cb212-2"><a href="antecedent-precipitation-index.html#cb212-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">show_col_types =</span> F,</span>
-<span id="cb212-3"><a href="antecedent-precipitation-index.html#cb212-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">skip =</span> <span class="dv">1</span>, <span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">&quot;val&quot;</span>, <span class="st">&quot;date&quot;</span>))</span>
-<span id="cb212-4"><a href="antecedent-precipitation-index.html#cb212-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb212-5"><a href="antecedent-precipitation-index.html#cb212-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_api</span>(<span class="at">api_vals =</span> guess, <span class="at">obs =</span> b_col, <span class="at">title =</span> <span class="st">&quot;HSG-B API guessed&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-129-1.png" width="672" /></p>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="antecedent-precipitation-index.html#cb222-1" aria-hidden="true" tabindex="-1"></a>guess <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;model_data/field_sites/output/first_guess.csv&quot;</span>,</span>
+<span id="cb222-2"><a href="antecedent-precipitation-index.html#cb222-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">show_col_types =</span> F,</span>
+<span id="cb222-3"><a href="antecedent-precipitation-index.html#cb222-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">skip =</span> <span class="dv">1</span>, <span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">&quot;val&quot;</span>, <span class="st">&quot;date&quot;</span>))</span>
+<span id="cb222-4"><a href="antecedent-precipitation-index.html#cb222-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb222-5"><a href="antecedent-precipitation-index.html#cb222-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_api</span>(<span class="at">api_vals =</span> guess, <span class="at">obs =</span> b_col, <span class="at">title =</span> <span class="st">&quot;HSG-B API guessed&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-131-1.png" width="672" /></p>
 <p>Now we optimize the alpha parameter using <code>scipy</code> <code>curve_fit</code>.</p>
-<div class="sourceCode" id="cb213"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb213-1"><a href="antecedent-precipitation-index.html#cb213-1" aria-hidden="true" tabindex="-1"></a>par_opt, par_cov <span class="op">=</span> curve_fit(api_model, df[<span class="st">&#39;pcp&#39;</span>], df[<span class="st">&#39;value&#39;</span>], p0<span class="op">=</span>[<span class="fl">0.95</span>,<span class="dv">100</span>])</span>
-<span id="cb213-2"><a href="antecedent-precipitation-index.html#cb213-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb213-3"><a href="antecedent-precipitation-index.html#cb213-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;Annual mean alpha value is&#39;</span>,<span class="bu">round</span>(par_opt[<span class="dv">0</span>],<span class="dv">2</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb223"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb223-1"><a href="antecedent-precipitation-index.html#cb223-1" aria-hidden="true" tabindex="-1"></a>par_opt, par_cov <span class="op">=</span> curve_fit(api_model, df[<span class="st">&#39;pcp&#39;</span>], df[<span class="st">&#39;value&#39;</span>], p0<span class="op">=</span>[<span class="fl">0.95</span>,<span class="dv">100</span>])</span>
+<span id="cb223-2"><a href="antecedent-precipitation-index.html#cb223-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb223-3"><a href="antecedent-precipitation-index.html#cb223-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;Annual mean alpha value is&#39;</span>,<span class="bu">round</span>(par_opt[<span class="dv">0</span>],<span class="dv">2</span>))</span></code></pre></div>
 <pre><code>## Annual mean alpha value is 0.98</code></pre>
 <p>Now we can calculate the API using the optimized parameter.</p>
-<div class="sourceCode" id="cb215"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb215-1"><a href="antecedent-precipitation-index.html#cb215-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb215-2"><a href="antecedent-precipitation-index.html#cb215-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb215-3"><a href="antecedent-precipitation-index.html#cb215-3" aria-hidden="true" tabindex="-1"></a>storage_optimized <span class="op">=</span> api_model(df[<span class="st">&#39;pcp&#39;</span>],par_opt[<span class="dv">0</span>],par_opt[<span class="dv">1</span>])</span>
-<span id="cb215-4"><a href="antecedent-precipitation-index.html#cb215-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb215-5"><a href="antecedent-precipitation-index.html#cb215-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Mean Absolute Error</span></span>
-<span id="cb215-6"><a href="antecedent-precipitation-index.html#cb215-6" aria-hidden="true" tabindex="-1"></a>MAE <span class="op">=</span> np.mean(np.<span class="bu">abs</span>(df[<span class="st">&#39;value&#39;</span>] <span class="op">-</span> storage_optimized))</span>
-<span id="cb215-7"><a href="antecedent-precipitation-index.html#cb215-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;Mean annual error =&#39;</span>, <span class="bu">round</span>(MAE,<span class="dv">1</span>),<span class="st">&#39;cm&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb225"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb225-1"><a href="antecedent-precipitation-index.html#cb225-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb225-2"><a href="antecedent-precipitation-index.html#cb225-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb225-3"><a href="antecedent-precipitation-index.html#cb225-3" aria-hidden="true" tabindex="-1"></a>storage_optimized <span class="op">=</span> api_model(df[<span class="st">&#39;pcp&#39;</span>],par_opt[<span class="dv">0</span>],par_opt[<span class="dv">1</span>])</span>
+<span id="cb225-4"><a href="antecedent-precipitation-index.html#cb225-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb225-5"><a href="antecedent-precipitation-index.html#cb225-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Mean Absolute Error</span></span>
+<span id="cb225-6"><a href="antecedent-precipitation-index.html#cb225-6" aria-hidden="true" tabindex="-1"></a>MAE <span class="op">=</span> np.mean(np.<span class="bu">abs</span>(df[<span class="st">&#39;value&#39;</span>] <span class="op">-</span> storage_optimized))</span>
+<span id="cb225-7"><a href="antecedent-precipitation-index.html#cb225-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;Mean annual error =&#39;</span>, <span class="bu">round</span>(MAE,<span class="dv">1</span>),<span class="st">&#39;cm&#39;</span>)</span></code></pre></div>
 <pre><code>## Mean annual error = 9.1 cm</code></pre>
 <p>And save the data for R</p>
-<div class="sourceCode" id="cb217"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb217-1"><a href="antecedent-precipitation-index.html#cb217-1" aria-hidden="true" tabindex="-1"></a>dates <span class="op">=</span> df[[<span class="st">&#39;date&#39;</span>]]</span>
-<span id="cb217-2"><a href="antecedent-precipitation-index.html#cb217-2" aria-hidden="true" tabindex="-1"></a>api_optimized <span class="op">=</span> pd.DataFrame(dates.values.tolist(),storage_optimized)</span>
-<span id="cb217-3"><a href="antecedent-precipitation-index.html#cb217-3" aria-hidden="true" tabindex="-1"></a>api_optimized.to_csv(<span class="st">&quot;model_data/field_sites/output/api_optimized.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb227"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb227-1"><a href="antecedent-precipitation-index.html#cb227-1" aria-hidden="true" tabindex="-1"></a>dates <span class="op">=</span> df[[<span class="st">&#39;date&#39;</span>]]</span>
+<span id="cb227-2"><a href="antecedent-precipitation-index.html#cb227-2" aria-hidden="true" tabindex="-1"></a>api_optimized <span class="op">=</span> pd.DataFrame(dates.values.tolist(),storage_optimized)</span>
+<span id="cb227-3"><a href="antecedent-precipitation-index.html#cb227-3" aria-hidden="true" tabindex="-1"></a>api_optimized.to_csv(<span class="st">&quot;model_data/field_sites/output/api_optimized.csv&quot;</span>)</span></code></pre></div>
 <p>And have a look in R:</p>
-<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="antecedent-precipitation-index.html#cb218-1" aria-hidden="true" tabindex="-1"></a>optimized <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;model_data/field_sites/output/api_optimized.csv&quot;</span>,</span>
-<span id="cb218-2"><a href="antecedent-precipitation-index.html#cb218-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">show_col_types =</span> F,</span>
-<span id="cb218-3"><a href="antecedent-precipitation-index.html#cb218-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">skip =</span> <span class="dv">1</span>, <span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">&quot;val&quot;</span>, <span class="st">&quot;date&quot;</span>))</span>
-<span id="cb218-4"><a href="antecedent-precipitation-index.html#cb218-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb218-5"><a href="antecedent-precipitation-index.html#cb218-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_api</span>(<span class="at">api_vals =</span> optimized, <span class="at">obs =</span> b_col, <span class="at">title =</span> <span class="st">&quot;HSG-B API optimized&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-133-1.png" width="672" /></p>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="antecedent-precipitation-index.html#cb228-1" aria-hidden="true" tabindex="-1"></a>optimized <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;model_data/field_sites/output/api_optimized.csv&quot;</span>,</span>
+<span id="cb228-2"><a href="antecedent-precipitation-index.html#cb228-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">show_col_types =</span> F,</span>
+<span id="cb228-3"><a href="antecedent-precipitation-index.html#cb228-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">skip =</span> <span class="dv">1</span>, <span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">&quot;val&quot;</span>, <span class="st">&quot;date&quot;</span>))</span>
+<span id="cb228-4"><a href="antecedent-precipitation-index.html#cb228-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb228-5"><a href="antecedent-precipitation-index.html#cb228-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_api</span>(<span class="at">api_vals =</span> optimized, <span class="at">obs =</span> b_col, <span class="at">title =</span> <span class="st">&quot;HSG-B API optimized&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-135-1.png" width="672" /></p>
 <p>Not great, but also not surprising considering no account for snow melt
 has been done, nor do we have good logger data.</p>
 <p>We will define this workflow in a function <code>calc_api.R</code> and run it for
 the next loggers.</p>
-<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="antecedent-precipitation-index.html#cb219-1" aria-hidden="true" tabindex="-1"></a><span class="fu">calc_api</span>(<span class="at">logger_id =</span> <span class="st">&quot;600409&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="antecedent-precipitation-index.html#cb229-1" aria-hidden="true" tabindex="-1"></a><span class="fu">calc_api</span>(<span class="at">logger_id =</span> <span class="st">&quot;600409&quot;</span>)</span></code></pre></div>
 <pre><code>## Warning in py_to_r.pandas.core.frame.DataFrame(x): index contains duplicated
 ## values: row names not set</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-134-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-136-1.png" width="672" /></p>
 <pre><code>##   HSG Alpha 
 ##   &quot;D&quot;   &quot;1&quot;</code></pre>
 <p>This is the logger with broken data, so no surprise that the optimizer
 failed.</p>
-<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="antecedent-precipitation-index.html#cb222-1" aria-hidden="true" tabindex="-1"></a><span class="fu">calc_api</span>(<span class="at">logger_id =</span> <span class="st">&quot;600410&quot;</span>)</span></code></pre></div>
-<pre><code>## Warning in py_to_r.pandas.core.frame.DataFrame(x): index contains duplicated
-## values: row names not set</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-135-1.png" width="672" /></p>
-<pre><code>##    HSG  Alpha 
-##    &quot;B&quot; &quot;0.99&quot;</code></pre>
-<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="antecedent-precipitation-index.html#cb225-1" aria-hidden="true" tabindex="-1"></a><span class="fu">calc_api</span>(<span class="at">logger_id =</span> <span class="st">&quot;600411&quot;</span>)</span></code></pre></div>
-<pre><code>## Warning in py_to_r.pandas.core.frame.DataFrame(x): index contains duplicated
-## values: row names not set</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-136-1.png" width="672" /></p>
-<pre><code>##    HSG  Alpha 
-##    &quot;C&quot; &quot;0.99&quot;</code></pre>
-<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="antecedent-precipitation-index.html#cb228-1" aria-hidden="true" tabindex="-1"></a><span class="fu">calc_api</span>(<span class="at">logger_id =</span> <span class="st">&quot;600413&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="antecedent-precipitation-index.html#cb232-1" aria-hidden="true" tabindex="-1"></a><span class="fu">calc_api</span>(<span class="at">logger_id =</span> <span class="st">&quot;600410&quot;</span>)</span></code></pre></div>
 <pre><code>## Warning in py_to_r.pandas.core.frame.DataFrame(x): index contains duplicated
 ## values: row names not set</code></pre>
 <p><img src="_main_files/figure-html/unnamed-chunk-137-1.png" width="672" /></p>
+<pre><code>##    HSG  Alpha 
+##    &quot;B&quot; &quot;0.99&quot;</code></pre>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="antecedent-precipitation-index.html#cb235-1" aria-hidden="true" tabindex="-1"></a><span class="fu">calc_api</span>(<span class="at">logger_id =</span> <span class="st">&quot;600411&quot;</span>)</span></code></pre></div>
+<pre><code>## Warning in py_to_r.pandas.core.frame.DataFrame(x): index contains duplicated
+## values: row names not set</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-138-1.png" width="672" /></p>
+<pre><code>##    HSG  Alpha 
+##    &quot;C&quot; &quot;0.99&quot;</code></pre>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="antecedent-precipitation-index.html#cb238-1" aria-hidden="true" tabindex="-1"></a><span class="fu">calc_api</span>(<span class="at">logger_id =</span> <span class="st">&quot;600413&quot;</span>)</span></code></pre></div>
+<pre><code>## Warning in py_to_r.pandas.core.frame.DataFrame(x): index contains duplicated
+## values: row names not set</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-139-1.png" width="672" /></p>
 <pre><code>##    HSG  Alpha 
 ##    &quot;C&quot; &quot;0.99&quot;</code></pre>
 <p>It seems all the values are around 0.99… so analysis not very (yet)
@@ -663,7 +662,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/moritzshore/optain-cs10/edit/main/08-API_model.Rmd",
+"link": "https://github.com/moritzshore/optain-cs10/edit/main/07-API_model.Rmd",
 "text": "Edit"
 },
 "history": {
