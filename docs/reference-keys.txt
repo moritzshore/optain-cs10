@@ -11,7 +11,6 @@ fig:unnamed-chunk-92
 fig:unnamed-chunk-93
 fig:soilmapplot
 fig:unnamed-chunk-111
-introduction
 model-setup-with-swatbuildr
 processing-input-data
 high-resolution-digital-elevation-model-dem
@@ -44,7 +43,7 @@ proof-the-station
 creating-the-weather-generator
 adding-weather-data-to-swat-project
 crop-map-generation
-calculating-farm-area
+calculating-field-area
 calculate-field-area-and-assign-ids
 calculate-field-area-and-assign-ids-1
 generating-the-crop-rotation
@@ -79,7 +78,8 @@ field-site-loggers
 introduction-1
 prerequisites
 locations
-loading-in-observed-data.
+data-processing
+loading-data
 data-re-structuring
 summarize-to-daily-means
 including-air-temperature-and-precipitation-data
@@ -111,7 +111,7 @@ introduction-2
 pre-requirements
 setting-up-python-for-rrmarkdown
 antecedent-precipitation-index-1
-loading-data
+loading-data-1
 calculating-the-total-water-content
 defining-api-model
 model-parameterization
