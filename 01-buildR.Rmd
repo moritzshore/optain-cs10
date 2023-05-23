@@ -17,21 +17,28 @@ project_name <- 'optain-cs10'
 We will need the following packages for this chapter:
 
 ```{r, libraries, message=FALSE}
-require(mapview)
-require(sf)
-require(raster)
-require(terra)
-require(dplyr)
-require(ggplot2)
+# not loading any packages because they interfere with the `install_load` 
+# functions of buildR. this means i need to prefix everything with :: until
+# Christoph turns BuildR into a proper package with proper scoping. 
+
+# for the time being i cannot use plot() for rasters. I should switch over to
+# ggplot for that
+
+# require(dplyr)
+# require(ggplot2)
+# require(mapview)
+# require(sf)
+# require(raster)
+# require(terra)
 ```
 
 This is a custom theme we will use in many GGplots:
 
 ```{r}
-sf_theme <- theme(axis.text.x=element_blank(), #remove x axis labels
-        axis.ticks.x=element_blank(), #remove x axis ticks
-        axis.text.y=element_blank(),  #remove y axis labels
-        axis.ticks.y=element_blank()  #remove y axis ticks
+sf_theme <- ggplot2::theme(axis.text.x=ggplot2::element_blank(), #remove x axis labels
+        axis.ticks.x=ggplot2::element_blank(), #remove x axis ticks
+        axis.text.y=ggplot2::element_blank(),  #remove y axis labels
+        axis.ticks.y=ggplot2::element_blank()  #remove y axis ticks
         )
 ```
 
@@ -54,7 +61,7 @@ dem_path <- "model_data/input/elevation/dtm3_ns_v5.tif"
 ```
 
 ```{r, plotdemraster, message=FALSE, fig.align = "center", fig.cap="CS10 Digital elevation model (DEM)."}
-plot(raster(dem_path))
+#plot(raster::raster(dem_path))
 ```
 
 To our knowledge, it has a 10 meter resolution. 1 meter resolution was available but there seems to have been issues with using it. It is definitely preferable to use the 1m DEM as certain important information can be lost with (max allowed resolution) of 10m.
@@ -70,9 +77,9 @@ bound_path <- "model_data/input/shape/cs10_basin.shp"
 ```
 
 ```{r, watershedplot, message=FALSE, echo=FALSE, eval=TRUE, fig.align='center', fig.cap="CS10 Basin, caclulated from the DEM."}
-bound_sf <- read_sf(bound_path)
+bound_sf <- sf::read_sf(bound_path)
 
-basin <- ggplot(bound_sf) + geom_sf() + sf_theme
+basin <- ggplot2::ggplot(bound_sf) + ggplot2::geom_sf() + sf_theme
 
 print(basin)
 ```
@@ -115,10 +122,10 @@ land_path <- "model_data/input/land/CS10_LU.shp"
 Documentation on its creation does not exist.
 
 ```{r, maplanduse, message=F, echo=F, fig.align='center', fig.cap="Land use map of CS10 by Farm ID"}
-lu_shp <- read_sf(land_path)
+lu_shp <- sf::read_sf(land_path)
 
-lu_map <- ggplot(lu_shp) + geom_sf(aes(fill = type)) + sf_theme +
-  theme(legend.position = "none")
+lu_map <- ggplot2::ggplot(lu_shp) + ggplot2::geom_sf(aes(fill = type)) + sf_theme +
+  ggplot2::theme(legend.position = "none")
 
 print(lu_map)
 
@@ -161,8 +168,8 @@ No documentation exists on the creation of the channels layer, all we know is th
 channel_path <- 'model_data/input/line/cs10_channels.shp'
 channels <- read_sf(channel_path) %>% dplyr::select("type")
 
-channel_map <- ggplot() + geom_sf(data = bound_sf) + 
-  geom_sf(data = channels, mapping = aes(color = type)) + sf_theme
+channel_map <- ggplot2::ggplot() + ggplot2::geom_sf(data = bound_sf) + 
+  ggplot2::geom_sf(data = channels, mapping = ggplot2::aes(color = type)) + sf_theme
 
 channel_map
 
@@ -222,14 +229,14 @@ The function `save_dem_slope_raster()` is currently broken, we we are going to
 write our own alternative without using Whitebox.
 
 ```{r, eval=run_code}
-writeRaster(dem, paste0(data_path, '/raster/dem.tif'), 
+raster::writeRaster(dem, paste0(data_path, '/raster/dem.tif'), 
               overwrite = TRUE)
 # wbt_clip_raster_to_polygon replacement
-basin <- read_sf(paste0(data_path, '/vector/basin.shp'))
+basin <- sf::read_sf(paste0(data_path, '/vector/basin.shp'))
 cropped_basin <- terra::crop(dem, basin, mask= T)
-plot(cropped_basin)
+#plot(cropped_basin)
 
-writeRaster(cropped_basin,
+raster::writeRaster(cropped_basin,
             paste0(data_path, '/raster/dem2.tif'),
             overwrite = TRUE)
 
@@ -261,7 +268,7 @@ soil_layer_path  <- 'model_data/input/soil/soil_layer.tif'
 No documentation exists on its creation.
 
 ```{r soilrastermapplot, fig.align='center', fig.cap="CS10 Soil map", message=FALSE, warning=FALSE, echo=F}
-plot(raster(soil_layer_path))
+#plot(raster::raster(soil_layer_path))
 ```
 
 The soil data and look-up path are located here:
@@ -287,7 +294,7 @@ soil <- rast(soil_layer_path) %>%
                     label = 'soil', type = 'raster')
 check_raster_coverage(rst = soil, vct_layer = 'hru', data_path = data_path, 
                       label = 'soil', cov_frc = 0.75)
-# BROKEN
+
 save_soil_raster(soil, data_path)
 ```
 
@@ -319,6 +326,9 @@ The connection of each land object to neighboring land and water objects is calc
 
 ```{r message=FALSE, warning=FALSE, calculate_land_connectivity, eval=run_code, results='hide'}
 calculate_land_connectivity(data_path)
+```
+```{r}
+run_code = FALSE
 ```
 
 #### Eliminate land object connections with small flow fractions:
@@ -458,12 +468,10 @@ point_path <- 'model_data/input/point/cs10_pointsource.shp'
 ```
 
 ```{r, pointsoucemap, fig.align='center', fig.cap="CS10 Point Sources, colored by Phosphorous emission and sized by Nitrogen emission"}
-point_sf <- read_sf(point_path)
-point_map <- mapview(point_sf, zcol = "GRAD_P", cex = "GRAD_N")
+point_sf <- sf::read_sf(point_path)
+point_map <- mapview::mapview(point_sf, zcol = "GRAD_P", cex = "GRAD_N")
 
-mapview(bound_sf, alpha.regions = 0.2)+point_map
-
-
+mapview::mapview(bound_sf, alpha.regions = 0.2)+point_map
 ```
 
 Map of point sources, colored by (assumed) phosphorous and size by (assumed)
