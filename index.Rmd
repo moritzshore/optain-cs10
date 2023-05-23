@@ -11,8 +11,10 @@ description: A description of the project setup for OPTAIN case study 10
 link-citations: yes
 github-repo: moritzshore/optain-cs10
 ---
-![](figures/topbanner.png)
+
 # Introduction {-}
+
+![](figures/topbanner.png)
 
 The aim of page is to:
 
@@ -26,6 +28,8 @@ The aim of page is to:
 
 If all goes well, the compiling of this Gitbook will also compile the OPTAIN model setup in tandem, from source input files to final model setup (..and beyond!)
 
-The model setup follows the OPTAIN modelling protocols for SWAP [@farkas2023] and SWAT+ [@schürz2022]. We begin with SWAT+ and the model setup with SWATBuildR, in section \@ref(model-setup-with-swatbuildr).
+The model setup follows the OPTAIN modelling protocols for SWAP [@farkas2023] and SWAT+ [@schürz2022]. We begin with SWAT+ and the model setup with SWATBuildR, in Section \@ref(model-setup-with-swatbuildr).
 
 ![](figures/banner.png)
+
+------------------------------------------------------------------------

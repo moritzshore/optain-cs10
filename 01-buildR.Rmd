@@ -1,5 +1,9 @@
 # Model setup with SWATBuildR
 
+```{r}
+print(paste("Code executed on", Sys.time()))
+```
+
 The OPTAIN project is using the COCOA approach [@schürz2022] and as such, needs to use the `SWATBuildR` package to build the SWAT+ model setup and calculate the connectivity between HRUs in the catchment. This chapter covers this process.
 
 We will define the location of our project here:
@@ -20,9 +24,6 @@ We will need the following packages for this chapter:
 # not loading any packages because they interfere with the `install_load` 
 # functions of buildR. this means i need to prefix everything with :: until
 # Christoph turns BuildR into a proper package with proper scoping. 
-
-# for the time being i cannot use plot() for rasters. I should switch over to
-# ggplot for that
 
 # require(dplyr)
 # require(ggplot2)
@@ -61,7 +62,8 @@ dem_path <- "model_data/input/elevation/dtm3_ns_v5.tif"
 ```
 
 ```{r, plotdemraster, message=FALSE, fig.align = "center", fig.cap="CS10 Digital elevation model (DEM)."}
-#plot(raster::raster(dem_path))
+dem_rast <- raster::raster(dem_path)
+plot(dem_rast)
 ```
 
 To our knowledge, it has a 10 meter resolution. 1 meter resolution was available but there seems to have been issues with using it. It is definitely preferable to use the 1m DEM as certain important information can be lost with (max allowed resolution) of 10m.
@@ -76,7 +78,7 @@ The basin boundary has presumably been created using the defined outlet point of
 bound_path <- "model_data/input/shape/cs10_basin.shp"
 ```
 
-```{r, watershedplot, message=FALSE, echo=FALSE, eval=TRUE, fig.align='center', fig.cap="CS10 Basin, caclulated from the DEM."}
+```{r, watershedplot, message=FALSE, echo=T, eval=TRUE, fig.align='center', fig.cap="CS10 Basin, caclulated from the DEM."}
 bound_sf <- sf::read_sf(bound_path)
 
 basin <- ggplot2::ggplot(bound_sf) + ggplot2::geom_sf() + sf_theme
@@ -121,7 +123,7 @@ land_path <- "model_data/input/land/CS10_LU.shp"
 
 Documentation on its creation does not exist.
 
-```{r, maplanduse, message=F, echo=F, fig.align='center', fig.cap="Land use map of CS10 by Farm ID"}
+```{r, maplanduse, message=F, echo=T, fig.align='center', fig.cap="Land use map of CS10 by Farm ID"}
 lu_shp <- sf::read_sf(land_path)
 
 lu_map <- ggplot2::ggplot(lu_shp) + ggplot2::geom_sf(aes(fill = type)) + sf_theme +
@@ -234,7 +236,6 @@ raster::writeRaster(dem, paste0(data_path, '/raster/dem.tif'),
 # wbt_clip_raster_to_polygon replacement
 basin <- sf::read_sf(paste0(data_path, '/vector/basin.shp'))
 cropped_basin <- terra::crop(dem, basin, mask= T)
-#plot(cropped_basin)
 
 raster::writeRaster(cropped_basin,
             paste0(data_path, '/raster/dem2.tif'),
@@ -256,6 +257,11 @@ wbt_slope(
 
 file.remove('NULL')
 ```
+Here is the result:
+
+```{r, fig_cs10dem_cropped, fig.align='center', fig.cap= "CS10 DEM cropped to basin area"}
+plot(cropped_basin)
+```
 
 ### Processing soil data
 
@@ -267,8 +273,8 @@ soil_layer_path  <- 'model_data/input/soil/soil_layer.tif'
 
 No documentation exists on its creation.
 
-```{r soilrastermapplot, fig.align='center', fig.cap="CS10 Soil map", message=FALSE, warning=FALSE, echo=F}
-#plot(raster::raster(soil_layer_path))
+```{r soilrastermapplot, fig.align='center', fig.cap="CS10 Soil map", message=FALSE, warning=FALSE, echo=T}
+plot(raster::raster(soil_layer_path))
 ```
 
 The soil data and look-up path are located here:
@@ -283,10 +289,6 @@ Not much documentation exists here either. Some can be found in the excel sheet:
 `~/model_data/input/soil/swatsoil2.xlsx`
 
 BuildR reads in the soil data, performs checks, processes, and saves.
-
-NOTE: THIS IS CURRENTLY BROKEN, WITH ERROR MESSAGE:
-
-> Warning: Cannot find coordinate operations from `EPSG:2583` ["unnamed",EDATUM[""], CS[Cartesian,2], AXIS["(E)", east, ORDER[1], LENGTHUNIT["unknown", 1]], AXIS["(N)", north, ORDER[2], LENGTHUNIT["unknown", 1]]]' (GDAL error 6) Error: [project] Cannot do this transformation
 
 ```{r message=FALSE, warning=FALSE, checksoil1, eval=run_code}
 soil <- rast(soil_layer_path) %>% 
@@ -326,9 +328,6 @@ The connection of each land object to neighboring land and water objects is calc
 
 ```{r message=FALSE, warning=FALSE, calculate_land_connectivity, eval=run_code, results='hide'}
 calculate_land_connectivity(data_path)
-```
-```{r}
-run_code = FALSE
 ```
 
 #### Eliminate land object connections with small flow fractions:
@@ -462,6 +461,8 @@ build_single_aquifer_files(data_path)
 
 The point source locations are provided with a point vector layer in the path
 'point_path'.
+
+We have yet to complete this step. It is being tracked in Issue [# 21](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/21)
 
 ```{r, point_path}
 point_path <- 'model_data/input/point/cs10_pointsource.shp'
