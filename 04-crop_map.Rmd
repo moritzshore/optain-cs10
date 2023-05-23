@@ -23,7 +23,7 @@ sf_theme <- theme(axis.text.x=element_blank(), #remove x axis labels
         )
 ```
 
-## Calculating Farm Area
+## Calculating Field Area
 
 We have data based on what area certain crops have per farm. In order to relate
 this to our spatial land use map, we require the area of both the farms, and 
@@ -474,7 +474,7 @@ for (year in years) {
 ```
 
 
-## Extrapolating the Crop Rotation
+### Extrapolating the Crop Rotation
 
 For OPTAIN, the crop rotation needs to span from 1988 to 2020. We currently have
 2016 to 2019.

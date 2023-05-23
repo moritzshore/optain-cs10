@@ -56,7 +56,9 @@ basin_map+field_map
 
 ```
 
-## Loading in observed data.
+## Data Processing 
+
+### Loading Data
 
 To start we need to load in our data from the *GroPoint Profile* data loggers. The logger is approx. 1m long and has 7 temperature sensors, and 6 soil moisture sensors located along its segments. @gropoint2023
 
@@ -113,7 +115,7 @@ data$datetime <- data$datetime %>%
   as_datetime(format = "%m/%d/%Y %H:%M", tz = "CET")
 ```
 
-## Data Re-structuring
+### Data Re-structuring
 
 For ease of use in R, we will re-structure the data to be in "tidy" format (Read more: [@wickham2014]).
 
