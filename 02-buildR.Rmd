@@ -226,7 +226,7 @@ soil_layer_path  <- 'model_data/input/soil/soil_layer.tif'
 
 No documentation exists on its creation.
 
-```{r soilrastermapplot, fig.align='center', fig.cap="CS10, message=FALSE, warning=FALSE, soilmapraster, echo=F}
+```{r soilrastermapplot, fig.align='center', fig.cap="CS10 Soil map", message=FALSE, warning=FALSE, echo=F}
 plot(raster(soil_layer_path))
 ```
 
