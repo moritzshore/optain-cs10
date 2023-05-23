@@ -11,7 +11,7 @@ description: A description of the project setup for OPTAIN case study 10
 link-citations: yes
 github-repo: moritzshore/optain-cs10
 ---
-
+![](figures/topbanner.png)
 # Introduction {-}
 
 The aim of page is to:
