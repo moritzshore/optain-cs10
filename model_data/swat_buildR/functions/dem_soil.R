@@ -57,7 +57,7 @@ aggregate_hru_dem_soil <- function(data_path) {
   elev  <- zonal(dem, vect(hru), fun = mean, na.rm = TRUE)
   
   slope <- zonal(slp,    vect(hru), fun = mean, na.rm = TRUE)
-  soil  <- extract(soil, vect(hru), fun = mode, na.rm = TRUE)
+  soil  <- terra::extract(soil, vect(hru), fun = mode, na.rm = TRUE)
   
   hru_tbl <- tibble(id    = hru$id,
                     elev  = elev[[1]],
