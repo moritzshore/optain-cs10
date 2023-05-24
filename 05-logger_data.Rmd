@@ -169,7 +169,7 @@ Additional notes:
 
 -   The values are rounded to one decimal place, as this is is the precision limit of the Logger.
 
--   The averaging is performed per date, variable, depth, and site (for obvious reasons)
+-   The averaging is performed per date, variable, depth, and site
 
 -   The functionality of `.groups = "drop_last"` is unknown to me, however it does not change anything other than quieting a warning message.
 
