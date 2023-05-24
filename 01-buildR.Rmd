@@ -31,6 +31,7 @@ We will need the following packages for this chapter:
 # require(sf)
 # require(raster)
 # require(terra)
+require(magrittr)
 ```
 
 This is a custom theme we will use in many GGplots:
@@ -93,7 +94,7 @@ The following code and commentary is from version `1.5.12`, written by Christoph
 
 Another note: there are currently issues with White box which are being resolved.
 
-```{r, sourceBuildRinit, message=FALSE, eval=run_code}
+```{r, sourceBuildRinit, message=FALSE}
 source('model_data/swat_buildR/init.R')
 ```
 
@@ -127,7 +128,7 @@ Documentation on its creation does not exist.
 ```{r, maplanduse, message=F, echo=T, fig.align='center', fig.cap="Land use map of CS10 by Farm ID"}
 lu_shp <- sf::read_sf(land_path)
 
-lu_map <- ggplot2::ggplot(lu_shp) + ggplot2::geom_sf(aes(fill = type)) + sf_theme +
+lu_map <- ggplot2::ggplot(lu_shp) + ggplot2::geom_sf(ggplot2::aes(fill = type)) + sf_theme +
   ggplot2::theme(legend.position = "none")
 
 print(lu_map)
