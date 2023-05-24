@@ -283,10 +283,10 @@ calc_api(logger_id = "600413")
 
 ## Conclusions
 
-For HSG B we got an alpha of **0.98**, for C we has two samples, both of
-which got **0.99**, and D has two samples as well, but we currently only
-have data for one. For the one D site we had, the logger data was very
-poor and the **covariance could not be estimated**.
+For HSG B we got an alpha of **0.98**, for C we have two samples, both
+of which got **0.99**, and D has two samples as well, but we currently
+only have data for one. For the one D site we had, the logger data was
+very poor and the **covariance could not be estimated**.
 
 Overall, the API does not seem to be a great estimator of soil moisture
 **for our specific case**. Our logger data is poor and has been cut
