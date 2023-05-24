@@ -28,5 +28,9 @@ api_optimized.to_csv("model_data/field_sites/output/api_optimized.csv")
 del(dates)
 del(api_optimized)
 del(df)
+del(storage_optimized)
+del(par_cov)
 
 alpha_value = round(par_opt[0],2)
+
+del(par_opt)

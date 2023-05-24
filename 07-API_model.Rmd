@@ -1,3 +1,9 @@
+---
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
 # Antecedent Precipitation Index
 
 ```{r knitengines, include=FALSE}
@@ -8,11 +14,12 @@ knitr::knit_engines$set(python = reticulate::eng_python)
 
 SWATFarmR cannot account for operations based on values modeled by
 SWAT+, such as soil moisture. This is because FarmR does not run the
-model itself, and creates all the management schedules based on measured
-climate data. This means we need to relate our measured climate data to
-our soil moisture. A method to do this is called the Antecedent
-Precipitation Index. Which is what we will creating for CS10 in this
-part
+model itself, and creates and predefines all the management schedules
+based on measured climate data. This means we need to relate our
+measured climate data to our soil moisture (Because soil moisture is an
+important factor in planning agricultural operations). One method to do
+this is called the Antecedent Precipitation Index. Which is what we will
+creating for CS10 in this part.
 
 As a heads up, this section requires Python!
 
@@ -34,14 +41,13 @@ source("model_data/code/calc_api.R")
 ### Setting up Python for R/Rmarkdown
 
 A quick (non-evaluated) code block to show how a python environment can
-be created for use in Rmarkdown/Reticulate.
+be created for use in Rmarkdown/Reticulate on your local machine.
 
 ```{r, include = TRUE, eval=FALSE}
 # install miniconda 
 install_miniconda() 
 
 # create conda environment for your project
-
 conda_create("cs10_env", # environment name 
               packages = c("pandas", "numpy", "scipy"), # required packages
               conda = "auto")
@@ -128,7 +134,7 @@ unique(b_data$depth)
 Following code is modified from @patrignani2020 ([[read
 more]{.underline}](https://soilwater.github.io/pynotes-agriscience/notebooks/antecedent_precipitation_index.html))
 
-This calculation could be improved by considering the soil horizons.
+(This calculation could be improved by considering the soil horizons)
 
 ```{r}
 a <- b_data %>% filter(depth == "300") %>% select(value)
@@ -148,12 +154,14 @@ b_col <- tibble(b_data %>% filter(depth == "300") %>% select(date), total_water_
 
 ```
 
-And we can add the precipitation data fro step 01. (REF)
+And we can add the precipitation data from
+\@ref(including-air-temperature-and-precipitation-data)
 
-```{r}
+```{r, hsg_b_twc_plot, fig.align='center', fig.cap="Total water content for logger 600410 (HSG B)"}
 b_col <- left_join(b_col, pcp_data, by = "date")
 
-plot_api(obs = b_col, title = "HSG B total water content")
+plot_api(obs = b_col, title = "HSG B")
+
 ```
 
 Saving the data
@@ -164,11 +172,8 @@ write_csv(b_col, "model_data/field_sites/output/twc.csv")
 
 ### Defining API model
 
-*"Create a function containing both the API and the gamma model so that
-we can optimize the function parameters:"*
-
-The value is capped at the max val of the source data (50). This could
-be improved by capping per site
+The value is capped at the maximum value of the source data (50). This
+could be improved by capping site specific.
 
 ```{python}
 def api_model(P,alpha=0.97,ini=36.8):
@@ -269,10 +274,6 @@ This is the logger with broken data, so no surprise that the optimizer
 failed.
 
 ```{r}
-calc_api(logger_id = "600410")
-```
-
-```{r}
 calc_api(logger_id = "600411")
 ```
 
@@ -280,7 +281,31 @@ calc_api(logger_id = "600411")
 calc_api(logger_id = "600413")
 ```
 
-It seems all the values are around 0.99... so analysis not very (yet)
-useful.
+## Conclusions
 
-BUG: allow to calculate with NA values in the validation data (400611)
+For HSG B we got an alpha of **0.98**, for C we has two samples, both of
+which got **0.99**, and D has two samples as well, but we currently only
+have data for one. For the one D site we had, the logger data was very
+poor and the **covariance could not be estimated**.
+
+Overall, the API does not seem to be a great estimator of soil moisture
+**for our specific case**. Our logger data is poor and has been cut
+short due to sensor malfunctions. With a **longer time series** covering
+more seasons, it is likely that the curve fitting could be improved
+upon, and the overall dynamics could be appraised.;
+
+Secondly, and more critically: the API does not account for **snow
+melt**, which plays a significant role in a Boreal catchments such as
+CS10. You can see this in action (I think) in March where the logger
+data steadily goes up, while the API steadily goes down. Snow melt could
+surely be accounted for by adding *another* model to estimate it -- the
+question is more if it is worth it, considering the poor underlying data
+of the loggers.
+
+Another complication is, if SWATFarmR does not account for snow melt in
+its management scheduling, then there is no point in estimating it. And
+if snow melt is not incorporated into the scheduling, then the operation
+timing will not be very accurate anyway (since snow melt is such a
+dominating factor in operation timing).
+
+Is what I wrote here correct Csilla?

@@ -46,7 +46,7 @@ sf_theme <- ggplot2::theme(axis.text.x=ggplot2::element_blank(), #remove x axis 
 If this flag is set to true, the following code will actually run buildR, which could take about 4 hours!
 
 ```{r}
-run_code = TRUE
+run_code = FALSE
 ```
 
 ## Processing input data
@@ -167,7 +167,7 @@ split_land_layer(data_path)
 
 No documentation exists on the creation of the channels layer, all we know is that it is located here:
 
-```{r, channel_plot, fig.cap="CS10 Channels, including surface and subsurface channels", fig.align='center'}
+```{r channel_plot_x, fig.align='center', fig.cap="CS10 Channels including surface and subsurface channels"}
 channel_path <- 'model_data/input/line/cs10_channels.shp'
 channels <- read_sf(channel_path) %>% dplyr::select("type")
 
@@ -228,8 +228,7 @@ check_raster_coverage(rst = dem, vct_layer = 'land', data_path = data_path,
 #save_dem_slope_raster(dem, data_path)
 ```
 
-The function `save_dem_slope_raster()` is currently broken, we we are going to
-write our own alternative without using Whitebox.
+The function `save_dem_slope_raster()` is currently broken, we we are going to write our own alternative without using Whitebox.
 
 ```{r, eval=run_code}
 raster::writeRaster(dem, paste0(data_path, '/raster/dem.tif'), 
@@ -258,6 +257,7 @@ wbt_slope(
 
 file.remove('NULL')
 ```
+
 Here is the result:
 
 ```{r, fig_cs10dem_cropped, fig.align='center', fig.cap= "CS10 DEM cropped to basin area"}
@@ -358,6 +358,40 @@ reduce_land_connections(data_path, frc_thres) %>%
   check_infinite_loops(., data_path, 'Land')
 ```
 
+```{r}
+# Analyzing land objects for infinite loop routing: Completed 6185 Land objects
+# in 10M 44S
+#
+# ✘  150 Land objects identified where water is routed in loops.
+#
+# You can resolve this issue in the following ways:
+#
+#  - Use the layer 'land_infinite_loops.gpkg' that was written to
+# model_data/cs10_setup/optain-cs10/data/vector to identify land polygons that
+# cause the issue and split them to break the loops This would require to
+# restart the entire model setup procedure!
+#
+#   - Increase the value of 'frc_thres'.
+# This reduces the number of connections of each land unit (maybe undesired!)
+# and can remove the connections that route the water in loops.
+#
+#   - Continue with the model setup (only recommended for small number of identified units!).
+# The function 'resolve_loop_issues()' will then eliminate a certain number of
+# connections.
+```
+
+Csilla -- What do we do here -- I think in the past Alex just removed all the loops, but it says here it is not recommended when there are a lot of them. Should we increase the threshold? Should we try to break up the loops? You can see the problem polygons on the map below:
+
+```{r}
+land_inifnite_loops_shp <- sf::read_sf("model_data/cs10_setup/optain-cs10/data/vector/land_infinite_loops.gpkg")
+
+mapview::mapview(land_inifnite_loops_shp)
+```
+
+To me it seems to complicated to try to break up the loops, maybe increase the threshold a bit and see what happens? and delete the rest?
+
+#### Resolve infinite loops
+
 If infinite loops were identified this routine tries to resolve the issues by selectively removing connections between land units in order to get rid of all infinite loops.
 
 ```{r, resolve_loop_issues, eval=run_code}
@@ -453,10 +487,7 @@ build_ls_unit_input(data_path)
 
 ### Build aquifer input
 
-Build the SWAT+ aquifer input files for a single aquifer for the entire
-catchment. The connectivity to the channels with geomorphic flow must be added
-after writing the txt input files. **This is not implemented in the script
-yet.**
+Build the SWAT+ aquifer input files for a single aquifer for the entire catchment. The connectivity to the channels with geomorphic flow must be added after writing the txt input files. **This is not implemented in the script yet.**
 
 ```{r, build_single_aquifer_files, eval=run_code}
 build_single_aquifer_files(data_path)
@@ -464,10 +495,9 @@ build_single_aquifer_files(data_path)
 
 ### Add point source inputs
 
-The point source locations are provided with a point vector layer in the path
-'point_path'.
+The point source locations are provided with a point vector layer in the path 'point_path'.
 
-We have yet to complete this step. It is being tracked in Issue [# 21](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/21)
+We have yet to complete this step. It is being tracked in Issue [\# 21](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/21)
 
 ```{r, point_path}
 point_path <- 'model_data/input/point/cs10_pointsource.shp'
@@ -480,21 +510,15 @@ point_map <- mapview::mapview(point_sf, zcol = "GRAD_P", cex = "GRAD_N")
 mapview::mapview(bound_sf, alpha.regions = 0.2)+point_map
 ```
 
-Map of point sources, colored by (assumed) phosphorous and size by (assumed)
-Nitrogen
+Map of point sources, colored by (assumed) phosphorous and size by (assumed) Nitrogen
 
-Maximum distance of a point source to a channel or a reservoir to be included as
-a point source object (recall) in the model setup:
+Maximum distance of a point source to a channel or a reservoir to be included as a point source object (recall) in the model setup:
 
 ```{r, max_point_dist}
 max_point_dist <- 500 #meters
 ```
 
-Point source records can automatically be added from files in the same folder as
-the point source location layer. To be identified as point source data the files
-must be named as `<name>_<interval>.csv`, where `<name>` must be the name of a
-point `int` the vector layer and `<interval>` must be one of `const`, `yr`,
-`mon`, or `day` depending on the time intervals in the input data.
+Point source records can automatically be added from files in the same folder as the point source location layer. To be identified as point source data the files must be named as `<name>_<interval>.csv`, where `<name>` must be the name of a point `int` the vector layer and `<interval>` must be one of `const`, `yr`, `mon`, or `day` depending on the time intervals in the input data.
 
 ```{r, add_point_sources, eval=run_code}
 add_point_sources(point_path, data_path, max_point_dist)
@@ -504,8 +528,7 @@ add_point_sources(point_path, data_path, max_point_dist)
 
 #### Write the SWAT+Editor project database
 
-The database will be located the 'project_path'. After writing the database it
-can be opened and edited with the SWAT+Editor.
+The database will be located the 'project_path'. After writing the database it can be opened and edited with the SWAT+Editor.
 
 ```{r, create_swatplus_database, eval=run_code}
 create_swatplus_database(project_path, project_name)

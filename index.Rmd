@@ -14,8 +14,6 @@ github-repo: moritzshore/optain-cs10
 
 # Introduction {-}
 
-![](figures/topbanner.png)
-
 The aim of page is to:
 
 1.  Document the process of setting up the SWAT+ and SWAP models for Kraakstad, Norway (Case study 10 / CS10)
