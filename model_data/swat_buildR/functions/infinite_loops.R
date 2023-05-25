@@ -33,7 +33,7 @@ check_infinite_loops <- function(connect_ids, data_path, type ,n_iter = 50) {
       tbl_to <- filter(rout_ids, id_from %in% tbl$id_to)
       tbl_to <- set_names(tbl_to, c(paste0('id_', i_iter), 'id_to'))
       tbl <- set_names(tbl, c('id' , paste0('id_', 1:i_iter)))
-      tbl <- full_join(tbl, tbl_to, by = paste0('id_', i_iter)) %>%
+      tbl <- full_join(tbl, tbl_to, by = paste0('id_', i_iter), relationship = "many-to-many") %>%
         mutate(id_to = ifelse(id_to == id, -Inf, id_to))
       
       is_other_loop <- tbl %>% 
