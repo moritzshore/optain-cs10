@@ -13,7 +13,7 @@ dr                null              null              null              null    
 aquifer           initial.aqu       aquifer.aqu       
 herd              null              null              null              
 water_rights      null              null              null              
-link              null              null              
+link              null              aqu_cha.lin     
 hydrology         hydrology.hyd     topography.hyd    field.fld         
 structural        tiledrain.str     septic.str        filterstrip.str   grassedww.str     bmpuser.str       
 hru_parm_db       plants.plt        fertilizer.frt    tillage.til       pesticide.pes     null              null              null              urban.urb         septic.sep        snow.sno          
