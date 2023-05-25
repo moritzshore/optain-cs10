@@ -308,4 +308,24 @@ if snow melt is not incorporated into the scheduling, then the operation
 timing will not be very accurate anyway (since snow melt is such a
 dominating factor in operation timing).
 
-Is what I wrote here correct Csilla?
+UPDATE post Q+A Session
+
+We can modify the output of Micha's script in Section
+\@ref(pre-processing-crop-rotation) by replacing API with our own custom
+variable. This variable could be snow melt or something else entirely
+(like a trafficability thing?) This is pretty straight forward, we just
+need to add the index to the FarmR using `add_variable()`. One thing we
+need to keep in mind is that this needs to be compatible for the climate
+scenarios (i.e. we can only base it off climate variables which we also
+have future data on.)
+
+Some things to consider:
+
+-   Run SWAT+ for the weather data + scenarios data and use the
+    calculated snow melt
+
+-   Re-create the snow melt model of SWAT+ and use that
+
+-   Use HBV or Persist models
+
+-   Use some tractability index for Norway (Attila?)
