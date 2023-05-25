@@ -36,7 +36,7 @@ create_swatplus_database <- function(project_path, project_name){
   dbDisconnect(db)
   
   # write template SWAT+Editor data base to project path
-  file.copy("swatplus_init.sqlite",proj_path)
+  file.copy("model_data/swat_buildR/swatplus_init.sqlite",proj_path)
   # file.copy(system.file("extdata/swatplus_init.sqlite", package = "SWATbuildR"),
   #           db_path)
   db <- dbConnect(SQLite(), proj_path)
