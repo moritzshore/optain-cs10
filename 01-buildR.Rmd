@@ -6,23 +6,14 @@ print(paste("Code executed on", Sys.time()))
 
 The OPTAIN project is using the COCOA approach [@schürz2022] and as such, needs to use the `SWATBuildR` package to build the SWAT+ model setup and calculate the connectivity between HRUs in the catchment. This chapter covers this process.
 
-We will define the location of our project here:
-
-```{r, projectpath}
-project_path <- 'model_data/cs10_setup'
-```
-
-And give it the name:
-
-```{r, projname}
-project_name <- 'optain-cs10'
-```
+## BuildR Setup
 
 We will need the following packages for this chapter:
 
 ```{r, libraries, message=FALSE}
-# not loading any packages because they interfere with the `install_load` 
-# functions of buildR. this means i need to prefix everything with :: until
+
+# not loading most packages because they interfere with the `install_load` 
+# functions of BuildR. this means I need to prefix everything with :: until
 # Christoph turns BuildR into a proper package with proper scoping. 
 
 # require(dplyr)
@@ -31,23 +22,30 @@ We will need the following packages for this chapter:
 # require(sf)
 # require(raster)
 # require(terra)
+
 require(magrittr)
-```
+require(raster)
 
-This is a custom theme we will use in many GGplots:
-
-```{r}
-sf_theme <- ggplot2::theme(axis.text.x=ggplot2::element_blank(), #remove x axis labels
-        axis.ticks.x=ggplot2::element_blank(), #remove x axis ticks
-        axis.text.y=ggplot2::element_blank(),  #remove y axis labels
-        axis.ticks.y=ggplot2::element_blank()  #remove y axis ticks
+# Common ggplot theme for simple features
+sf_theme <- ggplot2::theme(axis.text.x=ggplot2::element_blank(),
+        axis.ticks.x=ggplot2::element_blank(), 
+        axis.text.y=ggplot2::element_blank(), 
+        axis.ticks.y=ggplot2::element_blank()
         )
 ```
 
-If this flag is set to true, the following code will actually run buildR, which could take about 4 hours!
+We will define the location of our project here, and give it a name:
 
-```{r}
+```{r, projectpath}
+project_path <- 'model_data/cs10_setup'
+project_name <- 'optain-cs10'
+
+# run the buildR?
 run_code = FALSE
+
+# load the BuildR
+source('model_data/swat_buildR/init.R')
+# Note the many "maskings" occuring here, dangerous!
 ```
 
 ## Processing input data
@@ -64,8 +62,7 @@ dem_path <- "model_data/input/elevation/dtm3_ns_v5.tif"
 
 ```{r, plotdemraster, message=FALSE, fig.align = "center", fig.cap="CS10 Digital elevation model (DEM)."}
 dem_rast <- raster::raster(dem_path)
-# disabled due to scoping problems from buildR script
-#plot(dem_rast)
+plot(dem_rast)
 ```
 
 To our knowledge, it has a 10 meter resolution. 1 meter resolution was available but there seems to have been issues with using it. It is definitely preferable to use the 1m DEM as certain important information can be lost with (max allowed resolution) of 10m.
@@ -88,15 +85,7 @@ basin <- ggplot2::ggplot(bound_sf) + ggplot2::geom_sf() + sf_theme
 print(basin)
 ```
 
-We will begin using the `SWATBuildR` Package by initializing its functions. (Note: this package is currently unfinished, which is why this step is necessary).
-
-The following code and commentary is from version `1.5.12`, written by Christoph Schuerz.
-
-Another note: there are currently issues with White box which are being resolved.
-
-```{r, sourceBuildRinit, message=FALSE}
-source('model_data/swat_buildR/init.R')
-```
+The following code and commentary is from version `1.5.14`, written by Christoph Schuerz.
 
 BuildR recommends all layers to be in the same CRS, if we set `project_layer` to `FALSE`, it will throw an error when this is not the case:
 
@@ -176,7 +165,6 @@ channel_map <- ggplot2::ggplot() + ggplot2::geom_sf(data = bound_sf) +
   ggplot2::geom_sf(data = channels, mapping = ggplot2::aes(color = type)) + sf_theme
 
 channel_map
-
 ```
 
 BuildR runs some checks:
@@ -224,47 +212,16 @@ dem <- rast(dem_path) %>%
 
 check_raster_coverage(rst = dem, vct_layer = 'land', data_path = data_path, 
                       label = 'dem', cov_frc = 0.95)
-
-# broken
-#save_dem_slope_raster(dem, data_path)
-```
-
-The function `save_dem_slope_raster()` is currently broken, we we are going to write our own alternative without using Whitebox.
-
-```{r, eval=run_code}
-raster::writeRaster(dem, paste0(data_path, '/raster/dem.tif'), 
-              overwrite = TRUE)
-# wbt_clip_raster_to_polygon replacement
-basin <- sf::read_sf(paste0(data_path, '/vector/basin.shp'))
-cropped_basin <- terra::crop(dem, basin, mask= T)
-
-raster::writeRaster(cropped_basin,
-            paste0(data_path, '/raster/dem2.tif'),
-            overwrite = TRUE)
-
-# I am not sure as to what this actually does
-# reclass_vals - Reclassification triplet values (new value;from value; to less than)
-wbt_reclass(
-  input = paste0(data_path, '/raster/dem2.tif'),
-  output = paste0(data_path, '/raster/dem3.tif'),
-  reclass_vals = "0;9999999;9999999" 
-) %>% capture.output(., file = 'NULL')
-
-wbt_slope(
-  dem = paste0(data_path, '/raster/dem3.tif'),
-  output = paste0(data_path, '/raster/slope.tif'),
-  units = 'percent'
-)
-
-file.remove('NULL')
+save_dem_slope_raster(dem, data_path)
 ```
 
 Here is the result:
 
-```{r, fig_cs10dem_cropped, fig.align='center', fig.cap= "CS10 DEM cropped to basin area"}
-# disabled due to scoping problems from buildR script
+```{r demcropplot, fig.cap="CS10 DEM cropped to basin", message=FALSE, warning=FALSE,  fig.align='center'}
 
-#plot(cropped_basin)
+map <- raster::raster("model_data/cs10_setup/optain-cs10/data/raster/dem.tif")
+plot(map)
+
 ```
 
 ### Processing soil data
@@ -278,9 +235,7 @@ soil_layer_path  <- 'model_data/input/soil/soil_layer.tif'
 No documentation exists on its creation.
 
 ```{r soilrastermapplot, fig.align='center', fig.cap="CS10 Soil map", message=FALSE, warning=FALSE, echo=T}
-# disabled due to scoping problems from buildR script
-
-#plot(raster::raster(soil_layer_path))
+plot(raster::raster(soil_layer_path))
 ```
 
 The soil data and look-up path are located here:
@@ -332,7 +287,7 @@ prepare_terrain_land(data_path)
 
 The connection of each land object to neighboring land and water objects is calculated based on the flow accumulation and the D8 flow pointer along the object edge
 
-```{r message=FALSE, warning=FALSE, calculate_land_connectivity, eval=run_code, results='hide'}
+```{r message=FALSE, warning=FALSE, calculate_land_connectivity, eval=FALSE, results='hide'}
 calculate_land_connectivity(data_path)
 ```
 
@@ -355,8 +310,8 @@ frc_thres <- 0.3
 The remaining land object connections are analyzed for infinite loop routing. For each land unit the connections are propagated and checked if the end up again in the same unit.
 
 ```{r, reduce_land_connections, eval=run_code}
-reduce_land_connections(data_path, frc_thres) %>% 
-  check_infinite_loops(., data_path, 'Land')
+# reduce_land_connections(data_path, frc_thres) %>% 
+#  check_infinite_loops(., data_path, 'Land')
 ```
 
 ```{r}
@@ -381,7 +336,7 @@ reduce_land_connections(data_path, frc_thres) %>%
 # connections.
 ```
 
-Csilla -- What do we do here -- I think in the past Alex just removed all the loops, but it says here it is not recommended when there are a lot of them. Should we increase the threshold? Should we try to break up the loops? You can see the problem polygons on the map below:
+What do we do here ? -- I think in the past Alex just removed all the loops, but it says here it is not recommended when there are a lot of them. Should we increase the threshold? Should we try to break up the loops? You can see the problem polygons on the map below:
 
 ```{r}
 land_inifnite_loops_shp <- sf::read_sf("model_data/cs10_setup/optain-cs10/data/vector/land_infinite_loops.gpkg")
@@ -390,6 +345,26 @@ mapview::mapview(land_inifnite_loops_shp)
 ```
 
 To me it seems to complicated to try to break up the loops, maybe increase the threshold a bit and see what happens? and delete the rest?
+
+Increasing threshold and re-running leads to this:
+
+```{r, frc_thres2}
+frc_thres <- 0.1 # xxx loops (   mins)
+frc_thres <- 0.2 # 238 loops (30 mins)
+frc_thres <- 0.3 # 150 loops (12 mins)
+frc_thres <- 0.4 # 115 loops (   mins)
+frc_thres <- 0.5 # 94  loops (   mins)
+frc_thres <- 0.6 # 57  loops (   mins)
+```
+
+We have decided that at a threshold of 0.3 and 150, we are within the "not that many" loops territory, considering out of 6000+ HRUs, it is only around 2%. Therefore we will let BuildR continue and remove them.
+
+```{r}
+frc_thres <- 0.3 # 150 loops
+
+reduce_land_connections(data_path, frc_thres) %>% 
+  check_infinite_loops(., data_path, 'Land')
+```
 
 #### Resolve infinite loops
 
@@ -411,7 +386,7 @@ build_water_object_connectivity(data_path)
 
 ### Checking the water objects for infinite loops
 
-From the cha_res_con_out tables id_from/id_to links are generated and checked for infinite loop routing.
+From the `cha_res_con_out` tables `id_from`/`id_to` links are generated and checked for infinite loop routing.
 
 ```{r, prepare_water_links, eval=run_code}
 prepare_water_links(data_path) %>% 
@@ -444,7 +419,7 @@ build_hru_input(data_path)
 
 Add wetlands to the HRUs and build the wetland input files and write them into `data_path/tables.sqlite`
 
-(TODO fix this!)
+We only use the `wetf` land use .
 
 ```{r, wetland_landuse}
 wetland_landuse <- c('wehb', 'wetf', 'wetl', 'wetn')
@@ -488,7 +463,7 @@ build_ls_unit_input(data_path)
 
 ### Build aquifer input
 
-Build the SWAT+ aquifer input files for a single aquifer for the entire catchment. The connectivity to the channels with geomorphic flow must be added after writing the txt input files. **This is not implemented in the script yet.**
+Build the SWAT+ aquifer input files for a single aquifer for the entire catchment. The connectivity to the channels with geomorphic flow must be added after writing the `txt` input files. **This is not implemented in the script yet.**
 
 ```{r, build_single_aquifer_files, eval=run_code}
 build_single_aquifer_files(data_path)
@@ -516,7 +491,7 @@ Map of point sources, colored by (assumed) phosphorous and size by (assumed) Nit
 Maximum distance of a point source to a channel or a reservoir to be included as a point source object (recall) in the model setup:
 
 ```{r, max_point_dist}
-max_point_dist <- 500 #meters
+max_point_dist <- 500 # meters
 ```
 
 Point source records can automatically be added from files in the same folder as the point source location layer. To be identified as point source data the files must be named as `<name>_<interval>.csv`, where `<name>` must be the name of a point `int` the vector layer and `<interval>` must be one of `const`, `yr`, `mon`, or `day` depending on the time intervals in the input data.
