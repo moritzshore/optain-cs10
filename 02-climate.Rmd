@@ -1,8 +1,8 @@
 # Climate inputs and weather generator
 
-## Preperation and loading data
+## Preparation and loading data
 
-To add weather and climate data to our SWAT project, we will use `svatools`
+To add weather and climate data to our SWAT project, we will use `svatools` [@svajunas2023]
 
 ### Required packages
 
@@ -17,7 +17,7 @@ require(mapview)
 
 ### Load in the file(s) and load svatools template
 
-First we load in the template and fill it in with our values and rename it to "cs10_weather_data.xlsx". This is not done within R.
+First we load in the template and fill it in with our values and rename it to "cs10_weather_data.xlsx". This is not done within R. No detailed documentation exists on the source of this data (yet).
 
 ```{r}
 #temp_path <- system.file("extdata", "weather_data.xlsx", package = "svatools")
@@ -72,12 +72,13 @@ write.csv(wgn$wgn_st, "model_data/input/met/as_wgn_st.csv", row.names = FALSE, q
 write.csv(wgn$wgn_data, "model_data/input/met/as_wgn_data.csv", row.names = FALSE, quote = FALSE)
 ```
 
-## Adding weather data to SWAT project
+## Adding weather data to SWAT+ project
 
-Currently, this throws an error -- Cannot tell why, but might not be an issue because it still writes the files that we need. Because the buildR script is currently broken, we cannot evaluate the following code
+This adds the weather generator and weather stations to our SWAT+ project
 
 ```{r, eval=FALSE}
-db_path <- "model_data/cs10_setup/optain-cs10/...sqlite"
+db_path <- "model_data/cs10_setup/optain-cs10/optain-cs10.sqlite"
 add_weather(db_path, met_lst, wgn)
 ```
 
+Big thank you to Svajunas for his svatools package, making our lives much easier!
