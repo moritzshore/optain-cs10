@@ -504,32 +504,8 @@ add_point_sources(point_path, data_path, max_point_dist)
 
 #### Write the SWAT+Editor project database
 
-The database will be located the 'project_path'. After writing the database it can be opened and edited with the SWAT+Editor.
+The database will be located the 'project_path'.
 
 ```{r, create_swatplus_database, eval=run_code}
 create_swatplus_database(project_path, project_name)
-```
-
----
-The next step involves you entering the SWAT+ Editor and parameterizing the
-model from there. These are the steps we have taken, with screenshots since it
-is currently not possible to replicate this process in R.
----
-
-### TODO
-
-Switch to SWAT+Editor for further model parametrization and continue with the step below after writing the SWAT+ projects' text input files
-
-### Link aquifers and channels with geomorphic flow
-
-A SWATbuildR model setup only has one single aquifer (in its current version). This aquifer is linked with all channels through a channel- aquifer-link file (`aqu_cha.lin`) in order to maintain recharge from the aquifer into the channels using the geomorphic flow option of SWAT+ The required input file cannot be written with the SWAT+Editor. Therefore it has to be generated in a step after writing the model text input files with the SWAT+Editor.
-
-Path of the TxtInOut folder (project folder where the SWAT+ text files are written with the SWAT+Editor)
-
-```{r, txtpath}
-txt_path <- '../swat_runs/txtinouit/'
-```
-
-```{r, linkaqui}
-#link_aquifer_channels(txt_path)
 ```
