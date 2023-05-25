@@ -13,7 +13,7 @@ The SWATBuildR cannot write the actual text files for our model setup, we have t
 1.  After clicking on the Run Model / Save Scenario button, you arrive at the "Confirm Simulation Settings" page. Here you need to choose where to write your input files. We have chosen `cs10_setup/swat_input`.
 2.  We have also changed our simulation time period, but this is not required.
 3.  Make sure to un-check "Run SWAT" and "Analyze output for visualization"
-4.  Save settings and run selected
+4.  "Save settings & Run Selected"
 
 ![Confirm Simulation Settings. Make sure to follow the instructions carefully here.](figures/write_inputs.png)
 
@@ -27,17 +27,20 @@ We will copy in our SWAT+ executable, our input files, and our weather files int
 
 > For some reason, when writing the SWAT+ input files, it does not write the weather station data. I am not sure if this is intended or not. the SWAT+ model still runs fine, however maybe it is using the weather generator? The meteo input fles are located in the same directory as the `sqlite`, probably because `svatools` put them there? #TODO
 
-Our current SWAT+ version is `rev60.5.4_64rel.exe` but this is **subject to change.**
+Our current SWAT+ version is `rev60.5.4_64rel.exe` but this is **subject to change**
 
-Make a run directory
+Make a run directory and enable code running.
 
-```{r}
+```{r, eval=post_editor}
+# if set to true, following code will be evalutated. 
+post_editor = FALSE
+
 dir.create("model_data/cs10_setup/run_swat", showWarnings = F)
 ```
 
 Copy all required files into this directory:
 
-```{r}
+```{r, eval=post_editor}
 
 sta_files <- list.files("model_data/cs10_setup/optain-cs10/",
              pattern = "sta_", full.names = T)
@@ -61,7 +64,7 @@ status <- file.copy(from = source_files,
 
 Lets run some checks on these files
 
-```{r}
+```{r, eval=post_editor}
 
 if(any(status == FALSE)){
   warning("Some files were not copied:")
@@ -82,7 +85,7 @@ print(
 
 Now lets run the model to make sure it works
 
-```{r}
+```{r, test_swat_1, eval=post_editor}
 # update time sim
 time_sim <- readLines("model_data/cs10_setup/run_swat/time.sim")
 time_sim[3] <- "       0      2010         0      2011         0  "
@@ -120,7 +123,7 @@ txt_path <- 'model_data/cs10_setup/swat_input/'
 
 Linking the aquifer to the channels
 
-```{r}
+```{r, eval=run_code}
 link_aquifer_channels(txt_path)
 ```
 
@@ -128,8 +131,10 @@ This created the file `aqu_cha.lin` and changed `file.cio` to point to it (row 1
 
 Let us test to see if SWAT+ still runs
 
-```{r}
+```{r,running_swat, eval=post_editor}
 simout <- test_swat()
 
 cat(tail(simout), sep = "\n")
 ```
+
+Success.
