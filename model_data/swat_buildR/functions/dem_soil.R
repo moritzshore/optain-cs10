@@ -4,19 +4,51 @@
 #' @param data_path Path of the project data folder
 #' 
 save_dem_slope_raster <- function(dem, data_path) {
-  writeRaster(dem, paste0(data_path, '/raster/dem.tif'), 
-              overwrite = TRUE)
-  wbt_clip_raster_to_polygon(input = paste0(data_path, '/raster/dem.tif'),
-                             polygons = paste0(data_path, '/vector/basin.shp'),
-                             output = paste0(data_path, '/raster/dem.tif'))
-  wbt_reclass(input = paste0(data_path, '/raster/dem.tif'),
-              output = paste0(data_path, '/raster/dem.tif'),
-              reclass_vals = "0;9999999;9999999") %>% 
-  capture.output(., file='NULL')
-  wbt_slope(dem = paste0(data_path, '/raster/dem.tif'),
-            output = paste0(data_path, '/raster/slope.tif'),
-            units = 'percent')
-  file.remove('NULL')
+  # writeRaster(dem, paste0(data_path, '/raster/dem.tif'), 
+  #             overwrite = TRUE)
+  # load watershed
+  basin <- vect(paste0(data_path, '/vector/basin.shp'))
+  
+  # crop DEM to watershed
+  dem_basin <- crop(dem, basin, mask = TRUE)
+  
+  # Define NA flag value for raster layer
+  NA_value <- -1.79769e308
+  
+  # Save solution to specifically reclass all NA values to the NA flag value
+  dem_basin <- classify(dem_basin, cbind(NA, NA_value))
+  
+  #Assign NA flag value as NA in raster
+  NAflag(dem_basin) <- NA_value
+  
+  # save file DEM layer
+  writeRaster(dem_basin,
+              paste0(data_path, '/raster/dem.tif'),
+              overwrite = TRUE, 
+              datatype = "FLT4S",
+              NAflag = NA_value)
+  
+  # Calculate the slope from the cropped DEM layer and convert to percent
+  slp_rad <- terrain(cropped_basin, v="slope", neighbors=8, unit="radians")
+  slp_pct <- 100*tan(slp_rad)
+  
+  # Save slope layer
+  writeRaster(slp_pct,
+              paste0(data_path, '/raster/slope.tif'),
+              overwrite = TRUE, 
+              datatype = "FLT4S",
+              NAflag = NA_value)
+  # wbt_clip_raster_to_polygon(input = paste0(data_path, '/raster/dem.tif'),
+  #                            polygons = paste0(data_path, '/vector/basin.shp'),
+  #                            output = paste0(data_path, '/raster/dem.tif'))
+  # wbt_reclass(input = paste0(data_path, '/raster/dem.tif'),
+  #             output = paste0(data_path, '/raster/dem.tif'),
+  #             reclass_vals = "0;9999999;9999999") %>% 
+  # capture.output(., file='NULL')
+  # wbt_slope(dem = paste0(data_path, '/raster/dem.tif'),
+  #           output = paste0(data_path, '/raster/slope.tif'),
+  #           units = 'percent')
+  # file.remove('NULL')
 }
 
 ## Save dem and slope raster layers in the project data/raster folder 
@@ -27,13 +59,32 @@ save_dem_slope_raster <- function(dem, data_path) {
 save_soil_raster <- function(soil, data_path) {
   dem <- rast(paste0(data_path, '/raster/dem.tif'))
   soil <- project(soil, dem, method = 'near')
-  writeRaster(soil, paste0(data_path, '/raster/soil.tif'), 
-              overwrite = TRUE)
-  wbt_reclass(input = paste0(data_path, '/raster/soil.tif'),
-              output = paste0(data_path, '/raster/soil.tif'),
-              reclass_vals = "0;9999999;9999999") %>% 
-    capture.output(., file='NULL')
-  file.remove('NULL')
+  
+  # load watershed
+  basin <- vect(paste0(data_path, '/vector/basin.shp'))
+  
+  # crop DEM to watershed
+  soil_basin <- crop(soil, basin, mask = TRUE)
+  
+  # Define NA flag value for raster layer
+  NA_value <- -1.79769e308
+  
+  # Save solution to specifically reclass all NA values to the NA flag value
+  soil_basin <- classify(soil_basin, cbind(NA, NA_value))
+  
+  #Assign NA flag value as NA in raster
+  NAflag(soil_basin) <- NA_value
+  
+  writeRaster(soil_basin, 
+              paste0(data_path, '/raster/soil.tif'), 
+              overwrite = TRUE, 
+              datatype = "FLT4S",
+              NAflag = NA_value)
+  # wbt_reclass(input = paste0(data_path, '/raster/soil.tif'),
+  #             output = paste0(data_path, '/raster/soil.tif'),
+  #             reclass_vals = "0;9999999;9999999") %>% 
+  #   capture.output(., file='NULL')
+  # file.remove('NULL')
 }
 
 ## Aggregate the raster properties of the DEM and the soil layer for the 
@@ -57,7 +108,7 @@ aggregate_hru_dem_soil <- function(data_path) {
   elev  <- zonal(dem, vect(hru), fun = mean, na.rm = TRUE)
   
   slope <- zonal(slp,    vect(hru), fun = mean, na.rm = TRUE)
-  soil  <- terra::extract(soil, vect(hru), fun = mode, na.rm = TRUE)
+  soil  <- extract(soil, vect(hru), fun = mode, na.rm = TRUE)
   
   hru_tbl <- tibble(id    = hru$id,
                     elev  = elev[[1]],
