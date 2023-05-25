@@ -1,3 +1,9 @@
+---
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
 # Landuse.lum update
 
 This section covers the modifications made to the landuse file. For some
@@ -81,13 +87,13 @@ There is no info on this column, so we are going to leave it as `null`.
 
 ### Setting `plnt_com`
 
-This step will be done by SWATFarmR
-\@ref(scheduling-managment-with-swatfarmr).
+This step will be done by SWATFarmR in Section
+\@ref(swatfarmr-management-schedules).
 
 ### Setting `mgt`
 
-This step will be done by SWATFarmR
-\@ref(scheduling-managment-with-swatfarmr).
+This step will be done by SWATFarmR in Section
+\@ref(swatfarmr-management-schedules).
 
 ### Setting `urb_ro`
 

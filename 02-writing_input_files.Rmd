@@ -19,7 +19,7 @@ The SWATBuildR cannot write the actual text files for our model setup, we have t
 
 Your SWAT+ input files will be generated, and you will be prompted to Save Scenario. **This is not recommended**, because in our testing, the scenario saving would recursively generate new scenarios within the same folder, until all file space had been exhausted on the drive. This extremely deep folder **brings windows to its knees**, even when trying to delete it using explorer (Use Powershell instead).
 
-![Option to save a scenario. Not recomended]()![Option to save scenario. Not Recommended.](figures/all_tasks_done.png)
+[Option to save scenario. Not Recommended.](figures/all_tasks_done.png)
 
 ## SWAT+ Test Run
 
@@ -33,7 +33,7 @@ Make a run directory and enable code running.
 
 ```{r}
 # if set to true, following code will be evalutated. 
-post_editor = FALSE
+post_editor = TRUE
 
 dir.create("model_data/cs10_setup/run_swat", showWarnings = F)
 ```
@@ -91,7 +91,7 @@ time_sim <- readLines("model_data/cs10_setup/run_swat/time.sim")
 time_sim[3] <- "       0      2010         0      2011         0  "
 writeLines(text = time_sim, con = "model_data/cs10_setup/run_swat/time.sim")
 
-processx::run(command = "rev60.5.4_64rel.exe",
+msg <- processx::run(command = "rev60.5.4_64rel.exe",
               wd = "model_data/cs10_setup/run_swat/")
 
 
