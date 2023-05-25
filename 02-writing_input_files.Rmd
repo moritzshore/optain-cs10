@@ -10,9 +10,9 @@ The SWATBuildR cannot write the actual text files for our model setup, we have t
 
 ![Project Information. The weather generator has been complete by svatools in Section \@ref(adding-weather-data-to-swat-project).](figures/proj_info.png)
 
-1.   After clicking on the Run Model / Save Scenario button, you arrive at the "Confirm Simulation Settings" page. Here you need to choose where to write your input files. We have chosen `cs10_setup/swat_input`.
-2.   We have also changed our simulation time period, but this is not required.
-3.   Make sure to un-check "Run SWAT" and "Analyze output for visualization"
+1.  After clicking on the Run Model / Save Scenario button, you arrive at the "Confirm Simulation Settings" page. Here you need to choose where to write your input files. We have chosen `cs10_setup/swat_input`.
+2.  We have also changed our simulation time period, but this is not required.
+3.  Make sure to un-check "Run SWAT" and "Analyze output for visualization"
 4.  Save settings and run selected
 
 ![Confirm Simulation Settings. Make sure to follow the instructions carefully here.](figures/write_inputs.png)
@@ -83,13 +83,31 @@ print(
 Now lets run the model to make sure it works
 
 ```{r}
-work_dir <- paste0(getwd(), "/model_data/run_swat/")
-system2("model_data/cs10_setup/run_swat/rev60.5.4_64rel.exe", env = work_dir)
+# update time sim
+time_sim <- readLines("model_data/cs10_setup/run_swat/time.sim")
+time_sim[3] <- "       0      2010         0      2011         0  "
+writeLines(text = time_sim, con = "model_data/cs10_setup/run_swat/time.sim")
+
+processx::run(command = "rev60.5.4_64rel.exe",
+              wd = "model_data/cs10_setup/run_swat/")
+
+
+simout <- readLines("model_data/cs10_setup/run_swat/simulation.out")
+
+cat(tail(simout), sep = "\n")
 ```
+
+It will be useful to test SWAT+ along our journey, so we will reuse this code in the function `test_swat()`
+
+```{r}
+source("model_data/code/test_swat.R")
+```
+
+We can now continue with our final buildR step
 
 ## Link aquifers and channels with geomorphic flow
 
-A SWATBuildR model setup only has one single aquifer (in its current version). This aquifer is linked with all channels through a channel- aquifer-link file (`aqu_cha.lin`) in order to maintain recharge from the aquifer into the channels using the geomorphic flow option of SWAT+.
+A SWATBuildR model setup only has one single aquifer (in its current version). This aquifer is linked with all channels through a channel-aquifer-link file (`aqu_cha.lin`) in order to maintain recharge from the aquifer into the channels using the geomorphic flow option of SWAT+.
 
 The required input file cannot be written with the SWAT+Editor. **Therefore it has to be generated in a step after writing the model text input files with the SWAT+Editor.**
 
@@ -104,4 +122,14 @@ Linking the aquifer to the channels
 
 ```{r}
 link_aquifer_channels(txt_path)
+```
+
+This created the file `aqu_cha.lin` and changed `file.cio` to point to it (row 16, column 3)
+
+Let us test to see if SWAT+ still runs
+
+```{r}
+simout <- test_swat()
+
+cat(tail(simout), sep = "\n")
 ```
