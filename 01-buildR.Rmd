@@ -287,7 +287,7 @@ prepare_terrain_land(data_path)
 
 The connection of each land object to neighboring land and water objects is calculated based on the flow accumulation and the D8 flow pointer along the object edge
 
-```{r message=FALSE, warning=FALSE, calculate_land_connectivity, eval=FALSE, results='hide'}
+```{r message=FALSE, warning=FALSE, calculate_land_connectivity, eval=run_code, results='hide'}
 calculate_land_connectivity(data_path)
 ```
 
@@ -336,7 +336,7 @@ The remaining land object connections are analyzed for infinite loop routing. Fo
 # connections.
 ```
 
-What do we do here ? -- I think in the past Alex just removed all the loops, but it says here it is not recommended when there are a lot of them. Should we increase the threshold? Should we try to break up the loops? You can see the problem polygons on the map below:
+What do we do here ? -- I think in the past we just removed all the loops, but it says here it is not recommended when there are a lot of them. Should we increase the threshold? Should we try to break up the loops? You can see the problem polygons on the map below:
 
 ```{r}
 land_inifnite_loops_shp <- sf::read_sf("model_data/cs10_setup/optain-cs10/data/vector/land_infinite_loops.gpkg")
@@ -349,7 +349,7 @@ To me it seems to complicated to try to break up the loops, maybe increase the t
 Increasing threshold and re-running leads to this:
 
 ```{r, frc_thres2}
-frc_thres <- 0.1 # xxx loops (   mins)
+frc_thres <- 0.1 #     loops (   mins)
 frc_thres <- 0.2 # 238 loops (30 mins)
 frc_thres <- 0.3 # 150 loops (12 mins)
 frc_thres <- 0.4 # 115 loops (   mins)
