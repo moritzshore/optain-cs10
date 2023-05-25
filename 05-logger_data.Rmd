@@ -194,10 +194,9 @@ Also important to note, is that all this code is only necessary, because of the 
 Reading in the SWAT source precipitation data:
 
 ```{r}
-# TODO remove temp
-swat_pcp <- read.table("model_data/cs10_setup/temp_sta_id1.pcp", skip = 3, header = F, sep = "\t") %>% as_tibble()
+swat_pcp <- read.table("model_data/cs10_setup/optain-cs10/sta_id1.pcp", skip = 3, header = F, sep = "\t") %>% as_tibble()
 
-swat_tmp <- read.table("model_data/cs10_setup/temp_sta_id1.tmp", skip = 3, header = F, sep = "\t") %>% as_tibble()
+swat_tmp <- read.table("model_data/cs10_setup/optain-cs10/sta_id1.tmp", skip = 3, header = F, sep = "\t") %>% as_tibble()
 ```
 
 Data preview:

@@ -338,7 +338,7 @@ The remaining land object connections are analyzed for infinite loop routing. Fo
 
 What do we do here ? -- I think in the past we just removed all the loops, but it says here it is not recommended when there are a lot of them. Should we increase the threshold? Should we try to break up the loops? You can see the problem polygons on the map below:
 
-```{r}
+```{r, eval = run_code}
 land_inifnite_loops_shp <- sf::read_sf("model_data/cs10_setup/optain-cs10/data/vector/land_infinite_loops.gpkg")
 
 mapview::mapview(land_inifnite_loops_shp)
@@ -359,7 +359,7 @@ frc_thres <- 0.6 # 57  loops (   mins)
 
 We have decided that at a threshold of 0.3 and 150, we are within the "not that many" loops territory, considering out of 6000+ HRUs, it is only around 2%. Therefore we will let BuildR continue and remove them.
 
-```{r}
+```{r, eval=run_code}
 frc_thres <- 0.3 # 150 loops
 
 reduce_land_connections(data_path, frc_thres) %>% 

@@ -31,7 +31,7 @@ Our current SWAT+ version is `rev60.5.4_64rel.exe` but this is **subject to chan
 
 Make a run directory and enable code running.
 
-```{r, eval=post_editor}
+```{r}
 # if set to true, following code will be evalutated. 
 post_editor = FALSE
 
@@ -138,3 +138,8 @@ cat(tail(simout), sep = "\n")
 ```
 
 Success.
+
+```{r}
+# remove the swat+ run
+unlink("model_data/cs10_setup/run_swat/", recursive = T)
+```

@@ -31,7 +31,7 @@ format for better printing to console
 
 ```{r, eval}
 landuse_lum <-
-  read.table("model_data/cs10_setup/temp_landuse.lum", skip = 1, header = T) %>% tibble::as_tibble()
+  read.table("model_data/cs10_setup/swat_input/landuse.lum", skip = 1, header = T) %>% tibble::as_tibble()
 ```
 
 ```{r lum_tab, tidy=FALSE, echo=FALSE}
@@ -157,7 +157,7 @@ doing this fancy Rmarkdown stuff, we're going to do it with code! Lets
 jump in and get at this file. (REMEBER TO REMOVE THE TEMP)
 
 ```{r}
-ovn_table_path <- "model_data/cs10_setup/temp_ovn_table.lum"
+ovn_table_path <- "model_data/cs10_setup/swat_input/ovn_table.lum"
 ovn_table <- readLines(ovn_table_path)
 ```
 
@@ -517,8 +517,7 @@ landuse_lum$cn2[which(landuse_lum$field_id %in% conv_fields)] <-
 For this, we need to add some custom entries to the database:
 
 ```{r}
-# TODO: remove temp!!!!
-cons_prac_path <- "model_data/cs10_setup/temp_cons_practice.lum"
+cons_prac_path <- "model_data/cs10_setup/swat_input/cons_practice.lum"
 cons_prac <- readLines(cons_prac_path)
 cons_prac[1:3] %>% print()
 ```
@@ -730,7 +729,7 @@ Lets write out changes
 
 ```{r}
 
-new_lum_path <- "model_data/cs10_setup/temp_lum_new.lum"
+new_lum_path <- "model_data/cs10_setup/swat_input/landuse2.lum"
 
 write.table(landuse_lum, file = new_lum_path, sep = "\t", quote = F, row.names = F)
 
