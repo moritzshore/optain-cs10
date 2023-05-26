@@ -41,7 +41,7 @@ project_path <- 'model_data/cs10_setup'
 project_name <- 'optain-cs10'
 
 # run the buildR?
-run_code = FALSE
+run_code = TRUE
 
 # load the BuildR
 source('model_data/swat_buildR/init.R')
@@ -212,7 +212,7 @@ dem <- rast(dem_path) %>%
 
 check_raster_coverage(rst = dem, vct_layer = 'land', data_path = data_path, 
                       label = 'dem', cov_frc = 0.95)
-save_dem_slope_raster(dem, data_path)
+save_dem_slope_raster(dem = dem, data_path = data_path)
 ```
 
 Here is the result:
