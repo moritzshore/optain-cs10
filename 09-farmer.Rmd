@@ -278,18 +278,50 @@ If the FarmR has never been initialized, then use `new_farmr()` and
 EVAL FALSE as BuildR script is still broken
 
 ```{r, eval = FALSE}
-project_path <- "model_data/cs10_setup"
+project_path <- "model_data/cs10_setup/swat_farmr/"
 
 SWATfarmR::new_farmr(project_name = "cs10", project_path = project_path )
 
 #load_farmr(...)
 
-cs10$read_management(file = "farmR_input/farmR_input2.csv")
+cs10$read_management(file = "model_data/input/management/farmR_input2.csv")
 ```
 
 ## Calculating Antecedent Precipitation Index
 
 TODO loading API from section REF
+```{r}
+# using temp API
+
+# TODO add real API
+
+# Load dplyr. We will use functions such as 'mutate' and 'select'.
+library(dplyr)
+# Extract the precipitation from the farmr project
+pcp <- cs10$.data$variables$pcp
+
+# Extract the hydrologic soil group values for all HRUs
+hsg <- select(cs10$.data$meta$hru_attributes, hru, hyd_grp)
+
+# Calculate api values for the hsg classes A to D
+api_A <- variable_decay(variable = pcp, n_steps = -5, decay_rate = 1)
+api_B <- variable_decay(variable = pcp, n_steps = -5, decay_rate = 0.8)
+api_C <- variable_decay(variable = pcp, n_steps = -5, decay_rate = 0.7)
+api_D <- variable_decay(variable = pcp, n_steps = -5, decay_rate = 0.5)
+
+# Bind the data together into one api table and name them with the hsgs
+api <- bind_cols(api_A, api_B, api_C, api_D)
+names(api) <- c('api_A', 'api_B', 'api_C', 'api_D')
+
+# To add the variable to the farmR you have to tell it which variables are
+# assigned to which HRUs
+hru_asgn <- mutate(hsg, api = paste0('api_', hyd_grp)) %>% select(hru, api)
+  
+# Add the variable api to the farmR project
+cs10$add_variable(data = api, name = 'api', assign_unit = hru_asgn, overwrite = T)
+
+```
+
 
 ....
 
@@ -298,7 +330,8 @@ TODO loading API from section REF
 EVAL FALSE as BuildR script is still broken
 
 ```{r, eval=FALSE}
-cs10$schedule_operations(start_year = 2010, end_year = 2020, n_schedule = 2)
+
+cs10$schedule_operations(start_year = 2016, end_year = 2019, n_schedule = 2)
 ```
 
 ### Write Operations
