@@ -124,6 +124,10 @@ txt_path <- 'model_data/cs10_setup/swat_input/'
 Linking the aquifer to the channels
 
 ```{r, eval=run_code}
+project_path <- 'model_data/cs10_setup'
+project_name <- 'optain-cs10'
+source('model_data/swat_buildR/init.R')
+
 link_aquifer_channels(txt_path)
 ```
 
