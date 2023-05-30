@@ -13,6 +13,8 @@ require(readr)
 require(readxl)
 require(sf)
 require(mapview)
+require(ggpot2)
+require(tidyr)
 ```
 
 ### Load in the file(s) and load svatools template
@@ -81,4 +83,36 @@ db_path <- "model_data/cs10_setup/optain-cs10/optain-cs10.sqlite"
 add_weather(db_path, met_lst, wgn)
 ```
 
+## Adding Atmospheric deposition
+
+Instructions and documentation can be found
+[here](https://biopsichas.github.io/svatools/articles/deposition.html)
+
+Getting the data:
+
+```{r, eval = FALSE}
+basin_path <- "model_data/input/shape/cs10_basin.shp"
+df <-
+  get_atmo_dep(
+    basin_path,
+    start_year = 2010,
+    end_year = 2020,
+    t_ext = "year"
+  )
+```
+A plot of the results:
+
+```{r}
+ggplot(pivot_longer(df, !DATE, names_to = "par", values_to = "values"), aes(x = DATE, y = values))+ 
+  geom_line()+ 
+  facet_wrap(~par, scales = "free_y")+ 
+  theme_bw()
+```
+
+Adding the data to the SQLITe
+
+```{r, eval = FALSE}
+db_path <- "model_data/cs10_setup/optain-cs10/optain-cs10.sqlite"
+add_atmo_dep(df, db_path)
+```
 Big thank you to Svajunas for his svatools package, making our lives much easier!
