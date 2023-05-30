@@ -102,7 +102,7 @@ df <-
 ```
 A plot of the results:
 
-```{r}
+```{r, eval = FALSE}
 ggplot(pivot_longer(df, !DATE, names_to = "par", values_to = "values"), aes(x = DATE, y = values))+ 
   geom_line()+ 
   facet_wrap(~par, scales = "free_y")+ 

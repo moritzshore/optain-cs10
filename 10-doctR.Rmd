@@ -227,7 +227,7 @@ next step:
 
 For this, we need a SWAT+ run with management outputs
 
-```{r}
+```{r, eval = FALSE}
 veri_mgt <- run_swat_verification(project_path = "model_data/cs10_setup/run_swat",
                                           nostress = 0,
                                           keep_folder = F,
@@ -237,6 +237,6 @@ veri_mgt <- run_swat_verification(project_path = "model_data/cs10_setup/run_swat
 saveRDS(veri_mgt, "model_data/swat_doctR/verification_runs/veri_mgt.rds")
 ```
 
-```{r}
+```{r, eval = FALSE}
 mgt_report <- report_mgt(veri_no_stress, write_report = TRUE)
 ```
