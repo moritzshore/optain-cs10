@@ -23,7 +23,7 @@
 <meta name="author" content="Moritz Shore, Csilla Farkas" />
 
 
-<meta name="date" content="2023-05-25" />
+<meta name="date" content="2023-05-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -230,6 +230,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="climate-inputs-and-weather-generator.html"><a href="climate-inputs-and-weather-generator.html#creating-the-weather-generator"><i class="fa fa-check"></i><b>2.2</b> Creating the weather generator</a></li>
 <li class="chapter" data-level="2.3" data-path="climate-inputs-and-weather-generator.html"><a href="climate-inputs-and-weather-generator.html#adding-weather-data-to-swat-project"><i class="fa fa-check"></i><b>2.3</b> Adding weather data to SWAT+ project</a></li>
+<li class="chapter" data-level="2.4" data-path="climate-inputs-and-weather-generator.html"><a href="climate-inputs-and-weather-generator.html#adding-atmospheric-deposition"><i class="fa fa-check"></i><b>2.4</b> Adding Atmospheric deposition</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="writing-swat-input-files.html"><a href="writing-swat-input-files.html"><i class="fa fa-check"></i><b>3</b> Writing SWAT+ Input Files</a>
 <ul>
@@ -393,15 +394,22 @@ div.csl-indent {
 <p>These sections are not detailed enough to warrant their own dedicated chapter.</p>
 <div id="parameter-changes" class="section level2 hasAnchor" number="9.1">
 <h2><span class="header-section-number">9.1</span> Parameter Changes<a href="model-parameterization.html#parameter-changes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>These sections mostly involve changing a few parameter values and are therefore
-in small sub sections without R-code. Some of this might change later.</p>
+<p>These sections mostly involve changing a few parameter values and are therefore in small sub sections without R-code. Some of this might change later.</p>
 <div id="channel-parameters-revised" class="section level3 hasAnchor" number="9.1.1">
 <h3><span class="header-section-number">9.1.1</span> Channel parameters revised<a href="model-parameterization.html#channel-parameters-revised" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>This an ongoing unresolved issue <a href="https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/49">#49</a></p>
+<p>This an ongoing unresolved issue <a href="https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/49">#49</a>.</p>
+<p>So far nothing has been changed.</p>
 </div>
 <div id="crop-parameters-verified" class="section level3 hasAnchor" number="9.1.2">
 <h3><span class="header-section-number">9.1.2</span> Crop parameters verified<a href="model-parameterization.html#crop-parameters-verified" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The results of this step can be found in file <code>plannts.plt</code> and discussions to this topic can be found in issue <a href="https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/27">#27</a>. Detailed documentation is currently unavailable.</p>
+<p>The crop database has been updated and stored in the following file:</p>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="model-parameterization.html#cb271-1" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;model_data/cs10_setup/swat_input_mod/plants.plt&quot;</span></span></code></pre></div>
+<p>Discussions to this topic can be found in issue <a href="https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/27">#27</a>.</p>
+<p>From the whole database, we only use crops defined in our management files:</p>
+<p>Crop management: oats, barl, wwht, swht, pota, fesc</p>
+<p>Generic: frst, fesc and others which are minor</p>
+<p>The parameters for these crops have been updated to reflect the colder growing
+conditions.</p>
 </div>
 <div id="soil-physical-parameters-in-final-form" class="section level3 hasAnchor" number="9.1.3">
 <h3><span class="header-section-number">9.1.3</span> Soil physical parameters in final form<a href="model-parameterization.html#soil-physical-parameters-in-final-form" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -443,7 +451,33 @@ in small sub sections without R-code. Some of this might change later.</p>
 </tr>
 </tbody>
 </table>
-<p>An R implementation is being considered.</p>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="model-parameterization.html#cb272-1" aria-hidden="true" tabindex="-1"></a>nutrients_sol <span class="ot">&lt;-</span> <span class="fu">readLines</span>(<span class="st">&quot;model_data/cs10_setup/swat_input/nutrients.sol&quot;</span>)</span>
+<span id="cb272-2"><a href="model-parameterization.html#cb272-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb272-3"><a href="model-parameterization.html#cb272-3" aria-hidden="true" tabindex="-1"></a>header <span class="ot">&lt;-</span> nutrients_sol[<span class="dv">1</span>]</span>
+<span id="cb272-4"><a href="model-parameterization.html#cb272-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb272-5"><a href="model-parameterization.html#cb272-5" aria-hidden="true" tabindex="-1"></a>nutrients_sol_df <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;model_data/cs10_setup/swat_input/nutrients.sol&quot;</span>, <span class="at">header =</span> T, <span class="at">skip =</span> <span class="dv">1</span>, <span class="at">sep =</span> <span class="st">&quot;&quot;</span>, <span class="at">fill =</span> T, <span class="at">as.is =</span> T, <span class="at">colClasses =</span> <span class="st">&quot;character&quot;</span>)</span>
+<span id="cb272-6"><a href="model-parameterization.html#cb272-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb272-7"><a href="model-parameterization.html#cb272-7" aria-hidden="true" tabindex="-1"></a>nutrients_sol_df<span class="sc">$</span>lab_p <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb272-8"><a href="model-parameterization.html#cb272-8" aria-hidden="true" tabindex="-1"></a>nutrients_sol_df<span class="sc">$</span>nitrate <span class="ot">&lt;-</span> <span class="fl">8.5</span></span>
+<span id="cb272-9"><a href="model-parameterization.html#cb272-9" aria-hidden="true" tabindex="-1"></a>nutrients_sol_df<span class="sc">$</span>inorgp <span class="ot">&lt;-</span> <span class="fl">35.1</span></span>
+<span id="cb272-10"><a href="model-parameterization.html#cb272-10" aria-hidden="true" tabindex="-1"></a>nutrients_sol_df<span class="sc">$</span>watersol_p <span class="ot">&lt;-</span> <span class="fl">0.4</span></span>
+<span id="cb272-11"><a href="model-parameterization.html#cb272-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb272-12"><a href="model-parameterization.html#cb272-12" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(</span>
+<span id="cb272-13"><a href="model-parameterization.html#cb272-13" aria-hidden="true" tabindex="-1"></a>  nutrients_sol_df,</span>
+<span id="cb272-14"><a href="model-parameterization.html#cb272-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;model_data/cs10_setup/swat_input_mod/nutrients.sol&quot;</span>,</span>
+<span id="cb272-15"><a href="model-parameterization.html#cb272-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">quote =</span> F,</span>
+<span id="cb272-16"><a href="model-parameterization.html#cb272-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">sep =</span> <span class="st">&quot;   &quot;</span>,</span>
+<span id="cb272-17"><a href="model-parameterization.html#cb272-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">row.names =</span> F, </span>
+<span id="cb272-18"><a href="model-parameterization.html#cb272-18" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb272-19"><a href="model-parameterization.html#cb272-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb272-20"><a href="model-parameterization.html#cb272-20" aria-hidden="true" tabindex="-1"></a>header_new <span class="ot">&lt;-</span> <span class="fu">paste</span>(header, <span class="st">&quot;and modified by the CS10 workflow on&quot;</span>, <span class="fu">Sys.time</span>())</span>
+<span id="cb272-21"><a href="model-parameterization.html#cb272-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb272-22"><a href="model-parameterization.html#cb272-22" aria-hidden="true" tabindex="-1"></a>nutrients_sol <span class="ot">&lt;-</span> <span class="fu">readLines</span>(<span class="st">&quot;model_data/cs10_setup/swat_input_mod/nutrients.sol&quot;</span>)</span>
+<span id="cb272-23"><a href="model-parameterization.html#cb272-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb272-24"><a href="model-parameterization.html#cb272-24" aria-hidden="true" tabindex="-1"></a><span class="fu">writeLines</span>(<span class="fu">c</span>(header_new, nutrients_sol), <span class="st">&quot;model_data/cs10_setup/swat_input_mod/nutrients.sol&quot;</span>)</span></code></pre></div>
+<p>Testing if the setup still works:</p>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="model-parameterization.html#cb273-1" aria-hidden="true" tabindex="-1"></a>simout <span class="ot">&lt;-</span> <span class="fu">test_swat_mod</span>()</span>
+<span id="cb273-2"><a href="model-parameterization.html#cb273-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">tail</span>(simout), <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 </div>
 <div id="impoundment-parameters-defined" class="section level3 hasAnchor" number="9.1.5">
 <h3><span class="header-section-number">9.1.5</span> Impoundment parameters defined<a href="model-parameterization.html#impoundment-parameters-defined" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -459,17 +493,59 @@ in small sub sections without R-code. Some of this might change later.</p>
 </div>
 <div id="tile-drainage-parameters-defined" class="section level3 hasAnchor" number="9.1.8">
 <h3><span class="header-section-number">9.1.8</span> Tile drainage parameters defined<a href="model-parameterization.html#tile-drainage-parameters-defined" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Is an ongoing issue in <a href="https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/53">#53</a></p>
+<p>Is an ongoing issue in <a href="https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/53">#53</a>.</p>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="model-parameterization.html#cb274-1" aria-hidden="true" tabindex="-1"></a>old_path <span class="ot">&lt;-</span> <span class="st">&quot;model_data/cs10_setup/swat_input/tiledrain.str&quot;</span></span>
+<span id="cb274-2"><a href="model-parameterization.html#cb274-2" aria-hidden="true" tabindex="-1"></a>new_path <span class="ot">&lt;-</span>  <span class="st">&quot;model_data/cs10_setup/swat_input_mod/tiledrain.str&quot;</span></span>
+<span id="cb274-3"><a href="model-parameterization.html#cb274-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb274-4"><a href="model-parameterization.html#cb274-4" aria-hidden="true" tabindex="-1"></a>tiledrain_str <span class="ot">&lt;-</span> <span class="fu">readLines</span>(old_path)</span>
+<span id="cb274-5"><a href="model-parameterization.html#cb274-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb274-6"><a href="model-parameterization.html#cb274-6" aria-hidden="true" tabindex="-1"></a>header <span class="ot">&lt;-</span> tiledrain_str[<span class="dv">1</span>]</span>
+<span id="cb274-7"><a href="model-parameterization.html#cb274-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb274-8"><a href="model-parameterization.html#cb274-8" aria-hidden="true" tabindex="-1"></a>header <span class="ot">&lt;-</span> <span class="fu">paste</span>(header, <span class="st">&quot;then modified by CS10 workflow at&quot;</span>, <span class="fu">Sys.time</span>())</span>
+<span id="cb274-9"><a href="model-parameterization.html#cb274-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb274-10"><a href="model-parameterization.html#cb274-10" aria-hidden="true" tabindex="-1"></a>tiledrain_df <span class="ot">&lt;-</span></span>
+<span id="cb274-11"><a href="model-parameterization.html#cb274-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read.table</span>(</span>
+<span id="cb274-12"><a href="model-parameterization.html#cb274-12" aria-hidden="true" tabindex="-1"></a>    old_path,</span>
+<span id="cb274-13"><a href="model-parameterization.html#cb274-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">sep =</span> <span class="st">&quot;&quot;</span>,</span>
+<span id="cb274-14"><a href="model-parameterization.html#cb274-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">header =</span> T,</span>
+<span id="cb274-15"><a href="model-parameterization.html#cb274-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">skip =</span> <span class="dv">1</span>,</span>
+<span id="cb274-16"><a href="model-parameterization.html#cb274-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> T,</span>
+<span id="cb274-17"><a href="model-parameterization.html#cb274-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">colClasses =</span> <span class="st">&quot;character&quot;</span></span>
+<span id="cb274-18"><a href="model-parameterization.html#cb274-18" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb274-19"><a href="model-parameterization.html#cb274-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb274-20"><a href="model-parameterization.html#cb274-20" aria-hidden="true" tabindex="-1"></a>tiledrain_df<span class="sc">$</span>dp <span class="ot">&lt;-</span> <span class="dv">800</span> <span class="co"># from 1000</span></span>
+<span id="cb274-21"><a href="model-parameterization.html#cb274-21" aria-hidden="true" tabindex="-1"></a>tiledrain_df<span class="sc">$</span>t_fc <span class="ot">&lt;-</span> <span class="dv">12</span> <span class="co"># from 24</span></span>
+<span id="cb274-22"><a href="model-parameterization.html#cb274-22" aria-hidden="true" tabindex="-1"></a>tiledrain_df<span class="sc">$</span>lag <span class="ot">&lt;-</span> <span class="dv">30</span> <span class="co"># from 96</span></span>
+<span id="cb274-23"><a href="model-parameterization.html#cb274-23" aria-hidden="true" tabindex="-1"></a>tiledrain_df<span class="sc">$</span>rad <span class="ot">&lt;-</span> <span class="dv">200</span> <span class="co"># from 100</span></span>
+<span id="cb274-24"><a href="model-parameterization.html#cb274-24" aria-hidden="true" tabindex="-1"></a>tiledrain_df<span class="sc">$</span>dist <span class="ot">&lt;-</span> <span class="dv">8000</span> <span class="co"># from 30</span></span>
+<span id="cb274-25"><a href="model-parameterization.html#cb274-25" aria-hidden="true" tabindex="-1"></a>tiledrain_df<span class="sc">$</span>drain <span class="ot">&lt;-</span> <span class="dv">40</span> <span class="co"># from 10</span></span>
+<span id="cb274-26"><a href="model-parameterization.html#cb274-26" aria-hidden="true" tabindex="-1"></a>tiledrain_df<span class="sc">$</span>pump <span class="ot">&lt;-</span> <span class="dv">0</span> <span class="co"># from 1</span></span>
+<span id="cb274-27"><a href="model-parameterization.html#cb274-27" aria-hidden="true" tabindex="-1"></a>tiledrain_df<span class="sc">$</span>lat_ksat <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="co"># from 2 (no change)</span></span>
+<span id="cb274-28"><a href="model-parameterization.html#cb274-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb274-29"><a href="model-parameterization.html#cb274-29" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(header, <span class="at">file =</span> new_path, <span class="at">quote =</span> F, <span class="at">col.names =</span> F, <span class="at">row.names =</span> F)</span>
+<span id="cb274-30"><a href="model-parameterization.html#cb274-30" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(</span>
+<span id="cb274-31"><a href="model-parameterization.html#cb274-31" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> tiledrain_df,</span>
+<span id="cb274-32"><a href="model-parameterization.html#cb274-32" aria-hidden="true" tabindex="-1"></a>  <span class="at">file =</span> new_path,</span>
+<span id="cb274-33"><a href="model-parameterization.html#cb274-33" aria-hidden="true" tabindex="-1"></a>  <span class="at">sep =</span> <span class="st">&quot;   &quot;</span>,</span>
+<span id="cb274-34"><a href="model-parameterization.html#cb274-34" aria-hidden="true" tabindex="-1"></a>  <span class="at">quote =</span> F,</span>
+<span id="cb274-35"><a href="model-parameterization.html#cb274-35" aria-hidden="true" tabindex="-1"></a>  <span class="at">append =</span> T,</span>
+<span id="cb274-36"><a href="model-parameterization.html#cb274-36" aria-hidden="true" tabindex="-1"></a>  <span class="at">row.names =</span> F</span>
+<span id="cb274-37"><a href="model-parameterization.html#cb274-37" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>## Warning in write.table(x = tiledrain_df, file = new_path, sep = &quot; &quot;, quote = F,
+## : appending column names to file</code></pre>
+<p>Testing if the setup still works:</p>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="model-parameterization.html#cb276-1" aria-hidden="true" tabindex="-1"></a>simout <span class="ot">&lt;-</span> <span class="fu">test_swat_mod</span>()</span>
+<span id="cb276-2"><a href="model-parameterization.html#cb276-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">tail</span>(simout), <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 </div>
 <div id="atmospheric-deposition-defined" class="section level3 hasAnchor" number="9.1.9">
 <h3><span class="header-section-number">9.1.9</span> Atmospheric deposition defined<a href="model-parameterization.html#atmospheric-deposition-defined" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Has been done with <code>svatools</code>. An R implementation is being considered.</p>
+<p>Has been done in section REF</p>
 </div>
 <div id="additional-settings-verified" class="section level3 hasAnchor" number="9.1.10">
 <h3><span class="header-section-number">9.1.10</span> Additional settings verified<a href="model-parameterization.html#additional-settings-verified" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Refers to chapter 3.11 in The Protocol and files <code>parameters.bsn</code> <code>codes.bsn</code>
-Has been discussed in <a href="https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/22">#22</a></p>
-<p>More in-depth documentation and an R implementation are being considered</p>
+Has been discussed in
+<a href="https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/22">#22</a></p>
 <p>The following changes have been made:</p>
 <table>
 <caption>Changes made to <code>codes.bsn</code></caption>
@@ -518,7 +594,53 @@ Has been discussed in <a href="https://gitlab.nibio.no/moritzshore/swat-cs10/-/i
 </tr>
 </tbody>
 </table>
-<p>(TODO: Fill in more data from the GitLab Issue)</p>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="model-parameterization.html#cb277-1" aria-hidden="true" tabindex="-1"></a>old_path <span class="ot">&lt;-</span> <span class="st">&quot;model_data/cs10_setup/swat_input/codes.bsn&quot;</span></span>
+<span id="cb277-2"><a href="model-parameterization.html#cb277-2" aria-hidden="true" tabindex="-1"></a>new_path <span class="ot">&lt;-</span> <span class="st">&quot;model_data/cs10_setup/swat_input_mod/codes.bsn&quot;</span></span>
+<span id="cb277-3"><a href="model-parameterization.html#cb277-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb277-4"><a href="model-parameterization.html#cb277-4" aria-hidden="true" tabindex="-1"></a>codes_bsn <span class="ot">&lt;-</span> <span class="fu">readLines</span>(old_path)</span>
+<span id="cb277-5"><a href="model-parameterization.html#cb277-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb277-6"><a href="model-parameterization.html#cb277-6" aria-hidden="true" tabindex="-1"></a>header <span class="ot">&lt;-</span> codes_bsn[<span class="dv">1</span>]</span>
+<span id="cb277-7"><a href="model-parameterization.html#cb277-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb277-8"><a href="model-parameterization.html#cb277-8" aria-hidden="true" tabindex="-1"></a>header <span class="ot">&lt;-</span> <span class="fu">paste</span>(header, <span class="st">&quot;then modified by CS10 workflow on&quot;</span>, <span class="fu">Sys.time</span>())</span>
+<span id="cb277-9"><a href="model-parameterization.html#cb277-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb277-10"><a href="model-parameterization.html#cb277-10" aria-hidden="true" tabindex="-1"></a>codes_df <span class="ot">&lt;-</span> <span class="fu">read.table</span>(old_path, <span class="at">skip =</span> <span class="dv">1</span>, <span class="at">header =</span> T, <span class="at">sep =</span> <span class="st">&quot;&quot;</span>, </span>
+<span id="cb277-11"><a href="model-parameterization.html#cb277-11" aria-hidden="true" tabindex="-1"></a>                       <span class="at">colClasses =</span> <span class="st">&quot;character&quot;</span>)</span></code></pre></div>
+<p><strong>PET method</strong> (pet) The OPTAIN project recommends the PET calculation of Pennman-Monteith, which
+is code 2.</p>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="model-parameterization.html#cb278-1" aria-hidden="true" tabindex="-1"></a>codes_df<span class="sc">$</span>pet <span class="ot">&lt;-</span> <span class="dv">2</span> </span></code></pre></div>
+<p><strong>Channel routing network</strong> (rte_cha) Recommended is to start with Muskingum (code 1) and apply variable storage
+method if it causes problems.</p>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="model-parameterization.html#cb279-1" aria-hidden="true" tabindex="-1"></a>codes_df<span class="sc">$</span>rte_cha <span class="ot">&lt;-</span> <span class="dv">1</span></span></code></pre></div>
+<p><strong>Stream water quality</strong> (wq_cha) Recommended to test both for OPTAIN (1/0)</p>
+<p><strong>Daily curve number calculation</strong> (cn) Code 1 is recommended. (Plant ET)</p>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="model-parameterization.html#cb280-1" aria-hidden="true" tabindex="-1"></a>codes_df<span class="sc">$</span>cn <span class="ot">&lt;-</span> <span class="dv">1</span></span></code></pre></div>
+<p>OPTAIN recommends new version</p>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="model-parameterization.html#cb281-1" aria-hidden="true" tabindex="-1"></a>codes_df<span class="sc">$</span>soil_p <span class="ot">&lt;-</span> <span class="dv">1</span></span></code></pre></div>
+<p>Lapse rate is being tested in REF</p>
+<p>Plant growth stress is being testing in REF</p>
+<p><strong>Tile drainage</strong></p>
+<p>Has been causing model crashes.</p>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="model-parameterization.html#cb282-1" aria-hidden="true" tabindex="-1"></a>codes_df<span class="sc">$</span>tiledrain <span class="ot">&lt;-</span> <span class="dv">1</span></span></code></pre></div>
+<p>Atmosdep was done in REF and is annual</p>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="model-parameterization.html#cb283-1" aria-hidden="true" tabindex="-1"></a>codes_df<span class="sc">$</span>atmo_dep <span class="ot">&lt;-</span> <span class="st">&quot;y&quot;</span></span></code></pre></div>
+<p>Writing the changes</p>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="model-parameterization.html#cb284-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(header, <span class="at">file =</span> new_path, <span class="at">col.names =</span> F, <span class="at">row.names =</span> F, <span class="at">quote =</span> F) </span>
+<span id="cb284-2"><a href="model-parameterization.html#cb284-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb284-3"><a href="model-parameterization.html#cb284-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb284-4"><a href="model-parameterization.html#cb284-4" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(</span>
+<span id="cb284-5"><a href="model-parameterization.html#cb284-5" aria-hidden="true" tabindex="-1"></a>  codes_df,</span>
+<span id="cb284-6"><a href="model-parameterization.html#cb284-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">file =</span> new_path,</span>
+<span id="cb284-7"><a href="model-parameterization.html#cb284-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">col.names =</span> T,</span>
+<span id="cb284-8"><a href="model-parameterization.html#cb284-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">append =</span> T,</span>
+<span id="cb284-9"><a href="model-parameterization.html#cb284-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">quote =</span> F,</span>
+<span id="cb284-10"><a href="model-parameterization.html#cb284-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">sep =</span> <span class="st">&quot;   &quot;</span>,</span>
+<span id="cb284-11"><a href="model-parameterization.html#cb284-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">row.names =</span> F</span>
+<span id="cb284-12"><a href="model-parameterization.html#cb284-12" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>## Warning in write.table(codes_df, file = new_path, col.names = T, append = T, :
+## appending column names to file</code></pre>
+<p>Testing if the setup still works:</p>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="model-parameterization.html#cb286-1" aria-hidden="true" tabindex="-1"></a>simout <span class="ot">&lt;-</span> <span class="fu">test_swat_mod</span>()</span>
+<span id="cb286-2"><a href="model-parameterization.html#cb286-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">tail</span>(simout), <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 
 </div>
 </div>

@@ -23,7 +23,7 @@
 <meta name="author" content="Moritz Shore, Csilla Farkas" />
 
 
-<meta name="date" content="2023-05-25" />
+<meta name="date" content="2023-05-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -230,6 +230,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="climate-inputs-and-weather-generator.html"><a href="climate-inputs-and-weather-generator.html#creating-the-weather-generator"><i class="fa fa-check"></i><b>2.2</b> Creating the weather generator</a></li>
 <li class="chapter" data-level="2.3" data-path="climate-inputs-and-weather-generator.html"><a href="climate-inputs-and-weather-generator.html#adding-weather-data-to-swat-project"><i class="fa fa-check"></i><b>2.3</b> Adding weather data to SWAT+ project</a></li>
+<li class="chapter" data-level="2.4" data-path="climate-inputs-and-weather-generator.html"><a href="climate-inputs-and-weather-generator.html#adding-atmospheric-deposition"><i class="fa fa-check"></i><b>2.4</b> Adding Atmospheric deposition</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="writing-swat-input-files.html"><a href="writing-swat-input-files.html"><i class="fa fa-check"></i><b>3</b> Writing SWAT+ Input Files</a>
 <ul>
@@ -393,24 +394,24 @@ div.csl-indent {
 <div id="preparation" class="section level2 hasAnchor" number="11.1">
 <h2><span class="header-section-number">11.1</span> Preparation<a href="model-verification.html#preparation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Loading required packages, defining paths, and loading objects.</p>
-<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="model-verification.html#cb297-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install/Update SWATdoctR if needed:</span></span>
-<span id="cb297-2"><a href="model-verification.html#cb297-2" aria-hidden="true" tabindex="-1"></a><span class="co"># remotes::install_git(&#39;https://git.ufz.de/schuerz/swatdoctr&#39;, force = FALSE)</span></span>
-<span id="cb297-3"><a href="model-verification.html#cb297-3" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(SWATdoctR)</span></code></pre></div>
+<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="model-verification.html#cb312-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install/Update SWATdoctR if needed:</span></span>
+<span id="cb312-2"><a href="model-verification.html#cb312-2" aria-hidden="true" tabindex="-1"></a><span class="co"># remotes::install_git(&#39;https://git.ufz.de/schuerz/swatdoctr&#39;, force = FALSE)</span></span>
+<span id="cb312-3"><a href="model-verification.html#cb312-3" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(SWATdoctR)</span></code></pre></div>
 <div id="generate-model-run" class="section level3 hasAnchor" number="11.1.1">
 <h3><span class="header-section-number">11.1.1</span> Generate Model Run<a href="model-verification.html#generate-model-run" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="model-verification.html#cb298-1" aria-hidden="true" tabindex="-1"></a>veri_no_stress <span class="ot">&lt;-</span></span>
-<span id="cb298-2"><a href="model-verification.html#cb298-2" aria-hidden="true" tabindex="-1"></a>  SWATdoctR<span class="sc">::</span><span class="fu">run_swat_verification</span>(</span>
-<span id="cb298-3"><a href="model-verification.html#cb298-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">project_path =</span> ppath,</span>
-<span id="cb298-4"><a href="model-verification.html#cb298-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">nostress =</span> <span class="dv">0</span>,</span>
-<span id="cb298-5"><a href="model-verification.html#cb298-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">keep_folder =</span> F,</span>
-<span id="cb298-6"><a href="model-verification.html#cb298-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">outputs =</span> <span class="st">&quot;wb&quot;</span></span>
-<span id="cb298-7"><a href="model-verification.html#cb298-7" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb298-8"><a href="model-verification.html#cb298-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb298-9"><a href="model-verification.html#cb298-9" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(veri_no_stress, <span class="st">&quot;model_data/swat_doctR/verification_runs/veri_no_stress.rds&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="model-verification.html#cb313-1" aria-hidden="true" tabindex="-1"></a>veri_no_stress <span class="ot">&lt;-</span></span>
+<span id="cb313-2"><a href="model-verification.html#cb313-2" aria-hidden="true" tabindex="-1"></a>  SWATdoctR<span class="sc">::</span><span class="fu">run_swat_verification</span>(</span>
+<span id="cb313-3"><a href="model-verification.html#cb313-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">project_path =</span> ppath,</span>
+<span id="cb313-4"><a href="model-verification.html#cb313-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">nostress =</span> <span class="dv">0</span>,</span>
+<span id="cb313-5"><a href="model-verification.html#cb313-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">keep_folder =</span> F,</span>
+<span id="cb313-6"><a href="model-verification.html#cb313-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">outputs =</span> <span class="st">&quot;wb&quot;</span></span>
+<span id="cb313-7"><a href="model-verification.html#cb313-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb313-8"><a href="model-verification.html#cb313-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb313-9"><a href="model-verification.html#cb313-9" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(veri_no_stress, <span class="st">&quot;model_data/swat_doctR/verification_runs/veri_no_stress.rds&quot;</span>)</span></code></pre></div>
 </div>
 <div id="load-model-run" class="section level3 hasAnchor" number="11.1.2">
 <h3><span class="header-section-number">11.1.2</span> Load Model Run<a href="model-verification.html#load-model-run" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="model-verification.html#cb299-1" aria-hidden="true" tabindex="-1"></a>veri_no_stress <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;model_data/swat_doctR/verification_runs/veri_no_stress.rds&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="model-verification.html#cb314-1" aria-hidden="true" tabindex="-1"></a>veri_no_stress <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;model_data/swat_doctR/verification_runs/veri_no_stress.rds&quot;</span>)</span></code></pre></div>
 </div>
 </div>
 <div id="analysis-of-simulated-climate-variables" class="section level2 hasAnchor" number="11.2">
@@ -493,11 +494,11 @@ observations.</p>
 </ol>
 <div id="lapse-rate-on" class="section level3 hasAnchor" number="11.2.1">
 <h3><span class="header-section-number">11.2.1</span> Lapse rate on:<a href="model-verification.html#lapse-rate-on" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="model-verification.html#cb300-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">, fix #43 first</span></span></code></pre></div>
+<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="model-verification.html#cb315-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">, fix #43 first</span></span></code></pre></div>
 </div>
 <div id="lapse-rate-off" class="section level3 hasAnchor" number="11.2.2">
 <h3><span class="header-section-number">11.2.2</span> Lapse rate off:<a href="model-verification.html#lapse-rate-off" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="model-verification.html#cb301-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">, fix #43 first</span></span></code></pre></div>
+<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="model-verification.html#cb316-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">, fix #43 first</span></span></code></pre></div>
 <ul>
 <li><p>Over or underestimated PET can indicate errors in the temperature
 input files (and if provided in the solar radiation, relative
@@ -509,8 +510,8 @@ humidity and wind speed inputs).</p>
 <li><p><code>SWATdoctR</code> provides the function <code>plot_climate_annual()</code> to analyse
 the annual simulated basin averages of climate variables.</p></li>
 </ul>
-<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="model-verification.html#cb302-1" aria-hidden="true" tabindex="-1"></a>fig1 <span class="ot">&lt;-</span> SWATdoctR<span class="sc">::</span><span class="fu">plot_climate_annual</span>(veri_no_stress)</span>
-<span id="cb302-2"><a href="model-verification.html#cb302-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fig1)</span></code></pre></div>
+<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="model-verification.html#cb317-1" aria-hidden="true" tabindex="-1"></a>fig1 <span class="ot">&lt;-</span> SWATdoctR<span class="sc">::</span><span class="fu">plot_climate_annual</span>(veri_no_stress)</span>
+<span id="cb317-2"><a href="model-verification.html#cb317-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fig1)</span></code></pre></div>
 <p><img src="_main_files/figure-html/fig1-1.png" width="796.8" /></p>
 <ul>
 <li>The <strong>first panel</strong> shows ET fractions. Current version of SWAT+
@@ -587,8 +588,8 @@ simulation of snow processes (<code>snofall_tmp</code>, <code>snomelt_tmp</code>
 <p>CS10, a Boreal catchment, is impacted by snow melt – this is relevant
 to the verification</p>
 </blockquote>
-<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="model-verification.html#cb303-1" aria-hidden="true" tabindex="-1"></a>SWATdoctR<span class="sc">::</span><span class="fu">plot_monthly_snow</span>(<span class="at">sim_verify =</span> veri_no_stress)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-175-1.png" width="672" /></p>
+<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="model-verification.html#cb318-1" aria-hidden="true" tabindex="-1"></a>SWATdoctR<span class="sc">::</span><span class="fu">plot_monthly_snow</span>(<span class="at">sim_verify =</span> veri_no_stress)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-193-1.png" width="672" /></p>
 <blockquote>
 <p>This has been resolved in issue #43.
 (<a href="https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/43">link</a>).
@@ -611,7 +612,15 @@ next step:</p>
 </div>
 <div id="simulation-of-management-operations" class="section level2 hasAnchor" number="11.3">
 <h2><span class="header-section-number">11.3</span> Simulation of management operations<a href="model-verification.html#simulation-of-management-operations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><em>waiting on step 1…</em></p>
+<p>For this, we need a SWAT+ run with management outputs</p>
+<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="model-verification.html#cb319-1" aria-hidden="true" tabindex="-1"></a>veri_mgt <span class="ot">&lt;-</span> <span class="fu">run_swat_verification</span>(<span class="at">project_path =</span> <span class="st">&quot;model_data/cs10_setup/run_swat&quot;</span>,</span>
+<span id="cb319-2"><a href="model-verification.html#cb319-2" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">nostress =</span> <span class="dv">0</span>,</span>
+<span id="cb319-3"><a href="model-verification.html#cb319-3" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">keep_folder =</span> F,</span>
+<span id="cb319-4"><a href="model-verification.html#cb319-4" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">outputs =</span> <span class="st">&quot;mgt&quot;</span></span>
+<span id="cb319-5"><a href="model-verification.html#cb319-5" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb319-6"><a href="model-verification.html#cb319-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb319-7"><a href="model-verification.html#cb319-7" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(veri_mgt, <span class="st">&quot;model_data/swat_doctR/verification_runs/veri_mgt.rds&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="model-verification.html#cb320-1" aria-hidden="true" tabindex="-1"></a>mgt_report <span class="ot">&lt;-</span> <span class="fu">report_mgt</span>(veri_no_stress, <span class="at">write_report =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 
 </div>
 </div>

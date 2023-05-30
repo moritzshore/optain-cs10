@@ -5,13 +5,13 @@ fig:demcropplot
 fig:soilrastermapplot
 fig:lumap
 fig:farmidfig
-tab:unnamed-chunk-40
-fig:unnamed-chunk-83
-fig:unnamed-chunk-84
-fig:unnamed-chunk-101
-fig:unnamed-chunk-102
+tab:unnamed-chunk-43
+fig:unnamed-chunk-87
+fig:unnamed-chunk-88
+fig:unnamed-chunk-105
+fig:unnamed-chunk-106
 fig:soilmapplot
-fig:unnamed-chunk-120
+fig:unnamed-chunk-124
 model-setup-with-swatbuildr
 buildr-setup
 processing-input-data
@@ -43,6 +43,7 @@ load-in-the-files-and-load-svatools-template
 proof-the-station
 creating-the-weather-generator
 adding-weather-data-to-swat-project
+adding-atmospheric-deposition
 writing-swat-input-files
 loading-the-project-in-swat-editor
 swat-test-run
