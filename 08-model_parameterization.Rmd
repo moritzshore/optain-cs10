@@ -4,16 +4,32 @@ These sections are not detailed enough to warrant their own dedicated chapter.
 
 ## Parameter Changes
 
-These sections mostly involve changing a few parameter values and are therefore
-in small sub sections without R-code. Some of this might change later.
+These sections mostly involve changing a few parameter values and are therefore in small sub sections without R-code. Some of this might change later.
 
 ### Channel parameters revised
 
-This an ongoing unresolved issue [#49](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/49)
+This an ongoing unresolved issue [#49](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/49).
+
+So far nothing has been changed.
 
 ### Crop parameters verified
 
-The results of this step can be found in file `plannts.plt` and discussions to this topic can be found in issue [#27](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/27). Detailed documentation is currently unavailable.
+The crop database has been updated and stored in the following file:
+
+```{r, eval=FALSE}
+"model_data/cs10_setup/swat_input_mod/plants.plt"
+```
+
+Discussions to this topic can be found in issue [#27](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/27).
+
+From the whole database, we only use crops defined in our management files:
+
+Crop management: oats, barl, wwht, swht, pota, fesc
+
+Generic: frst, fesc and others which are minor
+
+The parameters for these crops have been updated to reflect the colder growing
+conditions.
 
 ### Soil physical parameters in final form
 
@@ -34,7 +50,41 @@ The following changes have been implemented, but are subject to change:
 
 : Changes made to `soilnut1` of `nutrients.sol`
 
-An R implementation is being considered.
+```{r}
+
+nutrients_sol <- readLines("model_data/cs10_setup/swat_input/nutrients.sol")
+
+header <- nutrients_sol[1]
+
+nutrients_sol_df <- read.table("model_data/cs10_setup/swat_input/nutrients.sol", header = T, skip = 1, sep = "", fill = T, as.is = T, colClasses = "character")
+
+nutrients_sol_df$lab_p <- 20
+nutrients_sol_df$nitrate <- 8.5
+nutrients_sol_df$inorgp <- 35.1
+nutrients_sol_df$watersol_p <- 0.4
+
+write.table(
+  nutrients_sol_df,
+  "model_data/cs10_setup/swat_input_mod/nutrients.sol",
+  quote = F,
+  sep = "   ",
+  row.names = F, 
+)
+
+header_new <- paste(header, "and modified by the CS10 workflow on", Sys.time())
+
+nutrients_sol <- readLines("model_data/cs10_setup/swat_input_mod/nutrients.sol")
+
+writeLines(c(header_new, nutrients_sol), "model_data/cs10_setup/swat_input_mod/nutrients.sol")
+```
+
+Testing if the setup still works:
+
+```{r, eval = FALSE}
+simout <- test_swat_mod()
+cat(tail(simout), sep = "\n")
+```
+
 
 ### Impoundment parameters defined
 
@@ -50,18 +100,66 @@ Is an ongoing issue in [#21](https://gitlab.nibio.no/moritzshore/swat-cs10/-/iss
 
 ### Tile drainage parameters defined
 
-Is an ongoing issue in [#53](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/53)
+Is an ongoing issue in [#53](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/53).
+
+```{r}
+old_path <- "model_data/cs10_setup/swat_input/tiledrain.str"
+new_path <-  "model_data/cs10_setup/swat_input_mod/tiledrain.str"
+
+tiledrain_str <- readLines(old_path)
+
+header <- tiledrain_str[1]
+
+header <- paste(header, "then modified by CS10 workflow at", Sys.time())
+
+tiledrain_df <-
+  read.table(
+    old_path,
+    sep = "",
+    header = T,
+    skip = 1,
+    fill = T,
+    colClasses = "character"
+  )
+
+tiledrain_df$dp <- 800 # from 1000
+tiledrain_df$t_fc <- 12 # from 24
+tiledrain_df$lag <- 30 # from 96
+tiledrain_df$rad <- 200 # from 100
+tiledrain_df$dist <- 8000 # from 30
+tiledrain_df$drain <- 40 # from 10
+tiledrain_df$pump <- 0 # from 1
+tiledrain_df$lat_ksat <- 2 # from 2 (no change)
+
+write.table(header, file = new_path, quote = F, col.names = F, row.names = F)
+write.table(
+  x = tiledrain_df,
+  file = new_path,
+  sep = "   ",
+  quote = F,
+  append = T,
+  row.names = F
+)
+```
+Testing if the setup still works:
+
+```{r, eval = FALSE}
+simout <- test_swat_mod()
+cat(tail(simout), sep = "\n")
+```
+
 
 ### Atmospheric deposition defined
 
-Has been done with `svatools`. An R implementation is being considered.
+Has been done in section REF
+
 
 ### Additional settings verified
 
 Refers to chapter 3.11 in The Protocol and files `parameters.bsn` `codes.bsn`
-Has been discussed in [#22](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/22)
+Has been discussed in
+[#22](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/22)
 
-More in-depth documentation and an R implementation are being considered
 
 The following changes have been made:
 
@@ -77,4 +175,85 @@ The following changes have been made:
 
 : Changes made to `codes.bsn`
 
-(TODO: Fill in more data from the GitLab Issue)
+```{r}
+old_path <- "model_data/cs10_setup/swat_input/codes.bsn"
+new_path <- "model_data/cs10_setup/swat_input_mod/codes.bsn"
+
+codes_bsn <- readLines(old_path)
+
+header <- codes_bsn[1]
+
+header <- paste(header, "then modified by CS10 workflow on", Sys.time())
+
+codes_df <- read.table(old_path, skip = 1, header = T, sep = "", 
+                       colClasses = "character")
+```
+
+**PET method** (pet) The OPTAIN project recommends the PET calculation of  Pennman-Monteith, which
+is code 2.
+
+```{r}
+codes_df$pet <- 2 
+```
+
+**Channel routing network** (rte_cha) Recommended is to start with Muskingum (code 1) and apply variable storage
+method if it causes problems.
+
+```{r}
+codes_df$rte_cha <- 1
+```
+
+**Stream water quality** (wq_cha) Recommended to test both for OPTAIN (1/0)
+
+**Daily curve number calculation** (cn) Code 1 is recommended. (Plant ET)
+
+```{r}
+codes_df$cn <- 1
+```
+
+OPTAIN recommends new version
+
+```{r}
+codes_df$soil_p <- 1
+```
+
+Lapse rate is being tested in REF
+
+Plant growth stress is being testing in REF
+
+**Tile drainage**
+
+Has been causing model crashes.
+
+```{r}
+codes_df$tiledrain <- 1
+```
+
+Atmosdep was done in REF and is annual
+
+```{r}
+codes_df$atmo_dep <- "y"
+```
+
+Writing the changes
+
+```{r}
+write.table(header, file = new_path, col.names = F, row.names = F, quote = F) 
+
+
+write.table(
+  codes_df,
+  file = new_path,
+  col.names = T,
+  append = T,
+  quote = F,
+  sep = "   ",
+  row.names = F
+)
+```
+Testing if the setup still works:
+
+```{r, eval = FALSE}
+simout <- test_swat_mod()
+cat(tail(simout), sep = "\n")
+```
