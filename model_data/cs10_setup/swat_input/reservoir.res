@@ -1,4 +1,4 @@
-reservoir.res: written by SWAT+ editor v2.1.0 on 2023-05-25 15:02 for SWAT+ rev.60.5.4
+reservoir.res: written by SWAT+ editor v2.1.0 on 2023-05-30 10:39 for SWAT+ rev.60.5.4
       id  name                          init               hyd               rel               sed               nut  
        1  res01                     initres1             res01     drawdown_days           sedres1           nutres1  
        2  res02                     initres1             res02     drawdown_days           sedres1           nutres1  

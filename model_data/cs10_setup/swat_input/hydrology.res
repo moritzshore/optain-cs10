@@ -1,4 +1,4 @@
-hydrology.res: written by SWAT+ editor v2.1.0 on 2023-05-25 15:02 for SWAT+ rev.60.5.4
+hydrology.res: written by SWAT+ editor v2.1.0 on 2023-05-30 10:39 for SWAT+ rev.60.5.4
 name                 yr_op    mon_op       area_ps        vol_ps       area_es        vol_es             k       evap_co       shp_co1       shp_co2  
 res01                    1         1       0.16002       1.60019       0.18402       1.84022       0.00000       0.60000       0.00000       0.00000  
 res02                    1         1       0.02645       0.26450       0.03042       0.30418       0.00000       0.60000       0.00000       0.00000  

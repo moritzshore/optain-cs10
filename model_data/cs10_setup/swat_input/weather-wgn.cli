@@ -1,4 +1,4 @@
-weather-wgn.cli: written by SWAT+ editor v2.1.0 on 2023-05-25 15:01 for SWAT+ rev.60.5.4
+weather-wgn.cli: written by SWAT+ editor v2.1.0 on 2023-05-30 10:38 for SWAT+ rev.60.5.4
 WS_AAS                         59.66000      10.78000      94.00000        13  
  tmp_max_ave   tmp_min_ave    tmp_max_sd    tmp_min_sd       pcp_ave        pcp_sd      pcp_skew       wet_dry       wet_wet      pcp_days       pcp_hhr       slr_ave       dew_ave       wnd_ave  
     -0.42754      -6.35285       4.83636       6.04457       2.14665       4.31987       3.41898       0.40237       0.70940      18.00000      12.46131       1.27841       0.83700       1.58710  

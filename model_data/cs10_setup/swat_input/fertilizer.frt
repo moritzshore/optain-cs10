@@ -1,4 +1,4 @@
-fertilizer.frt: written by SWAT+ editor v2.1.0 on 2023-05-25 15:03 for SWAT+ rev.60.5.4
+fertilizer.frt: written by SWAT+ editor v2.1.0 on 2023-05-30 10:39 for SWAT+ rev.60.5.4
 name                     min_n         min_p         org_n         org_p         nh3_n         pathogens  description
 elem_n                 1.00000       0.00000       0.00000       0.00000       0.00000              null  ElementalNitrogen
 elem_p                 0.00000       1.00000       0.00000       0.00000       0.00000              null  ElementalPhosphorous

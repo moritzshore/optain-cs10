@@ -1,4 +1,4 @@
-rout_unit.con: written by SWAT+ editor v2.1.0 on 2023-05-25 15:02 for SWAT+ rev.60.5.4
+rout_unit.con: written by SWAT+ editor v2.1.0 on 2023-05-30 10:38 for SWAT+ rev.60.5.4
       id  name                gis_id          area           lat           lon          elev       rtu               wst       cst      ovfl      rule   out_tot       obj_typ    obj_id       hyd_typ          frac  
        1  rtu0001                  0       0.22164      59.70014      10.86981     108.64928         1     s59661n10782e         0         0         0         2            ru        11           tot       1.00000           aqu         1           rhg       1.00000  
        2  rtu0002                  0       0.32427      59.70262      10.87107     119.80377         2     s59661n10782e         0         0         0         2            ru      1625           tot       1.00000           aqu         1           rhg       1.00000  

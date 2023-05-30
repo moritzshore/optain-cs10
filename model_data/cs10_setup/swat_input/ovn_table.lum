@@ -1,4 +1,4 @@
-ovn_table.lum: written by SWAT+ editor v2.1.0 on 2023-05-25 15:03 for SWAT+ rev.60.5.4
+ovn_table.lum: written by SWAT+ editor v2.1.0 on 2023-05-30 10:39 for SWAT+ rev.60.5.4
 name                  ovn_mean       ovn_min       ovn_max  description
 fallow_nores           0.01000       0.00800       0.01200  Fallow_no_residue
 convtill_nores         0.09000       0.06000       0.12000  Conventional_tillage_no_residue
@@ -20,4 +20,3 @@ forest_heavy           0.80000       0.70000       0.90000  Forest_heavy
 urban_asphalt          0.01100       0.01100       0.01100  Urban_asphalt
 urban_concrete         0.01200       0.01200       0.01200  Urban_concrete
 urban_rubble           0.02400       0.02400       0.02400  Urban_rubble
-forest_heavy_cs10      0.90000       0.80000       0.95000  Forest_heavy_mod

@@ -1,4 +1,4 @@
-reservoir.con: written by SWAT+ editor v2.1.0 on 2023-05-25 15:02 for SWAT+ rev.60.5.4
+reservoir.con: written by SWAT+ editor v2.1.0 on 2023-05-30 10:38 for SWAT+ rev.60.5.4
       id  name                gis_id          area           lat           lon          elev       res               wst       cst      ovfl      rule   out_tot       obj_typ    obj_id       hyd_typ          frac  
        1  res01                    0       0.16002      59.62876      10.90414     114.52237         1     s59661n10782e         0         0         0         0  
        2  res02                    0       0.02645      59.64906      10.87954     110.72248         2     s59661n10782e         0         0         0         0  
