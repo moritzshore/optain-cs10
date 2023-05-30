@@ -1,4 +1,4 @@
-file.cio: written by SWAT+ editor v2.1.0 on 2023-05-30 10:39 for SWAT+ rev.60.5.4
+file.cio: written by SWAT+ editor v2.1.0 on 2023-05-30 10:39 for SWAT+ rev.60.5.4 and edited with SWATfarmR 2.0.5 on 2023-05-30 14:35:38.097781
 simulation        time.sim          print.prt         null              object.cnt        null              
 basin             codes.bsn         parameters.bsn    
 climate           weather-sta.cli   weather-wgn.cli   null              pcp.cli           tmp.cli           slr.cli           hmd.cli           wnd.cli           atmodep.cli       
@@ -18,7 +18,7 @@ hydrology         hydrology.hyd     topography.hyd    field.fld
 structural        tiledrain.str     septic.str        filterstrip.str   grassedww.str     bmpuser.str       
 hru_parm_db       plants.plt        fertilizer.frt    tillage.til       pesticide.pes     null              null              null              urban.urb         septic.sep        snow.sno          
 ops               harv.ops          graze.ops         irr.ops           chem_app.ops      fire.ops          sweep.ops         
-lum               landuse.lum       null              cntable.lum       cons_practice.lum  ovn_table.lum     
+lum               landuse.lum       management.sch    cntable.lum       cons_practice.lum ovn_table.lum    
 chg               cal_parms.cal     null              null              null              null              null              null              null              null              
 init              plant.ini         soil_plant.ini    om_water.ini      null              null              null              null              null              null              null              null              
 soils             soils.sol         nutrients.sol     null              
