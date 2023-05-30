@@ -41,7 +41,7 @@ project_path <- 'model_data/cs10_setup'
 project_name <- 'optain-cs10'
 
 # run the buildR?
-run_code = FALSE
+run_buildr = FALSE
 
 # load the BuildR
 source('model_data/swat_buildR/init.R')
@@ -97,7 +97,7 @@ project_layer <- TRUE
 
 We read in and check the basin boundary and run some checks
 
-```{r, checkbound, eval=run_code}
+```{r, checkbound, eval=run_buildr}
 bound <- read_sf(bound_path) %>% select()
 set_proj_crs(bound, data_path)
 check_polygon_topology(layer = bound, data_path =  data_path, label = 'basin', 
@@ -136,7 +136,7 @@ This was done in a simple QGIS workflow of dissolving by farm, splitting from si
 
 BuildR will now run some checks on our land layer.
 
-```{r, check_layer_attributes1, eval=run_code}
+```{r, check_layer_attributes1, eval=run_buildr}
 land <- read_sf(land_path) %>% 
   check_layer_attributes(., type_to_lower = FALSE) %>%
   check_project_crs(layer = ., data_path =  data_path, proj_layer = project_layer, 
@@ -149,7 +149,7 @@ check_polygon_topology(layer = land, data_path =  data_path, label = 'land',
 
 BuildR splits the land layer into HRU (land) and reservoir (water) objects
 
-```{r, split_land_layer, eval=run_code}
+```{r, split_land_layer, eval=run_buildr}
 split_land_layer(data_path)
 ```
 
@@ -169,7 +169,7 @@ channel_map
 
 BuildR runs some checks:
 
-```{r, channelcheck, eval=run_code}
+```{r, channelcheck, eval=run_buildr}
  channel <- read_sf(channel_path) %>% 
     check_layer_attributes(., type_to_lower = TRUE) %>% 
     check_project_crs(layer = ., data_path =  data_path,
@@ -191,13 +191,13 @@ id_res_out <- NULL
 
 Running connectivity checks between channels and reservoirs:
 
-```{r, check_cha_res_connectivity, eval=run_code}
+```{r, check_cha_res_connectivity, eval=run_buildr}
 check_cha_res_connectivity(data_path, id_cha_out, id_res_out)
 ```
 
 Checking if any defined channel ids for drainage from land objects do not exist
 
-```{r, check_land_drain_ids, eval=run_code}
+```{r, check_land_drain_ids, eval=run_buildr}
 check_land_drain_ids(data_path)
 ```
 
@@ -205,7 +205,7 @@ check_land_drain_ids(data_path)
 
 BuildR loads and checks the DEM, and saves it.
 
-```{r, procDEM, message=TRUE, eval=run_code}
+```{r, procDEM, message=TRUE, eval=run_buildr}
 dem <- rast(dem_path) %>% 
   check_project_crs(layer = ., data_path =  data_path, proj_layer = project_layer, 
                     label = 'dem', type = 'raster')
@@ -251,7 +251,7 @@ Not much documentation exists here either. Some can be found in the excel sheet:
 
 BuildR reads in the soil data, performs checks, processes, and saves.
 
-```{r message=FALSE, warning=FALSE, checksoil1, eval=run_code}
+```{r message=FALSE, warning=FALSE, checksoil1, eval=run_buildr}
 soil <- rast(soil_layer_path) %>% 
   check_project_crs(layer = ., data_path =  data_path, proj_layer = project_layer, 
                     label = 'soil', type = 'raster')
@@ -263,13 +263,13 @@ save_soil_raster(soil, data_path)
 
 BuildR then generates a table with aggregated elevation, slope, soil for HRU units.
 
-```{r message=FALSE, warning=FALSE, aggregate_hru_dem_soil, eval=run_code}
+```{r message=FALSE, warning=FALSE, aggregate_hru_dem_soil, eval=run_buildr}
 aggregate_hru_dem_soil(data_path)
 ```
 
 Read and prepare the soil input tables and a soil/hru id table and write them into `data_path/tables.sqlite`
 
-```{r, build_soil_data, eval=run_code}
+```{r, build_soil_data, eval=run_buildr}
 build_soil_data(soil_lookup_path, soil_data_path, data_path)
 ```
 
@@ -281,13 +281,13 @@ SWATBuildR follows COCOA. This section contains the calculations. You can read m
 
 Preparing raster layers based on the DEM and the surface channel objects that will be used in the calculation of the land object connectivity.
 
-```{r, prepare_terrain_land, eval=run_code}
+```{r, prepare_terrain_land, eval=run_buildr}
 prepare_terrain_land(data_path)
 ```
 
 The connection of each land object to neighboring land and water objects is calculated based on the flow accumulation and the D8 flow pointer along the object edge
 
-```{r message=FALSE, warning=FALSE, calculate_land_connectivity, eval=run_code, results='hide'}
+```{r message=FALSE, warning=FALSE, calculate_land_connectivity, eval=run_buildr, results='hide'}
 calculate_land_connectivity(data_path)
 ```
 
@@ -309,7 +309,7 @@ frc_thres <- 0.3
 
 The remaining land object connections are analyzed for infinite loop routing. For each land unit the connections are propagated and checked if the end up again in the same unit.
 
-```{r, reduce_land_connections, eval=run_code}
+```{r, reduce_land_connections, eval=run_buildr}
 # reduce_land_connections(data_path, frc_thres) %>% 
 #  check_infinite_loops(., data_path, 'Land')
 ```
@@ -338,7 +338,7 @@ The remaining land object connections are analyzed for infinite loop routing. Fo
 
 What do we do here ? -- I think in the past we just removed all the loops, but it says here it is not recommended when there are a lot of them. Should we increase the threshold? Should we try to break up the loops? You can see the problem polygons on the map below:
 
-```{r, eval = run_code}
+```{r, eval = run_buildr}
 land_inifnite_loops_shp <- sf::read_sf("model_data/cs10_setup/optain-cs10/data/vector/land_infinite_loops.gpkg")
 
 mapview::mapview(land_inifnite_loops_shp)
@@ -359,7 +359,7 @@ frc_thres <- 0.6 # 57  loops (   mins)
 
 We have decided that at a threshold of 0.3 and 150, we are within the "not that many" loops territory, considering out of 6000+ HRUs, it is only around 2%. Therefore we will let BuildR continue and remove them.
 
-```{r, eval=run_code}
+```{r, eval=run_buildr}
 frc_thres <- 0.3 # 150 loops
 
 reduce_land_connections(data_path, frc_thres) %>% 
@@ -370,7 +370,7 @@ reduce_land_connections(data_path, frc_thres) %>%
 
 If infinite loops were identified this routine tries to resolve the issues by selectively removing connections between land units in order to get rid of all infinite loops.
 
-```{r, resolve_loop_issues, eval=run_code}
+```{r, resolve_loop_issues, eval=run_buildr}
  resolve_loop_issues(data_path)
 ```
 
@@ -380,7 +380,7 @@ If infinite loops were identified this routine tries to resolve the issues by se
 
 the function returns the `cha` and `res` `con_out` tables in SWAT+ database format and writes them into `data_path/tables.sqlite`
 
-```{r, build_water_object_connectivity, eval=run_code}
+```{r, build_water_object_connectivity, eval=run_buildr}
 build_water_object_connectivity(data_path)
 ```
 
@@ -388,7 +388,7 @@ build_water_object_connectivity(data_path)
 
 From the `cha_res_con_out` tables `id_from`/`id_to` links are generated and checked for infinite loop routing.
 
-```{r, prepare_water_links, eval=run_code}
+```{r, prepare_water_links, eval=run_buildr}
 prepare_water_links(data_path) %>% 
   check_infinite_loops(., data_path, 'Water', Inf)
 ```
@@ -397,7 +397,7 @@ prepare_water_links(data_path) %>%
 
 Calculate terrain properties such as elevation, slope, catchment area, channel width/depth for channel and reservoir objects and write them into `data_path/tables.sqlite`
 
-```{r, prepare_terrain_water, eval=run_code}
+```{r, prepare_terrain_water, eval=run_buildr}
 prepare_terrain_water(data_path)
 ```
 
@@ -407,13 +407,13 @@ prepare_terrain_water(data_path)
 
 Build the `landuse.lum` and a landuse/hru id table and write them into `data_path/tables.sqlite`
 
-```{r, build_landuse, eval=run_code}
+```{r, build_landuse, eval=run_buildr}
 build_landuse(data_path)
 ```
 
 Build the HRU SWAT+ input files and write them into `data_path/tables.sqlite`
 
-```{r, build_hru_input, eval=run_code}
+```{r, build_hru_input, eval=run_buildr}
 build_hru_input(data_path)
 ```
 
@@ -425,7 +425,7 @@ We only use the `wetf` land use .
 wetland_landuse <- c('wehb', 'wetf', 'wetl', 'wetn')
 ```
 
-```{r, add_wetlands, eval=run_code}
+```{r, add_wetlands, eval=run_buildr}
 add_wetlands(data_path, wetland_landuse)
 ```
 
@@ -433,31 +433,31 @@ add_wetlands(data_path, wetland_landuse)
 
 Build the SWAT+ `cha` input files and write them into `data_path/tables.sqlite`
 
-```{r, build_cha_input, eval=run_code}
+```{r, build_cha_input, eval=run_buildr}
 build_cha_input(data_path)
 ```
 
 Build the SWAT+ res input files and write them into `data_path/tables.sqlite`
 
-```{r, build_res_input, eval=run_code}
+```{r, build_res_input, eval=run_buildr}
 build_res_input(data_path)
 ```
 
 Build SWAT+ routing unit con_out based on 'land_connect_fraction'.
 
-```{r, build_rout_con_out, eval=run_code}
+```{r, build_rout_con_out, eval=run_buildr}
 build_rout_con_out(data_path)
 ```
 
 Build the SWAT+ rout_unit input files and write them into `data_path/tables.sqlite`
 
-```{r, build_rout_input, eval=run_code}
+```{r, build_rout_input, eval=run_buildr}
 build_rout_input(data_path)
 ```
 
 Build the SWAT+ LSU input files and write them into `data_path/tables.sqlite`
 
-```{r, build_ls_unit_input, eval=run_code}
+```{r, build_ls_unit_input, eval=run_buildr}
 build_ls_unit_input(data_path)
 ```
 
@@ -465,7 +465,7 @@ build_ls_unit_input(data_path)
 
 Build the SWAT+ aquifer input files for a single aquifer for the entire catchment. The connectivity to the channels with geomorphic flow must be added after writing the `txt` input files. **This is not implemented in the script yet.**
 
-```{r, build_single_aquifer_files, eval=run_code}
+```{r, build_single_aquifer_files, eval=run_buildr}
 build_single_aquifer_files(data_path)
 ```
 
@@ -496,7 +496,7 @@ max_point_dist <- 500 # meters
 
 Point source records can automatically be added from files in the same folder as the point source location layer. To be identified as point source data the files must be named as `<name>_<interval>.csv`, where `<name>` must be the name of a point `int` the vector layer and `<interval>` must be one of `const`, `yr`, `mon`, or `day` depending on the time intervals in the input data.
 
-```{r, add_point_sources, eval=run_code}
+```{r, add_point_sources, eval=run_buildr}
 add_point_sources(point_path, data_path, max_point_dist)
 ```
 
@@ -506,6 +506,6 @@ add_point_sources(point_path, data_path, max_point_dist)
 
 The database will be located the 'project_path'.
 
-```{r, create_swatplus_database, eval=run_code}
+```{r, create_swatplus_database, eval=run_buildr}
 create_swatplus_database(project_path, project_name)
 ```

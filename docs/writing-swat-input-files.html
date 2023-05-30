@@ -361,12 +361,13 @@ div.csl-indent {
 <li class="chapter" data-level="11.1.1" data-path="model-verification.html"><a href="model-verification.html#generate-model-run"><i class="fa fa-check"></i><b>11.1.1</b> Generate Model Run</a></li>
 <li class="chapter" data-level="11.1.2" data-path="model-verification.html"><a href="model-verification.html#load-model-run"><i class="fa fa-check"></i><b>11.1.2</b> Load Model Run</a></li>
 </ul></li>
-<li class="chapter" data-level="11.2" data-path="model-verification.html"><a href="model-verification.html#analysis-of-simulated-climate-variables"><i class="fa fa-check"></i><b>11.2</b> Analysis of simulated climate variables</a>
+<li class="chapter" data-level="11.2" data-path="model-verification.html"><a href="model-verification.html#stage-1-analysis-of-simulated-climate-variables"><i class="fa fa-check"></i><b>11.2</b> Stage 1: Analysis of simulated climate variables</a>
 <ul>
 <li class="chapter" data-level="11.2.1" data-path="model-verification.html"><a href="model-verification.html#lapse-rate-on"><i class="fa fa-check"></i><b>11.2.1</b> Lapse rate on:</a></li>
 <li class="chapter" data-level="11.2.2" data-path="model-verification.html"><a href="model-verification.html#lapse-rate-off"><i class="fa fa-check"></i><b>11.2.2</b> Lapse rate off:</a></li>
 </ul></li>
-<li class="chapter" data-level="11.3" data-path="model-verification.html"><a href="model-verification.html#simulation-of-management-operations"><i class="fa fa-check"></i><b>11.3</b> Simulation of management operations</a></li>
+<li class="chapter" data-level="11.3" data-path="model-verification.html"><a href="model-verification.html#stage-2-simulation-of-management-operations"><i class="fa fa-check"></i><b>11.3</b> Stage 2: Simulation of management operations</a></li>
+<li class="chapter" data-level="11.4" data-path="model-verification.html"><a href="model-verification.html#stage-3-analysis-of-unconstrained-plant-growth"><i class="fa fa-check"></i><b>11.4</b> Stage 3: Analysis of unconstrained plant growth</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -428,7 +429,7 @@ div.csl-indent {
 <p>Our current SWAT+ version is <code>rev60.5.4_64rel.exe</code> but this is <strong>subject to change</strong></p>
 <p>Make a run directory and enable code running.</p>
 <div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="writing-swat-input-files.html#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="co"># if set to true, following code will be evalutated. </span></span>
-<span id="cb99-2"><a href="writing-swat-input-files.html#cb99-2" aria-hidden="true" tabindex="-1"></a>post_editor <span class="ot">=</span> <span class="cn">FALSE</span></span>
+<span id="cb99-2"><a href="writing-swat-input-files.html#cb99-2" aria-hidden="true" tabindex="-1"></a>run_this_chapter <span class="ot">=</span> <span class="cn">FALSE</span></span>
 <span id="cb99-3"><a href="writing-swat-input-files.html#cb99-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb99-4"><a href="writing-swat-input-files.html#cb99-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">&quot;model_data/cs10_setup/run_swat&quot;</span>, <span class="at">showWarnings =</span> F)</span></code></pre></div>
 <p>Copy all required files into this directory:</p>
