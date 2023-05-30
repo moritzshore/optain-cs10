@@ -2,3 +2,5 @@
 .Rhistory
 .RData
 .Ruserdata
+*.run_verify
+model_data/cs10_setup/run_swat/*
