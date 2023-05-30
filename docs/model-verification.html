@@ -361,12 +361,13 @@ div.csl-indent {
 <li class="chapter" data-level="11.1.1" data-path="model-verification.html"><a href="model-verification.html#generate-model-run"><i class="fa fa-check"></i><b>11.1.1</b> Generate Model Run</a></li>
 <li class="chapter" data-level="11.1.2" data-path="model-verification.html"><a href="model-verification.html#load-model-run"><i class="fa fa-check"></i><b>11.1.2</b> Load Model Run</a></li>
 </ul></li>
-<li class="chapter" data-level="11.2" data-path="model-verification.html"><a href="model-verification.html#analysis-of-simulated-climate-variables"><i class="fa fa-check"></i><b>11.2</b> Analysis of simulated climate variables</a>
+<li class="chapter" data-level="11.2" data-path="model-verification.html"><a href="model-verification.html#stage-1-analysis-of-simulated-climate-variables"><i class="fa fa-check"></i><b>11.2</b> Stage 1: Analysis of simulated climate variables</a>
 <ul>
 <li class="chapter" data-level="11.2.1" data-path="model-verification.html"><a href="model-verification.html#lapse-rate-on"><i class="fa fa-check"></i><b>11.2.1</b> Lapse rate on:</a></li>
 <li class="chapter" data-level="11.2.2" data-path="model-verification.html"><a href="model-verification.html#lapse-rate-off"><i class="fa fa-check"></i><b>11.2.2</b> Lapse rate off:</a></li>
 </ul></li>
-<li class="chapter" data-level="11.3" data-path="model-verification.html"><a href="model-verification.html#simulation-of-management-operations"><i class="fa fa-check"></i><b>11.3</b> Simulation of management operations</a></li>
+<li class="chapter" data-level="11.3" data-path="model-verification.html"><a href="model-verification.html#stage-2-simulation-of-management-operations"><i class="fa fa-check"></i><b>11.3</b> Stage 2: Simulation of management operations</a></li>
+<li class="chapter" data-level="11.4" data-path="model-verification.html"><a href="model-verification.html#stage-3-analysis-of-unconstrained-plant-growth"><i class="fa fa-check"></i><b>11.4</b> Stage 3: Analysis of unconstrained plant growth</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -394,28 +395,28 @@ div.csl-indent {
 <div id="preparation" class="section level2 hasAnchor" number="11.1">
 <h2><span class="header-section-number">11.1</span> Preparation<a href="model-verification.html#preparation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Loading required packages, defining paths, and loading objects.</p>
-<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="model-verification.html#cb312-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install/Update SWATdoctR if needed:</span></span>
-<span id="cb312-2"><a href="model-verification.html#cb312-2" aria-hidden="true" tabindex="-1"></a><span class="co"># remotes::install_git(&#39;https://git.ufz.de/schuerz/swatdoctr&#39;, force = FALSE)</span></span>
-<span id="cb312-3"><a href="model-verification.html#cb312-3" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(SWATdoctR)</span></code></pre></div>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="model-verification.html#cb314-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install/Update SWATdoctR if needed:</span></span>
+<span id="cb314-2"><a href="model-verification.html#cb314-2" aria-hidden="true" tabindex="-1"></a><span class="co"># remotes::install_git(&#39;https://git.ufz.de/schuerz/swatdoctr&#39;, force = FALSE)</span></span>
+<span id="cb314-3"><a href="model-verification.html#cb314-3" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(SWATdoctR)</span></code></pre></div>
 <div id="generate-model-run" class="section level3 hasAnchor" number="11.1.1">
 <h3><span class="header-section-number">11.1.1</span> Generate Model Run<a href="model-verification.html#generate-model-run" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="model-verification.html#cb313-1" aria-hidden="true" tabindex="-1"></a>veri_no_stress <span class="ot">&lt;-</span></span>
-<span id="cb313-2"><a href="model-verification.html#cb313-2" aria-hidden="true" tabindex="-1"></a>  SWATdoctR<span class="sc">::</span><span class="fu">run_swat_verification</span>(</span>
-<span id="cb313-3"><a href="model-verification.html#cb313-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">project_path =</span> ppath,</span>
-<span id="cb313-4"><a href="model-verification.html#cb313-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">nostress =</span> <span class="dv">0</span>,</span>
-<span id="cb313-5"><a href="model-verification.html#cb313-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">keep_folder =</span> F,</span>
-<span id="cb313-6"><a href="model-verification.html#cb313-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">outputs =</span> <span class="st">&quot;wb&quot;</span></span>
-<span id="cb313-7"><a href="model-verification.html#cb313-7" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb313-8"><a href="model-verification.html#cb313-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb313-9"><a href="model-verification.html#cb313-9" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(veri_no_stress, <span class="st">&quot;model_data/swat_doctR/verification_runs/veri_no_stress.rds&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="model-verification.html#cb315-1" aria-hidden="true" tabindex="-1"></a>veri_no_stress <span class="ot">&lt;-</span></span>
+<span id="cb315-2"><a href="model-verification.html#cb315-2" aria-hidden="true" tabindex="-1"></a>  SWATdoctR<span class="sc">::</span><span class="fu">run_swat_verification</span>(</span>
+<span id="cb315-3"><a href="model-verification.html#cb315-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">project_path =</span> ppath,</span>
+<span id="cb315-4"><a href="model-verification.html#cb315-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">nostress =</span> <span class="dv">0</span>,</span>
+<span id="cb315-5"><a href="model-verification.html#cb315-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">keep_folder =</span> F,</span>
+<span id="cb315-6"><a href="model-verification.html#cb315-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">outputs =</span> <span class="st">&quot;wb&quot;</span></span>
+<span id="cb315-7"><a href="model-verification.html#cb315-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb315-8"><a href="model-verification.html#cb315-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb315-9"><a href="model-verification.html#cb315-9" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(veri_no_stress, <span class="st">&quot;model_data/swat_doctR/verification_runs/veri_no_stress.rds&quot;</span>)</span></code></pre></div>
 </div>
 <div id="load-model-run" class="section level3 hasAnchor" number="11.1.2">
 <h3><span class="header-section-number">11.1.2</span> Load Model Run<a href="model-verification.html#load-model-run" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="model-verification.html#cb314-1" aria-hidden="true" tabindex="-1"></a>veri_no_stress <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;model_data/swat_doctR/verification_runs/veri_no_stress.rds&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="model-verification.html#cb316-1" aria-hidden="true" tabindex="-1"></a>veri_no_stress <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;model_data/swat_doctR/verification_runs/veri_no_stress.rds&quot;</span>)</span></code></pre></div>
 </div>
 </div>
-<div id="analysis-of-simulated-climate-variables" class="section level2 hasAnchor" number="11.2">
-<h2><span class="header-section-number">11.2</span> Analysis of simulated climate variables<a href="model-verification.html#analysis-of-simulated-climate-variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="stage-1-analysis-of-simulated-climate-variables" class="section level2 hasAnchor" number="11.2">
+<h2><span class="header-section-number">11.2</span> Stage 1: Analysis of simulated climate variables<a href="model-verification.html#stage-1-analysis-of-simulated-climate-variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><u><em>Modified from the Protocol:</em></u></p>
 <ul>
 <li>The climate variables daily precipitation and daily minimum/maximum
@@ -494,11 +495,11 @@ observations.</p>
 </ol>
 <div id="lapse-rate-on" class="section level3 hasAnchor" number="11.2.1">
 <h3><span class="header-section-number">11.2.1</span> Lapse rate on:<a href="model-verification.html#lapse-rate-on" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="model-verification.html#cb315-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">, fix #43 first</span></span></code></pre></div>
+<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="model-verification.html#cb317-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">, fix #43 first</span></span></code></pre></div>
 </div>
 <div id="lapse-rate-off" class="section level3 hasAnchor" number="11.2.2">
 <h3><span class="header-section-number">11.2.2</span> Lapse rate off:<a href="model-verification.html#lapse-rate-off" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="model-verification.html#cb316-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">, fix #43 first</span></span></code></pre></div>
+<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="model-verification.html#cb318-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">, fix #43 first</span></span></code></pre></div>
 <ul>
 <li><p>Over or underestimated PET can indicate errors in the temperature
 input files (and if provided in the solar radiation, relative
@@ -510,8 +511,8 @@ humidity and wind speed inputs).</p>
 <li><p><code>SWATdoctR</code> provides the function <code>plot_climate_annual()</code> to analyse
 the annual simulated basin averages of climate variables.</p></li>
 </ul>
-<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="model-verification.html#cb317-1" aria-hidden="true" tabindex="-1"></a>fig1 <span class="ot">&lt;-</span> SWATdoctR<span class="sc">::</span><span class="fu">plot_climate_annual</span>(veri_no_stress)</span>
-<span id="cb317-2"><a href="model-verification.html#cb317-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fig1)</span></code></pre></div>
+<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="model-verification.html#cb319-1" aria-hidden="true" tabindex="-1"></a>fig1 <span class="ot">&lt;-</span> SWATdoctR<span class="sc">::</span><span class="fu">plot_climate_annual</span>(veri_no_stress)</span>
+<span id="cb319-2"><a href="model-verification.html#cb319-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fig1)</span></code></pre></div>
 <p><img src="_main_files/figure-html/fig1-1.png" width="796.8" /></p>
 <ul>
 <li>The <strong>first panel</strong> shows ET fractions. Current version of SWAT+
@@ -588,8 +589,8 @@ simulation of snow processes (<code>snofall_tmp</code>, <code>snomelt_tmp</code>
 <p>CS10, a Boreal catchment, is impacted by snow melt – this is relevant
 to the verification</p>
 </blockquote>
-<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="model-verification.html#cb318-1" aria-hidden="true" tabindex="-1"></a>SWATdoctR<span class="sc">::</span><span class="fu">plot_monthly_snow</span>(<span class="at">sim_verify =</span> veri_no_stress)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-193-1.png" width="672" /></p>
+<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="model-verification.html#cb320-1" aria-hidden="true" tabindex="-1"></a>SWATdoctR<span class="sc">::</span><span class="fu">plot_monthly_snow</span>(<span class="at">sim_verify =</span> veri_no_stress)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-195-1.png" width="672" /></p>
 <blockquote>
 <p>This has been resolved in issue #43.
 (<a href="https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/43">link</a>).
@@ -610,17 +611,64 @@ can be a valid solution.</li>
 next step:</p>
 </div>
 </div>
-<div id="simulation-of-management-operations" class="section level2 hasAnchor" number="11.3">
-<h2><span class="header-section-number">11.3</span> Simulation of management operations<a href="model-verification.html#simulation-of-management-operations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="stage-2-simulation-of-management-operations" class="section level2 hasAnchor" number="11.3">
+<h2><span class="header-section-number">11.3</span> Stage 2: Simulation of management operations<a href="model-verification.html#stage-2-simulation-of-management-operations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>For this, we need a SWAT+ run with management outputs</p>
-<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="model-verification.html#cb319-1" aria-hidden="true" tabindex="-1"></a>veri_mgt <span class="ot">&lt;-</span> <span class="fu">run_swat_verification</span>(<span class="at">project_path =</span> <span class="st">&quot;model_data/cs10_setup/run_swat&quot;</span>,</span>
-<span id="cb319-2"><a href="model-verification.html#cb319-2" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">nostress =</span> <span class="dv">0</span>,</span>
-<span id="cb319-3"><a href="model-verification.html#cb319-3" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">keep_folder =</span> F,</span>
-<span id="cb319-4"><a href="model-verification.html#cb319-4" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">outputs =</span> <span class="st">&quot;mgt&quot;</span></span>
-<span id="cb319-5"><a href="model-verification.html#cb319-5" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb319-6"><a href="model-verification.html#cb319-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb319-7"><a href="model-verification.html#cb319-7" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(veri_mgt, <span class="st">&quot;model_data/swat_doctR/verification_runs/veri_mgt.rds&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="model-verification.html#cb320-1" aria-hidden="true" tabindex="-1"></a>mgt_report <span class="ot">&lt;-</span> <span class="fu">report_mgt</span>(veri_no_stress, <span class="at">write_report =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="model-verification.html#cb321-1" aria-hidden="true" tabindex="-1"></a>veri_mgt <span class="ot">&lt;-</span></span>
+<span id="cb321-2"><a href="model-verification.html#cb321-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">run_swat_verification</span>(</span>
+<span id="cb321-3"><a href="model-verification.html#cb321-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">project_path =</span> <span class="st">&quot;model_data/cs10_setup/run_swat&quot;</span>,</span>
+<span id="cb321-4"><a href="model-verification.html#cb321-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">keep_folder =</span> T,</span>
+<span id="cb321-5"><a href="model-verification.html#cb321-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">outputs =</span> <span class="st">&quot;mgt&quot;</span></span>
+<span id="cb321-6"><a href="model-verification.html#cb321-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb321-7"><a href="model-verification.html#cb321-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb321-8"><a href="model-verification.html#cb321-8" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(veri_mgt, <span class="st">&quot;model_data/swat_doctR/verification_runs/veri_mgt.rds&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="model-verification.html#cb322-1" aria-hidden="true" tabindex="-1"></a>veri_mgt <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;model_data/swat_doctR/verification_runs/veri_mgt.rds&quot;</span>)</span>
+<span id="cb322-2"><a href="model-verification.html#cb322-2" aria-hidden="true" tabindex="-1"></a>mgt_report <span class="ot">&lt;-</span> <span class="fu">report_mgt</span>(veri_mgt, <span class="at">write_report =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## Management OK! No differences between scheduled and triggered managments identified.</code></pre>
+<p>Seems like there are no issues.</p>
+<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="model-verification.html#cb324-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print_triggered_mgt</span>(<span class="at">sim_verify =</span> veri_mgt, <span class="at">hru_id =</span> <span class="dv">92</span>)</span></code></pre></div>
+<pre><code>## Triggered managament for
+##   hru:        92 
+##   management: a_007f_1_drn_mgt_92_1</code></pre>
+<pre><code>## # A tibble: 37 × 7
+##     year   mon   day phuplant operation op_data1 op_data3
+##    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;       &lt;dbl&gt;
+##  1  2016     5    12   0      TILLAGE   harrow          0
+##  2  2016     5    15   0      FERT      elem_n         96
+##  3  2016     5    15   0      FERT      elem_p          0
+##  4  2016     5    15   0      PLANT     oats            0
+##  5  2016     5    17   0.0200 TILLAGE   rowcult         0
+##  6  2016     6    20   0.520  FERT      elem_n         38
+##  7  2016     6    20   0.520  FERT      elem_p          0
+##  8  2016     8     8   1.32   HARVEST   oats            0
+##  9  2016     8     8   0      KILL      oats            0
+## 10  2016    10     8   0      PLANT     wwht            0
+## # ℹ 27 more rows</code></pre>
+<p>Sooo hows it looking?</p>
+<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="model-verification.html#cb327-1" aria-hidden="true" tabindex="-1"></a>test <span class="ot">&lt;-</span> <span class="fu">get_hru_id_by_attribute</span>(veri_mgt, <span class="at">mgt =</span> <span class="st">&quot;a_001f_1_drn_mgt_1731_1&quot;</span>)</span>
+<span id="cb327-2"><a href="model-verification.html#cb327-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb327-3"><a href="model-verification.html#cb327-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print_triggered_mgt</span>(<span class="at">sim_verify =</span> veri_mgt, <span class="at">hru_id =</span> test<span class="sc">$</span>id[<span class="dv">1</span>])</span></code></pre></div>
+<pre><code>## Triggered managament for
+##   hru:        1731 
+##   management: a_001f_1_drn_mgt_1731_1</code></pre>
+<pre><code>## # A tibble: 40 × 7
+##     year   mon   day phuplant operation op_data1 op_data3
+##    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;       &lt;dbl&gt;
+##  1  2016     4    18   0.134  FERT      elem_n       79.1
+##  2  2016     4    18   0.134  FERT      elem_p        0  
+##  3  2016     5    13   0.250  FERT      elem_n       77.2
+##  4  2016     5    13   0.250  FERT      elem_p        0  
+##  5  2016     6    17   0.541  FERT      elem_n       34  
+##  6  2016     6    17   0.541  FERT      elem_p        0  
+##  7  2016     8     6   1.03   HARVEST   wwht          0  
+##  8  2016     8     6   0      KILL      wwht          0  
+##  9  2016     8    25   0      PLANT     wwht          0  
+## 10  2016     8    26   0.0102 TILLAGE   rowcult       0  
+## # ℹ 30 more rows</code></pre>
+<p>You tell me!</p>
+</div>
+<div id="stage-3-analysis-of-unconstrained-plant-growth" class="section level2 hasAnchor" number="11.4">
+<h2><span class="header-section-number">11.4</span> Stage 3: Analysis of unconstrained plant growth<a href="model-verification.html#stage-3-analysis-of-unconstrained-plant-growth" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 
 </div>
 </div>
