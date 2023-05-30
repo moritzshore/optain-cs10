@@ -1,0 +1,63 @@
+## Fixing Tiledrain
+
+Our problem is that some HRUs are drained, but on the wrong soil type. This
+leads to drains trying to be placed on soils that are not deep enough for them.
+This was probably caused by bad overlap of the land use and soil maps.
+
+Let us identify where we have this problem. For this we need the soil data, 
+land use map, and landuse.lum file.
+
+```{r}
+
+require(mapview)
+require(sf)
+require(stringr)
+require(magrittr)
+require(dplyr)
+require(purrr)
+
+lu_lum <- read.table("model_data/cs10_setup/swat_input_mod/landuse.lum", skip = 1, header = T, sep = "")
+
+# need to match IDs 
+lu_lum$type <- lu_lum$name %>% str_remove("_drn") %>% str_remove("_lum")
+
+lu_shp <- read_sf("model_data/input/land/CS10_LU.shp")
+
+lu_shp2<-left_join(lu_shp, lu_lum, by = "type")
+```
+
+Our drains are set to 80cm depth. Which of our soils are less than that?
+
+```{r}
+usersoil <- readr::read_csv("model_data/input/soil/UserSoil_Krakstad.csv", show_col_types = F)
+
+shallow_soils <- usersoil$SNAM[which(usersoil$SOL_ZMX<800)]
+```
+Which of our HRUs use these soils, and are drained?
+
+```{r}
+hru_data <- read.table("model_data/cs10_setup/swat_input/hru-data.hru", skip = 1, header = T, sep = "")
+
+shallow_hrus <- which(hru_data$soil %in% shallow_soils)
+
+drained_hrus <- grepl(x = hru_data$lu_mgt, pattern = "_drn") %>% which()
+
+problem_hrus <- base::intersect(shallow_hrus, drained_hrus)
+
+length(problem_hrus)
+```
+Ok. Just 16 HRUs have an issue
+
+```{r}
+problem_hru_data <- hru_data[problem_hrus,]
+
+problem_fields <- problem_hru_data$lu_mgt %>% str_remove("_drn_lum")
+
+basin_map <- mapview(read_sf("model_data/input/shape/cs10_basin.shp"))
+problem_map <- lu_shp %>% filter(type %in% problem_fields) %>% mapview(color = "black", col.regions = "red", zcol = "type")
+
+basin_map+problem_map
+```
+
+
+
