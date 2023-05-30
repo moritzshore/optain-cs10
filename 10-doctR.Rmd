@@ -1,7 +1,8 @@
 ---
-editor_options: 
-  markdown: 
+editor_options:
+  markdown:
     wrap: 72
+output: pdf_document
 ---
 
 # Model Verification
@@ -38,7 +39,7 @@ saveRDS(veri_no_stress, "model_data/swat_doctR/verification_runs/veri_no_stress.
 veri_no_stress <- readRDS("model_data/swat_doctR/verification_runs/veri_no_stress.rds")
 ```
 
-## Analysis of simulated climate variables
+## Stage 1: Analysis of simulated climate variables
 
 [*Modified from the Protocol:*]{.underline}
 
@@ -223,20 +224,38 @@ SWATdoctR::plot_monthly_snow(sim_verify = veri_no_stress)
 **STATUS**: Waiting on climate verification before continuing to the
 next step:
 
-## Simulation of management operations
+## Stage 2: Simulation of management operations
 
 For this, we need a SWAT+ run with management outputs
 
 ```{r, eval = FALSE}
-veri_mgt <- run_swat_verification(project_path = "model_data/cs10_setup/run_swat",
-                                          nostress = 0,
-                                          keep_folder = F,
-                                          outputs = "mgt"
+veri_mgt <-
+  run_swat_verification(
+    project_path = "model_data/cs10_setup/run_swat",
+    keep_folder = T,
+    outputs = "mgt"
   )
 
 saveRDS(veri_mgt, "model_data/swat_doctR/verification_runs/veri_mgt.rds")
 ```
 
-```{r, eval = FALSE}
-mgt_report <- report_mgt(veri_no_stress, write_report = TRUE)
+```{r}
+veri_mgt <- readRDS("model_data/swat_doctR/verification_runs/veri_mgt.rds")
+mgt_report <- report_mgt(veri_mgt, write_report = TRUE)
 ```
+Seems like there are no issues. 
+
+```{r}
+print_triggered_mgt(sim_verify = veri_mgt, hru_id = 92)
+```
+Sooo hows it looking?
+
+```{r}
+test <- get_hru_id_by_attribute(veri_mgt, mgt = "a_001f_1_drn_mgt_1731_1")
+
+print_triggered_mgt(sim_verify = veri_mgt, hru_id = test$id[1])
+```
+You tell me!
+
+## Stage 3: Analysis of unconstrained plant growth
+
