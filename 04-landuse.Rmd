@@ -164,6 +164,8 @@ jump in and get at this file. (REMEBER TO REMOVE THE TEMP)
 
 ```{r}
 ovn_table_path <- "model_data/cs10_setup/swat_input/ovn_table.lum"
+ovn_table_path_new <- "model_data/cs10_setup/swat_input_mod/ovn_table.lum"
+
 ovn_table <- readLines(ovn_table_path)
 ```
 
@@ -196,7 +198,7 @@ ovn_table %>% tail()
 Now lets write this new table
 
 ```{r}
-writeLines(ovn_table, con = ovn_table_path)
+writeLines(ovn_table, con = ovn_table_path_new)
 ```
 
 And now we can enter our wetland class:
@@ -524,6 +526,8 @@ For this, we need to add some custom entries to the database:
 
 ```{r}
 cons_prac_path <- "model_data/cs10_setup/swat_input/cons_practice.lum"
+cons_prac_path_new <- "model_data/cs10_setup/swat_input_mod/cons_practice.lum"
+
 cons_prac <- readLines(cons_prac_path)
 cons_prac[1:3] %>% print()
 ```
@@ -631,7 +635,7 @@ if (grepl(x = cons_prac, "cs_10_buff_wood") %>% which %>% length() == 0) {
 And write the updated file:
 
 ```{r}
-writeLines(cons_prac, con = cons_prac_path)
+writeLines(cons_prac, con = cons_prac_path_new)
 ```
 
 Now we need to define the 0, 25, 50, 75, 100 percent conventional crops.
@@ -731,11 +735,12 @@ lets take a look at the final product:
 datatable(landuse_lum)
 ```
 
-Lets write out changes
+Lets write out changes in a new directory where we will store any SWAT+
+input files which we have modified from their source BuildR form.
 
 ```{r}
-
-new_lum_path <- "model_data/cs10_setup/swat_input/landuse2.lum"
+dir.create("model_data/cs10_setup/swat_input_mod", showWarnings = F)
+new_lum_path <- "model_data/cs10_setup/swat_input_mod/landuse.lum"
 
 write.table(landuse_lum, file = new_lum_path, sep = "\t", quote = F, row.names = F)
 
@@ -747,7 +752,7 @@ be very angry with us.
 ```{r}
 lum_lines <- readLines(new_lum_path)
 
-header <- "header header header HEADER, delete me and you will regret it FOREVER!"
+header <- "header header HEADER, delete me and you will regret it FOREVER!"
 
 lum_lines2<- c(header,lum_lines)
 
@@ -755,3 +760,17 @@ writeLines(text = lum_lines2, con = new_lum_path)
 ```
 
 Done!
+
+Now that We've changed another input file, we should test if our model still
+runs. We will do that with our custom `test_swat_mod()` function. This function
+is basically the same as the previous `test_swat()` function, only that it
+incorporates the modified SWAT input files
+
+```{r, eval = FALSE}
+source("model_data/code/test_swat_mod.R")
+
+simout <- test_swat_mod()
+
+cat(tail(simout), sep = "\n")
+```
+
