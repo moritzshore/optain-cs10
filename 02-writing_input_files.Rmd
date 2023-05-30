@@ -33,7 +33,7 @@ Make a run directory and enable code running.
 
 ```{r}
 # if set to true, following code will be evalutated. 
-post_editor = TRUE
+post_editor = FALSE
 
 dir.create("model_data/cs10_setup/run_swat", showWarnings = F)
 ```

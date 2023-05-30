@@ -41,7 +41,7 @@ project_path <- 'model_data/cs10_setup'
 project_name <- 'optain-cs10'
 
 # run the buildR?
-run_code = TRUE
+run_code = FALSE
 
 # load the BuildR
 source('model_data/swat_buildR/init.R')
