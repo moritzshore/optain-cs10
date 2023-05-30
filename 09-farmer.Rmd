@@ -3,6 +3,11 @@
 WIP: Every field in the OPTAIN SWAT setup needs its own management. We will
 use the SWATFarmR package to define it. 
 
+```{r}
+run_this_chapter = FALSE
+```
+
+
 **Pre-requirements**
 
 The creation of management schedules with `SWATfarmR` requires a SWAT+
@@ -188,25 +193,25 @@ additional_h_yr_sch_existing <- 'n' # 'y' (yes), 'n' (no)
 
 Check for correct positioning of 'skip' line
 
-```{r, eval = FALSE}
+```{r, eval = run_this_chapter}
 check_skip <- check_skip_position()
 ```
 
 Check for date conflicts in single crop schedules
 
-```{r, eval = FALSE}
+```{r, eval = run_this_chapter}
 check_date_conflicts1()
 ```
 
 Build schedules for crop sequences (Messages disabled)
 
-```{r, results='hide', eval = FALSE}
+```{r, results='hide', eval = run_this_chapter}
 rota_schedules <- build_rotation_schedules()
 ```
 
 Check for date conflicts in the full rotation schedule. (Messages disabled)
 
-```{r results='hide', warning=TRUE, eval = FALSE}
+```{r results='hide', warning=TRUE, eval = run_this_chapter}
 check_date_conflicts2()
 ```
 
@@ -214,20 +219,20 @@ Solve minor date conflicts (where only a few days/weeks are overlapping)
 
 (Messages disabled)
 
-```{r results='hide', warning=TRUE, eval = FALSE}
+```{r results='hide', warning=TRUE, eval = run_this_chapter}
 rota_schedules <- solve_date_conflicts()
 ```
 
 Check again for date conflicts (Messages disabled)
 
-```{r results='hide', warning=TRUE, eval = FALSE}
+```{r results='hide', warning=TRUE, eval = run_this_chapter}
 check_date_conflicts2()
 ```
 
 ### Writing input data
 
 Write the SWAT farmR input table 
-```{r, eval = FALSE}
+```{r, eval = run_this_chapter}
 write_farmR_input()
 ```
 
@@ -277,7 +282,7 @@ If the FarmR has never been initialized, then use `new_farmr()` and
 
 EVAL FALSE as BuildR script is still broken
 
-```{r, eval = FALSE}
+```{r, eval = run_this_chapter}
 project_path <- "model_data/cs10_setup/swat_farmr/"
 
 SWATfarmR::new_farmr(project_name = "cs10", project_path = project_path )
@@ -290,7 +295,7 @@ cs10$read_management(file = "model_data/input/management/farmR_input2.csv")
 ## Calculating Antecedent Precipitation Index
 
 TODO loading API from section REF
-```{r}
+```{r, eval=run_this_chapter}
 # using temp API
 
 # TODO add real API
@@ -327,23 +332,34 @@ cs10$add_variable(data = api, name = 'api', assign_unit = hru_asgn, overwrite = 
 
 ## Scheduling Operations
 
-EVAL FALSE as BuildR script is still broken
-
-```{r, eval=FALSE}
+```{r, eval=run_this_chapter}
 
 cs10$schedule_operations(start_year = 2016, end_year = 2019, n_schedule = 2)
 ```
 
 ### Write Operations
 
-EVAL FALSE as BuildR script is still broken
-
 We cannot write from 1988 as it is limited to our climate data, which currently
 only spans back to 2010
 
-```{r, eval=FALSE}
-cs10$write_operations(start_year = 2010, end_year = 2020)
+```{r, eval=run_this_chapter}
+cs10$write_operations(start_year = 2016, end_year = 2019)
 
 ```
+The following files have been updated:
+
+- file.cio
+
+- hru-data.hru
+
+-landuse.lum
+
+- management.sch
+
+- plant.ini
+
+These need to overwrite the older files in the run_swat directory. 
+
+
 
 
