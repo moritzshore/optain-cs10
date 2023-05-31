@@ -153,7 +153,8 @@ model-verification
 preparation
 generate-model-run
 load-model-run
-analysis-of-simulated-climate-variables
+stage-1-analysis-of-simulated-climate-variables
 lapse-rate-on
 lapse-rate-off
-simulation-of-management-operations
+stage-2-simulation-of-management-operations
+stage-3-analysis-of-unconstrained-plant-growth
