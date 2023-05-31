@@ -1,105 +1,166 @@
+---
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
 # Model Verification
 
-## Preparation
+**Preparation**
 
 Loading required packages, defining paths, and loading objects.
 
-```{r, message=FALSE}
+```{r, doc_load, message=FALSE}
 
 # Install/Update SWATdoctR if needed:
 # remotes::install_git('https://git.ufz.de/schuerz/swatdoctr', force = FALSE)
 require(SWATdoctR)
-require(DT)
 
 ```
 
-### Generate Model Run
+Generate Model Run
 
+<<<<<<< Updated upstream
 ```{r, eval=FALSE}
+veri_no_stress <-
+  SWATdoctR::run_swat_verification(
+    project_path = ppath,
+    nostress = 0,
+    keep_folder = F,
+    outputs = "wb"
+  )
+=======
+```{r doc_run_swat_veri_1, eval=FALSE}
 veri_no_stress <-run_swat_verification(project_path = ppath, nostress = 0,
                                        keep_folder = F, outputs = "wb")
+>>>>>>> Stashed changes
 
 saveRDS(veri_no_stress, "model_data/swat_doctR/verification_runs/veri_no_stress.rds")
 ```
 
-### Load Model Run
+Load Model Run
 
-```{r}
+```{r, doc_load_veri_1}
 veri_no_stress <- readRDS("model_data/swat_doctR/verification_runs/veri_no_stress.rds")
 ```
 
-## Stage 1: Analysis of simulated climate variables
+## Analysis of simulated climate variables
 
 [*Modified from the Protocol:*]{.underline}
 
--   The climate variables daily precipitation and daily minimum/maximum temperatures are **required** inputs of a SWAT+ model setup (more info: protocol section 2.4).
+-   The climate variables daily precipitation and daily minimum/maximum
+    temperatures are **required** inputs of a SWAT+ model setup (more
+    info: protocol section 2.4).
 
 > We have these present.
 
--   Further climate inputs such as solar radiation, relative humidity and wind speed are **optional** input variables and can be essential for the calculation of the potential evapotranspiration (PET).
+-   Further climate inputs such as solar radiation, relative humidity
+    and wind speed are **optional** input variables and can be essential
+    for the calculation of the potential evapotranspiration (PET).
 
-> We have these, see issue #42 ([link](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/42))
+> We have these, see issue #42
+> ([link](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/42))
 
--   Climate inputs are grouped to weather stations in a model setup and are assigned to spatial objects (HRUs, channels, reservoirs, etc.) with the `nearest neighbor` method.
+-   Climate inputs are grouped to weather stations in a model setup and
+    are assigned to spatial objects (HRUs, channels, reservoirs, etc.)
+    with the `nearest neighbor` method.
 
 > We only have 1 weather station so this is not of great relevance.
 
--   The input of weather data and the assignment of climate variables to spatial objects can be sources for several issues which must be analysed:
+-   The input of weather data and the assignment of climate variables to
+    spatial objects can be sources for several issues which must be
+    analysed:
 
-1.  Data structure of the climate input tables, units of the climate variable, no data flag, etc. was wrong and can result in unrealistically small or large values of the climate variables in the simulation.
+1.  Data structure of the climate input tables, units of the climate
+    variable, no data flag, etc. was wrong and can result in
+    unrealistically small or large values of the climate variables in
+    the simulation.
 
     > Does not seem to be the case in our data
 
-2.  The nearest neighbor assignment allocates weather stations to spatial objects where the weather records do not represent the actual weather conditions in a spatial object well. This can for example be an issue in complex terrain.
+2.  The nearest neighbor assignment allocates weather stations to
+    spatial objects where the weather records do not represent the
+    actual weather conditions in a spatial object well. This can for
+    example be an issue in complex terrain.
 
-    > Should not be a concern for us (for now) since we only have a single met station
+    > Should not be a concern for us (for now) since we only have a
+    > single met station
 
-3.  The selected method for the calculation of PET results in an under/overestimation of PET when compared to estimates of PET for the region. In such cases other methods for the simulation of PET which are included in SWAT+ should be tested if they better fit the regional conditions and available weather inputs (see more [Additional settings](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/22)).
+3.  The selected method for the calculation of PET results in an
+    under/overestimation of PET when compared to estimates of PET for
+    the region. In such cases other methods for the simulation of PET
+    which are included in SWAT+ should be tested if they better fit the
+    regional conditions and available weather inputs (see more
+    [Additional
+    settings](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/22)).
 
-    > See issue [#39](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/39)
+    > See issue
+    > [#39](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/39)
 
-4.  Large implausibilities in the weather inputs can be identified in analyses of annual basin averages of the simulated climate variables. **Simulated annual and average values of climate variables must be comparable to observation data and/or region specific literature values**. Any larger [deviations]{.underline} of precipitation can indicate errors in the input file or an inappropriate assignment of weather stations to spatial units.
+4.  Large implausibilities in the weather inputs can be identified in
+    analyses of annual basin averages of the simulated climate
+    variables. **Simulated annual and average values of climate
+    variables must be comparable to observation data and/or region
+    specific literature values**. Any larger [deviations]{.underline} of
+    precipitation can indicate errors in the input file or an
+    inappropriate assignment of weather stations to spatial units.
 
-    > Have not checked this yet (!!!)
+    > We have pure observations, so no simulated data.
 
-5.  If the lapse rate option is active (Read more in Additional settings), it may be another potential reason for deviations from observations.
+5.  If the lapse rate option is active (Read more in Additional
+    settings), it may be another potential reason for deviations from
+    observations.
 
-    > We are tracking this topic in issue #39 ([link](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/39)).
+    > We are tracking this topic in issue #39
+    > ([link](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/39)).
 
 ### Lapse rate on:
 
-```{r}
-# TODO, fix #43 first
+```{r, doc_lapse_on}
+#TODO
 ```
 
 ### Lapse rate off:
 
-```{r}
+```{r, doc_lapse_off}
 # TODO, fix #43 first
 ```
 
--   Over or underestimated PET can indicate errors in the temperature input files (and if provided in the solar radiation, relative humidity and wind speed inputs).
+-   Over or underestimated PET can indicate errors in the temperature
+    input files (and if provided in the solar radiation, relative
+    humidity and wind speed inputs).
 
-    > We are tracking this topic in issue #39 ([link](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/39)).
+    > We are tracking this topic in issue #39
+    > ([link](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/39)).
 
--   `SWATdoctR` provides the function `plot_climate_annual()` to analyse the annual simulated basin averages of climate variables.
+-   `SWATdoctR` provides the function `plot_climate_annual()` to analyse
+    the annual simulated basin averages of climate variables.
 
-```{r docfig1, fig.width=8.3, fig.height=11.7}
+<<<<<<< Updated upstream
+```{r fig1, fig.width=8.3, fig.height=11.7}
+fig1 <- SWATdoctR::plot_climate_annual(veri_no_stress)
+=======
+```{r doc_plot_climate, fig.width=8.3, fig.height=11.7, fig.align='center', fig.cap="Climate plot of CS10 generated by SWATDoctR"}
 fig1 <- plot_climate_annual(veri_no_stress)
+>>>>>>> Stashed changes
 plot(fig1)
 ```
 
--   The **first panel** shows ET fractions. Current version of SWAT+ often has implausible ET fractions!
+-   The **first panel** shows ET fractions. Current version of SWAT+
+    often has implausible ET fractions!
 
 > Are these values plausible?
 
 [**ANSWER**]{.underline}: Are they Csilla?
 
--   The **second panel** shows the precipitation fractions rainfall (`rainfall`) and snowfall (`snofall`).
+-   The **second panel** shows the precipitation fractions rainfall
+    (`rainfall`) and snowfall (`snofall`).
 
 > Are these values plausible?
 
-[**ANSWER**]{.underline}: resolved in issue #43 ([link](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/43)) -- but are they plausible Csilla?
+[**ANSWER**]{.underline}: resolved in issue #43
+([link](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/43)) --
+but are they plausible Csilla?
 
 -   The **third panel** shows the annual temperature values.
 
@@ -111,40 +172,84 @@ plot(fig1)
 
 > Are these values plausible?
 
-[**ANSWER**]{.underline}**:** resolved in issue #42 [([link](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/42)), but are they plausible? Csilla]{.underline}
+[**ANSWER**]{.underline}**:** resolved in issue #42
+[([link](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/42)),
+but are they plausible? Csilla]{.underline}
 
 -   The **fifth panel** shows wind speed.
 
 > Are these values plausible?
 
-[**ANSWER**]{.underline}: resolved in [#42](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/42), Csilla plausible?
+[**ANSWER**]{.underline}: resolved in
+[#42](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/42), Csilla
+plausible?
 
--   The **sixth panel** shows the annual sums of solar radiation. A comparison to literature values of annual solar radiation sums for the region can indicate issues in this input.
+-   The **sixth panel** shows the annual sums of solar radiation. A
+    comparison to literature values of annual solar radiation sums for
+    the region can indicate issues in this input.
 
 > Are these values plausible?
 
-[**ANSWER**]{.underline}: Yes, values for the Oslo area seem to be around [4000 MJ](https://re.jrc.ec.europa.eu/pvg_tools/en/) -- Csilla do you agree?
+[**ANSWER**]{.underline}: Yes, values for the Oslo area seem to be
+around [4000 MJ](https://re.jrc.ec.europa.eu/pvg_tools/en/) -- Csilla do
+you agree?
 
--   The analysis of mean monthly precipitation (output variable `precip`), snowfall (output variable `snofall`) and snow melt (output variable `snomlt`) sums and their comparison with region specific information (or in the best case observations) provides insight in seasonal dynamics of the precipitation input. Particularly in snow impacted catchments a first verification of snowfall is valuable to see whether precipitation in solid form is simulated, a snow storage can build up and cause increased spring runoff through snow melt. The hydrological cycle of some catchments may be dominated by spring flood events which must be reflected by the simulated processes. Any observed implausibility in such analysis can indicate issues in the weather inputs or require to pay attention in the calibration of model parameters which control the simulation of snow processes (`snofall_tmp`, `snomelt_tmp`, `snomelt_lag`).
+-   The analysis of mean monthly precipitation (output variable
+    `precip`), snowfall (output variable `snofall`) and snow melt
+    (output variable `snomlt`) sums and their comparison with region
+    specific information (or in the best case observations) provides
+    insight in seasonal dynamics of the precipitation input.
+    Particularly in snow impacted catchments a first verification of
+    snowfall is valuable to see whether precipitation in solid form is
+    simulated, a snow storage can build up and cause increased spring
+    runoff through snow melt. The hydrological cycle of some catchments
+    may be dominated by spring flood events which must be reflected by
+    the simulated processes. Any observed implausibility in such
+    analysis can indicate issues in the weather inputs or require to pay
+    attention in the calibration of model parameters which control the
+    simulation of snow processes (`snofall_tmp`, `snomelt_tmp`,
+    `snomelt_lag`).
 
-> CS10, a Boreal catchment, is impacted by snow melt -- this is relevant to the verification
+> CS10, a Boreal catchment, is impacted by snow melt -- this is relevant
+> to the verification
 
+<<<<<<< Updated upstream
 ```{r}
+SWATdoctR::plot_monthly_snow(sim_verify = veri_no_stress)
+=======
+```{r, doc_plot_monthly_snow, fig.align='center', fig.cap="Precipitation and Snowmelt on a monthly average basis, as generated by SWATDoctR"}
 plot_monthly_snow(sim_verify = veri_no_stress)
+>>>>>>> Stashed changes
 ```
 
-> This has been resolved in issue #43. ([link](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/43)). Are these values plausible csilla?
+> This has been resolved in issue #43.
+> ([link](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/43)).
+> Are these values plausible csilla?
 
--   In situations where not all required climate inputs are available which are necessary to estimate PET with PM method the estimates will be more uncertain and annual PET sums may differ to regional values. Then the use of a simpler method for the calculation of PET can be a valid solution.
+-   In situations where not all required climate inputs are available
+    which are necessary to estimate PET with PM method the estimates
+    will be more uncertain and annual PET sums may differ to regional
+    values. Then the use of a simpler method for the calculation of PET
+    can be a valid solution.
 
 > We do not need a simpler method since we have the required data
 
 ------------------------------------------------------------------------
 
-**STATUS**: Waiting on climate verification before continuing to the next step:
+**STATUS**: Waiting on climate verification before continuing to the
+next step:
 
-## Stage 2: Simulation of management operations
+## Simulation of management operations
 
+<<<<<<< Updated upstream
+For this, we need a SWAT+ run with management outputs
+
+```{r, eval = FALSE}
+veri_mgt <- run_swat_verification(project_path = "model_data/cs10_setup/run_swat",
+                                          nostress = 0,
+                                          keep_folder = F,
+                                          outputs = "mgt"
+=======
 Development of management tables is complicated and complex -- and thus error prone. Mistakes in this area do not produce any errors or warnings making them easy to miss.
 
 > All operations which are triggered in a SWAT+ simulation run are written into the file 'mgt_out.txt'
@@ -153,38 +258,44 @@ To verify the operations, we are going to compare scheduled and simulated operat
 
 For this, we need a SWAT+ run with management outputs. If we have already run this code, we do not need to run it again, and can just load it in:
 
-```{r}
+```{r, doc_load_veri_mgt}
 veri_mgt <- readRDS("model_data/swat_doctR/verification_runs/veri_mgt.rds")
 ```
 
 Skip this code block, unless you want to re-run SWAT+
 
-```{r, eval = FALSE}
+```{r, doc_run_swat_veri_mgt, eval = FALSE}
 veri_mgt <-
   run_swat_verification(
     project_path = "model_data/cs10_setup/run_swat",
     keep_folder = T,
     outputs = "mgt"
+>>>>>>> Stashed changes
   )
 
 saveRDS(veri_mgt, "model_data/swat_doctR/verification_runs/veri_mgt.rds")
 ```
 
+<<<<<<< Updated upstream
+```{r, eval = FALSE}
+mgt_report <- report_mgt(veri_no_stress, write_report = TRUE)
+```
+=======
 From the Protocol:
 
-"The function `report_mgt()` generates an overview report where the scheduled and triggered operations are matched and compared for each management schedule that was implemented in the simulations. The function prepares the scheduled management operations that were written in the input file 'management.sch' in tabular form and randomly samples one HRU for each defined schedule from the triggered management operations (from the output file 'mgt_out.txt'). The comparison is only done for operations that were defined with a fixed date in the management schedule and operations which are triggered by decision tables will be excluded.
+"The function `report_mgt()` generates an overview report where the scheduled and triggered operations are matched and compared for each management schedule that was implemented in the simulations. The function prepares the scheduled management operations that were written in the input file 'management.sch' in tabular form and randomly samples one HRU for each defined schedule from the triggered management operations (from the output file 'mgt_out.txt'). The comparison is only done for operations that were defined with a fixed date in the management schedule and operations which are triggered by decision tables will be excluded."
 
-Applying the function `report_mgt()` for the model verification simulation outputs returns a table with an overview of the operations which were scheduled but not triggered or operations where 'op_data1' differs in the scheduled and triggered operations."
+"Applying the function `report_mgt()` for the model verification simulation outputs returns a table with an overview of the operations which were scheduled but not triggered or operations where 'op_data1' differs in the scheduled and triggered operations."
 
-```{r}
+```{r, doc_report_mgt}
 mgt_report <- report_mgt(veri_mgt, write_report = TRUE)
 ```
 
 Seems like there are no issues. I am not sure if this is a good or bad thing :D.
 
-The `report_mgt()` function is a good starting point to explore the triggered management. But this analysis can be error prone. Still the safest way to analyse the triggered and the scheduled managements is to compare the input and output tables. `SWATdoctR` provides the function `print_triggered_mgt()` to print the triggered managements for individual HRUs. For selecting HRUs e.g. with a specific management the helper function `get_hru_id_by_attribute()` can be useful. This table can be visually compared with the management input table ('management.sch')
+"The `report_mgt()` function is a good starting point to explore the triggered management. But this analysis can be error prone. Still the safest way to analyse the triggered and the scheduled managements is to compare the input and output tables. `SWATdoctR` provides the function `print_triggered_mgt()` to print the triggered managements for individual HRUs. For selecting HRUs e.g. with a specific management the helper function `get_hru_id_by_attribute()` can be useful. This table can be visually compared with the management input table ('management.sch')"
 
-```{r paged.print=TRUE}
+```{r, doc_print_mgt}
 table <- print_triggered_mgt(sim_verify = veri_mgt, hru_id = 92)
 
 datatable(table)
@@ -192,7 +303,7 @@ datatable(table)
 
 To see the operations of a specific management schedule:
 
-```{r}
+```{r, doc_get_hru_id}
 test <- get_hru_id_by_attribute(veri_mgt, mgt = "a_001f_1_drn_mgt_1731_1")
 
 tables <- print_triggered_mgt(sim_verify = veri_mgt, hru_id = test$id[1])
@@ -215,3 +326,4 @@ datatable(tables)
 > Answer:
 
 ## Stage 3: Analysis of unconstrained plant growth
+>>>>>>> Stashed changes
