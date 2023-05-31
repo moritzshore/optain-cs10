@@ -1,12 +1,3 @@
-fig:lumap
-fig:farmidfig
-tab:unnamed-chunk-41
-fig:unnamed-chunk-85
-fig:unnamed-chunk-86
-fig:unnamed-chunk-103
-fig:unnamed-chunk-104
-fig:soilmapplot
-fig:unnamed-chunk-122
 model-setup-with-swatbuildr
 buildr-setup
 processing-input-data

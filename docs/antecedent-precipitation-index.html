@@ -392,7 +392,7 @@ div.csl-indent {
 <h2><span class="header-section-number">8.1</span> Introduction<a href="antecedent-precipitation-index.html#introduction-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>SWATFarmR cannot account for operations based on values modeled by
 SWAT+, such as soil moisture. This is because FarmR does not run the
-model itself, and creates and predefines all the management schedules
+model itself, and creates and pre-defines all the management schedules
 based on measured climate data. This means we need to relate our
 measured climate data to our soil moisture (Because soil moisture is an
 important factor in planning agricultural operations). One method to do
@@ -565,7 +565,7 @@ could be improved by capping site specific.</p>
 <span id="cb255-3"><a href="antecedent-precipitation-index.html#cb255-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">skip =</span> <span class="dv">1</span>, <span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">&quot;val&quot;</span>, <span class="st">&quot;date&quot;</span>))</span>
 <span id="cb255-4"><a href="antecedent-precipitation-index.html#cb255-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb255-5"><a href="antecedent-precipitation-index.html#cb255-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_api</span>(<span class="at">api_vals =</span> guess, <span class="at">obs =</span> b_col, <span class="at">title =</span> <span class="st">&quot;HSG-B API guessed&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-139-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/api_guess-1.png" width="672" /></p>
 <p>Now we optimize the alpha parameter using <code>scipy</code> <code>curve_fit</code>.</p>
 <div class="sourceCode" id="cb256"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb256-1"><a href="antecedent-precipitation-index.html#cb256-1" aria-hidden="true" tabindex="-1"></a>par_opt, par_cov <span class="op">=</span> curve_fit(api_model, df[<span class="st">&#39;pcp&#39;</span>], df[<span class="st">&#39;value&#39;</span>], p0<span class="op">=</span>[<span class="fl">0.95</span>,<span class="dv">100</span>])</span>
 <span id="cb256-2"><a href="antecedent-precipitation-index.html#cb256-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -590,7 +590,7 @@ could be improved by capping site specific.</p>
 <span id="cb261-3"><a href="antecedent-precipitation-index.html#cb261-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">skip =</span> <span class="dv">1</span>, <span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">&quot;val&quot;</span>, <span class="st">&quot;date&quot;</span>))</span>
 <span id="cb261-4"><a href="antecedent-precipitation-index.html#cb261-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb261-5"><a href="antecedent-precipitation-index.html#cb261-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_api</span>(<span class="at">api_vals =</span> optimized, <span class="at">obs =</span> b_col, <span class="at">title =</span> <span class="st">&quot;HSG-B API optimized&quot;</span>)</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-143-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/api_loadropti-1.png" width="672" /></p>
 <p>Not great, but also not surprising considering no account for snow melt
 has been done, nor do we have good logger data.</p>
 <p>We will define this workflow in a function <code>calc_api.R</code> and run it for
@@ -598,7 +598,7 @@ the next loggers.</p>
 <div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="antecedent-precipitation-index.html#cb262-1" aria-hidden="true" tabindex="-1"></a><span class="fu">calc_api</span>(<span class="at">logger_id =</span> <span class="st">&quot;600409&quot;</span>)</span></code></pre></div>
 <pre><code>## Warning in py_to_r.pandas.core.frame.DataFrame(x): index contains duplicated
 ## values: row names not set</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-144-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/api_calc_09-1.png" width="672" /></p>
 <pre><code>##   HSG Alpha 
 ##   &quot;D&quot;   &quot;1&quot;</code></pre>
 <p>This is the logger with broken data, so no surprise that the optimizer
@@ -606,13 +606,13 @@ failed.</p>
 <div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="antecedent-precipitation-index.html#cb265-1" aria-hidden="true" tabindex="-1"></a><span class="fu">calc_api</span>(<span class="at">logger_id =</span> <span class="st">&quot;600411&quot;</span>)</span></code></pre></div>
 <pre><code>## Warning in py_to_r.pandas.core.frame.DataFrame(x): index contains duplicated
 ## values: row names not set</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-145-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/api_calc_11-1.png" width="672" /></p>
 <pre><code>##    HSG  Alpha 
 ##    &quot;C&quot; &quot;0.99&quot;</code></pre>
 <div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="antecedent-precipitation-index.html#cb268-1" aria-hidden="true" tabindex="-1"></a><span class="fu">calc_api</span>(<span class="at">logger_id =</span> <span class="st">&quot;600413&quot;</span>)</span></code></pre></div>
 <pre><code>## Warning in py_to_r.pandas.core.frame.DataFrame(x): index contains duplicated
 ## values: row names not set</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-146-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/api_calc_13-1.png" width="672" /></p>
 <pre><code>##    HSG  Alpha 
 ##    &quot;C&quot; &quot;0.99&quot;</code></pre>
 </div>
