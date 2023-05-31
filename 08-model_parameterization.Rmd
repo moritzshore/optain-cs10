@@ -223,10 +223,11 @@ Plant growth stress is being testing in REF
 
 **Tile drainage**
 
-Has been causing model crashes.
+This should be set to 1, but that causes a crash. We will fix this bug in a 
+dedicated secton (REF)
 
 ```{r}
-codes_df$tiledrain <- 1
+codes_df$tiledrain <- 0
 ```
 
 Atmosdep was done in REF and is annual
