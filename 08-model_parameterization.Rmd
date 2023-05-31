@@ -16,7 +16,7 @@ So far nothing has been changed.
 
 The crop database has been updated and stored in the following file:
 
-```{r, eval=FALSE}
+```{r, mod_par_plt, eval=FALSE}
 "model_data/cs10_setup/swat_input_mod/plants.plt"
 ```
 
@@ -50,7 +50,7 @@ The following changes have been implemented, but are subject to change:
 
 : Changes made to `soilnut1` of `nutrients.sol`
 
-```{r}
+```{r, mod_par_nutsol}
 
 nutrients_sol <- readLines("model_data/cs10_setup/swat_input/nutrients.sol")
 
@@ -80,7 +80,7 @@ writeLines(c(header_new, nutrients_sol), "model_data/cs10_setup/swat_input_mod/n
 
 Testing if the setup still works:
 
-```{r, eval = FALSE}
+```{r, mod_par_testswat1, eval = FALSE}
 simout <- test_swat_mod()
 cat(tail(simout), sep = "\n")
 ```
@@ -102,7 +102,7 @@ Is an ongoing issue in [#21](https://gitlab.nibio.no/moritzshore/swat-cs10/-/iss
 
 Is an ongoing issue in [#53](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/53).
 
-```{r}
+```{r, mod_par_tiledrainset}
 old_path <- "model_data/cs10_setup/swat_input/tiledrain.str"
 new_path <-  "model_data/cs10_setup/swat_input_mod/tiledrain.str"
 
@@ -143,7 +143,7 @@ write.table(
 ```
 Testing if the setup still works:
 
-```{r, eval = FALSE}
+```{r, mod_par_testswat2, eval = FALSE}
 simout <- test_swat_mod()
 cat(tail(simout), sep = "\n")
 ```
@@ -175,7 +175,7 @@ The following changes have been made:
 
 : Changes made to `codes.bsn`
 
-```{r}
+```{r, mod_par_codes_bsn}
 old_path <- "model_data/cs10_setup/swat_input/codes.bsn"
 new_path <- "model_data/cs10_setup/swat_input_mod/codes.bsn"
 
@@ -192,14 +192,14 @@ codes_df <- read.table(old_path, skip = 1, header = T, sep = "",
 **PET method** (pet) The OPTAIN project recommends the PET calculation of  Pennman-Monteith, which
 is code 2.
 
-```{r}
+```{r, mod_par_pet}
 codes_df$pet <- 2 
 ```
 
 **Channel routing network** (rte_cha) Recommended is to start with Muskingum (code 1) and apply variable storage
 method if it causes problems.
 
-```{r}
+```{r, mod_par_rte_cha}
 codes_df$rte_cha <- 1
 ```
 
@@ -207,13 +207,13 @@ codes_df$rte_cha <- 1
 
 **Daily curve number calculation** (cn) Code 1 is recommended. (Plant ET)
 
-```{r}
+```{r, mod_par_cn}
 codes_df$cn <- 1
 ```
 
 OPTAIN recommends new version
 
-```{r}
+```{r, mod_par_soil_p}
 codes_df$soil_p <- 1
 ```
 
@@ -226,19 +226,19 @@ Plant growth stress is being testing in REF
 This should be set to 1, but that causes a crash. We will fix this bug in a 
 dedicated secton (REF)
 
-```{r}
+```{r, mod_par_tiledrain}
 codes_df$tiledrain <- 0
 ```
 
 Atmosdep was done in REF and is annual
 
-```{r}
+```{r, mod_par_atmodep}
 codes_df$atmo_dep <- "y"
 ```
 
 Writing the changes
 
-```{r}
+```{r, mod_par_write_codes_bsn}
 write.table(header, file = new_path, col.names = F, row.names = F, quote = F) 
 
 
@@ -254,7 +254,7 @@ write.table(
 ```
 Testing if the setup still works:
 
-```{r, eval = FALSE}
+```{r, mod_par_testswat3, eval = FALSE}
 simout <- test_swat_mod()
 cat(tail(simout), sep = "\n")
 ```

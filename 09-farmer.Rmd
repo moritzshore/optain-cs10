@@ -3,7 +3,7 @@
 WIP: Every field in the OPTAIN SWAT setup needs its own management. We will
 use the SWATFarmR package to define it. 
 
-```{r}
+```{r farmr_run_chap}
 run_this_chapter = FALSE
 ```
 
@@ -13,9 +13,9 @@ run_this_chapter = FALSE
 The creation of management schedules with `SWATfarmR` requires a SWAT+
 model setup created by the `SWATbuildR` package.
 
-We also require the following packages:
+We also require the following package and functions:
 
-```{r, message=FALSE}
+```{r, farmr_libs, message=FALSE}
 require(DT)
 require(ggplot2)
 require(readr)
@@ -23,18 +23,6 @@ require(stringr)
 require(magrittr)
 #remotes::install_github("chrisschuerz/SWATfarmR")
 require(SWATfarmR)
-```
-
-
-## Pre-processing crop rotation
-
-This OPTAIN-provided workflow pre-processes our crop rotation data into a
-`SWATfarmR` compatible format. Authored by Michael Strauch, modified by 
-Moritz Shore
-
-It requires the following packages
-
-```{r, message=FALSE}
 require(sf)
 require(tidyverse)
 require(lubridate)
@@ -43,12 +31,15 @@ require(remotes)
 require(dplyr)
 require(data.table)
 require(DT)
-```
 
-And the following functions:
-```{r}
 source('model_data/swat_farmR/functions_write_SWATfarmR_input.R')
 ```
+
+## Pre-processing crop rotation
+
+This OPTAIN-provided workflow pre-processes our crop rotation data into a
+`SWATfarmR` compatible format. Authored by Michael Strauch, modified by 
+Moritz Shore
 
 ### Input files
 
@@ -76,7 +67,7 @@ operation schedules (provided in a .csv file, see below)
 see also section 4.1 of the modelling protocol (ref)
 
 
-```{r}
+```{r, farmr_cr}
 lu_shp <- 'model_data/input/crop/land_with_cr.shp'
 
 lu <- st_drop_geometry(read_sf(lu_shp))
@@ -102,7 +93,7 @@ management specification is optional).
 
 4. The 'skip' line should never be the last line of a schedule.
 
-```{r}
+```{r, farmr_mgt}
 mgt_csv <- 'model_data/input/management/mgt_crops_CS10.csv'
 
 mgt_crop <- read.csv(mgt_csv)
@@ -118,7 +109,7 @@ Usually all non-cropland classes with vegetation cover
 
 1. here, all schedules must be provided already in the SWATfarmR input format.
 
-```{r}
+```{r, farmr_generic}
 lu_generic_csv <- 'model_data/input/management/farmR_generic_CS10.csv' # generic land use management .csv table
 
 mgt_generic <- read.csv(lu_generic_csv)
@@ -130,7 +121,7 @@ datatable(mgt_generic)
 
 #### Simulation Period
 
-```{r}
+```{r, farmr_dates}
 start_y <- 2010 # starting year (consider at least 3 years for warm-up!)
 end_y <- 2020 # ending year
 ```
@@ -140,7 +131,7 @@ end_y <- 2020 # ending year
 > all names of hrus with a crop rotation must begin with this prefix in column
 'lu' of your land use 
 
-```{r}
+```{r, farmr_prefix}
 hru_crops <- 'a_'
 ```
 
@@ -148,18 +139,18 @@ hru_crops <- 'a_'
 
 Did you define any multi-year farmland grass schedules? 'y' (yes), 'n' (no)
 
-```{r}
+```{r, farmr_mysch}
 m_yr_sch_existing <- 'n'
 ```
 
 If yes, define also the following variables. **If not, skip next four lines**
-```{r}
+```{r, farmr_myv}
 crop_myr <- 'past' # name of your farmland grass
 ```
 
 Maximum number of years farmland grass can grow before it is killed (should be
 <8)
-```{r}
+```{r, farmr_mymx}
 max_yr <- 5
 ```
 
@@ -171,7 +162,7 @@ crop immediately afterwards)
 
 If yes, you must define your summer crops
 
-```{r}
+```{r, farmr_myfg}
 crop_s <- c('sgbt','csil','barl')
 ```
 
@@ -185,7 +176,7 @@ the crop management table with suffix '_0.5yr' (e.g. 'csil_0.5yr')
 If additional 'half-year-schedules' are not needed, because your normal summer
 crop schedules do not start in autumn, type 'n'
 
-```{r}
+```{r, farmr_additional_h_yr_sch_exist}
 additional_h_yr_sch_existing <- 'n' # 'y' (yes), 'n' (no)
 ```
 
@@ -193,25 +184,25 @@ additional_h_yr_sch_existing <- 'n' # 'y' (yes), 'n' (no)
 
 Check for correct positioning of 'skip' line
 
-```{r, eval = run_this_chapter}
+```{r, farmr_checkskip, eval = run_this_chapter}
 check_skip <- check_skip_position()
 ```
 
 Check for date conflicts in single crop schedules
 
-```{r, eval = run_this_chapter}
+```{r, farmr_check_date1, eval = run_this_chapter}
 check_date_conflicts1()
 ```
 
 Build schedules for crop sequences (Messages disabled)
 
-```{r, results='hide', eval = run_this_chapter}
+```{r, farmr_rota_sched, results='hide', eval = run_this_chapter}
 rota_schedules <- build_rotation_schedules()
 ```
 
 Check for date conflicts in the full rotation schedule. (Messages disabled)
 
-```{r results='hide', warning=TRUE, eval = run_this_chapter}
+```{r farmr_checkdate_conflict2, results='hide', warning=TRUE, eval = run_this_chapter}
 check_date_conflicts2()
 ```
 
@@ -219,26 +210,26 @@ Solve minor date conflicts (where only a few days/weeks are overlapping)
 
 (Messages disabled)
 
-```{r results='hide', warning=TRUE, eval = run_this_chapter}
+```{r farmr_solve_date_conflict, results='hide', warning=TRUE, eval = run_this_chapter}
 rota_schedules <- solve_date_conflicts()
 ```
 
 Check again for date conflicts (Messages disabled)
 
-```{r results='hide', warning=TRUE, eval = run_this_chapter}
+```{r, farmr_checkdate2, results='hide', warning=TRUE, eval = run_this_chapter}
 check_date_conflicts2()
 ```
 
 ### Writing input data
 
 Write the SWAT farmR input table 
-```{r, eval = run_this_chapter}
+```{r, farmr_write, eval = run_this_chapter}
 write_farmR_input()
 ```
 
 The output of this pre-processing stage is loaded in from this file:
 
-```{r}
+```{r, farmr_preview}
 farmR_input <- readr::read_csv("model_data/input/management/farmR_input.csv",
                                show_col_types = F)
 
@@ -256,7 +247,7 @@ We need to fix the land use name, which entails replacing the `_drn_lum`
 with just `_lum` for all the agricultural fields. This is because
 `land.shp` from buildR does not include the `_drn` for some reason
 
-```{r}
+```{r, farmr_bandaid}
 
 # TODO: Figure out why this is an issue. Are you using the wrong buildR output
 # as source material for the crop generation?
@@ -282,7 +273,7 @@ If the FarmR has never been initialized, then use `new_farmr()` and
 
 EVAL FALSE as BuildR script is still broken
 
-```{r, eval = run_this_chapter}
+```{r, farmr_new, eval = run_this_chapter}
 project_path <- "model_data/cs10_setup/swat_farmr/"
 
 SWATfarmR::new_farmr(project_name = "cs10", project_path = project_path )
@@ -295,7 +286,7 @@ cs10$read_management(file = "model_data/input/management/farmR_input2.csv")
 ## Calculating Antecedent Precipitation Index
 
 TODO loading API from section REF
-```{r, eval=run_this_chapter}
+```{r, farmr_tempapi, eval=run_this_chapter}
 # using temp API
 
 # TODO add real API
@@ -327,12 +318,11 @@ cs10$add_variable(data = api, name = 'api', assign_unit = hru_asgn, overwrite = 
 
 ```
 
-
-....
+TODO
 
 ## Scheduling Operations
 
-```{r, eval=run_this_chapter}
+```{r, farmr_sched, eval=run_this_chapter}
 
 cs10$schedule_operations(start_year = 2016, end_year = 2019, n_schedule = 2)
 ```
@@ -342,7 +332,7 @@ cs10$schedule_operations(start_year = 2016, end_year = 2019, n_schedule = 2)
 We cannot write from 1988 as it is limited to our climate data, which currently
 only spans back to 2010
 
-```{r, eval=run_this_chapter}
+```{r, farmr_write_ops, eval=run_this_chapter}
 cs10$write_operations(start_year = 2016, end_year = 2019)
 
 ```

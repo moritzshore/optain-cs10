@@ -8,7 +8,7 @@ This chapter is concerned with preparing the measured data for the OPTAIN field 
 
 The following packages are required for this chapter:
 
-```{r, message=FALSE}
+```{r, logger_libs, message=FALSE}
 require(readr) # for reading in data
 require(dplyr) # for manipulating data
 require(stringr) # for manipulating text
@@ -26,7 +26,7 @@ show_rows <- 500 # number of rows to show in the tables
 
 As well as the following custom functions:
 
-```{r}
+```{r, logger_plotter}
 source("model_data/code/plot_logger.R")
 ```
 
@@ -44,7 +44,7 @@ The loggers are described as such:
 
 And are located here:
 
-```{r}
+```{r, logger_field_map}
 
 field_sites_shp <- read_sf("model_data/field_sites/geospatial/cs10_field_sites.shp")
 basin_shp <- read_sf("model_data/input/shape/cs10_basin.shp")
@@ -62,11 +62,11 @@ basin_map+field_map
 
 To start we need to load in our data from the *GroPoint Profile* data loggers. The logger is approx. 1m long and has 7 temperature sensors, and 6 soil moisture sensors located along its segments. @gropoint2023
 
-```{r, echo = FALSE, fig.align='center', fig.cap= "GroPoint Segment Schematic (GroPoint Profile User Manual, Page 6)"}
+```{r, logger_gropointfig, echo = FALSE, fig.align='center', fig.cap= "GroPoint Segment Schematic (GroPoint Profile User Manual, Page 6)"}
 knitr::include_graphics("figures/gropoint_segments.png")
 ```
 
-```{r, echo = FALSE, fig.align='center', fig.cap= "GroPoint Temperature sensor depths. We use GPLP-4 with seven temperature sensors. (GroPoint Profile User Manual, Page 6)"}
+```{r, logger_gropointfig2, echo = FALSE, fig.align='center', fig.cap= "GroPoint Temperature sensor depths. We use GPLP-4 with seven temperature sensors. (GroPoint Profile User Manual, Page 6)"}
 knitr::include_graphics("figures/gropoint_temp.png")
 ```
 
@@ -74,13 +74,13 @@ The logger data has been modified before import into R. The file names have been
 
 Columns headers have assigned with variable name, depth, and unit of depth separated by an underscore.
 
-```{r}
+```{r, logger_path}
 path <- "model_data/field_sites/loggers/data/"
 ```
 
 Loading the data and modifying it is performed with `readr` and `dplyr`.
 
-```{r}
+```{r, logger_load_data}
 # list of files
 datasheets <- list.files(path, full.names = TRUE)
 
@@ -100,7 +100,7 @@ data <- data %>% distinct()
 
 Data preview
 
-```{r, echo=FALSE}
+```{r, logger_prieview_data, echo=FALSE}
 datatable(
   head(data, show_rows),
   extensions = "Scroller",
@@ -110,7 +110,7 @@ datatable(
 
 We need to force the date time column into the correct format. We can do this with the following command. (*Please note, this has been done for region:* `United States` *this code may need to be adjusted to fit your regional settings*)
 
-```{r}
+```{r, logger_fixdatetime}
 data$datetime <- data$datetime %>% 
   as_datetime(format = "%m/%d/%Y %H:%M", tz = "CET")
 ```
@@ -119,7 +119,7 @@ data$datetime <- data$datetime %>%
 
 For ease of use in R, we will re-structure the data to be in "tidy" format (Read more: [@wickham2014]).
 
-```{r}
+```{r, logger_tidyup}
 # grab the measured variable column headers
 mea_var <- colnames(data)[3:15]
 
@@ -142,7 +142,7 @@ data_melt <- data_melt %>% distinct()
 
 Data preview:
 
-```{r, echo=FALSE}
+```{r, logger_tidy_prev, echo=FALSE}
 datatable(
   head(data_melt, show_rows),
   extensions = "Scroller",
@@ -154,13 +154,13 @@ datatable(
 
 As SWAP is a daily time step model, we do not need the hourly resolution, and can therefore simplify our analysis. We first need to parse out a (daily) date column
 
-```{r}
+```{r, logger_melt_fix_date}
 data_melt$date <- data_melt$datetime %>% as.Date()
 ```
 
 And then group the data by this date, followed by an averaging function.
 
-```{r}
+```{r, logger_dailyavg}
 daily_data <- data_melt %>% group_by(date, var, depth, site) %>%
     summarise(value = round(mean(value, na.rm = TRUE), 1), .groups = "drop_last") %>% ungroup()
 ```
@@ -177,7 +177,7 @@ Additional notes:
 
 Data preview:
 
-```{r, echo=FALSE}
+```{r, logger_dailyavg_preview, echo=FALSE}
 datatable(
   head(daily_data, show_rows),
   extensions = "Scroller",
@@ -193,7 +193,7 @@ Also important to note, is that all this code is only necessary, because of the 
 
 Reading in the SWAT source precipitation data:
 
-```{r}
+```{r, logger_loadpcptmp}
 swat_pcp <- read.table("model_data/cs10_setup/optain-cs10/sta_id1.pcp", skip = 3, header = F, sep = "\t") %>% as_tibble()
 
 swat_tmp <- read.table("model_data/cs10_setup/optain-cs10/sta_id1.tmp", skip = 3, header = F, sep = "\t") %>% as_tibble()
@@ -201,7 +201,7 @@ swat_tmp <- read.table("model_data/cs10_setup/optain-cs10/sta_id1.tmp", skip = 3
 
 Data preview:
 
-```{r, echo=FALSE}
+```{r, logger_previewpcp, echo=FALSE}
 datatable(
   head(swat_pcp, show_rows),
   extensions = "Scroller",
@@ -211,7 +211,7 @@ datatable(
 
 Parsing out the first and last day and year.
 
-```{r}
+```{r, logger_parseswatdate}
 FIRST_DOY <- swat_pcp[1,][[2]]-1
 FIRST_YEAR <- swat_pcp[1,][[1]]
 
@@ -221,7 +221,7 @@ LAST_YEAR <- swat_pcp[length(swat_pcp$V1),][[1]]
 
 Converting these to an R format. Note that R uses a 0-based index *only for* dates. (very confusing!).
 
-```{r}
+```{r, logger_parseswatdate2}
 first_day <- as.Date(FIRST_DOY, origin = paste0(FIRST_YEAR, "-01-01"))
 last_day <- as.Date(LAST_DOY, origin = paste0(LAST_YEAR, "-01-01"))
 
@@ -230,19 +230,19 @@ date_range <- seq(from = first_day, to = last_day, by = "day")
 
 Creating a dataframe from the source data
 
-```{r}
+```{r, logger_pcpastibble}
 pcp_data <- tibble(date = date_range, pcp = swat_pcp$V3)
 ```
 
 And filtering it to only cover the same range as our logger data.
 
-```{r}
+```{r pcp_fix_date}
 pcp_data <- pcp_data %>% filter(date %in% daily_data$date)
 ```
 
 And we do the same for temperature
 
-```{r}
+```{r, logger_tmp_swat}
 FIRST_DOY <- swat_tmp[1,][[2]]-1
 FIRST_YEAR <- swat_tmp[1,][[1]]
 LAST_DOY <-  swat_tmp[length(swat_tmp$V1),][[2]]-1
@@ -256,7 +256,7 @@ tmp_data <- tibble(date = date_range,
 tmp_data <- tmp_data %>% filter(date %in% daily_data$date)
 ```
 
-```{r, echo = F, fig.align='center', fig.cap= "Temperature range and precipitation for CS10"}
+```{r, logger_plotclimbase, echo = F, fig.align='center', fig.cap= "Temperature range and precipitation for CS10"}
 
 yrange <- c(pcp_data$pcp, tmp_data$tmp_max, tmp_data$tmp_min)
 
@@ -299,7 +299,7 @@ In this section we are proofing the quality of the data.
 
 ### Logger 600409 "Deep Rocky Sand"
 
-```{r, fig.align='center', fig.cap= "Logger 600409"}
+```{r, logger_plot09, fig.align='center', fig.cap= "Logger 600409"}
 plot_logger(daily_data, "600409", pcp_data, tmp_data)
 ```
 
@@ -319,7 +319,7 @@ plot_logger(daily_data, "600409", pcp_data, tmp_data)
 
 ### Logger 600410 "Tormods farm"
 
-```{r, fig.align='center'}
+```{r, logger_plot_10, fig.align='center'}
 plot_logger(daily_data, "600410", pcp_data, tmp_data)
 ```
 
@@ -336,7 +336,7 @@ plot_logger(daily_data, "600410", pcp_data, tmp_data)
 
 ### Logger 600411 "John Ivar Lower Area"
 
-```{r, fig.align='center'}
+```{r, logger_plot_11, fig.align='center'}
 plot_logger(daily_data, "600411", pcp_data, tmp_data)
 ```
 
@@ -354,7 +354,7 @@ plot_logger(daily_data, "600411", pcp_data, tmp_data)
 
 ### Logger 600413 "John Ivar behind the barn"
 
-```{r}
+```{r, logger_plot13}
 plot_logger(daily_data, "600413", pcp_data, tmp_data)
 ```
 
@@ -374,21 +374,24 @@ plot_logger(daily_data, "600413", pcp_data, tmp_data)
 
 Removing the first few days of the simulation
 
-```{r}
+```{r, logger_cleandatestart}
 start_date <- "2021-11-01"
 data_clean <- daily_data %>% filter(date > start_date) 
 ```
 
 To be on the safe side, I am setting the logger cut-off date to XXXXXXXXX This could be tuned "per logger" later on if one feels confident.
 
-```{r}
+```{r, logger_cleandateend}
 cut_off_date <- "2022-08-14"
 data_clean <- data_clean %>% filter(date < cut_off_date) 
 ```
 
 And we will do the same for the climate data
 
-```{r}
+```{r, logger_cleanswatdata}
+
+# TODO dont actually do this. 
+
 pcp_data_clean <- pcp_data %>% filter(date > start_date) 
 pcp_data_clean <- pcp_data_clean %>% filter(date < cut_off_date) 
 
@@ -398,7 +401,7 @@ tmp_data_clean <- tmp_data_clean %>% filter(date < cut_off_date)
 
 We will remove the 150 mm depth SMC measurement, as it was not submerged properly in the soil, and is therefore of little use. The temperature reading might be useful, so we will keep it.
 
-```{r}
+```{r, logger_remove150}
 data_clean <- data_clean %>% filter(depth != "150") 
 ```
 
@@ -416,7 +419,7 @@ No logger specific cleanup required
 
 Logger 600411 needs temperature and SMC data removed from 2022-04-21 to 2022-05-10. It seems like the logger was removed from the soil.
 
-```{r}
+```{r, logger_remove_dates_11}
 # define time range to remove
 remove_dates <- seq(from = as.Date("2022-04-21"),
                     to = as.Date("2022-05-10"),
@@ -428,7 +431,7 @@ data_clean <- data_clean %>%
                               date %in% remove_dates) ~ NA, .default = value))
 ```
 
-```{r, echo=FALSE}
+```{r, logger_plot_clean_11, echo=FALSE}
 # regenerate plot
 plot_logger(data_clean, "600411", pcp_data_clean, tmp_data_clean)
 ```
@@ -441,7 +444,7 @@ No logger specific cleanup required
 
 We can now save our cleaned up data. We will do so in CSV form
 
-```{r}
+```{r, logger_write_clean_data}
 write_csv(data_clean, file = "model_data/field_sites/loggers/clean/logger_data_daily_clean.csv")
 
 write_csv(pcp_data_clean, file = "model_data/field_sites/loggers/clean/pcp_data_clean.csv")
