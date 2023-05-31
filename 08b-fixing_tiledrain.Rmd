@@ -1,20 +1,21 @@
 ## Fixing Tiledrain
 
-Our problem is that some HRUs are drained, but on the wrong soil type. This
-leads to drains trying to be placed on soils that are not deep enough for them.
-This was probably caused by bad overlap of the land use and soil maps.
+Our problem is that some HRUs are drained, but on the wrong soil type. This leads to drains trying to be placed on soils that are not deep enough for them. This was probably caused by bad overlap of the land use and soil maps.
 
-Let us identify where we have this problem. For this we need the soil data, 
-land use map, and landuse.lum file.
-
-```{r}
-
+```{r, 8b_libs, message=FALSE}
 require(mapview)
 require(sf)
 require(stringr)
 require(magrittr)
 require(dplyr)
 require(purrr)
+```
+
+Let us identify where we have this problem. For this we need the soil data, land use map, and landuse.lum file.
+
+```{r}
+basin_shp <- read_sf("model_data/input/shape/cs10_basin.shp")
+basin_shp$Id = "CS10 Basin"
 
 lu_lum <- read.table("model_data/cs10_setup/swat_input_mod/landuse.lum", skip = 1, header = T, sep = "")
 
@@ -28,11 +29,16 @@ lu_shp2<-left_join(lu_shp, lu_lum, by = "type")
 
 Our drains are set to 80cm depth. Which of our soils are less than that?
 
+NOTE: might need to adjust for drain radius!
+
 ```{r}
 usersoil <- readr::read_csv("model_data/input/soil/UserSoil_Krakstad.csv", show_col_types = F)
 
 shallow_soils <- usersoil$SNAM[which(usersoil$SOL_ZMX<800)]
+
+print(shallow_soils)
 ```
+
 Which of our HRUs use these soils, and are drained?
 
 ```{r}
@@ -46,18 +52,50 @@ problem_hrus <- base::intersect(shallow_hrus, drained_hrus)
 
 length(problem_hrus)
 ```
-Ok. Just 16 HRUs have an issue
+
+Ok. Just 16 HRUs have an issue. Lets get some info on these 16
 
 ```{r}
 problem_hru_data <- hru_data[problem_hrus,]
 
+# match ID for left join
+problem_hru_data$type <- problem_hru_data$lu_mgt %>% str_remove("_drn_lum")
+
 problem_fields <- problem_hru_data$lu_mgt %>% str_remove("_drn_lum")
 
-basin_map <- mapview(read_sf("model_data/input/shape/cs10_basin.shp"))
-problem_map <- lu_shp %>% filter(type %in% problem_fields) %>% mapview(color = "black", col.regions = "red", zcol = "type")
+problem_shps <- lu_shp %>% select(type, geometry) %>% filter(type %in% problem_fields)
 
-basin_map+problem_map
+problem_shps <-
+  left_join(problem_shps,
+            problem_hru_data,
+            by = "type",
+            relationship = "many-to-many")
 ```
+Date processing done, lets have a look:
 
+```{r}
+basin_map <-
+  mapview(
+    basin_shp,
+    layer.name = "CS10 Basin",
+    col.region = "yellow",
+    alpha.region = .1,
+    lwd = 4,
+    color = "orange",
+    map.types = "Esri.WorldImagery"
+  )
 
+problem_map <-
+  mapview(
+    problem_shps,
+    color = "red",
+    lwd = 3,
+    zcol = "soil",
+    layer.name = "Problem HRUs",
+    alpha.region = .15
+  )
 
+full_map <- basin_map + problem_map
+
+full_map
+```
