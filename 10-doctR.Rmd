@@ -210,8 +210,7 @@ datatable(tables)
 
 > Answer:
 
-3.  Does the variable `op_data2` point to the correct entry in the respective operations file (\'.ops\')?
-    E.g. does harvest operation defined with `op_data2` exist in \'harv.ops\'.
+3.  Does the variable `op_data2` point to the correct entry in the respective operations file ('.ops')? E.g. does harvest operation defined with `op_data2` exist in 'harv.ops'.
 
 > Answer:
 
