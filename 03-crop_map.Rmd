@@ -5,7 +5,7 @@ growing on which field and when. Unfortunately our data foundation for this task
 is quite lackluster, but we will try out best to do so. in the following
 chapter.
 
-```{r, message=FALSE}
+```{r, crop_map_libs, message=FALSE}
 require(sf)
 require(dplyr)
 require(readr)
@@ -15,6 +15,7 @@ require(reshape2)
 require(tibble)
 require(DT)
 require(ggplot2)
+require(gifski)
 
 sf_theme <- theme(axis.text.x=element_blank(), #remove x axis labels
         axis.ticks.x=element_blank(), #remove x axis ticks
@@ -31,7 +32,7 @@ the fields within these farms.
 
 The basis for these calculations comes from the BuildR output: (REF header here)
 
-```{r, lumap, fig.align='center', fig.cap="Land use map for CS10, colored by type."}
+```{r, crop_map_lumap, fig.align='center', fig.cap="Land use map for CS10, colored by type."}
 lu_sf <- read_sf("model_data/cs10_setup/optain-cs10/data/vector/land.shp")
 
 lu_map <- ggplot() + geom_sf(lu_sf, mapping = aes(fill = type)) + theme(legend.position = "left") + sf_theme + theme(legend.position = "none")
@@ -44,7 +45,7 @@ print(lu_map)
 This stage has been completed in QGIS. An R-implementation is being
 considered.
 
-```{r, farmidfig, fig.align='center', fig.cap="Farms in the CS10 catchment, colored by ID"}
+```{r, crop_map_farmidfig, fig.align='center', fig.cap="Farms in the CS10 catchment, colored by ID"}
 farm_area_sf <- read_sf("model_data/input/crop/buildr_output_dissolved_into_farms.shp")
 
 field_lu_plot <- ggplot() + geom_sf(farm_area_sf, mapping = aes(fill = farm_id)) + theme(legend.position = "none") +sf_theme
@@ -65,7 +66,7 @@ generate a plausible crop rotation.
 
 Note, pasture refers to meadow (TODO: fix!)
 
-```{r}
+```{r, crop_map_data_excel}
 crop_data <- read_excel("model_data/input/crop/crop_rotation_source_data.xlsx")
 
 datatable(crop_data)
@@ -73,7 +74,7 @@ datatable(crop_data)
 ### Tidy up the source data:
 
 We are converting the source data to tidy format in the following code snippet
-```{r}
+```{r, crop_map_tidy}
 
  crop_names <- melt(
     crop_data,
@@ -113,7 +114,7 @@ might be written in here sometime (#TODO).
 
 This CSV data needs to be re-formatted to be tidy as well.
 
-```{r}
+```{r, crop_map_reported_data}
 fields <-
   read_csv(
     "model_data/input/crop/buildr_landuse_dissolved_into_fields.csv",
@@ -149,7 +150,7 @@ datatable(reported_data)
 We are now ready to perform our classification. We will store our results in
 this predefined dataframe:
 
-```{r}
+```{r, crop_map_classed_init}
 classed_fields <-
   tibble(
     farm_id = NA,
@@ -162,13 +163,13 @@ classed_fields <-
 ```
 
 The following reporting farms will be used for the classification:
-```{r}
+```{r, crop_map_reported_farms_unique}
 farms <- reported_data$farm_id %>% unique()
 ```
 
 For the following years (AKA we have data for these years):
 
-```{r}
+```{r,crop_map_years}
 years <- c(2016, 2017, 2018, 2019)
 ```
 
@@ -176,13 +177,13 @@ This for loop runs through all the fields and classifies them. The output will
 not be printed in this file, but will be saved in a log file, that you can dig
 out of the repository, located here:
 
-```{r}
-#TODO add the log file generation
+```{r, crop_map_log}
+# TODO add the log file generation
 ```
 
 The following code is not executed:
 
-```{r, eval=FALSE}
+```{r, crop_map_algorithm, eval=FALSE}
 # For every year
 for(c_year in years){
   # For every farm,
@@ -397,13 +398,13 @@ classed_fields <- classed_fields[-1, ]
 
 Now we can have a look at our results (not evaluated)
 
-```{r, eval = FALSE}
+```{r, crop_map_classed_fields_dt, eval = FALSE}
 datatable(classed_fields)
 ```
 
 We can now extract the crop rotation from this datatable. (not evaluated)
 
-```{r, eval=FALSE}
+```{r, crop_map_extract, eval=FALSE}
 # the format of our final dataframe
 final_df <- tibble(field = NA,
                    y_2016 = NA,
@@ -418,7 +419,7 @@ field_ids <- classed_fields$field_id %>% unique()
 We will do this with this for loop (note this is bad R-practice. Should be done
 with something like `pivot_longer` (TODO))
 
-```{r, eval=FALSE}
+```{r, crop_map_exctract_loop, eval=FALSE}
 for(c_field_id in field_ids) {
   
   crop_rotation <- tibble(field = c_field_id)
@@ -442,9 +443,7 @@ write_csv(x = crop_rotation, file = "model_data/input/crop/cs10_crop_rotation.cs
 
 Here is a look at the crop rotation:
 
-
-```{r fig.align='center', fig.cap="Generated crop map for years 2016-2019", message=FALSE, warning=FALSE, animation.hook='gifski', cro_gif, echo=TRUE}
-require(gifski)
+```{r, crop_map_croprotgif, fig.align='center', fig.cap="Generated crop map for years 2016-2019", message=FALSE, warning=FALSE, animation.hook='gifski', echo=TRUE}
 
 lu_shp <- 'model_data/input/crop/land_with_cr.shp'
 
@@ -477,7 +476,7 @@ for (year in years) {
 For OPTAIN, the crop rotation needs to span from 1988 to 2020. We currently have
 2016 to 2019.
 
-```{r}
+```{r, crop_map_extrapolation}
 
 crop_rotation <- read_csv("model_data/input/crop/cs10_crop_rotation.csv",
                           show_col_types = F)
@@ -504,7 +503,7 @@ colnames(crop_rotation_extrapolated) <- c("field", paste0("y_", 1988:2020))
 The output of `SWATbuildR` "land.shp" needs to be connected to the newly
 generated crop map.
 
-```{r}
+```{r, crop_map_merge}
 lu <- read_sf("model_data/cs10_setup/optain-cs10/data/vector/land.shp")
 
 # temporary rename to field, for the left join

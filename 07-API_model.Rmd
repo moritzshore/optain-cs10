@@ -14,7 +14,7 @@ knitr::knit_engines$set(python = reticulate::eng_python)
 
 SWATFarmR cannot account for operations based on values modeled by
 SWAT+, such as soil moisture. This is because FarmR does not run the
-model itself, and creates and predefines all the management schedules
+model itself, and creates and pre-defines all the management schedules
 based on measured climate data. This means we need to relate our
 measured climate data to our soil moisture (Because soil moisture is an
 important factor in planning agricultural operations). One method to do
@@ -27,7 +27,7 @@ As a heads up, this section requires Python!
 
 Required R packages
 
-```{r, message=FALSE}
+```{r, api_libs, message=FALSE}
 require(readr)
 require(dplyr)
 require(hydroGOF)
@@ -43,7 +43,7 @@ source("model_data/code/calc_api.R")
 A quick (non-evaluated) code block to show how a python environment can
 be created for use in Rmarkdown/Reticulate on your local machine.
 
-```{r, include = TRUE, eval=FALSE}
+```{r, api_python_install, include = TRUE, eval=FALSE}
 # install miniconda 
 install_miniconda() 
 
@@ -98,7 +98,7 @@ $P_t$: Precipitation at time $t$ (today)
 
 We will load out data from the previous steps. (ref)
 
-```{r}
+```{r, api_load_logger_data}
 logger_data <- read_csv("model_data/field_sites/loggers/clean/logger_data_daily_clean.csv",
                         show_col_types=F)
 
@@ -118,7 +118,7 @@ head(site_attributes)
 We will calculate the model per Hydrologic soil group (HSG), and start
 with B, which was measured by logger 600410.
 
-```{r}
+```{r, api_load_b}
 b_data <- logger_data %>% filter(site == "600410")
 ```
 
@@ -127,7 +127,7 @@ b_data <- logger_data %>% filter(site == "600410")
 We need to calculate the total water content of the profile from the
 depth measurements from the following depths:
 
-```{r}
+```{r, api_bdepths}
 unique(b_data$depth)
 ```
 
@@ -136,7 +136,7 @@ more]{.underline}](https://soilwater.github.io/pynotes-agriscience/notebooks/ant
 
 (This calculation could be improved by considering the soil horizons)
 
-```{r}
+```{r, api_b_weighted_avg}
 a <- b_data %>% filter(depth == "300") %>% select(value)
 b <- b_data %>% filter(depth == "450") %>% select(value)
 c <- b_data %>% filter(depth == "600") %>% select(value)
@@ -166,7 +166,7 @@ plot_api(obs = b_col, title = "HSG B")
 
 Saving the data
 
-```{r}
+```{r, api_write_b}
 write_csv(b_col, "model_data/field_sites/output/twc.csv")
 ```
 
@@ -175,7 +175,7 @@ write_csv(b_col, "model_data/field_sites/output/twc.csv")
 The value is capped at the maximum value of the source data (50). This
 could be improved by capping site specific.
 
-```{python}
+```{python, api_def_api_model}
 def api_model(P,alpha=0.97,ini=36.8):
     api = [ini]
     for t in range(1,len(P)):
@@ -189,7 +189,7 @@ def api_model(P,alpha=0.97,ini=36.8):
 
 Load in our data:
 
-```{python}
+```{python, api_load_twc}
 import pandas as pd
 df = pd.read_csv('model_data/field_sites/output/twc.csv')
 df = df[['date','value','pcp']]
@@ -198,7 +198,7 @@ df.head()
 
 As a test, we will calculate the predictions with an alpha of 0.95:
 
-```{python}
+```{python, api_optimize}
 import pandas as pd
 from scipy.optimize import curve_fit
 
@@ -214,7 +214,7 @@ guess.to_csv("model_data/field_sites/output/first_guess.csv")
 
 Now we can have a look at it in R
 
-```{r}
+```{r, api_guess}
 guess <- read_csv("model_data/field_sites/output/first_guess.csv",
                   show_col_types = F,
                   skip = 1, col_names = c("val", "date"))
@@ -224,7 +224,7 @@ plot_api(api_vals = guess, obs = b_col, title = "HSG-B API guessed")
 
 Now we optimize the alpha parameter using `scipy` `curve_fit`.
 
-```{python}
+```{python, api_fit}
 par_opt, par_cov = curve_fit(api_model, df['pcp'], df['value'], p0=[0.95,100])
 
 print('Annual mean alpha value is',round(par_opt[0],2))
@@ -232,7 +232,7 @@ print('Annual mean alpha value is',round(par_opt[0],2))
 
 Now we can calculate the API using the optimized parameter.
 
-```{python}
+```{python, api_calc_fit}
 import numpy as np
 
 storage_optimized = api_model(df['pcp'],par_opt[0],par_opt[1])
@@ -244,7 +244,7 @@ print('Mean annual error =', round(MAE,1),'cm')
 
 And save the data for R
 
-```{python}
+```{python, api_save}
 dates = df[['date']]
 api_optimized = pd.DataFrame(dates.values.tolist(),storage_optimized)
 api_optimized.to_csv("model_data/field_sites/output/api_optimized.csv")
@@ -252,7 +252,7 @@ api_optimized.to_csv("model_data/field_sites/output/api_optimized.csv")
 
 And have a look in R:
 
-```{r}
+```{r, api_loadropti}
 optimized <- read_csv("model_data/field_sites/output/api_optimized.csv",
                       show_col_types = F,
                       skip = 1, col_names = c("val", "date"))
@@ -266,18 +266,18 @@ has been done, nor do we have good logger data.
 We will define this workflow in a function `calc_api.R` and run it for
 the next loggers.
 
-```{r}
+```{r, api_calc_09}
 calc_api(logger_id = "600409")
 ```
 
 This is the logger with broken data, so no surprise that the optimizer
 failed.
 
-```{r}
+```{r, api_calc_11}
 calc_api(logger_id = "600411")
 ```
 
-```{r}
+```{r, api_calc_13}
 calc_api(logger_id = "600413")
 ```
 

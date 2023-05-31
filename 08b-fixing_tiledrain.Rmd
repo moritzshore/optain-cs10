@@ -2,7 +2,7 @@
 
 Our problem is that some HRUs are drained, but on the wrong soil type. This leads to drains trying to be placed on soils that are not deep enough for them. This was probably caused by bad overlap of the land use and soil maps.
 
-```{r, 8b_libs, message=FALSE}
+```{r, drainfix_libs, message=FALSE}
 require(mapview)
 require(sf)
 require(stringr)
@@ -13,7 +13,7 @@ require(purrr)
 
 Let us identify where we have this problem. For this we need the soil data, land use map, and landuse.lum file.
 
-```{r}
+```{r, drainfix_load}
 basin_shp <- read_sf("model_data/input/shape/cs10_basin.shp")
 basin_shp$Id = "CS10 Basin"
 
@@ -31,7 +31,7 @@ Our drains are set to 80cm depth. Which of our soils are less than that?
 
 NOTE: might need to adjust for drain radius!
 
-```{r}
+```{r, drainfix_usersol}
 usersoil <- readr::read_csv("model_data/input/soil/UserSoil_Krakstad.csv", show_col_types = F)
 
 shallow_soils <- usersoil$SNAM[which(usersoil$SOL_ZMX<800)]
@@ -41,7 +41,7 @@ print(shallow_soils)
 
 Which of our HRUs use these soils, and are drained?
 
-```{r}
+```{r, drainfix_intersecy=t}
 hru_data <- read.table("model_data/cs10_setup/swat_input/hru-data.hru", skip = 1, header = T, sep = "")
 
 shallow_hrus <- which(hru_data$soil %in% shallow_soils)
@@ -55,7 +55,7 @@ length(problem_hrus)
 
 Ok. Just 16 HRUs have an issue. Lets get some info on these 16
 
-```{r}
+```{r, drainfix_join}
 problem_hru_data <- hru_data[problem_hrus,]
 
 # match ID for left join
@@ -73,13 +73,13 @@ problem_shps <-
 ```
 Date processing done, lets have a look:
 
-```{r}
+```{r, drainfix_map}
 basin_map <-
   mapview(
     basin_shp,
     layer.name = "CS10 Basin",
     col.region = "yellow",
-    alpha.region = .1,
+    alpha.region = 0,
     lwd = 4,
     color = "orange",
     map.types = "Esri.WorldImagery"
@@ -92,10 +92,13 @@ problem_map <-
     lwd = 3,
     zcol = "soil",
     layer.name = "Problem HRUs",
-    alpha.region = .15
+    alpha.region = 0
   )
 
 full_map <- basin_map + problem_map
 
 full_map
 ```
+
+Resolution to this problem is being discussed in issue [#53](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/53)
+

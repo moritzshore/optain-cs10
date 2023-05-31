@@ -6,7 +6,7 @@ To add weather and climate data to our SWAT project, we will use `svatools` [@sv
 
 ### Required packages
 
-```{r, loadpacks_climweath, message=FALSE}
+```{r, svatools_load_lib, message=FALSE}
 require(euptf2) # devtools::install_github("tkdweber/euptf2") 
 require(svatools) # devtools::install_github("biopsichas/svatools")
 require(readr)
@@ -21,20 +21,20 @@ require(tidyr)
 
 First we load in the template and fill it in with our values and rename it to "cs10_weather_data.xlsx". This is not done within R. No detailed documentation exists on the source of this data (yet).
 
-```{r}
+```{r svatools_expath}
 #temp_path <- system.file("extdata", "weather_data.xlsx", package = "svatools")
 # /// fill out this template and save "cs10_weather_data.xlsx" ///
 ```
 
 We are using the following projection for this project:
 
-```{r}
+```{r, svatools_epgscode}
 epgs_code = 25832
 ```
 
 Now we can load it in with Svatools.
 
-```{r}
+```{r, svatools_loadtemp}
 met_lst <- load_template(template_path = "model_data/input/met/cs10_weather_data.xlsx", epgs_code)
 ```
 
@@ -46,7 +46,7 @@ plot_weather(met_lst, "PCP", "month", "sum")
 
 Checking the location of the station:
 
-```{r}
+```{r, svatools_wetstatloc}
 basin_path <- "model_data/input/shape/cs10_basin.shp"
 basin <- st_transform(st_read(basin_path), epgs_code) %>%
   mutate(NAME = "Basin")
@@ -59,7 +59,7 @@ mapview(stations) + mapview(basin)
 
 We only have one weather station, which means only one weather generator.
 
-```{r}
+```{r, svatools_wgn}
 wgn <- prepare_wgn(met_lst, 
                    TMP_MAX = met_lst$data$ID1$TMP_MAX, 
                    TMP_MIN = met_lst$data$ID1$TMP_MIN, 
@@ -78,7 +78,7 @@ write.csv(wgn$wgn_data, "model_data/input/met/as_wgn_data.csv", row.names = FALS
 
 This adds the weather generator and weather stations to our SWAT+ project
 
-```{r, eval=FALSE}
+```{r, svatools_adddb, eval=FALSE}
 db_path <- "model_data/cs10_setup/optain-cs10/optain-cs10.sqlite"
 add_weather(db_path, met_lst, wgn)
 ```
@@ -90,7 +90,7 @@ Instructions and documentation can be found
 
 Getting the data:
 
-```{r, eval = FALSE}
+```{r, svatools_getammodep, eval = FALSE}
 basin_path <- "model_data/input/shape/cs10_basin.shp"
 df <-
   get_atmo_dep(
@@ -99,19 +99,23 @@ df <-
     end_year = 2020,
     t_ext = "year"
   )
+
+readr::write_csv(df, file = "model_data/input/met/atmodep.csv")
 ```
 A plot of the results:
 
-```{r, eval = FALSE}
+```{r, svatools_plotatmodep2, fig.align='center', fig.cap="Atmospheric Deposition data grabbed by svatools"}
+
+df <- readr::read_csv("model_data/input/met/atmodep.csv", show_col_types = F)
 ggplot(pivot_longer(df, !DATE, names_to = "par", values_to = "values"), aes(x = DATE, y = values))+ 
   geom_line()+ 
   facet_wrap(~par, scales = "free_y")+ 
   theme_bw()
 ```
 
-Adding the data to the SQLITe
+Adding the data to the SQLITE
 
-```{r, eval = FALSE}
+```{r, svatools_addatmodepDB, eval = FALSE}
 db_path <- "model_data/cs10_setup/optain-cs10/optain-cs10.sqlite"
 add_atmo_dep(df, db_path)
 ```
