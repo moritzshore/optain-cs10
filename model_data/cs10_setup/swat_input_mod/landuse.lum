@@ -1,4 +1,4 @@
-header header HEADER, delete me and you will regret it FOREVER!
+lu table after fixing up by OPTAIN-CS10 workflow on 2023-06-01
 name	cal_group	plnt_com	mgt	cn2	cons_prac	urban	urb_ro	ov_mann	tile	sep	vfs	grww	bmp
 a_001f_1_drn_lum	null	nopl_comm	null	rc_strow_p	agri_conv	null	null	convtill_nores	mw24_1000	null	null	null	null
 a_001f_2_drn_lum	null	nopl_comm	null	rc_strow_p	agri_conv	null	null	convtill_nores	mw24_1000	null	null	null	null
@@ -27,7 +27,7 @@ a_007f_2_drn_lum	null	nopl_comm	null	rc_strow_p	cs10_meadow	null	null	falldisk_r
 a_007f_3_drn_lum	null	nopl_comm	null	rc_strow_p	cs10_meadow	null	null	falldisk_res	mw24_1000	null	null	null	null
 a_007f_4_drn_lum	null	nopl_comm	null	rc_strow_p	agri_part_cons	null	null	falldisk_res	mw24_1000	null	null	null	null
 a_008f_1_drn_lum	null	nopl_comm	null	rc_strow_p	agri_conv	null	null	convtill_nores	mw24_1000	null	null	null	null
-a_008f_2_drn_lum	null	nopl_comm	null	rc_strow_p	agri_conv	null	null	convtill_nores	mw24_1000	null	null	null	null
+a_008f_2_drn_lum	null	nopl_comm	null	rc_strow_p	agri_conv	null	null	convtill_nores	null	null	null	null	null
 a_008f_3_drn_lum	null	nopl_comm	null	rc_strow_p	agri_conv	null	null	convtill_nores	mw24_1000	null	null	null	null
 a_009f_1_drn_lum	null	nopl_comm	null	rc_strow_p	agri_conv	null	null	convtill_nores	mw24_1000	null	null	null	null
 a_009f_2_drn_lum	null	nopl_comm	null	rc_strow_p	agri_conv	null	null	convtill_nores	mw24_1000	null	null	null	null
@@ -63,7 +63,7 @@ a_019f_4_drn_lum	null	nopl_comm	null	rc_strow_p	agri_conv	null	null	convtill_nor
 a_020f_1_drn_lum	null	nopl_comm	null	rc_strow_p	agri_part_cons	null	null	falldisk_res	mw24_1000	null	null	null	null
 a_020f_2_drn_lum	null	nopl_comm	null	rc_strow_p	agri_conv	null	null	convtill_nores	mw24_1000	null	null	null	null
 a_020f_3_drn_lum	null	nopl_comm	null	rc_strow_p	agri_part_cons	null	null	falldisk_res	mw24_1000	null	null	null	null
-a_020f_4_drn_lum	null	nopl_comm	null	rc_strow_p	cs10_meadow	null	null	convtill_nores	mw24_1000	null	null	null	null
+a_020f_4_drn_lum	null	nopl_comm	null	rc_strow_p	cs10_meadow	null	null	convtill_nores	null	null	null	null	null
 a_021f_1_drn_lum	null	nopl_comm	null	rc_strow_p	agri_conv	null	null	convtill_nores	mw24_1000	null	null	null	null
 a_021f_2_drn_lum	null	nopl_comm	null	rc_strow_p	cs10_meadow	null	null	convtill_nores	mw24_1000	null	null	null	null
 a_021f_3_drn_lum	null	nopl_comm	null	rc_strow_p	agri_conv	null	null	convtill_nores	mw24_1000	null	null	null	null
@@ -112,7 +112,7 @@ a_034f_2_drn_lum	null	nopl_comm	null	rc_strow_p	agri_conv	null	null	convtill_nor
 a_035f_1_drn_lum	null	nopl_comm	null	rc_conterres_g	agri_cons	null	null	falldisk_res	mw24_1000	null	null	null	null
 a_035f_2_drn_lum	null	nopl_comm	null	rc_conterres_g	agri_cons	null	null	falldisk_res	mw24_1000	null	null	null	null
 a_036f_1_drn_lum	null	nopl_comm	null	rc_strow_p	agri_conv	null	null	convtill_nores	mw24_1000	null	null	null	null
-a_037f_1_drn_lum	null	nopl_comm	null	rc_strow_p	agri_conv	null	null	convtill_nores	mw24_1000	null	null	null	null
+a_037f_1_drn_lum	null	nopl_comm	null	rc_strow_p	agri_conv	null	null	convtill_nores	null	null	null	null	null
 a_037f_2_drn_lum	null	nopl_comm	null	rc_strow_p	agri_conv	null	null	convtill_nores	mw24_1000	null	null	null	null
 a_037f_3_drn_lum	null	nopl_comm	null	rc_strow_p	agri_conv	null	null	convtill_nores	mw24_1000	null	null	null	null
 a_038f_1_drn_lum	null	nopl_comm	null	rc_strow_p	agri_conv	null	null	convtill_nores	mw24_1000	null	null	null	null
@@ -284,7 +284,7 @@ a_110f_1_drn_lum	null	nopl_comm	null	rc_strow_p	agri_conv	null	null	convtill_nor
 a_110f_2_drn_lum	null	nopl_comm	null	rc_strow_p	agri_conv	null	null	convtill_nores	mw24_1000	null	null	null	null
 a_110f_3_drn_lum	null	nopl_comm	null	rc_strow_p	agri_conv	null	null	convtill_nores	mw24_1000	null	null	null	null
 a_111f_1_drn_lum	null	nopl_comm	null	rc_strow_p	agri_conv	null	null	convtill_nores	mw24_1000	null	null	null	null
-a_112f_1_drn_lum	null	nopl_comm	null	rc_strow_p	agri_conv	null	null	convtill_nores	mw24_1000	null	null	null	null
+a_112f_1_drn_lum	null	nopl_comm	null	rc_strow_p	agri_conv	null	null	convtill_nores	null	null	null	null	null
 a_112f_2_drn_lum	null	nopl_comm	null	rc_strow_p	agri_conv	null	null	convtill_nores	mw24_1000	null	null	null	null
 a_113f_1_drn_lum	null	nopl_comm	null	rc_strow_p	agri_conv	null	null	convtill_nores	mw24_1000	null	null	null	null
 a_113f_2_drn_lum	null	nopl_comm	null	rc_strow_p	agri_conv	null	null	convtill_nores	mw24_1000	null	null	null	null
@@ -336,7 +336,7 @@ a_129f_2_drn_lum	null	nopl_comm	null	rc_strow_p	agri_conv	null	null	convtill_nor
 a_129f_3_drn_lum	null	nopl_comm	null	rc_strow_p	agri_conv	null	null	convtill_nores	mw24_1000	null	null	null	null
 a_130f_1_drn_lum	null	nopl_comm	null	rc_strow_p	agri_conv	null	null	convtill_nores	mw24_1000	null	null	null	null
 a_130f_2_drn_lum	null	nopl_comm	null	rc_strow_p	agri_conv	null	null	convtill_nores	mw24_1000	null	null	null	null
-a_131f_1_drn_lum	null	nopl_comm	null	rc_strow_p	agri_conv	null	null	convtill_nores	mw24_1000	null	null	null	null
+a_131f_1_drn_lum	null	nopl_comm	null	rc_strow_p	agri_conv	null	null	convtill_nores	null	null	null	null	null
 a_132f_1_drn_lum	null	nopl_comm	null	rc_strow_p	agri_conv	null	null	convtill_nores	mw24_1000	null	null	null	null
 a_132f_2_drn_lum	null	nopl_comm	null	rc_strow_p	agri_conv	null	null	convtill_nores	mw24_1000	null	null	null	null
 a_133f_1_drn_lum	null	nopl_comm	null	rc_strow_p	agri_conv	null	null	convtill_nores	mw24_1000	null	null	null	null
@@ -376,7 +376,7 @@ a_146f_3_drn_lum	null	nopl_comm	null	rc_strow_p	agri_half	null	null	convtill_nor
 a_146f_4_drn_lum	null	nopl_comm	null	rc_strow_p	agri_half	null	null	convtill_nores	mw24_1000	null	null	null	null
 a_146f_5_drn_lum	null	nopl_comm	null	rc_strow_p	agri_half	null	null	convtill_nores	mw24_1000	null	null	null	null
 a_147f_1_drn_lum	null	nopl_comm	null	rc_strow_p	agri_conv	null	null	convtill_nores	mw24_1000	null	null	null	null
-a_148f_1_drn_lum	null	nopl_comm	null	rc_strow_p	agri_conv	null	null	convtill_nores	mw24_1000	null	null	null	null
+a_148f_1_drn_lum	null	nopl_comm	null	rc_strow_p	agri_conv	null	null	convtill_nores	null	null	null	null	null
 a_149f_1_drn_lum	null	nopl_comm	null	rc_strow_p	agri_conv	null	null	convtill_nores	mw24_1000	null	null	null	null
 a_150f_1_drn_lum	null	nopl_comm	null	rc_strow_p	agri_conv	null	null	convtill_nores	mw24_1000	null	null	null	null
 a_150f_2_drn_lum	null	nopl_comm	null	rc_strow_p	agri_conv	null	null	convtill_nores	mw24_1000	null	null	null	null
