@@ -1,5 +1,6 @@
 test_swat_mod <- function() {
-  
+
+  SWAT_exe = "Rev_60_5_6_64debug.exe"  
   # delete contents of the run folder
   unlink("model_data/cs10_setup/run_swat", recursive = T) 
   
@@ -16,7 +17,7 @@ test_swat_mod <- function() {
   input_files_base <- list.files("model_data/cs10_setup/swat_input/", 
                             full.names = T)
   
-  path_to_swat <- "model_data/cs10_setup/rev60.5.4_64rel.exe"
+  path_to_swat <- paste0("model_data/cs10_setup/", SWAT_exe)
   
   
   source_files <- c(sta_files, cli_files,path_to_swat, input_files_base)
@@ -76,15 +77,15 @@ test_swat_mod <- function() {
   
   # update time sim
   time_sim <- readLines("model_data/cs10_setup/run_swat/time.sim")
-  time_sim[3] <- "       0      2010         0      2011         0  "
+  time_sim[3] <- "       0      2016         0      2017         0  "
   writeLines(text = time_sim, con = "model_data/cs10_setup/run_swat/time.sim")
   
-  
+
   print("running model for 1 year")
   
   
   # run model
-  msg <- processx::run(command = "rev60.5.4_64rel.exe",
+  msg <- processx::run(command = SWAT_exe,
                        wd = "model_data/cs10_setup/run_swat/", spinner = T)
   
   simout <- readLines("model_data/cs10_setup/run_swat/simulation.out")
