@@ -9,7 +9,10 @@ require(stringr)
 require(magrittr)
 require(dplyr)
 require(purrr)
+require(DT)
 ```
+
+### Finding the problem HRUs
 
 Let us identify where we have this problem. For this we need the soil data, land use map, and landuse.lum file.
 
@@ -22,9 +25,7 @@ lu_lum <- read.table("model_data/cs10_setup/swat_input_mod/landuse.lum", skip = 
 # need to match IDs 
 lu_lum$type <- lu_lum$name %>% str_remove("_drn") %>% str_remove("_lum")
 
-lu_shp <- read_sf("model_data/input/land/CS10_LU.shp")
 
-lu_shp2<-left_join(lu_shp, lu_lum, by = "type")
 ```
 
 Our drains are set to 80cm depth. Which of our soils are less than that?
@@ -58,47 +59,268 @@ Ok. Just 16 HRUs have an issue. Lets get some info on these 16
 ```{r, drainfix_join}
 problem_hru_data <- hru_data[problem_hrus,]
 
-# match ID for left join
-problem_hru_data$type <- problem_hru_data$lu_mgt %>% str_remove("_drn_lum")
+datatable(problem_hru_data)
+```
 
-problem_fields <- problem_hru_data$lu_mgt %>% str_remove("_drn_lum")
+```{r, drainfix_join2}
+hru_shp <- read_sf("model_data/cs10_setup/optain-cs10/data/vector/hru.shp")
+hru_soil <- hru_data %>% select(soil, name)
 
-problem_shps <- lu_shp %>% select(type, geometry) %>% filter(type %in% problem_fields)
+hru_shp <- left_join(hru_shp, hru_soil, by = "name")
 
-problem_shps <-
-  left_join(problem_shps,
-            problem_hru_data,
-            by = "type",
-            relationship = "many-to-many")
+problem_shps <- hru_shp %>% filter(name %in% problem_hru_data$name)
+
+problem_hru_ids <- problem_hru_data$lu_mgt %>% str_remove("_drn_lum")
+
+problem_lus <- hru_shp %>% filter(type %in% problem_hru_ids)
+
+
+hru_shp <- hru_shp %>% filter((hru_shp$name %in% problem_lus$name) == FALSE)
+hru_shp <- hru_shp %>% filter((hru_shp$name %in% problem_shps$name) == FALSE)
+
+problem_lus <- problem_lus %>% filter((problem_lus$name %in% problem_shps$name) == FALSE)
+
 ```
 Date processing done, lets have a look:
 
 ```{r, drainfix_map}
-basin_map <-
-  mapview(
-    basin_shp,
-    layer.name = "CS10 Basin",
-    col.region = "yellow",
-    alpha.region = 0,
-    lwd = 4,
-    color = "orange",
-    map.types = "Esri.WorldImagery"
-  )
+hru_map <-mapview(
+  hru_shp,
+  map.types = "Esri.WorldImagery",
+  color = "green",
+  lwd = 1,
+  legend = FALSE,
+  zcol = "soil",
+  alpha.region = 0
+)
 
 problem_map <-
   mapview(
     problem_shps,
     color = "red",
     lwd = 3,
-    zcol = "soil",
+    legend = FALSE,
+    zcol = "name",
     layer.name = "Problem HRUs",
     alpha.region = 0
   )
 
-full_map <- basin_map + problem_map
+problem_lus_map <- 
+  mapview(
+    problem_lus,
+    color = "orange",
+    lwd = 1,
+    legend = FALSE,
+    zcol = "name",
+    layer.name = "Problem LUs",
+    alpha.region = 0
+  )
+
+full_map <- hru_map + problem_lus_map+ problem_map
 
 full_map
 ```
 
 Resolution to this problem is being discussed in issue [#53](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/53)
+
+```{r, drainfix_fileprep}
+lum_fixed <- read.table("model_data/cs10_setup/swat_input_mod/landuse.lum", skip = 1, sep = "", header = T) %>% tibble()
+
+hru_select <- hru_data %>% select(name, lu_mgt)
+
+hru_select$hru_name <- hru_select$name
+
+hru_select$name <- hru_select$lu_mgt
+
+lum_fixed <- left_join(lum_fixed, hru_select, by = "name")
+
+hru_fixed <- hru_data
+```
+
+### Fixing the problem HRUs
+
+hru0218 with landuse a_008f_2 -- Remove the drains since it is an isolated LU
+
+```{r, drainfix_218}
+lum_fixed$tile[which(lum_fixed$hru_name=="hru0218")] = "null"
+```
+
+hru3637 with landuse a_148f_1 -- Remove the drains since it is an isolated LU.
+
+```{r}
+lum_fixed$tile[which(lum_fixed$hru_name=="hru3637")] = "null"
+```
+
+hru3686 of landuse a_115f_1 has the wrong soil type, changing it to "STlv-sl" of its
+connected field. 
+
+```{r}
+hru_fixed$soil[which(hru_fixed$name=="hru3686")] = "STlv-sl"
+```
+
+hru4880 of landuse a_182f_5 has the wrong soil type for the land use. Changing to the "ARdy" of neighboring fields
+
+```{r}
+hru_fixed$soil[which(hru_fixed$name=="hru4880")] = "ARdy"
+```
+
+hru5033 with isolated landuse a_112f_1 can have its drains removed.
+
+```{r}
+lum_fixed$tile[which(lum_fixed$hru_name=="hru5033")] = "null"
+```
+
+hru0692 of isolated land use a_037f_1 can safely has its drains removed
+
+```{r}
+lum_fixed$tile[which(lum_fixed$hru_name=="hru0692")] = "null"
+```
+
+hru0704 has the wrong soil type for its landuse a_037f_2, which should be STlv-sl instead of Sea_dep_thin
+
+```{r}
+hru_fixed$soil[which(hru_fixed$name=="hru0704")] = "STlv-sl"
+```
+
+hru3314 of landuse a_060f_2 has the wrong soil type. It should be STlv-sl, not 	STlen-rt-sl.
+
+The same is true for hru3376.
+
+```{r}
+hru_fixed$soil[which(hru_fixed$name=="hru3314")] = "STlv-sl"
+hru_fixed$soil[which(hru_fixed$name=="hru3376")] = "STlv-sl"
+```
+
+hru2784 (and the within hru3367) is a sizeable field with landuse a_072f_1 and soil RGlen-dy-ar. Tough call here, but best bet is probably to assign soil of the other major field it shares a landuse with (STlv-sl)
+
+```{r}
+hru_fixed$soil[which(hru_fixed$name=="hru2784")] = "STlv-sl"
+hru_fixed$soil[which(hru_fixed$name=="hru3367")] = "STlv-sl"
+```
+
+hru3465 of LU a_146f_2 has the wrong soil for the greater field. Changing it from RGlep-dy to STrt-sl
+
+```{r}
+hru_fixed$soil[which(hru_fixed$name=="hru3465")] = "STrt-sl"
+```
+
+hru5214 of isolated land use a_020f_4 can safely have its drains removed.
+
+```{r}
+lum_fixed$tile[which(lum_fixed$hru_name=="hru5214")] = "null"
+```
+
+hru5861 of landuse a_210_f2 does not share the same soil (end moraine) as the rest of its field. 
+
+```{r}
+hru_fixed$soil[which(hru_fixed$name=="hru5861")] = "STlv-sl"
+```
+
+hru5962 of landuse a_211f_1 has the wrong soil type (Sea-dep-thin), changing to that of the greater field (STrt-sl)
+
+```{r}
+hru_fixed$soil[which(hru_fixed$name=="hru5962")] = "STlv-sl"
+```
+
+hru2633 of islolated LU a_131_f1 can safely have its drains removed. 
+
+```{r}
+lum_fixed$tile[which(lum_fixed$hru_name=="hru2633")] = "null"
+```
+
+### Writing modified changes
+
+```{r}
+lum_fixed <- lum_fixed %>% select(-hru_name)
+lum_fixed <- lum_fixed %>% select(-lu_mgt)
+
+lum_fixed <- distinct(lum_fixed)
+
+lu_header <- paste("lu table after fixing up by OPTAIN-CS10 workflow on", Sys.Date())
+
+write.table(lu_header, "model_data/cs10_setup/swat_input_mod/landuse.lum", quote = F, row.names = F, col.names = F )
+
+write.table(lum_fixed, file = "model_data/cs10_setup/swat_input_mod/landuse.lum", sep = "\t", quote = F, append = T, row.names = F, col.names = T)
+```
+Six drains have been removed. 
+
+```{r}
+hru_header <- paste("header header header, delete me and regret it forever! fixed soil types by cs10 worflow on", Sys.Date())
+
+write.table(hru_header, "model_data/cs10_setup/swat_input_mod/hru-data.hru", quote = F, row.names = F, col.names = F )
+
+write.table(hru_fixed, file = "model_data/cs10_setup/swat_input_mod/hru-data.hru", sep = "\t", quote = F, append = T, row.names = F, col.names = T)
+```
+Ten soil types have been changed.
+
+### Re-enable tiledrain
+
+Load. 
+```{r}
+old_path <- "model_data/cs10_setup/swat_input_mod/codes.bsn"
+new_path <- "model_data/cs10_setup/swat_input_mod/codes.bsn"
+
+codes_bsn <- readLines(old_path)
+
+header <- codes_bsn[1]
+
+header <- paste("modified by CS10 workflow on", Sys.Date())
+
+codes_df <- read.table(old_path, skip = 1, header = T, sep = "", 
+                       colClasses = "character")
+```
+
+Re-enable
+
+```{r}
+codes_df$tiledrain <- 1
+```
+
+Write. 
+```{r}
+write.table(header, file = new_path, col.names = F, row.names = F, quote = F) 
+
+write.table(
+  codes_df,
+  file = new_path,
+  col.names = T,
+  append = T,
+  quote = F,
+  sep = "   ",
+  row.names = F
+)
+```
+### Testing SWAT+
+
+Now we can see if the model runs
+
+```{r, eval = FALSE}
+source("model_data/code/test_swat_mod.R")
+
+simout <- test_swat_mod()
+cat(tail(simout), sep = "\n")
+```
+
+Seems to still be broken. 
+
+```{r}
+hru_fixed %>% filter(grepl(x = lu_mgt, "a_")) %>% filter(soil %in% shallow_soils)
+```
+These all have no drains... so what could be the problem?
+
+- One idea, the drainage radius extends past the 800mm drain depth, so drained soils
+would need have atleast 1000mm -- I checked this though, I think it would be around
+142 problem hrus.. which is too much to be dealt with manually.. So we would need a systematic approach. 
+
+Another issue though, i tried lowering and raising the drains themselves, and it changed absolutely nothing... so this might not fix it.
+
+A systematic approach would be to remove all drains from the following soil types. This is how Nancy got it to work.
+
+- Mountain
+
+- Antropogenic
+
+- Sea_dep_thin
+
+- End_moraine
 
