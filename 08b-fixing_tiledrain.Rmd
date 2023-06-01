@@ -81,7 +81,7 @@ hru_shp <- hru_shp %>% filter((hru_shp$name %in% problem_shps$name) == FALSE)
 problem_lus <- problem_lus %>% filter((problem_lus$name %in% problem_shps$name) == FALSE)
 
 ```
-Date processing done, lets have a look:
+Data processing done, lets have a look:
 
 ```{r, drainfix_map}
 hru_map <-mapview(
@@ -216,21 +216,21 @@ hru5861 of landuse a_210_f2 does not share the same soil (end moraine) as the re
 hru_fixed$soil[which(hru_fixed$name=="hru5861")] = "STlv-sl"
 ```
 
-hru5962 of landuse a_211f_1 has the wrong soil type (Sea-dep-thin), changing to that of the greater field (STrt-sl)
+hru5926 of landuse a_211f_1 has the wrong soil type (Sea-dep-thin), changing to that of the greater field (STrt-sl)
 
-```{r}
-hru_fixed$soil[which(hru_fixed$name=="hru5962")] = "STlv-sl"
+```{r, drainfix_5}
+hru_fixed$soil[which(hru_fixed$name=="hru5926")] = "STlv-sl"
 ```
 
 hru2633 of islolated LU a_131_f1 can safely have its drains removed. 
 
-```{r}
+```{r, drainfix_2633}
 lum_fixed$tile[which(lum_fixed$hru_name=="hru2633")] = "null"
 ```
 
 ### Writing modified changes
 
-```{r}
+```{r, drainfix_writelu}
 lum_fixed <- lum_fixed %>% select(-hru_name)
 lum_fixed <- lum_fixed %>% select(-lu_mgt)
 
@@ -244,7 +244,7 @@ write.table(lum_fixed, file = "model_data/cs10_setup/swat_input_mod/landuse.lum"
 ```
 Six drains have been removed. 
 
-```{r}
+```{r, drainfix_writehru}
 hru_header <- paste("header header header, delete me and regret it forever! fixed soil types by cs10 worflow on", Sys.Date())
 
 write.table(hru_header, "model_data/cs10_setup/swat_input_mod/hru-data.hru", quote = F, row.names = F, col.names = F )
@@ -256,7 +256,7 @@ Ten soil types have been changed.
 ### Re-enable tiledrain
 
 Load. 
-```{r}
+```{r, drainfix_loadcodesbsn}
 old_path <- "model_data/cs10_setup/swat_input_mod/codes.bsn"
 new_path <- "model_data/cs10_setup/swat_input_mod/codes.bsn"
 
@@ -272,12 +272,12 @@ codes_df <- read.table(old_path, skip = 1, header = T, sep = "",
 
 Re-enable
 
-```{r}
+```{r, drainfix_tiledrain}
 codes_df$tiledrain <- 1
 ```
 
 Write. 
-```{r}
+```{r, drainfix_writecodes}
 write.table(header, file = new_path, col.names = F, row.names = F, quote = F) 
 
 write.table(
@@ -294,33 +294,12 @@ write.table(
 
 Now we can see if the model runs
 
-```{r, eval = FALSE}
+```{r,drainfix_swattest1, eval = TRUE}
 source("model_data/code/test_swat_mod.R")
 
 simout <- test_swat_mod()
 cat(tail(simout), sep = "\n")
 ```
 
-Seems to still be broken. 
-
-```{r}
-hru_fixed %>% filter(grepl(x = lu_mgt, "a_")) %>% filter(soil %in% shallow_soils)
-```
-These all have no drains... so what could be the problem?
-
-- One idea, the drainage radius extends past the 800mm drain depth, so drained soils
-would need have atleast 1000mm -- I checked this though, I think it would be around
-142 problem hrus.. which is too much to be dealt with manually.. So we would need a systematic approach. 
-
-Another issue though, i tried lowering and raising the drains themselves, and it changed absolutely nothing... so this might not fix it.
-
-A systematic approach would be to remove all drains from the following soil types. This is how Nancy got it to work.
-
-- Mountain
-
-- Antropogenic
-
-- Sea_dep_thin
-
-- End_moraine
+Success.
 

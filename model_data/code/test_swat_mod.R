@@ -1,6 +1,6 @@
 test_swat_mod <- function() {
 
-  SWAT_exe = "Rev_60_5_6_64debug.exe"  
+  SWAT_exe = "Rev_60_5_6_64rel.exe"  
   # delete contents of the run folder
   unlink("model_data/cs10_setup/run_swat", recursive = T) 
   
@@ -77,7 +77,7 @@ test_swat_mod <- function() {
   
   # update time sim
   time_sim <- readLines("model_data/cs10_setup/run_swat/time.sim")
-  time_sim[3] <- "       0      2016         0      2017         0  "
+  time_sim[3] <- "       0      2016         0      2016         0  "
   writeLines(text = time_sim, con = "model_data/cs10_setup/run_swat/time.sim")
   
 
