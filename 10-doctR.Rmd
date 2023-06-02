@@ -10,13 +10,37 @@ Loading required packages, defining paths, and loading objects.
 # remotes::install_git('https://git.ufz.de/schuerz/swatdoctr', force = FALSE)
 require(SWATdoctR)
 require(DT)
-
 ```
 
-Generate Model Run
+We will create a test directory to run DoctR SWAT runs and copy in our latest
+input files from SWATFarmR
+
+```{r}
+doctr_path <-  "model_data/swat_doctR/doctr_run"
+unlink(doctr_path, recursive = T)
+
+file.copy(
+  from = "model_data/cs10_setup/swat_farmR/",
+  to = "model_data/swat_doctR/",
+  overwrite = T,
+  recursive = T
+)
+file.rename("model_data/swat_doctR/swat_farmR", doctr_path)
+
+# Add exec:
+file.copy(
+  from = "model_data/cs10_setup/Rev_60_5_6_64rel.exe",
+  to = paste0(doctr_path, "/Rev_60_5_6_64rel.exe"),
+  overwrite = T
+)
+```
+
+## Stage 1: Analysis of simulated climate variables
+
+Generate a model run with water balance elements in the output.
 
 ```{r doc_run_swat_veri_1, eval=FALSE}
-veri_no_stress <- run_swat_verification(project_path = "model_data/cs10_setup/run_swat/",
+veri_no_stress <- run_swat_verification(project_path = doctr_path,
                                        nostress = 0,
                                        keep_folder = F,
                                        outputs = "wb")
@@ -28,8 +52,6 @@ Load Model Run
 ```{r, doc_load_veri_1}
 veri_no_stress <- readRDS("model_data/swat_doctR/verification_runs/veri_no_stress.rds")
 ```
-
-## Stage 1: Analysis of simulated climate variables
 
 [*Modified from the Protocol:*]{.underline}
 
@@ -101,8 +123,51 @@ veri_no_stress <- readRDS("model_data/swat_doctR/verification_runs/veri_no_stres
 
 ### Lapse rate on:
 
+We will create a directory to store our DoctR induced changes:
+```{r}
+dir.create("model_data/swat_doctR/swat_input_doc_mod/", showWarnings = F)
+```
+
+load Codes.bsn
+
+```{r}
+file_path <- "model_data/cs10_setup/swat_farmR/codes.bsn"
+codes_df <- read.table(file_path, skip = 1, header = T, sep = "", 
+                       colClasses = "character")
+
+```
+
+
+And enable lapse in codes.bsn
+
 ```{r, doc_lapse_on}
-# TODO
+
+
+
+
+
+codes_df$tiledrain <- 1
+
+
+
+
+```
+
+And save our changes:
+
+```{r}
+write_path <- "model_data/swat_doctR/swat_input_doc_mod/codes.bsn"
+header <- paste("modified by CS10 workflow on", Sys.Date())
+write.table(header, file = new_path, col.names = F, row.names = F, quote = F) 
+write.table(
+  codes_df,
+  file = new_path,
+  col.names = T,
+  append = T,
+  quote = F,
+  sep = "   ",
+  row.names = F
+)
 ```
 
 ### Lapse rate off:
