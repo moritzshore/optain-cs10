@@ -123,7 +123,7 @@ fixing-tiledrain
 finding-the-problem-hrus
 fixing-the-problem-hrus
 writing-modified-changes
-re-enable-tiledrain
+re-enabling-tiledrain
 testing-swat
 swatfarmr-management-schedules
 pre-processing-crop-rotation
@@ -142,8 +142,8 @@ calculating-antecedent-precipitation-index
 scheduling-operations
 write-operations
 model-verification
-analysis-of-simulated-climate-variables
+stage-1-analysis-of-simulated-climate-variables
 lapse-rate-on
 lapse-rate-off
-simulation-of-management-operations
+stage-2-simulation-of-management-operations
 stage-3-analysis-of-unconstrained-plant-growth

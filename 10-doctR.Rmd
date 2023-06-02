@@ -294,7 +294,7 @@ This will be a two-tiered approach (with and without stress factors)
 variables at the time of harvest/kill operations for all crops in a model setup
 and thus provides a general overview"
 
-```{r}
+```{r, eval=FALSE}
 plot_variable_at_harvkill()
 ```
 
@@ -302,7 +302,7 @@ plot_variable_at_harvkill()
 series of HRU related variables, which then can only be performed for a few HRUs
 of a model setup."
 
-```{r}
+```{r, eval = FALSE}
 plot_hru_pw_day()
 ```
 
