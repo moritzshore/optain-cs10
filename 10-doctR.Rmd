@@ -29,7 +29,7 @@ Load Model Run
 veri_no_stress <- readRDS("model_data/swat_doctR/verification_runs/veri_no_stress.rds")
 ```
 
-## Analysis of simulated climate variables
+## Stage 1: Analysis of simulated climate variables
 
 [*Modified from the Protocol:*]{.underline}
 
@@ -215,7 +215,7 @@ plot_monthly_snow(sim_verify = veri_no_stress)
 **STATUS**: Waiting on climate verification before continuing to the
 next step:
 
-## Simulation of management operations
+## Stage 2: Simulation of management operations
 
 Development of management tables is complicated and complex -- and thus error prone. Mistakes in this area do not produce any errors or warnings making them easy to miss.
 
@@ -287,3 +287,23 @@ datatable(tables)
 > Answer:
 
 ## Stage 3: Analysis of unconstrained plant growth
+
+This will be a two-tiered approach (with and without stress factors)
+
+"The function `plot_variable_at_harvkill()` function summarises the state of
+variables at the time of harvest/kill operations for all crops in a model setup
+and thus provides a general overview"
+
+```{r}
+plot_variable_at_harvkill()
+```
+
+"the function `plot_hru_pw_day()` allows detailed analyses of the daily time
+series of HRU related variables, which then can only be performed for a few HRUs
+of a model setup."
+
+```{r}
+plot_hru_pw_day()
+```
+
+
