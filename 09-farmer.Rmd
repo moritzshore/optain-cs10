@@ -247,7 +247,7 @@ We need to fix the land use name, which entails replacing the `_drn_lum`
 with just `_lum` for all the agricultural fields. This is because
 `land.shp` from buildR does not include the `_drn` for some reason
 
-```{r, farmr_bandaid}
+```{r, farmr_bandaid, eval = run_this_chapter}
 
 # TODO: Figure out why this is an issue. Are you using the wrong buildR output
 # as source material for the crop generation?
@@ -270,7 +270,7 @@ with just `_lum` for all the agricultural fields. This is because
 
 We will create a dedicated directory for our SWATfarmR and copy in our latest
 text input files.
-```{r}
+```{r, eval = run_this_chapter}
 dir.create("model_data/cs10_setup/swat_farmR/", showWarnings = F)
 
 sta_files <- list.files("model_data/cs10_setup/optain-cs10/",
@@ -365,22 +365,23 @@ only spans back to 2010 (2011?)
 cs10$write_operations(start_year = 2011, end_year = 2020)
 
 ```
-The following files have been updated:
-
-- file.cio
-
-- hru-data.hru
-
--landuse.lum
-
-- management.sch
-
-- plant.ini
+"Writing management files:
+  - Loading scheduled operations: 100%                                                                                                                 
+  - Preparing 'hru-data.hru'
+  - Preparing 'landuse.lum'
+  - Preparing 'schedule.mgt'
+  - Preparing 'plant.ini'
+  - Writing files 
+  - Updating 'time.sim'
+  - Updating 'file.cio'
+Finished writing management files in 5M 40S"
 
 Make sure to use the files in the SWATfarmR directory going forward. 
 
 Test to see if the setup still works:
 ```{r}
+# No it does not 
 # TODO
 ```
 
+See issues [#64](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/64) on our gitlab, and issue [#27](https://git.ufz.de/optain/wp4-integrated-assessment/swat/swat-management/-/issues/27) on the UFZ gitlab
