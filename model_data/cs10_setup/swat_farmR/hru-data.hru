@@ -1,4 +1,4 @@
-hru-data.hru: written by SWAT+ editor v2.1.0 on 2023-05-30 10:39 for SWAT+ rev.60.5.4 and edited with SWATfarmR 2.0.5 on 2023-05-30 14:32:45.915209
+header header header, delete me and regret it forever! fixed soil types by cs10 worflow on 2023-06-01 and edited with SWATfarmR 2.0.5 on 2023-06-01 23:38:16.400084
       id  name                          topo             hydro              soil            lu_mgt   soil_plant_init         surf_stor              snow             field
        1  hru0001                topohru0001           hyd0001      Sea_dep_thin          frst_lum              null              null           snow001              null
        2  hru0002                topohru0002           hyd0002      Sea_dep_thin          frst_lum              null              null           snow001              null
@@ -703,7 +703,7 @@ hru-data.hru: written by SWAT+ editor v2.1.0 on 2023-05-30 10:39 for SWAT+ rev.6
      701  hru0701                topohru0701           hyd0701             Humic                NA              null              null           snow001              null
      702  hru0702                topohru0702           hyd0702     Sea_dep_thick          frst_lum              null              null           snow001              null
      703  hru0703                topohru0703           hyd0703           STlv-sl a_037f_3_drn_lum_703_1              null              null           snow001              null
-     704  hru0704                topohru0704           hyd0704      Sea_dep_thin a_037f_2_drn_lum_704_1              null              null           snow001              null
+     704  hru0704                topohru0704           hyd0704           STlv-sl a_037f_2_drn_lum_704_1              null              null           snow001              null
      705  hru0705                topohru0705           hyd0705           STlv-sl a_038f_2_drn_lum_705_1              null              null           snow001              null
      706  hru0706                topohru0706           hyd0706           STrt-sl a_040f_2_drn_lum_706_1              null              null           snow001              null
      707  hru0707                topohru0707           hyd0707     Sea_dep_thick          frst_lum              null              null           snow001              null
@@ -2783,7 +2783,7 @@ hru-data.hru: written by SWAT+ editor v2.1.0 on 2023-05-30 10:39 for SWAT+ rev.6
     2781  hru2781                topohru2781           hyd2781           LVcm-sl a_058f_2_drn_lum_2781_1              null              null           snow001              null
     2782  hru2782                topohru2782           hyd2782           GLch-sl a_134f_1_drn_lum_2782_1              null              null           snow001              null
     2783  hru2783                topohru2783           hyd2783              ARdy a_135f_1_drn_lum_2783_1              null              null           snow001              null
-    2784  hru2784                topohru2784           hyd2784       RGlen-dy-ar a_072f_1_drn_lum_2784_1              null              null           snow001              null
+    2784  hru2784                topohru2784           hyd2784           STlv-sl a_072f_1_drn_lum_2784_1              null              null           snow001              null
     2785  hru2785                topohru2785           hyd2785         Beach_dep                NA              null              null           snow001              null
     2786  hru2786                topohru2786           hyd2786         Beach_dep                NA              null              null           snow001              null
     2787  hru2787                topohru2787           hyd2787         Beach_dep                NA              null              null           snow001              null
@@ -3313,7 +3313,7 @@ hru-data.hru: written by SWAT+ editor v2.1.0 on 2023-05-30 10:39 for SWAT+ rev.6
     3311  hru3311                topohru3311           hyd3311     Sea_dep_thick          rngb_lum              null              null           snow001              null
     3312  hru3312                topohru3312           hyd3312     Sea_dep_thick          frst_lum              null              null           snow001              null
     3313  hru3313                topohru3313           hyd3313     Sea_dep_thick          frst_lum              null              null           snow001              null
-    3314  hru3314                topohru3314           hyd3314       STlen-rt-sl a_060f_2_drn_lum_3314_1              null              null           snow001              null
+    3314  hru3314                topohru3314           hyd3314           STlv-sl a_060f_2_drn_lum_3314_1              null              null           snow001              null
     3315  hru3315                topohru3315           hyd3315           STlv-sl a_060f_2_drn_lum_3315_1              null              null           snow001              null
     3316  hru3316                topohru3316           hyd3316           CMeu-sl a_076f_3_drn_lum_3316_1              null              null           snow001              null
     3317  hru3317                topohru3317           hyd3317           STrt-sl a_076f_1_drn_lum_3317_1              null              null           snow001              null
@@ -3366,7 +3366,7 @@ hru-data.hru: written by SWAT+ editor v2.1.0 on 2023-05-30 10:39 for SWAT+ rev.6
     3364  hru3364                topohru3364           hyd3364           STlv-sl a_076f_1_drn_lum_3364_1              null              null           snow001              null
     3365  hru3365                topohru3365           hyd3365              CMfv a_073f_1_drn_lum_3365_1              null              null           snow001              null
     3366  hru3366                topohru3366           hyd3366           STlv-sl a_073f_4_drn_lum_3366_1              null              null           snow001              null
-    3367  hru3367                topohru3367           hyd3367       STlen-lv-sl a_072f_1_drn_lum_3367_1              null              null           snow001              null
+    3367  hru3367                topohru3367           hyd3367           STlv-sl a_072f_1_drn_lum_3367_1              null              null           snow001              null
     3368  hru3368                topohru3368           hyd3368              CMfv a_060f_2_drn_lum_3368_1              null              null           snow001              null
     3369  hru3369                topohru3369           hyd3369           STlv-sl a_060f_2_drn_lum_3369_1              null              null           snow001              null
     3370  hru3370                topohru3370           hyd3370           STlv-sl a_060f_2_drn_lum_3370_1              null              null           snow001              null
@@ -3375,7 +3375,7 @@ hru-data.hru: written by SWAT+ editor v2.1.0 on 2023-05-30 10:39 for SWAT+ rev.6
     3373  hru3373                topohru3373           hyd3373              CMfv a_073f_1_drn_lum_3373_1              null              null           snow001              null
     3374  hru3374                topohru3374           hyd3374     GLum-fv-hu-sl a_073f_1_drn_lum_3374_1              null              null           snow001              null
     3375  hru3375                topohru3375           hyd3375           STrt-sl a_072f_2_drn_lum_3375_1              null              null           snow001              null
-    3376  hru3376                topohru3376           hyd3376       STlen-rt-sl a_060f_2_drn_lum_3376_1              null              null           snow001              null
+    3376  hru3376                topohru3376           hyd3376           STlv-sl a_060f_2_drn_lum_3376_1              null              null           snow001              null
     3377  hru3377                topohru3377           hyd3377              CMfv a_060f_2_drn_lum_3377_1              null              null           snow001              null
     3378  hru3378                topohru3378           hyd3378           STum-fv a_066f_2_drn_lum_3378_1              null              null           snow001              null
     3379  hru3379                topohru3379           hyd3379           STrt-sl a_076f_1_drn_lum_3379_1              null              null           snow001              null
@@ -3464,7 +3464,7 @@ hru-data.hru: written by SWAT+ editor v2.1.0 on 2023-05-30 10:39 for SWAT+ rev.6
     3462  hru3462                topohru3462           hyd3462           LVcm-sl a_046f_7_drn_lum_3462_1              null              null           snow001              null
     3463  hru3463                topohru3463           hyd3463           STlv-sl a_146f_3_drn_lum_3463_1              null              null           snow001              null
     3464  hru3464                topohru3464           hyd3464           STrt-sl a_146f_1_drn_lum_3464_1              null              null           snow001              null
-    3465  hru3465                topohru3465           hyd3465          RGlep-dy a_146f_2_drn_lum_3465_1              null              null           snow001              null
+    3465  hru3465                topohru3465           hyd3465           STrt-sl a_146f_2_drn_lum_3465_1              null              null           snow001              null
     3466  hru3466                topohru3466           hyd3466           STrt-sl a_146f_2_drn_lum_3466_1              null              null           snow001              null
     3467  hru3467                topohru3467           hyd3467           STlv-sl a_016f_2_drn_lum_3467_1              null              null           snow001              null
     3468  hru3468                topohru3468           hyd3468        STeu-sl-pp a_016f_3_drn_lum_3468_1              null              null           snow001              null
@@ -3685,7 +3685,7 @@ hru-data.hru: written by SWAT+ editor v2.1.0 on 2023-05-30 10:39 for SWAT+ rev.6
     3683  hru3683                topohru3683           hyd3683           STlv-sl a_115f_2_drn_lum_3683_1              null              null           snow001              null
     3684  hru3684                topohru3684           hyd3684           STlv-sl a_115f_3_drn_lum_3684_1              null              null           snow001              null
     3685  hru3685                topohru3685           hyd3685           STlv-sl a_115f_1_drn_lum_3685_1              null              null           snow001              null
-    3686  hru3686                topohru3686           hyd3686       STlen-rt-sl a_115f_1_drn_lum_3686_1              null              null           snow001              null
+    3686  hru3686                topohru3686           hyd3686           STlv-sl a_115f_1_drn_lum_3686_1              null              null           snow001              null
     3687  hru3687                topohru3687           hyd3687           STlv-sl a_114f_3_drn_lum_3687_1              null              null           snow001              null
     3688  hru3688                topohru3688           hyd3688           STlv-sl          frst_lum              null              null           snow001              null
     3689  hru3689                topohru3689           hyd3689             Humic          frst_lum              null              null           snow001              null
@@ -4879,7 +4879,7 @@ hru-data.hru: written by SWAT+ editor v2.1.0 on 2023-05-30 10:39 for SWAT+ rev.6
     4877  hru4877                topohru4877           hyd4877      Sea_dep_thin                NA              null              null           snow001              null
     4878  hru4878                topohru4878           hyd4878      Sea_dep_thin                NA              null              null           snow001              null
     4879  hru4879                topohru4879           hyd4879              PLdy          rngb_lum              null              null           snow001              null
-    4880  hru4880                topohru4880           hyd4880      Sea_dep_thin a_182f_5_drn_lum_4880_1              null              null           snow001              null
+    4880  hru4880                topohru4880           hyd4880              ARdy a_182f_5_drn_lum_4880_1              null              null           snow001              null
     4881  hru4881                topohru4881           hyd4881           STrt-sl a_182f_6_drn_lum_4881_1              null              null           snow001              null
     4882  hru4882                topohru4882           hyd4882           STrt-sl          rngb_lum              null              null           snow001              null
     4883  hru4883                topohru4883           hyd4883           STrt-sl          rngb_lum              null              null           snow001              null
@@ -5860,7 +5860,7 @@ hru-data.hru: written by SWAT+ editor v2.1.0 on 2023-05-30 10:39 for SWAT+ rev.6
     5858  hru5858                topohru5858           hyd5858           STlv-sl a_046f_4_drn_lum_5858_1              null              null           snow001              null
     5859  hru5859                topohru5859           hyd5859        HSsa-dy-rp a_046f_5_drn_lum_5859_1              null              null           snow001              null
     5860  hru5860                topohru5860           hyd5860           STlv-sl a_046f_5_drn_lum_5860_1              null              null           snow001              null
-    5861  hru5861                topohru5861           hyd5861       End_moraine a_210f_2_drn_lum_5861_1              null              null           snow001              null
+    5861  hru5861                topohru5861           hyd5861           STlv-sl a_210f_2_drn_lum_5861_1              null              null           snow001              null
     5862  hru5862                topohru5862           hyd5862           STrt-sl a_210f_3_drn_lum_5862_1              null              null           snow001              null
     5863  hru5863                topohru5863           hyd5863          Mountain          frst_lum              null              null           snow001              null
     5864  hru5864                topohru5864           hyd5864              ARdy a_210f_1_drn_lum_5864_1              null              null           snow001              null
@@ -5925,7 +5925,7 @@ hru-data.hru: written by SWAT+ editor v2.1.0 on 2023-05-30 10:39 for SWAT+ rev.6
     5923  hru5923                topohru5923           hyd5923           STrt-sl a_210f_1_drn_lum_5923_1              null              null           snow001              null
     5924  hru5924                topohru5924           hyd5924           STrt-sl a_210f_1_drn_lum_5924_1              null              null           snow001              null
     5925  hru5925                topohru5925           hyd5925           STrt-sl a_019f_1_drn_lum_5925_1              null              null           snow001              null
-    5926  hru5926                topohru5926           hyd5926      Sea_dep_thin a_211f_1_drn_lum_5926_1              null              null           snow001              null
+    5926  hru5926                topohru5926           hyd5926           STlv-sl a_211f_1_drn_lum_5926_1              null              null           snow001              null
     5927  hru5927                topohru5927           hyd5927           LVcm-sl a_123f_3_drn_lum_5927_1              null              null           snow001              null
     5928  hru5928                topohru5928           hyd5928          Mountain          frst_lum              null              null           snow001              null
     5929  hru5929                topohru5929           hyd5929          Mountain          frst_lum              null              null           snow001              null
