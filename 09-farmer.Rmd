@@ -268,15 +268,44 @@ with just `_lum` for all the agricultural fields. This is because
 
 ## Initializing FarmR
 
+We will create a dedicated directory for our SWATfarmR and copy in our latest
+text input files.
+```{r}
+dir.create("model_data/cs10_setup/swat_farmR/", showWarnings = F)
+
+sta_files <- list.files("model_data/cs10_setup/optain-cs10/",
+                        pattern = "sta_",
+                        full.names = T)
+
+cli_files <- list.files("model_data/cs10_setup/optain-cs10/",
+                        pattern = ".cli",
+                        full.names = T)
+
+input_files_base <- list.files("model_data/cs10_setup/swat_input/",
+                               full.names = T)
+
+source_files <- c(sta_files, cli_files, input_files_base)
+
+status <- file.copy(from = source_files,
+                    to = "model_data/cs10_setup/swat_farmR/",
+                    overwrite = T)
+
+# overwriting the base files with our modifications
+input_files_mod <- list.files("model_data/cs10_setup/swat_input_mod/",
+                              full.names = T)
+
+status_mod <- file.copy(from = input_files_mod, 
+                        to = "model_data/cs10_setup/swat_farmR/",
+                        overwrite = T)
+```
+
 If the FarmR has never been initialized, then use `new_farmr()` and
 `read_management()`, otherwise `load_farmr()`.
-
-EVAL FALSE as BuildR script is still broken
 
 ```{r, farmr_new, eval = run_this_chapter}
 project_path <- "model_data/cs10_setup/swat_farmr/"
 
-SWATfarmR::new_farmr(project_name = "cs10", project_path = project_path )
+new_farmr(project_name = "cs10", project_path = project_path )
 
 #load_farmr(...)
 
@@ -324,16 +353,16 @@ TODO
 
 ```{r, farmr_sched, eval=run_this_chapter}
 
-cs10$schedule_operations(start_year = 2016, end_year = 2019, n_schedule = 2)
+cs10$schedule_operations(start_year = 2011, end_year = 2020, n_schedule = 2)
 ```
 
 ### Write Operations
 
 We cannot write from 1988 as it is limited to our climate data, which currently
-only spans back to 2010
+only spans back to 2010 (2011?)
 
 ```{r, farmr_write_ops, eval=run_this_chapter}
-cs10$write_operations(start_year = 2016, end_year = 2019)
+cs10$write_operations(start_year = 2011, end_year = 2020)
 
 ```
 The following files have been updated:
@@ -348,8 +377,6 @@ The following files have been updated:
 
 - plant.ini
 
-These need to overwrite the older files in the run_swat directory. 
-
-
+Make sure to use the files in the SWATfarmR directory going forward. 
 
 
