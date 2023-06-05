@@ -1,7 +1,0 @@
-Logger1(600413) == John Ivar behind the barn
-
-Logger2(600411) == John Ivar lower area
-
-Logger3(600409) == deep rocky sand
-
-Logger4(600410) == Tormods farm

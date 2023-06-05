@@ -1,3 +1,0 @@
- optaincs10                SWAT+ May 25 2023       MODULAR Rev 2023.60.5.6                                
-   jday   mon   day    yr   unit  gis_id  name                       flo          dep_wt            stor          rchrg           seep          revap         no3_st           minp           orgn           orgp       no3_rchg       no3_loss        no3_lat       no3_seep        flo_cha        flo_res         flo_ls
-                                                                       mm              m              mm             mm             mm             mm        kg/ha_N        kg/ha_P        kg/ha_N        kg/ha_P        kg/ha_N        kg/ha_N        kg/ha_N        kg/ha_N             mm             mm             mm
