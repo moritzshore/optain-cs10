@@ -357,7 +357,7 @@ frc_thres <- 0.5 # 94  loops (   mins)
 frc_thres <- 0.6 # 57  loops (   mins)
 ```
 
-We have decided that at a threshold of 0.3 and 150, we are within the "not that many" loops territory, considering out of 6000+ HRUs, it is only around 2%. Therefore we will let BuildR continue and remove them.
+We have decided that at a threshold of 0.3 and 150, we are within the "not that many" loops territory, considering out of 6000+ HRUs, it is only around 2%. Therefore we will let BuildR continue and remove them. This has been discussed in Issue [#55](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/55).
 
 ```{r, buildr_red_land_con2, eval=run_buildr}
 frc_thres <- 0.3 # 150 loops

@@ -88,12 +88,14 @@ There is no info on this column, so we are going to leave it as `null`.
 ### Setting `plnt_com`
 
 This step will be done by SWATFarmR in Section
-\@ref(swatfarmr-management-schedules).
+\@ref(swatfarmr-management-schedules). Dicussed in Issue [#15](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/15)
 
 ### Setting `mgt`
 
 This step will be done by SWATFarmR in Section
 \@ref(swatfarmr-management-schedules).
+
+Discussed in Issue [#14](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/14)
 
 ### Setting `urb_ro`
 
@@ -714,7 +716,7 @@ This column has been left as `null`
 
 ### Setting `grww`
 
-This column has been left as `null`
+This column has been left as `null` as discussed in Issue [#11](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/11)
 
 ### Setting `bmp`
 
@@ -774,3 +776,7 @@ simout <- test_swat_mod()
 cat(tail(simout), sep = "\n")
 ```
 
+
+**Related minor issues**
+
+Don't write rownames! - [#50](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/50)

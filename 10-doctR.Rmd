@@ -371,4 +371,11 @@ of a model setup."
 plot_hru_pw_day()
 ```
 
+```{r, eval = FALSE}
+plot_qtile(veri_mgt)
+```
 
+
+**Related Minor Issues**
+
+Atmodep not read - [#44](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/44)

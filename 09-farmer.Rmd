@@ -3,6 +3,7 @@
 WIP: Every field in the OPTAIN SWAT setup needs its own management. We will
 use the SWATFarmR package to define it. 
 
+
 ```{r farmr_run_chap}
 run_this_chapter = FALSE
 ```
@@ -385,3 +386,13 @@ Test to see if the setup still works:
 ```
 
 See issues [#64](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/64) on our gitlab, and issue [#27](https://git.ufz.de/optain/wp4-integrated-assessment/swat/swat-management/-/issues/27) on the UFZ gitlab
+
+**Related Issues**
+
+Update FarmR to 3.0 - [#56](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/56)
+
+No Plant ET - [#48](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/48)
+
+Schedule Ops 1988-2020 - [#51](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/51)
+
+Re-extrapolate the crop rotation - [#47](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/47)

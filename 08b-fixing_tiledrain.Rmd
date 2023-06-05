@@ -10,6 +10,8 @@ Reason: Some HRUs have drains, but are on a shallow soil type. This causes the d
 
 Likely source of error: Misalignment of the soil and land use map.
 
+Discussion of this issue can be found in [#53](https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/53)
+
 ```{r, drainfix_libs, message=FALSE}
 require(mapview)
 require(sf)
