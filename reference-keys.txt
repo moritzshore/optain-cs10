@@ -143,7 +143,8 @@ scheduling-operations
 write-operations
 model-verification
 stage-1-analysis-of-simulated-climate-variables
-lapse-rate-on
-lapse-rate-off
+lapse-rate
+climate-variables
+snowfall-and-snowmelt
 stage-2-simulation-of-management-operations
 stage-3-analysis-of-unconstrained-plant-growth
