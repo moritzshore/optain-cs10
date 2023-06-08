@@ -1,3 +1,10 @@
+fig:tiledrainremovegif
+input-data-preparation
+digital-elevation-model
+soil-data
+watershed-boundary
+land-object-input
+tile-drainage
 model-setup-with-swatbuildr
 buildr-setup
 processing-input-data

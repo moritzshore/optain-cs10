@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Section 8 Antecedent Precipitation Index | OPTAIN CS-10</title>
+  <title>Section 9 Antecedent Precipitation Index | OPTAIN CS-10</title>
   <meta name="description" content="A description of the project setup for OPTAIN case study 10" />
   <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Section 8 Antecedent Precipitation Index | OPTAIN CS-10" />
+  <meta property="og:title" content="Section 9 Antecedent Precipitation Index | OPTAIN CS-10" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://moritzshore.github.io/optain-cs10/figures/banner.png" />
   <meta property="og:description" content="A description of the project setup for OPTAIN case study 10" />
   <meta name="github-repo" content="moritzshore/optain-cs10" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Section 8 Antecedent Precipitation Index | OPTAIN CS-10" />
+  <meta name="twitter:title" content="Section 9 Antecedent Precipitation Index | OPTAIN CS-10" />
   
   <meta name="twitter:description" content="A description of the project setup for OPTAIN case study 10" />
   <meta name="twitter:image" content="https://moritzshore.github.io/optain-cs10/figures/banner.png" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Moritz Shore, Csilla Farkas" />
 
 
-<meta name="date" content="2023-06-07" />
+<meta name="date" content="2023-06-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -192,186 +192,196 @@ div.csl-indent {
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
-<li class="chapter" data-level="1" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html"><i class="fa fa-check"></i><b>1</b> Model setup with SWATBuildR</a>
+<li class="chapter" data-level="1" data-path="input-data-preparation.html"><a href="input-data-preparation.html"><i class="fa fa-check"></i><b>1</b> Input Data Preparation</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#buildr-setup"><i class="fa fa-check"></i><b>1.1</b> BuildR Setup</a></li>
-<li class="chapter" data-level="1.2" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#processing-input-data"><i class="fa fa-check"></i><b>1.2</b> Processing input data</a>
+<li class="chapter" data-level="1.1" data-path="input-data-preparation.html"><a href="input-data-preparation.html#digital-elevation-model"><i class="fa fa-check"></i><b>1.1</b> Digital Elevation Model</a></li>
+<li class="chapter" data-level="1.2" data-path="input-data-preparation.html"><a href="input-data-preparation.html#soil-data"><i class="fa fa-check"></i><b>1.2</b> Soil Data</a></li>
+<li class="chapter" data-level="1.3" data-path="input-data-preparation.html"><a href="input-data-preparation.html#watershed-boundary"><i class="fa fa-check"></i><b>1.3</b> Watershed Boundary</a></li>
+<li class="chapter" data-level="1.4" data-path="input-data-preparation.html"><a href="input-data-preparation.html#land-object-input"><i class="fa fa-check"></i><b>1.4</b> Land object input</a>
 <ul>
-<li class="chapter" data-level="1.2.1" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#high-resolution-digital-elevation-model-dem"><i class="fa fa-check"></i><b>1.2.1</b> High-Resolution Digital Elevation Model (DEM)</a></li>
-<li class="chapter" data-level="1.2.2" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#processing-the-basin-boundary"><i class="fa fa-check"></i><b>1.2.2</b> Processing the Basin Boundary</a></li>
-<li class="chapter" data-level="1.2.3" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#processing-the-land-layer"><i class="fa fa-check"></i><b>1.2.3</b> Processing the Land layer</a></li>
-<li class="chapter" data-level="1.2.4" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#processing-the-channels"><i class="fa fa-check"></i><b>1.2.4</b> Processing the Channels</a></li>
-<li class="chapter" data-level="1.2.5" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#processing-the-dem"><i class="fa fa-check"></i><b>1.2.5</b> Processing the DEM</a></li>
-<li class="chapter" data-level="1.2.6" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#processing-soil-data"><i class="fa fa-check"></i><b>1.2.6</b> Processing soil data</a></li>
-</ul></li>
-<li class="chapter" data-level="1.3" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#calculating-contiguous-object-connectivity"><i class="fa fa-check"></i><b>1.3</b> Calculating Contiguous Object Connectivity</a>
-<ul>
-<li class="chapter" data-level="1.3.1" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#calculating-land-unit-connectivity"><i class="fa fa-check"></i><b>1.3.1</b> Calculating land unit connectivity</a></li>
-<li class="chapter" data-level="1.3.2" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#calculating-channelreservoir-connectivity"><i class="fa fa-check"></i><b>1.3.2</b> Calculating channel/reservoir connectivity</a></li>
-<li class="chapter" data-level="1.3.3" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#checking-the-water-objects-for-infinite-loops"><i class="fa fa-check"></i><b>1.3.3</b> Checking the water objects for infinite loops</a></li>
-<li class="chapter" data-level="1.3.4" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#terrain-properties"><i class="fa fa-check"></i><b>1.3.4</b> Terrain properties</a></li>
-</ul></li>
-<li class="chapter" data-level="1.4" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#generate-swat-input"><i class="fa fa-check"></i><b>1.4</b> Generate SWAT+ input</a>
-<ul>
-<li class="chapter" data-level="1.4.1" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#generate-land-object-swat-input-tables"><i class="fa fa-check"></i><b>1.4.1</b> Generate land object SWAT+ input tables</a></li>
-<li class="chapter" data-level="1.4.2" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#generate-water-object-swat-input-tables"><i class="fa fa-check"></i><b>1.4.2</b> Generate water object SWAT+ input tables</a></li>
-<li class="chapter" data-level="1.4.3" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#build-aquifer-input"><i class="fa fa-check"></i><b>1.4.3</b> Build aquifer input</a></li>
-<li class="chapter" data-level="1.4.4" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#add-point-source-inputs"><i class="fa fa-check"></i><b>1.4.4</b> Add point source inputs</a></li>
-<li class="chapter" data-level="1.4.5" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#create-swat-sqlite-database"><i class="fa fa-check"></i><b>1.4.5</b> Create SWAT+ sqlite database</a></li>
+<li class="chapter" data-level="1.4.1" data-path="input-data-preparation.html"><a href="input-data-preparation.html#tile-drainage"><i class="fa fa-check"></i><b>1.4.1</b> Tile drainage</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="climate-inputs-and-weather-generator.html"><a href="climate-inputs-and-weather-generator.html"><i class="fa fa-check"></i><b>2</b> Climate inputs and weather generator</a>
+<li class="chapter" data-level="2" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html"><i class="fa fa-check"></i><b>2</b> Model setup with SWATBuildR</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="climate-inputs-and-weather-generator.html"><a href="climate-inputs-and-weather-generator.html#preparation-and-loading-data"><i class="fa fa-check"></i><b>2.1</b> Preparation and loading data</a>
+<li class="chapter" data-level="2.1" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#buildr-setup"><i class="fa fa-check"></i><b>2.1</b> BuildR Setup</a></li>
+<li class="chapter" data-level="2.2" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#processing-input-data"><i class="fa fa-check"></i><b>2.2</b> Processing input data</a>
 <ul>
-<li class="chapter" data-level="2.1.1" data-path="climate-inputs-and-weather-generator.html"><a href="climate-inputs-and-weather-generator.html#required-packages"><i class="fa fa-check"></i><b>2.1.1</b> Required packages</a></li>
-<li class="chapter" data-level="2.1.2" data-path="climate-inputs-and-weather-generator.html"><a href="climate-inputs-and-weather-generator.html#load-in-the-files-and-load-svatools-template"><i class="fa fa-check"></i><b>2.1.2</b> Load in the file(s) and load svatools template</a></li>
-<li class="chapter" data-level="2.1.3" data-path="climate-inputs-and-weather-generator.html"><a href="climate-inputs-and-weather-generator.html#proof-the-station"><i class="fa fa-check"></i><b>2.1.3</b> Proof the station</a></li>
+<li class="chapter" data-level="2.2.1" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#high-resolution-digital-elevation-model-dem"><i class="fa fa-check"></i><b>2.2.1</b> High-Resolution Digital Elevation Model (DEM)</a></li>
+<li class="chapter" data-level="2.2.2" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#processing-the-basin-boundary"><i class="fa fa-check"></i><b>2.2.2</b> Processing the Basin Boundary</a></li>
+<li class="chapter" data-level="2.2.3" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#processing-the-land-layer"><i class="fa fa-check"></i><b>2.2.3</b> Processing the Land layer</a></li>
+<li class="chapter" data-level="2.2.4" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#processing-the-channels"><i class="fa fa-check"></i><b>2.2.4</b> Processing the Channels</a></li>
+<li class="chapter" data-level="2.2.5" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#processing-the-dem"><i class="fa fa-check"></i><b>2.2.5</b> Processing the DEM</a></li>
+<li class="chapter" data-level="2.2.6" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#processing-soil-data"><i class="fa fa-check"></i><b>2.2.6</b> Processing soil data</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="climate-inputs-and-weather-generator.html"><a href="climate-inputs-and-weather-generator.html#creating-the-weather-generator"><i class="fa fa-check"></i><b>2.2</b> Creating the weather generator</a></li>
-<li class="chapter" data-level="2.3" data-path="climate-inputs-and-weather-generator.html"><a href="climate-inputs-and-weather-generator.html#adding-weather-data-to-swat-project"><i class="fa fa-check"></i><b>2.3</b> Adding weather data to SWAT+ project</a></li>
-<li class="chapter" data-level="2.4" data-path="climate-inputs-and-weather-generator.html"><a href="climate-inputs-and-weather-generator.html#adding-atmospheric-deposition"><i class="fa fa-check"></i><b>2.4</b> Adding Atmospheric deposition</a></li>
+<li class="chapter" data-level="2.3" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#calculating-contiguous-object-connectivity"><i class="fa fa-check"></i><b>2.3</b> Calculating Contiguous Object Connectivity</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#calculating-land-unit-connectivity"><i class="fa fa-check"></i><b>2.3.1</b> Calculating land unit connectivity</a></li>
+<li class="chapter" data-level="2.3.2" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#calculating-channelreservoir-connectivity"><i class="fa fa-check"></i><b>2.3.2</b> Calculating channel/reservoir connectivity</a></li>
+<li class="chapter" data-level="2.3.3" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#checking-the-water-objects-for-infinite-loops"><i class="fa fa-check"></i><b>2.3.3</b> Checking the water objects for infinite loops</a></li>
+<li class="chapter" data-level="2.3.4" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#terrain-properties"><i class="fa fa-check"></i><b>2.3.4</b> Terrain properties</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="writing-swat-input-files.html"><a href="writing-swat-input-files.html"><i class="fa fa-check"></i><b>3</b> Writing SWAT+ Input Files</a>
+<li class="chapter" data-level="2.4" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#generate-swat-input"><i class="fa fa-check"></i><b>2.4</b> Generate SWAT+ input</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="writing-swat-input-files.html"><a href="writing-swat-input-files.html#loading-the-project-in-swat-editor"><i class="fa fa-check"></i><b>3.1</b> Loading the project in SWAT+ Editor</a></li>
-<li class="chapter" data-level="3.2" data-path="writing-swat-input-files.html"><a href="writing-swat-input-files.html#swat-test-run"><i class="fa fa-check"></i><b>3.2</b> SWAT+ Test Run</a></li>
-<li class="chapter" data-level="3.3" data-path="writing-swat-input-files.html"><a href="writing-swat-input-files.html#link-aquifers-and-channels-with-geomorphic-flow"><i class="fa fa-check"></i><b>3.3</b> Link aquifers and channels with geomorphic flow</a></li>
-</ul></li>
-<li class="chapter" data-level="4" data-path="crop-map-generation.html"><a href="crop-map-generation.html"><i class="fa fa-check"></i><b>4</b> Crop Map Generation</a>
-<ul>
-<li class="chapter" data-level="4.1" data-path="crop-map-generation.html"><a href="crop-map-generation.html#calculating-field-area"><i class="fa fa-check"></i><b>4.1</b> Calculating Field Area</a>
-<ul>
-<li class="chapter" data-level="4.1.1" data-path="crop-map-generation.html"><a href="crop-map-generation.html#calculate-field-area-and-assign-ids"><i class="fa fa-check"></i><b>4.1.1</b> Calculate Field Area and Assign IDs</a></li>
-<li class="chapter" data-level="4.1.2" data-path="crop-map-generation.html"><a href="crop-map-generation.html#calculate-field-area-and-assign-ids-1"><i class="fa fa-check"></i><b>4.1.2</b> Calculate Field area and assign IDs</a></li>
-</ul></li>
-<li class="chapter" data-level="4.2" data-path="crop-map-generation.html"><a href="crop-map-generation.html#generating-the-crop-rotation"><i class="fa fa-check"></i><b>4.2</b> Generating the Crop Rotation</a>
-<ul>
-<li class="chapter" data-level="4.2.1" data-path="crop-map-generation.html"><a href="crop-map-generation.html#tidy-up-the-source-data"><i class="fa fa-check"></i><b>4.2.1</b> Tidy up the source data:</a></li>
-<li class="chapter" data-level="4.2.2" data-path="crop-map-generation.html"><a href="crop-map-generation.html#tidy-up-the-buildr-output"><i class="fa fa-check"></i><b>4.2.2</b> Tidy up the BuildR output</a></li>
-<li class="chapter" data-level="4.2.3" data-path="crop-map-generation.html"><a href="crop-map-generation.html#field-classification"><i class="fa fa-check"></i><b>4.2.3</b> Field classification</a></li>
-<li class="chapter" data-level="4.2.4" data-path="crop-map-generation.html"><a href="crop-map-generation.html#extrapolating-the-crop-rotation"><i class="fa fa-check"></i><b>4.2.4</b> Extrapolating the Crop Rotation</a></li>
-</ul></li>
-<li class="chapter" data-level="4.3" data-path="crop-map-generation.html"><a href="crop-map-generation.html#merging-crop-rotation-with-buildr-output"><i class="fa fa-check"></i><b>4.3</b> Merging crop rotation with BuildR output</a></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="landuse.lum-update.html"><a href="landuse.lum-update.html"><i class="fa fa-check"></i><b>5</b> Landuse.lum update</a>
-<ul>
-<li class="chapter" data-level="5.1" data-path="landuse.lum-update.html"><a href="landuse.lum-update.html#data-preperation"><i class="fa fa-check"></i><b>5.1</b> Data preperation</a></li>
-<li class="chapter" data-level="5.2" data-path="landuse.lum-update.html"><a href="landuse.lum-update.html#assigning-landuse-values"><i class="fa fa-check"></i><b>5.2</b> Assigning landuse values</a>
-<ul>
-<li class="chapter" data-level="5.2.1" data-path="landuse.lum-update.html"><a href="landuse.lum-update.html#setting-cal_group"><i class="fa fa-check"></i><b>5.2.1</b> Setting <code>cal_group</code></a></li>
-<li class="chapter" data-level="5.2.2" data-path="landuse.lum-update.html"><a href="landuse.lum-update.html#setting-plnt_com"><i class="fa fa-check"></i><b>5.2.2</b> Setting <code>plnt_com</code></a></li>
-<li class="chapter" data-level="5.2.3" data-path="landuse.lum-update.html"><a href="landuse.lum-update.html#setting-mgt"><i class="fa fa-check"></i><b>5.2.3</b> Setting <code>mgt</code></a></li>
-<li class="chapter" data-level="5.2.4" data-path="landuse.lum-update.html"><a href="landuse.lum-update.html#setting-urb_ro"><i class="fa fa-check"></i><b>5.2.4</b> Setting <code>urb_ro</code></a></li>
-<li class="chapter" data-level="5.2.5" data-path="landuse.lum-update.html"><a href="landuse.lum-update.html#setting-urban"><i class="fa fa-check"></i><b>5.2.5</b> Setting <code>urban</code></a></li>
-<li class="chapter" data-level="5.2.6" data-path="landuse.lum-update.html"><a href="landuse.lum-update.html#setting-mannings-n-ovn"><i class="fa fa-check"></i><b>5.2.6</b> Setting Manning’s n (<code>ovn</code>)</a></li>
-<li class="chapter" data-level="5.2.7" data-path="landuse.lum-update.html"><a href="landuse.lum-update.html#setting-cn2"><i class="fa fa-check"></i><b>5.2.7</b> Setting <code>cn2</code>:</a></li>
-<li class="chapter" data-level="5.2.8" data-path="landuse.lum-update.html"><a href="landuse.lum-update.html#setting-cons_prac"><i class="fa fa-check"></i><b>5.2.8</b> Setting <code>cons_prac</code></a></li>
-<li class="chapter" data-level="5.2.9" data-path="landuse.lum-update.html"><a href="landuse.lum-update.html#setting-tile"><i class="fa fa-check"></i><b>5.2.9</b> Setting <code>tile</code></a></li>
-<li class="chapter" data-level="5.2.10" data-path="landuse.lum-update.html"><a href="landuse.lum-update.html#setting-sep"><i class="fa fa-check"></i><b>5.2.10</b> Setting <code>sep</code></a></li>
-<li class="chapter" data-level="5.2.11" data-path="landuse.lum-update.html"><a href="landuse.lum-update.html#setting-vfs"><i class="fa fa-check"></i><b>5.2.11</b> Setting <code>vfs</code></a></li>
-<li class="chapter" data-level="5.2.12" data-path="landuse.lum-update.html"><a href="landuse.lum-update.html#setting-grww"><i class="fa fa-check"></i><b>5.2.12</b> Setting <code>grww</code></a></li>
-<li class="chapter" data-level="5.2.13" data-path="landuse.lum-update.html"><a href="landuse.lum-update.html#setting-bmp"><i class="fa fa-check"></i><b>5.2.13</b> Setting <code>bmp</code></a></li>
-</ul></li>
-<li class="chapter" data-level="5.3" data-path="landuse.lum-update.html"><a href="landuse.lum-update.html#writing-changes"><i class="fa fa-check"></i><b>5.3</b> Writing Changes</a></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="field-site-loggers.html"><a href="field-site-loggers.html"><i class="fa fa-check"></i><b>6</b> Field Site Loggers</a>
-<ul>
-<li class="chapter" data-level="6.1" data-path="field-site-loggers.html"><a href="field-site-loggers.html#introduction-1"><i class="fa fa-check"></i><b>6.1</b> Introduction</a>
-<ul>
-<li class="chapter" data-level="6.1.1" data-path="field-site-loggers.html"><a href="field-site-loggers.html#prerequisites"><i class="fa fa-check"></i><b>6.1.1</b> Prerequisites</a></li>
-<li class="chapter" data-level="6.1.2" data-path="field-site-loggers.html"><a href="field-site-loggers.html#locations"><i class="fa fa-check"></i><b>6.1.2</b> Locations</a></li>
-</ul></li>
-<li class="chapter" data-level="6.2" data-path="field-site-loggers.html"><a href="field-site-loggers.html#data-processing"><i class="fa fa-check"></i><b>6.2</b> Data Processing</a>
-<ul>
-<li class="chapter" data-level="6.2.1" data-path="field-site-loggers.html"><a href="field-site-loggers.html#loading-data"><i class="fa fa-check"></i><b>6.2.1</b> Loading Data</a></li>
-<li class="chapter" data-level="6.2.2" data-path="field-site-loggers.html"><a href="field-site-loggers.html#data-re-structuring"><i class="fa fa-check"></i><b>6.2.2</b> Data Re-structuring</a></li>
-<li class="chapter" data-level="6.2.3" data-path="field-site-loggers.html"><a href="field-site-loggers.html#summarize-to-daily-means"><i class="fa fa-check"></i><b>6.2.3</b> Summarize to Daily Means</a></li>
-<li class="chapter" data-level="6.2.4" data-path="field-site-loggers.html"><a href="field-site-loggers.html#including-air-temperature-and-precipitation-data"><i class="fa fa-check"></i><b>6.2.4</b> Including Air Temperature and Precipitation Data</a></li>
-</ul></li>
-<li class="chapter" data-level="6.3" data-path="field-site-loggers.html"><a href="field-site-loggers.html#data-quality-check"><i class="fa fa-check"></i><b>6.3</b> Data quality check</a>
-<ul>
-<li class="chapter" data-level="6.3.1" data-path="field-site-loggers.html"><a href="field-site-loggers.html#logger-600409-deep-rocky-sand"><i class="fa fa-check"></i><b>6.3.1</b> Logger 600409 “Deep Rocky Sand”</a></li>
-<li class="chapter" data-level="6.3.2" data-path="field-site-loggers.html"><a href="field-site-loggers.html#logger-600410-tormods-farm"><i class="fa fa-check"></i><b>6.3.2</b> Logger 600410 “Tormods farm”</a></li>
-<li class="chapter" data-level="6.3.3" data-path="field-site-loggers.html"><a href="field-site-loggers.html#logger-600411-john-ivar-lower-area"><i class="fa fa-check"></i><b>6.3.3</b> Logger 600411 “John Ivar Lower Area”</a></li>
-<li class="chapter" data-level="6.3.4" data-path="field-site-loggers.html"><a href="field-site-loggers.html#logger-600413-john-ivar-behind-the-barn"><i class="fa fa-check"></i><b>6.3.4</b> Logger 600413 “John Ivar behind the barn”</a></li>
-</ul></li>
-<li class="chapter" data-level="6.4" data-path="field-site-loggers.html"><a href="field-site-loggers.html#data-cleanup"><i class="fa fa-check"></i><b>6.4</b> Data Cleanup</a>
-<ul>
-<li class="chapter" data-level="6.4.1" data-path="field-site-loggers.html"><a href="field-site-loggers.html#general-cleanup"><i class="fa fa-check"></i><b>6.4.1</b> General cleanup</a></li>
-<li class="chapter" data-level="6.4.2" data-path="field-site-loggers.html"><a href="field-site-loggers.html#logger-specific-cleanup"><i class="fa fa-check"></i><b>6.4.2</b> Logger specific cleanup</a></li>
-<li class="chapter" data-level="6.4.3" data-path="field-site-loggers.html"><a href="field-site-loggers.html#saving-the-cleaned-data"><i class="fa fa-check"></i><b>6.4.3</b> Saving the cleaned data</a></li>
+<li class="chapter" data-level="2.4.1" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#generate-land-object-swat-input-tables"><i class="fa fa-check"></i><b>2.4.1</b> Generate land object SWAT+ input tables</a></li>
+<li class="chapter" data-level="2.4.2" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#generate-water-object-swat-input-tables"><i class="fa fa-check"></i><b>2.4.2</b> Generate water object SWAT+ input tables</a></li>
+<li class="chapter" data-level="2.4.3" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#build-aquifer-input"><i class="fa fa-check"></i><b>2.4.3</b> Build aquifer input</a></li>
+<li class="chapter" data-level="2.4.4" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#add-point-source-inputs"><i class="fa fa-check"></i><b>2.4.4</b> Add point source inputs</a></li>
+<li class="chapter" data-level="2.4.5" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#create-swat-sqlite-database"><i class="fa fa-check"></i><b>2.4.5</b> Create SWAT+ sqlite database</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="field-site-properties.html"><a href="field-site-properties.html"><i class="fa fa-check"></i><b>7</b> Field Site Properties</a>
+<li class="chapter" data-level="3" data-path="climate-inputs-and-weather-generator.html"><a href="climate-inputs-and-weather-generator.html"><i class="fa fa-check"></i><b>3</b> Climate inputs and weather generator</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="field-site-properties.html"><a href="field-site-properties.html#determining-the-hsg-group-of-the-logger-sites"><i class="fa fa-check"></i><b>7.1</b> Determining the HSG group of the logger sites</a></li>
+<li class="chapter" data-level="3.1" data-path="climate-inputs-and-weather-generator.html"><a href="climate-inputs-and-weather-generator.html#preparation-and-loading-data"><i class="fa fa-check"></i><b>3.1</b> Preparation and loading data</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="climate-inputs-and-weather-generator.html"><a href="climate-inputs-and-weather-generator.html#required-packages"><i class="fa fa-check"></i><b>3.1.1</b> Required packages</a></li>
+<li class="chapter" data-level="3.1.2" data-path="climate-inputs-and-weather-generator.html"><a href="climate-inputs-and-weather-generator.html#load-in-the-files-and-load-svatools-template"><i class="fa fa-check"></i><b>3.1.2</b> Load in the file(s) and load svatools template</a></li>
+<li class="chapter" data-level="3.1.3" data-path="climate-inputs-and-weather-generator.html"><a href="climate-inputs-and-weather-generator.html#proof-the-station"><i class="fa fa-check"></i><b>3.1.3</b> Proof the station</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html"><i class="fa fa-check"></i><b>8</b> Antecedent Precipitation Index</a>
-<ul>
-<li class="chapter" data-level="8.1" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html#introduction-2"><i class="fa fa-check"></i><b>8.1</b> Introduction</a>
-<ul>
-<li class="chapter" data-level="8.1.1" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html#pre-requirements"><i class="fa fa-check"></i><b>8.1.1</b> Pre-requirements</a></li>
-<li class="chapter" data-level="8.1.2" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html#setting-up-python-for-rrmarkdown"><i class="fa fa-check"></i><b>8.1.2</b> Setting up Python for R/Rmarkdown</a></li>
+<li class="chapter" data-level="3.2" data-path="climate-inputs-and-weather-generator.html"><a href="climate-inputs-and-weather-generator.html#creating-the-weather-generator"><i class="fa fa-check"></i><b>3.2</b> Creating the weather generator</a></li>
+<li class="chapter" data-level="3.3" data-path="climate-inputs-and-weather-generator.html"><a href="climate-inputs-and-weather-generator.html#adding-weather-data-to-swat-project"><i class="fa fa-check"></i><b>3.3</b> Adding weather data to SWAT+ project</a></li>
+<li class="chapter" data-level="3.4" data-path="climate-inputs-and-weather-generator.html"><a href="climate-inputs-and-weather-generator.html#adding-atmospheric-deposition"><i class="fa fa-check"></i><b>3.4</b> Adding Atmospheric deposition</a></li>
 </ul></li>
-<li class="chapter" data-level="8.2" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html#antecedent-precipitation-index-1"><i class="fa fa-check"></i><b>8.2</b> Antecedent Precipitation Index</a>
+<li class="chapter" data-level="4" data-path="writing-swat-input-files.html"><a href="writing-swat-input-files.html"><i class="fa fa-check"></i><b>4</b> Writing SWAT+ Input Files</a>
 <ul>
-<li class="chapter" data-level="8.2.1" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html#loading-data-1"><i class="fa fa-check"></i><b>8.2.1</b> Loading data</a></li>
-<li class="chapter" data-level="8.2.2" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html#calculating-the-total-water-content"><i class="fa fa-check"></i><b>8.2.2</b> Calculating the total water content</a></li>
-<li class="chapter" data-level="8.2.3" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html#defining-api-model"><i class="fa fa-check"></i><b>8.2.3</b> Defining API model</a></li>
+<li class="chapter" data-level="4.1" data-path="writing-swat-input-files.html"><a href="writing-swat-input-files.html#loading-the-project-in-swat-editor"><i class="fa fa-check"></i><b>4.1</b> Loading the project in SWAT+ Editor</a></li>
+<li class="chapter" data-level="4.2" data-path="writing-swat-input-files.html"><a href="writing-swat-input-files.html#swat-test-run"><i class="fa fa-check"></i><b>4.2</b> SWAT+ Test Run</a></li>
+<li class="chapter" data-level="4.3" data-path="writing-swat-input-files.html"><a href="writing-swat-input-files.html#link-aquifers-and-channels-with-geomorphic-flow"><i class="fa fa-check"></i><b>4.3</b> Link aquifers and channels with geomorphic flow</a></li>
 </ul></li>
-<li class="chapter" data-level="8.3" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html#conclusions"><i class="fa fa-check"></i><b>8.3</b> Conclusions</a></li>
-</ul></li>
-<li class="chapter" data-level="9" data-path="model-parameterization.html"><a href="model-parameterization.html"><i class="fa fa-check"></i><b>9</b> Model Parameterization</a>
+<li class="chapter" data-level="5" data-path="crop-map-generation.html"><a href="crop-map-generation.html"><i class="fa fa-check"></i><b>5</b> Crop Map Generation</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="model-parameterization.html"><a href="model-parameterization.html#parameter-changes"><i class="fa fa-check"></i><b>9.1</b> Parameter Changes</a>
+<li class="chapter" data-level="5.1" data-path="crop-map-generation.html"><a href="crop-map-generation.html#calculating-field-area"><i class="fa fa-check"></i><b>5.1</b> Calculating Field Area</a>
 <ul>
-<li class="chapter" data-level="9.1.1" data-path="model-parameterization.html"><a href="model-parameterization.html#channel-parameters-revised"><i class="fa fa-check"></i><b>9.1.1</b> Channel parameters revised</a></li>
-<li class="chapter" data-level="9.1.2" data-path="model-parameterization.html"><a href="model-parameterization.html#crop-parameters-verified"><i class="fa fa-check"></i><b>9.1.2</b> Crop parameters verified</a></li>
-<li class="chapter" data-level="9.1.3" data-path="model-parameterization.html"><a href="model-parameterization.html#soil-physical-parameters-in-final-form"><i class="fa fa-check"></i><b>9.1.3</b> Soil physical parameters in final form</a></li>
-<li class="chapter" data-level="9.1.4" data-path="model-parameterization.html"><a href="model-parameterization.html#soil-chemical-parameters-in-final-form"><i class="fa fa-check"></i><b>9.1.4</b> Soil chemical parameters in final form</a></li>
-<li class="chapter" data-level="9.1.5" data-path="model-parameterization.html"><a href="model-parameterization.html#impoundment-parameters-defined"><i class="fa fa-check"></i><b>9.1.5</b> Impoundment parameters defined</a></li>
-<li class="chapter" data-level="9.1.6" data-path="model-parameterization.html"><a href="model-parameterization.html#water-diversions-defined"><i class="fa fa-check"></i><b>9.1.6</b> Water diversions defined</a></li>
-<li class="chapter" data-level="9.1.7" data-path="model-parameterization.html"><a href="model-parameterization.html#point-sources-parameters-added"><i class="fa fa-check"></i><b>9.1.7</b> Point sources parameters added</a></li>
-<li class="chapter" data-level="9.1.8" data-path="model-parameterization.html"><a href="model-parameterization.html#tile-drainage-parameters-defined"><i class="fa fa-check"></i><b>9.1.8</b> Tile drainage parameters defined</a></li>
-<li class="chapter" data-level="9.1.9" data-path="model-parameterization.html"><a href="model-parameterization.html#atmospheric-deposition-defined"><i class="fa fa-check"></i><b>9.1.9</b> Atmospheric deposition defined</a></li>
-<li class="chapter" data-level="9.1.10" data-path="model-parameterization.html"><a href="model-parameterization.html#additional-settings-verified"><i class="fa fa-check"></i><b>9.1.10</b> Additional settings verified</a></li>
+<li class="chapter" data-level="5.1.1" data-path="crop-map-generation.html"><a href="crop-map-generation.html#calculate-field-area-and-assign-ids"><i class="fa fa-check"></i><b>5.1.1</b> Calculate Field Area and Assign IDs</a></li>
+<li class="chapter" data-level="5.1.2" data-path="crop-map-generation.html"><a href="crop-map-generation.html#calculate-field-area-and-assign-ids-1"><i class="fa fa-check"></i><b>5.1.2</b> Calculate Field area and assign IDs</a></li>
 </ul></li>
-<li class="chapter" data-level="9.2" data-path="model-parameterization.html"><a href="model-parameterization.html#fixing-tiledrain"><i class="fa fa-check"></i><b>9.2</b> Fixing Tiledrain</a>
+<li class="chapter" data-level="5.2" data-path="crop-map-generation.html"><a href="crop-map-generation.html#generating-the-crop-rotation"><i class="fa fa-check"></i><b>5.2</b> Generating the Crop Rotation</a>
 <ul>
-<li class="chapter" data-level="9.2.1" data-path="model-parameterization.html"><a href="model-parameterization.html#finding-the-problem-hrus"><i class="fa fa-check"></i><b>9.2.1</b> Finding the problem HRUs</a></li>
-<li class="chapter" data-level="9.2.2" data-path="model-parameterization.html"><a href="model-parameterization.html#fixing-the-problem-hrus"><i class="fa fa-check"></i><b>9.2.2</b> Fixing the problem HRUs</a></li>
-<li class="chapter" data-level="9.2.3" data-path="model-parameterization.html"><a href="model-parameterization.html#writing-modified-changes"><i class="fa fa-check"></i><b>9.2.3</b> Writing modified changes</a></li>
-<li class="chapter" data-level="9.2.4" data-path="model-parameterization.html"><a href="model-parameterization.html#re-enabling-tiledrain"><i class="fa fa-check"></i><b>9.2.4</b> Re-enabling tiledrain</a></li>
-<li class="chapter" data-level="9.2.5" data-path="model-parameterization.html"><a href="model-parameterization.html#testing-swat"><i class="fa fa-check"></i><b>9.2.5</b> Testing SWAT+</a></li>
+<li class="chapter" data-level="5.2.1" data-path="crop-map-generation.html"><a href="crop-map-generation.html#tidy-up-the-source-data"><i class="fa fa-check"></i><b>5.2.1</b> Tidy up the source data:</a></li>
+<li class="chapter" data-level="5.2.2" data-path="crop-map-generation.html"><a href="crop-map-generation.html#tidy-up-the-buildr-output"><i class="fa fa-check"></i><b>5.2.2</b> Tidy up the BuildR output</a></li>
+<li class="chapter" data-level="5.2.3" data-path="crop-map-generation.html"><a href="crop-map-generation.html#field-classification"><i class="fa fa-check"></i><b>5.2.3</b> Field classification</a></li>
+<li class="chapter" data-level="5.2.4" data-path="crop-map-generation.html"><a href="crop-map-generation.html#extrapolating-the-crop-rotation"><i class="fa fa-check"></i><b>5.2.4</b> Extrapolating the Crop Rotation</a></li>
 </ul></li>
+<li class="chapter" data-level="5.3" data-path="crop-map-generation.html"><a href="crop-map-generation.html#merging-crop-rotation-with-buildr-output"><i class="fa fa-check"></i><b>5.3</b> Merging crop rotation with BuildR output</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="swatfarmr-management-schedules.html"><a href="swatfarmr-management-schedules.html"><i class="fa fa-check"></i><b>10</b> SWATFarmR Management Schedules</a>
+<li class="chapter" data-level="6" data-path="landuse.lum-update.html"><a href="landuse.lum-update.html"><i class="fa fa-check"></i><b>6</b> Landuse.lum update</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="swatfarmr-management-schedules.html"><a href="swatfarmr-management-schedules.html#pre-processing-crop-rotation"><i class="fa fa-check"></i><b>10.1</b> Pre-processing crop rotation</a>
+<li class="chapter" data-level="6.1" data-path="landuse.lum-update.html"><a href="landuse.lum-update.html#data-preperation"><i class="fa fa-check"></i><b>6.1</b> Data preperation</a></li>
+<li class="chapter" data-level="6.2" data-path="landuse.lum-update.html"><a href="landuse.lum-update.html#assigning-landuse-values"><i class="fa fa-check"></i><b>6.2</b> Assigning landuse values</a>
 <ul>
-<li class="chapter" data-level="10.1.1" data-path="swatfarmr-management-schedules.html"><a href="swatfarmr-management-schedules.html#input-files"><i class="fa fa-check"></i><b>10.1.1</b> Input files</a></li>
-<li class="chapter" data-level="10.1.2" data-path="swatfarmr-management-schedules.html"><a href="swatfarmr-management-schedules.html#settings"><i class="fa fa-check"></i><b>10.1.2</b> Settings</a></li>
-<li class="chapter" data-level="10.1.3" data-path="swatfarmr-management-schedules.html"><a href="swatfarmr-management-schedules.html#checks"><i class="fa fa-check"></i><b>10.1.3</b> Checks</a></li>
-<li class="chapter" data-level="10.1.4" data-path="swatfarmr-management-schedules.html"><a href="swatfarmr-management-schedules.html#writing-input-data"><i class="fa fa-check"></i><b>10.1.4</b> Writing input data</a></li>
+<li class="chapter" data-level="6.2.1" data-path="landuse.lum-update.html"><a href="landuse.lum-update.html#setting-cal_group"><i class="fa fa-check"></i><b>6.2.1</b> Setting <code>cal_group</code></a></li>
+<li class="chapter" data-level="6.2.2" data-path="landuse.lum-update.html"><a href="landuse.lum-update.html#setting-plnt_com"><i class="fa fa-check"></i><b>6.2.2</b> Setting <code>plnt_com</code></a></li>
+<li class="chapter" data-level="6.2.3" data-path="landuse.lum-update.html"><a href="landuse.lum-update.html#setting-mgt"><i class="fa fa-check"></i><b>6.2.3</b> Setting <code>mgt</code></a></li>
+<li class="chapter" data-level="6.2.4" data-path="landuse.lum-update.html"><a href="landuse.lum-update.html#setting-urb_ro"><i class="fa fa-check"></i><b>6.2.4</b> Setting <code>urb_ro</code></a></li>
+<li class="chapter" data-level="6.2.5" data-path="landuse.lum-update.html"><a href="landuse.lum-update.html#setting-urban"><i class="fa fa-check"></i><b>6.2.5</b> Setting <code>urban</code></a></li>
+<li class="chapter" data-level="6.2.6" data-path="landuse.lum-update.html"><a href="landuse.lum-update.html#setting-mannings-n-ovn"><i class="fa fa-check"></i><b>6.2.6</b> Setting Manning’s n (<code>ovn</code>)</a></li>
+<li class="chapter" data-level="6.2.7" data-path="landuse.lum-update.html"><a href="landuse.lum-update.html#setting-cn2"><i class="fa fa-check"></i><b>6.2.7</b> Setting <code>cn2</code>:</a></li>
+<li class="chapter" data-level="6.2.8" data-path="landuse.lum-update.html"><a href="landuse.lum-update.html#setting-cons_prac"><i class="fa fa-check"></i><b>6.2.8</b> Setting <code>cons_prac</code></a></li>
+<li class="chapter" data-level="6.2.9" data-path="landuse.lum-update.html"><a href="landuse.lum-update.html#setting-tile"><i class="fa fa-check"></i><b>6.2.9</b> Setting <code>tile</code></a></li>
+<li class="chapter" data-level="6.2.10" data-path="landuse.lum-update.html"><a href="landuse.lum-update.html#setting-sep"><i class="fa fa-check"></i><b>6.2.10</b> Setting <code>sep</code></a></li>
+<li class="chapter" data-level="6.2.11" data-path="landuse.lum-update.html"><a href="landuse.lum-update.html#setting-vfs"><i class="fa fa-check"></i><b>6.2.11</b> Setting <code>vfs</code></a></li>
+<li class="chapter" data-level="6.2.12" data-path="landuse.lum-update.html"><a href="landuse.lum-update.html#setting-grww"><i class="fa fa-check"></i><b>6.2.12</b> Setting <code>grww</code></a></li>
+<li class="chapter" data-level="6.2.13" data-path="landuse.lum-update.html"><a href="landuse.lum-update.html#setting-bmp"><i class="fa fa-check"></i><b>6.2.13</b> Setting <code>bmp</code></a></li>
 </ul></li>
-<li class="chapter" data-level="10.2" data-path="swatfarmr-management-schedules.html"><a href="swatfarmr-management-schedules.html#initializing-farmr"><i class="fa fa-check"></i><b>10.2</b> Initializing FarmR</a></li>
-<li class="chapter" data-level="10.3" data-path="swatfarmr-management-schedules.html"><a href="swatfarmr-management-schedules.html#calculating-antecedent-precipitation-index"><i class="fa fa-check"></i><b>10.3</b> Calculating Antecedent Precipitation Index</a></li>
-<li class="chapter" data-level="10.4" data-path="swatfarmr-management-schedules.html"><a href="swatfarmr-management-schedules.html#scheduling-operations"><i class="fa fa-check"></i><b>10.4</b> Scheduling Operations</a>
+<li class="chapter" data-level="6.3" data-path="landuse.lum-update.html"><a href="landuse.lum-update.html#writing-changes"><i class="fa fa-check"></i><b>6.3</b> Writing Changes</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="field-site-loggers.html"><a href="field-site-loggers.html"><i class="fa fa-check"></i><b>7</b> Field Site Loggers</a>
 <ul>
-<li class="chapter" data-level="10.4.1" data-path="swatfarmr-management-schedules.html"><a href="swatfarmr-management-schedules.html#write-operations"><i class="fa fa-check"></i><b>10.4.1</b> Write Operations</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="11" data-path="model-verification.html"><a href="model-verification.html"><i class="fa fa-check"></i><b>11</b> Model Verification</a>
+<li class="chapter" data-level="7.1" data-path="field-site-loggers.html"><a href="field-site-loggers.html#introduction-1"><i class="fa fa-check"></i><b>7.1</b> Introduction</a>
 <ul>
-<li class="chapter" data-level="11.1" data-path="model-verification.html"><a href="model-verification.html#stage-1-analysis-of-simulated-climate-variables"><i class="fa fa-check"></i><b>11.1</b> Stage 1: Analysis of simulated climate variables</a>
-<ul>
-<li class="chapter" data-level="11.1.1" data-path="model-verification.html"><a href="model-verification.html#lapse-rate"><i class="fa fa-check"></i><b>11.1.1</b> Lapse rate</a></li>
-<li class="chapter" data-level="11.1.2" data-path="model-verification.html"><a href="model-verification.html#climate-variables"><i class="fa fa-check"></i><b>11.1.2</b> Climate variables</a></li>
-<li class="chapter" data-level="11.1.3" data-path="model-verification.html"><a href="model-verification.html#snowfall-and-snowmelt"><i class="fa fa-check"></i><b>11.1.3</b> Snowfall and Snowmelt</a></li>
+<li class="chapter" data-level="7.1.1" data-path="field-site-loggers.html"><a href="field-site-loggers.html#prerequisites"><i class="fa fa-check"></i><b>7.1.1</b> Prerequisites</a></li>
+<li class="chapter" data-level="7.1.2" data-path="field-site-loggers.html"><a href="field-site-loggers.html#locations"><i class="fa fa-check"></i><b>7.1.2</b> Locations</a></li>
 </ul></li>
-<li class="chapter" data-level="11.2" data-path="model-verification.html"><a href="model-verification.html#stage-2-simulation-of-management-operations"><i class="fa fa-check"></i><b>11.2</b> Stage 2: Simulation of management operations</a></li>
-<li class="chapter" data-level="11.3" data-path="model-verification.html"><a href="model-verification.html#stage-3-analysis-of-unconstrained-plant-growth"><i class="fa fa-check"></i><b>11.3</b> Stage 3: Analysis of unconstrained plant growth</a></li>
+<li class="chapter" data-level="7.2" data-path="field-site-loggers.html"><a href="field-site-loggers.html#data-processing"><i class="fa fa-check"></i><b>7.2</b> Data Processing</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="field-site-loggers.html"><a href="field-site-loggers.html#loading-data"><i class="fa fa-check"></i><b>7.2.1</b> Loading Data</a></li>
+<li class="chapter" data-level="7.2.2" data-path="field-site-loggers.html"><a href="field-site-loggers.html#data-re-structuring"><i class="fa fa-check"></i><b>7.2.2</b> Data Re-structuring</a></li>
+<li class="chapter" data-level="7.2.3" data-path="field-site-loggers.html"><a href="field-site-loggers.html#summarize-to-daily-means"><i class="fa fa-check"></i><b>7.2.3</b> Summarize to Daily Means</a></li>
+<li class="chapter" data-level="7.2.4" data-path="field-site-loggers.html"><a href="field-site-loggers.html#including-air-temperature-and-precipitation-data"><i class="fa fa-check"></i><b>7.2.4</b> Including Air Temperature and Precipitation Data</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="field-site-loggers.html"><a href="field-site-loggers.html#data-quality-check"><i class="fa fa-check"></i><b>7.3</b> Data quality check</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="field-site-loggers.html"><a href="field-site-loggers.html#logger-600409-deep-rocky-sand"><i class="fa fa-check"></i><b>7.3.1</b> Logger 600409 “Deep Rocky Sand”</a></li>
+<li class="chapter" data-level="7.3.2" data-path="field-site-loggers.html"><a href="field-site-loggers.html#logger-600410-tormods-farm"><i class="fa fa-check"></i><b>7.3.2</b> Logger 600410 “Tormods farm”</a></li>
+<li class="chapter" data-level="7.3.3" data-path="field-site-loggers.html"><a href="field-site-loggers.html#logger-600411-john-ivar-lower-area"><i class="fa fa-check"></i><b>7.3.3</b> Logger 600411 “John Ivar Lower Area”</a></li>
+<li class="chapter" data-level="7.3.4" data-path="field-site-loggers.html"><a href="field-site-loggers.html#logger-600413-john-ivar-behind-the-barn"><i class="fa fa-check"></i><b>7.3.4</b> Logger 600413 “John Ivar behind the barn”</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="field-site-loggers.html"><a href="field-site-loggers.html#data-cleanup"><i class="fa fa-check"></i><b>7.4</b> Data Cleanup</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="field-site-loggers.html"><a href="field-site-loggers.html#general-cleanup"><i class="fa fa-check"></i><b>7.4.1</b> General cleanup</a></li>
+<li class="chapter" data-level="7.4.2" data-path="field-site-loggers.html"><a href="field-site-loggers.html#logger-specific-cleanup"><i class="fa fa-check"></i><b>7.4.2</b> Logger specific cleanup</a></li>
+<li class="chapter" data-level="7.4.3" data-path="field-site-loggers.html"><a href="field-site-loggers.html#saving-the-cleaned-data"><i class="fa fa-check"></i><b>7.4.3</b> Saving the cleaned data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="field-site-properties.html"><a href="field-site-properties.html"><i class="fa fa-check"></i><b>8</b> Field Site Properties</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="field-site-properties.html"><a href="field-site-properties.html#determining-the-hsg-group-of-the-logger-sites"><i class="fa fa-check"></i><b>8.1</b> Determining the HSG group of the logger sites</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html"><i class="fa fa-check"></i><b>9</b> Antecedent Precipitation Index</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html#introduction-2"><i class="fa fa-check"></i><b>9.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html#pre-requirements"><i class="fa fa-check"></i><b>9.1.1</b> Pre-requirements</a></li>
+<li class="chapter" data-level="9.1.2" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html#setting-up-python-for-rrmarkdown"><i class="fa fa-check"></i><b>9.1.2</b> Setting up Python for R/Rmarkdown</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html#antecedent-precipitation-index-1"><i class="fa fa-check"></i><b>9.2</b> Antecedent Precipitation Index</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html#loading-data-1"><i class="fa fa-check"></i><b>9.2.1</b> Loading data</a></li>
+<li class="chapter" data-level="9.2.2" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html#calculating-the-total-water-content"><i class="fa fa-check"></i><b>9.2.2</b> Calculating the total water content</a></li>
+<li class="chapter" data-level="9.2.3" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html#defining-api-model"><i class="fa fa-check"></i><b>9.2.3</b> Defining API model</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html#conclusions"><i class="fa fa-check"></i><b>9.3</b> Conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="model-parameterization.html"><a href="model-parameterization.html"><i class="fa fa-check"></i><b>10</b> Model Parameterization</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="model-parameterization.html"><a href="model-parameterization.html#parameter-changes"><i class="fa fa-check"></i><b>10.1</b> Parameter Changes</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="model-parameterization.html"><a href="model-parameterization.html#channel-parameters-revised"><i class="fa fa-check"></i><b>10.1.1</b> Channel parameters revised</a></li>
+<li class="chapter" data-level="10.1.2" data-path="model-parameterization.html"><a href="model-parameterization.html#crop-parameters-verified"><i class="fa fa-check"></i><b>10.1.2</b> Crop parameters verified</a></li>
+<li class="chapter" data-level="10.1.3" data-path="model-parameterization.html"><a href="model-parameterization.html#soil-physical-parameters-in-final-form"><i class="fa fa-check"></i><b>10.1.3</b> Soil physical parameters in final form</a></li>
+<li class="chapter" data-level="10.1.4" data-path="model-parameterization.html"><a href="model-parameterization.html#soil-chemical-parameters-in-final-form"><i class="fa fa-check"></i><b>10.1.4</b> Soil chemical parameters in final form</a></li>
+<li class="chapter" data-level="10.1.5" data-path="model-parameterization.html"><a href="model-parameterization.html#impoundment-parameters-defined"><i class="fa fa-check"></i><b>10.1.5</b> Impoundment parameters defined</a></li>
+<li class="chapter" data-level="10.1.6" data-path="model-parameterization.html"><a href="model-parameterization.html#water-diversions-defined"><i class="fa fa-check"></i><b>10.1.6</b> Water diversions defined</a></li>
+<li class="chapter" data-level="10.1.7" data-path="model-parameterization.html"><a href="model-parameterization.html#point-sources-parameters-added"><i class="fa fa-check"></i><b>10.1.7</b> Point sources parameters added</a></li>
+<li class="chapter" data-level="10.1.8" data-path="model-parameterization.html"><a href="model-parameterization.html#tile-drainage-parameters-defined"><i class="fa fa-check"></i><b>10.1.8</b> Tile drainage parameters defined</a></li>
+<li class="chapter" data-level="10.1.9" data-path="model-parameterization.html"><a href="model-parameterization.html#atmospheric-deposition-defined"><i class="fa fa-check"></i><b>10.1.9</b> Atmospheric deposition defined</a></li>
+<li class="chapter" data-level="10.1.10" data-path="model-parameterization.html"><a href="model-parameterization.html#additional-settings-verified"><i class="fa fa-check"></i><b>10.1.10</b> Additional settings verified</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="model-parameterization.html"><a href="model-parameterization.html#fixing-tiledrain"><i class="fa fa-check"></i><b>10.2</b> Fixing Tiledrain</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="model-parameterization.html"><a href="model-parameterization.html#finding-the-problem-hrus"><i class="fa fa-check"></i><b>10.2.1</b> Finding the problem HRUs</a></li>
+<li class="chapter" data-level="10.2.2" data-path="model-parameterization.html"><a href="model-parameterization.html#fixing-the-problem-hrus"><i class="fa fa-check"></i><b>10.2.2</b> Fixing the problem HRUs</a></li>
+<li class="chapter" data-level="10.2.3" data-path="model-parameterization.html"><a href="model-parameterization.html#writing-modified-changes"><i class="fa fa-check"></i><b>10.2.3</b> Writing modified changes</a></li>
+<li class="chapter" data-level="10.2.4" data-path="model-parameterization.html"><a href="model-parameterization.html#re-enabling-tiledrain"><i class="fa fa-check"></i><b>10.2.4</b> Re-enabling tiledrain</a></li>
+<li class="chapter" data-level="10.2.5" data-path="model-parameterization.html"><a href="model-parameterization.html#testing-swat"><i class="fa fa-check"></i><b>10.2.5</b> Testing SWAT+</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="swatfarmr-management-schedules.html"><a href="swatfarmr-management-schedules.html"><i class="fa fa-check"></i><b>11</b> SWATFarmR Management Schedules</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="swatfarmr-management-schedules.html"><a href="swatfarmr-management-schedules.html#pre-processing-crop-rotation"><i class="fa fa-check"></i><b>11.1</b> Pre-processing crop rotation</a>
+<ul>
+<li class="chapter" data-level="11.1.1" data-path="swatfarmr-management-schedules.html"><a href="swatfarmr-management-schedules.html#input-files"><i class="fa fa-check"></i><b>11.1.1</b> Input files</a></li>
+<li class="chapter" data-level="11.1.2" data-path="swatfarmr-management-schedules.html"><a href="swatfarmr-management-schedules.html#settings"><i class="fa fa-check"></i><b>11.1.2</b> Settings</a></li>
+<li class="chapter" data-level="11.1.3" data-path="swatfarmr-management-schedules.html"><a href="swatfarmr-management-schedules.html#checks"><i class="fa fa-check"></i><b>11.1.3</b> Checks</a></li>
+<li class="chapter" data-level="11.1.4" data-path="swatfarmr-management-schedules.html"><a href="swatfarmr-management-schedules.html#writing-input-data"><i class="fa fa-check"></i><b>11.1.4</b> Writing input data</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="swatfarmr-management-schedules.html"><a href="swatfarmr-management-schedules.html#initializing-farmr"><i class="fa fa-check"></i><b>11.2</b> Initializing FarmR</a></li>
+<li class="chapter" data-level="11.3" data-path="swatfarmr-management-schedules.html"><a href="swatfarmr-management-schedules.html#calculating-antecedent-precipitation-index"><i class="fa fa-check"></i><b>11.3</b> Calculating Antecedent Precipitation Index</a></li>
+<li class="chapter" data-level="11.4" data-path="swatfarmr-management-schedules.html"><a href="swatfarmr-management-schedules.html#scheduling-operations"><i class="fa fa-check"></i><b>11.4</b> Scheduling Operations</a>
+<ul>
+<li class="chapter" data-level="11.4.1" data-path="swatfarmr-management-schedules.html"><a href="swatfarmr-management-schedules.html#write-operations"><i class="fa fa-check"></i><b>11.4.1</b> Write Operations</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="model-verification.html"><a href="model-verification.html"><i class="fa fa-check"></i><b>12</b> Model Verification</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="model-verification.html"><a href="model-verification.html#stage-1-analysis-of-simulated-climate-variables"><i class="fa fa-check"></i><b>12.1</b> Stage 1: Analysis of simulated climate variables</a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="model-verification.html"><a href="model-verification.html#lapse-rate"><i class="fa fa-check"></i><b>12.1.1</b> Lapse rate</a></li>
+<li class="chapter" data-level="12.1.2" data-path="model-verification.html"><a href="model-verification.html#climate-variables"><i class="fa fa-check"></i><b>12.1.2</b> Climate variables</a></li>
+<li class="chapter" data-level="12.1.3" data-path="model-verification.html"><a href="model-verification.html#snowfall-and-snowmelt"><i class="fa fa-check"></i><b>12.1.3</b> Snowfall and Snowmelt</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="model-verification.html"><a href="model-verification.html#stage-2-simulation-of-management-operations"><i class="fa fa-check"></i><b>12.2</b> Stage 2: Simulation of management operations</a></li>
+<li class="chapter" data-level="12.3" data-path="model-verification.html"><a href="model-verification.html#stage-3-analysis-of-unconstrained-plant-growth"><i class="fa fa-check"></i><b>12.3</b> Stage 3: Analysis of unconstrained plant growth</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -394,10 +404,10 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="antecedent-precipitation-index" class="section level1 hasAnchor" number="8">
-<h1><span class="header-section-number">Section 8</span> Antecedent Precipitation Index<a href="antecedent-precipitation-index.html#antecedent-precipitation-index" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="introduction-2" class="section level2 hasAnchor" number="8.1">
-<h2><span class="header-section-number">8.1</span> Introduction<a href="antecedent-precipitation-index.html#introduction-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="antecedent-precipitation-index" class="section level1 hasAnchor" number="9">
+<h1><span class="header-section-number">Section 9</span> Antecedent Precipitation Index<a href="antecedent-precipitation-index.html#antecedent-precipitation-index" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="introduction-2" class="section level2 hasAnchor" number="9.1">
+<h2><span class="header-section-number">9.1</span> Introduction<a href="antecedent-precipitation-index.html#introduction-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>SWATFarmR cannot account for operations based on values modeled by
 SWAT+, such as soil moisture. This is because FarmR does not run the
 model itself, and creates and pre-defines all the management schedules
@@ -407,53 +417,53 @@ important factor in planning agricultural operations). One method to do
 this is called the Antecedent Precipitation Index. Which is what we will
 creating for CS10 in this part.</p>
 <p>As a heads up, this section requires Python!</p>
-<div id="pre-requirements" class="section level3 hasAnchor" number="8.1.1">
-<h3><span class="header-section-number">8.1.1</span> Pre-requirements<a href="antecedent-precipitation-index.html#pre-requirements" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="pre-requirements" class="section level3 hasAnchor" number="9.1.1">
+<h3><span class="header-section-number">9.1.1</span> Pre-requirements<a href="antecedent-precipitation-index.html#pre-requirements" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Required R packages</p>
-<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="antecedent-precipitation-index.html#cb239-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(readr)</span>
-<span id="cb239-2"><a href="antecedent-precipitation-index.html#cb239-2" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(dplyr)</span>
-<span id="cb239-3"><a href="antecedent-precipitation-index.html#cb239-3" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(hydroGOF)</span>
-<span id="cb239-4"><a href="antecedent-precipitation-index.html#cb239-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reticulate) <span class="co"># Required Python packages: &quot;pandas&quot;, &quot;numpy&quot;, &quot;scipy&quot;</span></span>
-<span id="cb239-5"><a href="antecedent-precipitation-index.html#cb239-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb239-6"><a href="antecedent-precipitation-index.html#cb239-6" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;model_data/code/plot_api.R&quot;</span>)</span>
-<span id="cb239-7"><a href="antecedent-precipitation-index.html#cb239-7" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;model_data/code/calc_api.R&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="antecedent-precipitation-index.html#cb286-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(readr)</span>
+<span id="cb286-2"><a href="antecedent-precipitation-index.html#cb286-2" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(dplyr)</span>
+<span id="cb286-3"><a href="antecedent-precipitation-index.html#cb286-3" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(hydroGOF)</span>
+<span id="cb286-4"><a href="antecedent-precipitation-index.html#cb286-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reticulate) <span class="co"># Required Python packages: &quot;pandas&quot;, &quot;numpy&quot;, &quot;scipy&quot;</span></span>
+<span id="cb286-5"><a href="antecedent-precipitation-index.html#cb286-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb286-6"><a href="antecedent-precipitation-index.html#cb286-6" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;model_data/code/plot_api.R&quot;</span>)</span>
+<span id="cb286-7"><a href="antecedent-precipitation-index.html#cb286-7" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;model_data/code/calc_api.R&quot;</span>)</span></code></pre></div>
 </div>
-<div id="setting-up-python-for-rrmarkdown" class="section level3 hasAnchor" number="8.1.2">
-<h3><span class="header-section-number">8.1.2</span> Setting up Python for R/Rmarkdown<a href="antecedent-precipitation-index.html#setting-up-python-for-rrmarkdown" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="setting-up-python-for-rrmarkdown" class="section level3 hasAnchor" number="9.1.2">
+<h3><span class="header-section-number">9.1.2</span> Setting up Python for R/Rmarkdown<a href="antecedent-precipitation-index.html#setting-up-python-for-rrmarkdown" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A quick (non-evaluated) code block to show how a python environment can
 be created for use in Rmarkdown/Reticulate on your local machine.</p>
-<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="antecedent-precipitation-index.html#cb240-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install miniconda </span></span>
-<span id="cb240-2"><a href="antecedent-precipitation-index.html#cb240-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install_miniconda</span>() </span>
-<span id="cb240-3"><a href="antecedent-precipitation-index.html#cb240-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb240-4"><a href="antecedent-precipitation-index.html#cb240-4" aria-hidden="true" tabindex="-1"></a><span class="co"># create conda environment for your project</span></span>
-<span id="cb240-5"><a href="antecedent-precipitation-index.html#cb240-5" aria-hidden="true" tabindex="-1"></a><span class="fu">conda_create</span>(<span class="st">&quot;cs10_env&quot;</span>, <span class="co"># environment name </span></span>
-<span id="cb240-6"><a href="antecedent-precipitation-index.html#cb240-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">packages =</span> <span class="fu">c</span>(<span class="st">&quot;pandas&quot;</span>, <span class="st">&quot;numpy&quot;</span>, <span class="st">&quot;scipy&quot;</span>), <span class="co"># required packages</span></span>
-<span id="cb240-7"><a href="antecedent-precipitation-index.html#cb240-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">conda =</span> <span class="st">&quot;auto&quot;</span>)</span>
-<span id="cb240-8"><a href="antecedent-precipitation-index.html#cb240-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb240-9"><a href="antecedent-precipitation-index.html#cb240-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb240-10"><a href="antecedent-precipitation-index.html#cb240-10" aria-hidden="true" tabindex="-1"></a><span class="fu">conda_python</span>(<span class="st">&quot;cs10_env&quot;</span>) <span class="co"># returns the .exe python path for your environment</span></span>
-<span id="cb240-11"><a href="antecedent-precipitation-index.html#cb240-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb240-12"><a href="antecedent-precipitation-index.html#cb240-12" aria-hidden="true" tabindex="-1"></a><span class="co"># you need to change your R environment path in this file</span></span>
-<span id="cb240-13"><a href="antecedent-precipitation-index.html#cb240-13" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">edit_r_environ</span>()</span>
-<span id="cb240-14"><a href="antecedent-precipitation-index.html#cb240-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb240-15"><a href="antecedent-precipitation-index.html#cb240-15" aria-hidden="true" tabindex="-1"></a><span class="co"># RETICULATE_PYTHON=&quot;YOUR ENVIRONMENT PATH/python.exe&quot;</span></span>
-<span id="cb240-16"><a href="antecedent-precipitation-index.html#cb240-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb240-17"><a href="antecedent-precipitation-index.html#cb240-17" aria-hidden="true" tabindex="-1"></a><span class="co"># restart your R session.</span></span>
-<span id="cb240-18"><a href="antecedent-precipitation-index.html#cb240-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb240-19"><a href="antecedent-precipitation-index.html#cb240-19" aria-hidden="true" tabindex="-1"></a><span class="fu">py_config</span>()</span>
-<span id="cb240-20"><a href="antecedent-precipitation-index.html#cb240-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb240-21"><a href="antecedent-precipitation-index.html#cb240-21" aria-hidden="true" tabindex="-1"></a><span class="co"># If everything is right, you should get something like:</span></span>
-<span id="cb240-22"><a href="antecedent-precipitation-index.html#cb240-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb240-23"><a href="antecedent-precipitation-index.html#cb240-23" aria-hidden="true" tabindex="-1"></a><span class="co"># python: YOUR ENVIRONMENT PATH/python.exe libpython: YOUR ENVIRONMENT</span></span>
-<span id="cb240-24"><a href="antecedent-precipitation-index.html#cb240-24" aria-hidden="true" tabindex="-1"></a><span class="co"># PATH/python39.dll pythonhome: YOUR ENVIRONMENT PATH version: 3.9.7 (default,</span></span>
-<span id="cb240-25"><a href="antecedent-precipitation-index.html#cb240-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Sep 16 2021, 16:59:28) [MSC v.1916 64 bit (AMD64)] Architecture: 64bit numpy:</span></span>
-<span id="cb240-26"><a href="antecedent-precipitation-index.html#cb240-26" aria-hidden="true" tabindex="-1"></a><span class="co"># YOUR ENVIRONMENT PATH\lib\site-packages\numpy numpy_version: 1.21.2</span></span>
-<span id="cb240-27"><a href="antecedent-precipitation-index.html#cb240-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb240-28"><a href="antecedent-precipitation-index.html#cb240-28" aria-hidden="true" tabindex="-1"></a><span class="co"># After this it should work :)</span></span></code></pre></div>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="antecedent-precipitation-index.html#cb287-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install miniconda </span></span>
+<span id="cb287-2"><a href="antecedent-precipitation-index.html#cb287-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install_miniconda</span>() </span>
+<span id="cb287-3"><a href="antecedent-precipitation-index.html#cb287-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb287-4"><a href="antecedent-precipitation-index.html#cb287-4" aria-hidden="true" tabindex="-1"></a><span class="co"># create conda environment for your project</span></span>
+<span id="cb287-5"><a href="antecedent-precipitation-index.html#cb287-5" aria-hidden="true" tabindex="-1"></a><span class="fu">conda_create</span>(<span class="st">&quot;cs10_env&quot;</span>, <span class="co"># environment name </span></span>
+<span id="cb287-6"><a href="antecedent-precipitation-index.html#cb287-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">packages =</span> <span class="fu">c</span>(<span class="st">&quot;pandas&quot;</span>, <span class="st">&quot;numpy&quot;</span>, <span class="st">&quot;scipy&quot;</span>), <span class="co"># required packages</span></span>
+<span id="cb287-7"><a href="antecedent-precipitation-index.html#cb287-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">conda =</span> <span class="st">&quot;auto&quot;</span>)</span>
+<span id="cb287-8"><a href="antecedent-precipitation-index.html#cb287-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb287-9"><a href="antecedent-precipitation-index.html#cb287-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb287-10"><a href="antecedent-precipitation-index.html#cb287-10" aria-hidden="true" tabindex="-1"></a><span class="fu">conda_python</span>(<span class="st">&quot;cs10_env&quot;</span>) <span class="co"># returns the .exe python path for your environment</span></span>
+<span id="cb287-11"><a href="antecedent-precipitation-index.html#cb287-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb287-12"><a href="antecedent-precipitation-index.html#cb287-12" aria-hidden="true" tabindex="-1"></a><span class="co"># you need to change your R environment path in this file</span></span>
+<span id="cb287-13"><a href="antecedent-precipitation-index.html#cb287-13" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">edit_r_environ</span>()</span>
+<span id="cb287-14"><a href="antecedent-precipitation-index.html#cb287-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb287-15"><a href="antecedent-precipitation-index.html#cb287-15" aria-hidden="true" tabindex="-1"></a><span class="co"># RETICULATE_PYTHON=&quot;YOUR ENVIRONMENT PATH/python.exe&quot;</span></span>
+<span id="cb287-16"><a href="antecedent-precipitation-index.html#cb287-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb287-17"><a href="antecedent-precipitation-index.html#cb287-17" aria-hidden="true" tabindex="-1"></a><span class="co"># restart your R session.</span></span>
+<span id="cb287-18"><a href="antecedent-precipitation-index.html#cb287-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb287-19"><a href="antecedent-precipitation-index.html#cb287-19" aria-hidden="true" tabindex="-1"></a><span class="fu">py_config</span>()</span>
+<span id="cb287-20"><a href="antecedent-precipitation-index.html#cb287-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb287-21"><a href="antecedent-precipitation-index.html#cb287-21" aria-hidden="true" tabindex="-1"></a><span class="co"># If everything is right, you should get something like:</span></span>
+<span id="cb287-22"><a href="antecedent-precipitation-index.html#cb287-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb287-23"><a href="antecedent-precipitation-index.html#cb287-23" aria-hidden="true" tabindex="-1"></a><span class="co"># python: YOUR ENVIRONMENT PATH/python.exe libpython: YOUR ENVIRONMENT</span></span>
+<span id="cb287-24"><a href="antecedent-precipitation-index.html#cb287-24" aria-hidden="true" tabindex="-1"></a><span class="co"># PATH/python39.dll pythonhome: YOUR ENVIRONMENT PATH version: 3.9.7 (default,</span></span>
+<span id="cb287-25"><a href="antecedent-precipitation-index.html#cb287-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Sep 16 2021, 16:59:28) [MSC v.1916 64 bit (AMD64)] Architecture: 64bit numpy:</span></span>
+<span id="cb287-26"><a href="antecedent-precipitation-index.html#cb287-26" aria-hidden="true" tabindex="-1"></a><span class="co"># YOUR ENVIRONMENT PATH\lib\site-packages\numpy numpy_version: 1.21.2</span></span>
+<span id="cb287-27"><a href="antecedent-precipitation-index.html#cb287-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb287-28"><a href="antecedent-precipitation-index.html#cb287-28" aria-hidden="true" tabindex="-1"></a><span class="co"># After this it should work :)</span></span></code></pre></div>
 </div>
 </div>
-<div id="antecedent-precipitation-index-1" class="section level2 hasAnchor" number="8.2">
-<h2><span class="header-section-number">8.2</span> Antecedent Precipitation Index<a href="antecedent-precipitation-index.html#antecedent-precipitation-index-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="antecedent-precipitation-index-1" class="section level2 hasAnchor" number="9.2">
+<h2><span class="header-section-number">9.2</span> Antecedent Precipitation Index<a href="antecedent-precipitation-index.html#antecedent-precipitation-index-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>From <span class="citation">(<a href="#ref-patrignani2020" role="doc-biblioref">Patrignani 2020</a>)</span></p>
 <p>The API is a well-known, parsimonious, recursive model for predicting
 soil moisture solely based on precipitation records. The API is commonly
@@ -466,23 +476,23 @@ equation describing the simple version of the model is:</p>
 <p><span class="math inline">\(API_{t-1}\)</span>: Soil water content at time <span class="math inline">\(t-1\)</span> (yesterday)</p>
 <p><span class="math inline">\(\alpha\)</span>: Loss coefficient. Range between 0 and 1</p>
 <p><span class="math inline">\(P_t\)</span>: Precipitation at time <span class="math inline">\(t\)</span> (today)</p>
-<div id="loading-data-1" class="section level3 hasAnchor" number="8.2.1">
-<h3><span class="header-section-number">8.2.1</span> Loading data<a href="antecedent-precipitation-index.html#loading-data-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="loading-data-1" class="section level3 hasAnchor" number="9.2.1">
+<h3><span class="header-section-number">9.2.1</span> Loading data<a href="antecedent-precipitation-index.html#loading-data-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We will load out data from the previous steps. (ref)</p>
-<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="antecedent-precipitation-index.html#cb241-1" aria-hidden="true" tabindex="-1"></a>logger_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;model_data/field_sites/loggers/clean/logger_data_daily_clean.csv&quot;</span>,</span>
-<span id="cb241-2"><a href="antecedent-precipitation-index.html#cb241-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">show_col_types=</span>F)</span>
-<span id="cb241-3"><a href="antecedent-precipitation-index.html#cb241-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb241-4"><a href="antecedent-precipitation-index.html#cb241-4" aria-hidden="true" tabindex="-1"></a><span class="co"># we only need SMC for this part</span></span>
-<span id="cb241-5"><a href="antecedent-precipitation-index.html#cb241-5" aria-hidden="true" tabindex="-1"></a>logger_data <span class="ot">=</span> logger_data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(var <span class="sc">==</span> <span class="st">&quot;smc&quot;</span>)</span>
-<span id="cb241-6"><a href="antecedent-precipitation-index.html#cb241-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb241-7"><a href="antecedent-precipitation-index.html#cb241-7" aria-hidden="true" tabindex="-1"></a>site_attributes <span class="ot">&lt;-</span></span>
-<span id="cb241-8"><a href="antecedent-precipitation-index.html#cb241-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_csv</span>(<span class="st">&quot;model_data/field_sites/output/field_site_attr_df.csv&quot;</span>,</span>
-<span id="cb241-9"><a href="antecedent-precipitation-index.html#cb241-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">show_col_types =</span> F)</span>
-<span id="cb241-10"><a href="antecedent-precipitation-index.html#cb241-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb241-11"><a href="antecedent-precipitation-index.html#cb241-11" aria-hidden="true" tabindex="-1"></a>pcp_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;model_data/field_sites/loggers/clean/pcp_data_clean.csv&quot;</span>,</span>
-<span id="cb241-12"><a href="antecedent-precipitation-index.html#cb241-12" aria-hidden="true" tabindex="-1"></a>                     <span class="at">show_col_types =</span> F)</span>
-<span id="cb241-13"><a href="antecedent-precipitation-index.html#cb241-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb241-14"><a href="antecedent-precipitation-index.html#cb241-14" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(site_attributes)</span></code></pre></div>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="antecedent-precipitation-index.html#cb288-1" aria-hidden="true" tabindex="-1"></a>logger_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;model_data/field_sites/loggers/clean/logger_data_daily_clean.csv&quot;</span>,</span>
+<span id="cb288-2"><a href="antecedent-precipitation-index.html#cb288-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">show_col_types=</span>F)</span>
+<span id="cb288-3"><a href="antecedent-precipitation-index.html#cb288-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb288-4"><a href="antecedent-precipitation-index.html#cb288-4" aria-hidden="true" tabindex="-1"></a><span class="co"># we only need SMC for this part</span></span>
+<span id="cb288-5"><a href="antecedent-precipitation-index.html#cb288-5" aria-hidden="true" tabindex="-1"></a>logger_data <span class="ot">=</span> logger_data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(var <span class="sc">==</span> <span class="st">&quot;smc&quot;</span>)</span>
+<span id="cb288-6"><a href="antecedent-precipitation-index.html#cb288-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb288-7"><a href="antecedent-precipitation-index.html#cb288-7" aria-hidden="true" tabindex="-1"></a>site_attributes <span class="ot">&lt;-</span></span>
+<span id="cb288-8"><a href="antecedent-precipitation-index.html#cb288-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_csv</span>(<span class="st">&quot;model_data/field_sites/output/field_site_attr_df.csv&quot;</span>,</span>
+<span id="cb288-9"><a href="antecedent-precipitation-index.html#cb288-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">show_col_types =</span> F)</span>
+<span id="cb288-10"><a href="antecedent-precipitation-index.html#cb288-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb288-11"><a href="antecedent-precipitation-index.html#cb288-11" aria-hidden="true" tabindex="-1"></a>pcp_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;model_data/field_sites/loggers/clean/pcp_data_clean.csv&quot;</span>,</span>
+<span id="cb288-12"><a href="antecedent-precipitation-index.html#cb288-12" aria-hidden="true" tabindex="-1"></a>                     <span class="at">show_col_types =</span> F)</span>
+<span id="cb288-13"><a href="antecedent-precipitation-index.html#cb288-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb288-14"><a href="antecedent-precipitation-index.html#cb288-14" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(site_attributes)</span></code></pre></div>
 <pre><code>## # A tibble: 5 × 8
 ##       id SOIL_ID SNAM.x    Id SNAM.y        SOL_ZMX HYDGRP TEXTURE        
 ##    &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;chr&gt;           &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;          
@@ -493,36 +503,36 @@ equation describing the simple version of the model is:</p>
 ## 5 600408      13 Humic      0 GLch-hu-sl       1000 D      silty_clay_loam</code></pre>
 <p>We will calculate the model per Hydrologic soil group (HSG), and start
 with B, which was measured by logger 600410.</p>
-<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="antecedent-precipitation-index.html#cb243-1" aria-hidden="true" tabindex="-1"></a>b_data <span class="ot">&lt;-</span> logger_data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(site <span class="sc">==</span> <span class="st">&quot;600410&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="antecedent-precipitation-index.html#cb290-1" aria-hidden="true" tabindex="-1"></a>b_data <span class="ot">&lt;-</span> logger_data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(site <span class="sc">==</span> <span class="st">&quot;600410&quot;</span>)</span></code></pre></div>
 </div>
-<div id="calculating-the-total-water-content" class="section level3 hasAnchor" number="8.2.2">
-<h3><span class="header-section-number">8.2.2</span> Calculating the total water content<a href="antecedent-precipitation-index.html#calculating-the-total-water-content" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="calculating-the-total-water-content" class="section level3 hasAnchor" number="9.2.2">
+<h3><span class="header-section-number">9.2.2</span> Calculating the total water content<a href="antecedent-precipitation-index.html#calculating-the-total-water-content" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We need to calculate the total water content of the profile from the
 depth measurements from the following depths:</p>
-<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="antecedent-precipitation-index.html#cb244-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(b_data<span class="sc">$</span>depth)</span></code></pre></div>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="antecedent-precipitation-index.html#cb291-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(b_data<span class="sc">$</span>depth)</span></code></pre></div>
 <pre><code>## [1] &quot;300&quot; &quot;450&quot; &quot;600&quot; &quot;750&quot; &quot;900&quot;</code></pre>
 <p>Following code is modified from <span class="citation">Patrignani (<a href="#ref-patrignani2020" role="doc-biblioref">2020</a>)</span> (<a href="https://soilwater.github.io/pynotes-agriscience/notebooks/antecedent_precipitation_index.html"><u>read
 more</u></a>)</p>
 <p>(This calculation could be improved by considering the soil horizons)</p>
-<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="antecedent-precipitation-index.html#cb246-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> b_data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(depth <span class="sc">==</span> <span class="st">&quot;300&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(value)</span>
-<span id="cb246-2"><a href="antecedent-precipitation-index.html#cb246-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> b_data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(depth <span class="sc">==</span> <span class="st">&quot;450&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(value)</span>
-<span id="cb246-3"><a href="antecedent-precipitation-index.html#cb246-3" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> b_data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(depth <span class="sc">==</span> <span class="st">&quot;600&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(value)</span>
-<span id="cb246-4"><a href="antecedent-precipitation-index.html#cb246-4" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> b_data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(depth <span class="sc">==</span> <span class="st">&quot;750&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(value)</span>
-<span id="cb246-5"><a href="antecedent-precipitation-index.html#cb246-5" aria-hidden="true" tabindex="-1"></a>e <span class="ot">&lt;-</span> b_data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(depth <span class="sc">==</span> <span class="st">&quot;900&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(value)</span>
-<span id="cb246-6"><a href="antecedent-precipitation-index.html#cb246-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb246-7"><a href="antecedent-precipitation-index.html#cb246-7" aria-hidden="true" tabindex="-1"></a>total_water_content <span class="ot">&lt;-</span> </span>
-<span id="cb246-8"><a href="antecedent-precipitation-index.html#cb246-8" aria-hidden="true" tabindex="-1"></a>  a <span class="sc">*</span> .<span class="dv">35</span> <span class="sc">+</span> <span class="co"># from 0 to 35</span></span>
-<span id="cb246-9"><a href="antecedent-precipitation-index.html#cb246-9" aria-hidden="true" tabindex="-1"></a>  b <span class="sc">*</span> .<span class="dv">15</span> <span class="sc">+</span> <span class="co"># from 35 to 50</span></span>
-<span id="cb246-10"><a href="antecedent-precipitation-index.html#cb246-10" aria-hidden="true" tabindex="-1"></a>  c <span class="sc">*</span> .<span class="dv">15</span> <span class="sc">+</span> <span class="co"># from 55 to 65</span></span>
-<span id="cb246-11"><a href="antecedent-precipitation-index.html#cb246-11" aria-hidden="true" tabindex="-1"></a>  d <span class="sc">*</span> .<span class="dv">15</span> <span class="sc">+</span> <span class="co"># from 65 to 80</span></span>
-<span id="cb246-12"><a href="antecedent-precipitation-index.html#cb246-12" aria-hidden="true" tabindex="-1"></a>  e <span class="sc">*</span> .<span class="dv">20</span>   <span class="co"># from 80 to 100</span></span>
-<span id="cb246-13"><a href="antecedent-precipitation-index.html#cb246-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb246-14"><a href="antecedent-precipitation-index.html#cb246-14" aria-hidden="true" tabindex="-1"></a>b_col <span class="ot">&lt;-</span> <span class="fu">tibble</span>(b_data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(depth <span class="sc">==</span> <span class="st">&quot;300&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(date), total_water_content)</span></code></pre></div>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="antecedent-precipitation-index.html#cb293-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> b_data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(depth <span class="sc">==</span> <span class="st">&quot;300&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(value)</span>
+<span id="cb293-2"><a href="antecedent-precipitation-index.html#cb293-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> b_data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(depth <span class="sc">==</span> <span class="st">&quot;450&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(value)</span>
+<span id="cb293-3"><a href="antecedent-precipitation-index.html#cb293-3" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> b_data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(depth <span class="sc">==</span> <span class="st">&quot;600&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(value)</span>
+<span id="cb293-4"><a href="antecedent-precipitation-index.html#cb293-4" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> b_data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(depth <span class="sc">==</span> <span class="st">&quot;750&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(value)</span>
+<span id="cb293-5"><a href="antecedent-precipitation-index.html#cb293-5" aria-hidden="true" tabindex="-1"></a>e <span class="ot">&lt;-</span> b_data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(depth <span class="sc">==</span> <span class="st">&quot;900&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(value)</span>
+<span id="cb293-6"><a href="antecedent-precipitation-index.html#cb293-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb293-7"><a href="antecedent-precipitation-index.html#cb293-7" aria-hidden="true" tabindex="-1"></a>total_water_content <span class="ot">&lt;-</span> </span>
+<span id="cb293-8"><a href="antecedent-precipitation-index.html#cb293-8" aria-hidden="true" tabindex="-1"></a>  a <span class="sc">*</span> .<span class="dv">35</span> <span class="sc">+</span> <span class="co"># from 0 to 35</span></span>
+<span id="cb293-9"><a href="antecedent-precipitation-index.html#cb293-9" aria-hidden="true" tabindex="-1"></a>  b <span class="sc">*</span> .<span class="dv">15</span> <span class="sc">+</span> <span class="co"># from 35 to 50</span></span>
+<span id="cb293-10"><a href="antecedent-precipitation-index.html#cb293-10" aria-hidden="true" tabindex="-1"></a>  c <span class="sc">*</span> .<span class="dv">15</span> <span class="sc">+</span> <span class="co"># from 55 to 65</span></span>
+<span id="cb293-11"><a href="antecedent-precipitation-index.html#cb293-11" aria-hidden="true" tabindex="-1"></a>  d <span class="sc">*</span> .<span class="dv">15</span> <span class="sc">+</span> <span class="co"># from 65 to 80</span></span>
+<span id="cb293-12"><a href="antecedent-precipitation-index.html#cb293-12" aria-hidden="true" tabindex="-1"></a>  e <span class="sc">*</span> .<span class="dv">20</span>   <span class="co"># from 80 to 100</span></span>
+<span id="cb293-13"><a href="antecedent-precipitation-index.html#cb293-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb293-14"><a href="antecedent-precipitation-index.html#cb293-14" aria-hidden="true" tabindex="-1"></a>b_col <span class="ot">&lt;-</span> <span class="fu">tibble</span>(b_data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(depth <span class="sc">==</span> <span class="st">&quot;300&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(date), total_water_content)</span></code></pre></div>
 <p>And we can add the precipitation data from
-<a href="field-site-loggers.html#including-air-temperature-and-precipitation-data">6.2.4</a></p>
-<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="antecedent-precipitation-index.html#cb247-1" aria-hidden="true" tabindex="-1"></a>b_col <span class="ot">&lt;-</span> <span class="fu">left_join</span>(b_col, pcp_data, <span class="at">by =</span> <span class="st">&quot;date&quot;</span>)</span>
-<span id="cb247-2"><a href="antecedent-precipitation-index.html#cb247-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb247-3"><a href="antecedent-precipitation-index.html#cb247-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_api</span>(<span class="at">obs =</span> b_col, <span class="at">title =</span> <span class="st">&quot;HSG B&quot;</span>)</span></code></pre></div>
+<a href="field-site-loggers.html#including-air-temperature-and-precipitation-data">7.2.4</a></p>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="antecedent-precipitation-index.html#cb294-1" aria-hidden="true" tabindex="-1"></a>b_col <span class="ot">&lt;-</span> <span class="fu">left_join</span>(b_col, pcp_data, <span class="at">by =</span> <span class="st">&quot;date&quot;</span>)</span>
+<span id="cb294-2"><a href="antecedent-precipitation-index.html#cb294-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb294-3"><a href="antecedent-precipitation-index.html#cb294-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_api</span>(<span class="at">obs =</span> b_col, <span class="at">title =</span> <span class="st">&quot;HSG B&quot;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center">
 <img src="_main_files/figure-html/hsg_b_twc_plot-1.png" alt="Total water content for logger 600410 (HSG B)" width="672" />
 <p class="caption">
@@ -530,26 +540,26 @@ more</u></a>)</p>
 </p>
 </div>
 <p>Saving the data</p>
-<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="antecedent-precipitation-index.html#cb248-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(b_col, <span class="st">&quot;model_data/field_sites/output/twc.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="antecedent-precipitation-index.html#cb295-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(b_col, <span class="st">&quot;model_data/field_sites/output/twc.csv&quot;</span>)</span></code></pre></div>
 </div>
-<div id="defining-api-model" class="section level3 hasAnchor" number="8.2.3">
-<h3><span class="header-section-number">8.2.3</span> Defining API model<a href="antecedent-precipitation-index.html#defining-api-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="defining-api-model" class="section level3 hasAnchor" number="9.2.3">
+<h3><span class="header-section-number">9.2.3</span> Defining API model<a href="antecedent-precipitation-index.html#defining-api-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The value is capped at the maximum value of the source data (50). This
 could be improved by capping site specific.</p>
-<div class="sourceCode" id="cb249"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb249-1"><a href="antecedent-precipitation-index.html#cb249-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> api_model(P,alpha<span class="op">=</span><span class="fl">0.97</span>,ini<span class="op">=</span><span class="fl">36.8</span>):</span>
-<span id="cb249-2"><a href="antecedent-precipitation-index.html#cb249-2" aria-hidden="true" tabindex="-1"></a>    api <span class="op">=</span> [ini]</span>
-<span id="cb249-3"><a href="antecedent-precipitation-index.html#cb249-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>,<span class="bu">len</span>(P)):</span>
-<span id="cb249-4"><a href="antecedent-precipitation-index.html#cb249-4" aria-hidden="true" tabindex="-1"></a>      append_val <span class="op">=</span> api[t<span class="op">-</span><span class="dv">1</span>]<span class="op">*</span>alpha <span class="op">+</span> P[t]</span>
-<span id="cb249-5"><a href="antecedent-precipitation-index.html#cb249-5" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> append_val <span class="op">&gt;</span> <span class="dv">50</span>:</span>
-<span id="cb249-6"><a href="antecedent-precipitation-index.html#cb249-6" aria-hidden="true" tabindex="-1"></a>        append_val <span class="op">=</span> <span class="dv">50</span></span>
-<span id="cb249-7"><a href="antecedent-precipitation-index.html#cb249-7" aria-hidden="true" tabindex="-1"></a>      api.append(append_val)</span>
-<span id="cb249-8"><a href="antecedent-precipitation-index.html#cb249-8" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb249-9"><a href="antecedent-precipitation-index.html#cb249-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> api</span></code></pre></div>
+<div class="sourceCode" id="cb296"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb296-1"><a href="antecedent-precipitation-index.html#cb296-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> api_model(P,alpha<span class="op">=</span><span class="fl">0.97</span>,ini<span class="op">=</span><span class="fl">36.8</span>):</span>
+<span id="cb296-2"><a href="antecedent-precipitation-index.html#cb296-2" aria-hidden="true" tabindex="-1"></a>    api <span class="op">=</span> [ini]</span>
+<span id="cb296-3"><a href="antecedent-precipitation-index.html#cb296-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>,<span class="bu">len</span>(P)):</span>
+<span id="cb296-4"><a href="antecedent-precipitation-index.html#cb296-4" aria-hidden="true" tabindex="-1"></a>      append_val <span class="op">=</span> api[t<span class="op">-</span><span class="dv">1</span>]<span class="op">*</span>alpha <span class="op">+</span> P[t]</span>
+<span id="cb296-5"><a href="antecedent-precipitation-index.html#cb296-5" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> append_val <span class="op">&gt;</span> <span class="dv">50</span>:</span>
+<span id="cb296-6"><a href="antecedent-precipitation-index.html#cb296-6" aria-hidden="true" tabindex="-1"></a>        append_val <span class="op">=</span> <span class="dv">50</span></span>
+<span id="cb296-7"><a href="antecedent-precipitation-index.html#cb296-7" aria-hidden="true" tabindex="-1"></a>      api.append(append_val)</span>
+<span id="cb296-8"><a href="antecedent-precipitation-index.html#cb296-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb296-9"><a href="antecedent-precipitation-index.html#cb296-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> api</span></code></pre></div>
 <p>Load in our data:</p>
-<div class="sourceCode" id="cb250"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb250-1"><a href="antecedent-precipitation-index.html#cb250-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb250-2"><a href="antecedent-precipitation-index.html#cb250-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">&#39;model_data/field_sites/output/twc.csv&#39;</span>)</span>
-<span id="cb250-3"><a href="antecedent-precipitation-index.html#cb250-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df[[<span class="st">&#39;date&#39;</span>,<span class="st">&#39;value&#39;</span>,<span class="st">&#39;pcp&#39;</span>]]</span>
-<span id="cb250-4"><a href="antecedent-precipitation-index.html#cb250-4" aria-hidden="true" tabindex="-1"></a>df.head()</span></code></pre></div>
+<div class="sourceCode" id="cb297"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb297-1"><a href="antecedent-precipitation-index.html#cb297-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb297-2"><a href="antecedent-precipitation-index.html#cb297-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">&#39;model_data/field_sites/output/twc.csv&#39;</span>)</span>
+<span id="cb297-3"><a href="antecedent-precipitation-index.html#cb297-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df[[<span class="st">&#39;date&#39;</span>,<span class="st">&#39;value&#39;</span>,<span class="st">&#39;pcp&#39;</span>]]</span>
+<span id="cb297-4"><a href="antecedent-precipitation-index.html#cb297-4" aria-hidden="true" tabindex="-1"></a>df.head()</span></code></pre></div>
 <pre><code>##          date   value  pcp
 ## 0  2021-11-02  36.880  0.3
 ## 1  2021-11-03  36.930  1.1
@@ -557,53 +567,53 @@ could be improved by capping site specific.</p>
 ## 3  2021-11-05  37.025  0.0
 ## 4  2021-11-06  37.030  0.7</code></pre>
 <p>As a test, we will calculate the predictions with an alpha of 0.95:</p>
-<div class="sourceCode" id="cb252"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb252-1"><a href="antecedent-precipitation-index.html#cb252-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb252-2"><a href="antecedent-precipitation-index.html#cb252-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> curve_fit</span>
-<span id="cb252-3"><a href="antecedent-precipitation-index.html#cb252-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb252-4"><a href="antecedent-precipitation-index.html#cb252-4" aria-hidden="true" tabindex="-1"></a><span class="co"># guess</span></span>
-<span id="cb252-5"><a href="antecedent-precipitation-index.html#cb252-5" aria-hidden="true" tabindex="-1"></a>storage_guessed <span class="op">=</span> api_model(df[<span class="st">&#39;pcp&#39;</span>], alpha<span class="op">=</span><span class="fl">0.95</span>, ini<span class="op">=</span><span class="fl">36.8</span>)</span>
-<span id="cb252-6"><a href="antecedent-precipitation-index.html#cb252-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb252-7"><a href="antecedent-precipitation-index.html#cb252-7" aria-hidden="true" tabindex="-1"></a><span class="co"># write to text</span></span>
-<span id="cb252-8"><a href="antecedent-precipitation-index.html#cb252-8" aria-hidden="true" tabindex="-1"></a>dates <span class="op">=</span> df[[<span class="st">&#39;date&#39;</span>]]</span>
-<span id="cb252-9"><a href="antecedent-precipitation-index.html#cb252-9" aria-hidden="true" tabindex="-1"></a>guess <span class="op">=</span> pd.DataFrame(dates.values.tolist(),storage_guessed)</span>
-<span id="cb252-10"><a href="antecedent-precipitation-index.html#cb252-10" aria-hidden="true" tabindex="-1"></a>guess.to_csv(<span class="st">&quot;model_data/field_sites/output/first_guess.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb299"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb299-1"><a href="antecedent-precipitation-index.html#cb299-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb299-2"><a href="antecedent-precipitation-index.html#cb299-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> curve_fit</span>
+<span id="cb299-3"><a href="antecedent-precipitation-index.html#cb299-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb299-4"><a href="antecedent-precipitation-index.html#cb299-4" aria-hidden="true" tabindex="-1"></a><span class="co"># guess</span></span>
+<span id="cb299-5"><a href="antecedent-precipitation-index.html#cb299-5" aria-hidden="true" tabindex="-1"></a>storage_guessed <span class="op">=</span> api_model(df[<span class="st">&#39;pcp&#39;</span>], alpha<span class="op">=</span><span class="fl">0.95</span>, ini<span class="op">=</span><span class="fl">36.8</span>)</span>
+<span id="cb299-6"><a href="antecedent-precipitation-index.html#cb299-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb299-7"><a href="antecedent-precipitation-index.html#cb299-7" aria-hidden="true" tabindex="-1"></a><span class="co"># write to text</span></span>
+<span id="cb299-8"><a href="antecedent-precipitation-index.html#cb299-8" aria-hidden="true" tabindex="-1"></a>dates <span class="op">=</span> df[[<span class="st">&#39;date&#39;</span>]]</span>
+<span id="cb299-9"><a href="antecedent-precipitation-index.html#cb299-9" aria-hidden="true" tabindex="-1"></a>guess <span class="op">=</span> pd.DataFrame(dates.values.tolist(),storage_guessed)</span>
+<span id="cb299-10"><a href="antecedent-precipitation-index.html#cb299-10" aria-hidden="true" tabindex="-1"></a>guess.to_csv(<span class="st">&quot;model_data/field_sites/output/first_guess.csv&quot;</span>)</span></code></pre></div>
 <p>Now we can have a look at it in R</p>
-<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="antecedent-precipitation-index.html#cb253-1" aria-hidden="true" tabindex="-1"></a>guess <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;model_data/field_sites/output/first_guess.csv&quot;</span>,</span>
-<span id="cb253-2"><a href="antecedent-precipitation-index.html#cb253-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">show_col_types =</span> F,</span>
-<span id="cb253-3"><a href="antecedent-precipitation-index.html#cb253-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">skip =</span> <span class="dv">1</span>, <span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">&quot;val&quot;</span>, <span class="st">&quot;date&quot;</span>))</span>
-<span id="cb253-4"><a href="antecedent-precipitation-index.html#cb253-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb253-5"><a href="antecedent-precipitation-index.html#cb253-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_api</span>(<span class="at">api_vals =</span> guess, <span class="at">obs =</span> b_col, <span class="at">title =</span> <span class="st">&quot;HSG-B API guessed&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="antecedent-precipitation-index.html#cb300-1" aria-hidden="true" tabindex="-1"></a>guess <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;model_data/field_sites/output/first_guess.csv&quot;</span>,</span>
+<span id="cb300-2"><a href="antecedent-precipitation-index.html#cb300-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">show_col_types =</span> F,</span>
+<span id="cb300-3"><a href="antecedent-precipitation-index.html#cb300-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">skip =</span> <span class="dv">1</span>, <span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">&quot;val&quot;</span>, <span class="st">&quot;date&quot;</span>))</span>
+<span id="cb300-4"><a href="antecedent-precipitation-index.html#cb300-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb300-5"><a href="antecedent-precipitation-index.html#cb300-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_api</span>(<span class="at">api_vals =</span> guess, <span class="at">obs =</span> b_col, <span class="at">title =</span> <span class="st">&quot;HSG-B API guessed&quot;</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/api_guess-1.png" width="672" /></p>
 <p>Now we optimize the alpha parameter using <code>scipy</code> <code>curve_fit</code>.</p>
-<div class="sourceCode" id="cb254"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb254-1"><a href="antecedent-precipitation-index.html#cb254-1" aria-hidden="true" tabindex="-1"></a>par_opt, par_cov <span class="op">=</span> curve_fit(api_model, df[<span class="st">&#39;pcp&#39;</span>], df[<span class="st">&#39;value&#39;</span>], p0<span class="op">=</span>[<span class="fl">0.95</span>,<span class="dv">100</span>])</span>
-<span id="cb254-2"><a href="antecedent-precipitation-index.html#cb254-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb254-3"><a href="antecedent-precipitation-index.html#cb254-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;Annual mean alpha value is&#39;</span>,<span class="bu">round</span>(par_opt[<span class="dv">0</span>],<span class="dv">2</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb301"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb301-1"><a href="antecedent-precipitation-index.html#cb301-1" aria-hidden="true" tabindex="-1"></a>par_opt, par_cov <span class="op">=</span> curve_fit(api_model, df[<span class="st">&#39;pcp&#39;</span>], df[<span class="st">&#39;value&#39;</span>], p0<span class="op">=</span>[<span class="fl">0.95</span>,<span class="dv">100</span>])</span>
+<span id="cb301-2"><a href="antecedent-precipitation-index.html#cb301-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb301-3"><a href="antecedent-precipitation-index.html#cb301-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;Annual mean alpha value is&#39;</span>,<span class="bu">round</span>(par_opt[<span class="dv">0</span>],<span class="dv">2</span>))</span></code></pre></div>
 <pre><code>## Annual mean alpha value is 0.98</code></pre>
 <p>Now we can calculate the API using the optimized parameter.</p>
-<div class="sourceCode" id="cb256"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb256-1"><a href="antecedent-precipitation-index.html#cb256-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb256-2"><a href="antecedent-precipitation-index.html#cb256-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb256-3"><a href="antecedent-precipitation-index.html#cb256-3" aria-hidden="true" tabindex="-1"></a>storage_optimized <span class="op">=</span> api_model(df[<span class="st">&#39;pcp&#39;</span>],par_opt[<span class="dv">0</span>],par_opt[<span class="dv">1</span>])</span>
-<span id="cb256-4"><a href="antecedent-precipitation-index.html#cb256-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb256-5"><a href="antecedent-precipitation-index.html#cb256-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Mean Absolute Error</span></span>
-<span id="cb256-6"><a href="antecedent-precipitation-index.html#cb256-6" aria-hidden="true" tabindex="-1"></a>MAE <span class="op">=</span> np.mean(np.<span class="bu">abs</span>(df[<span class="st">&#39;value&#39;</span>] <span class="op">-</span> storage_optimized))</span>
-<span id="cb256-7"><a href="antecedent-precipitation-index.html#cb256-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;Mean annual error =&#39;</span>, <span class="bu">round</span>(MAE,<span class="dv">1</span>),<span class="st">&#39;cm&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb303"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb303-1"><a href="antecedent-precipitation-index.html#cb303-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb303-2"><a href="antecedent-precipitation-index.html#cb303-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb303-3"><a href="antecedent-precipitation-index.html#cb303-3" aria-hidden="true" tabindex="-1"></a>storage_optimized <span class="op">=</span> api_model(df[<span class="st">&#39;pcp&#39;</span>],par_opt[<span class="dv">0</span>],par_opt[<span class="dv">1</span>])</span>
+<span id="cb303-4"><a href="antecedent-precipitation-index.html#cb303-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb303-5"><a href="antecedent-precipitation-index.html#cb303-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Mean Absolute Error</span></span>
+<span id="cb303-6"><a href="antecedent-precipitation-index.html#cb303-6" aria-hidden="true" tabindex="-1"></a>MAE <span class="op">=</span> np.mean(np.<span class="bu">abs</span>(df[<span class="st">&#39;value&#39;</span>] <span class="op">-</span> storage_optimized))</span>
+<span id="cb303-7"><a href="antecedent-precipitation-index.html#cb303-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;Mean annual error =&#39;</span>, <span class="bu">round</span>(MAE,<span class="dv">1</span>),<span class="st">&#39;cm&#39;</span>)</span></code></pre></div>
 <pre><code>## Mean annual error = 9.1 cm</code></pre>
 <p>And save the data for R</p>
-<div class="sourceCode" id="cb258"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb258-1"><a href="antecedent-precipitation-index.html#cb258-1" aria-hidden="true" tabindex="-1"></a>dates <span class="op">=</span> df[[<span class="st">&#39;date&#39;</span>]]</span>
-<span id="cb258-2"><a href="antecedent-precipitation-index.html#cb258-2" aria-hidden="true" tabindex="-1"></a>api_optimized <span class="op">=</span> pd.DataFrame(dates.values.tolist(),storage_optimized)</span>
-<span id="cb258-3"><a href="antecedent-precipitation-index.html#cb258-3" aria-hidden="true" tabindex="-1"></a>api_optimized.to_csv(<span class="st">&quot;model_data/field_sites/output/api_optimized.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb305"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb305-1"><a href="antecedent-precipitation-index.html#cb305-1" aria-hidden="true" tabindex="-1"></a>dates <span class="op">=</span> df[[<span class="st">&#39;date&#39;</span>]]</span>
+<span id="cb305-2"><a href="antecedent-precipitation-index.html#cb305-2" aria-hidden="true" tabindex="-1"></a>api_optimized <span class="op">=</span> pd.DataFrame(dates.values.tolist(),storage_optimized)</span>
+<span id="cb305-3"><a href="antecedent-precipitation-index.html#cb305-3" aria-hidden="true" tabindex="-1"></a>api_optimized.to_csv(<span class="st">&quot;model_data/field_sites/output/api_optimized.csv&quot;</span>)</span></code></pre></div>
 <p>And have a look in R:</p>
-<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="antecedent-precipitation-index.html#cb259-1" aria-hidden="true" tabindex="-1"></a>optimized <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;model_data/field_sites/output/api_optimized.csv&quot;</span>,</span>
-<span id="cb259-2"><a href="antecedent-precipitation-index.html#cb259-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">show_col_types =</span> F,</span>
-<span id="cb259-3"><a href="antecedent-precipitation-index.html#cb259-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">skip =</span> <span class="dv">1</span>, <span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">&quot;val&quot;</span>, <span class="st">&quot;date&quot;</span>))</span>
-<span id="cb259-4"><a href="antecedent-precipitation-index.html#cb259-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb259-5"><a href="antecedent-precipitation-index.html#cb259-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_api</span>(<span class="at">api_vals =</span> optimized, <span class="at">obs =</span> b_col, <span class="at">title =</span> <span class="st">&quot;HSG-B API optimized&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="antecedent-precipitation-index.html#cb306-1" aria-hidden="true" tabindex="-1"></a>optimized <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;model_data/field_sites/output/api_optimized.csv&quot;</span>,</span>
+<span id="cb306-2"><a href="antecedent-precipitation-index.html#cb306-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">show_col_types =</span> F,</span>
+<span id="cb306-3"><a href="antecedent-precipitation-index.html#cb306-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">skip =</span> <span class="dv">1</span>, <span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">&quot;val&quot;</span>, <span class="st">&quot;date&quot;</span>))</span>
+<span id="cb306-4"><a href="antecedent-precipitation-index.html#cb306-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb306-5"><a href="antecedent-precipitation-index.html#cb306-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_api</span>(<span class="at">api_vals =</span> optimized, <span class="at">obs =</span> b_col, <span class="at">title =</span> <span class="st">&quot;HSG-B API optimized&quot;</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/api_loadropti-1.png" width="672" /></p>
 <p>Not great, but also not surprising considering no account for snow melt
 has been done, nor do we have good logger data.</p>
 <p>We will define this workflow in a function <code>calc_api.R</code> and run it for
 the next loggers.</p>
-<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="antecedent-precipitation-index.html#cb260-1" aria-hidden="true" tabindex="-1"></a><span class="fu">calc_api</span>(<span class="at">logger_id =</span> <span class="st">&quot;600409&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="antecedent-precipitation-index.html#cb307-1" aria-hidden="true" tabindex="-1"></a><span class="fu">calc_api</span>(<span class="at">logger_id =</span> <span class="st">&quot;600409&quot;</span>)</span></code></pre></div>
 <pre><code>## Warning in py_to_r.pandas.core.frame.DataFrame(x): index contains duplicated
 ## values: row names not set</code></pre>
 <p><img src="_main_files/figure-html/api_calc_09-1.png" width="672" /></p>
@@ -611,13 +621,13 @@ the next loggers.</p>
 ##   &quot;D&quot;   &quot;1&quot;</code></pre>
 <p>This is the logger with broken data, so no surprise that the optimizer
 failed.</p>
-<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="antecedent-precipitation-index.html#cb263-1" aria-hidden="true" tabindex="-1"></a><span class="fu">calc_api</span>(<span class="at">logger_id =</span> <span class="st">&quot;600411&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="antecedent-precipitation-index.html#cb310-1" aria-hidden="true" tabindex="-1"></a><span class="fu">calc_api</span>(<span class="at">logger_id =</span> <span class="st">&quot;600411&quot;</span>)</span></code></pre></div>
 <pre><code>## Warning in py_to_r.pandas.core.frame.DataFrame(x): index contains duplicated
 ## values: row names not set</code></pre>
 <p><img src="_main_files/figure-html/api_calc_11-1.png" width="672" /></p>
 <pre><code>##    HSG  Alpha 
 ##    &quot;C&quot; &quot;0.99&quot;</code></pre>
-<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="antecedent-precipitation-index.html#cb266-1" aria-hidden="true" tabindex="-1"></a><span class="fu">calc_api</span>(<span class="at">logger_id =</span> <span class="st">&quot;600413&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="antecedent-precipitation-index.html#cb313-1" aria-hidden="true" tabindex="-1"></a><span class="fu">calc_api</span>(<span class="at">logger_id =</span> <span class="st">&quot;600413&quot;</span>)</span></code></pre></div>
 <pre><code>## Warning in py_to_r.pandas.core.frame.DataFrame(x): index contains duplicated
 ## values: row names not set</code></pre>
 <p><img src="_main_files/figure-html/api_calc_13-1.png" width="672" /></p>
@@ -625,8 +635,8 @@ failed.</p>
 ##    &quot;C&quot; &quot;0.99&quot;</code></pre>
 </div>
 </div>
-<div id="conclusions" class="section level2 hasAnchor" number="8.3">
-<h2><span class="header-section-number">8.3</span> Conclusions<a href="antecedent-precipitation-index.html#conclusions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="conclusions" class="section level2 hasAnchor" number="9.3">
+<h2><span class="header-section-number">9.3</span> Conclusions<a href="antecedent-precipitation-index.html#conclusions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>For HSG B we got an alpha of <strong>0.98</strong>, for C we have two samples, both
 of which got <strong>0.99</strong>, and D has two samples as well, but we currently
 only have data for one. For the one D site we had, the logger data was
@@ -650,7 +660,7 @@ timing will not be very accurate anyway (since snow melt is such a
 dominating factor in operation timing).</p>
 <p>UPDATE post Q+A Session</p>
 <p>We can modify the output of Micha’s script in Section
-<a href="swatfarmr-management-schedules.html#pre-processing-crop-rotation">10.1</a> by replacing API with our own custom
+<a href="swatfarmr-management-schedules.html#pre-processing-crop-rotation">11.1</a> by replacing API with our own custom
 variable. This variable could be snow melt or something else entirely
 (like a trafficability thing?) This is pretty straight forward, we just
 need to add the index to the FarmR using <code>add_variable()</code>. One thing we
