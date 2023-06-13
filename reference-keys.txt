@@ -1,6 +1,7 @@
 fig:layersprotocl
 fig:inputgendemmap
 fig:P1mv10m
+fig:combineddemtiles
 fig:soilmappicc
 fig:1jmplot
 fig:lmplot1
@@ -48,6 +49,7 @@ fig:docplotclimate
 fig:docplotmonthlysnow
 input-data-preparation
 digital-elevation-model
+high-resolution-dem
 soil-data
 high-resolution-soil-maps
 data-source
@@ -59,6 +61,11 @@ lookup-table
 rasterization
 usersoil
 watershed-boundary
+hydrological-preperation
+pour-points
+streams
+watershed-delineation
+bonus-section
 land-object-input
 data-sources
 delineation-of-land-objects

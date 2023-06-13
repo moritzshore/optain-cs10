@@ -23,7 +23,7 @@
 <meta name="author" content="Moritz Shore, Csilla Farkas" />
 
 
-<meta name="date" content="2023-06-12" />
+<meta name="date" content="2023-06-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -53,13 +53,6 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
-<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
-<script src="libs/datatables-binding-0.28/datatables.js"></script>
-<link href="libs/dt-core-1.13.4/css/jquery.dataTables.min.css" rel="stylesheet" />
-<link href="libs/dt-core-1.13.4/css/jquery.dataTables.extra.css" rel="stylesheet" />
-<script src="libs/dt-core-1.13.4/js/jquery.dataTables.min.js"></script>
-<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
-<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
 <link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
 <script src="libs/leaflet-1.3.1/leaflet.js"></script>
 <link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
@@ -69,13 +62,48 @@
 <script src="libs/leaflet-binding-2.1.2/leaflet.js"></script>
 <script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
 <script src="libs/leaflet-providers-plugin-2.1.2/leaflet-providers-plugin.js"></script>
+<script src="libs/tile1_rasterlayer_ec3401-1/data_stars_tile1_rasterlayer6c5f04.txt"></script>
+<script src="libs/joda-0.0.1/joda.js"></script>
+<script src="libs/joda-0.0.1/addImageQuery-bindings.js"></script>
+<script src="libs/clipboard-0.0.1/setClipboardText.js"></script>
 <link href="libs/HomeButton-0.0.1/home-button.css" rel="stylesheet" />
 <script src="libs/HomeButton-0.0.1/home-button.js"></script>
 <script src="libs/HomeButton-0.0.1/easy-button-src.min.js"></script>
-<script src="libs/clipboard-0.0.1/setClipboardText.js"></script>
 <link href="libs/mapviewCSS-0.0.1/mapview-popup.css" rel="stylesheet" />
 <link href="libs/mapviewCSS-0.0.1/mapview.css" rel="stylesheet" />
-<script src="libs/plotly-binding-4.10.1/plotly.js"></script>
+<script src="libs/tile2_rasterlayer_783ea1-1/data_stars_tile2_rasterlayer3c9b1f.txt"></script>
+<script src="libs/dem_layer_d38694-1/data_stars_dem_layereb013c.txt"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.28/datatables.js"></script>
+<link href="libs/dt-core-1.13.4/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.13.4/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.13.4/js/jquery.dataTables.min.js"></script>
+<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<script src="libs/stream_crop_a15e38-1/data_stars_stream_cropd4e061.txt"></script>
+<script src="libs/ws_b314f5-1/data_stars_wsea3dbc.txt"></script>
+<script src="libs/rglWebGL-binding-1.1.3/rglWebGL.js"></script>
+<link href="libs/rglwidgetClass-1.1.3/rgl.css" rel="stylesheet" />
+<script src="libs/rglwidgetClass-1.1.3/rglClass.src.js"></script>
+<script src="libs/rglwidgetClass-1.1.3/utils.src.js"></script>
+<script src="libs/rglwidgetClass-1.1.3/buffer.src.js"></script>
+<script src="libs/rglwidgetClass-1.1.3/subscenes.src.js"></script>
+<script src="libs/rglwidgetClass-1.1.3/shaders.src.js"></script>
+<script src="libs/rglwidgetClass-1.1.3/shadersrc.src.js"></script>
+<script src="libs/rglwidgetClass-1.1.3/textures.src.js"></script>
+<script src="libs/rglwidgetClass-1.1.3/projection.src.js"></script>
+<script src="libs/rglwidgetClass-1.1.3/mouse.src.js"></script>
+<script src="libs/rglwidgetClass-1.1.3/init.src.js"></script>
+<script src="libs/rglwidgetClass-1.1.3/pieces.src.js"></script>
+<script src="libs/rglwidgetClass-1.1.3/draw.src.js"></script>
+<script src="libs/rglwidgetClass-1.1.3/controls.src.js"></script>
+<script src="libs/rglwidgetClass-1.1.3/selection.src.js"></script>
+<script src="libs/rglwidgetClass-1.1.3/rglTimer.src.js"></script>
+<script src="libs/rglwidgetClass-1.1.3/pretty.src.js"></script>
+<script src="libs/rglwidgetClass-1.1.3/axes.src.js"></script>
+<script src="libs/rglwidgetClass-1.1.3/animation.src.js"></script>
+<script src="libs/CanvasMatrix4-1.1.3/CanvasMatrix.src.js"></script>
+<script src="libs/plotly-binding-4.10.2/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
 <script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
@@ -194,7 +222,10 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
 <li class="chapter" data-level="1" data-path="input-data-preparation.html"><a href="input-data-preparation.html"><i class="fa fa-check"></i><b>1</b> Input Data Preparation</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="input-data-preparation.html"><a href="input-data-preparation.html#digital-elevation-model"><i class="fa fa-check"></i><b>1.1</b> Digital Elevation Model</a></li>
+<li class="chapter" data-level="1.1" data-path="input-data-preparation.html"><a href="input-data-preparation.html#digital-elevation-model"><i class="fa fa-check"></i><b>1.1</b> Digital Elevation Model</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="input-data-preparation.html"><a href="input-data-preparation.html#high-resolution-dem"><i class="fa fa-check"></i><b>1.1.1</b> High resolution DEM</a></li>
+</ul></li>
 <li class="chapter" data-level="1.2" data-path="input-data-preparation.html"><a href="input-data-preparation.html#soil-data"><i class="fa fa-check"></i><b>1.2</b> Soil Data</a>
 <ul>
 <li class="chapter" data-level="1.2.1" data-path="input-data-preparation.html"><a href="input-data-preparation.html#high-resolution-soil-maps"><i class="fa fa-check"></i><b>1.2.1</b> High resolution soil maps</a></li>
@@ -207,7 +238,14 @@ div.csl-indent {
 <li class="chapter" data-level="1.2.8" data-path="input-data-preparation.html"><a href="input-data-preparation.html#rasterization"><i class="fa fa-check"></i><b>1.2.8</b> Rasterization</a></li>
 <li class="chapter" data-level="1.2.9" data-path="input-data-preparation.html"><a href="input-data-preparation.html#usersoil"><i class="fa fa-check"></i><b>1.2.9</b> Usersoil</a></li>
 </ul></li>
-<li class="chapter" data-level="1.3" data-path="input-data-preparation.html"><a href="input-data-preparation.html#watershed-boundary"><i class="fa fa-check"></i><b>1.3</b> Watershed Boundary</a></li>
+<li class="chapter" data-level="1.3" data-path="input-data-preparation.html"><a href="input-data-preparation.html#watershed-boundary"><i class="fa fa-check"></i><b>1.3</b> Watershed Boundary</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="input-data-preparation.html"><a href="input-data-preparation.html#hydrological-preperation"><i class="fa fa-check"></i><b>1.3.1</b> Hydrological preperation</a></li>
+<li class="chapter" data-level="1.3.2" data-path="input-data-preparation.html"><a href="input-data-preparation.html#pour-points"><i class="fa fa-check"></i><b>1.3.2</b> Pour Points</a></li>
+<li class="chapter" data-level="1.3.3" data-path="input-data-preparation.html"><a href="input-data-preparation.html#streams"><i class="fa fa-check"></i><b>1.3.3</b> Streams</a></li>
+<li class="chapter" data-level="1.3.4" data-path="input-data-preparation.html"><a href="input-data-preparation.html#watershed-delineation"><i class="fa fa-check"></i><b>1.3.4</b> Watershed Delineation</a></li>
+<li class="chapter" data-level="1.3.5" data-path="input-data-preparation.html"><a href="input-data-preparation.html#bonus-section"><i class="fa fa-check"></i><b>1.3.5</b> Bonus Section</a></li>
+</ul></li>
 <li class="chapter" data-level="1.4" data-path="input-data-preparation.html"><a href="input-data-preparation.html#land-object-input"><i class="fa fa-check"></i><b>1.4</b> Land object input</a>
 <ul>
 <li class="chapter" data-level="1.4.1" data-path="input-data-preparation.html"><a href="input-data-preparation.html#data-sources"><i class="fa fa-check"></i><b>1.4.1</b> Data sources</a></li>
@@ -430,17 +468,17 @@ div.csl-indent {
 <p>The SWATBuildR cannot write the actual text files for our model setup, we have to use the SWAT+ Editor for this. Once the input files have been written, we will try to <strong>ONLY modify these parameters with R</strong> and <strong>never edit parameters in the Editor</strong>. The reason for this is because changing the values of the text files will <strong>not</strong> change the values of the <code>sqlite</code> database. If the input files are re-written by the editor, our changes to the text files will be <strong>overwritten</strong>.</p>
 <div id="loading-the-project-in-swat-editor" class="section level2 hasAnchor" number="4.1">
 <h2><span class="header-section-number">4.1</span> Loading the project in SWAT+ Editor<a href="writing-swat-input-files.html#loading-the-project-in-swat-editor" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="figure">
-<img src="figures/open_another_proj.png" alt="" />
-<p class="caption">Open a project</p>
+<div class="float">
+<img src="figures/open_another_proj.png" alt="Open a project" />
+<div class="figcaption">Open a project</div>
 </div>
-<div class="figure">
-<img src="figures/open_path.png" alt="" />
-<p class="caption">Path to the project sqlite</p>
+<div class="float">
+<img src="figures/open_path.png" alt="Path to the project sqlite" />
+<div class="figcaption">Path to the project sqlite</div>
 </div>
-<div class="figure">
-<img src="figures/proj_info.png" alt="" />
-<p class="caption">Project Information. The weather generator has been complete by svatools in Section <a href="climate-inputs-and-weather-generator.html#adding-weather-data-to-swat-project">3.3</a>.</p>
+<div class="float">
+<img src="figures/proj_info.png" alt="Project Information. The weather generator has been complete by svatools in Section 3.3." />
+<div class="figcaption">Project Information. The weather generator has been complete by svatools in Section <a href="climate-inputs-and-weather-generator.html#adding-weather-data-to-swat-project">3.3</a>.</div>
 </div>
 <ol style="list-style-type: decimal">
 <li>After clicking on the Run Model / Save Scenario button, you arrive at the “Confirm Simulation Settings” page. Here you need to choose where to write your input files. We have chosen <code>cs10_setup/swat_input</code>.</li>
@@ -448,14 +486,14 @@ div.csl-indent {
 <li>Make sure to un-check “Run SWAT” and “Analyze output for visualization”</li>
 <li>“Save settings &amp; Run Selected”</li>
 </ol>
-<div class="figure">
-<img src="figures/write_inputs.png" alt="" />
-<p class="caption">Confirm Simulation Settings. Make sure to follow the instructions carefully here.</p>
+<div class="float">
+<img src="figures/write_inputs.png" alt="Confirm Simulation Settings. Make sure to follow the instructions carefully here." />
+<div class="figcaption">Confirm Simulation Settings. Make sure to follow the instructions carefully here.</div>
 </div>
 <p>Your SWAT+ input files will be generated, and you will be prompted to Save Scenario. <strong>This is not recommended</strong>, because in our testing, the scenario saving would recursively generate new scenarios within the same folder, until all file space had been exhausted on the drive. This extremely deep folder <strong>brings windows to its knees</strong>, even when trying to delete it using explorer (Use Powershell instead).</p>
-<div class="figure">
-<img src="figures/all_tasks_done.png" alt="" />
-<p class="caption">Option to save scenario. Not Recommended.</p>
+<div class="float">
+<img src="figures/all_tasks_done.png" alt="Option to save scenario. Not Recommended." />
+<div class="figcaption">Option to save scenario. Not Recommended.</div>
 </div>
 </div>
 <div id="swat-test-run" class="section level2 hasAnchor" number="4.2">
@@ -466,60 +504,60 @@ div.csl-indent {
 </blockquote>
 <p>Our current SWAT+ version is <code>rev60.5.4_64rel.exe</code> but this is <strong>subject to change</strong></p>
 <p>Make a run directory and enable code running.</p>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="writing-swat-input-files.html#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="co"># if set to true, following code will be evalutated. </span></span>
-<span id="cb156-2"><a href="writing-swat-input-files.html#cb156-2" aria-hidden="true" tabindex="-1"></a>run_this_chapter <span class="ot">=</span> <span class="cn">FALSE</span></span>
-<span id="cb156-3"><a href="writing-swat-input-files.html#cb156-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb156-4"><a href="writing-swat-input-files.html#cb156-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">&quot;model_data/cs10_setup/run_swat&quot;</span>, <span class="at">showWarnings =</span> F)</span></code></pre></div>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="writing-swat-input-files.html#cb186-1" tabindex="-1"></a><span class="co"># if set to true, following code will be evalutated. </span></span>
+<span id="cb186-2"><a href="writing-swat-input-files.html#cb186-2" tabindex="-1"></a>run_this_chapter <span class="ot">=</span> <span class="cn">FALSE</span></span>
+<span id="cb186-3"><a href="writing-swat-input-files.html#cb186-3" tabindex="-1"></a></span>
+<span id="cb186-4"><a href="writing-swat-input-files.html#cb186-4" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">&quot;model_data/cs10_setup/run_swat&quot;</span>, <span class="at">showWarnings =</span> F)</span></code></pre></div>
 <p>Copy all required files into this directory:</p>
-<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="writing-swat-input-files.html#cb157-1" aria-hidden="true" tabindex="-1"></a>sta_files <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="st">&quot;model_data/cs10_setup/optain-cs10/&quot;</span>,</span>
-<span id="cb157-2"><a href="writing-swat-input-files.html#cb157-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">pattern =</span> <span class="st">&quot;sta_&quot;</span>, <span class="at">full.names =</span> T)</span>
-<span id="cb157-3"><a href="writing-swat-input-files.html#cb157-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb157-4"><a href="writing-swat-input-files.html#cb157-4" aria-hidden="true" tabindex="-1"></a>cli_files <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="st">&quot;model_data/cs10_setup/optain-cs10/&quot;</span>, </span>
-<span id="cb157-5"><a href="writing-swat-input-files.html#cb157-5" aria-hidden="true" tabindex="-1"></a>                        <span class="at">pattern =</span> <span class="st">&quot;.cli&quot;</span>, <span class="at">full.names =</span> T)</span>
-<span id="cb157-6"><a href="writing-swat-input-files.html#cb157-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb157-7"><a href="writing-swat-input-files.html#cb157-7" aria-hidden="true" tabindex="-1"></a>input_files <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="st">&quot;model_data/cs10_setup/swat_input/&quot;</span>, </span>
-<span id="cb157-8"><a href="writing-swat-input-files.html#cb157-8" aria-hidden="true" tabindex="-1"></a>                       <span class="at">full.names =</span> T)</span>
-<span id="cb157-9"><a href="writing-swat-input-files.html#cb157-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb157-10"><a href="writing-swat-input-files.html#cb157-10" aria-hidden="true" tabindex="-1"></a>path_to_swat <span class="ot">&lt;-</span> <span class="st">&quot;model_data/cs10_setup/rev60.5.4_64rel.exe&quot;</span></span>
-<span id="cb157-11"><a href="writing-swat-input-files.html#cb157-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb157-12"><a href="writing-swat-input-files.html#cb157-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb157-13"><a href="writing-swat-input-files.html#cb157-13" aria-hidden="true" tabindex="-1"></a>source_files <span class="ot">&lt;-</span> <span class="fu">c</span>(sta_files, cli_files, input_files, path_to_swat)</span>
-<span id="cb157-14"><a href="writing-swat-input-files.html#cb157-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb157-15"><a href="writing-swat-input-files.html#cb157-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb157-16"><a href="writing-swat-input-files.html#cb157-16" aria-hidden="true" tabindex="-1"></a>status <span class="ot">&lt;-</span> <span class="fu">file.copy</span>(<span class="at">from =</span> source_files,</span>
-<span id="cb157-17"><a href="writing-swat-input-files.html#cb157-17" aria-hidden="true" tabindex="-1"></a>                    <span class="at">to =</span> <span class="st">&quot;model_data/cs10_setup/run_swat/&quot;</span>,</span>
-<span id="cb157-18"><a href="writing-swat-input-files.html#cb157-18" aria-hidden="true" tabindex="-1"></a>                    <span class="at">overwrite =</span> T)</span></code></pre></div>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="writing-swat-input-files.html#cb187-1" tabindex="-1"></a>sta_files <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="st">&quot;model_data/cs10_setup/optain-cs10/&quot;</span>,</span>
+<span id="cb187-2"><a href="writing-swat-input-files.html#cb187-2" tabindex="-1"></a>             <span class="at">pattern =</span> <span class="st">&quot;sta_&quot;</span>, <span class="at">full.names =</span> T)</span>
+<span id="cb187-3"><a href="writing-swat-input-files.html#cb187-3" tabindex="-1"></a></span>
+<span id="cb187-4"><a href="writing-swat-input-files.html#cb187-4" tabindex="-1"></a>cli_files <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="st">&quot;model_data/cs10_setup/optain-cs10/&quot;</span>, </span>
+<span id="cb187-5"><a href="writing-swat-input-files.html#cb187-5" tabindex="-1"></a>                        <span class="at">pattern =</span> <span class="st">&quot;.cli&quot;</span>, <span class="at">full.names =</span> T)</span>
+<span id="cb187-6"><a href="writing-swat-input-files.html#cb187-6" tabindex="-1"></a></span>
+<span id="cb187-7"><a href="writing-swat-input-files.html#cb187-7" tabindex="-1"></a>input_files <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="st">&quot;model_data/cs10_setup/swat_input/&quot;</span>, </span>
+<span id="cb187-8"><a href="writing-swat-input-files.html#cb187-8" tabindex="-1"></a>                       <span class="at">full.names =</span> T)</span>
+<span id="cb187-9"><a href="writing-swat-input-files.html#cb187-9" tabindex="-1"></a></span>
+<span id="cb187-10"><a href="writing-swat-input-files.html#cb187-10" tabindex="-1"></a>path_to_swat <span class="ot">&lt;-</span> <span class="st">&quot;model_data/cs10_setup/rev60.5.4_64rel.exe&quot;</span></span>
+<span id="cb187-11"><a href="writing-swat-input-files.html#cb187-11" tabindex="-1"></a></span>
+<span id="cb187-12"><a href="writing-swat-input-files.html#cb187-12" tabindex="-1"></a></span>
+<span id="cb187-13"><a href="writing-swat-input-files.html#cb187-13" tabindex="-1"></a>source_files <span class="ot">&lt;-</span> <span class="fu">c</span>(sta_files, cli_files, input_files, path_to_swat)</span>
+<span id="cb187-14"><a href="writing-swat-input-files.html#cb187-14" tabindex="-1"></a></span>
+<span id="cb187-15"><a href="writing-swat-input-files.html#cb187-15" tabindex="-1"></a></span>
+<span id="cb187-16"><a href="writing-swat-input-files.html#cb187-16" tabindex="-1"></a>status <span class="ot">&lt;-</span> <span class="fu">file.copy</span>(<span class="at">from =</span> source_files,</span>
+<span id="cb187-17"><a href="writing-swat-input-files.html#cb187-17" tabindex="-1"></a>                    <span class="at">to =</span> <span class="st">&quot;model_data/cs10_setup/run_swat/&quot;</span>,</span>
+<span id="cb187-18"><a href="writing-swat-input-files.html#cb187-18" tabindex="-1"></a>                    <span class="at">overwrite =</span> T)</span></code></pre></div>
 <p>Lets run some checks on these files</p>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="writing-swat-input-files.html#cb158-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">any</span>(status <span class="sc">==</span> <span class="cn">FALSE</span>)){</span>
-<span id="cb158-2"><a href="writing-swat-input-files.html#cb158-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">warning</span>(<span class="st">&quot;Some files were not copied:&quot;</span>)</span>
-<span id="cb158-3"><a href="writing-swat-input-files.html#cb158-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(source_files[<span class="fu">which</span>(status<span class="sc">==</span><span class="cn">FALSE</span>)])</span>
-<span id="cb158-4"><a href="writing-swat-input-files.html#cb158-4" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb158-5"><a href="writing-swat-input-files.html#cb158-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb158-6"><a href="writing-swat-input-files.html#cb158-6" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(</span>
-<span id="cb158-7"><a href="writing-swat-input-files.html#cb158-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">paste</span>(</span>
-<span id="cb158-8"><a href="writing-swat-input-files.html#cb158-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">length</span>(<span class="fu">which</span>(status)),</span>
-<span id="cb158-9"><a href="writing-swat-input-files.html#cb158-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;of&quot;</span>,</span>
-<span id="cb158-10"><a href="writing-swat-input-files.html#cb158-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">length</span>(source_files),</span>
-<span id="cb158-11"><a href="writing-swat-input-files.html#cb158-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;files were copied into the run folder, amounting to a size of &quot;</span>,</span>
-<span id="cb158-12"><a href="writing-swat-input-files.html#cb158-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>(<span class="fu">sum</span>(<span class="fu">file.info</span>(source_files)<span class="sc">$</span>size <span class="sc">*</span> <span class="fl">1e-6</span>), <span class="dv">2</span>),</span>
-<span id="cb158-13"><a href="writing-swat-input-files.html#cb158-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;megabytes&quot;</span></span>
-<span id="cb158-14"><a href="writing-swat-input-files.html#cb158-14" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb158-15"><a href="writing-swat-input-files.html#cb158-15" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="writing-swat-input-files.html#cb188-1" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">any</span>(status <span class="sc">==</span> <span class="cn">FALSE</span>)){</span>
+<span id="cb188-2"><a href="writing-swat-input-files.html#cb188-2" tabindex="-1"></a>  <span class="fu">warning</span>(<span class="st">&quot;Some files were not copied:&quot;</span>)</span>
+<span id="cb188-3"><a href="writing-swat-input-files.html#cb188-3" tabindex="-1"></a>  <span class="fu">print</span>(source_files[<span class="fu">which</span>(status<span class="sc">==</span><span class="cn">FALSE</span>)])</span>
+<span id="cb188-4"><a href="writing-swat-input-files.html#cb188-4" tabindex="-1"></a>}</span>
+<span id="cb188-5"><a href="writing-swat-input-files.html#cb188-5" tabindex="-1"></a></span>
+<span id="cb188-6"><a href="writing-swat-input-files.html#cb188-6" tabindex="-1"></a><span class="fu">print</span>(</span>
+<span id="cb188-7"><a href="writing-swat-input-files.html#cb188-7" tabindex="-1"></a>  <span class="fu">paste</span>(</span>
+<span id="cb188-8"><a href="writing-swat-input-files.html#cb188-8" tabindex="-1"></a>    <span class="fu">length</span>(<span class="fu">which</span>(status)),</span>
+<span id="cb188-9"><a href="writing-swat-input-files.html#cb188-9" tabindex="-1"></a>    <span class="st">&quot;of&quot;</span>,</span>
+<span id="cb188-10"><a href="writing-swat-input-files.html#cb188-10" tabindex="-1"></a>    <span class="fu">length</span>(source_files),</span>
+<span id="cb188-11"><a href="writing-swat-input-files.html#cb188-11" tabindex="-1"></a>    <span class="st">&quot;files were copied into the run folder, amounting to a size of &quot;</span>,</span>
+<span id="cb188-12"><a href="writing-swat-input-files.html#cb188-12" tabindex="-1"></a>    <span class="fu">round</span>(<span class="fu">sum</span>(<span class="fu">file.info</span>(source_files)<span class="sc">$</span>size <span class="sc">*</span> <span class="fl">1e-6</span>), <span class="dv">2</span>),</span>
+<span id="cb188-13"><a href="writing-swat-input-files.html#cb188-13" tabindex="-1"></a>    <span class="st">&quot;megabytes&quot;</span></span>
+<span id="cb188-14"><a href="writing-swat-input-files.html#cb188-14" tabindex="-1"></a>  )</span>
+<span id="cb188-15"><a href="writing-swat-input-files.html#cb188-15" tabindex="-1"></a>)</span></code></pre></div>
 <p>Now lets run the model to make sure it works</p>
-<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="writing-swat-input-files.html#cb159-1" aria-hidden="true" tabindex="-1"></a><span class="co"># update time sim</span></span>
-<span id="cb159-2"><a href="writing-swat-input-files.html#cb159-2" aria-hidden="true" tabindex="-1"></a>time_sim <span class="ot">&lt;-</span> <span class="fu">readLines</span>(<span class="st">&quot;model_data/cs10_setup/run_swat/time.sim&quot;</span>)</span>
-<span id="cb159-3"><a href="writing-swat-input-files.html#cb159-3" aria-hidden="true" tabindex="-1"></a>time_sim[<span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="st">&quot;       0      2010         0      2011         0  &quot;</span></span>
-<span id="cb159-4"><a href="writing-swat-input-files.html#cb159-4" aria-hidden="true" tabindex="-1"></a><span class="fu">writeLines</span>(<span class="at">text =</span> time_sim, <span class="at">con =</span> <span class="st">&quot;model_data/cs10_setup/run_swat/time.sim&quot;</span>)</span>
-<span id="cb159-5"><a href="writing-swat-input-files.html#cb159-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb159-6"><a href="writing-swat-input-files.html#cb159-6" aria-hidden="true" tabindex="-1"></a>msg <span class="ot">&lt;-</span> processx<span class="sc">::</span><span class="fu">run</span>(<span class="at">command =</span> <span class="st">&quot;rev60.5.4_64rel.exe&quot;</span>,</span>
-<span id="cb159-7"><a href="writing-swat-input-files.html#cb159-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">wd =</span> <span class="st">&quot;model_data/cs10_setup/run_swat/&quot;</span>)</span>
-<span id="cb159-8"><a href="writing-swat-input-files.html#cb159-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb159-9"><a href="writing-swat-input-files.html#cb159-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb159-10"><a href="writing-swat-input-files.html#cb159-10" aria-hidden="true" tabindex="-1"></a>simout <span class="ot">&lt;-</span> <span class="fu">readLines</span>(<span class="st">&quot;model_data/cs10_setup/run_swat/simulation.out&quot;</span>)</span>
-<span id="cb159-11"><a href="writing-swat-input-files.html#cb159-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb159-12"><a href="writing-swat-input-files.html#cb159-12" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">tail</span>(simout), <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="writing-swat-input-files.html#cb189-1" tabindex="-1"></a><span class="co"># update time sim</span></span>
+<span id="cb189-2"><a href="writing-swat-input-files.html#cb189-2" tabindex="-1"></a>time_sim <span class="ot">&lt;-</span> <span class="fu">readLines</span>(<span class="st">&quot;model_data/cs10_setup/run_swat/time.sim&quot;</span>)</span>
+<span id="cb189-3"><a href="writing-swat-input-files.html#cb189-3" tabindex="-1"></a>time_sim[<span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="st">&quot;       0      2010         0      2011         0  &quot;</span></span>
+<span id="cb189-4"><a href="writing-swat-input-files.html#cb189-4" tabindex="-1"></a><span class="fu">writeLines</span>(<span class="at">text =</span> time_sim, <span class="at">con =</span> <span class="st">&quot;model_data/cs10_setup/run_swat/time.sim&quot;</span>)</span>
+<span id="cb189-5"><a href="writing-swat-input-files.html#cb189-5" tabindex="-1"></a></span>
+<span id="cb189-6"><a href="writing-swat-input-files.html#cb189-6" tabindex="-1"></a>msg <span class="ot">&lt;-</span> processx<span class="sc">::</span><span class="fu">run</span>(<span class="at">command =</span> <span class="st">&quot;rev60.5.4_64rel.exe&quot;</span>,</span>
+<span id="cb189-7"><a href="writing-swat-input-files.html#cb189-7" tabindex="-1"></a>              <span class="at">wd =</span> <span class="st">&quot;model_data/cs10_setup/run_swat/&quot;</span>)</span>
+<span id="cb189-8"><a href="writing-swat-input-files.html#cb189-8" tabindex="-1"></a></span>
+<span id="cb189-9"><a href="writing-swat-input-files.html#cb189-9" tabindex="-1"></a></span>
+<span id="cb189-10"><a href="writing-swat-input-files.html#cb189-10" tabindex="-1"></a>simout <span class="ot">&lt;-</span> <span class="fu">readLines</span>(<span class="st">&quot;model_data/cs10_setup/run_swat/simulation.out&quot;</span>)</span>
+<span id="cb189-11"><a href="writing-swat-input-files.html#cb189-11" tabindex="-1"></a></span>
+<span id="cb189-12"><a href="writing-swat-input-files.html#cb189-12" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">tail</span>(simout), <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <p>It will be useful to test SWAT+ along our journey, so we will reuse this code in the function <code>test_swat()</code></p>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="writing-swat-input-files.html#cb160-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;model_data/code/test_swat.R&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="writing-swat-input-files.html#cb190-1" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;model_data/code/test_swat.R&quot;</span>)</span></code></pre></div>
 <p>We can now continue with our final buildR step</p>
 </div>
 <div id="link-aquifers-and-channels-with-geomorphic-flow" class="section level2 hasAnchor" number="4.3">
@@ -527,21 +565,21 @@ div.csl-indent {
 <p>A SWATBuildR model setup only has one single aquifer (in its current version). This aquifer is linked with all channels through a channel-aquifer-link file (<code>aqu_cha.lin</code>) in order to maintain recharge from the aquifer into the channels using the geomorphic flow option of SWAT+.</p>
 <p>The required input file cannot be written with the SWAT+Editor. <strong>Therefore it has to be generated in a step after writing the model text input files with the SWAT+Editor.</strong></p>
 <p>Path of the <code>TxtInOut</code> folder (project folder where the SWAT+ text files are written with the SWAT+Editor)</p>
-<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="writing-swat-input-files.html#cb161-1" aria-hidden="true" tabindex="-1"></a>txt_path <span class="ot">&lt;-</span> <span class="st">&#39;model_data/cs10_setup/swat_input/&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="writing-swat-input-files.html#cb191-1" tabindex="-1"></a>txt_path <span class="ot">&lt;-</span> <span class="st">&#39;model_data/cs10_setup/swat_input/&#39;</span></span></code></pre></div>
 <p>Linking the aquifer to the channels</p>
-<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="writing-swat-input-files.html#cb162-1" aria-hidden="true" tabindex="-1"></a>project_path <span class="ot">&lt;-</span> <span class="st">&#39;model_data/cs10_setup&#39;</span></span>
-<span id="cb162-2"><a href="writing-swat-input-files.html#cb162-2" aria-hidden="true" tabindex="-1"></a>project_name <span class="ot">&lt;-</span> <span class="st">&#39;optain-cs10&#39;</span></span>
-<span id="cb162-3"><a href="writing-swat-input-files.html#cb162-3" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&#39;model_data/swat_buildR/init.R&#39;</span>)</span>
-<span id="cb162-4"><a href="writing-swat-input-files.html#cb162-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb162-5"><a href="writing-swat-input-files.html#cb162-5" aria-hidden="true" tabindex="-1"></a><span class="fu">link_aquifer_channels</span>(txt_path)</span></code></pre></div>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="writing-swat-input-files.html#cb192-1" tabindex="-1"></a>project_path <span class="ot">&lt;-</span> <span class="st">&#39;model_data/cs10_setup&#39;</span></span>
+<span id="cb192-2"><a href="writing-swat-input-files.html#cb192-2" tabindex="-1"></a>project_name <span class="ot">&lt;-</span> <span class="st">&#39;optain-cs10&#39;</span></span>
+<span id="cb192-3"><a href="writing-swat-input-files.html#cb192-3" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&#39;model_data/swat_buildR/init.R&#39;</span>)</span>
+<span id="cb192-4"><a href="writing-swat-input-files.html#cb192-4" tabindex="-1"></a></span>
+<span id="cb192-5"><a href="writing-swat-input-files.html#cb192-5" tabindex="-1"></a><span class="fu">link_aquifer_channels</span>(txt_path)</span></code></pre></div>
 <p>This created the file <code>aqu_cha.lin</code> and changed <code>file.cio</code> to point to it (row 16, column 3)</p>
 <p>Let us test to see if SWAT+ still runs</p>
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="writing-swat-input-files.html#cb163-1" aria-hidden="true" tabindex="-1"></a>simout <span class="ot">&lt;-</span> <span class="fu">test_swat</span>()</span>
-<span id="cb163-2"><a href="writing-swat-input-files.html#cb163-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb163-3"><a href="writing-swat-input-files.html#cb163-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">tail</span>(simout), <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="writing-swat-input-files.html#cb193-1" tabindex="-1"></a>simout <span class="ot">&lt;-</span> <span class="fu">test_swat</span>()</span>
+<span id="cb193-2"><a href="writing-swat-input-files.html#cb193-2" tabindex="-1"></a></span>
+<span id="cb193-3"><a href="writing-swat-input-files.html#cb193-3" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">tail</span>(simout), <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <p>Success.</p>
-<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="writing-swat-input-files.html#cb164-1" aria-hidden="true" tabindex="-1"></a><span class="co"># remove the swat+ run</span></span>
-<span id="cb164-2"><a href="writing-swat-input-files.html#cb164-2" aria-hidden="true" tabindex="-1"></a><span class="fu">unlink</span>(<span class="st">&quot;model_data/cs10_setup/run_swat/&quot;</span>, <span class="at">recursive =</span> T)</span></code></pre></div>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="writing-swat-input-files.html#cb194-1" tabindex="-1"></a><span class="co"># remove the swat+ run</span></span>
+<span id="cb194-2"><a href="writing-swat-input-files.html#cb194-2" tabindex="-1"></a><span class="fu">unlink</span>(<span class="st">&quot;model_data/cs10_setup/run_swat/&quot;</span>, <span class="at">recursive =</span> T)</span></code></pre></div>
 
 </div>
 </div>
