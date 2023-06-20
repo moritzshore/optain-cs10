@@ -43,10 +43,6 @@ fig:apiloadropti
 fig:apicalc09
 fig:apicalc11
 fig:apicalc13
-fig:lapsefiggy
-fig:tlapsfiggy
-fig:docplotclimate
-fig:docplotmonthlysnow
 input-data-preparation
 digital-elevation-model
 high-resolution-dem
@@ -228,10 +224,3 @@ initializing-farmr
 calculating-antecedent-precipitation-index
 scheduling-operations
 write-operations
-model-verification
-stage-1-analysis-of-simulated-climate-variables
-lapse-rate
-climate-variables
-snowfall-and-snowmelt
-stage-2-simulation-of-management-operations
-stage-3-analysis-of-unconstrained-plant-growth
