@@ -224,3 +224,5 @@ initializing-farmr
 calculating-antecedent-precipitation-index
 scheduling-operations
 write-operations
+fig:fssoilmapplot
+fig:fshsgmap
