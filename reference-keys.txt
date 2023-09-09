@@ -37,6 +37,8 @@ fig:loggerplot10
 fig:loggerplot11
 fig:loggerplot13
 fig:loggerplotclean11
+fig:fssoilmapplot
+fig:fshsgmap
 fig:hsgbtwcplot
 fig:apiguess
 fig:apiloadropti
@@ -208,6 +210,7 @@ checking-changes
 writing-modified-changes
 re-enabling-tiledrain
 testing-swat
+setting-soil-phosphorous-initial-conditions
 swatfarmr-management-schedules
 pre-processing-crop-rotation
 input-files
@@ -224,5 +227,3 @@ initializing-farmr
 calculating-antecedent-precipitation-index
 scheduling-operations
 write-operations
-fig:fssoilmapplot
-fig:fshsgmap
