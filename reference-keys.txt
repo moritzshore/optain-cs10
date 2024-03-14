@@ -227,3 +227,15 @@ initializing-farmr
 calculating-antecedent-precipitation-index
 scheduling-operations
 write-operations
+climate-scenarios
+introduction-3
+setup
+re-calculating-management
+executing-model
+processing-results
+plotting-results
+saving-rds
+overview-maps
+setup-1
+packages
+computer-specs

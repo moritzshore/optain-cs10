@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Section 12 Climate Scenarios | The OPTAIN Project: Case study 10</title>
+  <meta name="description" content="A documentation of the project setup for OPTAIN case study 10" />
+  <meta name="generator" content="bookdown 0.38 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Section 12 Climate Scenarios | The OPTAIN Project: Case study 10" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://moritzshore.github.io/optain-cs10/figures/banner.png" />
+  <meta property="og:description" content="A documentation of the project setup for OPTAIN case study 10" />
+  <meta name="github-repo" content="moritzshore/optain-cs10" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Section 12 Climate Scenarios | The OPTAIN Project: Case study 10" />
+  
+  <meta name="twitter:description" content="A documentation of the project setup for OPTAIN case study 10" />
+  <meta name="twitter:image" content="https://moritzshore.github.io/optain-cs10/figures/banner.png" />
+
+<meta name="author" content="Moritz Shore, Csilla Farkas" />
+
+
+<meta name="date" content="2024-03-14" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="swatfarmr-management-schedules.html"/>
+<link rel="next" href="overview-maps.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.2.1/leaflet.js"></script>
+<script src="libs/leaflet-providers-2.0.0/leaflet-providers_2.0.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.2.1/leaflet-providers-plugin.js"></script>
+<script src="libs/tile1_rasterlayer_9b0ae3-1/data_stars_tile1_rasterlayer19a82d.txt"></script>
+<script src="libs/joda-0.0.1/joda.js"></script>
+<script src="libs/joda-0.0.1/addImageQuery-bindings.js"></script>
+<script src="libs/clipboard-0.0.1/setClipboardText.js"></script>
+<link href="libs/HomeButton-0.0.1/home-button.css" rel="stylesheet" />
+<script src="libs/HomeButton-0.0.1/home-button.js"></script>
+<script src="libs/HomeButton-0.0.1/easy-button-src.min.js"></script>
+<link href="libs/mapviewCSS-0.0.1/mapview-popup.css" rel="stylesheet" />
+<link href="libs/mapviewCSS-0.0.1/mapview.css" rel="stylesheet" />
+<script src="libs/tile2_rasterlayer_723098-1/data_stars_tile2_rasterlayerfc6d13.txt"></script>
+<script src="libs/dem_layer_7f54b0-1/data_stars_dem_layer167049.txt"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.32/datatables.js"></script>
+<link href="libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
+<link href="libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+<script src="libs/stream_crop_5271ca-1/data_stars_stream_crop2cdf60.txt"></script>
+<script src="libs/ws_c3aefd-1/data_stars_wse4165c.txt"></script>
+<script src="libs/rglWebGL-binding-1.3.1/rglWebGL.js"></script>
+<link href="libs/rglwidgetClass-1.3.1/rgl.css" rel="stylesheet" />
+<script src="libs/rglwidgetClass-1.3.1/rglClass.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.1/utils.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.1/buffer.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.1/subscenes.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.1/shaders.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.1/shadersrc.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.1/textures.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.1/projection.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.1/mouse.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.1/init.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.1/pieces.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.1/draw.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.1/controls.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.1/selection.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.1/rglTimer.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.1/pretty.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.1/axes.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.1/animation.src.js"></script>
+<script src="libs/CanvasMatrix4-1.3.1/CanvasMatrix.src.js"></script>
+<script src="libs/plotly-binding-4.10.4/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+<link href="libs/dt-ext-scroller-1.13.6/css/scroller.dataTables.min.css" rel="stylesheet" />
+<script src="libs/dt-ext-scroller-1.13.6/js/dataTables.scroller.min.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">The OPTAIN-CS10 Project</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="1" data-path="input-data-preparation.html"><a href="input-data-preparation.html"><i class="fa fa-check"></i><b>1</b> Input Data Preparation</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="input-data-preparation.html"><a href="input-data-preparation.html#digital-elevation-model"><i class="fa fa-check"></i><b>1.1</b> Digital Elevation Model</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="input-data-preparation.html"><a href="input-data-preparation.html#high-resolution-dem"><i class="fa fa-check"></i><b>1.1.1</b> High resolution DEM</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="input-data-preparation.html"><a href="input-data-preparation.html#soil-data"><i class="fa fa-check"></i><b>1.2</b> Soil Data</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="input-data-preparation.html"><a href="input-data-preparation.html#high-resolution-soil-maps"><i class="fa fa-check"></i><b>1.2.1</b> High resolution soil maps</a></li>
+<li class="chapter" data-level="1.2.2" data-path="input-data-preparation.html"><a href="input-data-preparation.html#data-source"><i class="fa fa-check"></i><b>1.2.2</b> Data source</a></li>
+<li class="chapter" data-level="1.2.3" data-path="input-data-preparation.html"><a href="input-data-preparation.html#combining-jordsmonn-and-loesmasser"><i class="fa fa-check"></i><b>1.2.3</b> Combining Jordsmonn and Loesmasser</a></li>
+<li class="chapter" data-level="1.2.4" data-path="input-data-preparation.html"><a href="input-data-preparation.html#detailed-soil-map"><i class="fa fa-check"></i><b>1.2.4</b> Detailed Soil Map</a></li>
+<li class="chapter" data-level="1.2.5" data-path="input-data-preparation.html"><a href="input-data-preparation.html#reclassification"><i class="fa fa-check"></i><b>1.2.5</b> Reclassification</a></li>
+<li class="chapter" data-level="1.2.6" data-path="input-data-preparation.html"><a href="input-data-preparation.html#simplifying-geometries"><i class="fa fa-check"></i><b>1.2.6</b> Simplifying Geometries</a></li>
+<li class="chapter" data-level="1.2.7" data-path="input-data-preparation.html"><a href="input-data-preparation.html#writing-vector-layer"><i class="fa fa-check"></i><b>1.2.7</b> Writing vector layer</a></li>
+<li class="chapter" data-level="1.2.8" data-path="input-data-preparation.html"><a href="input-data-preparation.html#lookup-table"><i class="fa fa-check"></i><b>1.2.8</b> Lookup Table</a></li>
+<li class="chapter" data-level="1.2.9" data-path="input-data-preparation.html"><a href="input-data-preparation.html#rasterization"><i class="fa fa-check"></i><b>1.2.9</b> Rasterization</a></li>
+<li class="chapter" data-level="1.2.10" data-path="input-data-preparation.html"><a href="input-data-preparation.html#usersoil"><i class="fa fa-check"></i><b>1.2.10</b> Usersoil</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="input-data-preparation.html"><a href="input-data-preparation.html#watershed-boundary"><i class="fa fa-check"></i><b>1.3</b> Watershed Boundary</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="input-data-preparation.html"><a href="input-data-preparation.html#hydrological-preperation"><i class="fa fa-check"></i><b>1.3.1</b> Hydrological preperation</a></li>
+<li class="chapter" data-level="1.3.2" data-path="input-data-preparation.html"><a href="input-data-preparation.html#pour-points"><i class="fa fa-check"></i><b>1.3.2</b> Pour Points</a></li>
+<li class="chapter" data-level="1.3.3" data-path="input-data-preparation.html"><a href="input-data-preparation.html#streams"><i class="fa fa-check"></i><b>1.3.3</b> Streams</a></li>
+<li class="chapter" data-level="1.3.4" data-path="input-data-preparation.html"><a href="input-data-preparation.html#watershed-delineation"><i class="fa fa-check"></i><b>1.3.4</b> Watershed Delineation</a></li>
+<li class="chapter" data-level="1.3.5" data-path="input-data-preparation.html"><a href="input-data-preparation.html#bonus-section"><i class="fa fa-check"></i><b>1.3.5</b> Bonus Section</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="input-data-preparation.html"><a href="input-data-preparation.html#land-object-input"><i class="fa fa-check"></i><b>1.4</b> Land object input</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="input-data-preparation.html"><a href="input-data-preparation.html#data-sources"><i class="fa fa-check"></i><b>1.4.1</b> Data sources</a></li>
+<li class="chapter" data-level="1.4.2" data-path="input-data-preparation.html"><a href="input-data-preparation.html#delineation-of-land-objects"><i class="fa fa-check"></i><b>1.4.2</b> Delineation of land objects</a></li>
+<li class="chapter" data-level="1.4.3" data-path="input-data-preparation.html"><a href="input-data-preparation.html#standing-water-bodies-and-the-landuse-type-watr"><i class="fa fa-check"></i><b>1.4.3</b> Standing water bodies and the landuse type = ‘watr’</a></li>
+<li class="chapter" data-level="1.4.4" data-path="input-data-preparation.html"><a href="input-data-preparation.html#tile-drainage-option"><i class="fa fa-check"></i><b>1.4.4</b> Tile drainage option</a></li>
+<li class="chapter" data-level="1.4.5" data-path="input-data-preparation.html"><a href="input-data-preparation.html#existing-and-potential-structures-to-retain-water-and-nutrients"><i class="fa fa-check"></i><b>1.4.5</b> Existing and potential structures to retain water and nutrients</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="input-data-preparation.html"><a href="input-data-preparation.html#channel-object-input"><i class="fa fa-check"></i><b>1.5</b> Channel object input</a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="input-data-preparation.html"><a href="input-data-preparation.html#data-sources-and-data-processing"><i class="fa fa-check"></i><b>1.5.1</b> Data sources and data processing</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="input-data-preparation.html"><a href="input-data-preparation.html#point-sources-locations"><i class="fa fa-check"></i><b>1.6</b> Point sources locations</a>
+<ul>
+<li class="chapter" data-level="1.6.1" data-path="input-data-preparation.html"><a href="input-data-preparation.html#point-source-source-data"><i class="fa fa-check"></i><b>1.6.1</b> Point source source data</a></li>
+<li class="chapter" data-level="1.6.2" data-path="input-data-preparation.html"><a href="input-data-preparation.html#point-source-data-files"><i class="fa fa-check"></i><b>1.6.2</b> Point source data files</a></li>
+</ul></li>
+<li class="chapter" data-level="1.7" data-path="input-data-preparation.html"><a href="input-data-preparation.html#aquifer-objects"><i class="fa fa-check"></i><b>1.7</b> Aquifer Objects</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html"><i class="fa fa-check"></i><b>2</b> Model setup with SWATBuildR</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#buildr-setup"><i class="fa fa-check"></i><b>2.1</b> BuildR Setup</a></li>
+<li class="chapter" data-level="2.2" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#processing-input-data"><i class="fa fa-check"></i><b>2.2</b> Processing input data</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#high-resolution-digital-elevation-model-dem"><i class="fa fa-check"></i><b>2.2.1</b> High-Resolution Digital Elevation Model (DEM)</a></li>
+<li class="chapter" data-level="2.2.2" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#processing-the-basin-boundary"><i class="fa fa-check"></i><b>2.2.2</b> Processing the Basin Boundary</a></li>
+<li class="chapter" data-level="2.2.3" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#processing-the-land-layer"><i class="fa fa-check"></i><b>2.2.3</b> Processing the Land layer</a></li>
+<li class="chapter" data-level="2.2.4" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#processing-the-channels"><i class="fa fa-check"></i><b>2.2.4</b> Processing the Channels</a></li>
+<li class="chapter" data-level="2.2.5" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#processing-the-dem"><i class="fa fa-check"></i><b>2.2.5</b> Processing the DEM</a></li>
+<li class="chapter" data-level="2.2.6" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#processing-soil-data"><i class="fa fa-check"></i><b>2.2.6</b> Processing Soil Data</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#calculating-contiguous-object-connectivity"><i class="fa fa-check"></i><b>2.3</b> Calculating Contiguous Object Connectivity</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#calculating-land-unit-connectivity"><i class="fa fa-check"></i><b>2.3.1</b> Calculating land unit connectivity</a></li>
+<li class="chapter" data-level="2.3.2" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#calculating-channelreservoir-connectivity"><i class="fa fa-check"></i><b>2.3.2</b> Calculating channel/reservoir connectivity</a></li>
+<li class="chapter" data-level="2.3.3" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#checking-the-water-objects-for-infinite-loops"><i class="fa fa-check"></i><b>2.3.3</b> Checking the water objects for infinite loops</a></li>
+<li class="chapter" data-level="2.3.4" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#terrain-properties"><i class="fa fa-check"></i><b>2.3.4</b> Terrain properties</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#generate-swat-input"><i class="fa fa-check"></i><b>2.4</b> Generate SWAT+ input</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#generate-land-object-swat-input-tables"><i class="fa fa-check"></i><b>2.4.1</b> Generate land object SWAT+ input tables</a></li>
+<li class="chapter" data-level="2.4.2" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#generate-water-object-swat-input-tables"><i class="fa fa-check"></i><b>2.4.2</b> Generate water object SWAT+ input tables</a></li>
+<li class="chapter" data-level="2.4.3" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#build-aquifer-input"><i class="fa fa-check"></i><b>2.4.3</b> Build aquifer input</a></li>
+<li class="chapter" data-level="2.4.4" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#add-point-source-inputs"><i class="fa fa-check"></i><b>2.4.4</b> Add point source inputs</a></li>
+<li class="chapter" data-level="2.4.5" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#create-swat-sqlite-database"><i class="fa fa-check"></i><b>2.4.5</b> Create SWAT+ sqlite database</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="climate-inputs-and-weather-generator.html"><a href="climate-inputs-and-weather-generator.html"><i class="fa fa-check"></i><b>3</b> Climate inputs and weather generator</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="climate-inputs-and-weather-generator.html"><a href="climate-inputs-and-weather-generator.html#preparation-and-loading-data"><i class="fa fa-check"></i><b>3.1</b> Preparation and loading data</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="climate-inputs-and-weather-generator.html"><a href="climate-inputs-and-weather-generator.html#required-packages"><i class="fa fa-check"></i><b>3.1.1</b> Required packages</a></li>
+<li class="chapter" data-level="3.1.2" data-path="climate-inputs-and-weather-generator.html"><a href="climate-inputs-and-weather-generator.html#load-in-the-files-and-load-svatools-template"><i class="fa fa-check"></i><b>3.1.2</b> Load in the file(s) and load svatools template</a></li>
+<li class="chapter" data-level="3.1.3" data-path="climate-inputs-and-weather-generator.html"><a href="climate-inputs-and-weather-generator.html#proof-the-station"><i class="fa fa-check"></i><b>3.1.3</b> Proof the station</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="climate-inputs-and-weather-generator.html"><a href="climate-inputs-and-weather-generator.html#creating-the-weather-generator"><i class="fa fa-check"></i><b>3.2</b> Creating the weather generator</a></li>
+<li class="chapter" data-level="3.3" data-path="climate-inputs-and-weather-generator.html"><a href="climate-inputs-and-weather-generator.html#adding-weather-data-to-swat-project"><i class="fa fa-check"></i><b>3.3</b> Adding weather data to SWAT+ project</a></li>
+<li class="chapter" data-level="3.4" data-path="climate-inputs-and-weather-generator.html"><a href="climate-inputs-and-weather-generator.html#adding-atmospheric-deposition"><i class="fa fa-check"></i><b>3.4</b> Adding Atmospheric deposition</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="writing-swat-input-files.html"><a href="writing-swat-input-files.html"><i class="fa fa-check"></i><b>4</b> Writing SWAT+ Input Files</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="writing-swat-input-files.html"><a href="writing-swat-input-files.html#writing-input-files-via-python"><i class="fa fa-check"></i><b>4.1</b> Writing Input Files via Python</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="writing-swat-input-files.html"><a href="writing-swat-input-files.html#swat-test-run"><i class="fa fa-check"></i><b>4.1.1</b> SWAT+ Test Run</a></li>
+<li class="chapter" data-level="4.1.2" data-path="writing-swat-input-files.html"><a href="writing-swat-input-files.html#link-aquifers-and-channels-with-geomorphic-flow"><i class="fa fa-check"></i><b>4.1.2</b> Link aquifers and channels with geomorphic flow</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="writing-swat-input-files.html"><a href="writing-swat-input-files.html#writing-the-input-files-with-the-swat-editor"><i class="fa fa-check"></i><b>4.2</b> Writing the input files with the SWAT Editor</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="writing-swat-input-files.html"><a href="writing-swat-input-files.html#loading-the-project-in-swat-editor"><i class="fa fa-check"></i><b>4.2.1</b> Loading the project in SWAT+ Editor</a></li>
+<li class="chapter" data-level="4.2.2" data-path="writing-swat-input-files.html"><a href="writing-swat-input-files.html#writing-input-files"><i class="fa fa-check"></i><b>4.2.2</b> Writing input files</a></li>
+<li class="chapter" data-level="4.2.3" data-path="writing-swat-input-files.html"><a href="writing-swat-input-files.html#post-write-changes"><i class="fa fa-check"></i><b>4.2.3</b> Post-write Changes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="crop-map-generation.html"><a href="crop-map-generation.html"><i class="fa fa-check"></i><b>5</b> Crop Map Generation</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="crop-map-generation.html"><a href="crop-map-generation.html#calculating-field-area"><i class="fa fa-check"></i><b>5.1</b> Calculating Field Area</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="crop-map-generation.html"><a href="crop-map-generation.html#calculate-field-area-and-assign-ids"><i class="fa fa-check"></i><b>5.1.1</b> Calculate Field Area and Assign IDs</a></li>
+<li class="chapter" data-level="5.1.2" data-path="crop-map-generation.html"><a href="crop-map-generation.html#calculate-field-area-and-assign-ids-1"><i class="fa fa-check"></i><b>5.1.2</b> Calculate Field area and assign IDs</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="crop-map-generation.html"><a href="crop-map-generation.html#generating-the-crop-rotation"><i class="fa fa-check"></i><b>5.2</b> Generating the Crop Rotation</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="crop-map-generation.html"><a href="crop-map-generation.html#tidy-up-the-source-data"><i class="fa fa-check"></i><b>5.2.1</b> Tidy up the source data:</a></li>
+<li class="chapter" data-level="5.2.2" data-path="crop-map-generation.html"><a href="crop-map-generation.html#tidy-up-the-buildr-output"><i class="fa fa-check"></i><b>5.2.2</b> Tidy up the BuildR output</a></li>
+<li class="chapter" data-level="5.2.3" data-path="crop-map-generation.html"><a href="crop-map-generation.html#field-classification"><i class="fa fa-check"></i><b>5.2.3</b> Field classification</a></li>
+<li class="chapter" data-level="5.2.4" data-path="crop-map-generation.html"><a href="crop-map-generation.html#extrapolating-the-crop-rotation"><i class="fa fa-check"></i><b>5.2.4</b> Extrapolating the Crop Rotation</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="crop-map-generation.html"><a href="crop-map-generation.html#merging-crop-rotation-with-buildr-output"><i class="fa fa-check"></i><b>5.3</b> Merging crop rotation with BuildR output</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="landuse.lum-update.html"><a href="landuse.lum-update.html"><i class="fa fa-check"></i><b>6</b> Landuse.lum update</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="landuse.lum-update.html"><a href="landuse.lum-update.html#data-preperation"><i class="fa fa-check"></i><b>6.1</b> Data preperation</a></li>
+<li class="chapter" data-level="6.2" data-path="landuse.lum-update.html"><a href="landuse.lum-update.html#assigning-landuse-values"><i class="fa fa-check"></i><b>6.2</b> Assigning landuse values</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="landuse.lum-update.html"><a href="landuse.lum-update.html#setting-cal_group"><i class="fa fa-check"></i><b>6.2.1</b> Setting <code>cal_group</code></a></li>
+<li class="chapter" data-level="6.2.2" data-path="landuse.lum-update.html"><a href="landuse.lum-update.html#setting-plnt_com"><i class="fa fa-check"></i><b>6.2.2</b> Setting <code>plnt_com</code></a></li>
+<li class="chapter" data-level="6.2.3" data-path="landuse.lum-update.html"><a href="landuse.lum-update.html#setting-mgt"><i class="fa fa-check"></i><b>6.2.3</b> Setting <code>mgt</code></a></li>
+<li class="chapter" data-level="6.2.4" data-path="landuse.lum-update.html"><a href="landuse.lum-update.html#setting-urb_ro"><i class="fa fa-check"></i><b>6.2.4</b> Setting <code>urb_ro</code></a></li>
+<li class="chapter" data-level="6.2.5" data-path="landuse.lum-update.html"><a href="landuse.lum-update.html#setting-urban"><i class="fa fa-check"></i><b>6.2.5</b> Setting <code>urban</code></a></li>
+<li class="chapter" data-level="6.2.6" data-path="landuse.lum-update.html"><a href="landuse.lum-update.html#setting-mannings-n-ovn"><i class="fa fa-check"></i><b>6.2.6</b> Setting Manning’s n (<code>ovn</code>)</a></li>
+<li class="chapter" data-level="6.2.7" data-path="landuse.lum-update.html"><a href="landuse.lum-update.html#setting-cn2"><i class="fa fa-check"></i><b>6.2.7</b> Setting <code>cn2</code>:</a></li>
+<li class="chapter" data-level="6.2.8" data-path="landuse.lum-update.html"><a href="landuse.lum-update.html#setting-cons_prac"><i class="fa fa-check"></i><b>6.2.8</b> Setting <code>cons_prac</code></a></li>
+<li class="chapter" data-level="6.2.9" data-path="landuse.lum-update.html"><a href="landuse.lum-update.html#setting-tile"><i class="fa fa-check"></i><b>6.2.9</b> Setting <code>tile</code></a></li>
+<li class="chapter" data-level="6.2.10" data-path="landuse.lum-update.html"><a href="landuse.lum-update.html#setting-sep"><i class="fa fa-check"></i><b>6.2.10</b> Setting <code>sep</code></a></li>
+<li class="chapter" data-level="6.2.11" data-path="landuse.lum-update.html"><a href="landuse.lum-update.html#setting-vfs"><i class="fa fa-check"></i><b>6.2.11</b> Setting <code>vfs</code></a></li>
+<li class="chapter" data-level="6.2.12" data-path="landuse.lum-update.html"><a href="landuse.lum-update.html#setting-grww"><i class="fa fa-check"></i><b>6.2.12</b> Setting <code>grww</code></a></li>
+<li class="chapter" data-level="6.2.13" data-path="landuse.lum-update.html"><a href="landuse.lum-update.html#setting-bmp"><i class="fa fa-check"></i><b>6.2.13</b> Setting <code>bmp</code></a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="landuse.lum-update.html"><a href="landuse.lum-update.html#writing-changes"><i class="fa fa-check"></i><b>6.3</b> Writing Changes</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="field-site-loggers.html"><a href="field-site-loggers.html"><i class="fa fa-check"></i><b>7</b> Field Site Loggers</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="field-site-loggers.html"><a href="field-site-loggers.html#introduction-1"><i class="fa fa-check"></i><b>7.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="field-site-loggers.html"><a href="field-site-loggers.html#prerequisites"><i class="fa fa-check"></i><b>7.1.1</b> Prerequisites</a></li>
+<li class="chapter" data-level="7.1.2" data-path="field-site-loggers.html"><a href="field-site-loggers.html#locations"><i class="fa fa-check"></i><b>7.1.2</b> Locations</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="field-site-loggers.html"><a href="field-site-loggers.html#data-processing"><i class="fa fa-check"></i><b>7.2</b> Data Processing</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="field-site-loggers.html"><a href="field-site-loggers.html#loading-data"><i class="fa fa-check"></i><b>7.2.1</b> Loading Data</a></li>
+<li class="chapter" data-level="7.2.2" data-path="field-site-loggers.html"><a href="field-site-loggers.html#data-re-structuring"><i class="fa fa-check"></i><b>7.2.2</b> Data Re-structuring</a></li>
+<li class="chapter" data-level="7.2.3" data-path="field-site-loggers.html"><a href="field-site-loggers.html#summarize-to-daily-means"><i class="fa fa-check"></i><b>7.2.3</b> Summarize to Daily Means</a></li>
+<li class="chapter" data-level="7.2.4" data-path="field-site-loggers.html"><a href="field-site-loggers.html#including-air-temperature-and-precipitation-data"><i class="fa fa-check"></i><b>7.2.4</b> Including Air Temperature and Precipitation Data</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="field-site-loggers.html"><a href="field-site-loggers.html#data-quality-check"><i class="fa fa-check"></i><b>7.3</b> Data quality check</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="field-site-loggers.html"><a href="field-site-loggers.html#logger-600409-deep-rocky-sand"><i class="fa fa-check"></i><b>7.3.1</b> Logger 600409 “Deep Rocky Sand”</a></li>
+<li class="chapter" data-level="7.3.2" data-path="field-site-loggers.html"><a href="field-site-loggers.html#logger-600410-tormods-farm"><i class="fa fa-check"></i><b>7.3.2</b> Logger 600410 “Tormods farm”</a></li>
+<li class="chapter" data-level="7.3.3" data-path="field-site-loggers.html"><a href="field-site-loggers.html#logger-600411-john-ivar-lower-area"><i class="fa fa-check"></i><b>7.3.3</b> Logger 600411 “John Ivar Lower Area”</a></li>
+<li class="chapter" data-level="7.3.4" data-path="field-site-loggers.html"><a href="field-site-loggers.html#logger-600413-john-ivar-behind-the-barn"><i class="fa fa-check"></i><b>7.3.4</b> Logger 600413 “John Ivar behind the barn”</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="field-site-loggers.html"><a href="field-site-loggers.html#data-cleanup"><i class="fa fa-check"></i><b>7.4</b> Data Cleanup</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="field-site-loggers.html"><a href="field-site-loggers.html#general-cleanup"><i class="fa fa-check"></i><b>7.4.1</b> General cleanup</a></li>
+<li class="chapter" data-level="7.4.2" data-path="field-site-loggers.html"><a href="field-site-loggers.html#logger-specific-cleanup"><i class="fa fa-check"></i><b>7.4.2</b> Logger specific cleanup</a></li>
+<li class="chapter" data-level="7.4.3" data-path="field-site-loggers.html"><a href="field-site-loggers.html#saving-the-cleaned-data"><i class="fa fa-check"></i><b>7.4.3</b> Saving the cleaned data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="field-site-properties.html"><a href="field-site-properties.html"><i class="fa fa-check"></i><b>8</b> Field Site Properties</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="field-site-properties.html"><a href="field-site-properties.html#determining-the-hsg-group-of-the-logger-sites"><i class="fa fa-check"></i><b>8.1</b> Determining the HSG group of the logger sites</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html"><i class="fa fa-check"></i><b>9</b> Antecedent Precipitation Index</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html#introduction-2"><i class="fa fa-check"></i><b>9.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html#pre-requirements"><i class="fa fa-check"></i><b>9.1.1</b> Pre-requirements</a></li>
+<li class="chapter" data-level="9.1.2" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html#setting-up-python-for-rrmarkdown"><i class="fa fa-check"></i><b>9.1.2</b> Setting up Python for R/Rmarkdown</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html#antecedent-precipitation-index-1"><i class="fa fa-check"></i><b>9.2</b> Antecedent Precipitation Index</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html#loading-data-1"><i class="fa fa-check"></i><b>9.2.1</b> Loading data</a></li>
+<li class="chapter" data-level="9.2.2" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html#calculating-the-total-water-content"><i class="fa fa-check"></i><b>9.2.2</b> Calculating the total water content</a></li>
+<li class="chapter" data-level="9.2.3" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html#defining-api-model"><i class="fa fa-check"></i><b>9.2.3</b> Defining API model</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html#conclusions"><i class="fa fa-check"></i><b>9.3</b> Conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="model-parameterization.html"><a href="model-parameterization.html"><i class="fa fa-check"></i><b>10</b> Model Parameterization</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="model-parameterization.html"><a href="model-parameterization.html#parameter-changes"><i class="fa fa-check"></i><b>10.1</b> Parameter Changes</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="model-parameterization.html"><a href="model-parameterization.html#channel-parameters-revised"><i class="fa fa-check"></i><b>10.1.1</b> Channel parameters revised</a></li>
+<li class="chapter" data-level="10.1.2" data-path="model-parameterization.html"><a href="model-parameterization.html#crop-parameters-verified"><i class="fa fa-check"></i><b>10.1.2</b> Crop parameters verified</a></li>
+<li class="chapter" data-level="10.1.3" data-path="model-parameterization.html"><a href="model-parameterization.html#soil-physical-parameters-in-final-form"><i class="fa fa-check"></i><b>10.1.3</b> Soil physical parameters in final form</a></li>
+<li class="chapter" data-level="10.1.4" data-path="model-parameterization.html"><a href="model-parameterization.html#soil-chemical-parameters-in-final-form"><i class="fa fa-check"></i><b>10.1.4</b> Soil chemical parameters in final form</a></li>
+<li class="chapter" data-level="10.1.5" data-path="model-parameterization.html"><a href="model-parameterization.html#impoundment-parameters-defined"><i class="fa fa-check"></i><b>10.1.5</b> Impoundment parameters defined</a></li>
+<li class="chapter" data-level="10.1.6" data-path="model-parameterization.html"><a href="model-parameterization.html#water-diversions-defined"><i class="fa fa-check"></i><b>10.1.6</b> Water diversions defined</a></li>
+<li class="chapter" data-level="10.1.7" data-path="model-parameterization.html"><a href="model-parameterization.html#point-sources-parameters-added"><i class="fa fa-check"></i><b>10.1.7</b> Point sources parameters added</a></li>
+<li class="chapter" data-level="10.1.8" data-path="model-parameterization.html"><a href="model-parameterization.html#tile-drainage-parameters-defined"><i class="fa fa-check"></i><b>10.1.8</b> Tile drainage parameters defined</a></li>
+<li class="chapter" data-level="10.1.9" data-path="model-parameterization.html"><a href="model-parameterization.html#atmospheric-deposition-defined"><i class="fa fa-check"></i><b>10.1.9</b> Atmospheric deposition defined</a></li>
+<li class="chapter" data-level="10.1.10" data-path="model-parameterization.html"><a href="model-parameterization.html#additional-settings-verified"><i class="fa fa-check"></i><b>10.1.10</b> Additional settings verified</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="model-parameterization.html"><a href="model-parameterization.html#fixing-tiledrain"><i class="fa fa-check"></i><b>10.2</b> Fixing tiledrain</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="model-parameterization.html"><a href="model-parameterization.html#finding-the-problem-hrus"><i class="fa fa-check"></i><b>10.2.1</b> Finding the problem HRUs</a></li>
+<li class="chapter" data-level="10.2.2" data-path="model-parameterization.html"><a href="model-parameterization.html#fixing-the-problem-hrus"><i class="fa fa-check"></i><b>10.2.2</b> Fixing the problem HRUs</a></li>
+<li class="chapter" data-level="10.2.3" data-path="model-parameterization.html"><a href="model-parameterization.html#checking-changes"><i class="fa fa-check"></i><b>10.2.3</b> Checking changes</a></li>
+<li class="chapter" data-level="10.2.4" data-path="model-parameterization.html"><a href="model-parameterization.html#writing-modified-changes"><i class="fa fa-check"></i><b>10.2.4</b> Writing modified changes</a></li>
+<li class="chapter" data-level="10.2.5" data-path="model-parameterization.html"><a href="model-parameterization.html#re-enabling-tiledrain"><i class="fa fa-check"></i><b>10.2.5</b> Re-enabling tiledrain</a></li>
+<li class="chapter" data-level="10.2.6" data-path="model-parameterization.html"><a href="model-parameterization.html#testing-swat"><i class="fa fa-check"></i><b>10.2.6</b> Testing SWAT+</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="model-parameterization.html"><a href="model-parameterization.html#setting-soil-phosphorous-initial-conditions"><i class="fa fa-check"></i><b>10.3</b> Setting Soil Phosphorous Initial Conditions</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="swatfarmr-management-schedules.html"><a href="swatfarmr-management-schedules.html"><i class="fa fa-check"></i><b>11</b> SWATFarmR Management Schedules</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="swatfarmr-management-schedules.html"><a href="swatfarmr-management-schedules.html#pre-processing-crop-rotation"><i class="fa fa-check"></i><b>11.1</b> Pre-processing crop rotation</a>
+<ul>
+<li class="chapter" data-level="11.1.1" data-path="swatfarmr-management-schedules.html"><a href="swatfarmr-management-schedules.html#input-files"><i class="fa fa-check"></i><b>11.1.1</b> Input files</a></li>
+<li class="chapter" data-level="11.1.2" data-path="swatfarmr-management-schedules.html"><a href="swatfarmr-management-schedules.html#settings"><i class="fa fa-check"></i><b>11.1.2</b> Settings</a></li>
+<li class="chapter" data-level="11.1.3" data-path="swatfarmr-management-schedules.html"><a href="swatfarmr-management-schedules.html#checks"><i class="fa fa-check"></i><b>11.1.3</b> Checks</a></li>
+<li class="chapter" data-level="11.1.4" data-path="swatfarmr-management-schedules.html"><a href="swatfarmr-management-schedules.html#writing-input-data"><i class="fa fa-check"></i><b>11.1.4</b> Writing input data</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="swatfarmr-management-schedules.html"><a href="swatfarmr-management-schedules.html#initializing-farmr"><i class="fa fa-check"></i><b>11.2</b> Initializing FarmR</a></li>
+<li class="chapter" data-level="11.3" data-path="swatfarmr-management-schedules.html"><a href="swatfarmr-management-schedules.html#calculating-antecedent-precipitation-index"><i class="fa fa-check"></i><b>11.3</b> Calculating Antecedent Precipitation Index</a></li>
+<li class="chapter" data-level="11.4" data-path="swatfarmr-management-schedules.html"><a href="swatfarmr-management-schedules.html#scheduling-operations"><i class="fa fa-check"></i><b>11.4</b> Scheduling Operations</a>
+<ul>
+<li class="chapter" data-level="11.4.1" data-path="swatfarmr-management-schedules.html"><a href="swatfarmr-management-schedules.html#write-operations"><i class="fa fa-check"></i><b>11.4.1</b> Write Operations</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="climate-scenarios.html"><a href="climate-scenarios.html"><i class="fa fa-check"></i><b>12</b> Climate Scenarios</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="climate-scenarios.html"><a href="climate-scenarios.html#introduction-3"><i class="fa fa-check"></i><b>12.1</b> Introduction</a></li>
+<li class="chapter" data-level="12.2" data-path="climate-scenarios.html"><a href="climate-scenarios.html#setup"><i class="fa fa-check"></i><b>12.2</b> Setup</a></li>
+<li class="chapter" data-level="12.3" data-path="climate-scenarios.html"><a href="climate-scenarios.html#re-calculating-management"><i class="fa fa-check"></i><b>12.3</b> Re-Calculating Management</a></li>
+<li class="chapter" data-level="12.4" data-path="climate-scenarios.html"><a href="climate-scenarios.html#executing-model"><i class="fa fa-check"></i><b>12.4</b> Executing model</a></li>
+<li class="chapter" data-level="12.5" data-path="climate-scenarios.html"><a href="climate-scenarios.html#processing-results"><i class="fa fa-check"></i><b>12.5</b> Processing Results</a></li>
+<li class="chapter" data-level="12.6" data-path="climate-scenarios.html"><a href="climate-scenarios.html#plotting-results"><i class="fa fa-check"></i><b>12.6</b> Plotting results</a></li>
+<li class="chapter" data-level="12.7" data-path="climate-scenarios.html"><a href="climate-scenarios.html#saving-rds"><i class="fa fa-check"></i><b>12.7</b> Saving RDS</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="overview-maps.html"><a href="overview-maps.html"><i class="fa fa-check"></i><b>13</b> Overview Maps</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="overview-maps.html"><a href="overview-maps.html#setup-1"><i class="fa fa-check"></i><b>13.1</b> Setup</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="annex.html"><a href="annex.html"><i class="fa fa-check"></i>Annex</a>
+<ul>
+<li class="chapter" data-level="13.2" data-path="annex.html"><a href="annex.html#packages"><i class="fa fa-check"></i><b>13.2</b> Packages</a></li>
+<li class="chapter" data-level="13.3" data-path="annex.html"><a href="annex.html#computer-specs"><i class="fa fa-check"></i><b>13.3</b> Computer Specs</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">The OPTAIN Project: Case study 10</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="climate-scenarios" class="section level1 hasAnchor" number="12">
+<h1><span class="header-section-number">Section 12</span> Climate Scenarios<a href="climate-scenarios.html#climate-scenarios" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div class="sourceCode" id="cb486"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb486-1"><a href="climate-scenarios.html#cb486-1" tabindex="-1"></a>RUN_THIS_CHAPTER <span class="ot">&lt;-</span> <span class="cn">FALSE</span></span>
+<span id="cb486-2"><a href="climate-scenarios.html#cb486-2" tabindex="-1"></a>RECALC_FARMR <span class="ot">&lt;-</span> <span class="cn">FALSE</span></span></code></pre></div>
+<div id="introduction-3" class="section level2 hasAnchor" number="12.1">
+<h2><span class="header-section-number">12.1</span> Introduction<a href="climate-scenarios.html#introduction-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>See section <strong>7.1 of the modelling protocol</strong> for reference</p>
+<p>This workflow is adapted / inspired from:</p>
+<p><a href="https://github.com/biopsichas/cliwf" class="uri">https://github.com/biopsichas/cliwf</a></p>
+<p>The climate scenario files have been sourced from the OPTAIN cloud:</p>
+<blockquote>
+<p>WPs &amp; Tasks &gt; WP3 &gt; Task_3_2 &gt; local data &gt; v1a &gt; data</p>
+</blockquote>
+<p>And are stored here: <code>"model_data/input/climate"</code></p>
+<p>The following models are being used:</p>
+<table style="width:100%;">
+<colgroup>
+<col width="16%" />
+<col width="16%" />
+<col width="16%" />
+<col width="16%" />
+<col width="16%" />
+<col width="16%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Model number</th>
+<th>Driving model (GCM)</th>
+<th>Ensemble</th>
+<th>RCM</th>
+<th>End date</th>
+<th>Model code</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>EC-EARTH</td>
+<td>r12i1p1</td>
+<td>CCLM4-8-17</td>
+<td>31.12.2100</td>
+<td>earthcclm</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>EC-EARTH</td>
+<td>r3i1p1</td>
+<td>HIRHAM5</td>
+<td>31.12.2100</td>
+<td>earthhirh</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>HadGEM2-ES</td>
+<td>r1i1p1</td>
+<td>HIRHAM5</td>
+<td>30.12.2099</td>
+<td>hadghirh</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>HadGEM2-ES</td>
+<td>r1i1p1</td>
+<td>RACMO22E</td>
+<td>30.12.2099</td>
+<td>hadgracmo</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>HadGEM2-ES</td>
+<td>r1i1p1</td>
+<td>RCA4</td>
+<td>30.12.2099</td>
+<td>hadgrca</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>MPI-ESM-LR</td>
+<td>r2i1p1</td>
+<td>REMO2009</td>
+<td>31.12.2100</td>
+<td>mpiremo</td>
+</tr>
+</tbody>
+</table>
+<p>Originally these models were bias adjusted to ERA5-Land, but it was found that ERA5 was too “wet”, therefore they were re-adjusted to local data. The local data used to re-adjust our dataset for CS10 was the local Aas station. However, in this process we lost the “gridded” version of our dataset, and must now work with only one station. An issue (<a href="https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/97">#97</a>) has been created to discuss and potentially fix this.</p>
+</div>
+<div id="setup" class="section level2 hasAnchor" number="12.2">
+<h2><span class="header-section-number">12.2</span> Setup<a href="climate-scenarios.html#setup" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We need the following packages:</p>
+<div class="sourceCode" id="cb487"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb487-1"><a href="climate-scenarios.html#cb487-1" tabindex="-1"></a><span class="co"># parallel</span></span>
+<span id="cb487-2"><a href="climate-scenarios.html#cb487-2" tabindex="-1"></a><span class="fu">library</span>(doParallel)</span>
+<span id="cb487-3"><a href="climate-scenarios.html#cb487-3" tabindex="-1"></a><span class="fu">library</span>(foreach)</span>
+<span id="cb487-4"><a href="climate-scenarios.html#cb487-4" tabindex="-1"></a></span>
+<span id="cb487-5"><a href="climate-scenarios.html#cb487-5" tabindex="-1"></a><span class="co"># spatial</span></span>
+<span id="cb487-6"><a href="climate-scenarios.html#cb487-6" tabindex="-1"></a><span class="fu">require</span>(sf)</span>
+<span id="cb487-7"><a href="climate-scenarios.html#cb487-7" tabindex="-1"></a></span>
+<span id="cb487-8"><a href="climate-scenarios.html#cb487-8" tabindex="-1"></a><span class="co"># SWAT</span></span>
+<span id="cb487-9"><a href="climate-scenarios.html#cb487-9" tabindex="-1"></a><span class="fu">require</span>(SWATprepR)</span>
+<span id="cb487-10"><a href="climate-scenarios.html#cb487-10" tabindex="-1"></a><span class="co"># We need FarmR 3.2 from optain cloud:</span></span>
+<span id="cb487-11"><a href="climate-scenarios.html#cb487-11" tabindex="-1"></a><span class="co"># WPs &amp; Tasks &gt; WP4 &gt; Task 4.4 &gt; Tools to Share &gt; workflow_scripts &gt; SWATfarmR_3.2.0.zip</span></span>
+<span id="cb487-12"><a href="climate-scenarios.html#cb487-12" tabindex="-1"></a><span class="fu">require</span>(SWATfarmR)</span>
+<span id="cb487-13"><a href="climate-scenarios.html#cb487-13" tabindex="-1"></a></span>
+<span id="cb487-14"><a href="climate-scenarios.html#cb487-14" tabindex="-1"></a><span class="co"># Data</span></span>
+<span id="cb487-15"><a href="climate-scenarios.html#cb487-15" tabindex="-1"></a><span class="fu">require</span>(dplyr)</span>
+<span id="cb487-16"><a href="climate-scenarios.html#cb487-16" tabindex="-1"></a><span class="fu">require</span>(readr)</span>
+<span id="cb487-17"><a href="climate-scenarios.html#cb487-17" tabindex="-1"></a></span>
+<span id="cb487-18"><a href="climate-scenarios.html#cb487-18" tabindex="-1"></a><span class="co"># famrR input</span></span>
+<span id="cb487-19"><a href="climate-scenarios.html#cb487-19" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&#39;model_data/code/functions_write_SWATfarmR_input.R&#39;</span>) </span>
+<span id="cb487-20"><a href="climate-scenarios.html#cb487-20" tabindex="-1"></a><span class="fu">require</span>(tidyr) </span>
+<span id="cb487-21"><a href="climate-scenarios.html#cb487-21" tabindex="-1"></a><span class="fu">require</span>(purrr) </span>
+<span id="cb487-22"><a href="climate-scenarios.html#cb487-22" tabindex="-1"></a><span class="fu">require</span>(reshape2)</span></code></pre></div>
+<p>We need to create a SWAT+ setup for each climate scenario (3), RCM (6) and time frame (3) = <strong>54 setups.</strong></p>
+<div class="sourceCode" id="cb488"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb488-1"><a href="climate-scenarios.html#cb488-1" tabindex="-1"></a><span class="co"># indicators</span></span>
+<span id="cb488-2"><a href="climate-scenarios.html#cb488-2" tabindex="-1"></a>periods <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;H&quot;</span>, <span class="st">&quot;N&quot;</span>, <span class="st">&quot;F&quot;</span>)</span>
+<span id="cb488-3"><a href="climate-scenarios.html#cb488-3" tabindex="-1"></a>model_nr <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;rcm&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>)</span>
+<span id="cb488-4"><a href="climate-scenarios.html#cb488-4" tabindex="-1"></a>experiments <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;rcp26&quot;</span>, <span class="st">&quot;rcp45&quot;</span>, <span class="st">&quot;rcp85&quot;</span>)</span>
+<span id="cb488-5"><a href="climate-scenarios.html#cb488-5" tabindex="-1"></a></span>
+<span id="cb488-6"><a href="climate-scenarios.html#cb488-6" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">&quot;model_data/cs10_setup/scenarios&quot;</span>, <span class="at">showWarnings =</span> F)</span>
+<span id="cb488-7"><a href="climate-scenarios.html#cb488-7" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">&quot;model_data/cs10_setup/scenarios/climate_scenarios&quot;</span>, <span class="at">showWarnings =</span> F)</span></code></pre></div>
+<p>We will now modify our base setup <u><strong>MetNord_MN2</strong></u> to be prepared for scenario runs</p>
+<div class="sourceCode" id="cb489"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb489-1"><a href="climate-scenarios.html#cb489-1" tabindex="-1"></a><span class="co"># make a copy of the base-base setup</span></span>
+<span id="cb489-2"><a href="climate-scenarios.html#cb489-2" tabindex="-1"></a>base_setup <span class="ot">&lt;-</span> <span class="st">&quot;model_data/cs10_setup/MetNord_MN2/&quot;</span></span>
+<span id="cb489-3"><a href="climate-scenarios.html#cb489-3" tabindex="-1"></a>base_scen <span class="ot">&lt;-</span> <span class="st">&#39;model_data/cs10_setup/scenarios/baseline&#39;</span></span>
+<span id="cb489-4"><a href="climate-scenarios.html#cb489-4" tabindex="-1"></a></span>
+<span id="cb489-5"><a href="climate-scenarios.html#cb489-5" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">&#39;model_data/cs10_setup/scenarios/baseline&#39;</span>, <span class="at">showWarnings =</span> F)</span>
+<span id="cb489-6"><a href="climate-scenarios.html#cb489-6" tabindex="-1"></a></span>
+<span id="cb489-7"><a href="climate-scenarios.html#cb489-7" tabindex="-1"></a>files_to_copy <span class="ot">&lt;-</span> <span class="fu">list.files</span>(base_setup, <span class="at">full.names =</span> T)</span>
+<span id="cb489-8"><a href="climate-scenarios.html#cb489-8" tabindex="-1"></a></span>
+<span id="cb489-9"><a href="climate-scenarios.html#cb489-9" tabindex="-1"></a>status <span class="ot">&lt;-</span> <span class="fu">file.copy</span>(<span class="at">from =</span> files_to_copy, <span class="at">to =</span>base_scen, <span class="at">overwrite =</span> T)</span></code></pre></div>
+<p>We reset our management settings:</p>
+<div class="sourceCode" id="cb490"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb490-1"><a href="climate-scenarios.html#cb490-1" tabindex="-1"></a><span class="co"># resetting the farmR files</span></span>
+<span id="cb490-2"><a href="climate-scenarios.html#cb490-2" tabindex="-1"></a>dir <span class="ot">&lt;-</span> <span class="st">&#39;model_data/cs10_setup/scenarios/baseline&#39;</span></span>
+<span id="cb490-3"><a href="climate-scenarios.html#cb490-3" tabindex="-1"></a>SWATfarmR<span class="sc">::</span><span class="fu">load_farmr</span>(<span class="at">file =</span> <span class="fu">paste0</span>(dir,<span class="st">&quot;/cs10.farm&quot;</span>))</span>
+<span id="cb490-4"><a href="climate-scenarios.html#cb490-4" tabindex="-1"></a>cs10<span class="sc">$</span><span class="fu">reset_files</span>()</span>
+<span id="cb490-5"><a href="climate-scenarios.html#cb490-5" tabindex="-1"></a><span class="fu">unlink</span>(<span class="fu">paste0</span>(dir,<span class="st">&quot;/cs10.farm&quot;</span>))</span>
+<span id="cb490-6"><a href="climate-scenarios.html#cb490-6" tabindex="-1"></a><span class="fu">unlink</span>(<span class="fu">paste0</span>(dir, <span class="st">&quot;/cs10.mgts&quot;</span>))</span></code></pre></div>
+<p>We update our atmospheric data:</p>
+<div class="sourceCode" id="cb491"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb491-1"><a href="climate-scenarios.html#cb491-1" tabindex="-1"></a>basin_path <span class="ot">&lt;-</span> <span class="st">&quot;model_data/input/shape/cs10_basin.shp&quot;</span></span>
+<span id="cb491-2"><a href="climate-scenarios.html#cb491-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> SWATprepR<span class="sc">::</span><span class="fu">get_atmo_dep</span>(basin_path)</span>
+<span id="cb491-3"><a href="climate-scenarios.html#cb491-3" tabindex="-1"></a>  </span>
+<span id="cb491-4"><a href="climate-scenarios.html#cb491-4" tabindex="-1"></a>hacked_atmodep <span class="ot">&lt;-</span> <span class="cf">function</span>(df, db_path, t_ext) {</span>
+<span id="cb491-5"><a href="climate-scenarios.html#cb491-5" tabindex="-1"></a>    <span class="fu">tryCatch</span>(</span>
+<span id="cb491-6"><a href="climate-scenarios.html#cb491-6" tabindex="-1"></a>        {</span>
+<span id="cb491-7"><a href="climate-scenarios.html#cb491-7" tabindex="-1"></a>            SWATprepR<span class="sc">::</span><span class="fu">add_atmo_dep</span>(df,db_path, t_ext)</span>
+<span id="cb491-8"><a href="climate-scenarios.html#cb491-8" tabindex="-1"></a>        },</span>
+<span id="cb491-9"><a href="climate-scenarios.html#cb491-9" tabindex="-1"></a>        <span class="at">error =</span> <span class="cf">function</span>(e) {</span>
+<span id="cb491-10"><a href="climate-scenarios.html#cb491-10" tabindex="-1"></a>            <span class="fu">message</span>(<span class="st">&#39;cheeky way to mess with SWATjunaS code&#39;</span>)</span>
+<span id="cb491-11"><a href="climate-scenarios.html#cb491-11" tabindex="-1"></a>            <span class="fu">print</span>(e)</span>
+<span id="cb491-12"><a href="climate-scenarios.html#cb491-12" tabindex="-1"></a>        }</span>
+<span id="cb491-13"><a href="climate-scenarios.html#cb491-13" tabindex="-1"></a>    )</span>
+<span id="cb491-14"><a href="climate-scenarios.html#cb491-14" tabindex="-1"></a>}</span>
+<span id="cb491-15"><a href="climate-scenarios.html#cb491-15" tabindex="-1"></a></span>
+<span id="cb491-16"><a href="climate-scenarios.html#cb491-16" tabindex="-1"></a><span class="fu">hacked_atmodep</span>(df, <span class="st">&quot;model_data/cs10_setup/scenarios/baseline/&quot;</span>, <span class="st">&quot;annual&quot;</span>)</span></code></pre></div>
+<p>Set our output in line with OPTAIN project:</p>
+<blockquote>
+<p>Warning: The “gsub” method has been faulty – double check that it worked..</p>
+</blockquote>
+<div class="sourceCode" id="cb492"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb492-1"><a href="climate-scenarios.html#cb492-1" tabindex="-1"></a><span class="do">## Input for the print file</span></span>
+<span id="cb492-2"><a href="climate-scenarios.html#cb492-2" tabindex="-1"></a>print_prt <span class="ot">&lt;-</span> <span class="fu">read_lines</span>(<span class="fu">paste0</span>(base_scen,<span class="st">&#39;/print.prt&#39;</span>), <span class="at">lazy =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb492-3"><a href="climate-scenarios.html#cb492-3" tabindex="-1"></a><span class="do">### </span><span class="al">WARNING</span><span class="do"> !!!!!!!!!!!!!!! THIS DOESNT WORK OFTEN because OF THE SPACES IN GSUB</span></span>
+<span id="cb492-4"><a href="climate-scenarios.html#cb492-4" tabindex="-1"></a>print_prt <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot; y &quot;</span>, <span class="st">&quot; n &quot;</span>, print_prt)</span>
+<span id="cb492-5"><a href="climate-scenarios.html#cb492-5" tabindex="-1"></a>print_prt[<span class="dv">10</span><span class="sc">+</span><span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="st">&quot;basin_wb                 n             y             n             y  &quot;</span></span>
+<span id="cb492-6"><a href="climate-scenarios.html#cb492-6" tabindex="-1"></a>print_prt[<span class="dv">14</span>] <span class="ot">&lt;-</span> <span class="st">&quot;basin_pw                   n             y             n             y  &quot;</span></span>
+<span id="cb492-7"><a href="climate-scenarios.html#cb492-7" tabindex="-1"></a>print_prt[<span class="dv">15</span>] <span class="ot">&lt;-</span> <span class="st">&quot;basin_aqu                  n             y             n             y  &quot;</span></span>
+<span id="cb492-8"><a href="climate-scenarios.html#cb492-8" tabindex="-1"></a>print_prt[<span class="dv">33</span>] <span class="ot">&lt;-</span> <span class="st">&quot;hru_wb                     n             y             n             y  &quot;</span></span>
+<span id="cb492-9"><a href="climate-scenarios.html#cb492-9" tabindex="-1"></a>print_prt[<span class="dv">34</span>] <span class="ot">&lt;-</span> <span class="st">&quot;hru_nb                     n             n             n             y  &quot;</span></span>
+<span id="cb492-10"><a href="climate-scenarios.html#cb492-10" tabindex="-1"></a>print_prt[<span class="dv">35</span>] <span class="ot">&lt;-</span> <span class="st">&quot;hru_ls                     n             n             n             y  &quot;</span></span>
+<span id="cb492-11"><a href="climate-scenarios.html#cb492-11" tabindex="-1"></a>print_prt[<span class="dv">36</span>] <span class="ot">&lt;-</span> <span class="st">&quot;hru_pw                     n             n             n             y  &quot;</span></span>
+<span id="cb492-12"><a href="climate-scenarios.html#cb492-12" tabindex="-1"></a>print_prt[<span class="dv">42</span>] <span class="ot">&lt;-</span> <span class="st">&quot;channel_sd                 n             n             n             y  &quot;</span></span>
+<span id="cb492-13"><a href="climate-scenarios.html#cb492-13" tabindex="-1"></a>print_prt[<span class="dv">44</span>] <span class="ot">&lt;-</span> <span class="st">&quot;reservoir                  n             n             n             y  &quot;</span></span>
+<span id="cb492-14"><a href="climate-scenarios.html#cb492-14" tabindex="-1"></a>print_prt <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;hnd &quot;</span>, <span class="st">&quot;hyd&quot;</span>, print_prt)</span>
+<span id="cb492-15"><a href="climate-scenarios.html#cb492-15" tabindex="-1"></a><span class="fu">write_lines</span>(print_prt, <span class="fu">paste0</span>(base_scen,<span class="st">&#39;/print.prt&#39;</span>))</span>
+<span id="cb492-16"><a href="climate-scenarios.html#cb492-16" tabindex="-1"></a></span>
+<span id="cb492-17"><a href="climate-scenarios.html#cb492-17" tabindex="-1"></a><span class="do">## Write object.prt</span></span>
+<span id="cb492-18"><a href="climate-scenarios.html#cb492-18" tabindex="-1"></a><span class="co"># Set outflow channel ID</span></span>
+<span id="cb492-19"><a href="climate-scenarios.html#cb492-19" tabindex="-1"></a>outflow_reach <span class="ot">&lt;-</span> <span class="dv">37</span></span>
+<span id="cb492-20"><a href="climate-scenarios.html#cb492-20" tabindex="-1"></a>obj_prt_path <span class="ot">&lt;-</span> <span class="fu">paste0</span>(base_scen,<span class="st">&#39;/object.prt&#39;</span>)</span>
+<span id="cb492-21"><a href="climate-scenarios.html#cb492-21" tabindex="-1"></a><span class="fu">unlink</span>(obj_prt_path)</span>
+<span id="cb492-22"><a href="climate-scenarios.html#cb492-22" tabindex="-1"></a><span class="fu">write.table</span>(<span class="fu">paste0</span>(<span class="st">&quot;object.prt&quot;</span>, <span class="st">&quot;: written by the modded climate-workflow on &quot;</span>, </span>
+<span id="cb492-23"><a href="climate-scenarios.html#cb492-23" tabindex="-1"></a>                   <span class="fu">Sys.time</span>()), </span>
+<span id="cb492-24"><a href="climate-scenarios.html#cb492-24" tabindex="-1"></a>            obj_prt_path, <span class="at">append =</span> <span class="cn">FALSE</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, </span>
+<span id="cb492-25"><a href="climate-scenarios.html#cb492-25" tabindex="-1"></a>            <span class="at">dec =</span> <span class="st">&quot;.&quot;</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>, <span class="at">col.names =</span> <span class="cn">FALSE</span>, <span class="at">quote =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb492-26"><a href="climate-scenarios.html#cb492-26" tabindex="-1"></a><span class="fu">write.table</span>(<span class="fu">paste</span>(<span class="fu">sprintf</span>(<span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&#39;%12s&#39;</span>, <span class="dv">4</span>), <span class="st">&#39;%20s&#39;</span>), </span>
+<span id="cb492-27"><a href="climate-scenarios.html#cb492-27" tabindex="-1"></a>                          <span class="fu">c</span>(<span class="st">&quot;ID&quot;</span>, <span class="st">&quot;OBJ_TYP&quot;</span>, <span class="st">&quot;OBJ_TYP_NO&quot;</span>, <span class="st">&quot;HYD_TYP&quot;</span>, <span class="st">&quot;FILENAME&quot;</span>)), </span>
+<span id="cb492-28"><a href="climate-scenarios.html#cb492-28" tabindex="-1"></a>                          <span class="at">collapse =</span> <span class="st">&#39; &#39;</span>), obj_prt_path , <span class="at">append =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb492-29"><a href="climate-scenarios.html#cb492-29" tabindex="-1"></a>            <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">dec =</span> <span class="st">&quot;.&quot;</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>, <span class="at">col.names =</span> <span class="cn">FALSE</span>, <span class="at">quote =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb492-30"><a href="climate-scenarios.html#cb492-30" tabindex="-1"></a><span class="fu">write.table</span>(<span class="fu">paste</span>(<span class="fu">sprintf</span>(<span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&#39;%12s&#39;</span>, <span class="dv">4</span>), <span class="st">&#39;%20s&#39;</span>), </span>
+<span id="cb492-31"><a href="climate-scenarios.html#cb492-31" tabindex="-1"></a>                          <span class="fu">c</span>(<span class="st">&quot;1&quot;</span>, <span class="st">&quot;sdc&quot;</span>, <span class="fu">as.character</span>(outflow_reach), <span class="st">&quot;tot&quot;</span>, <span class="st">&quot;cha_day.out&quot;</span>)), </span>
+<span id="cb492-32"><a href="climate-scenarios.html#cb492-32" tabindex="-1"></a>                  <span class="at">collapse =</span> <span class="st">&#39; &#39;</span>), obj_prt_path , <span class="at">append =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb492-33"><a href="climate-scenarios.html#cb492-33" tabindex="-1"></a>            <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">dec =</span> <span class="st">&quot;.&quot;</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>, <span class="at">col.names =</span> <span class="cn">FALSE</span>, <span class="at">quote =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb492-34"><a href="climate-scenarios.html#cb492-34" tabindex="-1"></a></span>
+<span id="cb492-35"><a href="climate-scenarios.html#cb492-35" tabindex="-1"></a><span class="co"># Updating file.cio</span></span>
+<span id="cb492-36"><a href="climate-scenarios.html#cb492-36" tabindex="-1"></a>file_cio <span class="ot">&lt;-</span> <span class="fu">readLines</span>(<span class="fu">paste0</span>(base_scen, <span class="st">&quot;/&quot;</span>, <span class="st">&quot;file.cio&quot;</span>))</span>
+<span id="cb492-37"><a href="climate-scenarios.html#cb492-37" tabindex="-1"></a>file_cio[<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="st">&quot;simulation        time.sim          print.prt         object.prt        object.cnt        null &quot;</span></span>
+<span id="cb492-38"><a href="climate-scenarios.html#cb492-38" tabindex="-1"></a>file_cio[<span class="dv">22</span>] <span class="ot">&lt;-</span> <span class="st">&quot;chg               cal_parms.cal     calibration.cal   null             null              null              null              null              null              null              &quot;</span></span>
+<span id="cb492-39"><a href="climate-scenarios.html#cb492-39" tabindex="-1"></a><span class="fu">writeLines</span>(file_cio, <span class="fu">paste0</span>(base_scen, <span class="st">&quot;/&quot;</span>, <span class="st">&quot;file.cio&quot;</span>))</span></code></pre></div>
+<p>This function will setup our scenario directories with the <strong>reference files</strong> and <strong>climate files</strong> based on the run ID we give it.</p>
+<div class="sourceCode" id="cb493"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb493-1"><a href="climate-scenarios.html#cb493-1" tabindex="-1"></a>cli_scen_setup <span class="ot">&lt;-</span> <span class="cf">function</span>(run_name, base_setup){</span>
+<span id="cb493-2"><a href="climate-scenarios.html#cb493-2" tabindex="-1"></a>  </span>
+<span id="cb493-3"><a href="climate-scenarios.html#cb493-3" tabindex="-1"></a>  <span class="co"># all files that are not climate files, they should be copied in</span></span>
+<span id="cb493-4"><a href="climate-scenarios.html#cb493-4" tabindex="-1"></a>  non_climate_files <span class="ot">&lt;-</span> <span class="fu">setdiff</span>(<span class="fu">list.files</span>(<span class="at">path =</span> base_setup, <span class="at">full.names =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb493-5"><a href="climate-scenarios.html#cb493-5" tabindex="-1"></a>        <span class="fu">list.files</span>(<span class="at">path =</span> base_setup, </span>
+<span id="cb493-6"><a href="climate-scenarios.html#cb493-6" tabindex="-1"></a>                   <span class="at">pattern =</span> <span class="st">&quot;*.pcp|*.slr|*.tmp|*.hmd|*.wnd&quot;</span>,</span>
+<span id="cb493-7"><a href="climate-scenarios.html#cb493-7" tabindex="-1"></a>                   <span class="at">full.names =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb493-8"><a href="climate-scenarios.html#cb493-8" tabindex="-1"></a>  </span>
+<span id="cb493-9"><a href="climate-scenarios.html#cb493-9" tabindex="-1"></a>  <span class="co"># getting out the model and experiment from the directory name</span></span>
+<span id="cb493-10"><a href="climate-scenarios.html#cb493-10" tabindex="-1"></a>  parsed_run <span class="ot">&lt;-</span> stringr<span class="sc">::</span><span class="fu">str_split</span>(run_name, <span class="at">pattern =</span> <span class="st">&quot;_&quot;</span>,<span class="at">simplify =</span> T )</span>
+<span id="cb493-11"><a href="climate-scenarios.html#cb493-11" tabindex="-1"></a>  experiment <span class="ot">&lt;-</span> parsed_run[,<span class="dv">1</span>]</span>
+<span id="cb493-12"><a href="climate-scenarios.html#cb493-12" tabindex="-1"></a>  model <span class="ot">&lt;-</span> parsed_run[,<span class="dv">2</span>]</span>
+<span id="cb493-13"><a href="climate-scenarios.html#cb493-13" tabindex="-1"></a>  </span>
+<span id="cb493-14"><a href="climate-scenarios.html#cb493-14" tabindex="-1"></a>  <span class="co"># from where and to where should the climate files be copied in?</span></span>
+<span id="cb493-15"><a href="climate-scenarios.html#cb493-15" tabindex="-1"></a>  from_dir <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;model_data/input/climate/&quot;</span>, experiment, <span class="st">&quot;/&quot;</span>, model)</span>
+<span id="cb493-16"><a href="climate-scenarios.html#cb493-16" tabindex="-1"></a>  from_files <span class="ot">&lt;-</span> <span class="fu">list.files</span>(from_dir, <span class="at">full.names =</span> T)</span>
+<span id="cb493-17"><a href="climate-scenarios.html#cb493-17" tabindex="-1"></a>  to_dir <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;model_data/cs10_setup/scenarios/climate_scenarios/&quot;</span>, run_name)</span>
+<span id="cb493-18"><a href="climate-scenarios.html#cb493-18" tabindex="-1"></a>  </span>
+<span id="cb493-19"><a href="climate-scenarios.html#cb493-19" tabindex="-1"></a>  <span class="co"># create the directory</span></span>
+<span id="cb493-20"><a href="climate-scenarios.html#cb493-20" tabindex="-1"></a>  <span class="fu">dir.create</span>(to_dir, <span class="at">showWarnings =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb493-21"><a href="climate-scenarios.html#cb493-21" tabindex="-1"></a>  </span>
+<span id="cb493-22"><a href="climate-scenarios.html#cb493-22" tabindex="-1"></a>  <span class="co"># copy over climate scenario files</span></span>
+<span id="cb493-23"><a href="climate-scenarios.html#cb493-23" tabindex="-1"></a>  <span class="fu">file.copy</span>(<span class="at">from =</span> from_files, <span class="at">to =</span> to_dir, <span class="at">overwrite =</span> T)</span>
+<span id="cb493-24"><a href="climate-scenarios.html#cb493-24" tabindex="-1"></a>  </span>
+<span id="cb493-25"><a href="climate-scenarios.html#cb493-25" tabindex="-1"></a>  <span class="co"># copy over baseline swat+ files.</span></span>
+<span id="cb493-26"><a href="climate-scenarios.html#cb493-26" tabindex="-1"></a>  <span class="fu">file.copy</span>(<span class="at">from =</span> non_climate_files, <span class="at">to =</span> to_dir, <span class="at">overwrite =</span> T)</span>
+<span id="cb493-27"><a href="climate-scenarios.html#cb493-27" tabindex="-1"></a>}</span></code></pre></div>
+<p>This is the list of runs we need to process:</p>
+<div class="sourceCode" id="cb494"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb494-1"><a href="climate-scenarios.html#cb494-1" tabindex="-1"></a>run_name <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb494-2"><a href="climate-scenarios.html#cb494-2" tabindex="-1"></a><span class="cf">for</span> (period <span class="cf">in</span> periods){<span class="cf">for</span> (model <span class="cf">in</span> model_nr){<span class="cf">for</span> (experiment <span class="cf">in</span> experiments){</span>
+<span id="cb494-3"><a href="climate-scenarios.html#cb494-3" tabindex="-1"></a>      run_name <span class="ot">&lt;-</span> <span class="fu">c</span>( run_name, <span class="fu">paste</span>(experiment, model, period, <span class="at">sep =</span> <span class="st">&quot;_&quot;</span>))</span>
+<span id="cb494-4"><a href="climate-scenarios.html#cb494-4" tabindex="-1"></a>      }}}</span>
+<span id="cb494-5"><a href="climate-scenarios.html#cb494-5" tabindex="-1"></a>run_name <span class="ot">&lt;-</span> <span class="fu">sample</span>(run_name) <span class="co"># randomize order</span></span>
+<span id="cb494-6"><a href="climate-scenarios.html#cb494-6" tabindex="-1"></a>run_name</span></code></pre></div>
+<p>This will create the directories in a <strong>parallel</strong> manner</p>
+<div class="sourceCode" id="cb495"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb495-1"><a href="climate-scenarios.html#cb495-1" tabindex="-1"></a>cores <span class="ot">&lt;-</span> <span class="fu">detectCores</span>() <span class="sc">-</span> <span class="dv">2</span></span>
+<span id="cb495-2"><a href="climate-scenarios.html#cb495-2" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;generating directories with&quot;</span>, cores, <span class="st">&quot; cores&quot;</span>))</span>
+<span id="cb495-3"><a href="climate-scenarios.html#cb495-3" tabindex="-1"></a>cl <span class="ot">&lt;-</span> <span class="fu">makeCluster</span>(cores,  <span class="at">outfile=</span><span class="st">&quot;&quot;</span>)</span>
+<span id="cb495-4"><a href="climate-scenarios.html#cb495-4" tabindex="-1"></a><span class="fu">registerDoParallel</span>(cl)</span>
+<span id="cb495-5"><a href="climate-scenarios.html#cb495-5" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">foreach</span>(<span class="at">run_name =</span> run_name) <span class="sc">%dopar%</span> {</span>
+<span id="cb495-6"><a href="climate-scenarios.html#cb495-6" tabindex="-1"></a>  <span class="fu">cli_scen_setup</span>(<span class="at">run_name =</span> run_name, <span class="at">base_setup =</span> base_scen)</span>
+<span id="cb495-7"><a href="climate-scenarios.html#cb495-7" tabindex="-1"></a>  }</span>
+<span id="cb495-8"><a href="climate-scenarios.html#cb495-8" tabindex="-1"></a><span class="fu">stopCluster</span>(cl)</span>
+<span id="cb495-9"><a href="climate-scenarios.html#cb495-9" tabindex="-1"></a></span>
+<span id="cb495-10"><a href="climate-scenarios.html#cb495-10" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">length</span>(<span class="fu">which</span>(<span class="fu">unlist</span>(result) <span class="sc">==</span> <span class="cn">FALSE</span>)) <span class="sc">&gt;</span> <span class="dv">0</span>){<span class="fu">warning</span>(<span class="st">&quot;some runs failed!&quot;</span>)}<span class="cf">else</span>{</span>
+<span id="cb495-11"><a href="climate-scenarios.html#cb495-11" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;all threads succeded&quot;</span>)</span>
+<span id="cb495-12"><a href="climate-scenarios.html#cb495-12" tabindex="-1"></a>}</span></code></pre></div>
+<p>Now, we need to update our time frames, met definitions, and weather generators. The following function does this using <code>SWATprepR</code>.</p>
+<div class="sourceCode" id="cb496"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb496-1"><a href="climate-scenarios.html#cb496-1" tabindex="-1"></a>update_weather <span class="ot">&lt;-</span> <span class="cf">function</span>(run_name){</span>
+<span id="cb496-2"><a href="climate-scenarios.html#cb496-2" tabindex="-1"></a>  <span class="co"># getting out the model and experiment from the directory name</span></span>
+<span id="cb496-3"><a href="climate-scenarios.html#cb496-3" tabindex="-1"></a>  parsed_run <span class="ot">&lt;-</span> stringr<span class="sc">::</span><span class="fu">str_split</span>(run_name, <span class="at">pattern =</span> <span class="st">&quot;_&quot;</span>, <span class="at">simplify =</span> T)</span>
+<span id="cb496-4"><a href="climate-scenarios.html#cb496-4" tabindex="-1"></a>  period <span class="ot">&lt;-</span> parsed_run[, <span class="dv">3</span>]</span>
+<span id="cb496-5"><a href="climate-scenarios.html#cb496-5" tabindex="-1"></a>  </span>
+<span id="cb496-6"><a href="climate-scenarios.html#cb496-6" tabindex="-1"></a>  <span class="do">## Set the simulation time period</span></span>
+<span id="cb496-7"><a href="climate-scenarios.html#cb496-7" tabindex="-1"></a>  <span class="cf">if</span>(period <span class="sc">==</span> <span class="st">&quot;H&quot;</span>) {from <span class="ot">=</span> <span class="dv">1988</span>;to <span class="ot">=</span> <span class="dv">2020</span>}</span>
+<span id="cb496-8"><a href="climate-scenarios.html#cb496-8" tabindex="-1"></a>  <span class="cf">if</span>(period <span class="sc">==</span> <span class="st">&quot;N&quot;</span>){from <span class="ot">=</span> <span class="dv">2033</span>;to <span class="ot">=</span> <span class="dv">2065</span>}</span>
+<span id="cb496-9"><a href="climate-scenarios.html#cb496-9" tabindex="-1"></a>  <span class="cf">if</span>(period <span class="sc">==</span> <span class="st">&quot;F&quot;</span>) {from <span class="ot">=</span> <span class="dv">2067</span>;to <span class="ot">=</span> <span class="dv">2098</span>}</span>
+<span id="cb496-10"><a href="climate-scenarios.html#cb496-10" tabindex="-1"></a>  </span>
+<span id="cb496-11"><a href="climate-scenarios.html#cb496-11" tabindex="-1"></a>  </span>
+<span id="cb496-12"><a href="climate-scenarios.html#cb496-12" tabindex="-1"></a>  <span class="co"># updating climate   </span></span>
+<span id="cb496-13"><a href="climate-scenarios.html#cb496-13" tabindex="-1"></a>  mydir <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;model_data/cs10_setup/scenarios/climate_scenarios/&quot;</span>,run_name)</span>
+<span id="cb496-14"><a href="climate-scenarios.html#cb496-14" tabindex="-1"></a>  met_lst <span class="ot">&lt;-</span> SWATprepR<span class="sc">::</span><span class="fu">load_swat_weather</span>(mydir)</span>
+<span id="cb496-15"><a href="climate-scenarios.html#cb496-15" tabindex="-1"></a>  from_date <span class="ot">&lt;-</span> <span class="fu">paste0</span>(from, <span class="st">&quot;-01-01&quot;</span>)</span>
+<span id="cb496-16"><a href="climate-scenarios.html#cb496-16" tabindex="-1"></a>  to_date <span class="ot">&lt;-</span> <span class="fu">paste0</span>(to, <span class="st">&quot;-12-31&quot;</span>)</span>
+<span id="cb496-17"><a href="climate-scenarios.html#cb496-17" tabindex="-1"></a>  </span>
+<span id="cb496-18"><a href="climate-scenarios.html#cb496-18" tabindex="-1"></a>  <span class="co"># without garbage collection here, everything goes wrong. </span></span>
+<span id="cb496-19"><a href="climate-scenarios.html#cb496-19" tabindex="-1"></a>  <span class="fu">gc</span>()</span>
+<span id="cb496-20"><a href="climate-scenarios.html#cb496-20" tabindex="-1"></a>  </span>
+<span id="cb496-21"><a href="climate-scenarios.html#cb496-21" tabindex="-1"></a>  SWATprepR<span class="sc">::</span><span class="fu">prepare_climate</span>(</span>
+<span id="cb496-22"><a href="climate-scenarios.html#cb496-22" tabindex="-1"></a>    <span class="at">meteo_lst =</span> met_lst,</span>
+<span id="cb496-23"><a href="climate-scenarios.html#cb496-23" tabindex="-1"></a>    <span class="at">write_path =</span> mydir,</span>
+<span id="cb496-24"><a href="climate-scenarios.html#cb496-24" tabindex="-1"></a>    <span class="at">period_starts =</span> from_date,</span>
+<span id="cb496-25"><a href="climate-scenarios.html#cb496-25" tabindex="-1"></a>    <span class="at">period_ends =</span> to_date)</span>
+<span id="cb496-26"><a href="climate-scenarios.html#cb496-26" tabindex="-1"></a>}</span></code></pre></div>
+<p>Executing the <code>update_weather()</code> function in parallel.</p>
+<blockquote>
+<p>Caution, each core uses about <strong>2GB+ of RAM</strong>. Only use a few cores for this, not all you have. It also does not take that long.</p>
+</blockquote>
+<div class="sourceCode" id="cb497"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb497-1"><a href="climate-scenarios.html#cb497-1" tabindex="-1"></a><span class="co"># cores &lt;- detectCores() - 8</span></span>
+<span id="cb497-2"><a href="climate-scenarios.html#cb497-2" tabindex="-1"></a>cores <span class="ot">&lt;-</span> <span class="dv">12</span> <span class="co"># this is EXTREMELY memory hungry PER CORE, be careful. </span></span>
+<span id="cb497-3"><a href="climate-scenarios.html#cb497-3" tabindex="-1"></a><span class="co"># 12 cores uses 20 gb</span></span>
+<span id="cb497-4"><a href="climate-scenarios.html#cb497-4" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;working with&quot;</span>, cores, <span class="st">&quot; cores&quot;</span>))</span>
+<span id="cb497-5"><a href="climate-scenarios.html#cb497-5" tabindex="-1"></a>cl <span class="ot">&lt;-</span> <span class="fu">makeCluster</span>(cores,  <span class="at">outfile=</span><span class="st">&quot;&quot;</span>)</span>
+<span id="cb497-6"><a href="climate-scenarios.html#cb497-6" tabindex="-1"></a><span class="fu">registerDoParallel</span>(cl)</span>
+<span id="cb497-7"><a href="climate-scenarios.html#cb497-7" tabindex="-1"></a>myresult <span class="ot">&lt;-</span> <span class="fu">foreach</span>(<span class="at">run_name =</span> run_name, <span class="at">.packages =</span> <span class="fu">c</span>(<span class="st">&quot;SWATprepR&quot;</span>, <span class="st">&quot;stringr&quot;</span>)) <span class="sc">%dopar%</span> {<span class="fu">update_weather</span>(run_name)}</span>
+<span id="cb497-8"><a href="climate-scenarios.html#cb497-8" tabindex="-1"></a><span class="fu">stopCluster</span>(cl)</span>
+<span id="cb497-9"><a href="climate-scenarios.html#cb497-9" tabindex="-1"></a></span>
+<span id="cb497-10"><a href="climate-scenarios.html#cb497-10" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">length</span>(<span class="fu">which</span>(<span class="fu">unlist</span>(myresult) <span class="sc">==</span> <span class="cn">FALSE</span>)) <span class="sc">&gt;</span> <span class="dv">0</span>){<span class="fu">warning</span>(<span class="st">&quot;some runs failed!&quot;</span>)}<span class="cf">else</span>{</span>
+<span id="cb497-11"><a href="climate-scenarios.html#cb497-11" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;all threads succeded&quot;</span>)</span>
+<span id="cb497-12"><a href="climate-scenarios.html#cb497-12" tabindex="-1"></a>}</span></code></pre></div>
+</div>
+<div id="re-calculating-management" class="section level2 hasAnchor" number="12.3">
+<h2><span class="header-section-number">12.3</span> Re-Calculating Management<a href="climate-scenarios.html#re-calculating-management" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Now we are ready to re-calculate the management for all scenario runs. We need to do this because the “weather” has changed and therefore our virtual farmers need to change when they sow and harvest.</p>
+<p>First, we need to create farmR input files for the time frames we now have, the following code does this:</p>
+<p>Now we are ready for the long calculation. The following function will re-calculate management operations, and can do so in a parallel manner, which we will need because one run takes about 2-4 hours, and we have 54 of them. With the current setup (<code>cpu42</code>) we can run 30 at once.</p>
+<div class="sourceCode" id="cb498"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb498-1"><a href="climate-scenarios.html#cb498-1" tabindex="-1"></a>farmer_resechedule <span class="ot">&lt;-</span> <span class="cf">function</span>(run_name){</span>
+<span id="cb498-2"><a href="climate-scenarios.html#cb498-2" tabindex="-1"></a>  </span>
+<span id="cb498-3"><a href="climate-scenarios.html#cb498-3" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;working on&quot;</span>, run_name))</span>
+<span id="cb498-4"><a href="climate-scenarios.html#cb498-4" tabindex="-1"></a>  <span class="co"># parsing period</span></span>
+<span id="cb498-5"><a href="climate-scenarios.html#cb498-5" tabindex="-1"></a>  parsed_run <span class="ot">&lt;-</span> stringr<span class="sc">::</span><span class="fu">str_split</span>(run_name, <span class="at">pattern =</span> <span class="st">&quot;_&quot;</span>,<span class="at">simplify =</span> T )</span>
+<span id="cb498-6"><a href="climate-scenarios.html#cb498-6" tabindex="-1"></a>  period <span class="ot">&lt;-</span> parsed_run[,<span class="dv">3</span>]</span>
+<span id="cb498-7"><a href="climate-scenarios.html#cb498-7" tabindex="-1"></a>  <span class="cf">if</span>(period <span class="sc">==</span> <span class="st">&quot;H&quot;</span>) {from <span class="ot">=</span> <span class="dv">1988</span>;to <span class="ot">=</span> <span class="dv">2020</span>}</span>
+<span id="cb498-8"><a href="climate-scenarios.html#cb498-8" tabindex="-1"></a>  <span class="cf">if</span>(period <span class="sc">==</span> <span class="st">&quot;N&quot;</span>){from <span class="ot">=</span> <span class="dv">2033</span>;to <span class="ot">=</span> <span class="dv">2065</span>}</span>
+<span id="cb498-9"><a href="climate-scenarios.html#cb498-9" tabindex="-1"></a>  <span class="cf">if</span>(period <span class="sc">==</span> <span class="st">&quot;F&quot;</span>) {from <span class="ot">=</span> <span class="dv">2067</span>;to <span class="ot">=</span> <span class="dv">2098</span>}</span>
+<span id="cb498-10"><a href="climate-scenarios.html#cb498-10" tabindex="-1"></a></span>
+<span id="cb498-11"><a href="climate-scenarios.html#cb498-11" tabindex="-1"></a>  <span class="co"># farmR input path</span></span>
+<span id="cb498-12"><a href="climate-scenarios.html#cb498-12" tabindex="-1"></a>  wd <span class="ot">&lt;-</span> <span class="st">&quot;model_data/cs10_setup/scenarios/climate_scenarios/&quot;</span></span>
+<span id="cb498-13"><a href="climate-scenarios.html#cb498-13" tabindex="-1"></a>  dir <span class="ot">&lt;-</span> <span class="fu">paste0</span>(wd, run_name)</span>
+<span id="cb498-14"><a href="climate-scenarios.html#cb498-14" tabindex="-1"></a>  fip <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;model_data/input/management/farmR_input_&quot;</span>, from, <span class="st">&quot;_&quot;</span>, to, <span class="st">&quot;.csv&quot;</span>)</span>
+<span id="cb498-15"><a href="climate-scenarios.html#cb498-15" tabindex="-1"></a>  farmscen <span class="ot">&lt;-</span> SWATfarmR<span class="sc">::</span>farmr_project<span class="sc">$</span><span class="fu">new</span>(<span class="at">project_name =</span> run_name, <span class="at">project_path =</span> dir)</span>
+<span id="cb498-16"><a href="climate-scenarios.html#cb498-16" tabindex="-1"></a>  farmscen<span class="sc">$</span><span class="fu">read_management</span>(<span class="at">file =</span> fip, <span class="at">discard_schedule =</span> T)</span>
+<span id="cb498-17"><a href="climate-scenarios.html#cb498-17" tabindex="-1"></a>  pcp <span class="ot">&lt;-</span> farmscen<span class="sc">$</span>.data<span class="sc">$</span>variables<span class="sc">$</span>pcp</span>
+<span id="cb498-18"><a href="climate-scenarios.html#cb498-18" tabindex="-1"></a>  </span>
+<span id="cb498-19"><a href="climate-scenarios.html#cb498-19" tabindex="-1"></a>  <span class="cf">if</span>((pcp<span class="sc">$</span>date <span class="sc">%&gt;%</span> <span class="fu">last</span>() <span class="sc">==</span> <span class="fu">paste0</span>(to,<span class="st">&quot;-12-31&quot;</span>)) <span class="sc">==</span> <span class="cn">FALSE</span>){</span>
+<span id="cb498-20"><a href="climate-scenarios.html#cb498-20" tabindex="-1"></a>    <span class="fu">stop</span>(run_name, <span class="st">&quot;has issues with the end day&quot;</span>)</span>
+<span id="cb498-21"><a href="climate-scenarios.html#cb498-21" tabindex="-1"></a>  }</span>
+<span id="cb498-22"><a href="climate-scenarios.html#cb498-22" tabindex="-1"></a>  </span>
+<span id="cb498-23"><a href="climate-scenarios.html#cb498-23" tabindex="-1"></a>  <span class="co"># using temp API</span></span>
+<span id="cb498-24"><a href="climate-scenarios.html#cb498-24" tabindex="-1"></a>  <span class="co"># </span><span class="al">TODO</span><span class="co"> add real API</span></span>
+<span id="cb498-25"><a href="climate-scenarios.html#cb498-25" tabindex="-1"></a>  </span>
+<span id="cb498-26"><a href="climate-scenarios.html#cb498-26" tabindex="-1"></a>  <span class="co"># Extract the hydrologic soil group values for all HRUs</span></span>
+<span id="cb498-27"><a href="climate-scenarios.html#cb498-27" tabindex="-1"></a>  hsg <span class="ot">&lt;-</span> <span class="fu">select</span>(farmscen<span class="sc">$</span>.data<span class="sc">$</span>meta<span class="sc">$</span>hru_attributes, hru, hyd_grp)</span>
+<span id="cb498-28"><a href="climate-scenarios.html#cb498-28" tabindex="-1"></a>  </span>
+<span id="cb498-29"><a href="climate-scenarios.html#cb498-29" tabindex="-1"></a>  </span>
+<span id="cb498-30"><a href="climate-scenarios.html#cb498-30" tabindex="-1"></a>  </span>
+<span id="cb498-31"><a href="climate-scenarios.html#cb498-31" tabindex="-1"></a>  <span class="co"># Calculate api values for the hsg classes A to D</span></span>
+<span id="cb498-32"><a href="climate-scenarios.html#cb498-32" tabindex="-1"></a>  api_A <span class="ot">&lt;-</span> <span class="fu">variable_decay</span>(<span class="at">variable =</span> pcp, <span class="at">n_steps =</span> <span class="sc">-</span><span class="dv">5</span>, <span class="at">decay_rate =</span> <span class="dv">1</span>)</span>
+<span id="cb498-33"><a href="climate-scenarios.html#cb498-33" tabindex="-1"></a>  api_B <span class="ot">&lt;-</span> <span class="fu">variable_decay</span>(<span class="at">variable =</span> pcp, <span class="at">n_steps =</span> <span class="sc">-</span><span class="dv">5</span>, <span class="at">decay_rate =</span> <span class="fl">0.8</span>)</span>
+<span id="cb498-34"><a href="climate-scenarios.html#cb498-34" tabindex="-1"></a>  api_C <span class="ot">&lt;-</span> <span class="fu">variable_decay</span>(<span class="at">variable =</span> pcp, <span class="at">n_steps =</span> <span class="sc">-</span><span class="dv">5</span>, <span class="at">decay_rate =</span> <span class="fl">0.7</span>)</span>
+<span id="cb498-35"><a href="climate-scenarios.html#cb498-35" tabindex="-1"></a>  api_D <span class="ot">&lt;-</span> <span class="fu">variable_decay</span>(<span class="at">variable =</span> pcp, <span class="at">n_steps =</span> <span class="sc">-</span><span class="dv">5</span>, <span class="at">decay_rate =</span> <span class="fl">0.5</span>)</span>
+<span id="cb498-36"><a href="climate-scenarios.html#cb498-36" tabindex="-1"></a>  </span>
+<span id="cb498-37"><a href="climate-scenarios.html#cb498-37" tabindex="-1"></a>  <span class="co"># Bind the data together into one api table and name them with the hsgs</span></span>
+<span id="cb498-38"><a href="climate-scenarios.html#cb498-38" tabindex="-1"></a>  api <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(api_A, api_B, api_C, api_D)</span>
+<span id="cb498-39"><a href="climate-scenarios.html#cb498-39" tabindex="-1"></a>  <span class="fu">names</span>(api) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;api_A&#39;</span>, <span class="st">&#39;api_B&#39;</span>, <span class="st">&#39;api_C&#39;</span>, <span class="st">&#39;api_D&#39;</span>)</span>
+<span id="cb498-40"><a href="climate-scenarios.html#cb498-40" tabindex="-1"></a>  </span>
+<span id="cb498-41"><a href="climate-scenarios.html#cb498-41" tabindex="-1"></a>  <span class="co"># To add the variable to the farmR you have to tell it which variables are</span></span>
+<span id="cb498-42"><a href="climate-scenarios.html#cb498-42" tabindex="-1"></a>  <span class="co"># assigned to which HRUs</span></span>
+<span id="cb498-43"><a href="climate-scenarios.html#cb498-43" tabindex="-1"></a>  hru_asgn <span class="ot">&lt;-</span> <span class="fu">mutate</span>(hsg, <span class="at">api =</span> <span class="fu">paste0</span>(<span class="st">&#39;api_&#39;</span>, hyd_grp)) <span class="sc">%&gt;%</span> <span class="fu">select</span>(hru, api)</span>
+<span id="cb498-44"><a href="climate-scenarios.html#cb498-44" tabindex="-1"></a></span>
+<span id="cb498-45"><a href="climate-scenarios.html#cb498-45" tabindex="-1"></a>  <span class="co"># Add the variable api to the farmR project</span></span>
+<span id="cb498-46"><a href="climate-scenarios.html#cb498-46" tabindex="-1"></a>  farmscen<span class="sc">$</span><span class="fu">add_variable</span>(<span class="at">data =</span> api, <span class="at">name =</span> <span class="st">&#39;api&#39;</span>, <span class="at">assign_unit =</span> hru_asgn, <span class="at">overwrite =</span> T)</span>
+<span id="cb498-47"><a href="climate-scenarios.html#cb498-47" tabindex="-1"></a>  </span>
+<span id="cb498-48"><a href="climate-scenarios.html#cb498-48" tabindex="-1"></a>  <span class="co"># Schedule operations</span></span>
+<span id="cb498-49"><a href="climate-scenarios.html#cb498-49" tabindex="-1"></a>  farmscen<span class="sc">$</span><span class="fu">schedule_operations</span>(<span class="at">start_year =</span> from,</span>
+<span id="cb498-50"><a href="climate-scenarios.html#cb498-50" tabindex="-1"></a>                         <span class="at">end_year =</span> to,</span>
+<span id="cb498-51"><a href="climate-scenarios.html#cb498-51" tabindex="-1"></a>                         <span class="at">n_schedule =</span> <span class="dv">2</span>, <span class="at">replace =</span> <span class="st">&quot;all&quot;</span>)</span>
+<span id="cb498-52"><a href="climate-scenarios.html#cb498-52" tabindex="-1"></a>  <span class="co"># Write operations</span></span>
+<span id="cb498-53"><a href="climate-scenarios.html#cb498-53" tabindex="-1"></a>  farmscen<span class="sc">$</span><span class="fu">write_operations</span>(<span class="at">start_year =</span> from, <span class="at">end_year =</span> to)</span>
+<span id="cb498-54"><a href="climate-scenarios.html#cb498-54" tabindex="-1"></a>}</span></code></pre></div>
+<p>Here we execute the parallel calculation of FarmR runs: <u>This will take very long (about 4.6 hours)</u></p>
+<div class="sourceCode" id="cb499"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb499-1"><a href="climate-scenarios.html#cb499-1" tabindex="-1"></a>cores <span class="ot">&lt;-</span> <span class="fu">detectCores</span>() <span class="sc">-</span> <span class="dv">2</span></span>
+<span id="cb499-2"><a href="climate-scenarios.html#cb499-2" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;working with&quot;</span>, cores, <span class="st">&quot; cores&quot;</span>))</span>
+<span id="cb499-3"><a href="climate-scenarios.html#cb499-3" tabindex="-1"></a>t1 <span class="ot">=</span> <span class="fu">Sys.time</span>()</span>
+<span id="cb499-4"><a href="climate-scenarios.html#cb499-4" tabindex="-1"></a>cl <span class="ot">&lt;-</span> <span class="fu">makeCluster</span>(cores,  <span class="at">outfile=</span><span class="st">&quot;&quot;</span>)</span>
+<span id="cb499-5"><a href="climate-scenarios.html#cb499-5" tabindex="-1"></a><span class="fu">registerDoParallel</span>(cl)</span>
+<span id="cb499-6"><a href="climate-scenarios.html#cb499-6" tabindex="-1"></a>farmRresult <span class="ot">&lt;-</span> <span class="fu">foreach</span>(<span class="at">run_name =</span> run_name,<span class="at">.packages =</span> <span class="fu">c</span>(<span class="st">&quot;SWATfarmR&quot;</span>, <span class="st">&quot;stringr&quot;</span>, <span class="st">&quot;dplyr&quot;</span>)) <span class="sc">%dopar%</span> {</span>
+<span id="cb499-7"><a href="climate-scenarios.html#cb499-7" tabindex="-1"></a>  <span class="fu">farmer_resechedule</span>(<span class="at">run_name =</span> run_name)</span>
+<span id="cb499-8"><a href="climate-scenarios.html#cb499-8" tabindex="-1"></a>  }</span>
+<span id="cb499-9"><a href="climate-scenarios.html#cb499-9" tabindex="-1"></a><span class="fu">stopCluster</span>(cl)</span>
+<span id="cb499-10"><a href="climate-scenarios.html#cb499-10" tabindex="-1"></a>t2  <span class="ot">=</span> <span class="fu">Sys.time</span>()</span>
+<span id="cb499-11"><a href="climate-scenarios.html#cb499-11" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">length</span>(<span class="fu">which</span>(<span class="fu">unlist</span>(myresult) <span class="sc">==</span> <span class="cn">FALSE</span>)) <span class="sc">&gt;</span> <span class="dv">0</span>){<span class="fu">warning</span>(<span class="st">&quot;some runs failed!&quot;</span>)}<span class="cf">else</span>{</span>
+<span id="cb499-12"><a href="climate-scenarios.html#cb499-12" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;all threads succeded&quot;</span>)</span>
+<span id="cb499-13"><a href="climate-scenarios.html#cb499-13" tabindex="-1"></a>  <span class="fu">print</span>(t2<span class="sc">-</span>t1)</span>
+<span id="cb499-14"><a href="climate-scenarios.html#cb499-14" tabindex="-1"></a>}</span></code></pre></div>
+<p>Back up the farmers and their calculated managements.</p>
+<p><strong>Question: WHERE HAS THE .FARM FILE GONE?</strong> not used in farmR 3.2?</p>
+<div class="sourceCode" id="cb500"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb500-1"><a href="climate-scenarios.html#cb500-1" tabindex="-1"></a>scen_dir <span class="ot">&lt;-</span> <span class="st">&quot;model_data/cs10_setup/scenarios/climate_scenarios/&quot;</span></span>
+<span id="cb500-2"><a href="climate-scenarios.html#cb500-2" tabindex="-1"></a></span>
+<span id="cb500-3"><a href="climate-scenarios.html#cb500-3" tabindex="-1"></a>our_farmers <span class="ot">&lt;-</span> <span class="fu">list.files</span>(scen_dir, <span class="at">pattern =</span> <span class="st">&quot;*.mgts&quot;</span>, <span class="at">recursive =</span> T, <span class="at">full.names =</span> T)</span>
+<span id="cb500-4"><a href="climate-scenarios.html#cb500-4" tabindex="-1"></a></span>
+<span id="cb500-5"><a href="climate-scenarios.html#cb500-5" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">&quot;model_data/input/climate/scenario_farmers&quot;</span>, <span class="at">showWarnings =</span> F)</span>
+<span id="cb500-6"><a href="climate-scenarios.html#cb500-6" tabindex="-1"></a></span>
+<span id="cb500-7"><a href="climate-scenarios.html#cb500-7" tabindex="-1"></a><span class="fu">file.copy</span>(our_farmers, <span class="at">to =</span> <span class="st">&quot;model_data/input/climate/scenario_farmers&quot;</span>, <span class="at">overwrite =</span> T)</span></code></pre></div>
+<p>Now, if we would like to skip re-calculating the FarmR, we can just load in the backups:</p>
+<div class="sourceCode" id="cb501"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb501-1"><a href="climate-scenarios.html#cb501-1" tabindex="-1"></a><span class="cf">if</span>(RECALC_FARMR <span class="sc">==</span> <span class="cn">FALSE</span>) {</span>
+<span id="cb501-2"><a href="climate-scenarios.html#cb501-2" tabindex="-1"></a>  <span class="cf">for</span> (run <span class="cf">in</span> run_names) {</span>
+<span id="cb501-3"><a href="climate-scenarios.html#cb501-3" tabindex="-1"></a>    from <span class="ot">=</span> <span class="fu">paste0</span>(<span class="st">&quot;model_data/input/climate/scenario_farmers/&quot;</span>, run, <span class="st">&quot;.mgts&quot;</span>)</span>
+<span id="cb501-4"><a href="climate-scenarios.html#cb501-4" tabindex="-1"></a>    to <span class="ot">=</span> <span class="fu">paste0</span>(<span class="st">&quot;model_data/cs10_setup/scenarios/climate_scenarios/&quot;</span>, run)</span>
+<span id="cb501-5"><a href="climate-scenarios.html#cb501-5" tabindex="-1"></a>    <span class="fu">file.copy</span>(<span class="at">from =</span> from, <span class="at">to =</span> to, <span class="at">overwrite =</span> F)</span>
+<span id="cb501-6"><a href="climate-scenarios.html#cb501-6" tabindex="-1"></a>  }</span>
+<span id="cb501-7"><a href="climate-scenarios.html#cb501-7" tabindex="-1"></a>}</span></code></pre></div>
+</div>
+<div id="executing-model" class="section level2 hasAnchor" number="12.4">
+<h2><span class="header-section-number">12.4</span> Executing model<a href="climate-scenarios.html#executing-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>This code looks like it was written by a neanderthal, but it gets the job done. (Run time: 1.3 hours)</p>
+<div class="sourceCode" id="cb502"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb502-1"><a href="climate-scenarios.html#cb502-1" tabindex="-1"></a>swatt1 <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
+<span id="cb502-2"><a href="climate-scenarios.html#cb502-2" tabindex="-1"></a>m_dir <span class="ot">&lt;-</span> <span class="fu">list.dirs</span>(<span class="st">&quot;model_data/cs10_setup/scenarios/climate_scenarios/&quot;</span>, <span class="at">recursive =</span> F, <span class="at">full.names =</span> T)</span>
+<span id="cb502-3"><a href="climate-scenarios.html#cb502-3" tabindex="-1"></a>wd <span class="ot">&lt;-</span> <span class="fu">getwd</span>()</span>
+<span id="cb502-4"><a href="climate-scenarios.html#cb502-4" tabindex="-1"></a>swat_path <span class="ot">&lt;-</span> <span class="st">&quot;D:/git/swat-cs10/model_data/cs10_setup/Rev_61_0_64rel.exe&quot;</span></span>
+<span id="cb502-5"><a href="climate-scenarios.html#cb502-5" tabindex="-1"></a>swat_exe <span class="ot">&lt;-</span> <span class="st">&quot;Rev_61_0_64rel.exe&quot;</span></span>
+<span id="cb502-6"><a href="climate-scenarios.html#cb502-6" tabindex="-1"></a>cores <span class="ot">=</span> <span class="fu">detectCores</span>() <span class="sc">-</span> <span class="dv">2</span></span>
+<span id="cb502-7"><a href="climate-scenarios.html#cb502-7" tabindex="-1"></a><span class="fu">library</span>(doParallel)</span>
+<span id="cb502-8"><a href="climate-scenarios.html#cb502-8" tabindex="-1"></a><span class="fu">require</span>(foreach)</span>
+<span id="cb502-9"><a href="climate-scenarios.html#cb502-9" tabindex="-1"></a>cl <span class="ot">&lt;-</span> <span class="fu">makeCluster</span>(cores,  <span class="at">outfile=</span><span class="st">&quot;&quot;</span>)</span>
+<span id="cb502-10"><a href="climate-scenarios.html#cb502-10" tabindex="-1"></a><span class="fu">registerDoParallel</span>(cl)</span>
+<span id="cb502-11"><a href="climate-scenarios.html#cb502-11" tabindex="-1"></a>txt_info <span class="ot">&lt;-</span> <span class="fu">foreach</span> (<span class="at">d =</span> m_dir) <span class="sc">%dopar%</span> {</span>
+<span id="cb502-12"><a href="climate-scenarios.html#cb502-12" tabindex="-1"></a>  </span>
+<span id="cb502-13"><a href="climate-scenarios.html#cb502-13" tabindex="-1"></a>  <span class="co"># run SWAT for all cal files in parallel</span></span>
+<span id="cb502-14"><a href="climate-scenarios.html#cb502-14" tabindex="-1"></a>  <span class="fu">setwd</span>(<span class="fu">paste</span>(wd, d, <span class="at">sep=</span><span class="st">&#39;/&#39;</span>))</span>
+<span id="cb502-15"><a href="climate-scenarios.html#cb502-15" tabindex="-1"></a>  <span class="fu">file.copy</span>(swat_path, swat_exe)</span>
+<span id="cb502-16"><a href="climate-scenarios.html#cb502-16" tabindex="-1"></a>  <span class="fu">system</span>(swat_exe)</span>
+<span id="cb502-17"><a href="climate-scenarios.html#cb502-17" tabindex="-1"></a>}</span>
+<span id="cb502-18"><a href="climate-scenarios.html#cb502-18" tabindex="-1"></a><span class="fu">stopCluster</span>(cl)</span>
+<span id="cb502-19"><a href="climate-scenarios.html#cb502-19" tabindex="-1"></a>swatt2 <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
+<span id="cb502-20"><a href="climate-scenarios.html#cb502-20" tabindex="-1"></a></span>
+<span id="cb502-21"><a href="climate-scenarios.html#cb502-21" tabindex="-1"></a></span>
+<span id="cb502-22"><a href="climate-scenarios.html#cb502-22" tabindex="-1"></a><span class="cf">if</span>((txt_info <span class="sc">%&gt;%</span> <span class="fu">unlist</span>() <span class="sc">%&gt;%</span> <span class="fu">sum</span>())<span class="sc">&gt;</span><span class="dv">0</span>){</span>
+<span id="cb502-23"><a href="climate-scenarios.html#cb502-23" tabindex="-1"></a>  <span class="fu">warning</span>(<span class="st">&quot;some SWAT+ runs had non-zero exit status!</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb502-24"><a href="climate-scenarios.html#cb502-24" tabindex="-1"></a>  <span class="fu">print</span>(swatt2<span class="sc">-</span>swatt1)</span>
+<span id="cb502-25"><a href="climate-scenarios.html#cb502-25" tabindex="-1"></a>  <span class="fu">print</span>(txt_info)</span>
+<span id="cb502-26"><a href="climate-scenarios.html#cb502-26" tabindex="-1"></a>}<span class="cf">else</span>{</span>
+<span id="cb502-27"><a href="climate-scenarios.html#cb502-27" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;all swat runs succeeded&quot;</span>)</span>
+<span id="cb502-28"><a href="climate-scenarios.html#cb502-28" tabindex="-1"></a>  <span class="fu">print</span>(swatt2<span class="sc">-</span>swatt1)</span>
+<span id="cb502-29"><a href="climate-scenarios.html#cb502-29" tabindex="-1"></a>}</span></code></pre></div>
+</div>
+<div id="processing-results" class="section level2 hasAnchor" number="12.5">
+<h2><span class="header-section-number">12.5</span> Processing Results<a href="climate-scenarios.html#processing-results" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We need to define the following settings:</p>
+<div class="sourceCode" id="cb503"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb503-1"><a href="climate-scenarios.html#cb503-1" tabindex="-1"></a>outflow_reach <span class="ot">&lt;-</span> <span class="dv">37</span></span>
+<span id="cb503-2"><a href="climate-scenarios.html#cb503-2" tabindex="-1"></a></span>
+<span id="cb503-3"><a href="climate-scenarios.html#cb503-3" tabindex="-1"></a><span class="do">###  collect HRU-based indicators related to  water quantity (average annual for </span></span>
+<span id="cb503-4"><a href="climate-scenarios.html#cb503-4" tabindex="-1"></a><span class="do">## specified months)</span></span>
+<span id="cb503-5"><a href="climate-scenarios.html#cb503-5" tabindex="-1"></a><span class="do">## please specify start and end months of interest for the soil water analysis</span></span>
+<span id="cb503-6"><a href="climate-scenarios.html#cb503-6" tabindex="-1"></a>sw_periods <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="fu">c</span>(<span class="dv">5</span><span class="sc">:</span><span class="dv">9</span>), <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>) <span class="co">#this is an example for printing sw for </span></span>
+<span id="cb503-7"><a href="climate-scenarios.html#cb503-7" tabindex="-1"></a><span class="do">## the period May to September and also for each single month in that period</span></span>
+<span id="cb503-8"><a href="climate-scenarios.html#cb503-8" tabindex="-1"></a></span>
+<span id="cb503-9"><a href="climate-scenarios.html#cb503-9" tabindex="-1"></a><span class="do">### collect cropping information for all scenarios - grain units and cultivated </span></span>
+<span id="cb503-10"><a href="climate-scenarios.html#cb503-10" tabindex="-1"></a><span class="do">## hectare average annual</span></span>
+<span id="cb503-11"><a href="climate-scenarios.html#cb503-11" tabindex="-1"></a><span class="do">## define 1) path, 2) crop selection, 3) type of output: a) yield, b) ha, 4) </span></span>
+<span id="cb503-12"><a href="climate-scenarios.html#cb503-12" tabindex="-1"></a><span class="do">## specify grain units equivalent for </span></span>
+<span id="cb503-13"><a href="climate-scenarios.html#cb503-13" tabindex="-1"></a><span class="co">#  all of the selected crops (if you just keep the parameter &#39;grain_units&#39;, </span></span>
+<span id="cb503-14"><a href="climate-scenarios.html#cb503-14" tabindex="-1"></a><span class="do">## there is already a parameterisation for </span></span>
+<span id="cb503-15"><a href="climate-scenarios.html#cb503-15" tabindex="-1"></a><span class="co">#   &#39;wwht&#39;, &#39;akgs&#39;, &#39;wbar&#39;, &#39;wira&#39;, &#39;csil&#39;, &#39;wiry&#39;, &#39;sgbt&#39;,&#39;barl&#39;</span></span>
+<span id="cb503-16"><a href="climate-scenarios.html#cb503-16" tabindex="-1"></a><span class="co"># the measure list (measr.list) can be adapted to the measures you want to compare</span></span>
+<span id="cb503-17"><a href="climate-scenarios.html#cb503-17" tabindex="-1"></a></span>
+<span id="cb503-18"><a href="climate-scenarios.html#cb503-18" tabindex="-1"></a></span>
+<span id="cb503-19"><a href="climate-scenarios.html#cb503-19" tabindex="-1"></a><span class="do">## Crop selection</span></span>
+<span id="cb503-20"><a href="climate-scenarios.html#cb503-20" tabindex="-1"></a>crop_sel <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;wwht&quot;</span>, <span class="st">&quot;barl&quot;</span>, <span class="st">&quot;oats&quot;</span>, <span class="st">&quot;swht&quot;</span>, <span class="st">&quot;pota&quot;</span>)</span>
+<span id="cb503-21"><a href="climate-scenarios.html#cb503-21" tabindex="-1"></a></span>
+<span id="cb503-22"><a href="climate-scenarios.html#cb503-22" tabindex="-1"></a><span class="do">## Grain units</span></span>
+<span id="cb503-23"><a href="climate-scenarios.html#cb503-23" tabindex="-1"></a>grain_units <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="st">&#39;wwht&#39;</span> <span class="ot">=</span> <span class="fl">1.209</span>, <span class="st">&#39;barl&#39;</span> <span class="ot">=</span> <span class="fl">1.163</span>, <span class="st">&quot;oats&quot;</span> <span class="ot">=</span> .<span class="dv">84</span>, <span class="st">&quot;swht&quot;</span> <span class="ot">=</span> <span class="fl">1.04</span>, <span class="st">&quot;pota&quot;</span> <span class="ot">=</span> .<span class="dv">22</span>)</span></code></pre></div>
+<p>Cleaning up</p>
+<div class="sourceCode" id="cb504"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb504-1"><a href="climate-scenarios.html#cb504-1" tabindex="-1"></a>tmp_path <span class="ot">&lt;-</span> <span class="st">&quot;model_data/cs10_setup/scenarios/&quot;</span></span>
+<span id="cb504-2"><a href="climate-scenarios.html#cb504-2" tabindex="-1"></a>cl <span class="ot">&lt;-</span> <span class="fu">makeCluster</span>(cores,  <span class="at">outfile=</span><span class="st">&quot;&quot;</span>)</span>
+<span id="cb504-3"><a href="climate-scenarios.html#cb504-3" tabindex="-1"></a><span class="fu">registerDoParallel</span>(cl)</span>
+<span id="cb504-4"><a href="climate-scenarios.html#cb504-4" tabindex="-1"></a>pres <span class="ot">&lt;-</span> <span class="fu">foreach</span> (<span class="at">d =</span> m_dir) <span class="sc">%dopar%</span> {</span>
+<span id="cb504-5"><a href="climate-scenarios.html#cb504-5" tabindex="-1"></a>  <span class="fu">setwd</span>(<span class="fu">paste</span>(wd, d, <span class="at">sep=</span><span class="st">&#39;/&#39;</span>))</span>
+<span id="cb504-6"><a href="climate-scenarios.html#cb504-6" tabindex="-1"></a>  cal <span class="ot">&lt;-</span> <span class="fu">paste</span>(wd, tmp_path, <span class="st">&quot;scs_results&quot;</span>, <span class="fu">tail</span>(<span class="fu">unlist</span>(<span class="fu">strsplit</span>(d,<span class="st">&#39;/&#39;</span>)), <span class="at">n =</span> <span class="dv">1</span>), <span class="at">sep =</span> <span class="st">&quot;/&quot;</span>)</span>
+<span id="cb504-7"><a href="climate-scenarios.html#cb504-7" tabindex="-1"></a>  <span class="fu">dir.create</span>(cal, <span class="at">recursive =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb504-8"><a href="climate-scenarios.html#cb504-8" tabindex="-1"></a>  <span class="fu">dir.create</span>(<span class="st">&quot;RESULTS&quot;</span>, <span class="at">showWarnings =</span> F)</span>
+<span id="cb504-9"><a href="climate-scenarios.html#cb504-9" tabindex="-1"></a>  files.out.aa <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="at">pattern =</span> <span class="st">&#39;aa&#39;</span>, <span class="at">full.names =</span> T)</span>
+<span id="cb504-10"><a href="climate-scenarios.html#cb504-10" tabindex="-1"></a>  files.out.mon <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="at">pattern =</span> <span class="st">&#39;mon&#39;</span>, <span class="at">full.names =</span> T)</span>
+<span id="cb504-11"><a href="climate-scenarios.html#cb504-11" tabindex="-1"></a>  files.out.day <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="at">pattern =</span> <span class="st">&#39;day&#39;</span>, <span class="at">full.names =</span> T)</span>
+<span id="cb504-12"><a href="climate-scenarios.html#cb504-12" tabindex="-1"></a>  files.help <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;hru.con&#39;</span>) <span class="co"># please provide hru_agr.txt file  &#39;hru_agr.txt&#39;</span></span>
+<span id="cb504-13"><a href="climate-scenarios.html#cb504-13" tabindex="-1"></a>  <span class="do">## (cropland hru names) in txt folder</span></span>
+<span id="cb504-14"><a href="climate-scenarios.html#cb504-14" tabindex="-1"></a>  </span>
+<span id="cb504-15"><a href="climate-scenarios.html#cb504-15" tabindex="-1"></a>  <span class="fu">file.copy</span>(</span>
+<span id="cb504-16"><a href="climate-scenarios.html#cb504-16" tabindex="-1"></a>    <span class="at">from =</span> <span class="fu">c</span>(files.out.aa, files.out.mon, files.out.day, files.help),</span>
+<span id="cb504-17"><a href="climate-scenarios.html#cb504-17" tabindex="-1"></a>    <span class="at">to =</span>cal,</span>
+<span id="cb504-18"><a href="climate-scenarios.html#cb504-18" tabindex="-1"></a>    <span class="at">overwrite =</span> T</span>
+<span id="cb504-19"><a href="climate-scenarios.html#cb504-19" tabindex="-1"></a>  )</span>
+<span id="cb504-20"><a href="climate-scenarios.html#cb504-20" tabindex="-1"></a>  <span class="fu">unlink</span>(swat_exe)</span>
+<span id="cb504-21"><a href="climate-scenarios.html#cb504-21" tabindex="-1"></a>}</span>
+<span id="cb504-22"><a href="climate-scenarios.html#cb504-22" tabindex="-1"></a><span class="fu">stopCluster</span>(cl)</span></code></pre></div>
+<p>Data processing and plotting, done by Micha’s code.</p>
+<div class="sourceCode" id="cb505"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb505-1"><a href="climate-scenarios.html#cb505-1" tabindex="-1"></a><span class="fu">require</span>(readr)</span>
+<span id="cb505-2"><a href="climate-scenarios.html#cb505-2" tabindex="-1"></a><span class="fu">require</span>(tidyverse)</span>
+<span id="cb505-3"><a href="climate-scenarios.html#cb505-3" tabindex="-1"></a><span class="fu">require</span>(data.table)</span>
+<span id="cb505-4"><a href="climate-scenarios.html#cb505-4" tabindex="-1"></a><span class="fu">require</span>(xts)</span>
+<span id="cb505-5"><a href="climate-scenarios.html#cb505-5" tabindex="-1"></a><span class="fu">require</span>(dygraphs)</span>
+<span id="cb505-6"><a href="climate-scenarios.html#cb505-6" tabindex="-1"></a><span class="fu">require</span>(R.utils)</span>
+<span id="cb505-7"><a href="climate-scenarios.html#cb505-7" tabindex="-1"></a><span class="fu">require</span>(foreach)</span>
+<span id="cb505-8"><a href="climate-scenarios.html#cb505-8" tabindex="-1"></a><span class="fu">require</span>(doParallel)</span>
+<span id="cb505-9"><a href="climate-scenarios.html#cb505-9" tabindex="-1"></a><span class="fu">require</span>(data.table)</span>
+<span id="cb505-10"><a href="climate-scenarios.html#cb505-10" tabindex="-1"></a><span class="fu">require</span>(ggplot2)</span>
+<span id="cb505-11"><a href="climate-scenarios.html#cb505-11" tabindex="-1"></a><span class="fu">require</span>(fmsb)</span>
+<span id="cb505-12"><a href="climate-scenarios.html#cb505-12" tabindex="-1"></a><span class="fu">require</span>(dplyr) <span class="co"># dplyr must be loaded last. </span></span></code></pre></div>
+<div class="sourceCode" id="cb506"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb506-1"><a href="climate-scenarios.html#cb506-1" tabindex="-1"></a><span class="do">##------------------------------------------------------------------------------</span></span>
+<span id="cb506-2"><a href="climate-scenarios.html#cb506-2" tabindex="-1"></a><span class="do">## 9) Load Micha&#39;s functions for the output extraction and prepare results</span></span>
+<span id="cb506-3"><a href="climate-scenarios.html#cb506-3" tabindex="-1"></a><span class="do">##------------------------------------------------------------------------------</span></span>
+<span id="cb506-4"><a href="climate-scenarios.html#cb506-4" tabindex="-1"></a></span>
+<span id="cb506-5"><a href="climate-scenarios.html#cb506-5" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&#39;model_data/code/calc_Indis.R&#39;</span>)</span>
+<span id="cb506-6"><a href="climate-scenarios.html#cb506-6" tabindex="-1"></a></span>
+<span id="cb506-7"><a href="climate-scenarios.html#cb506-7" tabindex="-1"></a><span class="do">## Direstory with the simulation results</span></span>
+<span id="cb506-8"><a href="climate-scenarios.html#cb506-8" tabindex="-1"></a>path <span class="ot">&lt;-</span> <span class="st">&quot;model_data/cs10_setup/scenarios/scs_results&quot;</span></span>
+<span id="cb506-9"><a href="climate-scenarios.html#cb506-9" tabindex="-1"></a></span>
+<span id="cb506-10"><a href="climate-scenarios.html#cb506-10" tabindex="-1"></a><span class="do">##------------------------------------------------------------------------------</span></span>
+<span id="cb506-11"><a href="climate-scenarios.html#cb506-11" tabindex="-1"></a><span class="do">## 10)  Output analysis from Micha (warranty provided by Micha ;)</span></span>
+<span id="cb506-12"><a href="climate-scenarios.html#cb506-12" tabindex="-1"></a><span class="do">##------------------------------------------------------------------------------</span></span>
+<span id="cb506-13"><a href="climate-scenarios.html#cb506-13" tabindex="-1"></a></span>
+<span id="cb506-14"><a href="climate-scenarios.html#cb506-14" tabindex="-1"></a><span class="do">### In the following functions to calculate indicators are applied</span></span>
+<span id="cb506-15"><a href="climate-scenarios.html#cb506-15" tabindex="-1"></a><span class="do">### Please adjust function parameters (e.g. channel name, see also header </span></span>
+<span id="cb506-16"><a href="climate-scenarios.html#cb506-16" tabindex="-1"></a><span class="do">## information of calc_Indis.R)</span></span>
+<span id="cb506-17"><a href="climate-scenarios.html#cb506-17" tabindex="-1"></a><span class="do">### In case an ensemble of calibration files is provided (in folder cal_files), </span></span>
+<span id="cb506-18"><a href="climate-scenarios.html#cb506-18" tabindex="-1"></a><span class="do">## set ensemble=T</span></span>
+<span id="cb506-19"><a href="climate-scenarios.html#cb506-19" tabindex="-1"></a><span class="do">### The resulting dataframe will provide you the ensemble mean as well as the </span></span>
+<span id="cb506-20"><a href="climate-scenarios.html#cb506-20" tabindex="-1"></a><span class="do">## ensemble minimum (lower) </span></span>
+<span id="cb506-21"><a href="climate-scenarios.html#cb506-21" tabindex="-1"></a><span class="do">### and maximum (upper) of the respective indicator</span></span>
+<span id="cb506-22"><a href="climate-scenarios.html#cb506-22" tabindex="-1"></a><span class="do">### If no cal file ensemble can be provided, set ensemble=F </span></span>
+<span id="cb506-23"><a href="climate-scenarios.html#cb506-23" tabindex="-1"></a><span class="do">### (but then make sure you have a calibration.cal with fitted parameters in </span></span>
+<span id="cb506-24"><a href="climate-scenarios.html#cb506-24" tabindex="-1"></a><span class="do">## the txt folder)</span></span>
+<span id="cb506-25"><a href="climate-scenarios.html#cb506-25" tabindex="-1"></a></span>
+<span id="cb506-26"><a href="climate-scenarios.html#cb506-26" tabindex="-1"></a><span class="do">### collect average annual output of water quantity and quality at outlet channel </span></span>
+<span id="cb506-27"><a href="climate-scenarios.html#cb506-27" tabindex="-1"></a><span class="do">## (aggregated comparison)</span></span>
+<span id="cb506-28"><a href="climate-scenarios.html#cb506-28" tabindex="-1"></a>r_dir <span class="ot">&lt;-</span> <span class="fu">list.dirs</span>(path, <span class="at">recursive =</span> <span class="cn">TRUE</span>)[<span class="sc">-</span><span class="dv">1</span>]</span>
+<span id="cb506-29"><a href="climate-scenarios.html#cb506-29" tabindex="-1"></a>rch <span class="ot">&lt;-</span> <span class="fu">sprintf</span>(<span class="st">&quot;cha%03d&quot;</span>, outflow_reach)</span>
+<span id="cb506-30"><a href="climate-scenarios.html#cb506-30" tabindex="-1"></a>cha_aa_all <span class="ot">&lt;-</span> <span class="fu">ind_cha_aa</span>(r_dir, rch) <span class="co">#adjust channel</span></span>
+<span id="cb506-31"><a href="climate-scenarios.html#cb506-31" tabindex="-1"></a></span>
+<span id="cb506-32"><a href="climate-scenarios.html#cb506-32" tabindex="-1"></a><span class="do">###  collect indicators related to the daily dynamics Water, N, P, Sed</span></span>
+<span id="cb506-33"><a href="climate-scenarios.html#cb506-33" tabindex="-1"></a>cha_day_all <span class="ot">&lt;-</span></span>
+<span id="cb506-34"><a href="climate-scenarios.html#cb506-34" tabindex="-1"></a>  <span class="fu">ind_cha_dayII</span>(<span class="at">path =</span> r_dir,</span>
+<span id="cb506-35"><a href="climate-scenarios.html#cb506-35" tabindex="-1"></a>                <span class="at">channel =</span> rch,</span>
+<span id="cb506-36"><a href="climate-scenarios.html#cb506-36" tabindex="-1"></a>                <span class="at">ind =</span> <span class="st">&#39;all&#39;</span>) <span class="co">#adjust channel</span></span>
+<span id="cb506-37"><a href="climate-scenarios.html#cb506-37" tabindex="-1"></a></span>
+<span id="cb506-38"><a href="climate-scenarios.html#cb506-38" tabindex="-1"></a><span class="do">###  collect HRU-based indicators related to water quality (average annual losses)</span></span>
+<span id="cb506-39"><a href="climate-scenarios.html#cb506-39" tabindex="-1"></a>hru_aa_nb_all <span class="ot">&lt;-</span> <span class="fu">ind_hru_aa_nb</span>(r_dir) <span class="co">#adjust channel</span></span>
+<span id="cb506-40"><a href="climate-scenarios.html#cb506-40" tabindex="-1"></a></span>
+<span id="cb506-41"><a href="climate-scenarios.html#cb506-41" tabindex="-1"></a><span class="do">###  collect HRU-based indicators related to  water quantity (average annual values)</span></span>
+<span id="cb506-42"><a href="climate-scenarios.html#cb506-42" tabindex="-1"></a>hru_aa_wb_all <span class="ot">&lt;-</span> <span class="fu">ind_hru_aa_wb</span>(r_dir)</span>
+<span id="cb506-43"><a href="climate-scenarios.html#cb506-43" tabindex="-1"></a></span>
+<span id="cb506-44"><a href="climate-scenarios.html#cb506-44" tabindex="-1"></a>hru_mon_all <span class="ot">&lt;-</span> <span class="fu">ind_hru_mon_wb</span>(r_dir, <span class="at">period =</span> sw_periods, <span class="at">nrows =</span> <span class="dv">54</span>) <span class="co">#might take a while</span></span>
+<span id="cb506-45"><a href="climate-scenarios.html#cb506-45" tabindex="-1"></a></span>
+<span id="cb506-46"><a href="climate-scenarios.html#cb506-46" tabindex="-1"></a><span class="co">#adjust</span></span>
+<span id="cb506-47"><a href="climate-scenarios.html#cb506-47" tabindex="-1"></a>crop_aa_gu <span class="ot">&lt;-</span> <span class="fu">ind_bsn_aa_crp</span>(r_dir, crop_sel, <span class="at">out_type =</span> <span class="st">&quot;yield&quot;</span>, grain_units)</span>
+<span id="cb506-48"><a href="climate-scenarios.html#cb506-48" tabindex="-1"></a>crop_aa_ha <span class="ot">&lt;-</span> <span class="fu">ind_bsn_aa_crp</span>(r_dir, crop_sel, <span class="at">out_type =</span> <span class="st">&quot;ha&quot;</span>, grain_units)</span>
+<span id="cb506-49"><a href="climate-scenarios.html#cb506-49" tabindex="-1"></a></span>
+<span id="cb506-50"><a href="climate-scenarios.html#cb506-50" tabindex="-1"></a><span class="do">### collect cropping information for all scenarios - Crop specific average annual </span></span>
+<span id="cb506-51"><a href="climate-scenarios.html#cb506-51" tabindex="-1"></a><span class="do">## yield and ha</span></span>
+<span id="cb506-52"><a href="climate-scenarios.html#cb506-52" tabindex="-1"></a>crop_aa_all <span class="ot">&lt;-</span> <span class="fu">ind_bsn_aa_crp_ha_Y</span>(r_dir, crop_sel)</span>
+<span id="cb506-53"><a href="climate-scenarios.html#cb506-53" tabindex="-1"></a></span>
+<span id="cb506-54"><a href="climate-scenarios.html#cb506-54" tabindex="-1"></a><span class="do">##------------------------------------------------------------------------------</span></span>
+<span id="cb506-55"><a href="climate-scenarios.html#cb506-55" tabindex="-1"></a><span class="do">## 11)  Aggregate outputs into one dataframe for plotting</span></span>
+<span id="cb506-56"><a href="climate-scenarios.html#cb506-56" tabindex="-1"></a><span class="do">##------------------------------------------------------------------------------</span></span>
+<span id="cb506-57"><a href="climate-scenarios.html#cb506-57" tabindex="-1"></a></span>
+<span id="cb506-58"><a href="climate-scenarios.html#cb506-58" tabindex="-1"></a></span>
+<span id="cb506-59"><a href="climate-scenarios.html#cb506-59" tabindex="-1"></a><span class="do">### combine data of interest in one dataframe for plotting</span></span>
+<span id="cb506-60"><a href="climate-scenarios.html#cb506-60" tabindex="-1"></a>df_plot <span class="ot">&lt;-</span> cha_aa_all </span>
+<span id="cb506-61"><a href="climate-scenarios.html#cb506-61" tabindex="-1"></a><span class="cf">for</span>(l <span class="cf">in</span> <span class="fu">list</span>(cha_day_all, hru_aa_nb_all, hru_aa_wb_all, hru_mon_all, crop_aa_gu, </span>
+<span id="cb506-62"><a href="climate-scenarios.html#cb506-62" tabindex="-1"></a>              crop_aa_ha, crop_aa_all)) df_plot <span class="ot">&lt;-</span> <span class="fu">left_join</span>(df_plot, l, <span class="at">by =</span> <span class="st">&quot;scen_name&quot;</span>)</span>
+<span id="cb506-63"><a href="climate-scenarios.html#cb506-63" tabindex="-1"></a></span>
+<span id="cb506-64"><a href="climate-scenarios.html#cb506-64" tabindex="-1"></a>df_plot_long <span class="ot">&lt;-</span> <span class="fu">pivot_longer</span>(df_plot, <span class="at">cols =</span> <span class="sc">-</span>scen_name, <span class="at">names_to =</span> <span class="st">&quot;indi&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;value&quot;</span>)</span>
+<span id="cb506-65"><a href="climate-scenarios.html#cb506-65" tabindex="-1"></a></span>
+<span id="cb506-66"><a href="climate-scenarios.html#cb506-66" tabindex="-1"></a><span class="do">## Get long format for plotting</span></span>
+<span id="cb506-67"><a href="climate-scenarios.html#cb506-67" tabindex="-1"></a>df_plot_long  <span class="ot">&lt;-</span> df_plot_long[<span class="sc">!</span><span class="fu">grepl</span>(<span class="st">&quot;_H$&quot;</span>, df_plot_long<span class="sc">$</span>scen_name),] <span class="sc">%&gt;%</span> </span>
+<span id="cb506-68"><a href="climate-scenarios.html#cb506-68" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">scen_base =</span> <span class="fu">gsub</span>(<span class="st">&quot;_[[:alpha:]]*$&quot;</span>,<span class="st">&quot;&quot;</span>,scen_name)) <span class="sc">%&gt;%</span> </span>
+<span id="cb506-69"><a href="climate-scenarios.html#cb506-69" tabindex="-1"></a>  <span class="fu">left_join</span>(df_plot_long[<span class="fu">grepl</span>(<span class="st">&quot;_H$&quot;</span>, df_plot_long<span class="sc">$</span>scen_name),] <span class="sc">%&gt;%</span> </span>
+<span id="cb506-70"><a href="climate-scenarios.html#cb506-70" tabindex="-1"></a>              <span class="fu">mutate</span>(<span class="at">scen_base =</span> <span class="fu">gsub</span>(<span class="st">&quot;_[[:alpha:]]*$&quot;</span>,<span class="st">&quot;&quot;</span>,scen_name)) <span class="sc">%&gt;%</span> </span>
+<span id="cb506-71"><a href="climate-scenarios.html#cb506-71" tabindex="-1"></a>              <span class="fu">rename</span>(<span class="at">value_base =</span> value) <span class="sc">%&gt;%</span> </span>
+<span id="cb506-72"><a href="climate-scenarios.html#cb506-72" tabindex="-1"></a>              <span class="fu">select</span>(<span class="sc">-</span>scen_name), <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;scen_base&quot;</span>, <span class="st">&quot;indi&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb506-73"><a href="climate-scenarios.html#cb506-73" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">value =</span> <span class="fu">round</span>(<span class="dv">100</span><span class="sc">*</span>(value<span class="sc">/</span>value_base<span class="dv">-1</span>), <span class="dv">3</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb506-74"><a href="climate-scenarios.html#cb506-74" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">ends_with</span>(<span class="st">&quot;base&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb506-75"><a href="climate-scenarios.html#cb506-75" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">scen_name =</span> <span class="fu">toupper</span>(scen_name)) <span class="sc">%&gt;%</span> </span>
+<span id="cb506-76"><a href="climate-scenarios.html#cb506-76" tabindex="-1"></a>  <span class="fu">mutate_all</span>(<span class="sc">~</span><span class="fu">ifelse</span>(<span class="fu">is.nan</span>(.), <span class="cn">NA</span>, .)) <span class="sc">%&gt;%</span> </span>
+<span id="cb506-77"><a href="climate-scenarios.html#cb506-77" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">scen_name =</span> <span class="fu">gsub</span>(<span class="st">&quot;_[^_]*_&quot;</span>, <span class="st">&quot;_&quot;</span>, scen_name)) <span class="sc">%&gt;%</span> </span>
+<span id="cb506-78"><a href="climate-scenarios.html#cb506-78" tabindex="-1"></a>  <span class="fu">separate</span>(scen_name, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">&quot;RCP&quot;</span>, <span class="st">&quot;Period&quot;</span>), <span class="at">sep =</span> <span class="st">&quot;_&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb506-79"><a href="climate-scenarios.html#cb506-79" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Period =</span> <span class="fu">case_when</span>(Period <span class="sc">==</span> <span class="st">&quot;N&quot;</span> <span class="sc">~</span> <span class="st">&quot;Near future&quot;</span>,</span>
+<span id="cb506-80"><a href="climate-scenarios.html#cb506-80" tabindex="-1"></a>                         Period <span class="sc">==</span> <span class="st">&quot;F&quot;</span> <span class="sc">~</span> <span class="st">&quot;End century&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb506-81"><a href="climate-scenarios.html#cb506-81" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Period =</span> <span class="fu">factor</span>(Period, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Near future&quot;</span>, <span class="st">&quot;End century&quot;</span>)))</span>
+<span id="cb506-82"><a href="climate-scenarios.html#cb506-82" tabindex="-1"></a></span>
+<span id="cb506-83"><a href="climate-scenarios.html#cb506-83" tabindex="-1"></a><span class="do">##------------------------------------------------------------------------------</span></span>
+<span id="cb506-84"><a href="climate-scenarios.html#cb506-84" tabindex="-1"></a><span class="do">## 12)  Plotting your results</span></span>
+<span id="cb506-85"><a href="climate-scenarios.html#cb506-85" tabindex="-1"></a><span class="do">##------------------------------------------------------------------------------</span></span>
+<span id="cb506-86"><a href="climate-scenarios.html#cb506-86" tabindex="-1"></a></span>
+<span id="cb506-87"><a href="climate-scenarios.html#cb506-87" tabindex="-1"></a><span class="do">##Function to plot results</span></span>
+<span id="cb506-88"><a href="climate-scenarios.html#cb506-88" tabindex="-1"></a>throw_box <span class="ot">&lt;-</span> <span class="cf">function</span>(df, vars, <span class="at">drop_outliers =</span> <span class="cn">FALSE</span>, <span class="at">font_size =</span> <span class="cn">NULL</span>){</span>
+<span id="cb506-89"><a href="climate-scenarios.html#cb506-89" tabindex="-1"></a>  df <span class="ot">&lt;-</span> df[df<span class="sc">$</span>indi <span class="sc">%in%</span> vars,] <span class="sc">%&gt;%</span> </span>
+<span id="cb506-90"><a href="climate-scenarios.html#cb506-90" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">indi =</span> <span class="fu">toupper</span>(indi))</span>
+<span id="cb506-91"><a href="climate-scenarios.html#cb506-91" tabindex="-1"></a>  df<span class="sc">$</span>indi <span class="ot">&lt;-</span> <span class="fu">factor</span>(df<span class="sc">$</span>indi, <span class="at">levels =</span> <span class="fu">toupper</span>(vars))</span>
+<span id="cb506-92"><a href="climate-scenarios.html#cb506-92" tabindex="-1"></a>  </span>
+<span id="cb506-93"><a href="climate-scenarios.html#cb506-93" tabindex="-1"></a>  <span class="cf">if</span>(drop_outliers){</span>
+<span id="cb506-94"><a href="climate-scenarios.html#cb506-94" tabindex="-1"></a>    nb_rec <span class="ot">&lt;-</span> <span class="fu">length</span>(df<span class="sc">$</span>indi)</span>
+<span id="cb506-95"><a href="climate-scenarios.html#cb506-95" tabindex="-1"></a>    <span class="co"># Filter out outliers</span></span>
+<span id="cb506-96"><a href="climate-scenarios.html#cb506-96" tabindex="-1"></a>    df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb506-97"><a href="climate-scenarios.html#cb506-97" tabindex="-1"></a>      <span class="fu">left_join</span>(<span class="fu">group_by</span>(., indi) <span class="sc">%&gt;%</span></span>
+<span id="cb506-98"><a href="climate-scenarios.html#cb506-98" tabindex="-1"></a>                  <span class="fu">summarize</span>(<span class="at">l_lim =</span> <span class="fu">lim</span>(value)[<span class="dv">1</span>], <span class="at">u_lim =</span> <span class="fu">lim</span>(value)[<span class="dv">2</span>]), <span class="at">by =</span> <span class="st">&quot;indi&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb506-99"><a href="climate-scenarios.html#cb506-99" tabindex="-1"></a>      <span class="fu">filter</span>(value <span class="sc">&gt;=</span> l_lim <span class="sc">&amp;</span> value <span class="sc">&lt;=</span> u_lim)</span>
+<span id="cb506-100"><a href="climate-scenarios.html#cb506-100" tabindex="-1"></a>    </span>
+<span id="cb506-101"><a href="climate-scenarios.html#cb506-101" tabindex="-1"></a>    <span class="fu">message</span>(<span class="st">&quot;Number of outliers removed: &quot;</span>, nb_rec <span class="sc">-</span> <span class="fu">length</span>(df<span class="sc">$</span>indi))</span>
+<span id="cb506-102"><a href="climate-scenarios.html#cb506-102" tabindex="-1"></a>  }</span>
+<span id="cb506-103"><a href="climate-scenarios.html#cb506-103" tabindex="-1"></a>  </span>
+<span id="cb506-104"><a href="climate-scenarios.html#cb506-104" tabindex="-1"></a>  <span class="co"># Plot</span></span>
+<span id="cb506-105"><a href="climate-scenarios.html#cb506-105" tabindex="-1"></a>  fig <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> Period, <span class="at">y =</span> value, <span class="at">fill =</span> RCP))<span class="sc">+</span></span>
+<span id="cb506-106"><a href="climate-scenarios.html#cb506-106" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="at">outlier.size=</span><span class="dv">1</span>, <span class="at">outlier.color =</span> <span class="st">&quot;grey30&quot;</span>)<span class="sc">+</span></span>
+<span id="cb506-107"><a href="climate-scenarios.html#cb506-107" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Period&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Change compared to baseline period [%]&quot;</span>) <span class="sc">+</span></span>
+<span id="cb506-108"><a href="climate-scenarios.html#cb506-108" tabindex="-1"></a>    <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb506-109"><a href="climate-scenarios.html#cb506-109" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span>indi,  <span class="at">scales =</span> <span class="st">&quot;free_y&quot;</span>)</span>
+<span id="cb506-110"><a href="climate-scenarios.html#cb506-110" tabindex="-1"></a>  </span>
+<span id="cb506-111"><a href="climate-scenarios.html#cb506-111" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">length</span>(font_size)<span class="sc">&gt;</span><span class="dv">0</span>){</span>
+<span id="cb506-112"><a href="climate-scenarios.html#cb506-112" tabindex="-1"></a>    fig <span class="ot">&lt;-</span> fig <span class="sc">+</span> </span>
+<span id="cb506-113"><a href="climate-scenarios.html#cb506-113" tabindex="-1"></a>      <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size=</span>font_size))</span>
+<span id="cb506-114"><a href="climate-scenarios.html#cb506-114" tabindex="-1"></a>  }</span>
+<span id="cb506-115"><a href="climate-scenarios.html#cb506-115" tabindex="-1"></a></span>
+<span id="cb506-116"><a href="climate-scenarios.html#cb506-116" tabindex="-1"></a>  <span class="fu">return</span>(fig)</span>
+<span id="cb506-117"><a href="climate-scenarios.html#cb506-117" tabindex="-1"></a>}</span>
+<span id="cb506-118"><a href="climate-scenarios.html#cb506-118" tabindex="-1"></a></span>
+<span id="cb506-119"><a href="climate-scenarios.html#cb506-119" tabindex="-1"></a><span class="co"># Calculate whisker limits</span></span>
+<span id="cb506-120"><a href="climate-scenarios.html#cb506-120" tabindex="-1"></a>lim <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb506-121"><a href="climate-scenarios.html#cb506-121" tabindex="-1"></a>  q1 <span class="ot">&lt;-</span> <span class="fu">quantile</span>(x, <span class="fl">0.25</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb506-122"><a href="climate-scenarios.html#cb506-122" tabindex="-1"></a>  q3 <span class="ot">&lt;-</span> <span class="fu">quantile</span>(x, <span class="fl">0.75</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb506-123"><a href="climate-scenarios.html#cb506-123" tabindex="-1"></a>  iqr <span class="ot">&lt;-</span> q3 <span class="sc">-</span> q1</span>
+<span id="cb506-124"><a href="climate-scenarios.html#cb506-124" tabindex="-1"></a>  lower_limit <span class="ot">&lt;-</span> q1 <span class="sc">-</span> <span class="fl">1.5</span> <span class="sc">*</span> iqr</span>
+<span id="cb506-125"><a href="climate-scenarios.html#cb506-125" tabindex="-1"></a>  upper_limit <span class="ot">&lt;-</span> q3 <span class="sc">+</span> <span class="fl">1.5</span> <span class="sc">*</span> iqr</span>
+<span id="cb506-126"><a href="climate-scenarios.html#cb506-126" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">c</span>(lower_limit, upper_limit))</span>
+<span id="cb506-127"><a href="climate-scenarios.html#cb506-127" tabindex="-1"></a>}</span></code></pre></div>
+</div>
+<div id="plotting-results" class="section level2 hasAnchor" number="12.6">
+<h2><span class="header-section-number">12.6</span> Plotting results<a href="climate-scenarios.html#plotting-results" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We are now ready to plot and save our results in the OPTAIN report format.</p>
+<div class="sourceCode" id="cb507"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb507-1"><a href="climate-scenarios.html#cb507-1" tabindex="-1"></a><span class="do">## Print all available indicators</span></span>
+<span id="cb507-2"><a href="climate-scenarios.html#cb507-2" tabindex="-1"></a><span class="fu">unique</span>(df_plot_long<span class="sc">$</span>indi)</span>
+<span id="cb507-3"><a href="climate-scenarios.html#cb507-3" tabindex="-1"></a></span>
+<span id="cb507-4"><a href="climate-scenarios.html#cb507-4" tabindex="-1"></a><span class="do">## Plotting selected indicators: divided into 4 thematic plots. See calc_indic.R for indicator explanations</span></span>
+<span id="cb507-5"><a href="climate-scenarios.html#cb507-5" tabindex="-1"></a><span class="co"># First plot - water balance indicators (some of them can be removed if not relevant, others may be added)</span></span>
+<span id="cb507-6"><a href="climate-scenarios.html#cb507-6" tabindex="-1"></a>wbi <span class="ot">&lt;-</span> <span class="fu">throw_box</span>(df_plot_long, <span class="fu">c</span>(<span class="st">&quot;precip&quot;</span>, <span class="st">&quot;snofall&quot;</span>, <span class="st">&quot;snomlt&quot;</span>, <span class="st">&quot;pet&quot;</span>, <span class="st">&quot;et&quot;</span>, <span class="st">&quot;perc&quot;</span>, </span>
+<span id="cb507-7"><a href="climate-scenarios.html#cb507-7" tabindex="-1"></a>                          <span class="st">&quot;sw&quot;</span>, <span class="st">&quot;sw_5&quot;</span>, <span class="st">&quot;sw_6&quot;</span>, <span class="st">&quot;sw_7&quot;</span>, <span class="st">&quot;sw_8&quot;</span>, <span class="st">&quot;sw_9&quot;</span>, <span class="st">&quot;sw_300&quot;</span>, </span>
+<span id="cb507-8"><a href="climate-scenarios.html#cb507-8" tabindex="-1"></a>                          <span class="st">&quot;surq_cha&quot;</span>, <span class="st">&quot;latq_cha&quot;</span>, <span class="st">&quot;qtile&quot;</span>))</span>
+<span id="cb507-9"><a href="climate-scenarios.html#cb507-9" tabindex="-1"></a></span>
+<span id="cb507-10"><a href="climate-scenarios.html#cb507-10" tabindex="-1"></a><span class="co">#Second plot - flow indicators (some can be removed if not relevant, others can be added)</span></span>
+<span id="cb507-11"><a href="climate-scenarios.html#cb507-11" tabindex="-1"></a>fi <span class="ot">&lt;-</span> <span class="fu">throw_box</span>(df_plot_long, <span class="fu">c</span>(<span class="st">&quot;Q_mean&quot;</span>, <span class="st">&quot;Q_p95&quot;</span>, <span class="st">&quot;Q_p90&quot;</span>, <span class="st">&quot;Q_p50&quot;</span>, <span class="st">&quot;Q_p10&quot;</span>, </span>
+<span id="cb507-12"><a href="climate-scenarios.html#cb507-12" tabindex="-1"></a>                          <span class="st">&quot;Q_p90p10&quot;</span>, <span class="st">&quot;Q_low_days&quot;</span>, <span class="st">&quot;Q_high_days&quot;</span>))</span>
+<span id="cb507-13"><a href="climate-scenarios.html#cb507-13" tabindex="-1"></a></span>
+<span id="cb507-14"><a href="climate-scenarios.html#cb507-14" tabindex="-1"></a><span class="co">#Third plot - water quality indicators (some can be removed if not relevant, others can be added)</span></span>
+<span id="cb507-15"><a href="climate-scenarios.html#cb507-15" tabindex="-1"></a>wqi <span class="ot">&lt;-</span> <span class="fu">throw_box</span>(df_plot_long, <span class="fu">c</span>(<span class="st">&quot;Nload&quot;</span>, <span class="st">&quot;Nconc_days&quot;</span>, <span class="st">&quot;N_loss&quot;</span>,<span class="st">&quot;Pload&quot;</span>, <span class="st">&quot;Pconc_days&quot;</span>, <span class="st">&quot;P_loss&quot;</span>))</span>
+<span id="cb507-16"><a href="climate-scenarios.html#cb507-16" tabindex="-1"></a></span>
+<span id="cb507-17"><a href="climate-scenarios.html#cb507-17" tabindex="-1"></a><span class="co">#Fourth plot - crop yields - major crops from each CS should be selected</span></span>
+<span id="cb507-18"><a href="climate-scenarios.html#cb507-18" tabindex="-1"></a>cy <span class="ot">&lt;-</span> <span class="fu">throw_box</span>(df_plot_long, <span class="fu">c</span>(<span class="st">&quot;swht_yld_t_ha&quot;</span>, <span class="st">&quot;barl_yld_t_ha&quot;</span>, <span class="st">&quot;oats_yld_t_ha&quot;</span>, </span>
+<span id="cb507-19"><a href="climate-scenarios.html#cb507-19" tabindex="-1"></a>                          <span class="st">&quot;pota_yld_t_ha&quot;</span>, <span class="st">&quot;wwht_yld_t_ha&quot;</span>))</span>
+<span id="cb507-20"><a href="climate-scenarios.html#cb507-20" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">&quot;model_data/results&quot;</span>, <span class="at">showWarnings =</span> F)</span>
+<span id="cb507-21"><a href="climate-scenarios.html#cb507-21" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="at">filename =</span> <span class="st">&quot;model_data/results/scs_water_balance_indicators.png&quot;</span>, <span class="at">plot =</span> wbi, <span class="at">width =</span> <span class="dv">10</span>)</span>
+<span id="cb507-22"><a href="climate-scenarios.html#cb507-22" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="at">filename =</span> <span class="st">&quot;model_data/results/scs_flow_indicators.png&quot;</span>, <span class="at">plot =</span> fi, <span class="at">width =</span> <span class="dv">10</span>)</span>
+<span id="cb507-23"><a href="climate-scenarios.html#cb507-23" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="at">filename =</span> <span class="st">&quot;model_data/results/scs_water_quality_indicators.png&quot;</span>, <span class="at">plot =</span> wqi, <span class="at">width =</span> <span class="dv">10</span>)</span>
+<span id="cb507-24"><a href="climate-scenarios.html#cb507-24" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="at">filename =</span> <span class="st">&quot;model_data/results/scs_crop_yield.png&quot;</span>, <span class="at">plot =</span> cy, <span class="at">width =</span> <span class="dv">10</span>)</span></code></pre></div>
+<p><img src="model_data/results/scs_water_balance_indicators.png" /></p>
+<p><img src="model_data/results/scs_flow_indicators.png" /></p>
+<p><img src="model_data/results/scs_water_quality_indicators.png" /></p>
+<p><img src="model_data/results/scs_crop_yield.png" /></p>
+</div>
+<div id="saving-rds" class="section level2 hasAnchor" number="12.7">
+<h2><span class="header-section-number">12.7</span> Saving RDS<a href="climate-scenarios.html#saving-rds" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The core team would like this file from us:</p>
+<div class="sourceCode" id="cb508"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb508-1"><a href="climate-scenarios.html#cb508-1" tabindex="-1"></a><span class="do">##------------------------------------------------------------------------------</span></span>
+<span id="cb508-2"><a href="climate-scenarios.html#cb508-2" tabindex="-1"></a><span class="do">## 13)  DATA FOR THE SYNTHESIS REPORT (send to Svajunas &amp; Mikolaj)</span></span>
+<span id="cb508-3"><a href="climate-scenarios.html#cb508-3" tabindex="-1"></a><span class="do">##------------------------------------------------------------------------------</span></span>
+<span id="cb508-4"><a href="climate-scenarios.html#cb508-4" tabindex="-1"></a><span class="fu">saveRDS</span>(df_plot_long, <span class="at">file =</span> <span class="fu">paste0</span>(<span class="st">&quot;model_data/results&quot;</span>, <span class="st">&quot;/climate_report.rds&quot;</span>))</span></code></pre></div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="swatfarmr-management-schedules.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="overview-maps.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://gitlab.nibio.no/moritzshore/swat-cs10/-/edit/main/13-climate_scenario.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://gitlab.nibio.no/moritzshore/swat-cs10/blob/main/13-climate_scenario.Rmd",
+"text": null
+},
+"download": ["_main.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
