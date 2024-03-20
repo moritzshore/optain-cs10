@@ -45,6 +45,10 @@ fig:apiloadropti
 fig:apicalc09
 fig:apicalc11
 fig:apicalc13
+fig:lapsefiggy
+fig:tlapsfiggy
+fig:docplotclimate
+fig:docplotmonthlysnow
 input-data-preparation
 digital-elevation-model
 high-resolution-dem
@@ -101,7 +105,7 @@ build-aquifer-input
 add-point-source-inputs
 create-swat-sqlite-database
 write-the-swateditor-project-database
-climate-inputs-and-weather-generator
+weather
 preparation-and-loading-data
 required-packages
 load-in-the-files-and-load-svatools-template
@@ -109,6 +113,7 @@ proof-the-station
 creating-the-weather-generator
 adding-weather-data-to-swat-project
 adding-atmospheric-deposition
+re-analysis-weather
 writing-swat-input-files
 writing-input-files-via-python
 swat-test-run
@@ -227,6 +232,13 @@ initializing-farmr
 calculating-antecedent-precipitation-index
 scheduling-operations
 write-operations
+model-verification
+stage-1-analysis-of-simulated-climate-variables
+lapse-rate
+climate-variables
+snowfall-and-snowmelt
+stage-2-simulation-of-management-operations
+stage-3-analysis-of-unconstrained-plant-growth
 climate-scenarios
 introduction-3
 setup

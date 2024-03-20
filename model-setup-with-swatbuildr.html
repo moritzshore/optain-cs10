@@ -23,7 +23,7 @@
 <meta name="author" content="Moritz Shore, Csilla Farkas" />
 
 
-<meta name="date" content="2024-03-14" />
+<meta name="date" content="2024-03-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="input-data-preparation.html"/>
-<link rel="next" href="climate-inputs-and-weather-generator.html"/>
+<link rel="next" href="weather.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -62,7 +62,7 @@
 <script src="libs/leaflet-binding-2.2.1/leaflet.js"></script>
 <script src="libs/leaflet-providers-2.0.0/leaflet-providers_2.0.0.js"></script>
 <script src="libs/leaflet-providers-plugin-2.2.1/leaflet-providers-plugin.js"></script>
-<script src="libs/tile1_rasterlayer_9b0ae3-1/data_stars_tile1_rasterlayer19a82d.txt"></script>
+<script src="libs/tile1_rasterlayer_02d6ca-1/data_stars_tile1_rasterlayer39b7e2.txt"></script>
 <script src="libs/joda-0.0.1/joda.js"></script>
 <script src="libs/joda-0.0.1/addImageQuery-bindings.js"></script>
 <script src="libs/clipboard-0.0.1/setClipboardText.js"></script>
@@ -71,8 +71,8 @@
 <script src="libs/HomeButton-0.0.1/easy-button-src.min.js"></script>
 <link href="libs/mapviewCSS-0.0.1/mapview-popup.css" rel="stylesheet" />
 <link href="libs/mapviewCSS-0.0.1/mapview.css" rel="stylesheet" />
-<script src="libs/tile2_rasterlayer_723098-1/data_stars_tile2_rasterlayerfc6d13.txt"></script>
-<script src="libs/dem_layer_7f54b0-1/data_stars_dem_layer167049.txt"></script>
+<script src="libs/tile2_rasterlayer_180afb-1/data_stars_tile2_rasterlayercd493e.txt"></script>
+<script src="libs/dem_layer_6b94a7-1/data_stars_dem_layercefa52.txt"></script>
 <link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
 <script src="libs/datatables-binding-0.32/datatables.js"></script>
 <link href="libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet" />
@@ -80,8 +80,8 @@
 <script src="libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
 <link href="libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet" />
 <script src="libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
-<script src="libs/stream_crop_5271ca-1/data_stars_stream_crop2cdf60.txt"></script>
-<script src="libs/ws_c3aefd-1/data_stars_wse4165c.txt"></script>
+<script src="libs/stream_crop_d9802a-1/data_stars_stream_crop06b74c.txt"></script>
+<script src="libs/ws_ab7ecd-1/data_stars_wsc1a846.txt"></script>
 <script src="libs/rglWebGL-binding-1.3.1/rglWebGL.js"></script>
 <link href="libs/rglwidgetClass-1.3.1/rgl.css" rel="stylesheet" />
 <script src="libs/rglwidgetClass-1.3.1/rglClass.src.js"></script>
@@ -294,17 +294,18 @@ div.csl-indent {
 <li class="chapter" data-level="2.4.5" data-path="model-setup-with-swatbuildr.html"><a href="model-setup-with-swatbuildr.html#create-swat-sqlite-database"><i class="fa fa-check"></i><b>2.4.5</b> Create SWAT+ sqlite database</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="climate-inputs-and-weather-generator.html"><a href="climate-inputs-and-weather-generator.html"><i class="fa fa-check"></i><b>3</b> Climate inputs and weather generator</a>
+<li class="chapter" data-level="3" data-path="weather.html"><a href="weather.html"><i class="fa fa-check"></i><b>3</b> Weather</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="climate-inputs-and-weather-generator.html"><a href="climate-inputs-and-weather-generator.html#preparation-and-loading-data"><i class="fa fa-check"></i><b>3.1</b> Preparation and loading data</a>
+<li class="chapter" data-level="3.1" data-path="weather.html"><a href="weather.html#preparation-and-loading-data"><i class="fa fa-check"></i><b>3.1</b> Preparation and loading data</a>
 <ul>
-<li class="chapter" data-level="3.1.1" data-path="climate-inputs-and-weather-generator.html"><a href="climate-inputs-and-weather-generator.html#required-packages"><i class="fa fa-check"></i><b>3.1.1</b> Required packages</a></li>
-<li class="chapter" data-level="3.1.2" data-path="climate-inputs-and-weather-generator.html"><a href="climate-inputs-and-weather-generator.html#load-in-the-files-and-load-svatools-template"><i class="fa fa-check"></i><b>3.1.2</b> Load in the file(s) and load svatools template</a></li>
-<li class="chapter" data-level="3.1.3" data-path="climate-inputs-and-weather-generator.html"><a href="climate-inputs-and-weather-generator.html#proof-the-station"><i class="fa fa-check"></i><b>3.1.3</b> Proof the station</a></li>
+<li class="chapter" data-level="3.1.1" data-path="weather.html"><a href="weather.html#required-packages"><i class="fa fa-check"></i><b>3.1.1</b> Required packages</a></li>
+<li class="chapter" data-level="3.1.2" data-path="weather.html"><a href="weather.html#load-in-the-files-and-load-svatools-template"><i class="fa fa-check"></i><b>3.1.2</b> Load in the file(s) and load svatools template</a></li>
+<li class="chapter" data-level="3.1.3" data-path="weather.html"><a href="weather.html#proof-the-station"><i class="fa fa-check"></i><b>3.1.3</b> Proof the station</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="climate-inputs-and-weather-generator.html"><a href="climate-inputs-and-weather-generator.html#creating-the-weather-generator"><i class="fa fa-check"></i><b>3.2</b> Creating the weather generator</a></li>
-<li class="chapter" data-level="3.3" data-path="climate-inputs-and-weather-generator.html"><a href="climate-inputs-and-weather-generator.html#adding-weather-data-to-swat-project"><i class="fa fa-check"></i><b>3.3</b> Adding weather data to SWAT+ project</a></li>
-<li class="chapter" data-level="3.4" data-path="climate-inputs-and-weather-generator.html"><a href="climate-inputs-and-weather-generator.html#adding-atmospheric-deposition"><i class="fa fa-check"></i><b>3.4</b> Adding Atmospheric deposition</a></li>
+<li class="chapter" data-level="3.2" data-path="weather.html"><a href="weather.html#creating-the-weather-generator"><i class="fa fa-check"></i><b>3.2</b> Creating the weather generator</a></li>
+<li class="chapter" data-level="3.3" data-path="weather.html"><a href="weather.html#adding-weather-data-to-swat-project"><i class="fa fa-check"></i><b>3.3</b> Adding weather data to SWAT+ project</a></li>
+<li class="chapter" data-level="3.4" data-path="weather.html"><a href="weather.html#adding-atmospheric-deposition"><i class="fa fa-check"></i><b>3.4</b> Adding Atmospheric deposition</a></li>
+<li class="chapter" data-level="3.5" data-path="weather.html"><a href="weather.html#re-analysis-weather"><i class="fa fa-check"></i><b>3.5</b> Re-analysis Weather</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="writing-swat-input-files.html"><a href="writing-swat-input-files.html"><i class="fa fa-check"></i><b>4</b> Writing SWAT+ Input Files</a>
 <ul>
@@ -446,24 +447,35 @@ div.csl-indent {
 <li class="chapter" data-level="11.4.1" data-path="swatfarmr-management-schedules.html"><a href="swatfarmr-management-schedules.html#write-operations"><i class="fa fa-check"></i><b>11.4.1</b> Write Operations</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="climate-scenarios.html"><a href="climate-scenarios.html"><i class="fa fa-check"></i><b>12</b> Climate Scenarios</a>
+<li class="chapter" data-level="12" data-path="model-verification.html"><a href="model-verification.html"><i class="fa fa-check"></i><b>12</b> Model Verification</a>
 <ul>
-<li class="chapter" data-level="12.1" data-path="climate-scenarios.html"><a href="climate-scenarios.html#introduction-3"><i class="fa fa-check"></i><b>12.1</b> Introduction</a></li>
-<li class="chapter" data-level="12.2" data-path="climate-scenarios.html"><a href="climate-scenarios.html#setup"><i class="fa fa-check"></i><b>12.2</b> Setup</a></li>
-<li class="chapter" data-level="12.3" data-path="climate-scenarios.html"><a href="climate-scenarios.html#re-calculating-management"><i class="fa fa-check"></i><b>12.3</b> Re-Calculating Management</a></li>
-<li class="chapter" data-level="12.4" data-path="climate-scenarios.html"><a href="climate-scenarios.html#executing-model"><i class="fa fa-check"></i><b>12.4</b> Executing model</a></li>
-<li class="chapter" data-level="12.5" data-path="climate-scenarios.html"><a href="climate-scenarios.html#processing-results"><i class="fa fa-check"></i><b>12.5</b> Processing Results</a></li>
-<li class="chapter" data-level="12.6" data-path="climate-scenarios.html"><a href="climate-scenarios.html#plotting-results"><i class="fa fa-check"></i><b>12.6</b> Plotting results</a></li>
-<li class="chapter" data-level="12.7" data-path="climate-scenarios.html"><a href="climate-scenarios.html#saving-rds"><i class="fa fa-check"></i><b>12.7</b> Saving RDS</a></li>
+<li class="chapter" data-level="12.1" data-path="model-verification.html"><a href="model-verification.html#stage-1-analysis-of-simulated-climate-variables"><i class="fa fa-check"></i><b>12.1</b> Stage 1: Analysis of simulated climate variables</a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="model-verification.html"><a href="model-verification.html#lapse-rate"><i class="fa fa-check"></i><b>12.1.1</b> Lapse rate</a></li>
+<li class="chapter" data-level="12.1.2" data-path="model-verification.html"><a href="model-verification.html#climate-variables"><i class="fa fa-check"></i><b>12.1.2</b> Climate variables</a></li>
+<li class="chapter" data-level="12.1.3" data-path="model-verification.html"><a href="model-verification.html#snowfall-and-snowmelt"><i class="fa fa-check"></i><b>12.1.3</b> Snowfall and Snowmelt</a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="overview-maps.html"><a href="overview-maps.html"><i class="fa fa-check"></i><b>13</b> Overview Maps</a>
+<li class="chapter" data-level="12.2" data-path="model-verification.html"><a href="model-verification.html#stage-2-simulation-of-management-operations"><i class="fa fa-check"></i><b>12.2</b> Stage 2: Simulation of management operations</a></li>
+<li class="chapter" data-level="12.3" data-path="model-verification.html"><a href="model-verification.html#stage-3-analysis-of-unconstrained-plant-growth"><i class="fa fa-check"></i><b>12.3</b> Stage 3: Analysis of unconstrained plant growth</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="climate-scenarios.html"><a href="climate-scenarios.html"><i class="fa fa-check"></i><b>13</b> Climate Scenarios</a>
 <ul>
-<li class="chapter" data-level="13.1" data-path="overview-maps.html"><a href="overview-maps.html#setup-1"><i class="fa fa-check"></i><b>13.1</b> Setup</a></li>
+<li class="chapter" data-level="13.1" data-path="climate-scenarios.html"><a href="climate-scenarios.html#introduction-3"><i class="fa fa-check"></i><b>13.1</b> Introduction</a></li>
+<li class="chapter" data-level="13.2" data-path="climate-scenarios.html"><a href="climate-scenarios.html#setup"><i class="fa fa-check"></i><b>13.2</b> Setup</a></li>
+<li class="chapter" data-level="13.3" data-path="climate-scenarios.html"><a href="climate-scenarios.html#re-calculating-management"><i class="fa fa-check"></i><b>13.3</b> Re-Calculating Management</a></li>
+<li class="chapter" data-level="13.4" data-path="climate-scenarios.html"><a href="climate-scenarios.html#executing-model"><i class="fa fa-check"></i><b>13.4</b> Executing model</a></li>
+<li class="chapter" data-level="13.5" data-path="climate-scenarios.html"><a href="climate-scenarios.html#processing-results"><i class="fa fa-check"></i><b>13.5</b> Processing Results</a></li>
+<li class="chapter" data-level="13.6" data-path="climate-scenarios.html"><a href="climate-scenarios.html#plotting-results"><i class="fa fa-check"></i><b>13.6</b> Plotting results</a></li>
+<li class="chapter" data-level="13.7" data-path="climate-scenarios.html"><a href="climate-scenarios.html#saving-rds"><i class="fa fa-check"></i><b>13.7</b> Saving RDS</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="overview-maps.html"><a href="overview-maps.html"><i class="fa fa-check"></i><b>14</b> Overview Maps</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="overview-maps.html"><a href="overview-maps.html#setup-1"><i class="fa fa-check"></i><b>14.1</b> Setup</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="annex.html"><a href="annex.html"><i class="fa fa-check"></i>Annex</a>
 <ul>
-<li class="chapter" data-level="13.2" data-path="annex.html"><a href="annex.html#packages"><i class="fa fa-check"></i><b>13.2</b> Packages</a></li>
-<li class="chapter" data-level="13.3" data-path="annex.html"><a href="annex.html#computer-specs"><i class="fa fa-check"></i><b>13.3</b> Computer Specs</a></li>
+<li class="chapter" data-level="14.2" data-path="annex.html"><a href="annex.html#packages"><i class="fa fa-check"></i><b>14.2</b> Packages</a></li>
+<li class="chapter" data-level="14.3" data-path="annex.html"><a href="annex.html#computer-specs"><i class="fa fa-check"></i><b>14.3</b> Computer Specs</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -835,7 +847,7 @@ Schürz, Christoph, Natalja Čerkasova, Csilla Farkas, Attila Nemes, Plunge, Mic
         </div>
       </div>
 <a href="input-data-preparation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="climate-inputs-and-weather-generator.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="weather.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
