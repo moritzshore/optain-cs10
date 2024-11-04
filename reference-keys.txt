@@ -251,3 +251,11 @@ overview-maps
 setup-1
 packages
 computer-specs
+output-analysis
+optimization
+introduction-4
+comola
+the-pareto-frontier
+nsga-ii
+the-objective-space
+references
