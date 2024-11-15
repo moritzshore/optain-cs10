@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Section 16 Landuse Scenarios | The OPTAIN Project: Case study 10</title>
+  <meta name="description" content="A documentation of the project setup for OPTAIN case study 10" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Section 16 Landuse Scenarios | The OPTAIN Project: Case study 10" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://moritzshore.github.io/optain-cs10/figures/banner.png" />
+  <meta property="og:description" content="A documentation of the project setup for OPTAIN case study 10" />
+  <meta name="github-repo" content="moritzshore/optain-cs10" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Section 16 Landuse Scenarios | The OPTAIN Project: Case study 10" />
+  
+  <meta name="twitter:description" content="A documentation of the project setup for OPTAIN case study 10" />
+  <meta name="twitter:image" content="https://moritzshore.github.io/optain-cs10/figures/banner.png" />
+
+<meta name="author" content="Moritz Shore, Csilla Farkas, Christoph Schürz" />
+
+
+<meta name="date" content="2024-11-15" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="climate-scenarios.html"/>
+<link rel="next" href="measures-swatmeasr.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.2.2/leaflet.js"></script>
+<script src="libs/leaflet-providers-2.0.0/leaflet-providers_2.0.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.2.2/leaflet-providers-plugin.js"></script>
+<script src="libs/tile1_rasterlayer_3b9458-1/data_stars_tile1_rasterlayerc9f824.txt"></script>
+<script src="libs/joda-0.0.1/joda.js"></script>
+<script src="libs/joda-0.0.1/addImageQuery-bindings.js"></script>
+<script src="libs/clipboard-0.0.1/setClipboardText.js"></script>
+<link href="libs/HomeButton-0.0.1/home-button.css" rel="stylesheet" />
+<script src="libs/HomeButton-0.0.1/home-button.js"></script>
+<script src="libs/HomeButton-0.0.1/easy-button-src.min.js"></script>
+<link href="libs/mapviewCSS-0.0.1/mapview-popup.css" rel="stylesheet" />
+<link href="libs/mapviewCSS-0.0.1/mapview.css" rel="stylesheet" />
+<script src="libs/tile2_rasterlayer_645a02-1/data_stars_tile2_rasterlayerdabe25.txt"></script>
+<script src="libs/dem_layer_76a1b0-1/data_stars_dem_layer63570a.txt"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.33/datatables.js"></script>
+<link href="libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
+<link href="libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+<script src="libs/stream_crop_ce093f-1/data_stars_stream_cropcad623.txt"></script>
+<script src="libs/ws_c6902d-1/data_stars_ws1b74dc.txt"></script>
+<script src="libs/rglWebGL-binding-1.3.1/rglWebGL.js"></script>
+<link href="libs/rglwidgetClass-1.3.1/rgl.css" rel="stylesheet" />
+<script src="libs/rglwidgetClass-1.3.1/rglClass.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.1/utils.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.1/buffer.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.1/subscenes.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.1/shaders.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.1/shadersrc.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.1/textures.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.1/projection.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.1/mouse.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.1/init.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.1/pieces.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.1/draw.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.1/controls.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.1/selection.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.1/rglTimer.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.1/pretty.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.1/axes.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.1/animation.src.js"></script>
+<script src="libs/CanvasMatrix4-1.3.1/CanvasMatrix.src.js"></script>
+<script src="libs/plotly-binding-4.10.4/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+<link href="libs/dt-ext-scroller-1.13.6/css/scroller.dataTables.min.css" rel="stylesheet" />
+<script src="libs/dt-ext-scroller-1.13.6/js/dataTables.scroller.min.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">The OPTAIN-CS10 Project</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="1" data-path="input-data-preparation.html"><a href="input-data-preparation.html"><i class="fa fa-check"></i><b>1</b> Input Data Preparation</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="input-data-preparation.html"><a href="input-data-preparation.html#digital-elevation-model"><i class="fa fa-check"></i><b>1.1</b> Digital Elevation Model</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="input-data-preparation.html"><a href="input-data-preparation.html#high-resolution-dem"><i class="fa fa-check"></i><b>1.1.1</b> High resolution DEM</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="input-data-preparation.html"><a href="input-data-preparation.html#soil-data"><i class="fa fa-check"></i><b>1.2</b> Soil Data</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="input-data-preparation.html"><a href="input-data-preparation.html#high-resolution-soil-maps"><i class="fa fa-check"></i><b>1.2.1</b> High resolution soil maps</a></li>
+<li class="chapter" data-level="1.2.2" data-path="input-data-preparation.html"><a href="input-data-preparation.html#data-source"><i class="fa fa-check"></i><b>1.2.2</b> Data source</a></li>
+<li class="chapter" data-level="1.2.3" data-path="input-data-preparation.html"><a href="input-data-preparation.html#combining-jordsmonn-and-loesmasser"><i class="fa fa-check"></i><b>1.2.3</b> Combining Jordsmonn and Loesmasser</a></li>
+<li class="chapter" data-level="1.2.4" data-path="input-data-preparation.html"><a href="input-data-preparation.html#detailed-soil-map"><i class="fa fa-check"></i><b>1.2.4</b> Detailed Soil Map</a></li>
+<li class="chapter" data-level="1.2.5" data-path="input-data-preparation.html"><a href="input-data-preparation.html#reclassification"><i class="fa fa-check"></i><b>1.2.5</b> Reclassification</a></li>
+<li class="chapter" data-level="1.2.6" data-path="input-data-preparation.html"><a href="input-data-preparation.html#simplifying-geometries"><i class="fa fa-check"></i><b>1.2.6</b> Simplifying Geometries</a></li>
+<li class="chapter" data-level="1.2.7" data-path="input-data-preparation.html"><a href="input-data-preparation.html#writing-vector-layer"><i class="fa fa-check"></i><b>1.2.7</b> Writing vector layer</a></li>
+<li class="chapter" data-level="1.2.8" data-path="input-data-preparation.html"><a href="input-data-preparation.html#lookup-table"><i class="fa fa-check"></i><b>1.2.8</b> Lookup Table</a></li>
+<li class="chapter" data-level="1.2.9" data-path="input-data-preparation.html"><a href="input-data-preparation.html#rasterization"><i class="fa fa-check"></i><b>1.2.9</b> Rasterization</a></li>
+<li class="chapter" data-level="1.2.10" data-path="input-data-preparation.html"><a href="input-data-preparation.html#usersoil"><i class="fa fa-check"></i><b>1.2.10</b> Usersoil</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="input-data-preparation.html"><a href="input-data-preparation.html#watershed-boundary"><i class="fa fa-check"></i><b>1.3</b> Watershed Boundary</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="input-data-preparation.html"><a href="input-data-preparation.html#hydrological-preperation"><i class="fa fa-check"></i><b>1.3.1</b> Hydrological preperation</a></li>
+<li class="chapter" data-level="1.3.2" data-path="input-data-preparation.html"><a href="input-data-preparation.html#pour-points"><i class="fa fa-check"></i><b>1.3.2</b> Pour Points</a></li>
+<li class="chapter" data-level="1.3.3" data-path="input-data-preparation.html"><a href="input-data-preparation.html#streams"><i class="fa fa-check"></i><b>1.3.3</b> Streams</a></li>
+<li class="chapter" data-level="1.3.4" data-path="input-data-preparation.html"><a href="input-data-preparation.html#watershed-delineation"><i class="fa fa-check"></i><b>1.3.4</b> Watershed Delineation</a></li>
+<li class="chapter" data-level="1.3.5" data-path="input-data-preparation.html"><a href="input-data-preparation.html#bonus-section"><i class="fa fa-check"></i><b>1.3.5</b> Bonus Section</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="input-data-preparation.html"><a href="input-data-preparation.html#land-object-input"><i class="fa fa-check"></i><b>1.4</b> Land object input</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="input-data-preparation.html"><a href="input-data-preparation.html#data-sources"><i class="fa fa-check"></i><b>1.4.1</b> Data sources</a></li>
+<li class="chapter" data-level="1.4.2" data-path="input-data-preparation.html"><a href="input-data-preparation.html#delineation-of-land-objects"><i class="fa fa-check"></i><b>1.4.2</b> Delineation of land objects</a></li>
+<li class="chapter" data-level="1.4.3" data-path="input-data-preparation.html"><a href="input-data-preparation.html#standing-water-bodies-and-the-landuse-type-watr"><i class="fa fa-check"></i><b>1.4.3</b> Standing water bodies and the landuse type = ‘watr’</a></li>
+<li class="chapter" data-level="1.4.4" data-path="input-data-preparation.html"><a href="input-data-preparation.html#tile-drainage-option"><i class="fa fa-check"></i><b>1.4.4</b> Tile drainage option</a></li>
+<li class="chapter" data-level="1.4.5" data-path="input-data-preparation.html"><a href="input-data-preparation.html#existing-and-potential-structures-to-retain-water-and-nutrients"><i class="fa fa-check"></i><b>1.4.5</b> Existing and potential structures to retain water and nutrients</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="input-data-preparation.html"><a href="input-data-preparation.html#channel-object-input"><i class="fa fa-check"></i><b>1.5</b> Channel object input</a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="input-data-preparation.html"><a href="input-data-preparation.html#data-sources-and-data-processing"><i class="fa fa-check"></i><b>1.5.1</b> Data sources and data processing</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="input-data-preparation.html"><a href="input-data-preparation.html#point-sources-locations"><i class="fa fa-check"></i><b>1.6</b> Point sources locations</a>
+<ul>
+<li class="chapter" data-level="1.6.1" data-path="input-data-preparation.html"><a href="input-data-preparation.html#point-source-source-data"><i class="fa fa-check"></i><b>1.6.1</b> Point source source data</a></li>
+<li class="chapter" data-level="1.6.2" data-path="input-data-preparation.html"><a href="input-data-preparation.html#point-source-data-files"><i class="fa fa-check"></i><b>1.6.2</b> Point source data files</a></li>
+</ul></li>
+<li class="chapter" data-level="1.7" data-path="input-data-preparation.html"><a href="input-data-preparation.html#aquifer-objects"><i class="fa fa-check"></i><b>1.7</b> Aquifer Objects</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html"><i class="fa fa-check"></i><b>2</b> Model Setup (SWATbuildR)</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#buildr-setup"><i class="fa fa-check"></i><b>2.1</b> BuildR Setup</a></li>
+<li class="chapter" data-level="2.2" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#processing-input-data"><i class="fa fa-check"></i><b>2.2</b> Processing input data</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#high-resolution-digital-elevation-model-dem"><i class="fa fa-check"></i><b>2.2.1</b> High-Resolution Digital Elevation Model (DEM)</a></li>
+<li class="chapter" data-level="2.2.2" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#processing-the-basin-boundary"><i class="fa fa-check"></i><b>2.2.2</b> Processing the Basin Boundary</a></li>
+<li class="chapter" data-level="2.2.3" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#processing-the-land-layer"><i class="fa fa-check"></i><b>2.2.3</b> Processing the Land layer</a></li>
+<li class="chapter" data-level="2.2.4" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#processing-the-channels"><i class="fa fa-check"></i><b>2.2.4</b> Processing the Channels</a></li>
+<li class="chapter" data-level="2.2.5" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#processing-the-dem"><i class="fa fa-check"></i><b>2.2.5</b> Processing the DEM</a></li>
+<li class="chapter" data-level="2.2.6" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#processing-soil-data"><i class="fa fa-check"></i><b>2.2.6</b> Processing Soil Data</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#calculating-cocoa"><i class="fa fa-check"></i><b>2.3</b> Calculating COCOA</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#calculating-land-unit-connectivity"><i class="fa fa-check"></i><b>2.3.1</b> Calculating land unit connectivity</a></li>
+<li class="chapter" data-level="2.3.2" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#calculating-channelreservoir-connectivity"><i class="fa fa-check"></i><b>2.3.2</b> Calculating channel/reservoir connectivity</a></li>
+<li class="chapter" data-level="2.3.3" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#checking-the-water-objects-for-infinite-loops"><i class="fa fa-check"></i><b>2.3.3</b> Checking the water objects for infinite loops</a></li>
+<li class="chapter" data-level="2.3.4" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#terrain-properties"><i class="fa fa-check"></i><b>2.3.4</b> Terrain properties</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#generate-swat-input"><i class="fa fa-check"></i><b>2.4</b> Generate SWAT+ input</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#generate-land-object-swat-input-tables"><i class="fa fa-check"></i><b>2.4.1</b> Generate land object SWAT+ input tables</a></li>
+<li class="chapter" data-level="2.4.2" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#generate-water-object-swat-input-tables"><i class="fa fa-check"></i><b>2.4.2</b> Generate water object SWAT+ input tables</a></li>
+<li class="chapter" data-level="2.4.3" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#build-aquifer-input"><i class="fa fa-check"></i><b>2.4.3</b> Build aquifer input</a></li>
+<li class="chapter" data-level="2.4.4" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#add-point-source-inputs"><i class="fa fa-check"></i><b>2.4.4</b> Add point source inputs</a></li>
+<li class="chapter" data-level="2.4.5" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#create-swat-sqlite-database"><i class="fa fa-check"></i><b>2.4.5</b> Create SWAT+ sqlite database</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="weather-input.html"><a href="weather-input.html"><i class="fa fa-check"></i><b>3</b> Weather Input</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="weather-input.html"><a href="weather-input.html#loading-data"><i class="fa fa-check"></i><b>3.1</b> Loading Data</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="weather-input.html"><a href="weather-input.html#required-packages"><i class="fa fa-check"></i><b>3.1.1</b> Required packages</a></li>
+<li class="chapter" data-level="3.1.2" data-path="weather-input.html"><a href="weather-input.html#load-in-the-files-and-load-svatools-template"><i class="fa fa-check"></i><b>3.1.2</b> Load in the file(s) and load svatools template</a></li>
+<li class="chapter" data-level="3.1.3" data-path="weather-input.html"><a href="weather-input.html#proof-the-station"><i class="fa fa-check"></i><b>3.1.3</b> Proof the station</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="weather-input.html"><a href="weather-input.html#weather-generator"><i class="fa fa-check"></i><b>3.2</b> Weather Generator</a></li>
+<li class="chapter" data-level="3.3" data-path="weather-input.html"><a href="weather-input.html#adding-data-to-swat"><i class="fa fa-check"></i><b>3.3</b> Adding data to SWAT+</a></li>
+<li class="chapter" data-level="3.4" data-path="weather-input.html"><a href="weather-input.html#atmospheric-deposition"><i class="fa fa-check"></i><b>3.4</b> Atmospheric Deposition</a></li>
+<li class="chapter" data-level="3.5" data-path="weather-input.html"><a href="weather-input.html#re-analysis-weather"><i class="fa fa-check"></i><b>3.5</b> Re-analysis Weather</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="writing-input-files.html"><a href="writing-input-files.html"><i class="fa fa-check"></i><b>4</b> Writing Input Files</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="writing-input-files.html"><a href="writing-input-files.html#via-python"><i class="fa fa-check"></i><b>4.1</b> Via Python</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="writing-input-files.html"><a href="writing-input-files.html#swat-test-run"><i class="fa fa-check"></i><b>4.1.1</b> SWAT+ Test Run</a></li>
+<li class="chapter" data-level="4.1.2" data-path="writing-input-files.html"><a href="writing-input-files.html#link-aquifers-and-channels-with-geomorphic-flow"><i class="fa fa-check"></i><b>4.1.2</b> Link aquifers and channels with geomorphic flow</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="writing-input-files.html"><a href="writing-input-files.html#via-swat-editor"><i class="fa fa-check"></i><b>4.2</b> Via SWAT Editor</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="writing-input-files.html"><a href="writing-input-files.html#loading-the-project-in-swat-editor"><i class="fa fa-check"></i><b>4.2.1</b> Loading the project in SWAT+ Editor</a></li>
+<li class="chapter" data-level="4.2.2" data-path="writing-input-files.html"><a href="writing-input-files.html#writing-input-files-1"><i class="fa fa-check"></i><b>4.2.2</b> Writing input files</a></li>
+<li class="chapter" data-level="4.2.3" data-path="writing-input-files.html"><a href="writing-input-files.html#post-write-changes"><i class="fa fa-check"></i><b>4.2.3</b> Post-write Changes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="crop-map.html"><a href="crop-map.html"><i class="fa fa-check"></i><b>5</b> Crop Map</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="crop-map.html"><a href="crop-map.html#calculating-field-area"><i class="fa fa-check"></i><b>5.1</b> Calculating Field Area</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="crop-map.html"><a href="crop-map.html#calculate-field-area-and-assign-ids"><i class="fa fa-check"></i><b>5.1.1</b> Calculate Field Area and Assign IDs</a></li>
+<li class="chapter" data-level="5.1.2" data-path="crop-map.html"><a href="crop-map.html#calculate-field-area-and-assign-ids-1"><i class="fa fa-check"></i><b>5.1.2</b> Calculate Field area and assign IDs</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="crop-map.html"><a href="crop-map.html#generating-the-crop-rotation"><i class="fa fa-check"></i><b>5.2</b> Generating the Crop Rotation</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="crop-map.html"><a href="crop-map.html#tidy-up-the-source-data"><i class="fa fa-check"></i><b>5.2.1</b> Tidy up the source data:</a></li>
+<li class="chapter" data-level="5.2.2" data-path="crop-map.html"><a href="crop-map.html#tidy-up-the-buildr-output"><i class="fa fa-check"></i><b>5.2.2</b> Tidy up the BuildR output</a></li>
+<li class="chapter" data-level="5.2.3" data-path="crop-map.html"><a href="crop-map.html#field-classification"><i class="fa fa-check"></i><b>5.2.3</b> Field classification</a></li>
+<li class="chapter" data-level="5.2.4" data-path="crop-map.html"><a href="crop-map.html#extrapolating-the-crop-rotation"><i class="fa fa-check"></i><b>5.2.4</b> Extrapolating the Crop Rotation</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="crop-map.html"><a href="crop-map.html#merging-with-swatbuildr"><i class="fa fa-check"></i><b>5.3</b> Merging with SWATbuildR</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html"><i class="fa fa-check"></i><b>6</b> Landuse Parameterization</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#data-preperation"><i class="fa fa-check"></i><b>6.1</b> Data preperation</a></li>
+<li class="chapter" data-level="6.2" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#assigning-landuse-values"><i class="fa fa-check"></i><b>6.2</b> Assigning landuse values</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#setting-cal_group"><i class="fa fa-check"></i><b>6.2.1</b> Setting <code>cal_group</code></a></li>
+<li class="chapter" data-level="6.2.2" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#setting-plnt_com"><i class="fa fa-check"></i><b>6.2.2</b> Setting <code>plnt_com</code></a></li>
+<li class="chapter" data-level="6.2.3" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#setting-mgt"><i class="fa fa-check"></i><b>6.2.3</b> Setting <code>mgt</code></a></li>
+<li class="chapter" data-level="6.2.4" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#setting-urb_ro"><i class="fa fa-check"></i><b>6.2.4</b> Setting <code>urb_ro</code></a></li>
+<li class="chapter" data-level="6.2.5" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#setting-urban"><i class="fa fa-check"></i><b>6.2.5</b> Setting <code>urban</code></a></li>
+<li class="chapter" data-level="6.2.6" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#setting-mannings-n-ovn"><i class="fa fa-check"></i><b>6.2.6</b> Setting Manning’s n (<code>ovn</code>)</a></li>
+<li class="chapter" data-level="6.2.7" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#setting-cn2"><i class="fa fa-check"></i><b>6.2.7</b> Setting <code>cn2</code>:</a></li>
+<li class="chapter" data-level="6.2.8" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#setting-cons_prac"><i class="fa fa-check"></i><b>6.2.8</b> Setting <code>cons_prac</code></a></li>
+<li class="chapter" data-level="6.2.9" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#setting-tile"><i class="fa fa-check"></i><b>6.2.9</b> Setting <code>tile</code></a></li>
+<li class="chapter" data-level="6.2.10" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#setting-sep"><i class="fa fa-check"></i><b>6.2.10</b> Setting <code>sep</code></a></li>
+<li class="chapter" data-level="6.2.11" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#setting-vfs"><i class="fa fa-check"></i><b>6.2.11</b> Setting <code>vfs</code></a></li>
+<li class="chapter" data-level="6.2.12" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#setting-grww"><i class="fa fa-check"></i><b>6.2.12</b> Setting <code>grww</code></a></li>
+<li class="chapter" data-level="6.2.13" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#setting-bmp"><i class="fa fa-check"></i><b>6.2.13</b> Setting <code>bmp</code></a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#writing-changes"><i class="fa fa-check"></i><b>6.3</b> Writing Changes</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="field-site-loggers.html"><a href="field-site-loggers.html"><i class="fa fa-check"></i><b>7</b> Field Site Loggers</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="field-site-loggers.html"><a href="field-site-loggers.html#introduction-1"><i class="fa fa-check"></i><b>7.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="field-site-loggers.html"><a href="field-site-loggers.html#prerequisites"><i class="fa fa-check"></i><b>7.1.1</b> Prerequisites</a></li>
+<li class="chapter" data-level="7.1.2" data-path="field-site-loggers.html"><a href="field-site-loggers.html#locations"><i class="fa fa-check"></i><b>7.1.2</b> Locations</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="field-site-loggers.html"><a href="field-site-loggers.html#data-processing"><i class="fa fa-check"></i><b>7.2</b> Data Processing</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="field-site-loggers.html"><a href="field-site-loggers.html#loading-data-1"><i class="fa fa-check"></i><b>7.2.1</b> Loading Data</a></li>
+<li class="chapter" data-level="7.2.2" data-path="field-site-loggers.html"><a href="field-site-loggers.html#data-re-structuring"><i class="fa fa-check"></i><b>7.2.2</b> Data Re-structuring</a></li>
+<li class="chapter" data-level="7.2.3" data-path="field-site-loggers.html"><a href="field-site-loggers.html#summarize-to-daily-means"><i class="fa fa-check"></i><b>7.2.3</b> Summarize to Daily Means</a></li>
+<li class="chapter" data-level="7.2.4" data-path="field-site-loggers.html"><a href="field-site-loggers.html#including-air-temperature-and-precipitation-data"><i class="fa fa-check"></i><b>7.2.4</b> Including Air Temperature and Precipitation Data</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="field-site-loggers.html"><a href="field-site-loggers.html#data-quality-check"><i class="fa fa-check"></i><b>7.3</b> Data quality check</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="field-site-loggers.html"><a href="field-site-loggers.html#logger-600409-deep-rocky-sand"><i class="fa fa-check"></i><b>7.3.1</b> Logger 600409 “Deep Rocky Sand”</a></li>
+<li class="chapter" data-level="7.3.2" data-path="field-site-loggers.html"><a href="field-site-loggers.html#logger-600410-tormods-farm"><i class="fa fa-check"></i><b>7.3.2</b> Logger 600410 “Tormods farm”</a></li>
+<li class="chapter" data-level="7.3.3" data-path="field-site-loggers.html"><a href="field-site-loggers.html#logger-600411-john-ivar-lower-area"><i class="fa fa-check"></i><b>7.3.3</b> Logger 600411 “John Ivar Lower Area”</a></li>
+<li class="chapter" data-level="7.3.4" data-path="field-site-loggers.html"><a href="field-site-loggers.html#logger-600413-john-ivar-behind-the-barn"><i class="fa fa-check"></i><b>7.3.4</b> Logger 600413 “John Ivar behind the barn”</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="field-site-loggers.html"><a href="field-site-loggers.html#data-cleanup"><i class="fa fa-check"></i><b>7.4</b> Data Cleanup</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="field-site-loggers.html"><a href="field-site-loggers.html#general-cleanup"><i class="fa fa-check"></i><b>7.4.1</b> General cleanup</a></li>
+<li class="chapter" data-level="7.4.2" data-path="field-site-loggers.html"><a href="field-site-loggers.html#logger-specific-cleanup"><i class="fa fa-check"></i><b>7.4.2</b> Logger specific cleanup</a></li>
+<li class="chapter" data-level="7.4.3" data-path="field-site-loggers.html"><a href="field-site-loggers.html#saving-the-cleaned-data"><i class="fa fa-check"></i><b>7.4.3</b> Saving the cleaned data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="field-site-properties.html"><a href="field-site-properties.html"><i class="fa fa-check"></i><b>8</b> Field Site Properties</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="field-site-properties.html"><a href="field-site-properties.html#determining-hsg"><i class="fa fa-check"></i><b>8.1</b> Determining HSG</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html"><i class="fa fa-check"></i><b>9</b> Antecedent Precipitation Index</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html#introduction-2"><i class="fa fa-check"></i><b>9.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html#pre-requirements"><i class="fa fa-check"></i><b>9.1.1</b> Pre-requirements</a></li>
+<li class="chapter" data-level="9.1.2" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html#setting-up-python-for-rrmarkdown"><i class="fa fa-check"></i><b>9.1.2</b> Setting up Python for R/Rmarkdown</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html#antecedent-precipitation-index-1"><i class="fa fa-check"></i><b>9.2</b> Antecedent Precipitation Index</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html#loading-data-2"><i class="fa fa-check"></i><b>9.2.1</b> Loading data</a></li>
+<li class="chapter" data-level="9.2.2" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html#calculating-the-total-water-content"><i class="fa fa-check"></i><b>9.2.2</b> Calculating the total water content</a></li>
+<li class="chapter" data-level="9.2.3" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html#defining-api-model"><i class="fa fa-check"></i><b>9.2.3</b> Defining API model</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html#conclusions"><i class="fa fa-check"></i><b>9.3</b> Conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="model-parameterization.html"><a href="model-parameterization.html"><i class="fa fa-check"></i><b>10</b> Model Parameterization</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="model-parameterization.html"><a href="model-parameterization.html#parameter-changes"><i class="fa fa-check"></i><b>10.1</b> Parameter Changes</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="model-parameterization.html"><a href="model-parameterization.html#channel-parameters-revised"><i class="fa fa-check"></i><b>10.1.1</b> Channel parameters revised</a></li>
+<li class="chapter" data-level="10.1.2" data-path="model-parameterization.html"><a href="model-parameterization.html#crop-parameters-verified"><i class="fa fa-check"></i><b>10.1.2</b> Crop parameters verified</a></li>
+<li class="chapter" data-level="10.1.3" data-path="model-parameterization.html"><a href="model-parameterization.html#soil-physical-parameters-in-final-form"><i class="fa fa-check"></i><b>10.1.3</b> Soil physical parameters in final form</a></li>
+<li class="chapter" data-level="10.1.4" data-path="model-parameterization.html"><a href="model-parameterization.html#soil-chemical-parameters-in-final-form"><i class="fa fa-check"></i><b>10.1.4</b> Soil chemical parameters in final form</a></li>
+<li class="chapter" data-level="10.1.5" data-path="model-parameterization.html"><a href="model-parameterization.html#impoundment-parameters-defined"><i class="fa fa-check"></i><b>10.1.5</b> Impoundment parameters defined</a></li>
+<li class="chapter" data-level="10.1.6" data-path="model-parameterization.html"><a href="model-parameterization.html#water-diversions-defined"><i class="fa fa-check"></i><b>10.1.6</b> Water diversions defined</a></li>
+<li class="chapter" data-level="10.1.7" data-path="model-parameterization.html"><a href="model-parameterization.html#point-sources-parameters-added"><i class="fa fa-check"></i><b>10.1.7</b> Point sources parameters added</a></li>
+<li class="chapter" data-level="10.1.8" data-path="model-parameterization.html"><a href="model-parameterization.html#tile-drainage-parameters-defined"><i class="fa fa-check"></i><b>10.1.8</b> Tile drainage parameters defined</a></li>
+<li class="chapter" data-level="10.1.9" data-path="model-parameterization.html"><a href="model-parameterization.html#atmospheric-deposition-defined"><i class="fa fa-check"></i><b>10.1.9</b> Atmospheric deposition defined</a></li>
+<li class="chapter" data-level="10.1.10" data-path="model-parameterization.html"><a href="model-parameterization.html#additional-settings-verified"><i class="fa fa-check"></i><b>10.1.10</b> Additional settings verified</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="model-parameterization.html"><a href="model-parameterization.html#fixing-tiledrain"><i class="fa fa-check"></i><b>10.2</b> Fixing tiledrain</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="model-parameterization.html"><a href="model-parameterization.html#finding-the-problem-hrus"><i class="fa fa-check"></i><b>10.2.1</b> Finding the problem HRUs</a></li>
+<li class="chapter" data-level="10.2.2" data-path="model-parameterization.html"><a href="model-parameterization.html#fixing-the-problem-hrus"><i class="fa fa-check"></i><b>10.2.2</b> Fixing the problem HRUs</a></li>
+<li class="chapter" data-level="10.2.3" data-path="model-parameterization.html"><a href="model-parameterization.html#checking-changes"><i class="fa fa-check"></i><b>10.2.3</b> Checking changes</a></li>
+<li class="chapter" data-level="10.2.4" data-path="model-parameterization.html"><a href="model-parameterization.html#writing-modified-changes"><i class="fa fa-check"></i><b>10.2.4</b> Writing modified changes</a></li>
+<li class="chapter" data-level="10.2.5" data-path="model-parameterization.html"><a href="model-parameterization.html#re-enabling-tiledrain"><i class="fa fa-check"></i><b>10.2.5</b> Re-enabling tiledrain</a></li>
+<li class="chapter" data-level="10.2.6" data-path="model-parameterization.html"><a href="model-parameterization.html#testing-swat"><i class="fa fa-check"></i><b>10.2.6</b> Testing SWAT+</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="model-parameterization.html"><a href="model-parameterization.html#soil-phosphorous"><i class="fa fa-check"></i><b>10.3</b> Soil Phosphorous</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="management-swatfarmr.html"><a href="management-swatfarmr.html"><i class="fa fa-check"></i><b>11</b> Management (SWATfarmR)</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="management-swatfarmr.html"><a href="management-swatfarmr.html#pre-processing-crop-rotation"><i class="fa fa-check"></i><b>11.1</b> Pre-processing crop rotation</a>
+<ul>
+<li class="chapter" data-level="11.1.1" data-path="management-swatfarmr.html"><a href="management-swatfarmr.html#input-files"><i class="fa fa-check"></i><b>11.1.1</b> Input files</a></li>
+<li class="chapter" data-level="11.1.2" data-path="management-swatfarmr.html"><a href="management-swatfarmr.html#settings"><i class="fa fa-check"></i><b>11.1.2</b> Settings</a></li>
+<li class="chapter" data-level="11.1.3" data-path="management-swatfarmr.html"><a href="management-swatfarmr.html#checks"><i class="fa fa-check"></i><b>11.1.3</b> Checks</a></li>
+<li class="chapter" data-level="11.1.4" data-path="management-swatfarmr.html"><a href="management-swatfarmr.html#writing-input-data"><i class="fa fa-check"></i><b>11.1.4</b> Writing input data</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="management-swatfarmr.html"><a href="management-swatfarmr.html#initializing-farmr"><i class="fa fa-check"></i><b>11.2</b> Initializing FarmR</a></li>
+<li class="chapter" data-level="11.3" data-path="management-swatfarmr.html"><a href="management-swatfarmr.html#calculating-api"><i class="fa fa-check"></i><b>11.3</b> Calculating API</a></li>
+<li class="chapter" data-level="11.4" data-path="management-swatfarmr.html"><a href="management-swatfarmr.html#scheduling-operations"><i class="fa fa-check"></i><b>11.4</b> Scheduling Operations</a>
+<ul>
+<li class="chapter" data-level="11.4.1" data-path="management-swatfarmr.html"><a href="management-swatfarmr.html#write-operations"><i class="fa fa-check"></i><b>11.4.1</b> Write Operations</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="model-verification-swatdoctr.html"><a href="model-verification-swatdoctr.html"><i class="fa fa-check"></i><b>12</b> Model Verification (SWATdoctR)</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="model-verification-swatdoctr.html"><a href="model-verification-swatdoctr.html#climate-variables"><i class="fa fa-check"></i><b>12.1</b> Climate Variables</a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="model-verification-swatdoctr.html"><a href="model-verification-swatdoctr.html#lapse-rate"><i class="fa fa-check"></i><b>12.1.1</b> Lapse rate</a></li>
+<li class="chapter" data-level="12.1.2" data-path="model-verification-swatdoctr.html"><a href="model-verification-swatdoctr.html#climate-variables-1"><i class="fa fa-check"></i><b>12.1.2</b> Climate variables</a></li>
+<li class="chapter" data-level="12.1.3" data-path="model-verification-swatdoctr.html"><a href="model-verification-swatdoctr.html#snowfall-and-snowmelt"><i class="fa fa-check"></i><b>12.1.3</b> Snowfall and Snowmelt</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="model-verification-swatdoctr.html"><a href="model-verification-swatdoctr.html#management-operations"><i class="fa fa-check"></i><b>12.2</b> Management operations</a></li>
+<li class="chapter" data-level="12.3" data-path="model-verification-swatdoctr.html"><a href="model-verification-swatdoctr.html#unconstrained-plant-growth"><i class="fa fa-check"></i><b>12.3</b> Unconstrained plant growth</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="soft-calibration.html"><a href="soft-calibration.html"><i class="fa fa-check"></i><b>13</b> Soft Calibration</a></li>
+<li class="chapter" data-level="14" data-path="hard-calibration.html"><a href="hard-calibration.html"><i class="fa fa-check"></i><b>14</b> Hard Calibration</a></li>
+<li class="chapter" data-level="15" data-path="climate-scenarios.html"><a href="climate-scenarios.html"><i class="fa fa-check"></i><b>15</b> Climate Scenarios</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="climate-scenarios.html"><a href="climate-scenarios.html#introduction-3"><i class="fa fa-check"></i><b>15.1</b> Introduction</a></li>
+<li class="chapter" data-level="15.2" data-path="climate-scenarios.html"><a href="climate-scenarios.html#setup"><i class="fa fa-check"></i><b>15.2</b> Setup</a>
+<ul>
+<li class="chapter" data-level="15.2.1" data-path="climate-scenarios.html"><a href="climate-scenarios.html#re-calculating-management"><i class="fa fa-check"></i><b>15.2.1</b> Re-Calculating Management</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="climate-scenarios.html"><a href="climate-scenarios.html#executing-model"><i class="fa fa-check"></i><b>15.3</b> Executing model</a></li>
+<li class="chapter" data-level="15.4" data-path="climate-scenarios.html"><a href="climate-scenarios.html#processing-results"><i class="fa fa-check"></i><b>15.4</b> Processing Results</a></li>
+<li class="chapter" data-level="15.5" data-path="climate-scenarios.html"><a href="climate-scenarios.html#output-analysis"><i class="fa fa-check"></i><b>15.5</b> Output Analysis</a>
+<ul>
+<li class="chapter" data-level="15.5.1" data-path="climate-scenarios.html"><a href="climate-scenarios.html#saving-rds"><i class="fa fa-check"></i><b>15.5.1</b> Saving RDS</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="landuse-scenarios.html"><a href="landuse-scenarios.html"><i class="fa fa-check"></i><b>16</b> Landuse Scenarios</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="landuse-scenarios.html"><a href="landuse-scenarios.html#scenarios"><i class="fa fa-check"></i><b>16.1</b> Scenarios</a>
+<ul>
+<li class="chapter" data-level="16.1.1" data-path="landuse-scenarios.html"><a href="landuse-scenarios.html#status-quo"><i class="fa fa-check"></i><b>16.1.1</b> Status Quo</a></li>
+<li class="chapter" data-level="16.1.2" data-path="landuse-scenarios.html"><a href="landuse-scenarios.html#no-autumn-tillage"><i class="fa fa-check"></i><b>16.1.2</b> No Autumn Tillage</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="measures-swatmeasr.html"><a href="measures-swatmeasr.html"><i class="fa fa-check"></i><b>17</b> Measures (SWATmeasR)</a></li>
+<li class="chapter" data-level="18" data-path="measure-implementation.html"><a href="measure-implementation.html"><i class="fa fa-check"></i><b>18</b> Measure Implementation</a></li>
+<li class="chapter" data-level="19" data-path="measure-scenarios.html"><a href="measure-scenarios.html"><i class="fa fa-check"></i><b>19</b> Measure Scenarios</a></li>
+<li class="chapter" data-level="20" data-path="measure-classification.html"><a href="measure-classification.html"><i class="fa fa-check"></i><b>20</b> Measure Classification</a>
+<ul>
+<li class="chapter" data-level="20.1" data-path="measure-classification.html"><a href="measure-classification.html#introduction-4"><i class="fa fa-check"></i><b>20.1</b> Introduction</a></li>
+<li class="chapter" data-level="20.2" data-path="measure-classification.html"><a href="measure-classification.html#determining-classification"><i class="fa fa-check"></i><b>20.2</b> Determining Classification</a></li>
+<li class="chapter" data-level="20.3" data-path="measure-classification.html"><a href="measure-classification.html#applying-classification"><i class="fa fa-check"></i><b>20.3</b> Applying Classification</a>
+<ul>
+<li class="chapter" data-level="20.3.1" data-path="measure-classification.html"><a href="measure-classification.html#gullies-grassed-water-ways"><i class="fa fa-check"></i><b>20.3.1</b> Gullies (grassed water ways)</a></li>
+<li class="chapter" data-level="20.3.2" data-path="measure-classification.html"><a href="measure-classification.html#buffer-strips"><i class="fa fa-check"></i><b>20.3.2</b> Buffer Strips</a></li>
+<li class="chapter" data-level="20.3.3" data-path="measure-classification.html"><a href="measure-classification.html#ponds"><i class="fa fa-check"></i><b>20.3.3</b> Ponds</a></li>
+<li class="chapter" data-level="20.3.4" data-path="measure-classification.html"><a href="measure-classification.html#notill-management-measure"><i class="fa fa-check"></i><b>20.3.4</b> NoTill (management measure)</a></li>
+</ul></li>
+<li class="chapter" data-level="20.4" data-path="measure-classification.html"><a href="measure-classification.html#hru-scenario-table"><i class="fa fa-check"></i><b>20.4</b> HRU Scenario Table</a>
+<ul>
+<li class="chapter" data-level="20.4.1" data-path="measure-classification.html"><a href="measure-classification.html#merging-into-landuse-map"><i class="fa fa-check"></i><b>20.4.1</b> Merging into Landuse Map</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="optimization.html"><a href="optimization.html"><i class="fa fa-check"></i><b>21</b> Optimization</a>
+<ul>
+<li class="chapter" data-level="21.1" data-path="optimization.html"><a href="optimization.html#introduction-5"><i class="fa fa-check"></i><b>21.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="21.1.1" data-path="optimization.html"><a href="optimization.html#comola"><i class="fa fa-check"></i><b>21.1.1</b> CoMOLA</a></li>
+<li class="chapter" data-level="21.1.2" data-path="optimization.html"><a href="optimization.html#the-pareto-frontier"><i class="fa fa-check"></i><b>21.1.2</b> The Pareto Frontier</a></li>
+<li class="chapter" data-level="21.1.3" data-path="optimization.html"><a href="optimization.html#nsga-ii"><i class="fa fa-check"></i><b>21.1.3</b> NSGA-II</a></li>
+<li class="chapter" data-level="21.1.4" data-path="optimization.html"><a href="optimization.html#the-objective-space"><i class="fa fa-check"></i><b>21.1.4</b> The Objective Space</a></li>
+<li class="chapter" data-level="21.1.5" data-path="optimization.html"><a href="optimization.html#references"><i class="fa fa-check"></i><b>21.1.5</b> References</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="overview-maps.html"><a href="overview-maps.html"><i class="fa fa-check"></i><b>22</b> Overview Maps</a></li>
+<li class="chapter" data-level="" data-path="annex.html"><a href="annex.html"><i class="fa fa-check"></i>Annex</a>
+<ul>
+<li class="chapter" data-level="22.1" data-path="annex.html"><a href="annex.html#packages"><i class="fa fa-check"></i><b>22.1</b> Packages</a></li>
+<li class="chapter" data-level="22.2" data-path="annex.html"><a href="annex.html#computer-specs"><i class="fa fa-check"></i><b>22.2</b> Computer Specs</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references-1.html"><a href="references-1.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://www.optain.eu/" target="blank">optain.eu</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">The OPTAIN Project: Case study 10</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="landuse-scenarios" class="section level1 hasAnchor" number="16">
+<h1><span class="header-section-number">Section 16</span> Landuse Scenarios<a href="landuse-scenarios.html#landuse-scenarios" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div class="sourceCode" id="cb568"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb568-1"><a href="landuse-scenarios.html#cb568-1" tabindex="-1"></a>RUN_THIS_CHAPTER <span class="ot">=</span> <span class="cn">FALSE</span></span></code></pre></div>
+<blockquote>
+<p>WARNING: This code was rushed and abandoned before it could be properly added
+to the GitBook. It needs a look-over</p>
+</blockquote>
+<p>First we need to fix the land-use names to be FarmRInput Compatible. The reason
+this is broken is because we changed our drainage classes after running the buildR,
+and after messing with our land use lum file.</p>
+<div class="sourceCode" id="cb569"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb569-1"><a href="landuse-scenarios.html#cb569-1" tabindex="-1"></a><span class="fu">require</span>(sf)</span>
+<span id="cb569-2"><a href="landuse-scenarios.html#cb569-2" tabindex="-1"></a><span class="fu">require</span>(dplyr)</span>
+<span id="cb569-3"><a href="landuse-scenarios.html#cb569-3" tabindex="-1"></a><span class="fu">require</span>(mapview)</span></code></pre></div>
+<p>Update the names based on drainage and LUM</p>
+<div class="sourceCode" id="cb570"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb570-1"><a href="landuse-scenarios.html#cb570-1" tabindex="-1"></a>lu_v2 <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">read_sf</span>(<span class="st">&quot;model_data/input/land/CS10_LU_V2.shp&quot;</span>)</span>
+<span id="cb570-2"><a href="landuse-scenarios.html#cb570-2" tabindex="-1"></a></span>
+<span id="cb570-3"><a href="landuse-scenarios.html#cb570-3" tabindex="-1"></a>get_lum <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">grepl</span>(<span class="at">x =</span> lu_v2<span class="sc">$</span>type, <span class="at">pattern =</span> <span class="st">&quot;a_&quot;</span>))</span>
+<span id="cb570-4"><a href="landuse-scenarios.html#cb570-4" tabindex="-1"></a>get_drn <span class="ot">&lt;-</span> <span class="fu">which</span>((lu_v2<span class="sc">$</span>drainage <span class="sc">%&gt;%</span> <span class="fu">is.na</span>()) <span class="sc">==</span> <span class="cn">FALSE</span>)</span>
+<span id="cb570-5"><a href="landuse-scenarios.html#cb570-5" tabindex="-1"></a></span>
+<span id="cb570-6"><a href="landuse-scenarios.html#cb570-6" tabindex="-1"></a>lu_v2<span class="sc">$</span>namefixed <span class="ot">&lt;-</span> lu_v2<span class="sc">$</span>type</span>
+<span id="cb570-7"><a href="landuse-scenarios.html#cb570-7" tabindex="-1"></a>lu_v2<span class="sc">$</span>namefixed[get_drn] <span class="ot">&lt;-</span> <span class="fu">paste0</span>(lu_v2<span class="sc">$</span>type[get_drn], <span class="st">&quot;_drn&quot;</span>)</span>
+<span id="cb570-8"><a href="landuse-scenarios.html#cb570-8" tabindex="-1"></a>mapview<span class="sc">::</span><span class="fu">mapview</span>(lu_v2)</span></code></pre></div>
+<p>Now we update our crop rotation with the working names</p>
+<div class="sourceCode" id="cb571"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb571-1"><a href="landuse-scenarios.html#cb571-1" tabindex="-1"></a>crop_rotation <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">read_sf</span>(<span class="st">&quot;model_data/input/crop/land_with_cr.shp&quot;</span>)</span>
+<span id="cb571-2"><a href="landuse-scenarios.html#cb571-2" tabindex="-1"></a>crop_rotation<span class="sc">$</span>lu <span class="ot">&lt;-</span> lu_v2<span class="sc">$</span>namefixed</span>
+<span id="cb571-3"><a href="landuse-scenarios.html#cb571-3" tabindex="-1"></a>crop_rotation <span class="ot">&lt;-</span> crop_rotation</span>
+<span id="cb571-4"><a href="landuse-scenarios.html#cb571-4" tabindex="-1"></a><span class="fu">write_sf</span>(crop_rotation, <span class="st">&quot;model_data/input/crop/land_with_cr_fixed.shp&quot;</span>)</span></code></pre></div>
+<p>And prepare our FarmR input.</p>
+<div id="scenarios" class="section level2 hasAnchor" number="16.1">
+<h2><span class="header-section-number">16.1</span> Scenarios<a href="landuse-scenarios.html#scenarios" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="status-quo" class="section level3 hasAnchor" number="16.1.1">
+<h3><span class="header-section-number">16.1.1</span> Status Quo<a href="landuse-scenarios.html#status-quo" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb572"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb572-1"><a href="landuse-scenarios.html#cb572-1" tabindex="-1"></a><span class="fu">require</span>(sf)</span>
+<span id="cb572-2"><a href="landuse-scenarios.html#cb572-2" tabindex="-1"></a><span class="fu">require</span>(tidyverse)</span>
+<span id="cb572-3"><a href="landuse-scenarios.html#cb572-3" tabindex="-1"></a><span class="fu">require</span>(lubridate)</span>
+<span id="cb572-4"><a href="landuse-scenarios.html#cb572-4" tabindex="-1"></a><span class="fu">require</span>(reshape2)</span>
+<span id="cb572-5"><a href="landuse-scenarios.html#cb572-5" tabindex="-1"></a><span class="fu">require</span>(dplyr)</span>
+<span id="cb572-6"><a href="landuse-scenarios.html#cb572-6" tabindex="-1"></a><span class="fu">require</span>(data.table)</span></code></pre></div>
+<div class="sourceCode" id="cb573"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb573-1"><a href="landuse-scenarios.html#cb573-1" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())</span>
+<span id="cb573-2"><a href="landuse-scenarios.html#cb573-2" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&#39;model_data/code/functions_write_SWATfarmR_input.R&#39;</span>)</span>
+<span id="cb573-3"><a href="landuse-scenarios.html#cb573-3" tabindex="-1"></a></span>
+<span id="cb573-4"><a href="landuse-scenarios.html#cb573-4" tabindex="-1"></a>lu_shp <span class="ot">&lt;-</span> <span class="st">&#39;model_data/input/crop/land_with_cr_fixed.shp&#39;</span></span>
+<span id="cb573-5"><a href="landuse-scenarios.html#cb573-5" tabindex="-1"></a>lu <span class="ot">&lt;-</span> <span class="fu">st_drop_geometry</span>(<span class="fu">read_sf</span>(lu_shp))</span>
+<span id="cb573-6"><a href="landuse-scenarios.html#cb573-6" tabindex="-1"></a></span>
+<span id="cb573-7"><a href="landuse-scenarios.html#cb573-7" tabindex="-1"></a>mgt_csv <span class="ot">&lt;-</span> <span class="st">&#39;model_data/input/management/mgt_crops_CS10.csv&#39;</span></span>
+<span id="cb573-8"><a href="landuse-scenarios.html#cb573-8" tabindex="-1"></a>mgt_crop <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(mgt_csv)</span>
+<span id="cb573-9"><a href="landuse-scenarios.html#cb573-9" tabindex="-1"></a>lu_generic_csv <span class="ot">&lt;-</span> <span class="st">&#39;model_data/input/management/farmR_generic_CS10_ext.csv&#39;</span> <span class="co"># generic land use management .csv table</span></span>
+<span id="cb573-10"><a href="landuse-scenarios.html#cb573-10" tabindex="-1"></a>mgt_generic <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(lu_generic_csv)</span>
+<span id="cb573-11"><a href="landuse-scenarios.html#cb573-11" tabindex="-1"></a></span>
+<span id="cb573-12"><a href="landuse-scenarios.html#cb573-12" tabindex="-1"></a></span>
+<span id="cb573-13"><a href="landuse-scenarios.html#cb573-13" tabindex="-1"></a><span class="do">### </span><span class="al">TODO</span><span class="do">  DEFINE THIS</span></span>
+<span id="cb573-14"><a href="landuse-scenarios.html#cb573-14" tabindex="-1"></a>start_y <span class="ot">&lt;-</span> <span class="dv">2013</span> <span class="co"># starting year (consider at least 3 years for warm-up!)</span></span>
+<span id="cb573-15"><a href="landuse-scenarios.html#cb573-15" tabindex="-1"></a>end_y <span class="ot">&lt;-</span> <span class="dv">2020</span> <span class="co"># ending year</span></span>
+<span id="cb573-16"><a href="landuse-scenarios.html#cb573-16" tabindex="-1"></a></span>
+<span id="cb573-17"><a href="landuse-scenarios.html#cb573-17" tabindex="-1"></a>hru_crops <span class="ot">&lt;-</span> <span class="st">&#39;a_&#39;</span></span>
+<span id="cb573-18"><a href="landuse-scenarios.html#cb573-18" tabindex="-1"></a>m_yr_sch_existing <span class="ot">&lt;-</span> <span class="st">&#39;n&#39;</span></span>
+<span id="cb573-19"><a href="landuse-scenarios.html#cb573-19" tabindex="-1"></a>crop_myr <span class="ot">&lt;-</span> <span class="st">&#39;past&#39;</span> <span class="co"># name of your farmland grass</span></span>
+<span id="cb573-20"><a href="landuse-scenarios.html#cb573-20" tabindex="-1"></a>max_yr <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb573-21"><a href="landuse-scenarios.html#cb573-21" tabindex="-1"></a>crop_s <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;sgbt&#39;</span>,<span class="st">&#39;csil&#39;</span>,<span class="st">&#39;barl&#39;</span>)</span>
+<span id="cb573-22"><a href="landuse-scenarios.html#cb573-22" tabindex="-1"></a>additional_h_yr_sch_existing <span class="ot">&lt;-</span> <span class="st">&#39;n&#39;</span> <span class="co"># &#39;y&#39; (yes), &#39;n&#39; (no)</span></span>
+<span id="cb573-23"><a href="landuse-scenarios.html#cb573-23" tabindex="-1"></a>scen_path <span class="ot">=</span> <span class="st">&quot;model_data/input/management/management_scenarios/status_quo/&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb574"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb574-1"><a href="landuse-scenarios.html#cb574-1" tabindex="-1"></a>check_skip <span class="ot">&lt;-</span> <span class="fu">check_skip_position</span>(<span class="at">path =</span> scen_path)</span>
+<span id="cb574-2"><a href="landuse-scenarios.html#cb574-2" tabindex="-1"></a><span class="fu">check_date_conflicts1</span>()</span>
+<span id="cb574-3"><a href="landuse-scenarios.html#cb574-3" tabindex="-1"></a>rota_schedules <span class="ot">&lt;-</span> <span class="fu">build_rotation_schedules</span>()</span>
+<span id="cb574-4"><a href="landuse-scenarios.html#cb574-4" tabindex="-1"></a><span class="fu">check_date_conflicts2</span>()</span>
+<span id="cb574-5"><a href="landuse-scenarios.html#cb574-5" tabindex="-1"></a>rota_schedules <span class="ot">&lt;-</span> <span class="fu">solve_date_conflicts</span>()</span>
+<span id="cb574-6"><a href="landuse-scenarios.html#cb574-6" tabindex="-1"></a><span class="fu">check_date_conflicts2</span>()</span>
+<span id="cb574-7"><a href="landuse-scenarios.html#cb574-7" tabindex="-1"></a><span class="fu">write_farmR_input</span>(<span class="at">path =</span> <span class="fu">paste0</span>(scen_path, <span class="st">&quot;farmR_input_status_quo.csv&quot;</span>))</span></code></pre></div>
+<div id="running-farmr" class="section level4 hasAnchor" number="16.1.1.1">
+<h4><span class="header-section-number">16.1.1.1</span> Running farmR<a href="landuse-scenarios.html#running-farmr" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb575"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb575-1"><a href="landuse-scenarios.html#cb575-1" tabindex="-1"></a><span class="fu">require</span>(SWATfarmR)</span>
+<span id="cb575-2"><a href="landuse-scenarios.html#cb575-2" tabindex="-1"></a>dir_swat <span class="ot">&lt;-</span> <span class="fu">paste0</span>(scen_path, <span class="st">&quot;swat_setup&quot;</span>)</span>
+<span id="cb575-3"><a href="landuse-scenarios.html#cb575-3" tabindex="-1"></a><span class="fu">unlink</span>(dir_swat, <span class="at">recursive =</span> T)</span>
+<span id="cb575-4"><a href="landuse-scenarios.html#cb575-4" tabindex="-1"></a><span class="fu">dir.create</span>(dir_swat, <span class="at">showWarnings =</span> F)</span>
+<span id="cb575-5"><a href="landuse-scenarios.html#cb575-5" tabindex="-1"></a>swat_files <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="st">&quot;model_data/cs10_setup/MetNord_MN2/&quot;</span>, <span class="at">full.names =</span> T)</span>
+<span id="cb575-6"><a href="landuse-scenarios.html#cb575-6" tabindex="-1"></a><span class="fu">file.copy</span>(<span class="at">from =</span> swat_files, <span class="at">to =</span> dir_swat, <span class="at">overwrite =</span> T)</span>
+<span id="cb575-7"><a href="landuse-scenarios.html#cb575-7" tabindex="-1"></a></span>
+<span id="cb575-8"><a href="landuse-scenarios.html#cb575-8" tabindex="-1"></a>SWATfarmR<span class="sc">::</span><span class="fu">load_farmr</span>(<span class="at">file =</span> <span class="fu">paste0</span>(dir_swat,<span class="st">&quot;/cs10.farm&quot;</span>))</span>
+<span id="cb575-9"><a href="landuse-scenarios.html#cb575-9" tabindex="-1"></a>cs10<span class="sc">$</span><span class="fu">reset_files</span>()</span>
+<span id="cb575-10"><a href="landuse-scenarios.html#cb575-10" tabindex="-1"></a><span class="fu">unlink</span>(<span class="fu">paste0</span>(dir_swat,<span class="st">&quot;/cs10.farm&quot;</span>))</span>
+<span id="cb575-11"><a href="landuse-scenarios.html#cb575-11" tabindex="-1"></a><span class="fu">unlink</span>(<span class="fu">paste0</span>(dir_swat, <span class="st">&quot;/cs10.mgts&quot;</span>))</span>
+<span id="cb575-12"><a href="landuse-scenarios.html#cb575-12" tabindex="-1"></a></span>
+<span id="cb575-13"><a href="landuse-scenarios.html#cb575-13" tabindex="-1"></a>fip <span class="ot">&lt;-</span> <span class="st">&quot;model_data/input/management/management_scenarios/status_quo/farmR_input_status_quo.csv&quot;</span></span>
+<span id="cb575-14"><a href="landuse-scenarios.html#cb575-14" tabindex="-1"></a>SWATfarmR<span class="sc">::</span><span class="fu">new_farmr</span>(<span class="at">project_path =</span> dir_swat, <span class="at">project_name =</span> <span class="st">&quot;status_quo&quot;</span>)</span>
+<span id="cb575-15"><a href="landuse-scenarios.html#cb575-15" tabindex="-1"></a>status_quo<span class="sc">$</span><span class="fu">read_management</span>(<span class="at">file =</span> fip, <span class="at">discard_schedule =</span> T)</span>
+<span id="cb575-16"><a href="landuse-scenarios.html#cb575-16" tabindex="-1"></a>pcp <span class="ot">&lt;-</span> status_quo<span class="sc">$</span>.data<span class="sc">$</span>variables<span class="sc">$</span>pcp</span>
+<span id="cb575-17"><a href="landuse-scenarios.html#cb575-17" tabindex="-1"></a></span>
+<span id="cb575-18"><a href="landuse-scenarios.html#cb575-18" tabindex="-1"></a><span class="co"># using temp API</span></span>
+<span id="cb575-19"><a href="landuse-scenarios.html#cb575-19" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co"> add real API</span></span>
+<span id="cb575-20"><a href="landuse-scenarios.html#cb575-20" tabindex="-1"></a>  </span>
+<span id="cb575-21"><a href="landuse-scenarios.html#cb575-21" tabindex="-1"></a><span class="co"># Extract the hydrologic soil group values for all HRUs</span></span>
+<span id="cb575-22"><a href="landuse-scenarios.html#cb575-22" tabindex="-1"></a>hsg <span class="ot">&lt;-</span> <span class="fu">select</span>(status_quo<span class="sc">$</span>.data<span class="sc">$</span>meta<span class="sc">$</span>hru_attributes, hru, hyd_grp)</span>
+<span id="cb575-23"><a href="landuse-scenarios.html#cb575-23" tabindex="-1"></a></span>
+<span id="cb575-24"><a href="landuse-scenarios.html#cb575-24" tabindex="-1"></a>  </span>
+<span id="cb575-25"><a href="landuse-scenarios.html#cb575-25" tabindex="-1"></a></span>
+<span id="cb575-26"><a href="landuse-scenarios.html#cb575-26" tabindex="-1"></a><span class="co"># Calculate api values for the hsg classes A to D</span></span>
+<span id="cb575-27"><a href="landuse-scenarios.html#cb575-27" tabindex="-1"></a>api_A <span class="ot">&lt;-</span> <span class="fu">variable_decay</span>(<span class="at">variable =</span> pcp, <span class="at">n_steps =</span> <span class="sc">-</span><span class="dv">5</span>, <span class="at">decay_rate =</span> <span class="dv">1</span>)</span>
+<span id="cb575-28"><a href="landuse-scenarios.html#cb575-28" tabindex="-1"></a>api_B <span class="ot">&lt;-</span> <span class="fu">variable_decay</span>(<span class="at">variable =</span> pcp, <span class="at">n_steps =</span> <span class="sc">-</span><span class="dv">5</span>, <span class="at">decay_rate =</span> <span class="fl">0.8</span>)</span>
+<span id="cb575-29"><a href="landuse-scenarios.html#cb575-29" tabindex="-1"></a>api_C <span class="ot">&lt;-</span> <span class="fu">variable_decay</span>(<span class="at">variable =</span> pcp, <span class="at">n_steps =</span> <span class="sc">-</span><span class="dv">5</span>, <span class="at">decay_rate =</span> <span class="fl">0.7</span>)</span>
+<span id="cb575-30"><a href="landuse-scenarios.html#cb575-30" tabindex="-1"></a>api_D <span class="ot">&lt;-</span> <span class="fu">variable_decay</span>(<span class="at">variable =</span> pcp, <span class="at">n_steps =</span> <span class="sc">-</span><span class="dv">5</span>, <span class="at">decay_rate =</span> <span class="fl">0.5</span>)</span>
+<span id="cb575-31"><a href="landuse-scenarios.html#cb575-31" tabindex="-1"></a>  </span>
+<span id="cb575-32"><a href="landuse-scenarios.html#cb575-32" tabindex="-1"></a>  <span class="co"># Bind the data together into one api table and name them with the hsgs</span></span>
+<span id="cb575-33"><a href="landuse-scenarios.html#cb575-33" tabindex="-1"></a>  api <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(api_A, api_B, api_C, api_D)</span>
+<span id="cb575-34"><a href="landuse-scenarios.html#cb575-34" tabindex="-1"></a>  <span class="fu">names</span>(api) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;api_A&#39;</span>, <span class="st">&#39;api_B&#39;</span>, <span class="st">&#39;api_C&#39;</span>, <span class="st">&#39;api_D&#39;</span>)</span>
+<span id="cb575-35"><a href="landuse-scenarios.html#cb575-35" tabindex="-1"></a>  </span>
+<span id="cb575-36"><a href="landuse-scenarios.html#cb575-36" tabindex="-1"></a>  <span class="co"># To add the variable to the farmR you have to tell it which variables are</span></span>
+<span id="cb575-37"><a href="landuse-scenarios.html#cb575-37" tabindex="-1"></a>  <span class="co"># assigned to which HRUs</span></span>
+<span id="cb575-38"><a href="landuse-scenarios.html#cb575-38" tabindex="-1"></a>  hru_asgn <span class="ot">&lt;-</span> <span class="fu">mutate</span>(hsg, <span class="at">api =</span> <span class="fu">paste0</span>(<span class="st">&#39;api_&#39;</span>, hyd_grp)) <span class="sc">%&gt;%</span> <span class="fu">select</span>(hru, api)</span>
+<span id="cb575-39"><a href="landuse-scenarios.html#cb575-39" tabindex="-1"></a></span>
+<span id="cb575-40"><a href="landuse-scenarios.html#cb575-40" tabindex="-1"></a>  <span class="co"># Add the variable api to the farmR project</span></span>
+<span id="cb575-41"><a href="landuse-scenarios.html#cb575-41" tabindex="-1"></a>  status_quo<span class="sc">$</span><span class="fu">add_variable</span>(<span class="at">data =</span> api, <span class="at">name =</span> <span class="st">&#39;api&#39;</span>, <span class="at">assign_unit =</span> hru_asgn, <span class="at">overwrite =</span> T)</span>
+<span id="cb575-42"><a href="landuse-scenarios.html#cb575-42" tabindex="-1"></a>  </span>
+<span id="cb575-43"><a href="landuse-scenarios.html#cb575-43" tabindex="-1"></a>  <span class="co"># Schedule operations</span></span>
+<span id="cb575-44"><a href="landuse-scenarios.html#cb575-44" tabindex="-1"></a>  status_quo<span class="sc">$</span><span class="fu">schedule_operations</span>(<span class="at">start_year =</span> <span class="dv">2013</span>,</span>
+<span id="cb575-45"><a href="landuse-scenarios.html#cb575-45" tabindex="-1"></a>                         <span class="at">end_year =</span> <span class="dv">2020</span>,</span>
+<span id="cb575-46"><a href="landuse-scenarios.html#cb575-46" tabindex="-1"></a>                         <span class="at">n_schedule =</span> <span class="dv">2</span>, <span class="at">replace =</span> <span class="st">&quot;all&quot;</span>)</span>
+<span id="cb575-47"><a href="landuse-scenarios.html#cb575-47" tabindex="-1"></a>  <span class="co"># Write operations</span></span>
+<span id="cb575-48"><a href="landuse-scenarios.html#cb575-48" tabindex="-1"></a>  status_quo<span class="sc">$</span><span class="fu">write_operations</span>(<span class="at">start_year =</span> <span class="dv">2013</span>, <span class="at">end_year =</span> <span class="dv">2020</span>)</span></code></pre></div>
+</div>
+</div>
+<div id="no-autumn-tillage" class="section level3 hasAnchor" number="16.1.2">
+<h3><span class="header-section-number">16.1.2</span> No Autumn Tillage<a href="landuse-scenarios.html#no-autumn-tillage" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>For the no-autumn tillage we will simply replace <code>wwht</code> (winter wheat) with
+<code>swht</code> (summer wheat).</p>
+<div class="sourceCode" id="cb576"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb576-1"><a href="landuse-scenarios.html#cb576-1" tabindex="-1"></a><span class="co"># </span><span class="al">WARNING</span></span>
+<span id="cb576-2"><a href="landuse-scenarios.html#cb576-2" tabindex="-1"></a><span class="co"># Micha&#39;s code is using global variables, so be careful</span></span>
+<span id="cb576-3"><a href="landuse-scenarios.html#cb576-3" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())</span>
+<span id="cb576-4"><a href="landuse-scenarios.html#cb576-4" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&#39;model_data/code/functions_write_SWATfarmR_input.R&#39;</span>)</span>
+<span id="cb576-5"><a href="landuse-scenarios.html#cb576-5" tabindex="-1"></a></span>
+<span id="cb576-6"><a href="landuse-scenarios.html#cb576-6" tabindex="-1"></a></span>
+<span id="cb576-7"><a href="landuse-scenarios.html#cb576-7" tabindex="-1"></a>lu_shp <span class="ot">&lt;-</span> <span class="st">&#39;model_data/input/crop/land_with_cr_fixed.shp&#39;</span></span>
+<span id="cb576-8"><a href="landuse-scenarios.html#cb576-8" tabindex="-1"></a>lu <span class="ot">&lt;-</span> <span class="fu">st_drop_geometry</span>(<span class="fu">read_sf</span>(lu_shp))</span>
+<span id="cb576-9"><a href="landuse-scenarios.html#cb576-9" tabindex="-1"></a></span>
+<span id="cb576-10"><a href="landuse-scenarios.html#cb576-10" tabindex="-1"></a>lu <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">lapply</span>(lu, <span class="cf">function</span>(x) {</span>
+<span id="cb576-11"><a href="landuse-scenarios.html#cb576-11" tabindex="-1"></a>                  <span class="fu">gsub</span>(<span class="st">&quot;wwht&quot;</span>, <span class="st">&quot;swht&quot;</span>, x)</span>
+<span id="cb576-12"><a href="landuse-scenarios.html#cb576-12" tabindex="-1"></a>}))</span>
+<span id="cb576-13"><a href="landuse-scenarios.html#cb576-13" tabindex="-1"></a></span>
+<span id="cb576-14"><a href="landuse-scenarios.html#cb576-14" tabindex="-1"></a>lu<span class="ot">&lt;-</span>lu <span class="sc">%&gt;%</span> <span class="fu">tibble</span>()</span>
+<span id="cb576-15"><a href="landuse-scenarios.html#cb576-15" tabindex="-1"></a></span>
+<span id="cb576-16"><a href="landuse-scenarios.html#cb576-16" tabindex="-1"></a>mgt_csv <span class="ot">&lt;-</span> <span class="st">&#39;model_data/input/management/mgt_crops_CS10.csv&#39;</span></span>
+<span id="cb576-17"><a href="landuse-scenarios.html#cb576-17" tabindex="-1"></a>mgt_crop <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(mgt_csv)</span>
+<span id="cb576-18"><a href="landuse-scenarios.html#cb576-18" tabindex="-1"></a></span>
+<span id="cb576-19"><a href="landuse-scenarios.html#cb576-19" tabindex="-1"></a><span class="co"># remove wwht from mgt_crop</span></span>
+<span id="cb576-20"><a href="landuse-scenarios.html#cb576-20" tabindex="-1"></a><span class="co">#mgt_crop &lt;- mgt_crop[-which(mgt_crop$crop_mgt == &quot;wwht&quot;),]</span></span>
+<span id="cb576-21"><a href="landuse-scenarios.html#cb576-21" tabindex="-1"></a></span>
+<span id="cb576-22"><a href="landuse-scenarios.html#cb576-22" tabindex="-1"></a>lu_generic_csv <span class="ot">&lt;-</span> <span class="st">&#39;model_data/input/management/farmR_generic_CS10_ext.csv&#39;</span> <span class="co"># generic land use management .csv table</span></span>
+<span id="cb576-23"><a href="landuse-scenarios.html#cb576-23" tabindex="-1"></a>mgt_generic <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(lu_generic_csv)</span>
+<span id="cb576-24"><a href="landuse-scenarios.html#cb576-24" tabindex="-1"></a></span>
+<span id="cb576-25"><a href="landuse-scenarios.html#cb576-25" tabindex="-1"></a></span>
+<span id="cb576-26"><a href="landuse-scenarios.html#cb576-26" tabindex="-1"></a><span class="do">### </span><span class="al">TODO</span><span class="do">  DEFINE THIS</span></span>
+<span id="cb576-27"><a href="landuse-scenarios.html#cb576-27" tabindex="-1"></a>start_y <span class="ot">&lt;-</span> <span class="dv">2013</span> <span class="co"># starting year (consider at least 3 years for warm-up!)</span></span>
+<span id="cb576-28"><a href="landuse-scenarios.html#cb576-28" tabindex="-1"></a>end_y <span class="ot">&lt;-</span> <span class="dv">2020</span> <span class="co"># ending year</span></span>
+<span id="cb576-29"><a href="landuse-scenarios.html#cb576-29" tabindex="-1"></a></span>
+<span id="cb576-30"><a href="landuse-scenarios.html#cb576-30" tabindex="-1"></a>hru_crops <span class="ot">&lt;-</span> <span class="st">&#39;a_&#39;</span></span>
+<span id="cb576-31"><a href="landuse-scenarios.html#cb576-31" tabindex="-1"></a>m_yr_sch_existing <span class="ot">&lt;-</span> <span class="st">&#39;n&#39;</span></span>
+<span id="cb576-32"><a href="landuse-scenarios.html#cb576-32" tabindex="-1"></a>crop_myr <span class="ot">&lt;-</span> <span class="st">&#39;past&#39;</span> <span class="co"># name of your farmland grass</span></span>
+<span id="cb576-33"><a href="landuse-scenarios.html#cb576-33" tabindex="-1"></a>max_yr <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb576-34"><a href="landuse-scenarios.html#cb576-34" tabindex="-1"></a>crop_s <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;sgbt&#39;</span>,<span class="st">&#39;csil&#39;</span>,<span class="st">&#39;barl&#39;</span>)</span>
+<span id="cb576-35"><a href="landuse-scenarios.html#cb576-35" tabindex="-1"></a>additional_h_yr_sch_existing <span class="ot">&lt;-</span> <span class="st">&#39;n&#39;</span> <span class="co"># &#39;y&#39; (yes), &#39;n&#39; (no)</span></span>
+<span id="cb576-36"><a href="landuse-scenarios.html#cb576-36" tabindex="-1"></a></span>
+<span id="cb576-37"><a href="landuse-scenarios.html#cb576-37" tabindex="-1"></a></span>
+<span id="cb576-38"><a href="landuse-scenarios.html#cb576-38" tabindex="-1"></a>scen_path <span class="ot">=</span> <span class="st">&quot;model_data/input/management/management_scenarios/no_at/&quot;</span></span>
+<span id="cb576-39"><a href="landuse-scenarios.html#cb576-39" tabindex="-1"></a>check_skip <span class="ot">&lt;-</span> <span class="fu">check_skip_position</span>(<span class="at">path =</span> scen_path)</span>
+<span id="cb576-40"><a href="landuse-scenarios.html#cb576-40" tabindex="-1"></a><span class="fu">check_date_conflicts1</span>()</span>
+<span id="cb576-41"><a href="landuse-scenarios.html#cb576-41" tabindex="-1"></a>rota_schedules <span class="ot">&lt;-</span> <span class="fu">build_rotation_schedules</span>()</span>
+<span id="cb576-42"><a href="landuse-scenarios.html#cb576-42" tabindex="-1"></a><span class="fu">check_date_conflicts2</span>()</span>
+<span id="cb576-43"><a href="landuse-scenarios.html#cb576-43" tabindex="-1"></a>rota_schedules <span class="ot">&lt;-</span> <span class="fu">solve_date_conflicts</span>()</span>
+<span id="cb576-44"><a href="landuse-scenarios.html#cb576-44" tabindex="-1"></a><span class="fu">check_date_conflicts2</span>()</span>
+<span id="cb576-45"><a href="landuse-scenarios.html#cb576-45" tabindex="-1"></a><span class="fu">write_farmR_input</span>(<span class="at">path =</span> <span class="fu">paste0</span>(scen_path, <span class="st">&quot;farmR_input_no_at.csv&quot;</span>))</span></code></pre></div>
+<div id="running-famr" class="section level4 hasAnchor" number="16.1.2.1">
+<h4><span class="header-section-number">16.1.2.1</span> Running FamR<a href="landuse-scenarios.html#running-famr" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb577"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb577-1"><a href="landuse-scenarios.html#cb577-1" tabindex="-1"></a><span class="fu">require</span>(SWATfarmR)</span>
+<span id="cb577-2"><a href="landuse-scenarios.html#cb577-2" tabindex="-1"></a>scen_name <span class="ot">&lt;-</span> <span class="st">&quot;no_at&quot;</span></span>
+<span id="cb577-3"><a href="landuse-scenarios.html#cb577-3" tabindex="-1"></a>scen_path <span class="ot">=</span> <span class="fu">paste0</span>(<span class="st">&quot;model_data/input/management/management_scenarios/&quot;</span>, scen_name, <span class="st">&quot;/&quot;</span>)</span>
+<span id="cb577-4"><a href="landuse-scenarios.html#cb577-4" tabindex="-1"></a>dir_swat <span class="ot">&lt;-</span> <span class="fu">paste0</span>(scen_path, <span class="st">&quot;swat_setup&quot;</span>)</span>
+<span id="cb577-5"><a href="landuse-scenarios.html#cb577-5" tabindex="-1"></a>fip <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;model_data/input/management/management_scenarios/&quot;</span>,scen_name, <span class="st">&quot;/farmR_input_&quot;</span>, scen_name, <span class="st">&quot;.csv&quot;</span>)</span>
+<span id="cb577-6"><a href="landuse-scenarios.html#cb577-6" tabindex="-1"></a>dir_swat <span class="ot">&lt;-</span> <span class="fu">paste0</span>(scen_path, <span class="st">&quot;swat_setup&quot;</span>)</span>
+<span id="cb577-7"><a href="landuse-scenarios.html#cb577-7" tabindex="-1"></a><span class="fu">unlink</span>(dir_swat, <span class="at">recursive =</span> T)</span>
+<span id="cb577-8"><a href="landuse-scenarios.html#cb577-8" tabindex="-1"></a><span class="fu">dir.create</span>(dir_swat, <span class="at">showWarnings =</span> F)</span>
+<span id="cb577-9"><a href="landuse-scenarios.html#cb577-9" tabindex="-1"></a>swat_files <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="st">&quot;model_data/cs10_setup/MetNord_MN2/&quot;</span>, <span class="at">full.names =</span> T)</span>
+<span id="cb577-10"><a href="landuse-scenarios.html#cb577-10" tabindex="-1"></a><span class="fu">file.copy</span>(<span class="at">from =</span> swat_files, <span class="at">to =</span> dir_swat, <span class="at">overwrite =</span> F)</span>
+<span id="cb577-11"><a href="landuse-scenarios.html#cb577-11" tabindex="-1"></a></span>
+<span id="cb577-12"><a href="landuse-scenarios.html#cb577-12" tabindex="-1"></a>SWATfarmR<span class="sc">::</span><span class="fu">load_farmr</span>(<span class="at">file =</span> <span class="fu">paste0</span>(dir_swat,<span class="st">&quot;/cs10.farm&quot;</span>))</span>
+<span id="cb577-13"><a href="landuse-scenarios.html#cb577-13" tabindex="-1"></a>cs10<span class="sc">$</span><span class="fu">reset_files</span>()</span>
+<span id="cb577-14"><a href="landuse-scenarios.html#cb577-14" tabindex="-1"></a><span class="fu">unlink</span>(<span class="fu">paste0</span>(dir_swat,<span class="st">&quot;/cs10.farm&quot;</span>))</span>
+<span id="cb577-15"><a href="landuse-scenarios.html#cb577-15" tabindex="-1"></a><span class="fu">unlink</span>(<span class="fu">paste0</span>(dir_swat, <span class="st">&quot;/cs10.mgts&quot;</span>))</span>
+<span id="cb577-16"><a href="landuse-scenarios.html#cb577-16" tabindex="-1"></a></span>
+<span id="cb577-17"><a href="landuse-scenarios.html#cb577-17" tabindex="-1"></a></span>
+<span id="cb577-18"><a href="landuse-scenarios.html#cb577-18" tabindex="-1"></a>SWATfarmR<span class="sc">::</span><span class="fu">new_farmr</span>(<span class="at">project_path =</span> dir_swat, <span class="at">project_name =</span> <span class="st">&quot;farmscen&quot;</span>)</span>
+<span id="cb577-19"><a href="landuse-scenarios.html#cb577-19" tabindex="-1"></a>farmscen<span class="sc">$</span><span class="fu">read_management</span>(<span class="at">file =</span> fip, <span class="at">discard_schedule =</span> T)</span>
+<span id="cb577-20"><a href="landuse-scenarios.html#cb577-20" tabindex="-1"></a>pcp <span class="ot">&lt;-</span> farmscen<span class="sc">$</span>.data<span class="sc">$</span>variables<span class="sc">$</span>pcp</span>
+<span id="cb577-21"><a href="landuse-scenarios.html#cb577-21" tabindex="-1"></a></span>
+<span id="cb577-22"><a href="landuse-scenarios.html#cb577-22" tabindex="-1"></a><span class="co"># using temp API</span></span>
+<span id="cb577-23"><a href="landuse-scenarios.html#cb577-23" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co"> add real API</span></span>
+<span id="cb577-24"><a href="landuse-scenarios.html#cb577-24" tabindex="-1"></a>  </span>
+<span id="cb577-25"><a href="landuse-scenarios.html#cb577-25" tabindex="-1"></a><span class="co"># Extract the hydrologic soil group values for all HRUs</span></span>
+<span id="cb577-26"><a href="landuse-scenarios.html#cb577-26" tabindex="-1"></a>hsg <span class="ot">&lt;-</span> <span class="fu">select</span>(farmscen<span class="sc">$</span>.data<span class="sc">$</span>meta<span class="sc">$</span>hru_attributes, hru, hyd_grp)</span>
+<span id="cb577-27"><a href="landuse-scenarios.html#cb577-27" tabindex="-1"></a></span>
+<span id="cb577-28"><a href="landuse-scenarios.html#cb577-28" tabindex="-1"></a>  </span>
+<span id="cb577-29"><a href="landuse-scenarios.html#cb577-29" tabindex="-1"></a></span>
+<span id="cb577-30"><a href="landuse-scenarios.html#cb577-30" tabindex="-1"></a><span class="co"># Calculate api values for the hsg classes A to D</span></span>
+<span id="cb577-31"><a href="landuse-scenarios.html#cb577-31" tabindex="-1"></a>api_A <span class="ot">&lt;-</span> <span class="fu">variable_decay</span>(<span class="at">variable =</span> pcp, <span class="at">n_steps =</span> <span class="sc">-</span><span class="dv">5</span>, <span class="at">decay_rate =</span> <span class="dv">1</span>)</span>
+<span id="cb577-32"><a href="landuse-scenarios.html#cb577-32" tabindex="-1"></a>api_B <span class="ot">&lt;-</span> <span class="fu">variable_decay</span>(<span class="at">variable =</span> pcp, <span class="at">n_steps =</span> <span class="sc">-</span><span class="dv">5</span>, <span class="at">decay_rate =</span> <span class="fl">0.8</span>)</span>
+<span id="cb577-33"><a href="landuse-scenarios.html#cb577-33" tabindex="-1"></a>api_C <span class="ot">&lt;-</span> <span class="fu">variable_decay</span>(<span class="at">variable =</span> pcp, <span class="at">n_steps =</span> <span class="sc">-</span><span class="dv">5</span>, <span class="at">decay_rate =</span> <span class="fl">0.7</span>)</span>
+<span id="cb577-34"><a href="landuse-scenarios.html#cb577-34" tabindex="-1"></a>api_D <span class="ot">&lt;-</span> <span class="fu">variable_decay</span>(<span class="at">variable =</span> pcp, <span class="at">n_steps =</span> <span class="sc">-</span><span class="dv">5</span>, <span class="at">decay_rate =</span> <span class="fl">0.5</span>)</span>
+<span id="cb577-35"><a href="landuse-scenarios.html#cb577-35" tabindex="-1"></a>  </span>
+<span id="cb577-36"><a href="landuse-scenarios.html#cb577-36" tabindex="-1"></a>  <span class="co"># Bind the data together into one api table and name them with the hsgs</span></span>
+<span id="cb577-37"><a href="landuse-scenarios.html#cb577-37" tabindex="-1"></a>  api <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(api_A, api_B, api_C, api_D)</span>
+<span id="cb577-38"><a href="landuse-scenarios.html#cb577-38" tabindex="-1"></a>  <span class="fu">names</span>(api) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;api_A&#39;</span>, <span class="st">&#39;api_B&#39;</span>, <span class="st">&#39;api_C&#39;</span>, <span class="st">&#39;api_D&#39;</span>)</span>
+<span id="cb577-39"><a href="landuse-scenarios.html#cb577-39" tabindex="-1"></a>  </span>
+<span id="cb577-40"><a href="landuse-scenarios.html#cb577-40" tabindex="-1"></a>  <span class="co"># To add the variable to the farmR you have to tell it which variables are</span></span>
+<span id="cb577-41"><a href="landuse-scenarios.html#cb577-41" tabindex="-1"></a>  <span class="co"># assigned to which HRUs</span></span>
+<span id="cb577-42"><a href="landuse-scenarios.html#cb577-42" tabindex="-1"></a>  hru_asgn <span class="ot">&lt;-</span> <span class="fu">mutate</span>(hsg, <span class="at">api =</span> <span class="fu">paste0</span>(<span class="st">&#39;api_&#39;</span>, hyd_grp)) <span class="sc">%&gt;%</span> <span class="fu">select</span>(hru, api)</span>
+<span id="cb577-43"><a href="landuse-scenarios.html#cb577-43" tabindex="-1"></a></span>
+<span id="cb577-44"><a href="landuse-scenarios.html#cb577-44" tabindex="-1"></a>  <span class="co"># Add the variable api to the farmR project</span></span>
+<span id="cb577-45"><a href="landuse-scenarios.html#cb577-45" tabindex="-1"></a>  farmscen<span class="sc">$</span><span class="fu">add_variable</span>(<span class="at">data =</span> api, <span class="at">name =</span> <span class="st">&#39;api&#39;</span>, <span class="at">assign_unit =</span> hru_asgn, <span class="at">overwrite =</span> T)</span>
+<span id="cb577-46"><a href="landuse-scenarios.html#cb577-46" tabindex="-1"></a>  </span>
+<span id="cb577-47"><a href="landuse-scenarios.html#cb577-47" tabindex="-1"></a>  <span class="co"># Schedule operations</span></span>
+<span id="cb577-48"><a href="landuse-scenarios.html#cb577-48" tabindex="-1"></a>  farmscen<span class="sc">$</span><span class="fu">schedule_operations</span>(<span class="at">start_year =</span> <span class="dv">2013</span>,</span>
+<span id="cb577-49"><a href="landuse-scenarios.html#cb577-49" tabindex="-1"></a>                         <span class="at">end_year =</span> <span class="dv">2020</span>,</span>
+<span id="cb577-50"><a href="landuse-scenarios.html#cb577-50" tabindex="-1"></a>                         <span class="at">n_schedule =</span> <span class="dv">2</span>, <span class="at">replace =</span> <span class="st">&quot;all&quot;</span>)</span>
+<span id="cb577-51"><a href="landuse-scenarios.html#cb577-51" tabindex="-1"></a>  <span class="co"># Write operations</span></span>
+<span id="cb577-52"><a href="landuse-scenarios.html#cb577-52" tabindex="-1"></a>  farmscen<span class="sc">$</span><span class="fu">write_operations</span>(<span class="at">start_year =</span> <span class="dv">2013</span>, <span class="at">end_year =</span> <span class="dv">2020</span>)</span></code></pre></div>
+</div>
+<div id="stubbe-v2" class="section level4 hasAnchor" number="16.1.2.2">
+<h4><span class="header-section-number">16.1.2.2</span> Stubbe V2<a href="landuse-scenarios.html#stubbe-v2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb578"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb578-1"><a href="landuse-scenarios.html#cb578-1" tabindex="-1"></a><span class="co"># </span><span class="al">WARNING</span></span>
+<span id="cb578-2"><a href="landuse-scenarios.html#cb578-2" tabindex="-1"></a><span class="co"># Micha&#39;s code is using global variables, so be careful</span></span>
+<span id="cb578-3"><a href="landuse-scenarios.html#cb578-3" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())</span>
+<span id="cb578-4"><a href="landuse-scenarios.html#cb578-4" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&#39;model_data/code/functions_write_SWATfarmR_input.R&#39;</span>)</span>
+<span id="cb578-5"><a href="landuse-scenarios.html#cb578-5" tabindex="-1"></a>mgt_scen_name <span class="ot">&lt;-</span> <span class="st">&quot;stubble_v2&quot;</span></span>
+<span id="cb578-6"><a href="landuse-scenarios.html#cb578-6" tabindex="-1"></a></span>
+<span id="cb578-7"><a href="landuse-scenarios.html#cb578-7" tabindex="-1"></a></span>
+<span id="cb578-8"><a href="landuse-scenarios.html#cb578-8" tabindex="-1"></a>lu_shp <span class="ot">&lt;-</span> <span class="st">&#39;model_data/input/crop/land_with_cr_fixed.shp&#39;</span></span>
+<span id="cb578-9"><a href="landuse-scenarios.html#cb578-9" tabindex="-1"></a>lu <span class="ot">&lt;-</span> <span class="fu">st_drop_geometry</span>(<span class="fu">read_sf</span>(lu_shp))</span>
+<span id="cb578-10"><a href="landuse-scenarios.html#cb578-10" tabindex="-1"></a></span>
+<span id="cb578-11"><a href="landuse-scenarios.html#cb578-11" tabindex="-1"></a>lu <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="fu">lapply</span>(lu, <span class="cf">function</span>(x) {</span>
+<span id="cb578-12"><a href="landuse-scenarios.html#cb578-12" tabindex="-1"></a>                  <span class="fu">gsub</span>(<span class="st">&quot;wwht&quot;</span>, <span class="st">&quot;swht&quot;</span>, x)</span>
+<span id="cb578-13"><a href="landuse-scenarios.html#cb578-13" tabindex="-1"></a>}))</span>
+<span id="cb578-14"><a href="landuse-scenarios.html#cb578-14" tabindex="-1"></a></span>
+<span id="cb578-15"><a href="landuse-scenarios.html#cb578-15" tabindex="-1"></a>lu<span class="ot">&lt;-</span>lu <span class="sc">%&gt;%</span> <span class="fu">tibble</span>()</span>
+<span id="cb578-16"><a href="landuse-scenarios.html#cb578-16" tabindex="-1"></a></span>
+<span id="cb578-17"><a href="landuse-scenarios.html#cb578-17" tabindex="-1"></a>mgt_csv <span class="ot">&lt;-</span> <span class="st">&#39;model_data/input/management/mgt_crops_CS10_Stubble_v2.csv&#39;</span></span>
+<span id="cb578-18"><a href="landuse-scenarios.html#cb578-18" tabindex="-1"></a>mgt_crop <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(mgt_csv)</span>
+<span id="cb578-19"><a href="landuse-scenarios.html#cb578-19" tabindex="-1"></a></span>
+<span id="cb578-20"><a href="landuse-scenarios.html#cb578-20" tabindex="-1"></a><span class="co"># remove wwht from mgt_crop</span></span>
+<span id="cb578-21"><a href="landuse-scenarios.html#cb578-21" tabindex="-1"></a><span class="co">#mgt_crop &lt;- mgt_crop[-which(mgt_crop$crop_mgt == &quot;wwht&quot;),]</span></span>
+<span id="cb578-22"><a href="landuse-scenarios.html#cb578-22" tabindex="-1"></a></span>
+<span id="cb578-23"><a href="landuse-scenarios.html#cb578-23" tabindex="-1"></a>lu_generic_csv <span class="ot">&lt;-</span> <span class="st">&#39;model_data/input/management/farmR_generic_CS10_ext.csv&#39;</span> <span class="co"># generic land use management .csv table</span></span>
+<span id="cb578-24"><a href="landuse-scenarios.html#cb578-24" tabindex="-1"></a>mgt_generic <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(lu_generic_csv)</span>
+<span id="cb578-25"><a href="landuse-scenarios.html#cb578-25" tabindex="-1"></a></span>
+<span id="cb578-26"><a href="landuse-scenarios.html#cb578-26" tabindex="-1"></a></span>
+<span id="cb578-27"><a href="landuse-scenarios.html#cb578-27" tabindex="-1"></a><span class="do">### </span><span class="al">TODO</span><span class="do">  DEFINE THIS</span></span>
+<span id="cb578-28"><a href="landuse-scenarios.html#cb578-28" tabindex="-1"></a>start_y <span class="ot">&lt;-</span> <span class="dv">2013</span> <span class="co"># starting year (consider at least 3 years for warm-up!)</span></span>
+<span id="cb578-29"><a href="landuse-scenarios.html#cb578-29" tabindex="-1"></a>end_y <span class="ot">&lt;-</span> <span class="dv">2020</span> <span class="co"># ending year</span></span>
+<span id="cb578-30"><a href="landuse-scenarios.html#cb578-30" tabindex="-1"></a></span>
+<span id="cb578-31"><a href="landuse-scenarios.html#cb578-31" tabindex="-1"></a>hru_crops <span class="ot">&lt;-</span> <span class="st">&#39;a_&#39;</span></span>
+<span id="cb578-32"><a href="landuse-scenarios.html#cb578-32" tabindex="-1"></a>m_yr_sch_existing <span class="ot">&lt;-</span> <span class="st">&#39;n&#39;</span></span>
+<span id="cb578-33"><a href="landuse-scenarios.html#cb578-33" tabindex="-1"></a>crop_myr <span class="ot">&lt;-</span> <span class="st">&#39;past&#39;</span> <span class="co"># name of your farmland grass</span></span>
+<span id="cb578-34"><a href="landuse-scenarios.html#cb578-34" tabindex="-1"></a>max_yr <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb578-35"><a href="landuse-scenarios.html#cb578-35" tabindex="-1"></a>crop_s <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;sgbt&#39;</span>,<span class="st">&#39;csil&#39;</span>,<span class="st">&#39;barl&#39;</span>)</span>
+<span id="cb578-36"><a href="landuse-scenarios.html#cb578-36" tabindex="-1"></a>additional_h_yr_sch_existing <span class="ot">&lt;-</span> <span class="st">&#39;n&#39;</span> <span class="co"># &#39;y&#39; (yes), &#39;n&#39; (no)</span></span>
+<span id="cb578-37"><a href="landuse-scenarios.html#cb578-37" tabindex="-1"></a></span>
+<span id="cb578-38"><a href="landuse-scenarios.html#cb578-38" tabindex="-1"></a></span>
+<span id="cb578-39"><a href="landuse-scenarios.html#cb578-39" tabindex="-1"></a>scen_path <span class="ot">=</span> <span class="fu">paste0</span>(<span class="st">&quot;model_data/input/management/management_scenarios/&quot;</span>, mgt_scen_name)</span>
+<span id="cb578-40"><a href="landuse-scenarios.html#cb578-40" tabindex="-1"></a><span class="fu">dir.create</span>(scen_path)</span>
+<span id="cb578-41"><a href="landuse-scenarios.html#cb578-41" tabindex="-1"></a>check_skip <span class="ot">&lt;-</span> <span class="fu">check_skip_position</span>(<span class="at">path =</span> scen_path)</span>
+<span id="cb578-42"><a href="landuse-scenarios.html#cb578-42" tabindex="-1"></a><span class="fu">check_date_conflicts1</span>()</span>
+<span id="cb578-43"><a href="landuse-scenarios.html#cb578-43" tabindex="-1"></a>rota_schedules <span class="ot">&lt;-</span> <span class="fu">build_rotation_schedules</span>()</span>
+<span id="cb578-44"><a href="landuse-scenarios.html#cb578-44" tabindex="-1"></a><span class="fu">check_date_conflicts2</span>()</span>
+<span id="cb578-45"><a href="landuse-scenarios.html#cb578-45" tabindex="-1"></a>rota_schedules <span class="ot">&lt;-</span> <span class="fu">solve_date_conflicts</span>()</span>
+<span id="cb578-46"><a href="landuse-scenarios.html#cb578-46" tabindex="-1"></a><span class="fu">check_date_conflicts2</span>()</span>
+<span id="cb578-47"><a href="landuse-scenarios.html#cb578-47" tabindex="-1"></a><span class="fu">write_farmR_input</span>(<span class="at">path =</span> <span class="fu">paste0</span>(scen_path, <span class="st">&quot;/farmR_input_&quot;</span>, mgt_scen_name, <span class="st">&quot;.csv&quot;</span>))</span>
+<span id="cb578-48"><a href="landuse-scenarios.html#cb578-48" tabindex="-1"></a></span>
+<span id="cb578-49"><a href="landuse-scenarios.html#cb578-49" tabindex="-1"></a></span>
+<span id="cb578-50"><a href="landuse-scenarios.html#cb578-50" tabindex="-1"></a><span class="do">### Running farmR</span></span>
+<span id="cb578-51"><a href="landuse-scenarios.html#cb578-51" tabindex="-1"></a><span class="fu">require</span>(SWATfarmR)</span>
+<span id="cb578-52"><a href="landuse-scenarios.html#cb578-52" tabindex="-1"></a>scen_name <span class="ot">&lt;-</span> mgt_scen_name</span>
+<span id="cb578-53"><a href="landuse-scenarios.html#cb578-53" tabindex="-1"></a>scen_path <span class="ot">=</span> <span class="fu">paste0</span>(<span class="st">&quot;model_data/input/management/management_scenarios/&quot;</span>, scen_name, <span class="st">&quot;/&quot;</span>)</span>
+<span id="cb578-54"><a href="landuse-scenarios.html#cb578-54" tabindex="-1"></a>dir_swat <span class="ot">&lt;-</span> <span class="fu">paste0</span>(scen_path, <span class="st">&quot;swat_setup&quot;</span>)</span>
+<span id="cb578-55"><a href="landuse-scenarios.html#cb578-55" tabindex="-1"></a>fip <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;model_data/input/management/management_scenarios/&quot;</span>,scen_name, <span class="st">&quot;/farmR_input_&quot;</span>, scen_name, <span class="st">&quot;.csv&quot;</span>)</span>
+<span id="cb578-56"><a href="landuse-scenarios.html#cb578-56" tabindex="-1"></a>dir_swat <span class="ot">&lt;-</span> <span class="fu">paste0</span>(scen_path, <span class="st">&quot;swat_setup&quot;</span>)</span>
+<span id="cb578-57"><a href="landuse-scenarios.html#cb578-57" tabindex="-1"></a><span class="fu">unlink</span>(dir_swat, <span class="at">recursive =</span> T)</span>
+<span id="cb578-58"><a href="landuse-scenarios.html#cb578-58" tabindex="-1"></a><span class="fu">dir.create</span>(dir_swat, <span class="at">showWarnings =</span> F)</span>
+<span id="cb578-59"><a href="landuse-scenarios.html#cb578-59" tabindex="-1"></a>swat_files <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="st">&quot;model_data/cs10_setup/MetNord_MN2/&quot;</span>, <span class="at">full.names =</span> T)</span>
+<span id="cb578-60"><a href="landuse-scenarios.html#cb578-60" tabindex="-1"></a><span class="fu">file.copy</span>(<span class="at">from =</span> swat_files, <span class="at">to =</span> dir_swat, <span class="at">overwrite =</span> F)</span>
+<span id="cb578-61"><a href="landuse-scenarios.html#cb578-61" tabindex="-1"></a></span>
+<span id="cb578-62"><a href="landuse-scenarios.html#cb578-62" tabindex="-1"></a>SWATfarmR<span class="sc">::</span><span class="fu">load_farmr</span>(<span class="at">file =</span> <span class="fu">paste0</span>(dir_swat,<span class="st">&quot;/cs10.farm&quot;</span>))</span>
+<span id="cb578-63"><a href="landuse-scenarios.html#cb578-63" tabindex="-1"></a>cs10<span class="sc">$</span><span class="fu">reset_files</span>()</span>
+<span id="cb578-64"><a href="landuse-scenarios.html#cb578-64" tabindex="-1"></a><span class="fu">unlink</span>(<span class="fu">paste0</span>(dir_swat,<span class="st">&quot;/cs10.farm&quot;</span>))</span>
+<span id="cb578-65"><a href="landuse-scenarios.html#cb578-65" tabindex="-1"></a><span class="fu">unlink</span>(<span class="fu">paste0</span>(dir_swat, <span class="st">&quot;/cs10.mgts&quot;</span>))</span>
+<span id="cb578-66"><a href="landuse-scenarios.html#cb578-66" tabindex="-1"></a></span>
+<span id="cb578-67"><a href="landuse-scenarios.html#cb578-67" tabindex="-1"></a></span>
+<span id="cb578-68"><a href="landuse-scenarios.html#cb578-68" tabindex="-1"></a>SWATfarmR<span class="sc">::</span><span class="fu">new_farmr</span>(<span class="at">project_path =</span> dir_swat, <span class="at">project_name =</span> <span class="st">&quot;farmscen&quot;</span>)</span>
+<span id="cb578-69"><a href="landuse-scenarios.html#cb578-69" tabindex="-1"></a>farmscen<span class="sc">$</span><span class="fu">read_management</span>(<span class="at">file =</span> fip, <span class="at">discard_schedule =</span> T)</span>
+<span id="cb578-70"><a href="landuse-scenarios.html#cb578-70" tabindex="-1"></a>pcp <span class="ot">&lt;-</span> farmscen<span class="sc">$</span>.data<span class="sc">$</span>variables<span class="sc">$</span>pcp</span>
+<span id="cb578-71"><a href="landuse-scenarios.html#cb578-71" tabindex="-1"></a></span>
+<span id="cb578-72"><a href="landuse-scenarios.html#cb578-72" tabindex="-1"></a><span class="co"># using temp API</span></span>
+<span id="cb578-73"><a href="landuse-scenarios.html#cb578-73" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co"> add real API</span></span>
+<span id="cb578-74"><a href="landuse-scenarios.html#cb578-74" tabindex="-1"></a>  </span>
+<span id="cb578-75"><a href="landuse-scenarios.html#cb578-75" tabindex="-1"></a><span class="co"># Extract the hydrologic soil group values for all HRUs</span></span>
+<span id="cb578-76"><a href="landuse-scenarios.html#cb578-76" tabindex="-1"></a>hsg <span class="ot">&lt;-</span> <span class="fu">select</span>(farmscen<span class="sc">$</span>.data<span class="sc">$</span>meta<span class="sc">$</span>hru_attributes, hru, hyd_grp)</span>
+<span id="cb578-77"><a href="landuse-scenarios.html#cb578-77" tabindex="-1"></a></span>
+<span id="cb578-78"><a href="landuse-scenarios.html#cb578-78" tabindex="-1"></a>  </span>
+<span id="cb578-79"><a href="landuse-scenarios.html#cb578-79" tabindex="-1"></a></span>
+<span id="cb578-80"><a href="landuse-scenarios.html#cb578-80" tabindex="-1"></a><span class="co"># Calculate api values for the hsg classes A to D</span></span>
+<span id="cb578-81"><a href="landuse-scenarios.html#cb578-81" tabindex="-1"></a>api_A <span class="ot">&lt;-</span> <span class="fu">variable_decay</span>(<span class="at">variable =</span> pcp, <span class="at">n_steps =</span> <span class="sc">-</span><span class="dv">5</span>, <span class="at">decay_rate =</span> <span class="dv">1</span>)</span>
+<span id="cb578-82"><a href="landuse-scenarios.html#cb578-82" tabindex="-1"></a>api_B <span class="ot">&lt;-</span> <span class="fu">variable_decay</span>(<span class="at">variable =</span> pcp, <span class="at">n_steps =</span> <span class="sc">-</span><span class="dv">5</span>, <span class="at">decay_rate =</span> <span class="fl">0.8</span>)</span>
+<span id="cb578-83"><a href="landuse-scenarios.html#cb578-83" tabindex="-1"></a>api_C <span class="ot">&lt;-</span> <span class="fu">variable_decay</span>(<span class="at">variable =</span> pcp, <span class="at">n_steps =</span> <span class="sc">-</span><span class="dv">5</span>, <span class="at">decay_rate =</span> <span class="fl">0.7</span>)</span>
+<span id="cb578-84"><a href="landuse-scenarios.html#cb578-84" tabindex="-1"></a>api_D <span class="ot">&lt;-</span> <span class="fu">variable_decay</span>(<span class="at">variable =</span> pcp, <span class="at">n_steps =</span> <span class="sc">-</span><span class="dv">5</span>, <span class="at">decay_rate =</span> <span class="fl">0.5</span>)</span>
+<span id="cb578-85"><a href="landuse-scenarios.html#cb578-85" tabindex="-1"></a>  </span>
+<span id="cb578-86"><a href="landuse-scenarios.html#cb578-86" tabindex="-1"></a>  <span class="co"># Bind the data together into one api table and name them with the hsgs</span></span>
+<span id="cb578-87"><a href="landuse-scenarios.html#cb578-87" tabindex="-1"></a>  api <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(api_A, api_B, api_C, api_D)</span>
+<span id="cb578-88"><a href="landuse-scenarios.html#cb578-88" tabindex="-1"></a>  <span class="fu">names</span>(api) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;api_A&#39;</span>, <span class="st">&#39;api_B&#39;</span>, <span class="st">&#39;api_C&#39;</span>, <span class="st">&#39;api_D&#39;</span>)</span>
+<span id="cb578-89"><a href="landuse-scenarios.html#cb578-89" tabindex="-1"></a>  </span>
+<span id="cb578-90"><a href="landuse-scenarios.html#cb578-90" tabindex="-1"></a>  <span class="co"># To add the variable to the farmR you have to tell it which variables are</span></span>
+<span id="cb578-91"><a href="landuse-scenarios.html#cb578-91" tabindex="-1"></a>  <span class="co"># assigned to which HRUs</span></span>
+<span id="cb578-92"><a href="landuse-scenarios.html#cb578-92" tabindex="-1"></a>  hru_asgn <span class="ot">&lt;-</span> <span class="fu">mutate</span>(hsg, <span class="at">api =</span> <span class="fu">paste0</span>(<span class="st">&#39;api_&#39;</span>, hyd_grp)) <span class="sc">%&gt;%</span> <span class="fu">select</span>(hru, api)</span>
+<span id="cb578-93"><a href="landuse-scenarios.html#cb578-93" tabindex="-1"></a></span>
+<span id="cb578-94"><a href="landuse-scenarios.html#cb578-94" tabindex="-1"></a>  <span class="co"># Add the variable api to the farmR project</span></span>
+<span id="cb578-95"><a href="landuse-scenarios.html#cb578-95" tabindex="-1"></a>  farmscen<span class="sc">$</span><span class="fu">add_variable</span>(<span class="at">data =</span> api, <span class="at">name =</span> <span class="st">&#39;api&#39;</span>, <span class="at">assign_unit =</span> hru_asgn, <span class="at">overwrite =</span> T)</span>
+<span id="cb578-96"><a href="landuse-scenarios.html#cb578-96" tabindex="-1"></a>  </span>
+<span id="cb578-97"><a href="landuse-scenarios.html#cb578-97" tabindex="-1"></a>  <span class="co"># Schedule operations</span></span>
+<span id="cb578-98"><a href="landuse-scenarios.html#cb578-98" tabindex="-1"></a>  farmscen<span class="sc">$</span><span class="fu">schedule_operations</span>(<span class="at">start_year =</span> <span class="dv">2013</span>,</span>
+<span id="cb578-99"><a href="landuse-scenarios.html#cb578-99" tabindex="-1"></a>                         <span class="at">end_year =</span> <span class="dv">2020</span>,</span>
+<span id="cb578-100"><a href="landuse-scenarios.html#cb578-100" tabindex="-1"></a>                         <span class="at">n_schedule =</span> <span class="dv">2</span>, <span class="at">replace =</span> <span class="st">&quot;all&quot;</span>)</span>
+<span id="cb578-101"><a href="landuse-scenarios.html#cb578-101" tabindex="-1"></a>  <span class="co"># Write operations</span></span>
+<span id="cb578-102"><a href="landuse-scenarios.html#cb578-102" tabindex="-1"></a>  farmscen<span class="sc">$</span><span class="fu">write_operations</span>(<span class="at">start_year =</span> <span class="dv">2013</span>, <span class="at">end_year =</span> <span class="dv">2020</span>)</span></code></pre></div>
+
+</div>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="climate-scenarios.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="measures-swatmeasr.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://gitlab.nibio.no/moritzshore/swat-cs10/-/edit/main/16-landuse_scenarios.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://gitlab.nibio.no/moritzshore/swat-cs10/blob/main/16-landuse_scenarios.Rmd",
+"text": null
+},
+"download": ["_main.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

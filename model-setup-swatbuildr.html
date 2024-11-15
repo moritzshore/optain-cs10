@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Section 2 Model Setup (SWATbuildR) | The OPTAIN Project: Case study 10</title>
+  <meta name="description" content="A documentation of the project setup for OPTAIN case study 10" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Section 2 Model Setup (SWATbuildR) | The OPTAIN Project: Case study 10" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://moritzshore.github.io/optain-cs10/figures/banner.png" />
+  <meta property="og:description" content="A documentation of the project setup for OPTAIN case study 10" />
+  <meta name="github-repo" content="moritzshore/optain-cs10" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Section 2 Model Setup (SWATbuildR) | The OPTAIN Project: Case study 10" />
+  
+  <meta name="twitter:description" content="A documentation of the project setup for OPTAIN case study 10" />
+  <meta name="twitter:image" content="https://moritzshore.github.io/optain-cs10/figures/banner.png" />
+
+<meta name="author" content="Moritz Shore, Csilla Farkas, Christoph Schürz" />
+
+
+<meta name="date" content="2024-11-15" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="input-data-preparation.html"/>
+<link rel="next" href="weather-input.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.2.2/leaflet.js"></script>
+<script src="libs/leaflet-providers-2.0.0/leaflet-providers_2.0.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.2.2/leaflet-providers-plugin.js"></script>
+<script src="libs/tile1_rasterlayer_3b9458-1/data_stars_tile1_rasterlayerc9f824.txt"></script>
+<script src="libs/joda-0.0.1/joda.js"></script>
+<script src="libs/joda-0.0.1/addImageQuery-bindings.js"></script>
+<script src="libs/clipboard-0.0.1/setClipboardText.js"></script>
+<link href="libs/HomeButton-0.0.1/home-button.css" rel="stylesheet" />
+<script src="libs/HomeButton-0.0.1/home-button.js"></script>
+<script src="libs/HomeButton-0.0.1/easy-button-src.min.js"></script>
+<link href="libs/mapviewCSS-0.0.1/mapview-popup.css" rel="stylesheet" />
+<link href="libs/mapviewCSS-0.0.1/mapview.css" rel="stylesheet" />
+<script src="libs/tile2_rasterlayer_645a02-1/data_stars_tile2_rasterlayerdabe25.txt"></script>
+<script src="libs/dem_layer_76a1b0-1/data_stars_dem_layer63570a.txt"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.33/datatables.js"></script>
+<link href="libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
+<link href="libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+<script src="libs/stream_crop_ce093f-1/data_stars_stream_cropcad623.txt"></script>
+<script src="libs/ws_c6902d-1/data_stars_ws1b74dc.txt"></script>
+<script src="libs/rglWebGL-binding-1.3.1/rglWebGL.js"></script>
+<link href="libs/rglwidgetClass-1.3.1/rgl.css" rel="stylesheet" />
+<script src="libs/rglwidgetClass-1.3.1/rglClass.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.1/utils.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.1/buffer.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.1/subscenes.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.1/shaders.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.1/shadersrc.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.1/textures.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.1/projection.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.1/mouse.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.1/init.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.1/pieces.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.1/draw.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.1/controls.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.1/selection.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.1/rglTimer.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.1/pretty.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.1/axes.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.1/animation.src.js"></script>
+<script src="libs/CanvasMatrix4-1.3.1/CanvasMatrix.src.js"></script>
+<script src="libs/plotly-binding-4.10.4/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+<link href="libs/dt-ext-scroller-1.13.6/css/scroller.dataTables.min.css" rel="stylesheet" />
+<script src="libs/dt-ext-scroller-1.13.6/js/dataTables.scroller.min.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">The OPTAIN-CS10 Project</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="1" data-path="input-data-preparation.html"><a href="input-data-preparation.html"><i class="fa fa-check"></i><b>1</b> Input Data Preparation</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="input-data-preparation.html"><a href="input-data-preparation.html#digital-elevation-model"><i class="fa fa-check"></i><b>1.1</b> Digital Elevation Model</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="input-data-preparation.html"><a href="input-data-preparation.html#high-resolution-dem"><i class="fa fa-check"></i><b>1.1.1</b> High resolution DEM</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="input-data-preparation.html"><a href="input-data-preparation.html#soil-data"><i class="fa fa-check"></i><b>1.2</b> Soil Data</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="input-data-preparation.html"><a href="input-data-preparation.html#high-resolution-soil-maps"><i class="fa fa-check"></i><b>1.2.1</b> High resolution soil maps</a></li>
+<li class="chapter" data-level="1.2.2" data-path="input-data-preparation.html"><a href="input-data-preparation.html#data-source"><i class="fa fa-check"></i><b>1.2.2</b> Data source</a></li>
+<li class="chapter" data-level="1.2.3" data-path="input-data-preparation.html"><a href="input-data-preparation.html#combining-jordsmonn-and-loesmasser"><i class="fa fa-check"></i><b>1.2.3</b> Combining Jordsmonn and Loesmasser</a></li>
+<li class="chapter" data-level="1.2.4" data-path="input-data-preparation.html"><a href="input-data-preparation.html#detailed-soil-map"><i class="fa fa-check"></i><b>1.2.4</b> Detailed Soil Map</a></li>
+<li class="chapter" data-level="1.2.5" data-path="input-data-preparation.html"><a href="input-data-preparation.html#reclassification"><i class="fa fa-check"></i><b>1.2.5</b> Reclassification</a></li>
+<li class="chapter" data-level="1.2.6" data-path="input-data-preparation.html"><a href="input-data-preparation.html#simplifying-geometries"><i class="fa fa-check"></i><b>1.2.6</b> Simplifying Geometries</a></li>
+<li class="chapter" data-level="1.2.7" data-path="input-data-preparation.html"><a href="input-data-preparation.html#writing-vector-layer"><i class="fa fa-check"></i><b>1.2.7</b> Writing vector layer</a></li>
+<li class="chapter" data-level="1.2.8" data-path="input-data-preparation.html"><a href="input-data-preparation.html#lookup-table"><i class="fa fa-check"></i><b>1.2.8</b> Lookup Table</a></li>
+<li class="chapter" data-level="1.2.9" data-path="input-data-preparation.html"><a href="input-data-preparation.html#rasterization"><i class="fa fa-check"></i><b>1.2.9</b> Rasterization</a></li>
+<li class="chapter" data-level="1.2.10" data-path="input-data-preparation.html"><a href="input-data-preparation.html#usersoil"><i class="fa fa-check"></i><b>1.2.10</b> Usersoil</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="input-data-preparation.html"><a href="input-data-preparation.html#watershed-boundary"><i class="fa fa-check"></i><b>1.3</b> Watershed Boundary</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="input-data-preparation.html"><a href="input-data-preparation.html#hydrological-preperation"><i class="fa fa-check"></i><b>1.3.1</b> Hydrological preperation</a></li>
+<li class="chapter" data-level="1.3.2" data-path="input-data-preparation.html"><a href="input-data-preparation.html#pour-points"><i class="fa fa-check"></i><b>1.3.2</b> Pour Points</a></li>
+<li class="chapter" data-level="1.3.3" data-path="input-data-preparation.html"><a href="input-data-preparation.html#streams"><i class="fa fa-check"></i><b>1.3.3</b> Streams</a></li>
+<li class="chapter" data-level="1.3.4" data-path="input-data-preparation.html"><a href="input-data-preparation.html#watershed-delineation"><i class="fa fa-check"></i><b>1.3.4</b> Watershed Delineation</a></li>
+<li class="chapter" data-level="1.3.5" data-path="input-data-preparation.html"><a href="input-data-preparation.html#bonus-section"><i class="fa fa-check"></i><b>1.3.5</b> Bonus Section</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="input-data-preparation.html"><a href="input-data-preparation.html#land-object-input"><i class="fa fa-check"></i><b>1.4</b> Land object input</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="input-data-preparation.html"><a href="input-data-preparation.html#data-sources"><i class="fa fa-check"></i><b>1.4.1</b> Data sources</a></li>
+<li class="chapter" data-level="1.4.2" data-path="input-data-preparation.html"><a href="input-data-preparation.html#delineation-of-land-objects"><i class="fa fa-check"></i><b>1.4.2</b> Delineation of land objects</a></li>
+<li class="chapter" data-level="1.4.3" data-path="input-data-preparation.html"><a href="input-data-preparation.html#standing-water-bodies-and-the-landuse-type-watr"><i class="fa fa-check"></i><b>1.4.3</b> Standing water bodies and the landuse type = ‘watr’</a></li>
+<li class="chapter" data-level="1.4.4" data-path="input-data-preparation.html"><a href="input-data-preparation.html#tile-drainage-option"><i class="fa fa-check"></i><b>1.4.4</b> Tile drainage option</a></li>
+<li class="chapter" data-level="1.4.5" data-path="input-data-preparation.html"><a href="input-data-preparation.html#existing-and-potential-structures-to-retain-water-and-nutrients"><i class="fa fa-check"></i><b>1.4.5</b> Existing and potential structures to retain water and nutrients</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="input-data-preparation.html"><a href="input-data-preparation.html#channel-object-input"><i class="fa fa-check"></i><b>1.5</b> Channel object input</a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="input-data-preparation.html"><a href="input-data-preparation.html#data-sources-and-data-processing"><i class="fa fa-check"></i><b>1.5.1</b> Data sources and data processing</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="input-data-preparation.html"><a href="input-data-preparation.html#point-sources-locations"><i class="fa fa-check"></i><b>1.6</b> Point sources locations</a>
+<ul>
+<li class="chapter" data-level="1.6.1" data-path="input-data-preparation.html"><a href="input-data-preparation.html#point-source-source-data"><i class="fa fa-check"></i><b>1.6.1</b> Point source source data</a></li>
+<li class="chapter" data-level="1.6.2" data-path="input-data-preparation.html"><a href="input-data-preparation.html#point-source-data-files"><i class="fa fa-check"></i><b>1.6.2</b> Point source data files</a></li>
+</ul></li>
+<li class="chapter" data-level="1.7" data-path="input-data-preparation.html"><a href="input-data-preparation.html#aquifer-objects"><i class="fa fa-check"></i><b>1.7</b> Aquifer Objects</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html"><i class="fa fa-check"></i><b>2</b> Model Setup (SWATbuildR)</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#buildr-setup"><i class="fa fa-check"></i><b>2.1</b> BuildR Setup</a></li>
+<li class="chapter" data-level="2.2" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#processing-input-data"><i class="fa fa-check"></i><b>2.2</b> Processing input data</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#high-resolution-digital-elevation-model-dem"><i class="fa fa-check"></i><b>2.2.1</b> High-Resolution Digital Elevation Model (DEM)</a></li>
+<li class="chapter" data-level="2.2.2" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#processing-the-basin-boundary"><i class="fa fa-check"></i><b>2.2.2</b> Processing the Basin Boundary</a></li>
+<li class="chapter" data-level="2.2.3" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#processing-the-land-layer"><i class="fa fa-check"></i><b>2.2.3</b> Processing the Land layer</a></li>
+<li class="chapter" data-level="2.2.4" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#processing-the-channels"><i class="fa fa-check"></i><b>2.2.4</b> Processing the Channels</a></li>
+<li class="chapter" data-level="2.2.5" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#processing-the-dem"><i class="fa fa-check"></i><b>2.2.5</b> Processing the DEM</a></li>
+<li class="chapter" data-level="2.2.6" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#processing-soil-data"><i class="fa fa-check"></i><b>2.2.6</b> Processing Soil Data</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#calculating-cocoa"><i class="fa fa-check"></i><b>2.3</b> Calculating COCOA</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#calculating-land-unit-connectivity"><i class="fa fa-check"></i><b>2.3.1</b> Calculating land unit connectivity</a></li>
+<li class="chapter" data-level="2.3.2" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#calculating-channelreservoir-connectivity"><i class="fa fa-check"></i><b>2.3.2</b> Calculating channel/reservoir connectivity</a></li>
+<li class="chapter" data-level="2.3.3" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#checking-the-water-objects-for-infinite-loops"><i class="fa fa-check"></i><b>2.3.3</b> Checking the water objects for infinite loops</a></li>
+<li class="chapter" data-level="2.3.4" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#terrain-properties"><i class="fa fa-check"></i><b>2.3.4</b> Terrain properties</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#generate-swat-input"><i class="fa fa-check"></i><b>2.4</b> Generate SWAT+ input</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#generate-land-object-swat-input-tables"><i class="fa fa-check"></i><b>2.4.1</b> Generate land object SWAT+ input tables</a></li>
+<li class="chapter" data-level="2.4.2" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#generate-water-object-swat-input-tables"><i class="fa fa-check"></i><b>2.4.2</b> Generate water object SWAT+ input tables</a></li>
+<li class="chapter" data-level="2.4.3" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#build-aquifer-input"><i class="fa fa-check"></i><b>2.4.3</b> Build aquifer input</a></li>
+<li class="chapter" data-level="2.4.4" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#add-point-source-inputs"><i class="fa fa-check"></i><b>2.4.4</b> Add point source inputs</a></li>
+<li class="chapter" data-level="2.4.5" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#create-swat-sqlite-database"><i class="fa fa-check"></i><b>2.4.5</b> Create SWAT+ sqlite database</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="weather-input.html"><a href="weather-input.html"><i class="fa fa-check"></i><b>3</b> Weather Input</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="weather-input.html"><a href="weather-input.html#loading-data"><i class="fa fa-check"></i><b>3.1</b> Loading Data</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="weather-input.html"><a href="weather-input.html#required-packages"><i class="fa fa-check"></i><b>3.1.1</b> Required packages</a></li>
+<li class="chapter" data-level="3.1.2" data-path="weather-input.html"><a href="weather-input.html#load-in-the-files-and-load-svatools-template"><i class="fa fa-check"></i><b>3.1.2</b> Load in the file(s) and load svatools template</a></li>
+<li class="chapter" data-level="3.1.3" data-path="weather-input.html"><a href="weather-input.html#proof-the-station"><i class="fa fa-check"></i><b>3.1.3</b> Proof the station</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="weather-input.html"><a href="weather-input.html#weather-generator"><i class="fa fa-check"></i><b>3.2</b> Weather Generator</a></li>
+<li class="chapter" data-level="3.3" data-path="weather-input.html"><a href="weather-input.html#adding-data-to-swat"><i class="fa fa-check"></i><b>3.3</b> Adding data to SWAT+</a></li>
+<li class="chapter" data-level="3.4" data-path="weather-input.html"><a href="weather-input.html#atmospheric-deposition"><i class="fa fa-check"></i><b>3.4</b> Atmospheric Deposition</a></li>
+<li class="chapter" data-level="3.5" data-path="weather-input.html"><a href="weather-input.html#re-analysis-weather"><i class="fa fa-check"></i><b>3.5</b> Re-analysis Weather</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="writing-input-files.html"><a href="writing-input-files.html"><i class="fa fa-check"></i><b>4</b> Writing Input Files</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="writing-input-files.html"><a href="writing-input-files.html#via-python"><i class="fa fa-check"></i><b>4.1</b> Via Python</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="writing-input-files.html"><a href="writing-input-files.html#swat-test-run"><i class="fa fa-check"></i><b>4.1.1</b> SWAT+ Test Run</a></li>
+<li class="chapter" data-level="4.1.2" data-path="writing-input-files.html"><a href="writing-input-files.html#link-aquifers-and-channels-with-geomorphic-flow"><i class="fa fa-check"></i><b>4.1.2</b> Link aquifers and channels with geomorphic flow</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="writing-input-files.html"><a href="writing-input-files.html#via-swat-editor"><i class="fa fa-check"></i><b>4.2</b> Via SWAT Editor</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="writing-input-files.html"><a href="writing-input-files.html#loading-the-project-in-swat-editor"><i class="fa fa-check"></i><b>4.2.1</b> Loading the project in SWAT+ Editor</a></li>
+<li class="chapter" data-level="4.2.2" data-path="writing-input-files.html"><a href="writing-input-files.html#writing-input-files-1"><i class="fa fa-check"></i><b>4.2.2</b> Writing input files</a></li>
+<li class="chapter" data-level="4.2.3" data-path="writing-input-files.html"><a href="writing-input-files.html#post-write-changes"><i class="fa fa-check"></i><b>4.2.3</b> Post-write Changes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="crop-map.html"><a href="crop-map.html"><i class="fa fa-check"></i><b>5</b> Crop Map</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="crop-map.html"><a href="crop-map.html#calculating-field-area"><i class="fa fa-check"></i><b>5.1</b> Calculating Field Area</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="crop-map.html"><a href="crop-map.html#calculate-field-area-and-assign-ids"><i class="fa fa-check"></i><b>5.1.1</b> Calculate Field Area and Assign IDs</a></li>
+<li class="chapter" data-level="5.1.2" data-path="crop-map.html"><a href="crop-map.html#calculate-field-area-and-assign-ids-1"><i class="fa fa-check"></i><b>5.1.2</b> Calculate Field area and assign IDs</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="crop-map.html"><a href="crop-map.html#generating-the-crop-rotation"><i class="fa fa-check"></i><b>5.2</b> Generating the Crop Rotation</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="crop-map.html"><a href="crop-map.html#tidy-up-the-source-data"><i class="fa fa-check"></i><b>5.2.1</b> Tidy up the source data:</a></li>
+<li class="chapter" data-level="5.2.2" data-path="crop-map.html"><a href="crop-map.html#tidy-up-the-buildr-output"><i class="fa fa-check"></i><b>5.2.2</b> Tidy up the BuildR output</a></li>
+<li class="chapter" data-level="5.2.3" data-path="crop-map.html"><a href="crop-map.html#field-classification"><i class="fa fa-check"></i><b>5.2.3</b> Field classification</a></li>
+<li class="chapter" data-level="5.2.4" data-path="crop-map.html"><a href="crop-map.html#extrapolating-the-crop-rotation"><i class="fa fa-check"></i><b>5.2.4</b> Extrapolating the Crop Rotation</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="crop-map.html"><a href="crop-map.html#merging-with-swatbuildr"><i class="fa fa-check"></i><b>5.3</b> Merging with SWATbuildR</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html"><i class="fa fa-check"></i><b>6</b> Landuse Parameterization</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#data-preperation"><i class="fa fa-check"></i><b>6.1</b> Data preperation</a></li>
+<li class="chapter" data-level="6.2" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#assigning-landuse-values"><i class="fa fa-check"></i><b>6.2</b> Assigning landuse values</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#setting-cal_group"><i class="fa fa-check"></i><b>6.2.1</b> Setting <code>cal_group</code></a></li>
+<li class="chapter" data-level="6.2.2" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#setting-plnt_com"><i class="fa fa-check"></i><b>6.2.2</b> Setting <code>plnt_com</code></a></li>
+<li class="chapter" data-level="6.2.3" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#setting-mgt"><i class="fa fa-check"></i><b>6.2.3</b> Setting <code>mgt</code></a></li>
+<li class="chapter" data-level="6.2.4" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#setting-urb_ro"><i class="fa fa-check"></i><b>6.2.4</b> Setting <code>urb_ro</code></a></li>
+<li class="chapter" data-level="6.2.5" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#setting-urban"><i class="fa fa-check"></i><b>6.2.5</b> Setting <code>urban</code></a></li>
+<li class="chapter" data-level="6.2.6" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#setting-mannings-n-ovn"><i class="fa fa-check"></i><b>6.2.6</b> Setting Manning’s n (<code>ovn</code>)</a></li>
+<li class="chapter" data-level="6.2.7" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#setting-cn2"><i class="fa fa-check"></i><b>6.2.7</b> Setting <code>cn2</code>:</a></li>
+<li class="chapter" data-level="6.2.8" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#setting-cons_prac"><i class="fa fa-check"></i><b>6.2.8</b> Setting <code>cons_prac</code></a></li>
+<li class="chapter" data-level="6.2.9" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#setting-tile"><i class="fa fa-check"></i><b>6.2.9</b> Setting <code>tile</code></a></li>
+<li class="chapter" data-level="6.2.10" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#setting-sep"><i class="fa fa-check"></i><b>6.2.10</b> Setting <code>sep</code></a></li>
+<li class="chapter" data-level="6.2.11" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#setting-vfs"><i class="fa fa-check"></i><b>6.2.11</b> Setting <code>vfs</code></a></li>
+<li class="chapter" data-level="6.2.12" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#setting-grww"><i class="fa fa-check"></i><b>6.2.12</b> Setting <code>grww</code></a></li>
+<li class="chapter" data-level="6.2.13" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#setting-bmp"><i class="fa fa-check"></i><b>6.2.13</b> Setting <code>bmp</code></a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#writing-changes"><i class="fa fa-check"></i><b>6.3</b> Writing Changes</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="field-site-loggers.html"><a href="field-site-loggers.html"><i class="fa fa-check"></i><b>7</b> Field Site Loggers</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="field-site-loggers.html"><a href="field-site-loggers.html#introduction-1"><i class="fa fa-check"></i><b>7.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="field-site-loggers.html"><a href="field-site-loggers.html#prerequisites"><i class="fa fa-check"></i><b>7.1.1</b> Prerequisites</a></li>
+<li class="chapter" data-level="7.1.2" data-path="field-site-loggers.html"><a href="field-site-loggers.html#locations"><i class="fa fa-check"></i><b>7.1.2</b> Locations</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="field-site-loggers.html"><a href="field-site-loggers.html#data-processing"><i class="fa fa-check"></i><b>7.2</b> Data Processing</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="field-site-loggers.html"><a href="field-site-loggers.html#loading-data-1"><i class="fa fa-check"></i><b>7.2.1</b> Loading Data</a></li>
+<li class="chapter" data-level="7.2.2" data-path="field-site-loggers.html"><a href="field-site-loggers.html#data-re-structuring"><i class="fa fa-check"></i><b>7.2.2</b> Data Re-structuring</a></li>
+<li class="chapter" data-level="7.2.3" data-path="field-site-loggers.html"><a href="field-site-loggers.html#summarize-to-daily-means"><i class="fa fa-check"></i><b>7.2.3</b> Summarize to Daily Means</a></li>
+<li class="chapter" data-level="7.2.4" data-path="field-site-loggers.html"><a href="field-site-loggers.html#including-air-temperature-and-precipitation-data"><i class="fa fa-check"></i><b>7.2.4</b> Including Air Temperature and Precipitation Data</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="field-site-loggers.html"><a href="field-site-loggers.html#data-quality-check"><i class="fa fa-check"></i><b>7.3</b> Data quality check</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="field-site-loggers.html"><a href="field-site-loggers.html#logger-600409-deep-rocky-sand"><i class="fa fa-check"></i><b>7.3.1</b> Logger 600409 “Deep Rocky Sand”</a></li>
+<li class="chapter" data-level="7.3.2" data-path="field-site-loggers.html"><a href="field-site-loggers.html#logger-600410-tormods-farm"><i class="fa fa-check"></i><b>7.3.2</b> Logger 600410 “Tormods farm”</a></li>
+<li class="chapter" data-level="7.3.3" data-path="field-site-loggers.html"><a href="field-site-loggers.html#logger-600411-john-ivar-lower-area"><i class="fa fa-check"></i><b>7.3.3</b> Logger 600411 “John Ivar Lower Area”</a></li>
+<li class="chapter" data-level="7.3.4" data-path="field-site-loggers.html"><a href="field-site-loggers.html#logger-600413-john-ivar-behind-the-barn"><i class="fa fa-check"></i><b>7.3.4</b> Logger 600413 “John Ivar behind the barn”</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="field-site-loggers.html"><a href="field-site-loggers.html#data-cleanup"><i class="fa fa-check"></i><b>7.4</b> Data Cleanup</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="field-site-loggers.html"><a href="field-site-loggers.html#general-cleanup"><i class="fa fa-check"></i><b>7.4.1</b> General cleanup</a></li>
+<li class="chapter" data-level="7.4.2" data-path="field-site-loggers.html"><a href="field-site-loggers.html#logger-specific-cleanup"><i class="fa fa-check"></i><b>7.4.2</b> Logger specific cleanup</a></li>
+<li class="chapter" data-level="7.4.3" data-path="field-site-loggers.html"><a href="field-site-loggers.html#saving-the-cleaned-data"><i class="fa fa-check"></i><b>7.4.3</b> Saving the cleaned data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="field-site-properties.html"><a href="field-site-properties.html"><i class="fa fa-check"></i><b>8</b> Field Site Properties</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="field-site-properties.html"><a href="field-site-properties.html#determining-hsg"><i class="fa fa-check"></i><b>8.1</b> Determining HSG</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html"><i class="fa fa-check"></i><b>9</b> Antecedent Precipitation Index</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html#introduction-2"><i class="fa fa-check"></i><b>9.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html#pre-requirements"><i class="fa fa-check"></i><b>9.1.1</b> Pre-requirements</a></li>
+<li class="chapter" data-level="9.1.2" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html#setting-up-python-for-rrmarkdown"><i class="fa fa-check"></i><b>9.1.2</b> Setting up Python for R/Rmarkdown</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html#antecedent-precipitation-index-1"><i class="fa fa-check"></i><b>9.2</b> Antecedent Precipitation Index</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html#loading-data-2"><i class="fa fa-check"></i><b>9.2.1</b> Loading data</a></li>
+<li class="chapter" data-level="9.2.2" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html#calculating-the-total-water-content"><i class="fa fa-check"></i><b>9.2.2</b> Calculating the total water content</a></li>
+<li class="chapter" data-level="9.2.3" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html#defining-api-model"><i class="fa fa-check"></i><b>9.2.3</b> Defining API model</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html#conclusions"><i class="fa fa-check"></i><b>9.3</b> Conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="model-parameterization.html"><a href="model-parameterization.html"><i class="fa fa-check"></i><b>10</b> Model Parameterization</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="model-parameterization.html"><a href="model-parameterization.html#parameter-changes"><i class="fa fa-check"></i><b>10.1</b> Parameter Changes</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="model-parameterization.html"><a href="model-parameterization.html#channel-parameters-revised"><i class="fa fa-check"></i><b>10.1.1</b> Channel parameters revised</a></li>
+<li class="chapter" data-level="10.1.2" data-path="model-parameterization.html"><a href="model-parameterization.html#crop-parameters-verified"><i class="fa fa-check"></i><b>10.1.2</b> Crop parameters verified</a></li>
+<li class="chapter" data-level="10.1.3" data-path="model-parameterization.html"><a href="model-parameterization.html#soil-physical-parameters-in-final-form"><i class="fa fa-check"></i><b>10.1.3</b> Soil physical parameters in final form</a></li>
+<li class="chapter" data-level="10.1.4" data-path="model-parameterization.html"><a href="model-parameterization.html#soil-chemical-parameters-in-final-form"><i class="fa fa-check"></i><b>10.1.4</b> Soil chemical parameters in final form</a></li>
+<li class="chapter" data-level="10.1.5" data-path="model-parameterization.html"><a href="model-parameterization.html#impoundment-parameters-defined"><i class="fa fa-check"></i><b>10.1.5</b> Impoundment parameters defined</a></li>
+<li class="chapter" data-level="10.1.6" data-path="model-parameterization.html"><a href="model-parameterization.html#water-diversions-defined"><i class="fa fa-check"></i><b>10.1.6</b> Water diversions defined</a></li>
+<li class="chapter" data-level="10.1.7" data-path="model-parameterization.html"><a href="model-parameterization.html#point-sources-parameters-added"><i class="fa fa-check"></i><b>10.1.7</b> Point sources parameters added</a></li>
+<li class="chapter" data-level="10.1.8" data-path="model-parameterization.html"><a href="model-parameterization.html#tile-drainage-parameters-defined"><i class="fa fa-check"></i><b>10.1.8</b> Tile drainage parameters defined</a></li>
+<li class="chapter" data-level="10.1.9" data-path="model-parameterization.html"><a href="model-parameterization.html#atmospheric-deposition-defined"><i class="fa fa-check"></i><b>10.1.9</b> Atmospheric deposition defined</a></li>
+<li class="chapter" data-level="10.1.10" data-path="model-parameterization.html"><a href="model-parameterization.html#additional-settings-verified"><i class="fa fa-check"></i><b>10.1.10</b> Additional settings verified</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="model-parameterization.html"><a href="model-parameterization.html#fixing-tiledrain"><i class="fa fa-check"></i><b>10.2</b> Fixing tiledrain</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="model-parameterization.html"><a href="model-parameterization.html#finding-the-problem-hrus"><i class="fa fa-check"></i><b>10.2.1</b> Finding the problem HRUs</a></li>
+<li class="chapter" data-level="10.2.2" data-path="model-parameterization.html"><a href="model-parameterization.html#fixing-the-problem-hrus"><i class="fa fa-check"></i><b>10.2.2</b> Fixing the problem HRUs</a></li>
+<li class="chapter" data-level="10.2.3" data-path="model-parameterization.html"><a href="model-parameterization.html#checking-changes"><i class="fa fa-check"></i><b>10.2.3</b> Checking changes</a></li>
+<li class="chapter" data-level="10.2.4" data-path="model-parameterization.html"><a href="model-parameterization.html#writing-modified-changes"><i class="fa fa-check"></i><b>10.2.4</b> Writing modified changes</a></li>
+<li class="chapter" data-level="10.2.5" data-path="model-parameterization.html"><a href="model-parameterization.html#re-enabling-tiledrain"><i class="fa fa-check"></i><b>10.2.5</b> Re-enabling tiledrain</a></li>
+<li class="chapter" data-level="10.2.6" data-path="model-parameterization.html"><a href="model-parameterization.html#testing-swat"><i class="fa fa-check"></i><b>10.2.6</b> Testing SWAT+</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="model-parameterization.html"><a href="model-parameterization.html#soil-phosphorous"><i class="fa fa-check"></i><b>10.3</b> Soil Phosphorous</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="management-swatfarmr.html"><a href="management-swatfarmr.html"><i class="fa fa-check"></i><b>11</b> Management (SWATfarmR)</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="management-swatfarmr.html"><a href="management-swatfarmr.html#pre-processing-crop-rotation"><i class="fa fa-check"></i><b>11.1</b> Pre-processing crop rotation</a>
+<ul>
+<li class="chapter" data-level="11.1.1" data-path="management-swatfarmr.html"><a href="management-swatfarmr.html#input-files"><i class="fa fa-check"></i><b>11.1.1</b> Input files</a></li>
+<li class="chapter" data-level="11.1.2" data-path="management-swatfarmr.html"><a href="management-swatfarmr.html#settings"><i class="fa fa-check"></i><b>11.1.2</b> Settings</a></li>
+<li class="chapter" data-level="11.1.3" data-path="management-swatfarmr.html"><a href="management-swatfarmr.html#checks"><i class="fa fa-check"></i><b>11.1.3</b> Checks</a></li>
+<li class="chapter" data-level="11.1.4" data-path="management-swatfarmr.html"><a href="management-swatfarmr.html#writing-input-data"><i class="fa fa-check"></i><b>11.1.4</b> Writing input data</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="management-swatfarmr.html"><a href="management-swatfarmr.html#initializing-farmr"><i class="fa fa-check"></i><b>11.2</b> Initializing FarmR</a></li>
+<li class="chapter" data-level="11.3" data-path="management-swatfarmr.html"><a href="management-swatfarmr.html#calculating-api"><i class="fa fa-check"></i><b>11.3</b> Calculating API</a></li>
+<li class="chapter" data-level="11.4" data-path="management-swatfarmr.html"><a href="management-swatfarmr.html#scheduling-operations"><i class="fa fa-check"></i><b>11.4</b> Scheduling Operations</a>
+<ul>
+<li class="chapter" data-level="11.4.1" data-path="management-swatfarmr.html"><a href="management-swatfarmr.html#write-operations"><i class="fa fa-check"></i><b>11.4.1</b> Write Operations</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="model-verification-swatdoctr.html"><a href="model-verification-swatdoctr.html"><i class="fa fa-check"></i><b>12</b> Model Verification (SWATdoctR)</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="model-verification-swatdoctr.html"><a href="model-verification-swatdoctr.html#climate-variables"><i class="fa fa-check"></i><b>12.1</b> Climate Variables</a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="model-verification-swatdoctr.html"><a href="model-verification-swatdoctr.html#lapse-rate"><i class="fa fa-check"></i><b>12.1.1</b> Lapse rate</a></li>
+<li class="chapter" data-level="12.1.2" data-path="model-verification-swatdoctr.html"><a href="model-verification-swatdoctr.html#climate-variables-1"><i class="fa fa-check"></i><b>12.1.2</b> Climate variables</a></li>
+<li class="chapter" data-level="12.1.3" data-path="model-verification-swatdoctr.html"><a href="model-verification-swatdoctr.html#snowfall-and-snowmelt"><i class="fa fa-check"></i><b>12.1.3</b> Snowfall and Snowmelt</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="model-verification-swatdoctr.html"><a href="model-verification-swatdoctr.html#management-operations"><i class="fa fa-check"></i><b>12.2</b> Management operations</a></li>
+<li class="chapter" data-level="12.3" data-path="model-verification-swatdoctr.html"><a href="model-verification-swatdoctr.html#unconstrained-plant-growth"><i class="fa fa-check"></i><b>12.3</b> Unconstrained plant growth</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="soft-calibration.html"><a href="soft-calibration.html"><i class="fa fa-check"></i><b>13</b> Soft Calibration</a></li>
+<li class="chapter" data-level="14" data-path="hard-calibration.html"><a href="hard-calibration.html"><i class="fa fa-check"></i><b>14</b> Hard Calibration</a></li>
+<li class="chapter" data-level="15" data-path="climate-scenarios.html"><a href="climate-scenarios.html"><i class="fa fa-check"></i><b>15</b> Climate Scenarios</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="climate-scenarios.html"><a href="climate-scenarios.html#introduction-3"><i class="fa fa-check"></i><b>15.1</b> Introduction</a></li>
+<li class="chapter" data-level="15.2" data-path="climate-scenarios.html"><a href="climate-scenarios.html#setup"><i class="fa fa-check"></i><b>15.2</b> Setup</a>
+<ul>
+<li class="chapter" data-level="15.2.1" data-path="climate-scenarios.html"><a href="climate-scenarios.html#re-calculating-management"><i class="fa fa-check"></i><b>15.2.1</b> Re-Calculating Management</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="climate-scenarios.html"><a href="climate-scenarios.html#executing-model"><i class="fa fa-check"></i><b>15.3</b> Executing model</a></li>
+<li class="chapter" data-level="15.4" data-path="climate-scenarios.html"><a href="climate-scenarios.html#processing-results"><i class="fa fa-check"></i><b>15.4</b> Processing Results</a></li>
+<li class="chapter" data-level="15.5" data-path="climate-scenarios.html"><a href="climate-scenarios.html#output-analysis"><i class="fa fa-check"></i><b>15.5</b> Output Analysis</a>
+<ul>
+<li class="chapter" data-level="15.5.1" data-path="climate-scenarios.html"><a href="climate-scenarios.html#saving-rds"><i class="fa fa-check"></i><b>15.5.1</b> Saving RDS</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="landuse-scenarios.html"><a href="landuse-scenarios.html"><i class="fa fa-check"></i><b>16</b> Landuse Scenarios</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="landuse-scenarios.html"><a href="landuse-scenarios.html#scenarios"><i class="fa fa-check"></i><b>16.1</b> Scenarios</a>
+<ul>
+<li class="chapter" data-level="16.1.1" data-path="landuse-scenarios.html"><a href="landuse-scenarios.html#status-quo"><i class="fa fa-check"></i><b>16.1.1</b> Status Quo</a></li>
+<li class="chapter" data-level="16.1.2" data-path="landuse-scenarios.html"><a href="landuse-scenarios.html#no-autumn-tillage"><i class="fa fa-check"></i><b>16.1.2</b> No Autumn Tillage</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="measures-swatmeasr.html"><a href="measures-swatmeasr.html"><i class="fa fa-check"></i><b>17</b> Measures (SWATmeasR)</a></li>
+<li class="chapter" data-level="18" data-path="measure-implementation.html"><a href="measure-implementation.html"><i class="fa fa-check"></i><b>18</b> Measure Implementation</a></li>
+<li class="chapter" data-level="19" data-path="measure-scenarios.html"><a href="measure-scenarios.html"><i class="fa fa-check"></i><b>19</b> Measure Scenarios</a></li>
+<li class="chapter" data-level="20" data-path="measure-classification.html"><a href="measure-classification.html"><i class="fa fa-check"></i><b>20</b> Measure Classification</a>
+<ul>
+<li class="chapter" data-level="20.1" data-path="measure-classification.html"><a href="measure-classification.html#introduction-4"><i class="fa fa-check"></i><b>20.1</b> Introduction</a></li>
+<li class="chapter" data-level="20.2" data-path="measure-classification.html"><a href="measure-classification.html#determining-classification"><i class="fa fa-check"></i><b>20.2</b> Determining Classification</a></li>
+<li class="chapter" data-level="20.3" data-path="measure-classification.html"><a href="measure-classification.html#applying-classification"><i class="fa fa-check"></i><b>20.3</b> Applying Classification</a>
+<ul>
+<li class="chapter" data-level="20.3.1" data-path="measure-classification.html"><a href="measure-classification.html#gullies-grassed-water-ways"><i class="fa fa-check"></i><b>20.3.1</b> Gullies (grassed water ways)</a></li>
+<li class="chapter" data-level="20.3.2" data-path="measure-classification.html"><a href="measure-classification.html#buffer-strips"><i class="fa fa-check"></i><b>20.3.2</b> Buffer Strips</a></li>
+<li class="chapter" data-level="20.3.3" data-path="measure-classification.html"><a href="measure-classification.html#ponds"><i class="fa fa-check"></i><b>20.3.3</b> Ponds</a></li>
+<li class="chapter" data-level="20.3.4" data-path="measure-classification.html"><a href="measure-classification.html#notill-management-measure"><i class="fa fa-check"></i><b>20.3.4</b> NoTill (management measure)</a></li>
+</ul></li>
+<li class="chapter" data-level="20.4" data-path="measure-classification.html"><a href="measure-classification.html#hru-scenario-table"><i class="fa fa-check"></i><b>20.4</b> HRU Scenario Table</a>
+<ul>
+<li class="chapter" data-level="20.4.1" data-path="measure-classification.html"><a href="measure-classification.html#merging-into-landuse-map"><i class="fa fa-check"></i><b>20.4.1</b> Merging into Landuse Map</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="optimization.html"><a href="optimization.html"><i class="fa fa-check"></i><b>21</b> Optimization</a>
+<ul>
+<li class="chapter" data-level="21.1" data-path="optimization.html"><a href="optimization.html#introduction-5"><i class="fa fa-check"></i><b>21.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="21.1.1" data-path="optimization.html"><a href="optimization.html#comola"><i class="fa fa-check"></i><b>21.1.1</b> CoMOLA</a></li>
+<li class="chapter" data-level="21.1.2" data-path="optimization.html"><a href="optimization.html#the-pareto-frontier"><i class="fa fa-check"></i><b>21.1.2</b> The Pareto Frontier</a></li>
+<li class="chapter" data-level="21.1.3" data-path="optimization.html"><a href="optimization.html#nsga-ii"><i class="fa fa-check"></i><b>21.1.3</b> NSGA-II</a></li>
+<li class="chapter" data-level="21.1.4" data-path="optimization.html"><a href="optimization.html#the-objective-space"><i class="fa fa-check"></i><b>21.1.4</b> The Objective Space</a></li>
+<li class="chapter" data-level="21.1.5" data-path="optimization.html"><a href="optimization.html#references"><i class="fa fa-check"></i><b>21.1.5</b> References</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="overview-maps.html"><a href="overview-maps.html"><i class="fa fa-check"></i><b>22</b> Overview Maps</a></li>
+<li class="chapter" data-level="" data-path="annex.html"><a href="annex.html"><i class="fa fa-check"></i>Annex</a>
+<ul>
+<li class="chapter" data-level="22.1" data-path="annex.html"><a href="annex.html#packages"><i class="fa fa-check"></i><b>22.1</b> Packages</a></li>
+<li class="chapter" data-level="22.2" data-path="annex.html"><a href="annex.html#computer-specs"><i class="fa fa-check"></i><b>22.2</b> Computer Specs</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references-1.html"><a href="references-1.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://www.optain.eu/" target="blank">optain.eu</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">The OPTAIN Project: Case study 10</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="model-setup-swatbuildr" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Section 2</span> Model Setup (SWATbuildR)<a href="model-setup-swatbuildr.html#model-setup-swatbuildr" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="model-setup-swatbuildr.html#cb130-1" tabindex="-1"></a><span class="co"># run the buildR?</span></span>
+<span id="cb130-2"><a href="model-setup-swatbuildr.html#cb130-2" tabindex="-1"></a>run_buildr <span class="ot">=</span> <span class="cn">FALSE</span></span>
+<span id="cb130-3"><a href="model-setup-swatbuildr.html#cb130-3" tabindex="-1"></a><span class="cf">if</span> (run_buildr) {</span>
+<span id="cb130-4"><a href="model-setup-swatbuildr.html#cb130-4" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;Code executed @&quot;</span>, <span class="fu">Sys.time</span>()))</span>
+<span id="cb130-5"><a href="model-setup-swatbuildr.html#cb130-5" tabindex="-1"></a>} <span class="cf">else</span>{</span>
+<span id="cb130-6"><a href="model-setup-swatbuildr.html#cb130-6" tabindex="-1"></a>  datemod <span class="ot">&lt;-</span></span>
+<span id="cb130-7"><a href="model-setup-swatbuildr.html#cb130-7" tabindex="-1"></a>    <span class="fu">file.info</span>(<span class="st">&quot;model_data/cs10_setup/optain-cs10/optain-cs10.sqlite&quot;</span>)</span>
+<span id="cb130-8"><a href="model-setup-swatbuildr.html#cb130-8" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;BuildR last run @&quot;</span>, datemod<span class="sc">$</span>mtime))</span>
+<span id="cb130-9"><a href="model-setup-swatbuildr.html#cb130-9" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## [1] &quot;BuildR last run @ 2024-11-14 11:28:58.059948&quot;</code></pre>
+<p>The OPTAIN project is using the COCOA approach <span class="citation">(<a href="#ref-schürz2022">Schürz et al. 2022</a>)</span> and as such, needs to use the <code>SWATBuildR</code> package to build the SWAT+ model setup and calculate the connectivity between HRUs in the catchment. This chapter covers this process.</p>
+<div id="buildr-setup" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> BuildR Setup<a href="model-setup-swatbuildr.html#buildr-setup" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We will need the following packages for this chapter:</p>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="model-setup-swatbuildr.html#cb132-1" tabindex="-1"></a><span class="co"># not loading most packages because they interfere with the `install_load` </span></span>
+<span id="cb132-2"><a href="model-setup-swatbuildr.html#cb132-2" tabindex="-1"></a><span class="co"># functions of BuildR. this means I need to prefix everything with :: until</span></span>
+<span id="cb132-3"><a href="model-setup-swatbuildr.html#cb132-3" tabindex="-1"></a><span class="co"># Christoph turns BuildR into a proper package with proper scoping. </span></span>
+<span id="cb132-4"><a href="model-setup-swatbuildr.html#cb132-4" tabindex="-1"></a></span>
+<span id="cb132-5"><a href="model-setup-swatbuildr.html#cb132-5" tabindex="-1"></a><span class="co"># require(dplyr)</span></span>
+<span id="cb132-6"><a href="model-setup-swatbuildr.html#cb132-6" tabindex="-1"></a><span class="co"># require(ggplot2)</span></span>
+<span id="cb132-7"><a href="model-setup-swatbuildr.html#cb132-7" tabindex="-1"></a><span class="co"># require(mapview)</span></span>
+<span id="cb132-8"><a href="model-setup-swatbuildr.html#cb132-8" tabindex="-1"></a><span class="co"># require(sf)</span></span>
+<span id="cb132-9"><a href="model-setup-swatbuildr.html#cb132-9" tabindex="-1"></a><span class="co"># require(raster)</span></span>
+<span id="cb132-10"><a href="model-setup-swatbuildr.html#cb132-10" tabindex="-1"></a><span class="co"># require(terra)</span></span>
+<span id="cb132-11"><a href="model-setup-swatbuildr.html#cb132-11" tabindex="-1"></a><span class="co"># require(raster)</span></span>
+<span id="cb132-12"><a href="model-setup-swatbuildr.html#cb132-12" tabindex="-1"></a></span>
+<span id="cb132-13"><a href="model-setup-swatbuildr.html#cb132-13" tabindex="-1"></a><span class="co"># Common ggplot theme for simple features</span></span>
+<span id="cb132-14"><a href="model-setup-swatbuildr.html#cb132-14" tabindex="-1"></a>sf_theme <span class="ot">&lt;-</span> ggplot2<span class="sc">::</span><span class="fu">theme</span>(<span class="at">axis.text.x=</span>ggplot2<span class="sc">::</span><span class="fu">element_blank</span>(),</span>
+<span id="cb132-15"><a href="model-setup-swatbuildr.html#cb132-15" tabindex="-1"></a>        <span class="at">axis.ticks.x=</span>ggplot2<span class="sc">::</span><span class="fu">element_blank</span>(), </span>
+<span id="cb132-16"><a href="model-setup-swatbuildr.html#cb132-16" tabindex="-1"></a>        <span class="at">axis.text.y=</span>ggplot2<span class="sc">::</span><span class="fu">element_blank</span>(), </span>
+<span id="cb132-17"><a href="model-setup-swatbuildr.html#cb132-17" tabindex="-1"></a>        <span class="at">axis.ticks.y=</span>ggplot2<span class="sc">::</span><span class="fu">element_blank</span>()</span>
+<span id="cb132-18"><a href="model-setup-swatbuildr.html#cb132-18" tabindex="-1"></a>        )</span></code></pre></div>
+<p>We will define the location of our project here, and give it a name:</p>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="model-setup-swatbuildr.html#cb133-1" tabindex="-1"></a>project_path <span class="ot">&lt;-</span> <span class="st">&#39;model_data/cs10_setup&#39;</span></span>
+<span id="cb133-2"><a href="model-setup-swatbuildr.html#cb133-2" tabindex="-1"></a>project_name <span class="ot">&lt;-</span> <span class="st">&#39;optain-cs10&#39;</span></span>
+<span id="cb133-3"><a href="model-setup-swatbuildr.html#cb133-3" tabindex="-1"></a>project_layer <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
+<span id="cb133-4"><a href="model-setup-swatbuildr.html#cb133-4" tabindex="-1"></a></span>
+<span id="cb133-5"><a href="model-setup-swatbuildr.html#cb133-5" tabindex="-1"></a><span class="co"># load the BuildR</span></span>
+<span id="cb133-6"><a href="model-setup-swatbuildr.html#cb133-6" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&#39;model_data/code/swat_buildR/init.R&#39;</span>)</span>
+<span id="cb133-7"><a href="model-setup-swatbuildr.html#cb133-7" tabindex="-1"></a><span class="co"># Note the many &quot;maskings&quot; occurring here, dangerous!</span></span></code></pre></div>
+</div>
+<div id="processing-input-data" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Processing input data<a href="model-setup-swatbuildr.html#processing-input-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>SWATBuildR reads input data, performs some checks on it, and saves it in a compatible format for subsequent calculations. Little documentation exists on the creation of these data sets. IF you have any information to add, feel free to do so!</p>
+<div id="high-resolution-digital-elevation-model-dem" class="section level3 hasAnchor" number="2.2.1">
+<h3><span class="header-section-number">2.2.1</span> High-Resolution Digital Elevation Model (DEM)<a href="model-setup-swatbuildr.html#high-resolution-digital-elevation-model-dem" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The high-resolution DEM is the basis for calculation of water connectivity, among other things. Most of the documentation of the creation of the DEM for CS10 has been lost to the sands of time. All we know is that it is located here:</p>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="model-setup-swatbuildr.html#cb134-1" tabindex="-1"></a>dem_path <span class="ot">&lt;-</span> <span class="st">&quot;model_data/input/elevation/dtm3_ns_v5.tif&quot;</span></span></code></pre></div>
+</div>
+<div id="processing-the-basin-boundary" class="section level3 hasAnchor" number="2.2.2">
+<h3><span class="header-section-number">2.2.2</span> Processing the Basin Boundary<a href="model-setup-swatbuildr.html#processing-the-basin-boundary" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The basin boundary has presumably been created using the defined outlet point of the catchment and the DEM. No more is currently known about this file other than that it is located here:</p>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="model-setup-swatbuildr.html#cb135-1" tabindex="-1"></a>bound_path <span class="ot">&lt;-</span> <span class="st">&quot;model_data/input/shape/cs10_basin.shp&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="model-setup-swatbuildr.html#cb136-1" tabindex="-1"></a>bound_sf <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">read_sf</span>(bound_path)</span>
+<span id="cb136-2"><a href="model-setup-swatbuildr.html#cb136-2" tabindex="-1"></a>basin <span class="ot">&lt;-</span> ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(bound_sf) <span class="sc">+</span> ggplot2<span class="sc">::</span><span class="fu">geom_sf</span>() <span class="sc">+</span> sf_theme</span>
+<span id="cb136-3"><a href="model-setup-swatbuildr.html#cb136-3" tabindex="-1"></a><span class="fu">print</span>(basin)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:buildrwatershedplot"></span>
+<img src="_main_files/figure-html/buildrwatershedplot-1.png" alt="CS10 Basin, caclulated from the DEM." width="672" />
+<p class="caption">
+Figure 2.1: CS10 Basin, caclulated from the DEM.
+</p>
+</div>
+<p>The following code and commentary is from BuildR Script version <code>1.5.14</code>, written by Christoph Schuerz.</p>
+<p>BuildR recommends all layers to be in the same CRS, if we set <code>project_layer</code> to <code>FALSE</code>, it will throw an error when this is not the case:</p>
+<blockquote>
+<p>The input layers might be in different coordinate reference systems (CRS). It is recommended to project all layers to the same CRS and check them before using them as model inputs. The model setup process checks if the layer CRSs differ from the one of the basin boundary. By setting ‘proj_layer &lt;- TRUE’ the layer is projected if the CRS is different. If FALSE different CRS trigger an error.</p>
+</blockquote>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="model-setup-swatbuildr.html#cb137-1" tabindex="-1"></a>project_layer <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span></code></pre></div>
+<p>We read in and check the basin boundary and run some checks</p>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="model-setup-swatbuildr.html#cb138-1" tabindex="-1"></a>bound <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(bound_path) <span class="sc">%&gt;%</span> <span class="fu">select</span>()</span>
+<span id="cb138-2"><a href="model-setup-swatbuildr.html#cb138-2" tabindex="-1"></a><span class="fu">set_proj_crs</span>(bound, data_path)</span>
+<span id="cb138-3"><a href="model-setup-swatbuildr.html#cb138-3" tabindex="-1"></a><span class="fu">check_polygon_topology</span>(<span class="at">layer =</span> bound, <span class="at">data_path =</span>  data_path, <span class="at">label =</span> <span class="st">&#39;basin&#39;</span>, </span>
+<span id="cb138-4"><a href="model-setup-swatbuildr.html#cb138-4" tabindex="-1"></a>                       <span class="at">n_feat =</span> <span class="dv">1</span>, <span class="at">checks =</span> <span class="fu">c</span>(F,T,T,T,F,F,F,F))</span></code></pre></div>
+</div>
+<div id="processing-the-land-layer" class="section level3 hasAnchor" number="2.2.3">
+<h3><span class="header-section-number">2.2.3</span> Processing the Land layer<a href="model-setup-swatbuildr.html#processing-the-land-layer" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Our land layer is located here:</p>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="model-setup-swatbuildr.html#cb139-1" tabindex="-1"></a>land_path <span class="ot">&lt;-</span> <span class="st">&quot;model_data/input/land/CS10_LU_V2.shp&quot;</span></span></code></pre></div>
+<p>Documentation on its creation does not exist.</p>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="model-setup-swatbuildr.html#cb140-1" tabindex="-1"></a>lu_shp <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">read_sf</span>(land_path)</span>
+<span id="cb140-2"><a href="model-setup-swatbuildr.html#cb140-2" tabindex="-1"></a>lu_map <span class="ot">&lt;-</span> ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(lu_shp) <span class="sc">+</span> ggplot2<span class="sc">::</span><span class="fu">geom_sf</span>(ggplot2<span class="sc">::</span><span class="fu">aes</span>(<span class="at">fill =</span> type)) <span class="sc">+</span> sf_theme <span class="sc">+</span></span>
+<span id="cb140-3"><a href="model-setup-swatbuildr.html#cb140-3" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span>
+<span id="cb140-4"><a href="model-setup-swatbuildr.html#cb140-4" tabindex="-1"></a><span class="fu">print</span>(lu_map)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:buildrmaplanduse"></span>
+<img src="_main_files/figure-html/buildrmaplanduse-1.png" alt="Land use map of CS10 by Farm ID" width="672" />
+<p class="caption">
+Figure 2.2: Land use map of CS10 by Farm ID
+</p>
+</div>
+<p>We had an issue with the classification of the land uses. For the OPTAIN project, all agricultural fields must have a unique ID, and our land uses only had the ID of the given farm <code>KGB</code> (which had many different fields). To remedy this, new IDs were generated with the format <code>a_###f_#</code> where <code>a_</code> represents the farm, and <code>f_</code> represents the respective field of that farm. The farm names needed to be shortened because the SWAT+ model often cannot handle long ID names (longer than 16 characters)</p>
+<p>Note, the potential measures polygons were not counted as individual fields, which is why <code>SP_ID</code> does not match up with <code>field_ID</code> – This is by design.</p>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="model-setup-swatbuildr.html#cb141-1" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&quot;model_data/input/crop/a_f_id.csv&quot;</span>, <span class="at">show_col_types =</span> F) <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 4
+##   KGB      type_fr sp_id field_ID
+##   &lt;chr&gt;    &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt;   
+## 1 213/8/1  a_084       1 a_084f_1
+## 2 213/7/6  a_083       2 a_083f_1
+## 3 213/7/6  a_083       3 a_083f_2
+## 4 213/7/4  a_082       4 a_082f_1
+## 5 213/65/1 a_081       5 a_081f_1
+## 6 213/65/1 a_081       6 a_081f_2</code></pre>
+<p>This was done in a simple QGIS workflow of dissolving by farm, splitting from single part to multipart, and then adding an iterating ID per farm field. This workflow could be replicated in R, and then shown here. It is under consideration…</p>
+<p>BuildR will now run some checks on our land layer.</p>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="model-setup-swatbuildr.html#cb143-1" tabindex="-1"></a>land <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(land_path) <span class="sc">%&gt;%</span> </span>
+<span id="cb143-2"><a href="model-setup-swatbuildr.html#cb143-2" tabindex="-1"></a>  <span class="fu">check_layer_attributes</span>(., <span class="at">type_to_lower =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb143-3"><a href="model-setup-swatbuildr.html#cb143-3" tabindex="-1"></a>  <span class="fu">check_project_crs</span>(<span class="at">layer =</span> ., <span class="at">data_path =</span>  data_path, <span class="at">proj_layer =</span> project_layer, </span>
+<span id="cb143-4"><a href="model-setup-swatbuildr.html#cb143-4" tabindex="-1"></a>                    <span class="at">label =</span> <span class="st">&#39;land&#39;</span>, <span class="at">type =</span> <span class="st">&#39;vector&#39;</span>)</span>
+<span id="cb143-5"><a href="model-setup-swatbuildr.html#cb143-5" tabindex="-1"></a></span>
+<span id="cb143-6"><a href="model-setup-swatbuildr.html#cb143-6" tabindex="-1"></a><span class="fu">check_polygon_topology</span>(<span class="at">layer =</span> land, <span class="at">data_path =</span>  data_path, <span class="at">label =</span> <span class="st">&#39;land&#39;</span>, </span>
+<span id="cb143-7"><a href="model-setup-swatbuildr.html#cb143-7" tabindex="-1"></a>                       <span class="at">area_fct =</span>  <span class="fl">0.00</span>, <span class="at">cvrg_frc =</span> <span class="fl">99.9</span>,</span>
+<span id="cb143-8"><a href="model-setup-swatbuildr.html#cb143-8" tabindex="-1"></a>                       <span class="at">checks =</span> <span class="fu">c</span>(T,F,T,T,T,T,T,T))</span></code></pre></div>
+<p>BuildR splits the land layer into HRU (land) and reservoir (water) objects</p>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="model-setup-swatbuildr.html#cb144-1" tabindex="-1"></a><span class="fu">split_land_layer</span>(data_path)</span></code></pre></div>
+</div>
+<div id="processing-the-channels" class="section level3 hasAnchor" number="2.2.4">
+<h3><span class="header-section-number">2.2.4</span> Processing the Channels<a href="model-setup-swatbuildr.html#processing-the-channels" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>No documentation exists on the creation of the channels layer, all we know is that it is located here:</p>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="model-setup-swatbuildr.html#cb145-1" tabindex="-1"></a>channel_path <span class="ot">&lt;-</span> <span class="st">&#39;model_data/input/line/cs10_channels_utm33n.shp&#39;</span></span>
+<span id="cb145-2"><a href="model-setup-swatbuildr.html#cb145-2" tabindex="-1"></a>channels <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(channel_path) <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="st">&quot;type&quot;</span>)</span>
+<span id="cb145-3"><a href="model-setup-swatbuildr.html#cb145-3" tabindex="-1"></a>channel_map <span class="ot">&lt;-</span> ggplot2<span class="sc">::</span><span class="fu">ggplot</span>() <span class="sc">+</span> ggplot2<span class="sc">::</span><span class="fu">geom_sf</span>(<span class="at">data =</span> bound_sf) <span class="sc">+</span> </span>
+<span id="cb145-4"><a href="model-setup-swatbuildr.html#cb145-4" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_sf</span>(<span class="at">data =</span> channels, <span class="at">mapping =</span> ggplot2<span class="sc">::</span><span class="fu">aes</span>(<span class="at">color =</span> type)) <span class="sc">+</span> sf_theme</span>
+<span id="cb145-5"><a href="model-setup-swatbuildr.html#cb145-5" tabindex="-1"></a>channel_map</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:buildrchannelplotx"></span>
+<img src="_main_files/figure-html/buildrchannelplotx-1.png" alt="CS10 Channels including surface and subsurface channels" width="672" />
+<p class="caption">
+Figure 2.3: CS10 Channels including surface and subsurface channels
+</p>
+</div>
+<p>BuildR runs some checks:</p>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="model-setup-swatbuildr.html#cb146-1" tabindex="-1"></a> channel <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(channel_path) <span class="sc">%&gt;%</span> </span>
+<span id="cb146-2"><a href="model-setup-swatbuildr.html#cb146-2" tabindex="-1"></a>    <span class="fu">check_layer_attributes</span>(., <span class="at">type_to_lower =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb146-3"><a href="model-setup-swatbuildr.html#cb146-3" tabindex="-1"></a>    <span class="fu">check_project_crs</span>(<span class="at">layer =</span> ., <span class="at">data_path =</span>  data_path,</span>
+<span id="cb146-4"><a href="model-setup-swatbuildr.html#cb146-4" tabindex="-1"></a>                      <span class="at">proj_layer =</span> project_layer, </span>
+<span id="cb146-5"><a href="model-setup-swatbuildr.html#cb146-5" tabindex="-1"></a>                      <span class="at">label =</span> <span class="st">&#39;channel&#39;</span>, <span class="at">type =</span> <span class="st">&#39;vector&#39;</span>)</span>
+<span id="cb146-6"><a href="model-setup-swatbuildr.html#cb146-6" tabindex="-1"></a></span>
+<span id="cb146-7"><a href="model-setup-swatbuildr.html#cb146-7" tabindex="-1"></a><span class="fu">check_line_topology</span>(<span class="at">layer =</span> channel, <span class="at">data_path =</span> data_path,</span>
+<span id="cb146-8"><a href="model-setup-swatbuildr.html#cb146-8" tabindex="-1"></a>                    <span class="at">label =</span> <span class="st">&#39;channel&#39;</span>, <span class="at">length_fct =</span> <span class="dv">0</span>, <span class="at">can_cross =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p>BuildR then checks the connectivity between the channels and reservoirs. For this we need to define our <code>id_cha_out</code> and <code>id_res_out</code>.</p>
+<p>“Variable <code>id_cha_out</code> sets the outlet point of the catchment. Either define a channel OR a reservoir as the final outlet. If channel then assign <code>id_cha_out</code> with the respective id from the channel layer. If reservoir then assign the respective id from the land layer to id_res_out, otherwise leave as <code>NULL</code>”</p>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="model-setup-swatbuildr.html#cb147-1" tabindex="-1"></a>id_cha_out <span class="ot">&lt;-</span> <span class="dv">37</span></span>
+<span id="cb147-2"><a href="model-setup-swatbuildr.html#cb147-2" tabindex="-1"></a>id_res_out <span class="ot">&lt;-</span> <span class="cn">NULL</span></span></code></pre></div>
+<p>Running connectivity checks between channels and reservoirs:</p>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="model-setup-swatbuildr.html#cb148-1" tabindex="-1"></a><span class="fu">check_cha_res_connectivity</span>(data_path, id_cha_out, id_res_out)</span></code></pre></div>
+<p>Checking if any defined channel ids for drainage from land objects do not exist</p>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="model-setup-swatbuildr.html#cb149-1" tabindex="-1"></a><span class="fu">check_land_drain_ids</span>(data_path)</span></code></pre></div>
+</div>
+<div id="processing-the-dem" class="section level3 hasAnchor" number="2.2.5">
+<h3><span class="header-section-number">2.2.5</span> Processing the DEM<a href="model-setup-swatbuildr.html#processing-the-dem" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>BuildR loads and checks the DEM, and saves it.</p>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="model-setup-swatbuildr.html#cb150-1" tabindex="-1"></a>dem <span class="ot">&lt;-</span> <span class="fu">rast</span>(dem_path) <span class="sc">%&gt;%</span> </span>
+<span id="cb150-2"><a href="model-setup-swatbuildr.html#cb150-2" tabindex="-1"></a>  <span class="fu">check_project_crs</span>(<span class="at">layer =</span> ., <span class="at">data_path =</span>  data_path, <span class="at">proj_layer =</span> project_layer, </span>
+<span id="cb150-3"><a href="model-setup-swatbuildr.html#cb150-3" tabindex="-1"></a>                    <span class="at">label =</span> <span class="st">&#39;dem&#39;</span>, <span class="at">type =</span> <span class="st">&#39;raster&#39;</span>)</span>
+<span id="cb150-4"><a href="model-setup-swatbuildr.html#cb150-4" tabindex="-1"></a><span class="fu">check_raster_coverage</span>(<span class="at">rst =</span> dem, <span class="at">vct_layer =</span> <span class="st">&#39;land&#39;</span>, <span class="at">data_path =</span> data_path, </span>
+<span id="cb150-5"><a href="model-setup-swatbuildr.html#cb150-5" tabindex="-1"></a>                      <span class="at">label =</span> <span class="st">&#39;dem&#39;</span>, <span class="at">cov_frc =</span> <span class="fl">0.95</span>)</span>
+<span id="cb150-6"><a href="model-setup-swatbuildr.html#cb150-6" tabindex="-1"></a><span class="fu">save_dem_slope_raster</span>(<span class="at">dem =</span> dem, <span class="at">data_path =</span> data_path)</span></code></pre></div>
+<p>Here is the result:</p>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="model-setup-swatbuildr.html#cb151-1" tabindex="-1"></a>map <span class="ot">&lt;-</span> raster<span class="sc">::</span><span class="fu">raster</span>(<span class="st">&quot;model_data/cs10_setup/optain-cs10/data/raster/dem.tif&quot;</span>)</span>
+<span id="cb151-2"><a href="model-setup-swatbuildr.html#cb151-2" tabindex="-1"></a>raster<span class="sc">::</span><span class="fu">plot</span>(map)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:buildrdemcropplot"></span>
+<img src="_main_files/figure-html/buildrdemcropplot-1.png" alt="CS10 DEM cropped to basin" width="672" />
+<p class="caption">
+Figure 2.4: CS10 DEM cropped to basin
+</p>
+</div>
+</div>
+<div id="processing-soil-data" class="section level3 hasAnchor" number="2.2.6">
+<h3><span class="header-section-number">2.2.6</span> Processing Soil Data<a href="model-setup-swatbuildr.html#processing-soil-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Our soil map is located here:</p>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="model-setup-swatbuildr.html#cb152-1" tabindex="-1"></a>soil_layer_path  <span class="ot">&lt;-</span> <span class="st">&#39;model_data/input/soil/soil_raster.tif&#39;</span></span></code></pre></div>
+<p>No documentation exists on its creation.</p>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="model-setup-swatbuildr.html#cb153-1" tabindex="-1"></a>map <span class="ot">&lt;-</span> raster<span class="sc">::</span><span class="fu">raster</span>(soil_layer_path)</span>
+<span id="cb153-2"><a href="model-setup-swatbuildr.html#cb153-2" tabindex="-1"></a>raster<span class="sc">::</span><span class="fu">plot</span>(map)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:buildrsoilrastermapplot"></span>
+<img src="_main_files/figure-html/buildrsoilrastermapplot-1.png" alt="CS10 Soil map" width="672" />
+<p class="caption">
+Figure 2.5: CS10 Soil map
+</p>
+</div>
+<p>The soil data and look-up path are located here:</p>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="model-setup-swatbuildr.html#cb154-1" tabindex="-1"></a>soil_lookup_path <span class="ot">&lt;-</span> <span class="st">&#39;model_data/input/soil/soil_lookup_26.csv&#39;</span></span>
+<span id="cb154-2"><a href="model-setup-swatbuildr.html#cb154-2" tabindex="-1"></a>soil_data_path   <span class="ot">&lt;-</span> <span class="st">&#39;model_data/input/soil/usersoil_26_v2.csv&#39;</span></span></code></pre></div>
+<p>Not much documentation exists here either. Some can be found in the excel sheet:</p>
+<p><code>~/model_data/input/soil/swatsoil2.xlsx</code></p>
+<p>BuildR reads in the soil data, performs checks, processes, and saves.</p>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="model-setup-swatbuildr.html#cb155-1" tabindex="-1"></a>soil <span class="ot">&lt;-</span> <span class="fu">rast</span>(soil_layer_path) <span class="sc">%&gt;%</span> </span>
+<span id="cb155-2"><a href="model-setup-swatbuildr.html#cb155-2" tabindex="-1"></a>  <span class="fu">check_project_crs</span>(<span class="at">layer =</span> ., <span class="at">data_path =</span>  data_path, <span class="at">proj_layer =</span> project_layer, </span>
+<span id="cb155-3"><a href="model-setup-swatbuildr.html#cb155-3" tabindex="-1"></a>                    <span class="at">label =</span> <span class="st">&#39;soil&#39;</span>, <span class="at">type =</span> <span class="st">&#39;raster&#39;</span>)</span>
+<span id="cb155-4"><a href="model-setup-swatbuildr.html#cb155-4" tabindex="-1"></a><span class="fu">check_raster_coverage</span>(<span class="at">rst =</span> soil, <span class="at">vct_layer =</span> <span class="st">&#39;hru&#39;</span>, <span class="at">data_path =</span> data_path, </span>
+<span id="cb155-5"><a href="model-setup-swatbuildr.html#cb155-5" tabindex="-1"></a>                      <span class="at">label =</span> <span class="st">&#39;soil&#39;</span>, <span class="at">cov_frc =</span> <span class="fl">0.75</span>)</span>
+<span id="cb155-6"><a href="model-setup-swatbuildr.html#cb155-6" tabindex="-1"></a><span class="fu">save_soil_raster</span>(soil, data_path)</span></code></pre></div>
+<p>BuildR then generates a table with aggregated elevation, slope, soil for HRU units.</p>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="model-setup-swatbuildr.html#cb156-1" tabindex="-1"></a><span class="fu">aggregate_hru_dem_soil</span>(data_path)</span></code></pre></div>
+<p>Read and prepare the soil input tables and a soil/hru id table and write them into <code>data_path/tables.sqlite</code></p>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="model-setup-swatbuildr.html#cb157-1" tabindex="-1"></a><span class="fu">build_soil_data</span>(soil_lookup_path, soil_data_path, data_path)</span></code></pre></div>
+</div>
+</div>
+<div id="calculating-cocoa" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Calculating COCOA<a href="model-setup-swatbuildr.html#calculating-cocoa" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>SWATBuildR follows COCOA. This section contains the calculations. You can read more about it in the protocol.</p>
+<div id="calculating-land-unit-connectivity" class="section level3 hasAnchor" number="2.3.1">
+<h3><span class="header-section-number">2.3.1</span> Calculating land unit connectivity<a href="model-setup-swatbuildr.html#calculating-land-unit-connectivity" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Preparing raster layers based on the DEM and the surface channel objects that will be used in the calculation of the land object connectivity.</p>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="model-setup-swatbuildr.html#cb158-1" tabindex="-1"></a><span class="fu">prepare_terrain_land</span>(data_path)</span></code></pre></div>
+<p>The connection of each land object to neighboring land and water objects is calculated based on the flow accumulation and the D8 flow pointer along the object edge</p>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="model-setup-swatbuildr.html#cb159-1" tabindex="-1"></a><span class="fu">calculate_land_connectivity</span>(data_path)</span></code></pre></div>
+<div id="eliminate-land-object-connections-with-small-flow-fractions" class="section level4 hasAnchor" number="2.3.1.1">
+<h4><span class="header-section-number">2.3.1.1</span> Eliminate land object connections with small flow fractions:<a href="model-setup-swatbuildr.html#eliminate-land-object-connections-with-small-flow-fractions" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>For each land object the flow fractions are compared to connection with the largest flow fraction of that land object. Connections are removed if their fraction is smaller than <code>frc_thres</code> relative to the largest one.</p>
+<p>This is necessary to:</p>
+<ol style="list-style-type: decimal">
+<li><p>Simplify the connectivity network</p></li>
+<li><p>To reduce the risk of circuit routing between land objects. Circuit routing will be checked.</p></li>
+</ol>
+<p>If an error due to circuit routing is triggered, then ‘frc_thres’ must be increased to remove connectivities that may cause this issue.</p>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="model-setup-swatbuildr.html#cb160-1" tabindex="-1"></a>frc_thres <span class="ot">&lt;-</span> <span class="fl">0.3</span></span></code></pre></div>
+<p>The remaining land object connections are analyzed for infinite loop routing. For each land unit the connections are propagated and checked if the end up again in the same unit.</p>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="model-setup-swatbuildr.html#cb161-1" tabindex="-1"></a><span class="co"># reduce_land_connections(data_path, frc_thres) %&gt;% </span></span>
+<span id="cb161-2"><a href="model-setup-swatbuildr.html#cb161-2" tabindex="-1"></a><span class="co">#  check_infinite_loops(., data_path, &#39;Land&#39;)</span></span></code></pre></div>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="model-setup-swatbuildr.html#cb162-1" tabindex="-1"></a><span class="co"># Analyzing land objects for infinite loop routing: Completed 6185 Land objects</span></span>
+<span id="cb162-2"><a href="model-setup-swatbuildr.html#cb162-2" tabindex="-1"></a><span class="co"># in 10M 44S</span></span>
+<span id="cb162-3"><a href="model-setup-swatbuildr.html#cb162-3" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb162-4"><a href="model-setup-swatbuildr.html#cb162-4" tabindex="-1"></a><span class="co"># ✘  150 Land objects identified where water is routed in loops.</span></span>
+<span id="cb162-5"><a href="model-setup-swatbuildr.html#cb162-5" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb162-6"><a href="model-setup-swatbuildr.html#cb162-6" tabindex="-1"></a><span class="co"># You can resolve this issue in the following ways:</span></span>
+<span id="cb162-7"><a href="model-setup-swatbuildr.html#cb162-7" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb162-8"><a href="model-setup-swatbuildr.html#cb162-8" tabindex="-1"></a><span class="co">#  - Use the layer &#39;land_infinite_loops.gpkg&#39; that was written to</span></span>
+<span id="cb162-9"><a href="model-setup-swatbuildr.html#cb162-9" tabindex="-1"></a><span class="co"># model_data/cs10_setup/optain-cs10/data/vector to identify land polygons that</span></span>
+<span id="cb162-10"><a href="model-setup-swatbuildr.html#cb162-10" tabindex="-1"></a><span class="co"># cause the issue and split them to break the loops This would require to</span></span>
+<span id="cb162-11"><a href="model-setup-swatbuildr.html#cb162-11" tabindex="-1"></a><span class="co"># restart the entire model setup procedure!</span></span>
+<span id="cb162-12"><a href="model-setup-swatbuildr.html#cb162-12" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb162-13"><a href="model-setup-swatbuildr.html#cb162-13" tabindex="-1"></a><span class="co">#   - Increase the value of &#39;frc_thres&#39;.</span></span>
+<span id="cb162-14"><a href="model-setup-swatbuildr.html#cb162-14" tabindex="-1"></a><span class="co"># This reduces the number of connections of each land unit (maybe undesired!)</span></span>
+<span id="cb162-15"><a href="model-setup-swatbuildr.html#cb162-15" tabindex="-1"></a><span class="co"># and can remove the connections that route the water in loops.</span></span>
+<span id="cb162-16"><a href="model-setup-swatbuildr.html#cb162-16" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb162-17"><a href="model-setup-swatbuildr.html#cb162-17" tabindex="-1"></a><span class="co">#   - Continue with the model setup (only recommended for small number of identified units!).</span></span>
+<span id="cb162-18"><a href="model-setup-swatbuildr.html#cb162-18" tabindex="-1"></a><span class="co"># The function &#39;resolve_loop_issues()&#39; will then eliminate a certain number of</span></span>
+<span id="cb162-19"><a href="model-setup-swatbuildr.html#cb162-19" tabindex="-1"></a><span class="co"># connections.</span></span></code></pre></div>
+<p>What do we do here ? – I think in the past we just removed all the loops, but it says here it is not recommended when there are a lot of them. Should we increase the threshold? Should we try to break up the loops? You can see the problem polygons on the map below:</p>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="model-setup-swatbuildr.html#cb163-1" tabindex="-1"></a>land_inifnite_loops_shp <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">read_sf</span>(<span class="st">&quot;model_data/cs10_setup/optain-cs10/data/vector/land_infinite_loops.gpkg&quot;</span>)</span>
+<span id="cb163-2"><a href="model-setup-swatbuildr.html#cb163-2" tabindex="-1"></a>mapview<span class="sc">::</span><span class="fu">mapview</span>(land_inifnite_loops_shp)</span></code></pre></div>
+<p>To me it seems to complicated to try to break up the loops, maybe increase the threshold a bit and see what happens? and delete the rest?</p>
+<p>Increasing threshold and re-running leads to this:</p>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="model-setup-swatbuildr.html#cb164-1" tabindex="-1"></a>frc_thres <span class="ot">&lt;-</span> <span class="fl">0.1</span> <span class="co">#     loops (   mins)</span></span>
+<span id="cb164-2"><a href="model-setup-swatbuildr.html#cb164-2" tabindex="-1"></a>frc_thres <span class="ot">&lt;-</span> <span class="fl">0.2</span> <span class="co"># 238 loops (30 mins)</span></span>
+<span id="cb164-3"><a href="model-setup-swatbuildr.html#cb164-3" tabindex="-1"></a>frc_thres <span class="ot">&lt;-</span> <span class="fl">0.3</span> <span class="co"># 150 loops (12 mins)</span></span>
+<span id="cb164-4"><a href="model-setup-swatbuildr.html#cb164-4" tabindex="-1"></a>frc_thres <span class="ot">&lt;-</span> <span class="fl">0.4</span> <span class="co"># 115 loops (   mins)</span></span>
+<span id="cb164-5"><a href="model-setup-swatbuildr.html#cb164-5" tabindex="-1"></a>frc_thres <span class="ot">&lt;-</span> <span class="fl">0.5</span> <span class="co"># 94  loops (   mins)</span></span>
+<span id="cb164-6"><a href="model-setup-swatbuildr.html#cb164-6" tabindex="-1"></a>frc_thres <span class="ot">&lt;-</span> <span class="fl">0.6</span> <span class="co"># 57  loops (   mins)</span></span></code></pre></div>
+<p>We have decided that at a threshold of 0.3 and 150, we are within the “not that many” loops territory, considering out of 6000+ HRUs, it is only around 2%. Therefore we will let BuildR continue and remove them. This has been discussed in Issue <a href="https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/55">#55</a>.</p>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="model-setup-swatbuildr.html#cb165-1" tabindex="-1"></a>frc_thres <span class="ot">&lt;-</span> <span class="fl">0.3</span> <span class="co"># 150 loops</span></span>
+<span id="cb165-2"><a href="model-setup-swatbuildr.html#cb165-2" tabindex="-1"></a><span class="fu">reduce_land_connections</span>(data_path, frc_thres) <span class="sc">%&gt;%</span> </span>
+<span id="cb165-3"><a href="model-setup-swatbuildr.html#cb165-3" tabindex="-1"></a>  <span class="fu">check_infinite_loops</span>(., data_path, <span class="st">&#39;Land&#39;</span>)</span></code></pre></div>
+</div>
+<div id="resolve-infinite-loops" class="section level4 hasAnchor" number="2.3.1.2">
+<h4><span class="header-section-number">2.3.1.2</span> Resolve infinite loops<a href="model-setup-swatbuildr.html#resolve-infinite-loops" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>If infinite loops were identified this routine tries to resolve the issues by selectively removing connections between land units in order to get rid of all infinite loops.</p>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="model-setup-swatbuildr.html#cb166-1" tabindex="-1"></a> <span class="fu">resolve_loop_issues</span>(data_path)</span></code></pre></div>
+</div>
+</div>
+<div id="calculating-channelreservoir-connectivity" class="section level3 hasAnchor" number="2.3.2">
+<h3><span class="header-section-number">2.3.2</span> Calculating channel/reservoir connectivity<a href="model-setup-swatbuildr.html#calculating-channelreservoir-connectivity" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="calculating-the-water-object-connectivity" class="section level4 hasAnchor" number="2.3.2.1">
+<h4><span class="header-section-number">2.3.2.1</span> Calculating the water object connectivity<a href="model-setup-swatbuildr.html#calculating-the-water-object-connectivity" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>the function returns the <code>cha</code> and <code>res</code> <code>con_out</code> tables in SWAT+ database format and writes them into <code>data_path/tables.sqlite</code></p>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="model-setup-swatbuildr.html#cb167-1" tabindex="-1"></a><span class="fu">build_water_object_connectivity</span>(data_path)</span></code></pre></div>
+</div>
+</div>
+<div id="checking-the-water-objects-for-infinite-loops" class="section level3 hasAnchor" number="2.3.3">
+<h3><span class="header-section-number">2.3.3</span> Checking the water objects for infinite loops<a href="model-setup-swatbuildr.html#checking-the-water-objects-for-infinite-loops" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>From the <code>cha_res_con_out</code> tables <code>id_from</code>/<code>id_to</code> links are generated and checked for infinite loop routing.</p>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="model-setup-swatbuildr.html#cb168-1" tabindex="-1"></a><span class="fu">prepare_water_links</span>(data_path) <span class="sc">%&gt;%</span> </span>
+<span id="cb168-2"><a href="model-setup-swatbuildr.html#cb168-2" tabindex="-1"></a>  <span class="fu">check_infinite_loops</span>(., data_path, <span class="st">&#39;Water&#39;</span>, <span class="cn">Inf</span>)</span></code></pre></div>
+</div>
+<div id="terrain-properties" class="section level3 hasAnchor" number="2.3.4">
+<h3><span class="header-section-number">2.3.4</span> Terrain properties<a href="model-setup-swatbuildr.html#terrain-properties" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Calculate terrain properties such as elevation, slope, catchment area, channel width/depth for channel and reservoir objects and write them into <code>data_path/tables.sqlite</code></p>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="model-setup-swatbuildr.html#cb169-1" tabindex="-1"></a><span class="fu">prepare_terrain_water</span>(data_path)</span></code></pre></div>
+</div>
+</div>
+<div id="generate-swat-input" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> Generate SWAT+ input<a href="model-setup-swatbuildr.html#generate-swat-input" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="generate-land-object-swat-input-tables" class="section level3 hasAnchor" number="2.4.1">
+<h3><span class="header-section-number">2.4.1</span> Generate land object SWAT+ input tables<a href="model-setup-swatbuildr.html#generate-land-object-swat-input-tables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Build the <code>landuse.lum</code> and a landuse/hru id table and write them into <code>data_path/tables.sqlite</code></p>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="model-setup-swatbuildr.html#cb170-1" tabindex="-1"></a><span class="fu">build_landuse</span>(data_path)</span></code></pre></div>
+<p>Build the HRU SWAT+ input files and write them into <code>data_path/tables.sqlite</code></p>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="model-setup-swatbuildr.html#cb171-1" tabindex="-1"></a><span class="fu">build_hru_input</span>(data_path)</span></code></pre></div>
+<p>Add wetlands to the HRUs and build the wetland input files and write them into <code>data_path/tables.sqlite</code></p>
+<p>We only use the <code>wetf</code> land use .</p>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="model-setup-swatbuildr.html#cb172-1" tabindex="-1"></a>wetland_landuse <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;wehb&#39;</span>, <span class="st">&#39;wetf&#39;</span>, <span class="st">&#39;wetl&#39;</span>, <span class="st">&#39;wetn&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="model-setup-swatbuildr.html#cb173-1" tabindex="-1"></a><span class="fu">add_wetlands</span>(data_path, wetland_landuse)</span></code></pre></div>
+</div>
+<div id="generate-water-object-swat-input-tables" class="section level3 hasAnchor" number="2.4.2">
+<h3><span class="header-section-number">2.4.2</span> Generate water object SWAT+ input tables<a href="model-setup-swatbuildr.html#generate-water-object-swat-input-tables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Build the SWAT+ <code>cha</code> input files and write them into <code>data_path/tables.sqlite</code></p>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="model-setup-swatbuildr.html#cb174-1" tabindex="-1"></a><span class="fu">build_cha_input</span>(data_path)</span></code></pre></div>
+<p>Build the SWAT+ res input files and write them into <code>data_path/tables.sqlite</code></p>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="model-setup-swatbuildr.html#cb175-1" tabindex="-1"></a><span class="fu">build_res_input</span>(data_path)</span></code></pre></div>
+<p>Build SWAT+ routing unit con_out based on ‘land_connect_fraction’.</p>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="model-setup-swatbuildr.html#cb176-1" tabindex="-1"></a><span class="fu">build_rout_con_out</span>(data_path)</span></code></pre></div>
+<p>Build the SWAT+ rout_unit input files and write them into <code>data_path/tables.sqlite</code></p>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="model-setup-swatbuildr.html#cb177-1" tabindex="-1"></a><span class="fu">build_rout_input</span>(data_path)</span></code></pre></div>
+<p>Build the SWAT+ LSU input files and write them into <code>data_path/tables.sqlite</code></p>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="model-setup-swatbuildr.html#cb178-1" tabindex="-1"></a><span class="fu">build_ls_unit_input</span>(data_path)</span></code></pre></div>
+</div>
+<div id="build-aquifer-input" class="section level3 hasAnchor" number="2.4.3">
+<h3><span class="header-section-number">2.4.3</span> Build aquifer input<a href="model-setup-swatbuildr.html#build-aquifer-input" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Build the SWAT+ aquifer input files for a single aquifer for the entire catchment. The connectivity to the channels with geomorphic flow must be added after writing the <code>txt</code> input files. <strong>This is not implemented in the script yet.</strong></p>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="model-setup-swatbuildr.html#cb179-1" tabindex="-1"></a><span class="fu">build_single_aquifer_files</span>(data_path)</span></code></pre></div>
+</div>
+<div id="add-point-source-inputs" class="section level3 hasAnchor" number="2.4.4">
+<h3><span class="header-section-number">2.4.4</span> Add point source inputs<a href="model-setup-swatbuildr.html#add-point-source-inputs" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Point sources have been prepared in Section REF</p>
+<p>The point source locations are provided with a point vector layer in the path ‘point_path’.</p>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="model-setup-swatbuildr.html#cb180-1" tabindex="-1"></a>point_path <span class="ot">&lt;-</span> <span class="st">&#39;model_data/input/pointsource/cs10-ps-data.shp&#39;</span></span></code></pre></div>
+<p>Maximum distance of a point source to a channel or a reservoir to be included as a point source object (recall) in the model setup:</p>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="model-setup-swatbuildr.html#cb181-1" tabindex="-1"></a>max_point_dist <span class="ot">&lt;-</span> <span class="dv">500</span> <span class="co"># meters</span></span></code></pre></div>
+<p>Adding the point sources with BuildR:</p>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="model-setup-swatbuildr.html#cb182-1" tabindex="-1"></a><span class="fu">add_point_sources</span>(point_path, data_path, max_point_dist)</span></code></pre></div>
+</div>
+<div id="create-swat-sqlite-database" class="section level3 hasAnchor" number="2.4.5">
+<h3><span class="header-section-number">2.4.5</span> Create SWAT+ sqlite database<a href="model-setup-swatbuildr.html#create-swat-sqlite-database" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="write-the-swateditor-project-database" class="section level4 hasAnchor" number="2.4.5.1">
+<h4><span class="header-section-number">2.4.5.1</span> Write the SWAT+Editor project database<a href="model-setup-swatbuildr.html#write-the-swateditor-project-database" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The database will be located the ‘project_path’.</p>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="model-setup-swatbuildr.html#cb183-1" tabindex="-1"></a>stat <span class="ot">&lt;-</span> <span class="fu">file.remove</span>(<span class="st">&quot;model_data/cs10_setup/optain-cs10/optain-cs10.sqlite&quot;</span>)</span>
+<span id="cb183-2"><a href="model-setup-swatbuildr.html#cb183-2" tabindex="-1"></a></span>
+<span id="cb183-3"><a href="model-setup-swatbuildr.html#cb183-3" tabindex="-1"></a><span class="cf">if</span>(stat <span class="sc">==</span> <span class="cn">FALSE</span>){<span class="fu">stop</span>(<span class="st">&quot;could not delete database&quot;</span>)}</span>
+<span id="cb183-4"><a href="model-setup-swatbuildr.html#cb183-4" tabindex="-1"></a></span>
+<span id="cb183-5"><a href="model-setup-swatbuildr.html#cb183-5" tabindex="-1"></a><span class="fu">create_swatplus_database</span>(project_path, project_name)</span></code></pre></div>
+
+</div>
+</div>
+</div>
+</div>
+<h3>References<a href="references-1.html#references-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-schürz2022" class="csl-entry">
+Schürz, Christoph, Natalja Čerkasova, Csilla Farkas, Attila Nemes, Plunge, Michael Strauch, Brigitta Szabó, and Mikołaj Piniewski. 2022. <span>“SWAT+ Modeling Protocol for the Assessment of Water and Nutrient Retention Measures in Small Agricultural Catchments,”</span> December. <a href="https://doi.org/10.5281/ZENODO.7463395">https://doi.org/10.5281/ZENODO.7463395</a>.
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="input-data-preparation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="weather-input.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://gitlab.nibio.no/moritzshore/swat-cs10/-/edit/main/02-buildR.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://gitlab.nibio.no/moritzshore/swat-cs10/blob/main/02-buildR.Rmd",
+"text": null
+},
+"download": ["_main.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
