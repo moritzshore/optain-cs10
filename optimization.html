@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Section 21 Optimization | The OPTAIN Project: Case study 10</title>
+  <title>Section 22 Optimization | The OPTAIN Project: Case study 10</title>
   <meta name="description" content="A documentation of the project setup for OPTAIN case study 10" />
-  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.41 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Section 21 Optimization | The OPTAIN Project: Case study 10" />
+  <meta property="og:title" content="Section 22 Optimization | The OPTAIN Project: Case study 10" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://moritzshore.github.io/optain-cs10/figures/banner.png" />
   <meta property="og:description" content="A documentation of the project setup for OPTAIN case study 10" />
   <meta name="github-repo" content="moritzshore/optain-cs10" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Section 21 Optimization | The OPTAIN Project: Case study 10" />
+  <meta name="twitter:title" content="Section 22 Optimization | The OPTAIN Project: Case study 10" />
   
   <meta name="twitter:description" content="A documentation of the project setup for OPTAIN case study 10" />
   <meta name="twitter:image" content="https://moritzshore.github.io/optain-cs10/figures/banner.png" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Moritz Shore, Csilla Farkas, Christoph Schürz" />
 
 
-<meta name="date" content="2024-11-15" />
+<meta name="date" content="2024-11-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="measure-classification.html"/>
-<link rel="next" href="overview-maps.html"/>
+<link rel="next" href="land-object-input-abandoned.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -54,26 +54,6 @@
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
 <script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
-<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-1.3.1/leaflet.js"></script>
-<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
-<script src="libs/proj4-2.6.2/proj4.min.js"></script>
-<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
-<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-binding-2.2.2/leaflet.js"></script>
-<script src="libs/leaflet-providers-2.0.0/leaflet-providers_2.0.0.js"></script>
-<script src="libs/leaflet-providers-plugin-2.2.2/leaflet-providers-plugin.js"></script>
-<script src="libs/tile1_rasterlayer_3b9458-1/data_stars_tile1_rasterlayerc9f824.txt"></script>
-<script src="libs/joda-0.0.1/joda.js"></script>
-<script src="libs/joda-0.0.1/addImageQuery-bindings.js"></script>
-<script src="libs/clipboard-0.0.1/setClipboardText.js"></script>
-<link href="libs/HomeButton-0.0.1/home-button.css" rel="stylesheet" />
-<script src="libs/HomeButton-0.0.1/home-button.js"></script>
-<script src="libs/HomeButton-0.0.1/easy-button-src.min.js"></script>
-<link href="libs/mapviewCSS-0.0.1/mapview-popup.css" rel="stylesheet" />
-<link href="libs/mapviewCSS-0.0.1/mapview.css" rel="stylesheet" />
-<script src="libs/tile2_rasterlayer_645a02-1/data_stars_tile2_rasterlayerdabe25.txt"></script>
-<script src="libs/dem_layer_76a1b0-1/data_stars_dem_layer63570a.txt"></script>
 <link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
 <script src="libs/datatables-binding-0.33/datatables.js"></script>
 <link href="libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet" />
@@ -81,40 +61,11 @@
 <script src="libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
 <link href="libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet" />
 <script src="libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
-<script src="libs/stream_crop_ce093f-1/data_stars_stream_cropcad623.txt"></script>
-<script src="libs/ws_c6902d-1/data_stars_ws1b74dc.txt"></script>
-<script src="libs/rglWebGL-binding-1.3.1/rglWebGL.js"></script>
-<link href="libs/rglwidgetClass-1.3.1/rgl.css" rel="stylesheet" />
-<script src="libs/rglwidgetClass-1.3.1/rglClass.src.js"></script>
-<script src="libs/rglwidgetClass-1.3.1/utils.src.js"></script>
-<script src="libs/rglwidgetClass-1.3.1/buffer.src.js"></script>
-<script src="libs/rglwidgetClass-1.3.1/subscenes.src.js"></script>
-<script src="libs/rglwidgetClass-1.3.1/shaders.src.js"></script>
-<script src="libs/rglwidgetClass-1.3.1/shadersrc.src.js"></script>
-<script src="libs/rglwidgetClass-1.3.1/textures.src.js"></script>
-<script src="libs/rglwidgetClass-1.3.1/projection.src.js"></script>
-<script src="libs/rglwidgetClass-1.3.1/mouse.src.js"></script>
-<script src="libs/rglwidgetClass-1.3.1/init.src.js"></script>
-<script src="libs/rglwidgetClass-1.3.1/pieces.src.js"></script>
-<script src="libs/rglwidgetClass-1.3.1/draw.src.js"></script>
-<script src="libs/rglwidgetClass-1.3.1/controls.src.js"></script>
-<script src="libs/rglwidgetClass-1.3.1/selection.src.js"></script>
-<script src="libs/rglwidgetClass-1.3.1/rglTimer.src.js"></script>
-<script src="libs/rglwidgetClass-1.3.1/pretty.src.js"></script>
-<script src="libs/rglwidgetClass-1.3.1/axes.src.js"></script>
-<script src="libs/rglwidgetClass-1.3.1/animation.src.js"></script>
-<script src="libs/CanvasMatrix4-1.3.1/CanvasMatrix.src.js"></script>
-<script src="libs/plotly-binding-4.10.4/plotly.js"></script>
-<script src="libs/typedarray-0.1/typedarray.min.js"></script>
-<link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
-<link href="libs/dt-ext-scroller-1.13.6/css/scroller.dataTables.min.css" rel="stylesheet" />
-<script src="libs/dt-ext-scroller-1.13.6/js/dataTables.scroller.min.js"></script>
 
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -124,7 +75,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -186,6 +137,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging div.csl-entry {
   margin-left:2em;
@@ -461,63 +413,94 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="13" data-path="soft-calibration.html"><a href="soft-calibration.html"><i class="fa fa-check"></i><b>13</b> Soft Calibration</a></li>
 <li class="chapter" data-level="14" data-path="hard-calibration.html"><a href="hard-calibration.html"><i class="fa fa-check"></i><b>14</b> Hard Calibration</a></li>
-<li class="chapter" data-level="15" data-path="climate-scenarios.html"><a href="climate-scenarios.html"><i class="fa fa-check"></i><b>15</b> Climate Scenarios</a>
+<li class="chapter" data-level="15" data-path="landuse-scenarios.html"><a href="landuse-scenarios.html"><i class="fa fa-check"></i><b>15</b> Landuse Scenarios</a>
 <ul>
-<li class="chapter" data-level="15.1" data-path="climate-scenarios.html"><a href="climate-scenarios.html#introduction-3"><i class="fa fa-check"></i><b>15.1</b> Introduction</a></li>
-<li class="chapter" data-level="15.2" data-path="climate-scenarios.html"><a href="climate-scenarios.html#setup"><i class="fa fa-check"></i><b>15.2</b> Setup</a>
+<li class="chapter" data-level="15.1" data-path="landuse-scenarios.html"><a href="landuse-scenarios.html#scenarios"><i class="fa fa-check"></i><b>15.1</b> Scenarios</a>
 <ul>
-<li class="chapter" data-level="15.2.1" data-path="climate-scenarios.html"><a href="climate-scenarios.html#re-calculating-management"><i class="fa fa-check"></i><b>15.2.1</b> Re-Calculating Management</a></li>
-</ul></li>
-<li class="chapter" data-level="15.3" data-path="climate-scenarios.html"><a href="climate-scenarios.html#executing-model"><i class="fa fa-check"></i><b>15.3</b> Executing model</a></li>
-<li class="chapter" data-level="15.4" data-path="climate-scenarios.html"><a href="climate-scenarios.html#processing-results"><i class="fa fa-check"></i><b>15.4</b> Processing Results</a></li>
-<li class="chapter" data-level="15.5" data-path="climate-scenarios.html"><a href="climate-scenarios.html#output-analysis"><i class="fa fa-check"></i><b>15.5</b> Output Analysis</a>
-<ul>
-<li class="chapter" data-level="15.5.1" data-path="climate-scenarios.html"><a href="climate-scenarios.html#saving-rds"><i class="fa fa-check"></i><b>15.5.1</b> Saving RDS</a></li>
+<li class="chapter" data-level="15.1.1" data-path="landuse-scenarios.html"><a href="landuse-scenarios.html#status-quo"><i class="fa fa-check"></i><b>15.1.1</b> Status Quo</a></li>
+<li class="chapter" data-level="15.1.2" data-path="landuse-scenarios.html"><a href="landuse-scenarios.html#no-autumn-tillage"><i class="fa fa-check"></i><b>15.1.2</b> No Autumn Tillage</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="16" data-path="landuse-scenarios.html"><a href="landuse-scenarios.html"><i class="fa fa-check"></i><b>16</b> Landuse Scenarios</a>
+<li class="chapter" data-level="16" data-path="update-of-the-swatfarmr-input-input-files.html"><a href="update-of-the-swatfarmr-input-input-files.html"><i class="fa fa-check"></i><b>16</b> Update of the SWATfarmR input input files</a>
 <ul>
-<li class="chapter" data-level="16.1" data-path="landuse-scenarios.html"><a href="landuse-scenarios.html#scenarios"><i class="fa fa-check"></i><b>16.1</b> Scenarios</a>
+<li class="chapter" data-level="16.1" data-path="update-of-the-swatfarmr-input-input-files.html"><a href="update-of-the-swatfarmr-input-input-files.html#setup"><i class="fa fa-check"></i><b>16.1</b> Setup</a></li>
+<li class="chapter" data-level="16.2" data-path="update-of-the-swatfarmr-input-input-files.html"><a href="update-of-the-swatfarmr-input-input-files.html#documenting-changes-in-the-txt-inputs-files-of-calibrated-model-setup"><i class="fa fa-check"></i><b>16.2</b> Documenting changes in the txt inputs files of calibrated model setup</a>
 <ul>
-<li class="chapter" data-level="16.1.1" data-path="landuse-scenarios.html"><a href="landuse-scenarios.html#status-quo"><i class="fa fa-check"></i><b>16.1.1</b> Status Quo</a></li>
-<li class="chapter" data-level="16.1.2" data-path="landuse-scenarios.html"><a href="landuse-scenarios.html#no-autumn-tillage"><i class="fa fa-check"></i><b>16.1.2</b> No Autumn Tillage</a></li>
+<li class="chapter" data-level="16.2.1" data-path="update-of-the-swatfarmr-input-input-files.html"><a href="update-of-the-swatfarmr-input-input-files.html#preparation-of-swatfarmr-management-input-files"><i class="fa fa-check"></i><b>16.2.1</b> Preparation of <code>SWATfarmR</code> management input files</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="17" data-path="measures-swatmeasr.html"><a href="measures-swatmeasr.html"><i class="fa fa-check"></i><b>17</b> Measures (SWATmeasR)</a></li>
-<li class="chapter" data-level="18" data-path="measure-implementation.html"><a href="measure-implementation.html"><i class="fa fa-check"></i><b>18</b> Measure Implementation</a></li>
-<li class="chapter" data-level="19" data-path="measure-scenarios.html"><a href="measure-scenarios.html"><i class="fa fa-check"></i><b>19</b> Measure Scenarios</a></li>
-<li class="chapter" data-level="20" data-path="measure-classification.html"><a href="measure-classification.html"><i class="fa fa-check"></i><b>20</b> Measure Classification</a>
+<li class="chapter" data-level="17" data-path="climate-scenarios.html"><a href="climate-scenarios.html"><i class="fa fa-check"></i><b>17</b> Climate Scenarios</a>
 <ul>
-<li class="chapter" data-level="20.1" data-path="measure-classification.html"><a href="measure-classification.html#introduction-4"><i class="fa fa-check"></i><b>20.1</b> Introduction</a></li>
-<li class="chapter" data-level="20.2" data-path="measure-classification.html"><a href="measure-classification.html#determining-classification"><i class="fa fa-check"></i><b>20.2</b> Determining Classification</a></li>
-<li class="chapter" data-level="20.3" data-path="measure-classification.html"><a href="measure-classification.html#applying-classification"><i class="fa fa-check"></i><b>20.3</b> Applying Classification</a>
+<li class="chapter" data-level="17.1" data-path="climate-scenarios.html"><a href="climate-scenarios.html#introduction-3"><i class="fa fa-check"></i><b>17.1</b> Introduction</a></li>
+<li class="chapter" data-level="17.2" data-path="climate-scenarios.html"><a href="climate-scenarios.html#setup-1"><i class="fa fa-check"></i><b>17.2</b> Setup</a>
 <ul>
-<li class="chapter" data-level="20.3.1" data-path="measure-classification.html"><a href="measure-classification.html#gullies-grassed-water-ways"><i class="fa fa-check"></i><b>20.3.1</b> Gullies (grassed water ways)</a></li>
-<li class="chapter" data-level="20.3.2" data-path="measure-classification.html"><a href="measure-classification.html#buffer-strips"><i class="fa fa-check"></i><b>20.3.2</b> Buffer Strips</a></li>
-<li class="chapter" data-level="20.3.3" data-path="measure-classification.html"><a href="measure-classification.html#ponds"><i class="fa fa-check"></i><b>20.3.3</b> Ponds</a></li>
-<li class="chapter" data-level="20.3.4" data-path="measure-classification.html"><a href="measure-classification.html#notill-management-measure"><i class="fa fa-check"></i><b>20.3.4</b> NoTill (management measure)</a></li>
+<li class="chapter" data-level="17.2.1" data-path="climate-scenarios.html"><a href="climate-scenarios.html#re-calculating-management"><i class="fa fa-check"></i><b>17.2.1</b> Re-Calculating Management</a></li>
 </ul></li>
-<li class="chapter" data-level="20.4" data-path="measure-classification.html"><a href="measure-classification.html#hru-scenario-table"><i class="fa fa-check"></i><b>20.4</b> HRU Scenario Table</a>
+<li class="chapter" data-level="17.3" data-path="climate-scenarios.html"><a href="climate-scenarios.html#executing-model"><i class="fa fa-check"></i><b>17.3</b> Executing model</a></li>
+<li class="chapter" data-level="17.4" data-path="climate-scenarios.html"><a href="climate-scenarios.html#processing-results"><i class="fa fa-check"></i><b>17.4</b> Processing Results</a></li>
+<li class="chapter" data-level="17.5" data-path="climate-scenarios.html"><a href="climate-scenarios.html#output-analysis"><i class="fa fa-check"></i><b>17.5</b> Output Analysis</a>
 <ul>
-<li class="chapter" data-level="20.4.1" data-path="measure-classification.html"><a href="measure-classification.html#merging-into-landuse-map"><i class="fa fa-check"></i><b>20.4.1</b> Merging into Landuse Map</a></li>
+<li class="chapter" data-level="17.5.1" data-path="climate-scenarios.html"><a href="climate-scenarios.html#saving-rds"><i class="fa fa-check"></i><b>17.5.1</b> Saving RDS</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="21" data-path="optimization.html"><a href="optimization.html"><i class="fa fa-check"></i><b>21</b> Optimization</a>
+<li class="chapter" data-level="18" data-path="measures-swatmeasr.html"><a href="measures-swatmeasr.html"><i class="fa fa-check"></i><b>18</b> Measures (SWATmeasR)</a></li>
+<li class="chapter" data-level="19" data-path="measure-implementation.html"><a href="measure-implementation.html"><i class="fa fa-check"></i><b>19</b> Measure Implementation</a></li>
+<li class="chapter" data-level="20" data-path="measure-scenarios.html"><a href="measure-scenarios.html"><i class="fa fa-check"></i><b>20</b> Measure Scenarios</a></li>
+<li class="chapter" data-level="21" data-path="measure-classification.html"><a href="measure-classification.html"><i class="fa fa-check"></i><b>21</b> Measure Classification</a>
 <ul>
-<li class="chapter" data-level="21.1" data-path="optimization.html"><a href="optimization.html#introduction-5"><i class="fa fa-check"></i><b>21.1</b> Introduction</a>
+<li class="chapter" data-level="21.1" data-path="measure-classification.html"><a href="measure-classification.html#introduction-4"><i class="fa fa-check"></i><b>21.1</b> Introduction</a></li>
+<li class="chapter" data-level="21.2" data-path="measure-classification.html"><a href="measure-classification.html#determining-classification"><i class="fa fa-check"></i><b>21.2</b> Determining Classification</a></li>
+<li class="chapter" data-level="21.3" data-path="measure-classification.html"><a href="measure-classification.html#applying-classification"><i class="fa fa-check"></i><b>21.3</b> Applying Classification</a>
 <ul>
-<li class="chapter" data-level="21.1.1" data-path="optimization.html"><a href="optimization.html#comola"><i class="fa fa-check"></i><b>21.1.1</b> CoMOLA</a></li>
-<li class="chapter" data-level="21.1.2" data-path="optimization.html"><a href="optimization.html#the-pareto-frontier"><i class="fa fa-check"></i><b>21.1.2</b> The Pareto Frontier</a></li>
-<li class="chapter" data-level="21.1.3" data-path="optimization.html"><a href="optimization.html#nsga-ii"><i class="fa fa-check"></i><b>21.1.3</b> NSGA-II</a></li>
-<li class="chapter" data-level="21.1.4" data-path="optimization.html"><a href="optimization.html#the-objective-space"><i class="fa fa-check"></i><b>21.1.4</b> The Objective Space</a></li>
-<li class="chapter" data-level="21.1.5" data-path="optimization.html"><a href="optimization.html#references"><i class="fa fa-check"></i><b>21.1.5</b> References</a></li>
+<li class="chapter" data-level="21.3.1" data-path="measure-classification.html"><a href="measure-classification.html#gullies-grassed-water-ways"><i class="fa fa-check"></i><b>21.3.1</b> Gullies (grassed water ways)</a></li>
+<li class="chapter" data-level="21.3.2" data-path="measure-classification.html"><a href="measure-classification.html#buffer-strips"><i class="fa fa-check"></i><b>21.3.2</b> Buffer Strips</a></li>
+<li class="chapter" data-level="21.3.3" data-path="measure-classification.html"><a href="measure-classification.html#ponds"><i class="fa fa-check"></i><b>21.3.3</b> Ponds</a></li>
+<li class="chapter" data-level="21.3.4" data-path="measure-classification.html"><a href="measure-classification.html#notill-management-measure"><i class="fa fa-check"></i><b>21.3.4</b> NoTill (management measure)</a></li>
+</ul></li>
+<li class="chapter" data-level="21.4" data-path="measure-classification.html"><a href="measure-classification.html#hru-scenario-table"><i class="fa fa-check"></i><b>21.4</b> HRU Scenario Table</a>
+<ul>
+<li class="chapter" data-level="21.4.1" data-path="measure-classification.html"><a href="measure-classification.html#merging-into-landuse-map"><i class="fa fa-check"></i><b>21.4.1</b> Merging into Landuse Map</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="22" data-path="overview-maps.html"><a href="overview-maps.html"><i class="fa fa-check"></i><b>22</b> Overview Maps</a></li>
+<li class="chapter" data-level="22" data-path="optimization.html"><a href="optimization.html"><i class="fa fa-check"></i><b>22</b> Optimization</a>
+<ul>
+<li class="chapter" data-level="22.1" data-path="optimization.html"><a href="optimization.html#introduction-5"><i class="fa fa-check"></i><b>22.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="22.1.1" data-path="optimization.html"><a href="optimization.html#comola"><i class="fa fa-check"></i><b>22.1.1</b> CoMOLA</a></li>
+<li class="chapter" data-level="22.1.2" data-path="optimization.html"><a href="optimization.html#the-pareto-frontier"><i class="fa fa-check"></i><b>22.1.2</b> The Pareto Frontier</a></li>
+<li class="chapter" data-level="22.1.3" data-path="optimization.html"><a href="optimization.html#nsga-ii"><i class="fa fa-check"></i><b>22.1.3</b> NSGA-II</a></li>
+<li class="chapter" data-level="22.1.4" data-path="optimization.html"><a href="optimization.html#the-objective-space"><i class="fa fa-check"></i><b>22.1.4</b> The Objective Space</a></li>
+</ul></li>
+<li class="chapter" data-level="22.2" data-path="optimization.html"><a href="optimization.html#measure-implementation-1"><i class="fa fa-check"></i><b>22.2</b> Measure Implementation</a>
+<ul>
+<li class="chapter" data-level="22.2.1" data-path="optimization.html"><a href="optimization.html#swatmeasr-project-setup"><i class="fa fa-check"></i><b>22.2.1</b> SWATmeasR project setup</a></li>
+</ul></li>
+<li class="chapter" data-level="22.3" data-path="optimization.html"><a href="optimization.html#economic-model-setup"><i class="fa fa-check"></i><b>22.3</b> Economic Model Setup</a></li>
+<li class="chapter" data-level="22.4" data-path="optimization.html"><a href="optimization.html#comola-setup"><i class="fa fa-check"></i><b>22.4</b> CoMOLA Setup</a>
+<ul>
+<li class="chapter" data-level="22.4.1" data-path="optimization.html"><a href="optimization.html#python-installation"><i class="fa fa-check"></i><b>22.4.1</b> Python Installation</a></li>
+<li class="chapter" data-level="22.4.2" data-path="optimization.html"><a href="optimization.html#comola-files"><i class="fa fa-check"></i><b>22.4.2</b> CoMOLA Files</a></li>
+</ul></li>
+<li class="chapter" data-level="22.5" data-path="optimization.html"><a href="optimization.html#running-comola"><i class="fa fa-check"></i><b>22.5</b> Running CoMOLA</a></li>
+<li class="chapter" data-level="22.6" data-path="optimization.html"><a href="optimization.html#results-visualization"><i class="fa fa-check"></i><b>22.6</b> Results Visualization</a>
+<ul>
+<li class="chapter" data-level="22.6.1" data-path="optimization.html"><a href="optimization.html#references"><i class="fa fa-check"></i><b>22.6.1</b> References</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="land-object-input-abandoned.html"><a href="land-object-input-abandoned.html"><i class="fa fa-check"></i><b>23</b> Land Object Input (abandoned)</a>
+<ul>
+<li class="chapter" data-level="23.0.1" data-path="land-object-input-abandoned.html"><a href="land-object-input-abandoned.html#data-sources-1"><i class="fa fa-check"></i><b>23.0.1</b> Data sources</a></li>
+<li class="chapter" data-level="23.0.2" data-path="land-object-input-abandoned.html"><a href="land-object-input-abandoned.html#delineation-of-land-objects-1"><i class="fa fa-check"></i><b>23.0.2</b> Delineation of land objects</a></li>
+<li class="chapter" data-level="23.0.3" data-path="land-object-input-abandoned.html"><a href="land-object-input-abandoned.html#standing-water-bodies-and-the-land-use-type-watr"><i class="fa fa-check"></i><b>23.0.3</b> Standing water bodies and the land use type = ‘watr’</a></li>
+<li class="chapter" data-level="23.0.4" data-path="land-object-input-abandoned.html"><a href="land-object-input-abandoned.html#tile-drainage-option-1"><i class="fa fa-check"></i><b>23.0.4</b> Tile drainage option</a></li>
+<li class="chapter" data-level="23.0.5" data-path="land-object-input-abandoned.html"><a href="land-object-input-abandoned.html#ar5"><i class="fa fa-check"></i><b>23.0.5</b> AR5</a></li>
+<li class="chapter" data-level="23.0.6" data-path="land-object-input-abandoned.html"><a href="land-object-input-abandoned.html#manual-simplification"><i class="fa fa-check"></i><b>23.0.6</b> Manual Simplification</a></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="overview-maps.html"><a href="overview-maps.html"><i class="fa fa-check"></i><b>24</b> Overview Maps</a></li>
 <li class="chapter" data-level="" data-path="annex.html"><a href="annex.html"><i class="fa fa-check"></i>Annex</a>
 <ul>
-<li class="chapter" data-level="22.1" data-path="annex.html"><a href="annex.html#packages"><i class="fa fa-check"></i><b>22.1</b> Packages</a></li>
-<li class="chapter" data-level="22.2" data-path="annex.html"><a href="annex.html#computer-specs"><i class="fa fa-check"></i><b>22.2</b> Computer Specs</a></li>
+<li class="chapter" data-level="24.1" data-path="annex.html"><a href="annex.html#packages"><i class="fa fa-check"></i><b>24.1</b> Packages</a></li>
+<li class="chapter" data-level="24.2" data-path="annex.html"><a href="annex.html#computer-specs"><i class="fa fa-check"></i><b>24.2</b> Computer Specs</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references-1.html"><a href="references-1.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -540,33 +523,37 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="optimization" class="section level1 hasAnchor" number="21">
-<h1><span class="header-section-number">Section 21</span> Optimization<a href="optimization.html#optimization" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>WP5 of the OPTAIN project is concerned with optimizising the implementation of NSWRMs in the landscape. to perform this optimization, “CoMOLA” will be used which uses NSGA2, a genetic optimization algorithm.</p>
-<div id="introduction-5" class="section level2 hasAnchor" number="21.1">
-<h2><span class="header-section-number">21.1</span> Introduction<a href="optimization.html#introduction-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="comola" class="section level3 hasAnchor" number="21.1.1">
-<h3><span class="header-section-number">21.1.1</span> CoMOLA<a href="optimization.html#comola" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="optimization" class="section level1 hasAnchor" number="22">
+<h1><span class="header-section-number">Section 22</span> Optimization<a href="optimization.html#optimization" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>WP5 of the OPTAIN project is concerned with optimizing the implementation of NSWRMs in the landscape. to perform this optimization, “CoMOLA” will be used which uses NSGA2, a genetic optimization algorithm. This setup follows the D5.1 protocol <span class="citation">Strauch and Schürz (<a href="#ref-strauch_2024_11473793">2024</a>)</span>.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="optimization.html#cb1-1" tabindex="-1"></a>RECALC_MANAGEMENT_SCEN <span class="ot">=</span> <span class="cn">FALSE</span></span>
+<span id="cb1-2"><a href="optimization.html#cb1-2" tabindex="-1"></a>RECALC_MEASR_SCEN <span class="ot">=</span> <span class="cn">TRUE</span></span>
+<span id="cb1-3"><a href="optimization.html#cb1-3" tabindex="-1"></a><span class="cf">if</span>(<span class="cn">TRUE</span>){<span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;Chapter last run:&quot;</span>, <span class="fu">Sys.Date</span>()))}</span></code></pre></div>
+<pre><code>## [1] &quot;Chapter last run: 2024-11-21&quot;</code></pre>
+<div id="introduction-5" class="section level2 hasAnchor" number="22.1">
+<h2><span class="header-section-number">22.1</span> Introduction<a href="optimization.html#introduction-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="comola" class="section level3 hasAnchor" number="22.1.1">
+<h3><span class="header-section-number">22.1.1</span> CoMOLA<a href="optimization.html#comola" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>CoMOLA (Strauch et al., 2019) is an optimization algorithm, and we are using a modified version of it. The base version can be found <a href="https://github.com/michstrauch/CoMOLA">here</a>, and the reference publication <a href="https://www.sciencedirect.com/science/article/pii/S1364815218311204?via%3Dihub">here</a>. The version we are using is hosted on <a href="https://git.ufz.de/optain/wp5-optimisation/comola">UFZ gitlab</a>, and our CS10 implementation of it will be hosted on the UFZ gitlab as well, under <a href="https://git.ufz.de/optain/wp5-optimisation/comola-cs-10">COMOLA-cs10</a>. Once it has been succesfully setup there and passed UFZ approval, it will be hosted and executed domestically on our GitLab.</p>
 </div>
-<div id="the-pareto-frontier" class="section level3 hasAnchor" number="21.1.2">
-<h3><span class="header-section-number">21.1.2</span> The Pareto Frontier<a href="optimization.html#the-pareto-frontier" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="the-pareto-frontier" class="section level3 hasAnchor" number="22.1.2">
+<h3><span class="header-section-number">22.1.2</span> The Pareto Frontier<a href="optimization.html#the-pareto-frontier" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <center>
-<img src="images/clipboard-2409556421.png" />
+<img src="figures/clipboard-2409556421.png" />
 </center>
 <p>The only catchment management solutions (CMS) we are interested are those that, when measured by our objective functions (OFs), lie on our “Pareto Frontier”. ie. they are <a href="https://en.wikipedia.org/wiki/Pareto_efficiency">pareto efficient</a>. This will give us a “tradeoff spectrum” that stake holderrs can use to make choices.</p>
 </div>
-<div id="nsga-ii" class="section level3 hasAnchor" number="21.1.3">
-<h3><span class="header-section-number">21.1.3</span> NSGA-II<a href="optimization.html#nsga-ii" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="nsga-ii" class="section level3 hasAnchor" number="22.1.3">
+<h3><span class="header-section-number">22.1.3</span> NSGA-II<a href="optimization.html#nsga-ii" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>CoMOLA uses NSGAII (Non-dominated Sorting Genetic Algorithm – Deb et al., 2002) as an optimization algorithm. It is very widely used, however slightly outdated. The main thing that makes this algorithm outdated is that it can only handle 4 objective functions. However this is not really an issue for us as we only really need four, and if we need more than four, we can create an integrated indicator that sums up multiple values (the drawback of this is that the weighting needs to be figured out).</p>
 <p>NSGAII is based on non-dominated sorting and crowding distance.</p>
 <center>
-<p><img src="images/clipboard-3493444178.png" /></p>
+<p><img src="figures/clipboard-3493444178.png" /></p>
 <p><img src="images/clipboard-2703941573.png" /></p>
 </center>
 </div>
-<div id="the-objective-space" class="section level3 hasAnchor" number="21.1.4">
-<h3><span class="header-section-number">21.1.4</span> The Objective Space<a href="optimization.html#the-objective-space" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="the-objective-space" class="section level3 hasAnchor" number="22.1.4">
+<h3><span class="header-section-number">22.1.4</span> The Objective Space<a href="optimization.html#the-objective-space" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>To define the pareto frontier, we need to decide on our objectives. These are extremely important as they detetermine the results of the optimization, which will take <em>weeks</em> to run. We want to optimize for:</p>
 <ol style="list-style-type: decimal">
 <li>Water Retention (Maximize)</li>
@@ -576,12 +563,544 @@ div.csl-indent {
 </ol>
 <p>The numerical implementation of these objectives will be done by each case study. It is therefore our task to decide on these. This is being tracked in issue <a href="https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/109">#109</a>.</p>
 </div>
-<div id="references" class="section level3 unumbered hasAnchor" number="21.1.5">
-<h3><span class="header-section-number">21.1.5</span> References<a href="optimization.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="measure-implementation-1" class="section level2 unumbered hasAnchor" number="22.2">
+<h2><span class="header-section-number">22.2</span> Measure Implementation<a href="optimization.html#measure-implementation-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In the previous chapter, our measures were classified, resulting in the creation of the <code>measure_location.csv</code> file. It is now time to read this data into <code>SWATmeasR</code> and to prepare our SWAT setup for optimization.</p>
+<p><a href="https://www.optain.eu/sites/default/files/delivrables/OPTAIN%20D5.1%20-%20Common%20optimisation%20protocol.pdf#page=15.62"><img src="figures/measure_workflow.png" alt="Figure 3.1 from Deliverable 5.1" /></a></p>
+<div id="swatmeasr-project-setup" class="section level3 hasAnchor" number="22.2.1">
+<h3><span class="header-section-number">22.2.1</span> SWATmeasR project setup<a href="optimization.html#swatmeasr-project-setup" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="libraries" class="section level4 hasAnchor" number="22.2.1.1">
+<h4><span class="header-section-number">22.2.1.1</span> Libraries<a href="optimization.html#libraries" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="optimization.html#cb3-1" tabindex="-1"></a><span class="co"># remotes::install_github(&quot;chrisschuerz/SWATfarmR&quot;)</span></span>
+<span id="cb3-2"><a href="optimization.html#cb3-2" tabindex="-1"></a><span class="co"># remotes::install_git(&#39;https://git.ufz.de/schuerz/SWATmeasR&#39;)</span></span>
+<span id="cb3-3"><a href="optimization.html#cb3-3" tabindex="-1"></a><span class="fu">require</span>(SWATmeasR)</span>
+<span id="cb3-4"><a href="optimization.html#cb3-4" tabindex="-1"></a><span class="fu">require</span>(SWATfarmR)</span>
+<span id="cb3-5"><a href="optimization.html#cb3-5" tabindex="-1"></a><span class="fu">require</span>(sf)</span>
+<span id="cb3-6"><a href="optimization.html#cb3-6" tabindex="-1"></a><span class="fu">require</span>(dplyr)</span>
+<span id="cb3-7"><a href="optimization.html#cb3-7" tabindex="-1"></a><span class="fu">require</span>(stringr)</span>
+<span id="cb3-8"><a href="optimization.html#cb3-8" tabindex="-1"></a><span class="fu">require</span>(DT)</span>
+<span id="cb3-9"><a href="optimization.html#cb3-9" tabindex="-1"></a><span class="fu">require</span>(readr)</span></code></pre></div>
+<p>We will create a new directory in our SWAT setups folder to contain the optimization setups. For now, I will just paste in the calibrated setup, in the future hopefully we will be able to copy from the documented calibration sections. For now this is <code>txt_best_cal</code>.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="optimization.html#cb4-1" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">&quot;model_data/cs10_setup/optimization&quot;</span>, <span class="at">showWarnings =</span> F)</span>
+<span id="cb4-2"><a href="optimization.html#cb4-2" tabindex="-1"></a>txt_path <span class="ot">=</span> <span class="st">&quot;model_data/cs10_setup/optimization/txt/&quot;</span></span></code></pre></div>
+<p>Restting and deleting the measure project (this CS10_MSR_v8.measr is from the measure scenarios) (is this necessary?)</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="optimization.html#cb5-1" tabindex="-1"></a><span class="co"># load_measr(paste0(txt_path, &quot;CS10_MSR_v8.measr&quot;))</span></span>
+<span id="cb5-2"><a href="optimization.html#cb5-2" tabindex="-1"></a><span class="co"># CS10_MSR_v8$reset()</span></span>
+<span id="cb5-3"><a href="optimization.html#cb5-3" tabindex="-1"></a><span class="co"># rm(CS10_MSR_v8)</span></span>
+<span id="cb5-4"><a href="optimization.html#cb5-4" tabindex="-1"></a><span class="co"># file.remove(list.files(txt_path, pattern = &quot;*.measr&quot;, full.names = T))</span></span></code></pre></div>
+</div>
+<div id="prepare-management-inputs" class="section level4 hasAnchor" number="22.2.1.2">
+<h4><span class="header-section-number">22.2.1.2</span> Prepare management inputs<a href="optimization.html#prepare-management-inputs" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>“The definition of management related NSWRMs requires to prepare a R data object which provides all scenarios in a list structure. To prepare the data all SWATfarmR projects which provide the management for management related NSWRMs must be available in the SWAT+ project folder. Be careful with other SWATfarmR projects which are not the status quo case or one of the scenarios. If these are included and do not fit the status quo this can trigger an error. But you can also specifically define the scenario farmR projects (as done below).”</p>
+<p>TODO: we need to get the newest farmR. See issue <a href="https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/116">#116</a></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="optimization.html#cb6-1" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co"> make sure the farmR is updated</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="optimization.html#cb7-1" tabindex="-1"></a><span class="co"># The name of the status quo farmR project must be defined.</span></span>
+<span id="cb7-2"><a href="optimization.html#cb7-2" tabindex="-1"></a>stat_quo_farmR <span class="ot">&lt;-</span> <span class="st">&#39;status_quo&#39;</span></span></code></pre></div>
+<p>“You can also specifically define the scenario farmR projects. If not all farmR projects in the project folder will be considered. The scenario farmR projects in the SWAT+ project folder must have the same name as the scenario is then called in the NSWRMs. Be careful to rename the .farm AND the .mgts objects in the project folder.”</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="optimization.html#cb8-1" tabindex="-1"></a>scenario_farmR <span class="ot">&lt;-</span> <span class="st">&#39;notill&#39;</span></span></code></pre></div>
+<p>“The management preparation routine adjusts the dates of operations in the scenarios which are the same as in the status quo but were assigned different dates due to the random sampling in SWATfarmR. But only operations which are newly introduced in the scenarios should have different dates.</p>
+<p>If operations in the status quo and the scenarios should be treated as the same (so they are the same operation type), but they have different op_data1 you can define synonyms, so that e.g. tillage operations with different tillage types are still treated as the same operation and the dates will be corrected in the scenario.”</p>
+<blockquote>
+<p>should add more detail on what this does</p>
+</blockquote>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="optimization.html#cb9-1" tabindex="-1"></a> syns <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">tibble</span>(<span class="at">status_quo =</span> <span class="fu">c</span>(<span class="st">&#39;fldcult&#39;</span>, <span class="st">&#39;harrow&#39;</span>, <span class="st">&#39;rowcult&#39;</span>, <span class="st">&#39;fallplow&#39;</span>),</span>
+<span id="cb9-2"><a href="optimization.html#cb9-2" tabindex="-1"></a>                      <span class="at">scenario   =</span> <span class="fu">c</span>(<span class="st">&#39;notill&#39;</span>, <span class="st">&#39;notill&#39;</span>, <span class="st">&#39;notill&#39;</span>, <span class="st">&#39;notill&#39;</span>))</span></code></pre></div>
+<p>“If start and end year are not already adjusted in the project folder you can do that now for the status quo and all scenarios to ensure that all managements cover the same time period.”</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="optimization.html#cb10-1" tabindex="-1"></a>start_year <span class="ot">&lt;-</span> <span class="dv">2013</span> <span class="co"># Optional, set value if needed</span></span>
+<span id="cb10-2"><a href="optimization.html#cb10-2" tabindex="-1"></a>end_year <span class="ot">&lt;-</span> <span class="dv">2020</span> <span class="co"># Optional, set value if needed</span></span></code></pre></div>
+<p>“The following function might give an error if you have more than one land use class without management schedules</p>
+<ul>
+<li><p>solution 1: define mgt operations for those classes and run farmr again</p></li>
+<li><p>solution 2: re-install the farmr using <code>remotes::install_github("chrisschuerz/SWATfarmR/tree/dev_ms")</code>and run <code>farmr</code> again”</p></li>
+</ul>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="optimization.html#cb11-1" tabindex="-1"></a>mgt_scen_write_path <span class="ot">=</span> <span class="st">&quot;model_data/input/measure/management_scenario_inputs&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="optimization.html#cb12-1" tabindex="-1"></a><span class="fu">prepare_management_scenario_inputs</span>(</span>
+<span id="cb12-2"><a href="optimization.html#cb12-2" tabindex="-1"></a>  <span class="at">project_path =</span> txt_path,</span>
+<span id="cb12-3"><a href="optimization.html#cb12-3" tabindex="-1"></a>  <span class="at">status_quo   =</span> stat_quo_farmR,</span>
+<span id="cb12-4"><a href="optimization.html#cb12-4" tabindex="-1"></a>  <span class="at">scenarios    =</span> scenario_farmR,</span>
+<span id="cb12-5"><a href="optimization.html#cb12-5" tabindex="-1"></a>  <span class="at">synonyms =</span> syns,</span>
+<span id="cb12-6"><a href="optimization.html#cb12-6" tabindex="-1"></a>  <span class="at">start_year =</span> start_year,</span>
+<span id="cb12-7"><a href="optimization.html#cb12-7" tabindex="-1"></a>  <span class="at">end_year =</span> end_year,</span>
+<span id="cb12-8"><a href="optimization.html#cb12-8" tabindex="-1"></a>  <span class="at">write_path =</span> mgt_scen_write_path,</span>
+<span id="cb12-9"><a href="optimization.html#cb12-9" tabindex="-1"></a>  <span class="at">write_csv_mgts =</span> <span class="cn">TRUE</span></span>
+<span id="cb12-10"><a href="optimization.html#cb12-10" tabindex="-1"></a>)</span></code></pre></div>
+<p>The prepared management files are always saved with a time stamp in the file name. This routine identifies the most recent one which is then used as input in the NSWRM definition. Define the file name manually if another file should be used.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="optimization.html#cb13-1" tabindex="-1"></a>mgt_def_files <span class="ot">&lt;-</span> <span class="fu">list.files</span>(mgt_scen_write_path, <span class="at">pattern =</span> <span class="st">&#39;.rds&#39;</span>)</span>
+<span id="cb13-2"><a href="optimization.html#cb13-2" tabindex="-1"></a>time_stamps <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">gsub</span>(<span class="st">&#39;_&#39;</span>, <span class="st">&#39;&#39;</span>, <span class="fu">substr</span>(mgt_def_files, <span class="dv">1</span>, <span class="dv">13</span>)))</span>
+<span id="cb13-3"><a href="optimization.html#cb13-3" tabindex="-1"></a>last_mgt <span class="ot">&lt;-</span> <span class="fu">which.max</span>(time_stamps)</span>
+<span id="cb13-4"><a href="optimization.html#cb13-4" tabindex="-1"></a>mgt_path  <span class="ot">&lt;-</span> <span class="fu">paste0</span>(mgt_scen_write_path, <span class="st">&#39;/&#39;</span>, mgt_def_files[last_mgt])</span>
+<span id="cb13-5"><a href="optimization.html#cb13-5" tabindex="-1"></a>mgt_path</span></code></pre></div>
+<pre><code>## [1] &quot;model_data/input/measure/management_scenario_inputs/20241121_1424_mgt_scenarios.rds&quot;</code></pre>
+</div>
+<div id="creating-a-new-measr-project" class="section level4 hasAnchor" number="22.2.1.3">
+<h4><span class="header-section-number">22.2.1.3</span> Creating a new measR project<a href="optimization.html#creating-a-new-measr-project" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="optimization.html#cb15-1" tabindex="-1"></a><span class="fu">file.remove</span>(<span class="fu">list.files</span>(<span class="at">path =</span> <span class="st">&quot;model_data/cs10_setup/optimization/txt&quot;</span>, <span class="at">pattern =</span> <span class="st">&quot;.measr&quot;</span>, <span class="at">full.names =</span> T))</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="optimization.html#cb17-1" tabindex="-1"></a><span class="fu">new_measr</span>(<span class="st">&quot;cs10_comola&quot;</span>, <span class="at">project_path =</span> txt_path)</span></code></pre></div>
+<pre><code>## Input files read from the SWAT+ project located in
+##  model_data/cs10_setup/optimization/txt/ 
+## SWATmeasR object saved as &#39;cs10_comola.measr&#39; in this path.</code></pre>
+</div>
+<div id="load-measure-definitions" class="section level4 hasAnchor" number="22.2.1.4">
+<h4><span class="header-section-number">22.2.1.4</span> Load measure definitions<a href="optimization.html#load-measure-definitions" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>“The required input file, which provides all necessary parametric inputs, is provided with the input argument <code>file_path</code>. To indicate which type of NSWRM is defined the correct <code>type</code> must be passed with the argument type. The optional argument <code>overwrite</code> gives the option to overwrite already existing NSWRM definitions <strong>of the same type</strong>. By default <code>overwrite = FALSE</code>. Therefore, if for example a definition of land use type NSWRMs already exists, but a new one should be loaded, overwrite has to be set to overwrite = TRUE. The five possible NSWRM types require different definition input files, which will be explained in the following.”</p>
+<div id="land-use-definitions" class="section level5 hasAnchor" number="22.2.1.4.1">
+<h5><span class="header-section-number">22.2.1.4.1</span> Land use definitions<a href="optimization.html#land-use-definitions" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p>The following are our land use definitions.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="optimization.html#cb19-1" tabindex="-1"></a>luse_path <span class="ot">&lt;-</span> <span class="st">&quot;model_data/input/measure/parameterisation/measure_landuse_CS10.csv&quot;</span></span>
+<span id="cb19-2"><a href="optimization.html#cb19-2" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(luse_path, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> <span class="fu">datatable</span>()</span></code></pre></div>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-6b5bd4643e2fd932ddf0" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-6b5bd4643e2fd932ddf0">{"x":{"filter":"none","vertical":false,"data":[["1","2"],["buffer","grassslope"],["rngb_com","past_com"],["_012f_6_rn_2_mgt","_012f_6_rn_2_mgt"],["pasth","pasth"],["rngb_cons","past_cons"],["densegrass","densegrass"],[null,null],[null,null]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>nswrm<\/th>\n      <th>plnt_com<\/th>\n      <th>mgt<\/th>\n      <th>cn2<\/th>\n      <th>cons_prac<\/th>\n      <th>ov_mann<\/th>\n      <th>tile<\/th>\n      <th>lum_dtl<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"nswrm","targets":1},{"name":"plnt_com","targets":2},{"name":"mgt","targets":3},{"name":"cn2","targets":4},{"name":"cons_prac","targets":5},{"name":"ov_mann","targets":6},{"name":"tile","targets":7},{"name":"lum_dtl","targets":8}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<p>The strange thing you might notice about the management is that it is using the schedules of a seemingly random agricultural field in the model setup. However, this is nor a random schedule, it is one picked out specifically because it only has grass stuff scheduled.</p>
+<p>Lessons Learned: It would probably be better to define a specific management for our measures.</p>
+<p>Lets add it to the measure Project:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="optimization.html#cb20-1" tabindex="-1"></a>cs10_comola<span class="sc">$</span><span class="fu">load_nswrm_definition</span>(<span class="at">file_path =</span> luse_path,</span>
+<span id="cb20-2"><a href="optimization.html#cb20-2" tabindex="-1"></a>                                  <span class="at">type =</span> <span class="st">&#39;land_use&#39;</span>,</span>
+<span id="cb20-3"><a href="optimization.html#cb20-3" tabindex="-1"></a>                                  <span class="at">overwrite =</span> T)</span></code></pre></div>
+</div>
+<div id="wetland-definitions" class="section level5 hasAnchor" number="22.2.1.4.2">
+<h5><span class="header-section-number">22.2.1.4.2</span> Wetland Definitions<a href="optimization.html#wetland-definitions" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p>Our wetlands are technically Retention Ponds, however in the model it makes the most sense to call them “wetlands”. The provided definition file is here:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="optimization.html#cb21-1" tabindex="-1"></a>wetl_path <span class="ot">&lt;-</span><span class="st">&#39;model_data/input/measure/parameterisation/measure_wetland_CS10.csv&#39;</span></span>
+<span id="cb21-2"><a href="optimization.html#cb21-2" tabindex="-1"></a><span class="fu">read_csv</span>(wetl_path, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> <span class="fu">datatable</span>()</span></code></pre></div>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-ea1e0bad7dc22abc1ac9" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-ea1e0bad7dc22abc1ac9">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30"],[5611,5612,5613,5614,5615,5616,5617,5641,5642,5643,5644,5645,5646,5647,5648,5657,5658,5659,5660,5708,350,351,352,353,1838,1839,1935,1936,1937,1938],["wetf_lum","wetf_lum","wetf_lum","wetf_lum","wetf_lum","wetf_lum","wetf_lum","wetf_lum","wetf_lum","wetf_lum","wetf_lum","wetf_lum","wetf_lum","wetf_lum","wetf_lum","wetf_lum","wetf_lum","wetf_lum","wetf_lum","wetf_lum","wetf_lum","wetf_lum","wetf_lum","wetf_lum","wetf_lum","wetf_lum","wetf_lum","wetf_lum","wetf_lum","wetf_lum"],[376,376,376,376,376,376,376,376,376,376,376,376,376,376,376,376,376,376,376,376,null,null,null,null,74,74,74,74,74,74],[0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5],[500,500,500,500,500,500,500,500,500,500,500,500,500,500,500,500,500,500,500,500,500,500,500,500,500,500,500,500,500,500],[0.95,0.95,0.95,0.95,0.95,0.95,0.95,0.95,0.95,0.95,0.95,0.95,0.95,0.95,0.95,0.95,0.95,0.95,0.95,0.95,0.95,0.95,0.95,0.95,0.95,0.95,0.95,0.95,0.95,0.95],[650,650,650,650,650,650,650,650,650,650,650,650,650,650,650,650,650,650,650,650,650,650,650,650,650,650,650,650,650,650],[5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5],[0.09,0.09,0.09,0.09,0.09,0.09,0.09,0.09,0.09,0.09,0.09,0.09,0.09,0.09,0.09,0.09,0.09,0.09,0.09,0.09,0.09,0.09,0.09,0.09,0.09,0.09,0.09,0.09,0.09,0.09],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],[0.96,0.96,0.96,0.96,0.96,0.96,0.96,0.96,0.96,0.96,0.96,0.96,0.96,0.96,0.96,0.96,0.96,0.96,0.96,0.96,0.96,0.96,0.96,0.96,0.96,0.96,0.96,0.96,0.96,0.96],["wetland","wetland","wetland","wetland","wetland","wetland","wetland","wetland","wetland","wetland","wetland","wetland","wetland","wetland","wetland","wetland","wetland","wetland","wetland","wetland","wetland","wetland","wetland","wetland","wetland","wetland","wetland","wetland","wetland","wetland"],["sedwet1","sedwet1","sedwet1","sedwet1","sedwet1","sedwet1","sedwet1","sedwet1","sedwet1","sedwet1","sedwet1","sedwet1","sedwet1","sedwet1","sedwet1","sedwet1","sedwet1","sedwet1","sedwet1","sedwet1","sedwet1","sedwet1","sedwet1","sedwet1","sedwet1","sedwet1","sedwet1","sedwet1","sedwet1","sedwet1"],["nutwet1","nutwet1","nutwet1","nutwet1","nutwet1","nutwet1","nutwet1","nutwet1","nutwet1","nutwet1","nutwet1","nutwet1","nutwet1","nutwet1","nutwet1","nutwet1","nutwet1","nutwet1","nutwet1","nutwet1","nutwet1","nutwet1","nutwet1","nutwet1","nutwet1","nutwet1","nutwet1","nutwet1","nutwet1","nutwet1"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>hru_id<\/th>\n      <th>lu_mgt<\/th>\n      <th>cha_to_id<\/th>\n      <th>hru_ps<\/th>\n      <th>dp_ps<\/th>\n      <th>hru_es<\/th>\n      <th>dp_es<\/th>\n      <th>k<\/th>\n      <th>evap<\/th>\n      <th>vol_area_co<\/th>\n      <th>vol_dp_a<\/th>\n      <th>vol_dp_b<\/th>\n      <th>hru_frac<\/th>\n      <th>rel<\/th>\n      <th>sed<\/th>\n      <th>nut<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[1,3,4,5,6,7,8,9,13]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"hru_id","targets":1},{"name":"lu_mgt","targets":2},{"name":"cha_to_id","targets":3},{"name":"hru_ps","targets":4},{"name":"dp_ps","targets":5},{"name":"hru_es","targets":6},{"name":"dp_es","targets":7},{"name":"k","targets":8},{"name":"evap","targets":9},{"name":"vol_area_co","targets":10},{"name":"vol_dp_a","targets":11},{"name":"vol_dp_b","targets":12},{"name":"hru_frac","targets":13},{"name":"rel","targets":14},{"name":"sed","targets":15},{"name":"nut","targets":16}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<p>These are mostly the default parameters and could be improved. See issue <a href="https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/117">#117</a></p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="optimization.html#cb22-1" tabindex="-1"></a>cs10_comola<span class="sc">$</span><span class="fu">load_nswrm_definition</span>(wetl_path, <span class="st">&#39;wetland&#39;</span>, <span class="at">overwrite =</span> T)</span></code></pre></div>
+</div>
+<div id="management-definitions" class="section level5 hasAnchor" number="22.2.1.4.3">
+<h5><span class="header-section-number">22.2.1.4.3</span> Management Definitions<a href="optimization.html#management-definitions" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="optimization.html#cb23-1" tabindex="-1"></a>cs10_comola<span class="sc">$</span><span class="fu">load_nswrm_definition</span>(mgt_path,  <span class="st">&#39;management&#39;</span>, <span class="at">overwrite =</span> T)</span></code></pre></div>
+</div>
+<div id="constructed-wetlands-and-floodplains" class="section level5 hasAnchor" number="22.2.1.4.4">
+<h5><span class="header-section-number">22.2.1.4.4</span> Constructed Wetlands and Floodplains<a href="optimization.html#constructed-wetlands-and-floodplains" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p>Also present in our potential measure map, these measures were not implemented.</p>
+</div>
+</div>
+<div id="load-measure-locations" class="section level4 hasAnchor" number="22.2.1.5">
+<h4><span class="header-section-number">22.2.1.5</span> Load Measure Locations<a href="optimization.html#load-measure-locations" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>This file was created in the previous section <a href="measure-classification.html#measure-classification">21</a>.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="optimization.html#cb24-1" tabindex="-1"></a>loca_path <span class="ot">&lt;-</span> <span class="st">&quot;model_data/input/measure/parameterisation/measure_location_CS10.csv&quot;</span></span>
+<span id="cb24-2"><a href="optimization.html#cb24-2" tabindex="-1"></a>cs10_comola<span class="sc">$</span><span class="fu">load_nswrm_location</span>(loca_path, <span class="at">overwrite =</span> T)</span></code></pre></div>
+</div>
+<div id="saving-results" class="section level4 hasAnchor" number="22.2.1.6">
+<h4><span class="header-section-number">22.2.1.6</span> Saving Results<a href="optimization.html#saving-results" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="optimization.html#cb25-1" tabindex="-1"></a>cs10_comola<span class="sc">$</span><span class="fu">save</span>()</span>
+<span id="cb25-2"><a href="optimization.html#cb25-2" tabindex="-1"></a><span class="fu">rm</span>(cs10_comola)</span></code></pre></div>
+</div>
+<div id="testing-scenarios" class="section level4 hasAnchor" number="22.2.1.7">
+<h4><span class="header-section-number">22.2.1.7</span> Testing Scenarios<a href="optimization.html#testing-scenarios" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Micha Code:</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="optimization.html#cb26-1" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&#39;model_data/input/measure/calc_Indis.R&#39;</span>)</span>
+<span id="cb26-2"><a href="optimization.html#cb26-2" tabindex="-1"></a><span class="fu">foo1</span>(<span class="fu">c</span>(<span class="st">&#39;dplyr&#39;</span> , <span class="st">&#39;readr&#39;</span> , <span class="st">&#39;tidyverse&#39;</span>, <span class="st">&#39;data.table&#39;</span>, <span class="st">&#39;remotes&#39;</span>, <span class="st">&#39;devtools&#39;</span>,</span>
+<span id="cb26-3"><a href="optimization.html#cb26-3" tabindex="-1"></a>       <span class="st">&#39;xts&#39;</span>, <span class="st">&#39;dygraphs&#39;</span>, <span class="st">&#39;R.utils&#39;</span>, <span class="st">&#39;foreach&#39;</span>, <span class="st">&#39;doParallel&#39;</span>, <span class="st">&#39;data.table&#39;</span>,</span>
+<span id="cb26-4"><a href="optimization.html#cb26-4" tabindex="-1"></a>       <span class="st">&#39;ggplot2&#39;</span>, <span class="st">&#39;fmsb&#39;</span>, <span class="st">&#39;patchwork&#39;</span>))</span>
+<span id="cb26-5"><a href="optimization.html#cb26-5" tabindex="-1"></a><span class="fu">foo2</span>(<span class="st">&#39;SWATmeasR&#39;</span>)</span>
+<span id="cb26-6"><a href="optimization.html#cb26-6" tabindex="-1"></a><span class="fu">foo3</span>(<span class="st">&#39;hydroGOF&#39;</span>)</span></code></pre></div>
+<p>Define paths and settings:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="optimization.html#cb27-1" tabindex="-1"></a>measr_name <span class="ot">&lt;-</span> <span class="st">&#39;cs10_comola&#39;</span> </span>
+<span id="cb27-2"><a href="optimization.html#cb27-2" tabindex="-1"></a>scen_out <span class="ot">&lt;-</span> <span class="st">&#39;scenario_outputs&#39;</span></span>
+<span id="cb27-3"><a href="optimization.html#cb27-3" tabindex="-1"></a>cha_id <span class="ot">&lt;-</span> <span class="dv">37</span> </span>
+<span id="cb27-4"><a href="optimization.html#cb27-4" tabindex="-1"></a>wd <span class="ot">&lt;-</span> <span class="st">&quot;model_data/cs10_setup/optimization&quot;</span></span></code></pre></div>
+<p>Grabbing measures:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="optimization.html#cb28-1" tabindex="-1"></a>project_path <span class="ot">&lt;-</span> <span class="fu">paste0</span>(wd,<span class="st">&#39;/txt&#39;</span>)</span>
+<span id="cb28-2"><a href="optimization.html#cb28-2" tabindex="-1"></a>cal_files <span class="ot">&lt;-</span> <span class="fu">dir</span>(<span class="fu">paste0</span>(wd,<span class="st">&#39;/cal_files&#39;</span>), <span class="at">full.names =</span> T)</span>
+<span id="cb28-3"><a href="optimization.html#cb28-3" tabindex="-1"></a><span class="fu">load_measr</span>(<span class="fu">paste0</span>(project_path, <span class="st">&#39;/&#39;</span>, measr_name,<span class="st">&#39;.measr&#39;</span>))</span>
+<span id="cb28-4"><a href="optimization.html#cb28-4" tabindex="-1"></a><span class="fu">assign</span>(<span class="st">&#39;measr&#39;</span>, <span class="fu">get</span>(<span class="fu">gsub</span>(<span class="st">&#39;.measr&#39;</span>, <span class="st">&#39;&#39;</span>, measr_name)))</span>
+<span id="cb28-5"><a href="optimization.html#cb28-5" tabindex="-1"></a>loca <span class="ot">&lt;-</span> measr<span class="sc">$</span>.data<span class="sc">$</span>nswrm_definition<span class="sc">$</span>nswrm_locations</span>
+<span id="cb28-6"><a href="optimization.html#cb28-6" tabindex="-1"></a>measr.list <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;statusquo&#39;</span>,<span class="fu">unique</span>(loca<span class="sc">$</span>nswrm),<span class="st">&#39;all&#39;</span>)</span>
+<span id="cb28-7"><a href="optimization.html#cb28-7" tabindex="-1"></a>measr.list</span></code></pre></div>
+<pre><code>## [1] &quot;statusquo&quot;  &quot;buffer&quot;     &quot;grassslope&quot; &quot;notill&quot;     &quot;wetland&quot;   
+## [6] &quot;all&quot;</code></pre>
+<p>Creating the <code>hru_agr.txt</code> requires detecting agricultural fields. in our case this can be done with the janky prefixes <code>_0, a_, _1, _2</code> . They are janky because the SWATxxxxR packages kept truncating them :(. This file is important for indicator calculation.</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="optimization.html#cb30-1" tabindex="-1"></a>agri_prefix <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;_0&quot;</span>, <span class="st">&quot;a_&quot;</span>, <span class="st">&quot;_1&quot;</span>, <span class="st">&quot;_2&quot;</span>)</span>
+<span id="cb30-2"><a href="optimization.html#cb30-2" tabindex="-1"></a>hru_dat <span class="ot">&lt;-</span> <span class="fu">read_tbl</span>(<span class="st">&#39;hru-data.hru&#39;</span>, project_path, <span class="at">n_skip =</span> <span class="dv">2</span>)</span>
+<span id="cb30-3"><a href="optimization.html#cb30-3" tabindex="-1"></a>hru_agr <span class="ot">&lt;-</span> hru_dat <span class="sc">%&gt;%</span> </span>
+<span id="cb30-4"><a href="optimization.html#cb30-4" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">substring</span>(lu_mgt, <span class="dv">1</span>, <span class="dv">2</span>) <span class="sc">%in%</span> agri_prefix) <span class="sc">%&gt;%</span></span>
+<span id="cb30-5"><a href="optimization.html#cb30-5" tabindex="-1"></a>  <span class="fu">select</span>(<span class="at">hru_id =</span> id)</span>
+<span id="cb30-6"><a href="optimization.html#cb30-6" tabindex="-1"></a><span class="fu">write.table</span>(hru_agr, <span class="fu">paste0</span>(project_path, <span class="st">&#39;/hru_agr.txt&#39;</span>),</span>
+<span id="cb30-7"><a href="optimization.html#cb30-7" tabindex="-1"></a>            <span class="at">quote =</span> F, <span class="at">row.names =</span> F)</span></code></pre></div>
+<p>Running the scenarios: (code modified from Micha source)</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="optimization.html#cb31-1" tabindex="-1"></a><span class="fu">run_scenarios</span>(<span class="at">swat_exe =</span> <span class="st">&#39;Rev_61_0_64rel.exe&#39;</span>, </span>
+<span id="cb31-2"><a href="optimization.html#cb31-2" tabindex="-1"></a>  <span class="at">base_path =</span> <span class="st">&quot;model_data/cs10_setup/optimization/&quot;</span>,</span>
+<span id="cb31-3"><a href="optimization.html#cb31-3" tabindex="-1"></a>  <span class="at">scen_output =</span> <span class="st">&quot;model_data/cs10_setup/optimization/measure_scenario_output&quot;</span>,</span>
+<span id="cb31-4"><a href="optimization.html#cb31-4" tabindex="-1"></a>  <span class="at">measure.list =</span> measr.list,</span>
+<span id="cb31-5"><a href="optimization.html#cb31-5" tabindex="-1"></a>  <span class="at">outflow_reach =</span> cha_id</span>
+<span id="cb31-6"><a href="optimization.html#cb31-6" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>## [1] &quot;Deleting existing statusquo scenario txt folder&quot;
+## [1] &quot;Creating statusquo scenario txt folders&quot;
+## [1] &quot;Implementing scenario statusquo in folder model_data/cs10_setup/optimization/txt_scen_statusquo&quot;
+## [1] &quot;Deleting existing buffer scenario txt folder&quot;
+## [1] &quot;Creating buffer scenario txt folders&quot;
+## [1] &quot;Implementing scenario buffer in folder model_data/cs10_setup/optimization/txt_scen_buffer&quot;
+## [1] &quot;Deleting existing grassslope scenario txt folder&quot;
+## [1] &quot;Creating grassslope scenario txt folders&quot;
+## [1] &quot;Implementing scenario grassslope in folder model_data/cs10_setup/optimization/txt_scen_grassslope&quot;
+## [1] &quot;Deleting existing notill scenario txt folder&quot;
+## [1] &quot;Creating notill scenario txt folders&quot;
+## [1] &quot;Implementing scenario notill in folder model_data/cs10_setup/optimization/txt_scen_notill&quot;
+## [1] &quot;Deleting existing wetland scenario txt folder&quot;
+## [1] &quot;Creating wetland scenario txt folders&quot;
+## [1] &quot;Implementing scenario wetland in folder model_data/cs10_setup/optimization/txt_scen_wetland&quot;
+## [1] &quot;Deleting existing all scenario txt folder&quot;
+## [1] &quot;Creating all scenario txt folders&quot;
+## [1] &quot;Implementing scenario all in folder model_data/cs10_setup/optimization/txt_scen_all&quot;
+## [1] &quot;Running measure scenarios in parallel&quot;</code></pre>
+<div id="calculating-indicators" class="section level5 hasAnchor" number="22.2.1.7.1">
+<h5><span class="header-section-number">22.2.1.7.1</span> Calculating Indicators<a href="optimization.html#calculating-indicators" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p>In case an ensemble of calibration files is provided (in folder cal_files), set <code>ensemble=T</code> The resulting dataframe will provide you the ensemble mean as well as the ensemble minimum (lower) and maximum (upper) of the respective indicator. If no cal file ensemble can be provided, set <code>ensemble=F</code> (but then make sure you have a <code>calibration.cal</code> with fitted parameters in the <code>txt</code> folder)</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="optimization.html#cb33-1" tabindex="-1"></a>scen_out <span class="ot">=</span> <span class="st">&quot;measure_scenario_output&quot;</span></span>
+<span id="cb33-2"><a href="optimization.html#cb33-2" tabindex="-1"></a>path <span class="ot">&lt;-</span> <span class="fu">paste</span>(wd, scen_out, measr.list[<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(measr.list))], <span class="at">sep=</span><span class="st">&#39;/&#39;</span>)</span>
+<span id="cb33-3"><a href="optimization.html#cb33-3" tabindex="-1"></a>channel <span class="ot">&lt;-</span> <span class="st">&#39;cha037&#39;</span></span>
+<span id="cb33-4"><a href="optimization.html#cb33-4" tabindex="-1"></a></span>
+<span id="cb33-5"><a href="optimization.html#cb33-5" tabindex="-1"></a>cha_aa_all <span class="ot">&lt;-</span> <span class="fu">ind_cha_aa</span>(<span class="at">path =</span> path, <span class="at">channel=</span>channel, <span class="at">ensemble=</span>F) </span>
+<span id="cb33-6"><a href="optimization.html#cb33-6" tabindex="-1"></a></span>
+<span id="cb33-7"><a href="optimization.html#cb33-7" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">length</span>(cal_files)<span class="sc">&gt;</span><span class="dv">0</span>){</span>
+<span id="cb33-8"><a href="optimization.html#cb33-8" tabindex="-1"></a>  Q_metrics_sq <span class="ot">&lt;-</span> <span class="fu">get_ens_Q_metrics</span>()</span>
+<span id="cb33-9"><a href="optimization.html#cb33-9" tabindex="-1"></a>}<span class="cf">else</span>{</span>
+<span id="cb33-10"><a href="optimization.html#cb33-10" tabindex="-1"></a>  Q_metrics_sq <span class="ot">&lt;-</span> <span class="fu">ind_cha_dayII</span>(path, <span class="at">channel =</span> channel, <span class="at">ind =</span> <span class="st">&#39;all&#39;</span>, </span>
+<span id="cb33-11"><a href="optimization.html#cb33-11" tabindex="-1"></a>                                <span class="at">ensemble =</span> F)[<span class="dv">1</span>, <span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">12</span>)]</span>
+<span id="cb33-12"><a href="optimization.html#cb33-12" tabindex="-1"></a>}</span>
+<span id="cb33-13"><a href="optimization.html#cb33-13" tabindex="-1"></a></span>
+<span id="cb33-14"><a href="optimization.html#cb33-14" tabindex="-1"></a>Q_p05_sq <span class="ot">&lt;-</span> Q_metrics_sq<span class="sc">$</span>Q_p05</span>
+<span id="cb33-15"><a href="optimization.html#cb33-15" tabindex="-1"></a>Q_p95_sq <span class="ot">&lt;-</span> Q_metrics_sq<span class="sc">$</span>Q_p95</span>
+<span id="cb33-16"><a href="optimization.html#cb33-16" tabindex="-1"></a></span>
+<span id="cb33-17"><a href="optimization.html#cb33-17" tabindex="-1"></a>cha_day_all <span class="ot">&lt;-</span> <span class="fu">ind_cha_dayII</span>(path, <span class="at">channel=</span>channel, <span class="st">&#39;all&#39;</span>,</span>
+<span id="cb33-18"><a href="optimization.html#cb33-18" tabindex="-1"></a>                             <span class="at">ensemble=</span>F,</span>
+<span id="cb33-19"><a href="optimization.html#cb33-19" tabindex="-1"></a>                             <span class="at">threshold_lowQ =</span> Q_p05_sq,   <span class="co">#adjust if appropriate</span></span>
+<span id="cb33-20"><a href="optimization.html#cb33-20" tabindex="-1"></a>                             <span class="at">threshold_highQ =</span> Q_p95_sq,  <span class="co">#adjust if appropriate</span></span>
+<span id="cb33-21"><a href="optimization.html#cb33-21" tabindex="-1"></a>                             <span class="at">threshold_N =</span> <span class="fl">0.775</span>,         <span class="co">#adjust if appropriate</span></span>
+<span id="cb33-22"><a href="optimization.html#cb33-22" tabindex="-1"></a>                             <span class="at">threshold_P =</span> <span class="fl">0.06</span>,          <span class="co">#adjust if appropriate</span></span>
+<span id="cb33-23"><a href="optimization.html#cb33-23" tabindex="-1"></a>                             <span class="at">threshold_Sed=</span> <span class="dv">50</span>)           <span class="co">#adjust if appropriate</span></span>
+<span id="cb33-24"><a href="optimization.html#cb33-24" tabindex="-1"></a></span>
+<span id="cb33-25"><a href="optimization.html#cb33-25" tabindex="-1"></a><span class="do">###  collect HRU-based indicators related to water quality (average annual losses)</span></span>
+<span id="cb33-26"><a href="optimization.html#cb33-26" tabindex="-1"></a>hru_aa_nb_all <span class="ot">&lt;-</span> <span class="fu">ind_hru_aa_nb</span>(path, <span class="at">a=</span><span class="st">&#39;agr&#39;</span>, <span class="at">ensemble=</span>F)</span>
+<span id="cb33-27"><a href="optimization.html#cb33-27" tabindex="-1"></a></span>
+<span id="cb33-28"><a href="optimization.html#cb33-28" tabindex="-1"></a><span class="do">###  collect HRU-based indicators related to  water quantity (average annual value)</span></span>
+<span id="cb33-29"><a href="optimization.html#cb33-29" tabindex="-1"></a>hru_aa_wb_all <span class="ot">&lt;-</span> <span class="fu">ind_hru_aa_wb</span>(path, <span class="at">a=</span><span class="st">&#39;agr&#39;</span>, <span class="at">ensemble=</span>F)</span>
+<span id="cb33-30"><a href="optimization.html#cb33-30" tabindex="-1"></a></span>
+<span id="cb33-31"><a href="optimization.html#cb33-31" tabindex="-1"></a><span class="do">###  collect HRU-based indicators related to  water quantity (aa for spec. months)</span></span>
+<span id="cb33-32"><a href="optimization.html#cb33-32" tabindex="-1"></a><span class="do">## please specify start and end months of interest for the soil water analysis</span></span>
+<span id="cb33-33"><a href="optimization.html#cb33-33" tabindex="-1"></a><span class="co"># this is an example for printing sw for the period May to September and also</span></span>
+<span id="cb33-34"><a href="optimization.html#cb33-34" tabindex="-1"></a><span class="co"># for each single month in that period</span></span>
+<span id="cb33-35"><a href="optimization.html#cb33-35" tabindex="-1"></a>sw_periods <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="fu">c</span>(<span class="dv">5</span><span class="sc">:</span><span class="dv">9</span>), <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>)</span>
+<span id="cb33-36"><a href="optimization.html#cb33-36" tabindex="-1"></a>hru_mon_all <span class="ot">&lt;-</span> <span class="fu">ind_hru_mon_wb</span>(path, <span class="at">period =</span> sw_periods, <span class="at">a=</span><span class="st">&#39;agr&#39;</span>, <span class="at">ensemble=</span>F)</span>
+<span id="cb33-37"><a href="optimization.html#cb33-37" tabindex="-1"></a></span>
+<span id="cb33-38"><a href="optimization.html#cb33-38" tabindex="-1"></a><span class="co"># collect cropping information for all scenarios - grain units and cultivated</span></span>
+<span id="cb33-39"><a href="optimization.html#cb33-39" tabindex="-1"></a><span class="co"># hectare average annual</span></span>
+<span id="cb33-40"><a href="optimization.html#cb33-40" tabindex="-1"></a></span>
+<span id="cb33-41"><a href="optimization.html#cb33-41" tabindex="-1"></a><span class="co"># define 1) path, 2) crop selection, 3) type of output: a) yield, b) ha, 4)</span></span>
+<span id="cb33-42"><a href="optimization.html#cb33-42" tabindex="-1"></a><span class="co"># specify grain units equivalent for all of the selected crops (if you just keep</span></span>
+<span id="cb33-43"><a href="optimization.html#cb33-43" tabindex="-1"></a><span class="co"># the parameter &#39;grain_units&#39;, there is already a parameterisation for &#39;wwht&#39;,</span></span>
+<span id="cb33-44"><a href="optimization.html#cb33-44" tabindex="-1"></a><span class="co"># &#39;akgs&#39;, &#39;wbar&#39;, &#39;wira&#39;, &#39;csil&#39;, &#39;wiry&#39;, &#39;sgbt&#39;,&#39;barl&#39;. The measure list</span></span>
+<span id="cb33-45"><a href="optimization.html#cb33-45" tabindex="-1"></a><span class="co"># (measr.list) can be adapted to the measures you want to compare</span></span>
+<span id="cb33-46"><a href="optimization.html#cb33-46" tabindex="-1"></a></span>
+<span id="cb33-47"><a href="optimization.html#cb33-47" tabindex="-1"></a>crop_sel <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;wwht&#39;</span>, <span class="st">&#39;oats&#39;</span>, <span class="st">&#39;swht&#39;</span>, <span class="st">&#39;pota&#39;</span>, <span class="st">&#39;barl&#39;</span>) <span class="co">#adjust</span></span>
+<span id="cb33-48"><a href="optimization.html#cb33-48" tabindex="-1"></a></span>
+<span id="cb33-49"><a href="optimization.html#cb33-49" tabindex="-1"></a><span class="co"># If you want to use grain units to normalize the basin wide sum of crop yields</span></span>
+<span id="cb33-50"><a href="optimization.html#cb33-50" tabindex="-1"></a><span class="co"># by crop-specific nutritional values, please specify grain units for relevant</span></span>
+<span id="cb33-51"><a href="optimization.html#cb33-51" tabindex="-1"></a><span class="co"># crops The grain units must be applicable to dry mass!!!</span></span>
+<span id="cb33-52"><a href="optimization.html#cb33-52" tabindex="-1"></a>grain_units <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="st">&#39;barl&#39;</span> <span class="ot">=</span> <span class="fl">1.163</span>,</span>
+<span id="cb33-53"><a href="optimization.html#cb33-53" tabindex="-1"></a>                          <span class="st">&#39;wwht&#39;</span> <span class="ot">=</span> <span class="fl">1.209</span>,</span>
+<span id="cb33-54"><a href="optimization.html#cb33-54" tabindex="-1"></a>                          <span class="st">&#39;oats&#39;</span> <span class="ot">=</span> <span class="fl">0.682</span>,</span>
+<span id="cb33-55"><a href="optimization.html#cb33-55" tabindex="-1"></a>                          <span class="st">&#39;swht&#39;</span> <span class="ot">=</span> <span class="fl">1.174</span>,</span>
+<span id="cb33-56"><a href="optimization.html#cb33-56" tabindex="-1"></a>                          <span class="st">&#39;pota&#39;</span> <span class="ot">=</span> <span class="dv">1</span>)</span>
+<span id="cb33-57"><a href="optimization.html#cb33-57" tabindex="-1"></a></span>
+<span id="cb33-58"><a href="optimization.html#cb33-58" tabindex="-1"></a><span class="do">### collect basin-wide area of cropland</span></span>
+<span id="cb33-59"><a href="optimization.html#cb33-59" tabindex="-1"></a>crop_aa_ha <span class="ot">&lt;-</span> <span class="fu">ind_bsn_aa_crp</span>(path, crop_sel, <span class="at">out_type =</span> <span class="st">&quot;ha&quot;</span>, grain_units, <span class="at">ensemble=</span>F)</span>
+<span id="cb33-60"><a href="optimization.html#cb33-60" tabindex="-1"></a></span>
+<span id="cb33-61"><a href="optimization.html#cb33-61" tabindex="-1"></a><span class="do">### collect sum of grain units for whole basin</span></span>
+<span id="cb33-62"><a href="optimization.html#cb33-62" tabindex="-1"></a><span class="co">#run next line only if you want to calculate yield based on grain units</span></span>
+<span id="cb33-63"><a href="optimization.html#cb33-63" tabindex="-1"></a>crop_aa_gu <span class="ot">&lt;-</span> <span class="fu">ind_bsn_aa_crp</span>(path, crop_sel, <span class="at">out_type =</span> <span class="st">&quot;yield&quot;</span>, grain_units, <span class="at">ensemble=</span>F)</span>
+<span id="cb33-64"><a href="optimization.html#cb33-64" tabindex="-1"></a></span>
+<span id="cb33-65"><a href="optimization.html#cb33-65" tabindex="-1"></a></span>
+<span id="cb33-66"><a href="optimization.html#cb33-66" tabindex="-1"></a><span class="do">### collect cropping information for all scenarios - Crop specific average annual yield and ha</span></span>
+<span id="cb33-67"><a href="optimization.html#cb33-67" tabindex="-1"></a>crop_aa_all <span class="ot">&lt;-</span> <span class="fu">ind_bsn_aa_crp_ha_Y</span>(path, crop_sel, <span class="at">ensemble=</span>F)</span></code></pre></div>
+</div>
+<div id="plotting-results" class="section level5 hasAnchor" number="22.2.1.7.2">
+<h5><span class="header-section-number">22.2.1.7.2</span> Plotting Results<a href="optimization.html#plotting-results" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="optimization.html#cb34-1" tabindex="-1"></a>ens_results <span class="ot">&lt;-</span> <span class="fu">get_all_ens_results</span>()</span>
+<span id="cb34-2"><a href="optimization.html#cb34-2" tabindex="-1"></a></span>
+<span id="cb34-3"><a href="optimization.html#cb34-3" tabindex="-1"></a><span class="co"># calculate percentage changes to status quo and derive statistics</span></span>
+<span id="cb34-4"><a href="optimization.html#cb34-4" tabindex="-1"></a><span class="co"># (mean, median, min, max) in case a cal file ensemble has been used</span></span>
+<span id="cb34-5"><a href="optimization.html#cb34-5" tabindex="-1"></a>ens_stats_all <span class="ot">&lt;-</span> <span class="fu">calc_ens_stats</span>()</span>
+<span id="cb34-6"><a href="optimization.html#cb34-6" tabindex="-1"></a></span>
+<span id="cb34-7"><a href="optimization.html#cb34-7" tabindex="-1"></a><span class="co"># plot the scenario results as stacked bars</span></span>
+<span id="cb34-8"><a href="optimization.html#cb34-8" tabindex="-1"></a><span class="co"># default here is to plot the median values (perhaps more robust than mean)</span></span>
+<span id="cb34-9"><a href="optimization.html#cb34-9" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">length</span>(cal_files)<span class="sc">&gt;</span><span class="dv">0</span>){</span>
+<span id="cb34-10"><a href="optimization.html#cb34-10" tabindex="-1"></a>  df <span class="ot">&lt;-</span> ens_stats_all <span class="sc">%&gt;%</span></span>
+<span id="cb34-11"><a href="optimization.html#cb34-11" tabindex="-1"></a>    <span class="fu">filter</span>(stats <span class="sc">==</span> <span class="st">&#39;median&#39;</span>, scen_name <span class="sc">!=</span> <span class="st">&#39;statusquo&#39;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb34-12"><a href="optimization.html#cb34-12" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>stats)</span>
+<span id="cb34-13"><a href="optimization.html#cb34-13" tabindex="-1"></a>}<span class="cf">else</span>{</span>
+<span id="cb34-14"><a href="optimization.html#cb34-14" tabindex="-1"></a>  df <span class="ot">&lt;-</span> ens_stats_all[<span class="sc">-</span><span class="dv">1</span>,]</span>
+<span id="cb34-15"><a href="optimization.html#cb34-15" tabindex="-1"></a>}</span>
+<span id="cb34-16"><a href="optimization.html#cb34-16" tabindex="-1"></a></span>
+<span id="cb34-17"><a href="optimization.html#cb34-17" tabindex="-1"></a>df_plot_long <span class="ot">&lt;-</span> <span class="fu">melt</span>(<span class="fu">setDT</span>(df), <span class="at">id.vars =</span> <span class="fu">c</span>(<span class="st">&quot;scen_name&quot;</span>), <span class="at">variable.name =</span> <span class="st">&quot;indi&quot;</span>)</span>
+<span id="cb34-18"><a href="optimization.html#cb34-18" tabindex="-1"></a></span>
+<span id="cb34-19"><a href="optimization.html#cb34-19" tabindex="-1"></a><span class="co">#plot_indicators(df_plot_long, separate=F)</span></span>
+<span id="cb34-20"><a href="optimization.html#cb34-20" tabindex="-1"></a></span>
+<span id="cb34-21"><a href="optimization.html#cb34-21" tabindex="-1"></a><span class="fu">plot_indicators</span>(df_plot_long, <span class="at">separate=</span>T)</span></code></pre></div>
+<pre><code>## [[1]]</code></pre>
+<p><img src="_main_files/figure-html/opt17_plotscen-1.png" width="672" /></p>
+<pre><code>## 
+## [[2]]</code></pre>
+<p><img src="_main_files/figure-html/opt17_plotscen-2.png" width="672" /></p>
+<pre><code>## 
+## [[3]]</code></pre>
+<p><img src="_main_files/figure-html/opt17_plotscen-3.png" width="672" /></p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="optimization.html#cb38-1" tabindex="-1"></a><span class="co"># save as pdf</span></span>
+<span id="cb38-2"><a href="optimization.html#cb38-2" tabindex="-1"></a><span class="fu">pdf</span>(<span class="st">&#39;model_data/results/plot_indicators_all_median.pdf&#39;</span>, <span class="at">width=</span><span class="fl">7.5</span>, <span class="at">height =</span> <span class="dv">10</span>)</span>
+<span id="cb38-3"><a href="optimization.html#cb38-3" tabindex="-1"></a><span class="fu">plot_indicators</span>(df_plot_long, <span class="at">separate=</span>F)</span>
+<span id="cb38-4"><a href="optimization.html#cb38-4" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<pre><code>## png 
+##   2</code></pre>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="optimization.html#cb40-1" tabindex="-1"></a><span class="co"># save as pdf</span></span>
+<span id="cb40-2"><a href="optimization.html#cb40-2" tabindex="-1"></a><span class="fu">png</span>(<span class="st">&#39;model_data/results/plot_indicators_all_median.png&#39;</span>, <span class="at">width =</span> <span class="fl">7.5</span>, <span class="at">height =</span> <span class="dv">10</span>, <span class="at">units =</span> <span class="st">&quot;in&quot;</span>, <span class="at">res =</span> <span class="dv">72</span>)</span>
+<span id="cb40-3"><a href="optimization.html#cb40-3" tabindex="-1"></a><span class="fu">plot_indicators</span>(df_plot_long, <span class="at">separate=</span>F)</span>
+<span id="cb40-4"><a href="optimization.html#cb40-4" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<pre><code>## png 
+##   2</code></pre>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="optimization.html#cb42-1" tabindex="-1"></a><span class="co"># generate results table</span></span>
+<span id="cb42-2"><a href="optimization.html#cb42-2" tabindex="-1"></a><span class="co"># In case cal file ensemble was used the table shows median, min, and max values</span></span>
+<span id="cb42-3"><a href="optimization.html#cb42-3" tabindex="-1"></a><span class="co"># for % changes to status quo. The status quo itself is shown in absolute values</span></span>
+<span id="cb42-4"><a href="optimization.html#cb42-4" tabindex="-1"></a><span class="co"># in SWAT model units.</span></span>
+<span id="cb42-5"><a href="optimization.html#cb42-5" tabindex="-1"></a></span>
+<span id="cb42-6"><a href="optimization.html#cb42-6" tabindex="-1"></a><span class="fu">write_results_table</span>(<span class="at">outfile =</span> <span class="st">&quot;model_data/cs10_setup/optimization/measure_scenario_output/ind_scenario_results.csv&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;results table written to model_data/cs10_setup/optimization/measure_scenario_output/ind_scenario_results.csv&quot;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div id="economic-model-setup" class="section level2 hasAnchor" number="22.3">
+<h2><span class="header-section-number">22.3</span> Economic Model Setup<a href="optimization.html#economic-model-setup" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>To account for the implementation costs of our measures, we need to set up the Economic model</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="optimization.html#cb44-1" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span></span></code></pre></div>
+</div>
+<div id="comola-setup" class="section level2 hasAnchor" number="22.4">
+<h2><span class="header-section-number">22.4</span> CoMOLA Setup<a href="optimization.html#comola-setup" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="python-installation" class="section level3 hasAnchor" number="22.4.1">
+<h3><span class="header-section-number">22.4.1</span> Python Installation<a href="optimization.html#python-installation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>CoMOLA runs on Python which means we need to make sure python is installed (which it should be from the API chapter <a href="antecedent-precipitation-index.html#setting-up-python-for-rrmarkdown">9.1.2</a> However, we will create a new CoMOLA environment.</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="optimization.html#cb45-1" tabindex="-1"></a><span class="fu">require</span>(reticulate)</span>
+<span id="cb45-2"><a href="optimization.html#cb45-2" tabindex="-1"></a><span class="fu">conda_create</span>(<span class="st">&quot;comola&quot;</span>, <span class="co"># environment name </span></span>
+<span id="cb45-3"><a href="optimization.html#cb45-3" tabindex="-1"></a>              <span class="at">packages =</span> <span class="fu">c</span>(<span class="st">&quot;numpy&quot;</span>), <span class="co"># required packages</span></span>
+<span id="cb45-4"><a href="optimization.html#cb45-4" tabindex="-1"></a>              <span class="at">conda =</span> <span class="st">&quot;auto&quot;</span>, <span class="co"># auto-locate the conda exe</span></span>
+<span id="cb45-5"><a href="optimization.html#cb45-5" tabindex="-1"></a>              <span class="at">python_version =</span> <span class="st">&quot;3.11.9&quot;</span>)</span>
+<span id="cb45-6"><a href="optimization.html#cb45-6" tabindex="-1"></a></span>
+<span id="cb45-7"><a href="optimization.html#cb45-7" tabindex="-1"></a>python_path <span class="ot">=</span> <span class="fu">conda_python</span>(<span class="st">&quot;comola&quot;</span>)</span>
+<span id="cb45-8"><a href="optimization.html#cb45-8" tabindex="-1"></a></span>
+<span id="cb45-9"><a href="optimization.html#cb45-9" tabindex="-1"></a><span class="co"># you need to change your R environment path in this file</span></span>
+<span id="cb45-10"><a href="optimization.html#cb45-10" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">edit_r_environ</span>()</span>
+<span id="cb45-11"><a href="optimization.html#cb45-11" tabindex="-1"></a></span>
+<span id="cb45-12"><a href="optimization.html#cb45-12" tabindex="-1"></a><span class="co"># RETICULATE_PYTHON=&quot;YOUR ENVIRONMENT PATH/python.exe&quot;</span></span>
+<span id="cb45-13"><a href="optimization.html#cb45-13" tabindex="-1"></a></span>
+<span id="cb45-14"><a href="optimization.html#cb45-14" tabindex="-1"></a><span class="co"># restart your R session.</span></span>
+<span id="cb45-15"><a href="optimization.html#cb45-15" tabindex="-1"></a></span>
+<span id="cb45-16"><a href="optimization.html#cb45-16" tabindex="-1"></a><span class="fu">py_config</span>()</span>
+<span id="cb45-17"><a href="optimization.html#cb45-17" tabindex="-1"></a></span>
+<span id="cb45-18"><a href="optimization.html#cb45-18" tabindex="-1"></a><span class="co"># If everything is right, you should get something like:</span></span>
+<span id="cb45-19"><a href="optimization.html#cb45-19" tabindex="-1"></a></span>
+<span id="cb45-20"><a href="optimization.html#cb45-20" tabindex="-1"></a><span class="co"># python: YOUR ENVIRONMENT PATH/python.exe libpython: YOUR ENVIRONMENT</span></span>
+<span id="cb45-21"><a href="optimization.html#cb45-21" tabindex="-1"></a><span class="co"># PATH/python39.dll pythonhome: YOUR ENVIRONMENT PATH version: 3.9.7 (default,</span></span>
+<span id="cb45-22"><a href="optimization.html#cb45-22" tabindex="-1"></a><span class="co"># Sep 16 2021, 16:59:28) [MSC v.1916 64 bit (AMD64)] Architecture: 64bit numpy:</span></span>
+<span id="cb45-23"><a href="optimization.html#cb45-23" tabindex="-1"></a><span class="co"># YOUR ENVIRONMENT PATH\lib\site-packages\numpy numpy_version: 1.21.2</span></span>
+<span id="cb45-24"><a href="optimization.html#cb45-24" tabindex="-1"></a></span>
+<span id="cb45-25"><a href="optimization.html#cb45-25" tabindex="-1"></a><span class="co"># After this it should work :)</span></span></code></pre></div>
+<p>Note: the Numpy version is different from protocol, issue?</p>
+</div>
+<div id="comola-files" class="section level3 hasAnchor" number="22.4.2">
+<h3><span class="header-section-number">22.4.2</span> CoMOLA Files<a href="optimization.html#comola-files" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We acquire the COMOLA project setup from project partners UFZ:</p>
+<p><a href="https://github.com/michstrauch/CoMOLA_SWATplus" class="uri">https://github.com/michstrauch/CoMOLA_SWATplus</a></p>
+<p>Which is located here in our repository:</p>
+<blockquote>
+<p><code>model_data/comola/CoMOLA_SWATplus</code></p>
+</blockquote>
+<p>The file structure of this setup looks like this:</p>
+<div class="figure"><span style="display:block;" id="fig:comolafilestructure"></span>
+<img src="figures/comola_file_struc.png" alt="COMOLA File structure" width="392" />
+<p class="caption">
+Figure 22.1: COMOLA File structure
+</p>
+</div>
+<p>The files we need to modify are colored red.</p>
+<ol style="list-style-type: decimal">
+<li>The txt folder requires our SWAT setup + the measr project we created earlier in this section</li>
+<li>SWAT.R file needs to be modified with our desired objective functions</li>
+<li>config.ini needs to be updated with the path to R.exe and Python.exe. Here we also define the population and generation size of our optimization runs.</li>
+</ol>
+<div id="optimization-txt" class="section level4 hasAnchor" number="22.4.2.1">
+<h4><span class="header-section-number">22.4.2.1</span> Optimization TXT<a href="optimization.html#optimization-txt" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>We will import our TXT folder to the COMOLA txt folder. The <code>.measr</code> file in this txt is vital to the optimisation, and was the one generated in <a href="optimization.html#creating-a-new-measr-project">22.2.1.3</a>.</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="optimization.html#cb46-1" tabindex="-1"></a>R.utils<span class="sc">::</span><span class="fu">copyDirectory</span>(<span class="at">from =</span> <span class="st">&quot;model_data/cs10_setup/optimization/txt&quot;</span>, </span>
+<span id="cb46-2"><a href="optimization.html#cb46-2" tabindex="-1"></a>                       <span class="at">to =</span> <span class="st">&quot;model_data/comola/CoMOLA_SWATplus/models/SWAT/txt&quot;</span>,</span>
+<span id="cb46-3"><a href="optimization.html#cb46-3" tabindex="-1"></a>                       <span class="at">recursive =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p>And adjust the run periods and warming up period (skip printing length)</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="optimization.html#cb47-1" tabindex="-1"></a><span class="co"># start, end, and warm-up period:</span></span>
+<span id="cb47-2"><a href="optimization.html#cb47-2" tabindex="-1"></a>yrc_start <span class="ot">=</span> <span class="dv">2013</span></span>
+<span id="cb47-3"><a href="optimization.html#cb47-3" tabindex="-1"></a>yrc_end <span class="ot">=</span> <span class="dv">2022</span></span>
+<span id="cb47-4"><a href="optimization.html#cb47-4" tabindex="-1"></a>nskip <span class="ot">=</span> <span class="dv">2</span></span>
+<span id="cb47-5"><a href="optimization.html#cb47-5" tabindex="-1"></a></span>
+<span id="cb47-6"><a href="optimization.html#cb47-6" tabindex="-1"></a>time.sim <span class="ot">&lt;-</span> <span class="fu">readLines</span>(<span class="st">&quot;model_data/comola/CoMOLA_SWATplus/models/SWAT/txt/time.sim&quot;</span>)</span>
+<span id="cb47-7"><a href="optimization.html#cb47-7" tabindex="-1"></a>time.sim[<span class="dv">3</span>] <span class="ot">=</span> <span class="fu">paste0</span>(<span class="st">&quot;         1      &quot;</span>,yrc_start,<span class="st">&quot;       366      &quot;</span>,yrc_end,<span class="st">&quot;         0&quot;</span>)</span>
+<span id="cb47-8"><a href="optimization.html#cb47-8" tabindex="-1"></a>time.sim[<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>]</span></code></pre></div>
+<pre><code>## [1] &quot;day_start  yrc_start   day_end   yrc_end      step  &quot;
+## [2] &quot;         1      2013       366      2022         0&quot;</code></pre>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="optimization.html#cb49-1" tabindex="-1"></a><span class="fu">writeLines</span>(time.sim, <span class="st">&quot;model_data/comola/CoMOLA_SWATplus/models/SWAT/txt/time.sim&quot;</span>)</span>
+<span id="cb49-2"><a href="optimization.html#cb49-2" tabindex="-1"></a></span>
+<span id="cb49-3"><a href="optimization.html#cb49-3" tabindex="-1"></a>print.prt <span class="ot">&lt;-</span> <span class="fu">readLines</span>(<span class="st">&quot;model_data/comola/CoMOLA_SWATplus/models/SWAT/txt/print.prt&quot;</span>)</span>
+<span id="cb49-4"><a href="optimization.html#cb49-4" tabindex="-1"></a>print.prt[<span class="dv">3</span>] <span class="ot">=</span> <span class="fu">paste0</span>(nskip, <span class="st">&quot;          1          &quot;</span>,yrc_start,<span class="st">&quot;       0          0          1          &quot;</span>)</span>
+<span id="cb49-5"><a href="optimization.html#cb49-5" tabindex="-1"></a>print.prt[<span class="dv">33</span>] <span class="ot">=</span> <span class="st">&quot;hru_wb                       n             y             n             n&quot;</span></span>
+<span id="cb49-6"><a href="optimization.html#cb49-6" tabindex="-1"></a>print.prt[<span class="dv">41</span>] <span class="ot">=</span> <span class="st">&quot;channel                      n             n             n             n&quot;</span></span>
+<span id="cb49-7"><a href="optimization.html#cb49-7" tabindex="-1"></a>print.prt[<span class="dv">42</span>] <span class="ot">=</span> <span class="st">&quot;channel_sd                   y             n             n             y&quot;</span></span>
+<span id="cb49-8"><a href="optimization.html#cb49-8" tabindex="-1"></a></span>
+<span id="cb49-9"><a href="optimization.html#cb49-9" tabindex="-1"></a><span class="fu">writeLines</span>(print.prt, <span class="st">&quot;model_data/comola/CoMOLA_SWATplus/models/SWAT/txt/print.prt&quot;</span>)</span></code></pre></div>
+<p>Note, the <code>object.prt</code> file should look like this, if it doesn’t already from <a href="measure-implementation.html#measure-implementation">19</a>. Where “37” is the outlet channel of the catchment.</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="optimization.html#cb50-1" tabindex="-1"></a><span class="co"># object.prt: written by the OPTAIN measure scenario workflow 2024-11-05 00:44:04.143794</span></span>
+<span id="cb50-2"><a href="optimization.html#cb50-2" tabindex="-1"></a><span class="co">#           ID      OBJ_TYP   OBJ_TYP_NO      HYD_TYP             FILENAME</span></span>
+<span id="cb50-3"><a href="optimization.html#cb50-3" tabindex="-1"></a><span class="co">#            1          sdc           37          tot          cha_day.out</span></span></code></pre></div>
+</div>
+<div id="path-updates" class="section level4 hasAnchor" number="22.4.2.2">
+<h4><span class="header-section-number">22.4.2.2</span> Path updates:<a href="optimization.html#path-updates" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Next, we will update our <code>SWAT.R</code> File. The following changes were made: (commented out was original code)</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="optimization.html#cb51-1" tabindex="-1"></a><span class="co">#setwd(&quot;S:/comola/models/SWAT&quot;)</span></span>
+<span id="cb51-2"><a href="optimization.html#cb51-2" tabindex="-1"></a><span class="co">#sink(&quot;S:/comola/models/SWAT/console.txt&quot;, append=FALSE)</span></span>
+<span id="cb51-3"><a href="optimization.html#cb51-3" tabindex="-1"></a>SWAT_PATH <span class="ot">=</span> <span class="st">&quot;C:/Users/mosh/Documents/GIT/swat-cs10/model_data/comola/CoMOLA_SWATplus/models/SWAT&quot;</span></span>
+<span id="cb51-4"><a href="optimization.html#cb51-4" tabindex="-1"></a><span class="fu">setwd</span>(SWAT_PATH)</span>
+<span id="cb51-5"><a href="optimization.html#cb51-5" tabindex="-1"></a><span class="fu">sink</span>(<span class="fu">paste0</span>(SWAT_PATH, <span class="st">&quot;/console.txt&quot;</span>), <span class="at">append=</span><span class="cn">FALSE</span>)</span></code></pre></div>
+</div>
+<div id="grain-units" class="section level4 hasAnchor" number="22.4.2.3">
+<h4><span class="header-section-number">22.4.2.3</span> <strong>Grain Units:</strong><a href="optimization.html#grain-units" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Updating grain units to match our use-case. Read more about these in <a href="climate-scenarios.html#processing-results">17.4</a>.</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="optimization.html#cb52-1" tabindex="-1"></a><span class="co"># grain_units &lt;- data.frame(&#39;wbar&#39; = 1.163, </span></span>
+<span id="cb52-2"><a href="optimization.html#cb52-2" tabindex="-1"></a><span class="co">#                           &#39;csil&#39; = 1.071, </span></span>
+<span id="cb52-3"><a href="optimization.html#cb52-3" tabindex="-1"></a><span class="co">#                           &#39;wwht&#39; = 1.209, </span></span>
+<span id="cb52-4"><a href="optimization.html#cb52-4" tabindex="-1"></a><span class="co">#                           &#39;wira&#39; = 1.429,</span></span>
+<span id="cb52-5"><a href="optimization.html#cb52-5" tabindex="-1"></a><span class="co">#                           &#39;barl&#39; = 1.163,</span></span>
+<span id="cb52-6"><a href="optimization.html#cb52-6" tabindex="-1"></a><span class="co">#                           &#39;akgs&#39; = 0.682, </span></span>
+<span id="cb52-7"><a href="optimization.html#cb52-7" tabindex="-1"></a><span class="co">#                           &#39;wiry&#39; = 1.174, </span></span>
+<span id="cb52-8"><a href="optimization.html#cb52-8" tabindex="-1"></a><span class="co">#                           &#39;sgbt&#39; = 1)</span></span>
+<span id="cb52-9"><a href="optimization.html#cb52-9" tabindex="-1"></a></span>
+<span id="cb52-10"><a href="optimization.html#cb52-10" tabindex="-1"></a>grain_units <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb52-11"><a href="optimization.html#cb52-11" tabindex="-1"></a>  <span class="st">&#39;wwht&#39;</span> <span class="ot">=</span> <span class="fl">1.209</span>,</span>
+<span id="cb52-12"><a href="optimization.html#cb52-12" tabindex="-1"></a>  <span class="st">&#39;barl&#39;</span> <span class="ot">=</span> <span class="fl">1.163</span>,</span>
+<span id="cb52-13"><a href="optimization.html#cb52-13" tabindex="-1"></a>  <span class="st">&quot;oats&quot;</span> <span class="ot">=</span> .<span class="dv">84</span>,</span>
+<span id="cb52-14"><a href="optimization.html#cb52-14" tabindex="-1"></a>  <span class="st">&quot;swht&quot;</span> <span class="ot">=</span> <span class="fl">1.04</span>,</span>
+<span id="cb52-15"><a href="optimization.html#cb52-15" tabindex="-1"></a>  <span class="st">&quot;pota&quot;</span> <span class="ot">=</span> .<span class="dv">22</span></span>
+<span id="cb52-16"><a href="optimization.html#cb52-16" tabindex="-1"></a>)</span></code></pre></div>
+<p><strong>Objective Functions:</strong></p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="optimization.html#cb53-1" tabindex="-1"></a><span class="co"># total n load (kg/yr)</span></span>
+<span id="cb53-2"><a href="optimization.html#cb53-2" tabindex="-1"></a>fit1 <span class="ot">&lt;-</span> <span class="fu">ind_cha_aa</span>(txt_path, <span class="st">&#39;cha037&#39;</span>)[<span class="dv">2</span>] <span class="sc">*</span> <span class="sc">-</span><span class="dv">1</span> <span class="co">#loads should be minimized</span></span>
+<span id="cb53-3"><a href="optimization.html#cb53-3" tabindex="-1"></a><span class="co"># min max ratio</span></span>
+<span id="cb53-4"><a href="optimization.html#cb53-4" tabindex="-1"></a>fit2 <span class="ot">&lt;-</span> <span class="fu">ind_cha_day</span>(txt_path, <span class="at">channel =</span> <span class="st">&quot;cha037&quot;</span>)[<span class="dv">11</span>] <span class="sc">*</span> <span class="sc">-</span><span class="dv">1</span></span>
+<span id="cb53-5"><a href="optimization.html#cb53-5" tabindex="-1"></a><span class="co"># average annual sum of grain units in whole basin (be very careful with ind parameter)</span></span>
+<span id="cb53-6"><a href="optimization.html#cb53-6" tabindex="-1"></a>fit3 <span class="ot">&lt;-</span> <span class="fu">ind_bsn_aa_crp</span>(txt_path, <span class="at">crop_sel =</span> <span class="fu">names</span>(grain_units), <span class="at">ind =</span> <span class="st">&quot;grain_units&quot;</span>, <span class="at">grain_units =</span> grain_units)</span>
+<span id="cb53-7"><a href="optimization.html#cb53-7" tabindex="-1"></a><span class="co"># frequency total N conc lower than threshold</span></span>
+<span id="cb53-8"><a href="optimization.html#cb53-8" tabindex="-1"></a>fit4 <span class="ot">&lt;-</span> <span class="fu">ind_cha_day</span>(<span class="at">path =</span> txt_path, <span class="at">channel =</span> <span class="st">&#39;cha037&#39;</span>, <span class="at">ind =</span> <span class="st">&quot;Nconc_days&quot;</span>, <span class="at">threshold_N =</span> <span class="fl">0.775</span>)[<span class="dv">14</span>]</span></code></pre></div>
+<p><strong>Updating Config.ini:</strong></p>
+<p>We need to update the following:</p>
+<ol style="list-style-type: decimal">
+<li><code>file_path_r</code>, which can be found using the <code>R.home("bin")</code> command.</li>
+<li><code>file_path_python</code> , which can be found using the <code>conda_python()</code> command</li>
+<li><code>pop_size</code>, which control the amount of mutants in each generation.</li>
+<li><code>max_generations</code> which controls the amount of repetitions the algorithm performs</li>
+</ol>
+<p>The total number of runs to do will be <code>pop_size</code> * <code>max_generations</code>. For optain, this will be 100x200?</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="optimization.html#cb54-1" tabindex="-1"></a>r_path <span class="ot">=</span> <span class="fu">R.home</span>(<span class="st">&quot;bin&quot;</span>)</span>
+<span id="cb54-2"><a href="optimization.html#cb54-2" tabindex="-1"></a>python_path <span class="ot">=</span> reticulate<span class="sc">::</span><span class="fu">conda_python</span>(<span class="st">&quot;comola&quot;</span>)</span>
+<span id="cb54-3"><a href="optimization.html#cb54-3" tabindex="-1"></a>python_path <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">&quot;</span>, <span class="st">&quot;/&quot;</span>, python_path, <span class="at">fixed =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb54-4"><a href="optimization.html#cb54-4" tabindex="-1"></a>pop_size <span class="ot">=</span> <span class="dv">30</span></span>
+<span id="cb54-5"><a href="optimization.html#cb54-5" tabindex="-1"></a>max_generations <span class="ot">=</span> <span class="dv">40</span></span>
+<span id="cb54-6"><a href="optimization.html#cb54-6" tabindex="-1"></a></span>
+<span id="cb54-7"><a href="optimization.html#cb54-7" tabindex="-1"></a>config.ini <span class="ot">=</span> <span class="fu">readLines</span>(<span class="st">&quot;model_data/comola/CoMOLA_SWATplus/config.ini&quot;</span>)</span>
+<span id="cb54-8"><a href="optimization.html#cb54-8" tabindex="-1"></a>config.ini[<span class="dv">66</span>] <span class="ot">=</span> <span class="fu">paste0</span>(<span class="st">&quot;file_path_R = &quot;</span>,r_path,<span class="st">&quot;/R.exe&quot;</span>)</span>
+<span id="cb54-9"><a href="optimization.html#cb54-9" tabindex="-1"></a>config.ini[<span class="dv">67</span>] <span class="ot">=</span> <span class="fu">paste0</span>(<span class="st">&quot;file_path_Python = &quot;</span>,python_path,<span class="st">&quot;&quot;</span>)</span>
+<span id="cb54-10"><a href="optimization.html#cb54-10" tabindex="-1"></a>config.ini[<span class="dv">81</span>] <span class="ot">=</span> <span class="fu">paste0</span>(<span class="st">&quot;pop_size = &quot;</span>,pop_size,<span class="st">&quot; &quot;</span>)</span>
+<span id="cb54-11"><a href="optimization.html#cb54-11" tabindex="-1"></a>config.ini[<span class="dv">82</span>] <span class="ot">=</span> <span class="fu">paste0</span>(<span class="st">&quot;max_generations = &quot;</span>,max_generations,<span class="st">&quot;&quot;</span>)</span>
+<span id="cb54-12"><a href="optimization.html#cb54-12" tabindex="-1"></a><span class="fu">writeLines</span>(config.ini,<span class="st">&quot;model_data/comola/CoMOLA_SWATplus/config.ini&quot;</span>)</span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="running-comola" class="section level2 hasAnchor" number="22.5">
+<h2><span class="header-section-number">22.5</span> Running CoMOLA<a href="optimization.html#running-comola" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Now we are set to run CoMOLA, we do this by running the <code>run_comola.bat</code> file and entering the amount of cores we need.</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="optimization.html#cb55-1" tabindex="-1"></a><span class="co"># We do this outside of R. </span></span></code></pre></div>
+</div>
+<div id="results-visualization" class="section level2 hasAnchor" number="22.6">
+<h2><span class="header-section-number">22.6</span> Results Visualization<a href="optimization.html#results-visualization" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We can use code provided by Micha to visualize the output of our optimization. We need to adjust the following variables:</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="optimization.html#cb56-1" tabindex="-1"></a><span class="do">## Define path to your CoMOLA output folder</span></span>
+<span id="cb56-2"><a href="optimization.html#cb56-2" tabindex="-1"></a>path <span class="ot">&lt;-</span> <span class="st">&#39;model_data/comola/CoMOLA_SWATplus/output&#39;</span></span>
+<span id="cb56-3"><a href="optimization.html#cb56-3" tabindex="-1"></a></span>
+<span id="cb56-4"><a href="optimization.html#cb56-4" tabindex="-1"></a><span class="do">## Define names of objectives (fit1, fit2, etc. must correspond with your </span></span>
+<span id="cb56-5"><a href="optimization.html#cb56-5" tabindex="-1"></a><span class="do">## specifications in models/SWAT.R)</span></span>
+<span id="cb56-6"><a href="optimization.html#cb56-6" tabindex="-1"></a><span class="do">## Think about including a line break (\n) for long names when indicator should be displayed as color or point size</span></span>
+<span id="cb56-7"><a href="optimization.html#cb56-7" tabindex="-1"></a></span>
+<span id="cb56-8"><a href="optimization.html#cb56-8" tabindex="-1"></a>fit1 <span class="ot">&lt;-</span> <span class="st">&quot;total n load &quot;</span></span>
+<span id="cb56-9"><a href="optimization.html#cb56-9" tabindex="-1"></a>fit2 <span class="ot">&lt;-</span> <span class="st">&#39;minmaxratio&#39;</span></span>
+<span id="cb56-10"><a href="optimization.html#cb56-10" tabindex="-1"></a>fit3 <span class="ot">&lt;-</span> <span class="st">&quot;yield&quot;</span></span>
+<span id="cb56-11"><a href="optimization.html#cb56-11" tabindex="-1"></a>fit4 <span class="ot">&lt;-</span> <span class="st">&quot;n conc thres&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="optimization.html#cb57-1" tabindex="-1"></a><span class="do">## Execute the code below (do not modify) (oopsie)</span></span>
+<span id="cb57-2"><a href="optimization.html#cb57-2" tabindex="-1"></a></span>
+<span id="cb57-3"><a href="optimization.html#cb57-3" tabindex="-1"></a><span class="co"># get functions</span></span>
+<span id="cb57-4"><a href="optimization.html#cb57-4" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&#39;model_data/comola/CoMOLA_SWATplus/output_analysis/functions_postprocessing.R&#39;</span>)</span>
+<span id="cb57-5"><a href="optimization.html#cb57-5" tabindex="-1"></a></span>
+<span id="cb57-6"><a href="optimization.html#cb57-6" tabindex="-1"></a><span class="fu">foo1</span>(<span class="fu">c</span>(<span class="st">&#39;mco&#39;</span>, <span class="st">&#39;dplyr&#39;</span>, <span class="st">&#39;tidyverse&#39;</span>, <span class="st">&#39;ggplot2&#39;</span>, <span class="st">&#39;viridis&#39;</span>))</span></code></pre></div>
+<pre><code>## Loading required package: mco</code></pre>
+<pre><code>## Warning: package &#39;mco&#39; was built under R version 4.4.2</code></pre>
+<pre><code>## Loading required package: viridis</code></pre>
+<pre><code>## Warning: package &#39;viridis&#39; was built under R version 4.4.2</code></pre>
+<pre><code>## Loading required package: viridisLite</code></pre>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="optimization.html#cb63-1" tabindex="-1"></a><span class="do">## extract pareto results</span></span>
+<span id="cb63-2"><a href="optimization.html#cb63-2" tabindex="-1"></a>pareto <span class="ot">&lt;-</span> <span class="fu">get_pareto</span>(path)</span>
+<span id="cb63-3"><a href="optimization.html#cb63-3" tabindex="-1"></a></span>
+<span id="cb63-4"><a href="optimization.html#cb63-4" tabindex="-1"></a><span class="do">## write status quo fitness values</span></span>
+<span id="cb63-5"><a href="optimization.html#cb63-5" tabindex="-1"></a><span class="fu">write_sq</span>(path)</span>
+<span id="cb63-6"><a href="optimization.html#cb63-6" tabindex="-1"></a></span>
+<span id="cb63-7"><a href="optimization.html#cb63-7" tabindex="-1"></a><span class="do">## calculate hypervolume development</span></span>
+<span id="cb63-8"><a href="optimization.html#cb63-8" tabindex="-1"></a>HV <span class="ot">&lt;-</span> <span class="fu">hv_generations</span>(path)</span>
+<span id="cb63-9"><a href="optimization.html#cb63-9" tabindex="-1"></a></span>
+<span id="cb63-10"><a href="optimization.html#cb63-10" tabindex="-1"></a><span class="do">## plot hypervolumes for each generation</span></span>
+<span id="cb63-11"><a href="optimization.html#cb63-11" tabindex="-1"></a>hv_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(HV, <span class="fu">aes</span>(Generation, HV)) <span class="sc">+</span></span>
+<span id="cb63-12"><a href="optimization.html#cb63-12" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb63-13"><a href="optimization.html#cb63-13" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span>
+<span id="cb63-14"><a href="optimization.html#cb63-14" tabindex="-1"></a></span>
+<span id="cb63-15"><a href="optimization.html#cb63-15" tabindex="-1"></a><span class="do">## plot Pareto solutions</span></span>
+<span id="cb63-16"><a href="optimization.html#cb63-16" tabindex="-1"></a><span class="co"># plot_2D(mode=1)</span></span>
+<span id="cb63-17"><a href="optimization.html#cb63-17" tabindex="-1"></a></span>
+<span id="cb63-18"><a href="optimization.html#cb63-18" tabindex="-1"></a>sol <span class="ot">&lt;-</span> pareto<span class="sc">$</span>fitness</span>
+<span id="cb63-19"><a href="optimization.html#cb63-19" tabindex="-1"></a><span class="fu">names</span>(sol) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;n_load&quot;</span>, <span class="st">&quot;sw_content&quot;</span>, <span class="st">&quot;yield&quot;</span>, <span class="st">&quot;n_thres&quot;</span>)</span>
+<span id="cb63-20"><a href="optimization.html#cb63-20" tabindex="-1"></a>opt_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(sol, <span class="fu">aes</span>(<span class="at">x =</span> yield, <span class="at">y =</span> sw_content)) <span class="sc">+</span></span>
+<span id="cb63-21"><a href="optimization.html#cb63-21" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">size =</span> <span class="fu">abs</span>(n_load), <span class="at">fill =</span> n_thres),</span>
+<span id="cb63-22"><a href="optimization.html#cb63-22" tabindex="-1"></a>             <span class="at">shape =</span> <span class="dv">21</span>,</span>
+<span id="cb63-23"><a href="optimization.html#cb63-23" tabindex="-1"></a>             <span class="at">col =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb63-24"><a href="optimization.html#cb63-24" tabindex="-1"></a>  <span class="fu">scale_fill_gradientn</span>(<span class="at">colours =</span> <span class="fu">viridis</span>(<span class="fu">length</span>(sol))) <span class="sc">+</span></span>
+<span id="cb63-25"><a href="optimization.html#cb63-25" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">size =</span> <span class="fu">guide_legend</span>(<span class="at">title =</span> fit1, <span class="at">override.aes =</span> <span class="fu">list</span>(<span class="at">col =</span> <span class="st">&quot;black&quot;</span>)),</span>
+<span id="cb63-26"><a href="optimization.html#cb63-26" tabindex="-1"></a>         <span class="at">fill =</span> <span class="fu">guide_legend</span>(<span class="at">title =</span> fit4)) <span class="sc">+</span></span>
+<span id="cb63-27"><a href="optimization.html#cb63-27" tabindex="-1"></a>  <span class="fu">xlab</span>(fit3) <span class="sc">+</span></span>
+<span id="cb63-28"><a href="optimization.html#cb63-28" tabindex="-1"></a>  <span class="fu">ylab</span>(fit2)</span>
+<span id="cb63-29"><a href="optimization.html#cb63-29" tabindex="-1"></a></span>
+<span id="cb63-30"><a href="optimization.html#cb63-30" tabindex="-1"></a><span class="fu">print</span>(opt_plot)</span></code></pre></div>
+<p><img src="_main_files/figure-html/opt17_optplot-1.png" width="672" /></p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="optimization.html#cb64-1" tabindex="-1"></a><span class="fu">print</span>(hv_plot)</span></code></pre></div>
+<p><img src="_main_files/figure-html/opt17_optplot-2.png" width="672" /></p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="optimization.html#cb65-1" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="at">filename =</span> <span class="st">&quot;model_data/results/opt_plot.png&quot;</span>, <span class="at">plot =</span> opt_plot)</span></code></pre></div>
+<pre><code>## Saving 7 x 5 in image</code></pre>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="optimization.html#cb67-1" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="at">filename =</span> <span class="st">&quot;model_data/results/hv_plot.png&quot;</span>, <span class="at">plot =</span> hv_plot)</span></code></pre></div>
+<pre><code>## Saving 7 x 5 in image</code></pre>
+<div id="references" class="section level3 unumbered hasAnchor" number="22.6.1">
+<h3><span class="header-section-number">22.6.1</span> References<a href="optimization.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Deb, K., Pratap, A., Agarwal, S., &amp; Meyarivan, T. A. M. T. (2002). A fast and elitist multiobjective genetic algorithm: NSGA-II. <em>IEEE transactions on evolutionary computation</em>, <em>6</em>(2), 182-197.</p>
 <p>Strauch, M., Cord, A. F., Pätzold, C., Lautenbach, S., Kaim, A., Schweitzer, C., … &amp; Volk, M. (2019). Constraints in multi-objective optimization of land use allocation–Repair or penalize?. <em>Environmental Modelling &amp; Software</em>, <em>118</em>, 241-251.</p>
 
 </div>
+</div>
+</div>
+<h3>References<a href="references-1.html#references-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div id="ref-strauch_2024_11473793" class="csl-entry">
+Strauch, Michael, and Christoph Schürz. 2024. <span>“<span class="nocase">Common optimisation protocol. Deliverable D5.1 of the EU Horizon 2020 project OPTAIN.</span>”</span> Zenodo. <a href="https://doi.org/10.5281/zenodo.11473793">https://doi.org/10.5281/zenodo.11473793</a>.
 </div>
 </div>
             </section>
@@ -590,7 +1109,7 @@ div.csl-indent {
         </div>
       </div>
 <a href="measure-classification.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="overview-maps.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="land-object-input-abandoned.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -621,7 +1140,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://gitlab.nibio.no/moritzshore/swat-cs10/-/edit/main/21-Optimization.Rmd",
+"link": "https://gitlab.nibio.no/moritzshore/swat-cs10/-/edit/main/17-Optimization.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -629,7 +1148,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://gitlab.nibio.no/moritzshore/swat-cs10/blob/main/21-Optimization.Rmd",
+"link": "https://gitlab.nibio.no/moritzshore/swat-cs10/blob/main/17-Optimization.Rmd",
 "text": null
 },
 "download": ["_main.pdf"],
@@ -644,20 +1163,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>

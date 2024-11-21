@@ -309,3 +309,14 @@ roads
 forests
 agricultural-fields
 shrub-land
+fig:comolafilestructure
+constructed-wetlands-and-floodplains
+economic-model-setup
+comola-setup
+python-installation
+comola-files
+optimization-txt
+path-updates
+grain-units
+running-comola
+results-visualization
