@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Introduction | Modelling Kråkstad in SWAT+ for OPTAIN Case study 10</title>
+  <meta name="description" content="A documentation of the project setup for OPTAIN case study 10" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Introduction | Modelling Kråkstad in SWAT+ for OPTAIN Case study 10" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://moritzshore.github.io/optain-cs10/figures/banner.png" />
+  <meta property="og:description" content="A documentation of the project setup for OPTAIN case study 10" />
+  <meta name="github-repo" content="moritzshore/optain-cs10" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Introduction | Modelling Kråkstad in SWAT+ for OPTAIN Case study 10" />
+  
+  <meta name="twitter:description" content="A documentation of the project setup for OPTAIN case study 10" />
+  <meta name="twitter:image" content="https://moritzshore.github.io/optain-cs10/figures/banner.png" />
+
+<meta name="author" content="Moritz Shore, Csilla Farkas &amp; the NIBIO team" />
+
+
+<meta name="date" content="2025-02-28" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="input-data-preparation.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">The OPTAIN-CS10 Project</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Contributors to the GitBook:</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="2" data-path="input-data-preparation.html"><a href="input-data-preparation.html"><i class="fa fa-check"></i><b>2</b> Input Data Preparation</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="input-data-preparation.html"><a href="input-data-preparation.html#digital-elevation-model"><i class="fa fa-check"></i><b>2.1</b> Digital Elevation Model</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="input-data-preparation.html"><a href="input-data-preparation.html#high-resolution-dem"><i class="fa fa-check"></i><b>2.1.1</b> High resolution DEM</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="input-data-preparation.html"><a href="input-data-preparation.html#soil-data"><i class="fa fa-check"></i><b>2.2</b> Soil Data</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="input-data-preparation.html"><a href="input-data-preparation.html#high-resolution-soil-maps"><i class="fa fa-check"></i><b>2.2.1</b> High resolution soil maps</a></li>
+<li class="chapter" data-level="2.2.2" data-path="input-data-preparation.html"><a href="input-data-preparation.html#data-source"><i class="fa fa-check"></i><b>2.2.2</b> Data source</a></li>
+<li class="chapter" data-level="2.2.3" data-path="input-data-preparation.html"><a href="input-data-preparation.html#combining-jordsmonn-and-loesmasser"><i class="fa fa-check"></i><b>2.2.3</b> Combining Jordsmonn and Loesmasser</a></li>
+<li class="chapter" data-level="2.2.4" data-path="input-data-preparation.html"><a href="input-data-preparation.html#detailed-soil-map"><i class="fa fa-check"></i><b>2.2.4</b> Detailed Soil Map</a></li>
+<li class="chapter" data-level="2.2.5" data-path="input-data-preparation.html"><a href="input-data-preparation.html#reclassification"><i class="fa fa-check"></i><b>2.2.5</b> Reclassification</a></li>
+<li class="chapter" data-level="2.2.6" data-path="input-data-preparation.html"><a href="input-data-preparation.html#simplifying-geometries"><i class="fa fa-check"></i><b>2.2.6</b> Simplifying Geometries</a></li>
+<li class="chapter" data-level="2.2.7" data-path="input-data-preparation.html"><a href="input-data-preparation.html#writing-vector-layer"><i class="fa fa-check"></i><b>2.2.7</b> Writing vector layer</a></li>
+<li class="chapter" data-level="2.2.8" data-path="input-data-preparation.html"><a href="input-data-preparation.html#lookup-table"><i class="fa fa-check"></i><b>2.2.8</b> Lookup Table</a></li>
+<li class="chapter" data-level="2.2.9" data-path="input-data-preparation.html"><a href="input-data-preparation.html#rasterization"><i class="fa fa-check"></i><b>2.2.9</b> Rasterization</a></li>
+<li class="chapter" data-level="2.2.10" data-path="input-data-preparation.html"><a href="input-data-preparation.html#usersoil"><i class="fa fa-check"></i><b>2.2.10</b> Usersoil</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="input-data-preparation.html"><a href="input-data-preparation.html#watershed-boundary"><i class="fa fa-check"></i><b>2.3</b> Watershed Boundary</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="input-data-preparation.html"><a href="input-data-preparation.html#hydrological-preperation"><i class="fa fa-check"></i><b>2.3.1</b> Hydrological preperation</a></li>
+<li class="chapter" data-level="2.3.2" data-path="input-data-preparation.html"><a href="input-data-preparation.html#pour-points"><i class="fa fa-check"></i><b>2.3.2</b> Pour Points</a></li>
+<li class="chapter" data-level="2.3.3" data-path="input-data-preparation.html"><a href="input-data-preparation.html#streams"><i class="fa fa-check"></i><b>2.3.3</b> Streams</a></li>
+<li class="chapter" data-level="2.3.4" data-path="input-data-preparation.html"><a href="input-data-preparation.html#watershed-delineation"><i class="fa fa-check"></i><b>2.3.4</b> Watershed Delineation</a></li>
+<li class="chapter" data-level="2.3.5" data-path="input-data-preparation.html"><a href="input-data-preparation.html#bonus-section"><i class="fa fa-check"></i><b>2.3.5</b> Bonus Section</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="input-data-preparation.html"><a href="input-data-preparation.html#land-object-input"><i class="fa fa-check"></i><b>2.4</b> Land object input</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="input-data-preparation.html"><a href="input-data-preparation.html#data-sources"><i class="fa fa-check"></i><b>2.4.1</b> Data sources</a></li>
+<li class="chapter" data-level="2.4.2" data-path="input-data-preparation.html"><a href="input-data-preparation.html#delineation-of-land-objects"><i class="fa fa-check"></i><b>2.4.2</b> Delineation of land objects</a></li>
+<li class="chapter" data-level="2.4.3" data-path="input-data-preparation.html"><a href="input-data-preparation.html#standing-water-bodies-and-the-landuse-type-watr"><i class="fa fa-check"></i><b>2.4.3</b> Standing water bodies and the landuse type = ‘watr’</a></li>
+<li class="chapter" data-level="2.4.4" data-path="input-data-preparation.html"><a href="input-data-preparation.html#tile-drainage-option"><i class="fa fa-check"></i><b>2.4.4</b> Tile drainage option</a></li>
+<li class="chapter" data-level="2.4.5" data-path="input-data-preparation.html"><a href="input-data-preparation.html#existing-and-potential-structures-to-retain-water-and-nutrients"><i class="fa fa-check"></i><b>2.4.5</b> Existing and potential structures to retain water and nutrients</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="input-data-preparation.html"><a href="input-data-preparation.html#channel-object-input"><i class="fa fa-check"></i><b>2.5</b> Channel object input</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="input-data-preparation.html"><a href="input-data-preparation.html#data-sources-and-data-processing"><i class="fa fa-check"></i><b>2.5.1</b> Data sources and data processing</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="input-data-preparation.html"><a href="input-data-preparation.html#point-sources-locations"><i class="fa fa-check"></i><b>2.6</b> Point sources locations</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="input-data-preparation.html"><a href="input-data-preparation.html#point-source-source-data"><i class="fa fa-check"></i><b>2.6.1</b> Point source source data</a></li>
+<li class="chapter" data-level="2.6.2" data-path="input-data-preparation.html"><a href="input-data-preparation.html#point-source-data-files"><i class="fa fa-check"></i><b>2.6.2</b> Point source data files</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="input-data-preparation.html"><a href="input-data-preparation.html#aquifer-objects"><i class="fa fa-check"></i><b>2.7</b> Aquifer Objects</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html"><i class="fa fa-check"></i><b>3</b> Model Setup (SWATbuildR)</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#buildr-setup"><i class="fa fa-check"></i><b>3.1</b> BuildR Setup</a></li>
+<li class="chapter" data-level="3.2" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#processing-input-data"><i class="fa fa-check"></i><b>3.2</b> Processing input data</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#high-resolution-digital-elevation-model-dem"><i class="fa fa-check"></i><b>3.2.1</b> High-Resolution Digital Elevation Model (DEM)</a></li>
+<li class="chapter" data-level="3.2.2" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#processing-the-basin-boundary"><i class="fa fa-check"></i><b>3.2.2</b> Processing the Basin Boundary</a></li>
+<li class="chapter" data-level="3.2.3" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#processing-the-land-layer"><i class="fa fa-check"></i><b>3.2.3</b> Processing the Land layer</a></li>
+<li class="chapter" data-level="3.2.4" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#processing-the-channels"><i class="fa fa-check"></i><b>3.2.4</b> Processing the Channels</a></li>
+<li class="chapter" data-level="3.2.5" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#processing-the-dem"><i class="fa fa-check"></i><b>3.2.5</b> Processing the DEM</a></li>
+<li class="chapter" data-level="3.2.6" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#processing-soil-data"><i class="fa fa-check"></i><b>3.2.6</b> Processing Soil Data</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#calculating-cocoa"><i class="fa fa-check"></i><b>3.3</b> Calculating COCOA</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#calculating-land-unit-connectivity"><i class="fa fa-check"></i><b>3.3.1</b> Calculating land unit connectivity</a></li>
+<li class="chapter" data-level="3.3.2" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#calculating-channelreservoir-connectivity"><i class="fa fa-check"></i><b>3.3.2</b> Calculating channel/reservoir connectivity</a></li>
+<li class="chapter" data-level="3.3.3" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#checking-the-water-objects-for-infinite-loops"><i class="fa fa-check"></i><b>3.3.3</b> Checking the water objects for infinite loops</a></li>
+<li class="chapter" data-level="3.3.4" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#terrain-properties"><i class="fa fa-check"></i><b>3.3.4</b> Terrain properties</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#generate-swat-input"><i class="fa fa-check"></i><b>3.4</b> Generate SWAT+ input</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#generate-land-object-swat-input-tables"><i class="fa fa-check"></i><b>3.4.1</b> Generate land object SWAT+ input tables</a></li>
+<li class="chapter" data-level="3.4.2" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#generate-water-object-swat-input-tables"><i class="fa fa-check"></i><b>3.4.2</b> Generate water object SWAT+ input tables</a></li>
+<li class="chapter" data-level="3.4.3" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#build-aquifer-input"><i class="fa fa-check"></i><b>3.4.3</b> Build aquifer input</a></li>
+<li class="chapter" data-level="3.4.4" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#add-point-source-inputs"><i class="fa fa-check"></i><b>3.4.4</b> Add point source inputs</a></li>
+<li class="chapter" data-level="3.4.5" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#create-swat-sqlite-database"><i class="fa fa-check"></i><b>3.4.5</b> Create SWAT+ sqlite database</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="weather-input.html"><a href="weather-input.html"><i class="fa fa-check"></i><b>4</b> Weather Input</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="weather-input.html"><a href="weather-input.html#loading-data"><i class="fa fa-check"></i><b>4.1</b> Loading Data</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="weather-input.html"><a href="weather-input.html#required-packages"><i class="fa fa-check"></i><b>4.1.1</b> Required packages</a></li>
+<li class="chapter" data-level="4.1.2" data-path="weather-input.html"><a href="weather-input.html#load-in-the-files-and-load-svatools-template"><i class="fa fa-check"></i><b>4.1.2</b> Load in the file(s) and load svatools template</a></li>
+<li class="chapter" data-level="4.1.3" data-path="weather-input.html"><a href="weather-input.html#proof-the-station"><i class="fa fa-check"></i><b>4.1.3</b> Proof the station</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="weather-input.html"><a href="weather-input.html#weather-generator"><i class="fa fa-check"></i><b>4.2</b> Weather Generator</a></li>
+<li class="chapter" data-level="4.3" data-path="weather-input.html"><a href="weather-input.html#adding-data-to-swat"><i class="fa fa-check"></i><b>4.3</b> Adding data to SWAT+</a></li>
+<li class="chapter" data-level="4.4" data-path="weather-input.html"><a href="weather-input.html#atmospheric-deposition"><i class="fa fa-check"></i><b>4.4</b> Atmospheric Deposition</a></li>
+<li class="chapter" data-level="4.5" data-path="weather-input.html"><a href="weather-input.html#re-analysis-weather"><i class="fa fa-check"></i><b>4.5</b> Re-analysis Weather</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="writing-input-files.html"><a href="writing-input-files.html"><i class="fa fa-check"></i><b>5</b> Writing Input Files</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="writing-input-files.html"><a href="writing-input-files.html#via-python"><i class="fa fa-check"></i><b>5.1</b> Via Python</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="writing-input-files.html"><a href="writing-input-files.html#swat-test-run"><i class="fa fa-check"></i><b>5.1.1</b> SWAT+ Test Run</a></li>
+<li class="chapter" data-level="5.1.2" data-path="writing-input-files.html"><a href="writing-input-files.html#link-aquifers-and-channels-with-geomorphic-flow"><i class="fa fa-check"></i><b>5.1.2</b> Link aquifers and channels with geomorphic flow</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="writing-input-files.html"><a href="writing-input-files.html#via-swat-editor"><i class="fa fa-check"></i><b>5.2</b> Via SWAT Editor</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="writing-input-files.html"><a href="writing-input-files.html#loading-the-project-in-swat-editor"><i class="fa fa-check"></i><b>5.2.1</b> Loading the project in SWAT+ Editor</a></li>
+<li class="chapter" data-level="5.2.2" data-path="writing-input-files.html"><a href="writing-input-files.html#writing-input-files-1"><i class="fa fa-check"></i><b>5.2.2</b> Writing input files</a></li>
+<li class="chapter" data-level="5.2.3" data-path="writing-input-files.html"><a href="writing-input-files.html#post-write-changes"><i class="fa fa-check"></i><b>5.2.3</b> Post-write Changes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="crop-map.html"><a href="crop-map.html"><i class="fa fa-check"></i><b>6</b> Crop Map</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="crop-map.html"><a href="crop-map.html#calculating-field-area"><i class="fa fa-check"></i><b>6.1</b> Calculating Field Area</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="crop-map.html"><a href="crop-map.html#calculate-field-area-and-assign-ids"><i class="fa fa-check"></i><b>6.1.1</b> Calculate Field Area and Assign IDs</a></li>
+<li class="chapter" data-level="6.1.2" data-path="crop-map.html"><a href="crop-map.html#calculate-field-area-and-assign-ids-1"><i class="fa fa-check"></i><b>6.1.2</b> Calculate Field area and assign IDs</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="crop-map.html"><a href="crop-map.html#generating-the-crop-rotation"><i class="fa fa-check"></i><b>6.2</b> Generating the Crop Rotation</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="crop-map.html"><a href="crop-map.html#tidy-up-the-source-data"><i class="fa fa-check"></i><b>6.2.1</b> Tidy up the source data:</a></li>
+<li class="chapter" data-level="6.2.2" data-path="crop-map.html"><a href="crop-map.html#tidy-up-the-buildr-output"><i class="fa fa-check"></i><b>6.2.2</b> Tidy up the BuildR output</a></li>
+<li class="chapter" data-level="6.2.3" data-path="crop-map.html"><a href="crop-map.html#field-classification"><i class="fa fa-check"></i><b>6.2.3</b> Field classification</a></li>
+<li class="chapter" data-level="6.2.4" data-path="crop-map.html"><a href="crop-map.html#extrapolating-the-crop-rotation"><i class="fa fa-check"></i><b>6.2.4</b> Extrapolating the Crop Rotation</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="crop-map.html"><a href="crop-map.html#merging-with-swatbuildr"><i class="fa fa-check"></i><b>6.3</b> Merging with SWATbuildR</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html"><i class="fa fa-check"></i><b>7</b> Landuse Parameterization</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#data-preperation"><i class="fa fa-check"></i><b>7.1</b> Data preperation</a></li>
+<li class="chapter" data-level="7.2" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#assigning-landuse-values"><i class="fa fa-check"></i><b>7.2</b> Assigning landuse values</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#setting-cal_group"><i class="fa fa-check"></i><b>7.2.1</b> Setting <code>cal_group</code></a></li>
+<li class="chapter" data-level="7.2.2" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#setting-plnt_com"><i class="fa fa-check"></i><b>7.2.2</b> Setting <code>plnt_com</code></a></li>
+<li class="chapter" data-level="7.2.3" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#setting-mgt"><i class="fa fa-check"></i><b>7.2.3</b> Setting <code>mgt</code></a></li>
+<li class="chapter" data-level="7.2.4" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#setting-urb_ro"><i class="fa fa-check"></i><b>7.2.4</b> Setting <code>urb_ro</code></a></li>
+<li class="chapter" data-level="7.2.5" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#setting-urban"><i class="fa fa-check"></i><b>7.2.5</b> Setting <code>urban</code></a></li>
+<li class="chapter" data-level="7.2.6" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#setting-mannings-n-ovn"><i class="fa fa-check"></i><b>7.2.6</b> Setting Manning’s n (<code>ovn</code>)</a></li>
+<li class="chapter" data-level="7.2.7" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#setting-cn2"><i class="fa fa-check"></i><b>7.2.7</b> Setting <code>cn2</code>:</a></li>
+<li class="chapter" data-level="7.2.8" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#setting-cons_prac"><i class="fa fa-check"></i><b>7.2.8</b> Setting <code>cons_prac</code></a></li>
+<li class="chapter" data-level="7.2.9" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#setting-tile"><i class="fa fa-check"></i><b>7.2.9</b> Setting <code>tile</code></a></li>
+<li class="chapter" data-level="7.2.10" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#setting-sep"><i class="fa fa-check"></i><b>7.2.10</b> Setting <code>sep</code></a></li>
+<li class="chapter" data-level="7.2.11" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#setting-vfs"><i class="fa fa-check"></i><b>7.2.11</b> Setting <code>vfs</code></a></li>
+<li class="chapter" data-level="7.2.12" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#setting-grww"><i class="fa fa-check"></i><b>7.2.12</b> Setting <code>grww</code></a></li>
+<li class="chapter" data-level="7.2.13" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#setting-bmp"><i class="fa fa-check"></i><b>7.2.13</b> Setting <code>bmp</code></a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#writing-changes"><i class="fa fa-check"></i><b>7.3</b> Writing Changes</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="field-site-loggers.html"><a href="field-site-loggers.html"><i class="fa fa-check"></i><b>8</b> Field Site Loggers</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="field-site-loggers.html"><a href="field-site-loggers.html#introduction-1"><i class="fa fa-check"></i><b>8.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="field-site-loggers.html"><a href="field-site-loggers.html#prerequisites"><i class="fa fa-check"></i><b>8.1.1</b> Prerequisites</a></li>
+<li class="chapter" data-level="8.1.2" data-path="field-site-loggers.html"><a href="field-site-loggers.html#locations"><i class="fa fa-check"></i><b>8.1.2</b> Locations</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="field-site-loggers.html"><a href="field-site-loggers.html#data-processing"><i class="fa fa-check"></i><b>8.2</b> Data Processing</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="field-site-loggers.html"><a href="field-site-loggers.html#loading-data-1"><i class="fa fa-check"></i><b>8.2.1</b> Loading Data</a></li>
+<li class="chapter" data-level="8.2.2" data-path="field-site-loggers.html"><a href="field-site-loggers.html#data-re-structuring"><i class="fa fa-check"></i><b>8.2.2</b> Data Re-structuring</a></li>
+<li class="chapter" data-level="8.2.3" data-path="field-site-loggers.html"><a href="field-site-loggers.html#summarize-to-daily-means"><i class="fa fa-check"></i><b>8.2.3</b> Summarize to Daily Means</a></li>
+<li class="chapter" data-level="8.2.4" data-path="field-site-loggers.html"><a href="field-site-loggers.html#including-air-temperature-and-precipitation-data"><i class="fa fa-check"></i><b>8.2.4</b> Including Air Temperature and Precipitation Data</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="field-site-loggers.html"><a href="field-site-loggers.html#data-quality-check"><i class="fa fa-check"></i><b>8.3</b> Data quality check</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="field-site-loggers.html"><a href="field-site-loggers.html#logger-600409-deep-rocky-sand"><i class="fa fa-check"></i><b>8.3.1</b> Logger 600409 “Deep Rocky Sand”</a></li>
+<li class="chapter" data-level="8.3.2" data-path="field-site-loggers.html"><a href="field-site-loggers.html#logger-600410-tormods-farm"><i class="fa fa-check"></i><b>8.3.2</b> Logger 600410 “Tormods farm”</a></li>
+<li class="chapter" data-level="8.3.3" data-path="field-site-loggers.html"><a href="field-site-loggers.html#logger-600411-john-ivar-lower-area"><i class="fa fa-check"></i><b>8.3.3</b> Logger 600411 “John Ivar Lower Area”</a></li>
+<li class="chapter" data-level="8.3.4" data-path="field-site-loggers.html"><a href="field-site-loggers.html#logger-600413-john-ivar-behind-the-barn"><i class="fa fa-check"></i><b>8.3.4</b> Logger 600413 “John Ivar behind the barn”</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="field-site-loggers.html"><a href="field-site-loggers.html#data-cleanup"><i class="fa fa-check"></i><b>8.4</b> Data Cleanup</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="field-site-loggers.html"><a href="field-site-loggers.html#general-cleanup"><i class="fa fa-check"></i><b>8.4.1</b> General cleanup</a></li>
+<li class="chapter" data-level="8.4.2" data-path="field-site-loggers.html"><a href="field-site-loggers.html#logger-specific-cleanup"><i class="fa fa-check"></i><b>8.4.2</b> Logger specific cleanup</a></li>
+<li class="chapter" data-level="8.4.3" data-path="field-site-loggers.html"><a href="field-site-loggers.html#saving-the-cleaned-data"><i class="fa fa-check"></i><b>8.4.3</b> Saving the cleaned data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="field-site-properties.html"><a href="field-site-properties.html"><i class="fa fa-check"></i><b>9</b> Field Site Properties</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="field-site-properties.html"><a href="field-site-properties.html#determining-hsg"><i class="fa fa-check"></i><b>9.1</b> Determining HSG</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html"><i class="fa fa-check"></i><b>10</b> Antecedent Precipitation Index</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html#introduction-2"><i class="fa fa-check"></i><b>10.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html#pre-requirements"><i class="fa fa-check"></i><b>10.1.1</b> Pre-requirements</a></li>
+<li class="chapter" data-level="10.1.2" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html#setting-up-python-for-rrmarkdown"><i class="fa fa-check"></i><b>10.1.2</b> Setting up Python for R/Rmarkdown</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html#antecedent-precipitation-index-1"><i class="fa fa-check"></i><b>10.2</b> Antecedent Precipitation Index</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html#loading-data-2"><i class="fa fa-check"></i><b>10.2.1</b> Loading data</a></li>
+<li class="chapter" data-level="10.2.2" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html#calculating-the-total-water-content"><i class="fa fa-check"></i><b>10.2.2</b> Calculating the total water content</a></li>
+<li class="chapter" data-level="10.2.3" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html#defining-api-model"><i class="fa fa-check"></i><b>10.2.3</b> Defining API model</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html#conclusions"><i class="fa fa-check"></i><b>10.3</b> Conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="model-parameterization.html"><a href="model-parameterization.html"><i class="fa fa-check"></i><b>11</b> Model Parameterization</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="model-parameterization.html"><a href="model-parameterization.html#parameter-changes"><i class="fa fa-check"></i><b>11.1</b> Parameter Changes</a>
+<ul>
+<li class="chapter" data-level="11.1.1" data-path="model-parameterization.html"><a href="model-parameterization.html#channel-parameters-revised"><i class="fa fa-check"></i><b>11.1.1</b> Channel parameters revised</a></li>
+<li class="chapter" data-level="11.1.2" data-path="model-parameterization.html"><a href="model-parameterization.html#crop-parameters-verified"><i class="fa fa-check"></i><b>11.1.2</b> Crop parameters verified</a></li>
+<li class="chapter" data-level="11.1.3" data-path="model-parameterization.html"><a href="model-parameterization.html#soil-physical-parameters-in-final-form"><i class="fa fa-check"></i><b>11.1.3</b> Soil physical parameters in final form</a></li>
+<li class="chapter" data-level="11.1.4" data-path="model-parameterization.html"><a href="model-parameterization.html#soil-chemical-parameters-in-final-form"><i class="fa fa-check"></i><b>11.1.4</b> Soil chemical parameters in final form</a></li>
+<li class="chapter" data-level="11.1.5" data-path="model-parameterization.html"><a href="model-parameterization.html#impoundment-parameters-defined"><i class="fa fa-check"></i><b>11.1.5</b> Impoundment parameters defined</a></li>
+<li class="chapter" data-level="11.1.6" data-path="model-parameterization.html"><a href="model-parameterization.html#water-diversions-defined"><i class="fa fa-check"></i><b>11.1.6</b> Water diversions defined</a></li>
+<li class="chapter" data-level="11.1.7" data-path="model-parameterization.html"><a href="model-parameterization.html#point-sources-parameters-added"><i class="fa fa-check"></i><b>11.1.7</b> Point sources parameters added</a></li>
+<li class="chapter" data-level="11.1.8" data-path="model-parameterization.html"><a href="model-parameterization.html#tile-drainage-parameters-defined"><i class="fa fa-check"></i><b>11.1.8</b> Tile drainage parameters defined</a></li>
+<li class="chapter" data-level="11.1.9" data-path="model-parameterization.html"><a href="model-parameterization.html#atmospheric-deposition-defined"><i class="fa fa-check"></i><b>11.1.9</b> Atmospheric deposition defined</a></li>
+<li class="chapter" data-level="11.1.10" data-path="model-parameterization.html"><a href="model-parameterization.html#additional-settings-verified"><i class="fa fa-check"></i><b>11.1.10</b> Additional settings verified</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="model-parameterization.html"><a href="model-parameterization.html#fixing-tiledrain"><i class="fa fa-check"></i><b>11.2</b> Fixing tiledrain</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="model-parameterization.html"><a href="model-parameterization.html#finding-the-problem-hrus"><i class="fa fa-check"></i><b>11.2.1</b> Finding the problem HRUs</a></li>
+<li class="chapter" data-level="11.2.2" data-path="model-parameterization.html"><a href="model-parameterization.html#fixing-the-problem-hrus"><i class="fa fa-check"></i><b>11.2.2</b> Fixing the problem HRUs</a></li>
+<li class="chapter" data-level="11.2.3" data-path="model-parameterization.html"><a href="model-parameterization.html#checking-changes"><i class="fa fa-check"></i><b>11.2.3</b> Checking changes</a></li>
+<li class="chapter" data-level="11.2.4" data-path="model-parameterization.html"><a href="model-parameterization.html#writing-modified-changes"><i class="fa fa-check"></i><b>11.2.4</b> Writing modified changes</a></li>
+<li class="chapter" data-level="11.2.5" data-path="model-parameterization.html"><a href="model-parameterization.html#re-enabling-tiledrain"><i class="fa fa-check"></i><b>11.2.5</b> Re-enabling tiledrain</a></li>
+<li class="chapter" data-level="11.2.6" data-path="model-parameterization.html"><a href="model-parameterization.html#testing-swat"><i class="fa fa-check"></i><b>11.2.6</b> Testing SWAT+</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="model-parameterization.html"><a href="model-parameterization.html#soil-phosphorous"><i class="fa fa-check"></i><b>11.3</b> Soil Phosphorous</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="management-swatfarmr.html"><a href="management-swatfarmr.html"><i class="fa fa-check"></i><b>12</b> Management (SWATfarmR)</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="management-swatfarmr.html"><a href="management-swatfarmr.html#pre-processing-crop-rotation"><i class="fa fa-check"></i><b>12.1</b> Pre-processing crop rotation</a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="management-swatfarmr.html"><a href="management-swatfarmr.html#input-files"><i class="fa fa-check"></i><b>12.1.1</b> Input files</a></li>
+<li class="chapter" data-level="12.1.2" data-path="management-swatfarmr.html"><a href="management-swatfarmr.html#settings"><i class="fa fa-check"></i><b>12.1.2</b> Settings</a></li>
+<li class="chapter" data-level="12.1.3" data-path="management-swatfarmr.html"><a href="management-swatfarmr.html#checks"><i class="fa fa-check"></i><b>12.1.3</b> Checks</a></li>
+<li class="chapter" data-level="12.1.4" data-path="management-swatfarmr.html"><a href="management-swatfarmr.html#writing-input-data"><i class="fa fa-check"></i><b>12.1.4</b> Writing input data</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="management-swatfarmr.html"><a href="management-swatfarmr.html#initializing-farmr"><i class="fa fa-check"></i><b>12.2</b> Initializing FarmR</a></li>
+<li class="chapter" data-level="12.3" data-path="management-swatfarmr.html"><a href="management-swatfarmr.html#calculating-api"><i class="fa fa-check"></i><b>12.3</b> Calculating API</a></li>
+<li class="chapter" data-level="12.4" data-path="management-swatfarmr.html"><a href="management-swatfarmr.html#scheduling-operations"><i class="fa fa-check"></i><b>12.4</b> Scheduling Operations</a>
+<ul>
+<li class="chapter" data-level="12.4.1" data-path="management-swatfarmr.html"><a href="management-swatfarmr.html#write-operations"><i class="fa fa-check"></i><b>12.4.1</b> Write Operations</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="model-verification-swatdoctr.html"><a href="model-verification-swatdoctr.html"><i class="fa fa-check"></i><b>13</b> Model Verification (SWATdoctR)</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="model-verification-swatdoctr.html"><a href="model-verification-swatdoctr.html#climate-variables"><i class="fa fa-check"></i><b>13.1</b> Climate Variables</a>
+<ul>
+<li class="chapter" data-level="13.1.1" data-path="model-verification-swatdoctr.html"><a href="model-verification-swatdoctr.html#lapse-rate"><i class="fa fa-check"></i><b>13.1.1</b> Lapse rate</a></li>
+<li class="chapter" data-level="13.1.2" data-path="model-verification-swatdoctr.html"><a href="model-verification-swatdoctr.html#climate-variables-1"><i class="fa fa-check"></i><b>13.1.2</b> Climate variables</a></li>
+<li class="chapter" data-level="13.1.3" data-path="model-verification-swatdoctr.html"><a href="model-verification-swatdoctr.html#snowfall-and-snowmelt"><i class="fa fa-check"></i><b>13.1.3</b> Snowfall and Snowmelt</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="model-verification-swatdoctr.html"><a href="model-verification-swatdoctr.html#management-operations"><i class="fa fa-check"></i><b>13.2</b> Management operations</a></li>
+<li class="chapter" data-level="13.3" data-path="model-verification-swatdoctr.html"><a href="model-verification-swatdoctr.html#unconstrained-plant-growth"><i class="fa fa-check"></i><b>13.3</b> Unconstrained plant growth</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="soft-calibration.html"><a href="soft-calibration.html"><i class="fa fa-check"></i><b>14</b> Soft Calibration</a></li>
+<li class="chapter" data-level="15" data-path="hard-calibration.html"><a href="hard-calibration.html"><i class="fa fa-check"></i><b>15</b> Hard Calibration</a></li>
+<li class="chapter" data-level="16" data-path="landuse-scenarios.html"><a href="landuse-scenarios.html"><i class="fa fa-check"></i><b>16</b> Landuse Scenarios</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="landuse-scenarios.html"><a href="landuse-scenarios.html#scenarios"><i class="fa fa-check"></i><b>16.1</b> Scenarios</a>
+<ul>
+<li class="chapter" data-level="16.1.1" data-path="landuse-scenarios.html"><a href="landuse-scenarios.html#status-quo"><i class="fa fa-check"></i><b>16.1.1</b> Status Quo</a></li>
+<li class="chapter" data-level="16.1.2" data-path="landuse-scenarios.html"><a href="landuse-scenarios.html#no-autumn-tillage"><i class="fa fa-check"></i><b>16.1.2</b> No Autumn Tillage</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="update-of-the-swatfarmr-input-input-files.html"><a href="update-of-the-swatfarmr-input-input-files.html"><i class="fa fa-check"></i><b>17</b> Update of the SWATfarmR input input files</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="update-of-the-swatfarmr-input-input-files.html"><a href="update-of-the-swatfarmr-input-input-files.html#setup"><i class="fa fa-check"></i><b>17.1</b> Setup</a></li>
+<li class="chapter" data-level="17.2" data-path="update-of-the-swatfarmr-input-input-files.html"><a href="update-of-the-swatfarmr-input-input-files.html#documenting-changes-in-the-txt-inputs-files-of-calibrated-model-setup"><i class="fa fa-check"></i><b>17.2</b> Documenting changes in the txt inputs files of calibrated model setup</a>
+<ul>
+<li class="chapter" data-level="17.2.1" data-path="update-of-the-swatfarmr-input-input-files.html"><a href="update-of-the-swatfarmr-input-input-files.html#preparation-of-swatfarmr-management-input-files"><i class="fa fa-check"></i><b>17.2.1</b> Preparation of <code>SWATfarmR</code> management input files</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="climate-scenarios.html"><a href="climate-scenarios.html"><i class="fa fa-check"></i><b>18</b> Climate Scenarios</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="climate-scenarios.html"><a href="climate-scenarios.html#introduction-3"><i class="fa fa-check"></i><b>18.1</b> Introduction</a></li>
+<li class="chapter" data-level="18.2" data-path="climate-scenarios.html"><a href="climate-scenarios.html#setup-1"><i class="fa fa-check"></i><b>18.2</b> Setup</a>
+<ul>
+<li class="chapter" data-level="18.2.1" data-path="climate-scenarios.html"><a href="climate-scenarios.html#re-calculating-management"><i class="fa fa-check"></i><b>18.2.1</b> Re-Calculating Management</a></li>
+</ul></li>
+<li class="chapter" data-level="18.3" data-path="climate-scenarios.html"><a href="climate-scenarios.html#executing-model"><i class="fa fa-check"></i><b>18.3</b> Executing model</a></li>
+<li class="chapter" data-level="18.4" data-path="climate-scenarios.html"><a href="climate-scenarios.html#processing-results"><i class="fa fa-check"></i><b>18.4</b> Processing Results</a></li>
+<li class="chapter" data-level="18.5" data-path="climate-scenarios.html"><a href="climate-scenarios.html#output-analysis"><i class="fa fa-check"></i><b>18.5</b> Output Analysis</a>
+<ul>
+<li class="chapter" data-level="18.5.1" data-path="climate-scenarios.html"><a href="climate-scenarios.html#saving-rds"><i class="fa fa-check"></i><b>18.5.1</b> Saving RDS</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="measures-swatmeasr.html"><a href="measures-swatmeasr.html"><i class="fa fa-check"></i><b>19</b> Measures (SWATmeasR)</a></li>
+<li class="chapter" data-level="20" data-path="measure-implementation.html"><a href="measure-implementation.html"><i class="fa fa-check"></i><b>20</b> Measure Implementation</a></li>
+<li class="chapter" data-level="21" data-path="measure-scenarios.html"><a href="measure-scenarios.html"><i class="fa fa-check"></i><b>21</b> Measure Scenarios</a></li>
+<li class="chapter" data-level="22" data-path="measure-classification.html"><a href="measure-classification.html"><i class="fa fa-check"></i><b>22</b> Measure Classification</a>
+<ul>
+<li class="chapter" data-level="22.1" data-path="measure-classification.html"><a href="measure-classification.html#introduction-4"><i class="fa fa-check"></i><b>22.1</b> Introduction</a></li>
+<li class="chapter" data-level="22.2" data-path="measure-classification.html"><a href="measure-classification.html#determining-classification"><i class="fa fa-check"></i><b>22.2</b> Determining Classification</a></li>
+<li class="chapter" data-level="22.3" data-path="measure-classification.html"><a href="measure-classification.html#applying-classification"><i class="fa fa-check"></i><b>22.3</b> Applying Classification</a>
+<ul>
+<li class="chapter" data-level="22.3.1" data-path="measure-classification.html"><a href="measure-classification.html#gullies-grassed-water-ways"><i class="fa fa-check"></i><b>22.3.1</b> Gullies (grassed water ways)</a></li>
+<li class="chapter" data-level="22.3.2" data-path="measure-classification.html"><a href="measure-classification.html#buffer-strips"><i class="fa fa-check"></i><b>22.3.2</b> Buffer Strips</a></li>
+<li class="chapter" data-level="22.3.3" data-path="measure-classification.html"><a href="measure-classification.html#ponds"><i class="fa fa-check"></i><b>22.3.3</b> Ponds</a></li>
+<li class="chapter" data-level="22.3.4" data-path="measure-classification.html"><a href="measure-classification.html#notill-management-measure"><i class="fa fa-check"></i><b>22.3.4</b> NoTill (management measure)</a></li>
+</ul></li>
+<li class="chapter" data-level="22.4" data-path="measure-classification.html"><a href="measure-classification.html#hru-scenario-table"><i class="fa fa-check"></i><b>22.4</b> HRU Scenario Table</a>
+<ul>
+<li class="chapter" data-level="22.4.1" data-path="measure-classification.html"><a href="measure-classification.html#merging-into-landuse-map"><i class="fa fa-check"></i><b>22.4.1</b> Merging into Landuse Map</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="optimization.html"><a href="optimization.html"><i class="fa fa-check"></i><b>23</b> Optimization</a>
+<ul>
+<li class="chapter" data-level="23.1" data-path="optimization.html"><a href="optimization.html#introduction-5"><i class="fa fa-check"></i><b>23.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="23.1.1" data-path="optimization.html"><a href="optimization.html#comola"><i class="fa fa-check"></i><b>23.1.1</b> CoMOLA</a></li>
+<li class="chapter" data-level="23.1.2" data-path="optimization.html"><a href="optimization.html#the-pareto-frontier"><i class="fa fa-check"></i><b>23.1.2</b> The Pareto Frontier</a></li>
+<li class="chapter" data-level="23.1.3" data-path="optimization.html"><a href="optimization.html#nsga-ii"><i class="fa fa-check"></i><b>23.1.3</b> NSGA-II</a></li>
+<li class="chapter" data-level="23.1.4" data-path="optimization.html"><a href="optimization.html#the-objective-space"><i class="fa fa-check"></i><b>23.1.4</b> The Objective Space</a></li>
+</ul></li>
+<li class="chapter" data-level="23.2" data-path="optimization.html"><a href="optimization.html#measure-implementation-1"><i class="fa fa-check"></i><b>23.2</b> Measure Implementation</a>
+<ul>
+<li class="chapter" data-level="23.2.1" data-path="optimization.html"><a href="optimization.html#swatmeasr-project-setup"><i class="fa fa-check"></i><b>23.2.1</b> SWATmeasR project setup</a></li>
+</ul></li>
+<li class="chapter" data-level="23.3" data-path="optimization.html"><a href="optimization.html#economic-model-setup"><i class="fa fa-check"></i><b>23.3</b> Economic Model Setup</a></li>
+<li class="chapter" data-level="23.4" data-path="optimization.html"><a href="optimization.html#comola-setup"><i class="fa fa-check"></i><b>23.4</b> CoMOLA Setup</a>
+<ul>
+<li class="chapter" data-level="23.4.1" data-path="optimization.html"><a href="optimization.html#python-installation"><i class="fa fa-check"></i><b>23.4.1</b> Python Installation</a></li>
+<li class="chapter" data-level="23.4.2" data-path="optimization.html"><a href="optimization.html#comola-files"><i class="fa fa-check"></i><b>23.4.2</b> CoMOLA Files</a></li>
+</ul></li>
+<li class="chapter" data-level="23.5" data-path="optimization.html"><a href="optimization.html#running-comola"><i class="fa fa-check"></i><b>23.5</b> Running CoMOLA</a></li>
+<li class="chapter" data-level="23.6" data-path="optimization.html"><a href="optimization.html#results-visualization"><i class="fa fa-check"></i><b>23.6</b> Results Visualization</a>
+<ul>
+<li class="chapter" data-level="23.6.1" data-path="optimization.html"><a href="optimization.html#references"><i class="fa fa-check"></i><b>23.6.1</b> References</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="land-object-input-abandoned.html"><a href="land-object-input-abandoned.html"><i class="fa fa-check"></i><b>24</b> Land Object Input (abandoned)</a>
+<ul>
+<li class="chapter" data-level="24.0.1" data-path="land-object-input-abandoned.html"><a href="land-object-input-abandoned.html#data-sources-1"><i class="fa fa-check"></i><b>24.0.1</b> Data sources</a></li>
+<li class="chapter" data-level="24.0.2" data-path="land-object-input-abandoned.html"><a href="land-object-input-abandoned.html#delineation-of-land-objects-1"><i class="fa fa-check"></i><b>24.0.2</b> Delineation of land objects</a></li>
+<li class="chapter" data-level="24.0.3" data-path="land-object-input-abandoned.html"><a href="land-object-input-abandoned.html#standing-water-bodies-and-the-land-use-type-watr"><i class="fa fa-check"></i><b>24.0.3</b> Standing water bodies and the land use type = ‘watr’</a></li>
+<li class="chapter" data-level="24.0.4" data-path="land-object-input-abandoned.html"><a href="land-object-input-abandoned.html#tile-drainage-option-1"><i class="fa fa-check"></i><b>24.0.4</b> Tile drainage option</a></li>
+<li class="chapter" data-level="24.0.5" data-path="land-object-input-abandoned.html"><a href="land-object-input-abandoned.html#ar5"><i class="fa fa-check"></i><b>24.0.5</b> AR5</a></li>
+<li class="chapter" data-level="24.0.6" data-path="land-object-input-abandoned.html"><a href="land-object-input-abandoned.html#manual-simplification"><i class="fa fa-check"></i><b>24.0.6</b> Manual Simplification</a></li>
+</ul></li>
+<li class="chapter" data-level="25" data-path="overview-maps.html"><a href="overview-maps.html"><i class="fa fa-check"></i><b>25</b> Overview Maps</a></li>
+<li class="chapter" data-level="" data-path="annex.html"><a href="annex.html"><i class="fa fa-check"></i>Annex</a>
+<ul>
+<li class="chapter" data-level="25.1" data-path="annex.html"><a href="annex.html#packages"><i class="fa fa-check"></i><b>25.1</b> Packages</a></li>
+<li class="chapter" data-level="25.2" data-path="annex.html"><a href="annex.html#computer-specs"><i class="fa fa-check"></i><b>25.2</b> Computer Specs</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references-1.html"><a href="references-1.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://www.optain.eu/" target="blank">optain.eu</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Modelling Kråkstad in SWAT+ for OPTAIN Case study 10</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="introduction" class="section level1 unnumbered hasAnchor">
+<h1>Introduction<a href="introduction.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:3drenderplot"></span>
+<img src="model_data/results/overview_map.png" alt="An Overview of the CS10 Watershed: Kraakstad" width="1350" />
+<p class="caption">
+Figure 1.1: An Overview of the CS10 Watershed: Kraakstad
+</p>
+</div>
+<blockquote>
+<p>THIS SITE IS CURRENTLY A WORK IN PROGRESS</p>
+</blockquote>
+<p>The aim of page is to:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Document</strong> the process of setting up the SWAT+ and SWAP models for Kraakstad, Norway (Case study 10 / CS10)</p></li>
+<li><p><strong>Link and execute entire workflow</strong> in parallel with the documentation using <code>Rmarkdown</code></p></li>
+<li><p>Make the model setup process <strong>reproducible</strong></p></li>
+<li><p>Be a <strong>reference</strong> to the CS10 modelers, as well as other OPTAIN modelers.</p></li>
+</ol>
+<p>If all goes well, the compiling of this GitBook will also compile the OPTAIN model setup in tandem, from source input files to final model setup (..and beyond!)</p>
+<p>The model setup follows the OPTAIN modelling protocols for SWAP <span class="citation">(<a href="#ref-farkas2023">Farkas et al. 2023</a>)</span> and SWAT+ <span class="citation">(<a href="#ref-schürz2022">Schürz et al. 2022</a>)</span>. We begin with SWAT+ and the input file preparation for SWATBuildR, in Section <a href="input-data-preparation.html#input-data-preparation">2</a>.</p>
+<p><strong>Useful links:</strong></p>
+<ul>
+<li><p>NIBIO <a href="https://www.nibio.no/en/projects/optain">project website</a></p></li>
+<li><p>NIBIO <a href="https://gitlab.nibio.no/moritzshore/swat-cs10">GitLab</a> hosting model files (restricted access)</p></li>
+<li><p>UFZ <a href="https://git.ufz.de/users/sign_in">GitLab</a> hosting OPTAIN related software and data (restricted access)</p></li>
+<li><p>OPTAIN <a href="https://www.optain.eu/">project website</a></p></li>
+<li><p>OPTAIN <a href="https://zenodo.org/communities/optain-h2020-project/?page=1&amp;size=20">Zenodo</a> hosting various files and documents</p></li>
+<li><p><a href="https://git.ufz.de/optain/wp4-integrated-assessment/swat/bildr_script">SWATbuildR</a> (restricted), <a href="https://chrisschuerz.github.io/SWATfarmR/">SWATfarmR</a>, <a href="https://git.ufz.de/schuerz/swatdoctr">SWATdoctR</a> (restricted), <a href="https://chrisschuerz.github.io/SWATplusR/">SWATplusR</a>, <a href="https://biopsichas.github.io/SWATprepR/">SWATprepR</a> (R-packages core to the OPTAIN workflow)</p></li>
+</ul>
+<p><img src="figures/banner.png" /></p>
+<hr />
+
+</div>
+<h3>References<a href="references-1.html#references-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div id="ref-farkas2023" class="csl-entry">
+Farkas, Csilla, Moritz Shore, Gökhan Cüceloglu, Levente Czelnai, Attila Nemes, Brigitta Szabó, Natalja Čerkasova, Rasa Idzelyté, and Sinja Weiland. 2023. <span>“SWAP Field-Scale Modelling Protocol,”</span> May. <a href="https://doi.org/10.5281/ZENODO.7907114">https://doi.org/10.5281/ZENODO.7907114</a>.
+</div>
+<div id="ref-schürz2022" class="csl-entry">
+Schürz, Christoph, Natalja Čerkasova, Csilla Farkas, Attila Nemes, Plunge, Michael Strauch, Brigitta Szabó, and Mikołaj Piniewski. 2022. <span>“SWAT+ Modeling Protocol for the Assessment of Water and Nutrient Retention Measures in Small Agricultural Catchments,”</span> December. <a href="https://doi.org/10.5281/ZENODO.7463395">https://doi.org/10.5281/ZENODO.7463395</a>.
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="input-data-preparation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://gitlab.nibio.no/moritzshore/swat-cs10/-/edit/main/index.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://gitlab.nibio.no/moritzshore/swat-cs10/blob/main/index.Rmd",
+"text": null
+},
+"download": ["_main.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
