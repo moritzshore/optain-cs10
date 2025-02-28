@@ -4,26 +4,26 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Section 14 Hard Calibration | The OPTAIN Project: Case study 10</title>
-  <meta name="description" content="A documentation of the project setup for OPTAIN case study 10" />
-  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+  <title>Section 14 Hard Calibration | OPTAIN CS10: Kråkstad SWAT+ Modelling Workflow</title>
+  <meta name="description" content="A documentation of the project setup for OPTAIN case study 10, Kråkstad" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Section 14 Hard Calibration | The OPTAIN Project: Case study 10" />
+  <meta property="og:title" content="Section 14 Hard Calibration | OPTAIN CS10: Kråkstad SWAT+ Modelling Workflow" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://moritzshore.github.io/optain-cs10/figures/banner.png" />
-  <meta property="og:description" content="A documentation of the project setup for OPTAIN case study 10" />
+  <meta property="og:description" content="A documentation of the project setup for OPTAIN case study 10, Kråkstad" />
   <meta name="github-repo" content="moritzshore/optain-cs10" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Section 14 Hard Calibration | The OPTAIN Project: Case study 10" />
+  <meta name="twitter:title" content="Section 14 Hard Calibration | OPTAIN CS10: Kråkstad SWAT+ Modelling Workflow" />
   
-  <meta name="twitter:description" content="A documentation of the project setup for OPTAIN case study 10" />
+  <meta name="twitter:description" content="A documentation of the project setup for OPTAIN case study 10, Kråkstad" />
   <meta name="twitter:image" content="https://moritzshore.github.io/optain-cs10/figures/banner.png" />
 
-<meta name="author" content="Moritz Shore, Csilla Farkas, Christoph Schürz" />
+<meta name="author" content="Moritz Shore (workflow author, modelling) Csilla Farkas (lead modeller) Christoph Schürz (modelling) Doninika Krzeminska (measures &amp; stakeholders) Anne-Grete Buseth Blankenberg (measures &amp; stakeholders) Robert Barneveld (measures &amp; mapping) Attila Nemes (project lead) ..and with strong support of the OPTAIN core team" />
 
 
-<meta name="date" content="2024-11-15" />
+<meta name="date" content="2025-02-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="soft-calibration.html"/>
-<link rel="next" href="climate-scenarios.html"/>
+<link rel="next" href="landuse-scenarios.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -63,7 +63,7 @@
 <script src="libs/leaflet-binding-2.2.2/leaflet.js"></script>
 <script src="libs/leaflet-providers-2.0.0/leaflet-providers_2.0.0.js"></script>
 <script src="libs/leaflet-providers-plugin-2.2.2/leaflet-providers-plugin.js"></script>
-<script src="libs/tile1_rasterlayer_3b9458-1/data_stars_tile1_rasterlayerc9f824.txt"></script>
+<script src="libs/tile1_rasterlayer_4608e7-1/data_stars_tile1_rasterlayer82613c.txt"></script>
 <script src="libs/joda-0.0.1/joda.js"></script>
 <script src="libs/joda-0.0.1/addImageQuery-bindings.js"></script>
 <script src="libs/clipboard-0.0.1/setClipboardText.js"></script>
@@ -72,8 +72,8 @@
 <script src="libs/HomeButton-0.0.1/easy-button-src.min.js"></script>
 <link href="libs/mapviewCSS-0.0.1/mapview-popup.css" rel="stylesheet" />
 <link href="libs/mapviewCSS-0.0.1/mapview.css" rel="stylesheet" />
-<script src="libs/tile2_rasterlayer_645a02-1/data_stars_tile2_rasterlayerdabe25.txt"></script>
-<script src="libs/dem_layer_76a1b0-1/data_stars_dem_layer63570a.txt"></script>
+<script src="libs/tile2_rasterlayer_d0b7c6-1/data_stars_tile2_rasterlayer18d403.txt"></script>
+<script src="libs/dem_layer_915ecb-1/data_stars_dem_layer92e3a7.txt"></script>
 <link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
 <script src="libs/datatables-binding-0.33/datatables.js"></script>
 <link href="libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet" />
@@ -81,29 +81,29 @@
 <script src="libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
 <link href="libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet" />
 <script src="libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
-<script src="libs/stream_crop_ce093f-1/data_stars_stream_cropcad623.txt"></script>
-<script src="libs/ws_c6902d-1/data_stars_ws1b74dc.txt"></script>
-<script src="libs/rglWebGL-binding-1.3.1/rglWebGL.js"></script>
-<link href="libs/rglwidgetClass-1.3.1/rgl.css" rel="stylesheet" />
-<script src="libs/rglwidgetClass-1.3.1/rglClass.src.js"></script>
-<script src="libs/rglwidgetClass-1.3.1/utils.src.js"></script>
-<script src="libs/rglwidgetClass-1.3.1/buffer.src.js"></script>
-<script src="libs/rglwidgetClass-1.3.1/subscenes.src.js"></script>
-<script src="libs/rglwidgetClass-1.3.1/shaders.src.js"></script>
-<script src="libs/rglwidgetClass-1.3.1/shadersrc.src.js"></script>
-<script src="libs/rglwidgetClass-1.3.1/textures.src.js"></script>
-<script src="libs/rglwidgetClass-1.3.1/projection.src.js"></script>
-<script src="libs/rglwidgetClass-1.3.1/mouse.src.js"></script>
-<script src="libs/rglwidgetClass-1.3.1/init.src.js"></script>
-<script src="libs/rglwidgetClass-1.3.1/pieces.src.js"></script>
-<script src="libs/rglwidgetClass-1.3.1/draw.src.js"></script>
-<script src="libs/rglwidgetClass-1.3.1/controls.src.js"></script>
-<script src="libs/rglwidgetClass-1.3.1/selection.src.js"></script>
-<script src="libs/rglwidgetClass-1.3.1/rglTimer.src.js"></script>
-<script src="libs/rglwidgetClass-1.3.1/pretty.src.js"></script>
-<script src="libs/rglwidgetClass-1.3.1/axes.src.js"></script>
-<script src="libs/rglwidgetClass-1.3.1/animation.src.js"></script>
-<script src="libs/CanvasMatrix4-1.3.1/CanvasMatrix.src.js"></script>
+<script src="libs/stream_crop_39b072-1/data_stars_stream_crop2d4f69.txt"></script>
+<script src="libs/ws_a1945d-1/data_stars_ws4efda1.txt"></script>
+<script src="libs/rglWebGL-binding-1.3.17/rglWebGL.js"></script>
+<link href="libs/rglwidgetClass-1.3.17/rgl.css" rel="stylesheet" />
+<script src="libs/rglwidgetClass-1.3.17/rglClass.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.17/utils.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.17/buffer.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.17/subscenes.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.17/shaders.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.17/shadersrc.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.17/textures.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.17/projection.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.17/mouse.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.17/init.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.17/pieces.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.17/draw.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.17/controls.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.17/selection.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.17/rglTimer.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.17/pretty.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.17/axes.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.17/animation.src.js"></script>
+<script src="libs/CanvasMatrix4-1.3.17/CanvasMatrix.src.js"></script>
 <script src="libs/plotly-binding-4.10.4/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
@@ -114,7 +114,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -124,7 +124,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -186,6 +186,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging div.csl-entry {
   margin-left:2em;
@@ -461,63 +462,94 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="13" data-path="soft-calibration.html"><a href="soft-calibration.html"><i class="fa fa-check"></i><b>13</b> Soft Calibration</a></li>
 <li class="chapter" data-level="14" data-path="hard-calibration.html"><a href="hard-calibration.html"><i class="fa fa-check"></i><b>14</b> Hard Calibration</a></li>
-<li class="chapter" data-level="15" data-path="climate-scenarios.html"><a href="climate-scenarios.html"><i class="fa fa-check"></i><b>15</b> Climate Scenarios</a>
+<li class="chapter" data-level="15" data-path="landuse-scenarios.html"><a href="landuse-scenarios.html"><i class="fa fa-check"></i><b>15</b> Landuse Scenarios</a>
 <ul>
-<li class="chapter" data-level="15.1" data-path="climate-scenarios.html"><a href="climate-scenarios.html#introduction-3"><i class="fa fa-check"></i><b>15.1</b> Introduction</a></li>
-<li class="chapter" data-level="15.2" data-path="climate-scenarios.html"><a href="climate-scenarios.html#setup"><i class="fa fa-check"></i><b>15.2</b> Setup</a>
+<li class="chapter" data-level="15.1" data-path="landuse-scenarios.html"><a href="landuse-scenarios.html#scenarios"><i class="fa fa-check"></i><b>15.1</b> Scenarios</a>
 <ul>
-<li class="chapter" data-level="15.2.1" data-path="climate-scenarios.html"><a href="climate-scenarios.html#re-calculating-management"><i class="fa fa-check"></i><b>15.2.1</b> Re-Calculating Management</a></li>
-</ul></li>
-<li class="chapter" data-level="15.3" data-path="climate-scenarios.html"><a href="climate-scenarios.html#executing-model"><i class="fa fa-check"></i><b>15.3</b> Executing model</a></li>
-<li class="chapter" data-level="15.4" data-path="climate-scenarios.html"><a href="climate-scenarios.html#processing-results"><i class="fa fa-check"></i><b>15.4</b> Processing Results</a></li>
-<li class="chapter" data-level="15.5" data-path="climate-scenarios.html"><a href="climate-scenarios.html#output-analysis"><i class="fa fa-check"></i><b>15.5</b> Output Analysis</a>
-<ul>
-<li class="chapter" data-level="15.5.1" data-path="climate-scenarios.html"><a href="climate-scenarios.html#saving-rds"><i class="fa fa-check"></i><b>15.5.1</b> Saving RDS</a></li>
+<li class="chapter" data-level="15.1.1" data-path="landuse-scenarios.html"><a href="landuse-scenarios.html#status-quo"><i class="fa fa-check"></i><b>15.1.1</b> Status Quo</a></li>
+<li class="chapter" data-level="15.1.2" data-path="landuse-scenarios.html"><a href="landuse-scenarios.html#no-autumn-tillage"><i class="fa fa-check"></i><b>15.1.2</b> No Autumn Tillage</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="16" data-path="landuse-scenarios.html"><a href="landuse-scenarios.html"><i class="fa fa-check"></i><b>16</b> Landuse Scenarios</a>
+<li class="chapter" data-level="16" data-path="update-of-the-swatfarmr-input-input-files.html"><a href="update-of-the-swatfarmr-input-input-files.html"><i class="fa fa-check"></i><b>16</b> Update of the SWATfarmR input input files</a>
 <ul>
-<li class="chapter" data-level="16.1" data-path="landuse-scenarios.html"><a href="landuse-scenarios.html#scenarios"><i class="fa fa-check"></i><b>16.1</b> Scenarios</a>
+<li class="chapter" data-level="16.1" data-path="update-of-the-swatfarmr-input-input-files.html"><a href="update-of-the-swatfarmr-input-input-files.html#setup"><i class="fa fa-check"></i><b>16.1</b> Setup</a></li>
+<li class="chapter" data-level="16.2" data-path="update-of-the-swatfarmr-input-input-files.html"><a href="update-of-the-swatfarmr-input-input-files.html#documenting-changes-in-the-txt-inputs-files-of-calibrated-model-setup"><i class="fa fa-check"></i><b>16.2</b> Documenting changes in the txt inputs files of calibrated model setup</a>
 <ul>
-<li class="chapter" data-level="16.1.1" data-path="landuse-scenarios.html"><a href="landuse-scenarios.html#status-quo"><i class="fa fa-check"></i><b>16.1.1</b> Status Quo</a></li>
-<li class="chapter" data-level="16.1.2" data-path="landuse-scenarios.html"><a href="landuse-scenarios.html#no-autumn-tillage"><i class="fa fa-check"></i><b>16.1.2</b> No Autumn Tillage</a></li>
+<li class="chapter" data-level="16.2.1" data-path="update-of-the-swatfarmr-input-input-files.html"><a href="update-of-the-swatfarmr-input-input-files.html#preparation-of-swatfarmr-management-input-files"><i class="fa fa-check"></i><b>16.2.1</b> Preparation of <code>SWATfarmR</code> management input files</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="17" data-path="measures-swatmeasr.html"><a href="measures-swatmeasr.html"><i class="fa fa-check"></i><b>17</b> Measures (SWATmeasR)</a></li>
-<li class="chapter" data-level="18" data-path="measure-implementation.html"><a href="measure-implementation.html"><i class="fa fa-check"></i><b>18</b> Measure Implementation</a></li>
-<li class="chapter" data-level="19" data-path="measure-scenarios.html"><a href="measure-scenarios.html"><i class="fa fa-check"></i><b>19</b> Measure Scenarios</a></li>
-<li class="chapter" data-level="20" data-path="measure-classification.html"><a href="measure-classification.html"><i class="fa fa-check"></i><b>20</b> Measure Classification</a>
+<li class="chapter" data-level="17" data-path="climate-scenarios.html"><a href="climate-scenarios.html"><i class="fa fa-check"></i><b>17</b> Climate Scenarios</a>
 <ul>
-<li class="chapter" data-level="20.1" data-path="measure-classification.html"><a href="measure-classification.html#introduction-4"><i class="fa fa-check"></i><b>20.1</b> Introduction</a></li>
-<li class="chapter" data-level="20.2" data-path="measure-classification.html"><a href="measure-classification.html#determining-classification"><i class="fa fa-check"></i><b>20.2</b> Determining Classification</a></li>
-<li class="chapter" data-level="20.3" data-path="measure-classification.html"><a href="measure-classification.html#applying-classification"><i class="fa fa-check"></i><b>20.3</b> Applying Classification</a>
+<li class="chapter" data-level="17.1" data-path="climate-scenarios.html"><a href="climate-scenarios.html#introduction-3"><i class="fa fa-check"></i><b>17.1</b> Introduction</a></li>
+<li class="chapter" data-level="17.2" data-path="climate-scenarios.html"><a href="climate-scenarios.html#setup-1"><i class="fa fa-check"></i><b>17.2</b> Setup</a>
 <ul>
-<li class="chapter" data-level="20.3.1" data-path="measure-classification.html"><a href="measure-classification.html#gullies-grassed-water-ways"><i class="fa fa-check"></i><b>20.3.1</b> Gullies (grassed water ways)</a></li>
-<li class="chapter" data-level="20.3.2" data-path="measure-classification.html"><a href="measure-classification.html#buffer-strips"><i class="fa fa-check"></i><b>20.3.2</b> Buffer Strips</a></li>
-<li class="chapter" data-level="20.3.3" data-path="measure-classification.html"><a href="measure-classification.html#ponds"><i class="fa fa-check"></i><b>20.3.3</b> Ponds</a></li>
-<li class="chapter" data-level="20.3.4" data-path="measure-classification.html"><a href="measure-classification.html#notill-management-measure"><i class="fa fa-check"></i><b>20.3.4</b> NoTill (management measure)</a></li>
+<li class="chapter" data-level="17.2.1" data-path="climate-scenarios.html"><a href="climate-scenarios.html#re-calculating-management"><i class="fa fa-check"></i><b>17.2.1</b> Re-Calculating Management</a></li>
 </ul></li>
-<li class="chapter" data-level="20.4" data-path="measure-classification.html"><a href="measure-classification.html#hru-scenario-table"><i class="fa fa-check"></i><b>20.4</b> HRU Scenario Table</a>
+<li class="chapter" data-level="17.3" data-path="climate-scenarios.html"><a href="climate-scenarios.html#executing-model"><i class="fa fa-check"></i><b>17.3</b> Executing model</a></li>
+<li class="chapter" data-level="17.4" data-path="climate-scenarios.html"><a href="climate-scenarios.html#processing-results"><i class="fa fa-check"></i><b>17.4</b> Processing Results</a></li>
+<li class="chapter" data-level="17.5" data-path="climate-scenarios.html"><a href="climate-scenarios.html#output-analysis"><i class="fa fa-check"></i><b>17.5</b> Output Analysis</a>
 <ul>
-<li class="chapter" data-level="20.4.1" data-path="measure-classification.html"><a href="measure-classification.html#merging-into-landuse-map"><i class="fa fa-check"></i><b>20.4.1</b> Merging into Landuse Map</a></li>
+<li class="chapter" data-level="17.5.1" data-path="climate-scenarios.html"><a href="climate-scenarios.html#saving-rds"><i class="fa fa-check"></i><b>17.5.1</b> Saving RDS</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="21" data-path="optimization.html"><a href="optimization.html"><i class="fa fa-check"></i><b>21</b> Optimization</a>
+<li class="chapter" data-level="18" data-path="measures-swatmeasr.html"><a href="measures-swatmeasr.html"><i class="fa fa-check"></i><b>18</b> Measures (SWATmeasR)</a></li>
+<li class="chapter" data-level="19" data-path="measure-implementation.html"><a href="measure-implementation.html"><i class="fa fa-check"></i><b>19</b> Measure Implementation</a></li>
+<li class="chapter" data-level="20" data-path="measure-scenarios.html"><a href="measure-scenarios.html"><i class="fa fa-check"></i><b>20</b> Measure Scenarios</a></li>
+<li class="chapter" data-level="21" data-path="measure-classification.html"><a href="measure-classification.html"><i class="fa fa-check"></i><b>21</b> Measure Classification</a>
 <ul>
-<li class="chapter" data-level="21.1" data-path="optimization.html"><a href="optimization.html#introduction-5"><i class="fa fa-check"></i><b>21.1</b> Introduction</a>
+<li class="chapter" data-level="21.1" data-path="measure-classification.html"><a href="measure-classification.html#introduction-4"><i class="fa fa-check"></i><b>21.1</b> Introduction</a></li>
+<li class="chapter" data-level="21.2" data-path="measure-classification.html"><a href="measure-classification.html#determining-classification"><i class="fa fa-check"></i><b>21.2</b> Determining Classification</a></li>
+<li class="chapter" data-level="21.3" data-path="measure-classification.html"><a href="measure-classification.html#applying-classification"><i class="fa fa-check"></i><b>21.3</b> Applying Classification</a>
 <ul>
-<li class="chapter" data-level="21.1.1" data-path="optimization.html"><a href="optimization.html#comola"><i class="fa fa-check"></i><b>21.1.1</b> CoMOLA</a></li>
-<li class="chapter" data-level="21.1.2" data-path="optimization.html"><a href="optimization.html#the-pareto-frontier"><i class="fa fa-check"></i><b>21.1.2</b> The Pareto Frontier</a></li>
-<li class="chapter" data-level="21.1.3" data-path="optimization.html"><a href="optimization.html#nsga-ii"><i class="fa fa-check"></i><b>21.1.3</b> NSGA-II</a></li>
-<li class="chapter" data-level="21.1.4" data-path="optimization.html"><a href="optimization.html#the-objective-space"><i class="fa fa-check"></i><b>21.1.4</b> The Objective Space</a></li>
-<li class="chapter" data-level="21.1.5" data-path="optimization.html"><a href="optimization.html#references"><i class="fa fa-check"></i><b>21.1.5</b> References</a></li>
+<li class="chapter" data-level="21.3.1" data-path="measure-classification.html"><a href="measure-classification.html#gullies-grassed-water-ways"><i class="fa fa-check"></i><b>21.3.1</b> Gullies (grassed water ways)</a></li>
+<li class="chapter" data-level="21.3.2" data-path="measure-classification.html"><a href="measure-classification.html#buffer-strips"><i class="fa fa-check"></i><b>21.3.2</b> Buffer Strips</a></li>
+<li class="chapter" data-level="21.3.3" data-path="measure-classification.html"><a href="measure-classification.html#ponds"><i class="fa fa-check"></i><b>21.3.3</b> Ponds</a></li>
+<li class="chapter" data-level="21.3.4" data-path="measure-classification.html"><a href="measure-classification.html#notill-management-measure"><i class="fa fa-check"></i><b>21.3.4</b> NoTill (management measure)</a></li>
+</ul></li>
+<li class="chapter" data-level="21.4" data-path="measure-classification.html"><a href="measure-classification.html#hru-scenario-table"><i class="fa fa-check"></i><b>21.4</b> HRU Scenario Table</a>
+<ul>
+<li class="chapter" data-level="21.4.1" data-path="measure-classification.html"><a href="measure-classification.html#merging-into-landuse-map"><i class="fa fa-check"></i><b>21.4.1</b> Merging into Landuse Map</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="22" data-path="overview-maps.html"><a href="overview-maps.html"><i class="fa fa-check"></i><b>22</b> Overview Maps</a></li>
+<li class="chapter" data-level="22" data-path="optimization.html"><a href="optimization.html"><i class="fa fa-check"></i><b>22</b> Optimization</a>
+<ul>
+<li class="chapter" data-level="22.1" data-path="optimization.html"><a href="optimization.html#introduction-5"><i class="fa fa-check"></i><b>22.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="22.1.1" data-path="optimization.html"><a href="optimization.html#comola"><i class="fa fa-check"></i><b>22.1.1</b> CoMOLA</a></li>
+<li class="chapter" data-level="22.1.2" data-path="optimization.html"><a href="optimization.html#the-pareto-frontier"><i class="fa fa-check"></i><b>22.1.2</b> The Pareto Frontier</a></li>
+<li class="chapter" data-level="22.1.3" data-path="optimization.html"><a href="optimization.html#nsga-ii"><i class="fa fa-check"></i><b>22.1.3</b> NSGA-II</a></li>
+<li class="chapter" data-level="22.1.4" data-path="optimization.html"><a href="optimization.html#the-objective-space"><i class="fa fa-check"></i><b>22.1.4</b> The Objective Space</a></li>
+</ul></li>
+<li class="chapter" data-level="22.2" data-path="optimization.html"><a href="optimization.html#measure-implementation-1"><i class="fa fa-check"></i><b>22.2</b> Measure Implementation</a>
+<ul>
+<li class="chapter" data-level="22.2.1" data-path="optimization.html"><a href="optimization.html#swatmeasr-project-setup"><i class="fa fa-check"></i><b>22.2.1</b> SWATmeasR project setup</a></li>
+</ul></li>
+<li class="chapter" data-level="22.3" data-path="optimization.html"><a href="optimization.html#economic-model-setup"><i class="fa fa-check"></i><b>22.3</b> Economic Model Setup</a></li>
+<li class="chapter" data-level="22.4" data-path="optimization.html"><a href="optimization.html#comola-setup"><i class="fa fa-check"></i><b>22.4</b> CoMOLA Setup</a>
+<ul>
+<li class="chapter" data-level="22.4.1" data-path="optimization.html"><a href="optimization.html#python-installation"><i class="fa fa-check"></i><b>22.4.1</b> Python Installation</a></li>
+<li class="chapter" data-level="22.4.2" data-path="optimization.html"><a href="optimization.html#comola-files"><i class="fa fa-check"></i><b>22.4.2</b> CoMOLA Files</a></li>
+</ul></li>
+<li class="chapter" data-level="22.5" data-path="optimization.html"><a href="optimization.html#running-comola"><i class="fa fa-check"></i><b>22.5</b> Running CoMOLA</a></li>
+<li class="chapter" data-level="22.6" data-path="optimization.html"><a href="optimization.html#results-visualization"><i class="fa fa-check"></i><b>22.6</b> Results Visualization</a>
+<ul>
+<li class="chapter" data-level="22.6.1" data-path="optimization.html"><a href="optimization.html#references"><i class="fa fa-check"></i><b>22.6.1</b> References</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="land-object-input-abandoned.html"><a href="land-object-input-abandoned.html"><i class="fa fa-check"></i><b>23</b> Land Object Input (abandoned)</a>
+<ul>
+<li class="chapter" data-level="23.0.1" data-path="land-object-input-abandoned.html"><a href="land-object-input-abandoned.html#data-sources-1"><i class="fa fa-check"></i><b>23.0.1</b> Data sources</a></li>
+<li class="chapter" data-level="23.0.2" data-path="land-object-input-abandoned.html"><a href="land-object-input-abandoned.html#delineation-of-land-objects-1"><i class="fa fa-check"></i><b>23.0.2</b> Delineation of land objects</a></li>
+<li class="chapter" data-level="23.0.3" data-path="land-object-input-abandoned.html"><a href="land-object-input-abandoned.html#standing-water-bodies-and-the-land-use-type-watr"><i class="fa fa-check"></i><b>23.0.3</b> Standing water bodies and the land use type = ‘watr’</a></li>
+<li class="chapter" data-level="23.0.4" data-path="land-object-input-abandoned.html"><a href="land-object-input-abandoned.html#tile-drainage-option-1"><i class="fa fa-check"></i><b>23.0.4</b> Tile drainage option</a></li>
+<li class="chapter" data-level="23.0.5" data-path="land-object-input-abandoned.html"><a href="land-object-input-abandoned.html#ar5"><i class="fa fa-check"></i><b>23.0.5</b> AR5</a></li>
+<li class="chapter" data-level="23.0.6" data-path="land-object-input-abandoned.html"><a href="land-object-input-abandoned.html#manual-simplification"><i class="fa fa-check"></i><b>23.0.6</b> Manual Simplification</a></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="overview-maps.html"><a href="overview-maps.html"><i class="fa fa-check"></i><b>24</b> Overview Maps</a></li>
 <li class="chapter" data-level="" data-path="annex.html"><a href="annex.html"><i class="fa fa-check"></i>Annex</a>
 <ul>
-<li class="chapter" data-level="22.1" data-path="annex.html"><a href="annex.html#packages"><i class="fa fa-check"></i><b>22.1</b> Packages</a></li>
-<li class="chapter" data-level="22.2" data-path="annex.html"><a href="annex.html#computer-specs"><i class="fa fa-check"></i><b>22.2</b> Computer Specs</a></li>
+<li class="chapter" data-level="24.1" data-path="annex.html"><a href="annex.html#packages"><i class="fa fa-check"></i><b>24.1</b> Packages</a></li>
+<li class="chapter" data-level="24.2" data-path="annex.html"><a href="annex.html#computer-specs"><i class="fa fa-check"></i><b>24.2</b> Computer Specs</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references-1.html"><a href="references-1.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -532,7 +564,7 @@ div.csl-indent {
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">The OPTAIN Project: Case study 10</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">OPTAIN CS10: Kråkstad SWAT+ Modelling Workflow</a>
           </h1>
         </div>
 
@@ -551,7 +583,7 @@ div.csl-indent {
         </div>
       </div>
 <a href="soft-calibration.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="climate-scenarios.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="landuse-scenarios.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

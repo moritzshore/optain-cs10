@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Section 23 Land Object Input (abandoned) | OPTAIN CS10: Kråkstad SWAT+ Modelling Workflow</title>
+  <meta name="description" content="A documentation of the project setup for OPTAIN case study 10, Kråkstad" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Section 23 Land Object Input (abandoned) | OPTAIN CS10: Kråkstad SWAT+ Modelling Workflow" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://moritzshore.github.io/optain-cs10/figures/banner.png" />
+  <meta property="og:description" content="A documentation of the project setup for OPTAIN case study 10, Kråkstad" />
+  <meta name="github-repo" content="moritzshore/optain-cs10" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Section 23 Land Object Input (abandoned) | OPTAIN CS10: Kråkstad SWAT+ Modelling Workflow" />
+  
+  <meta name="twitter:description" content="A documentation of the project setup for OPTAIN case study 10, Kråkstad" />
+  <meta name="twitter:image" content="https://moritzshore.github.io/optain-cs10/figures/banner.png" />
+
+<meta name="author" content="Moritz Shore (workflow author, modelling) Csilla Farkas (lead modeller) Christoph Schürz (modelling) Doninika Krzeminska (measures &amp; stakeholders) Anne-Grete Buseth Blankenberg (measures &amp; stakeholders) Robert Barneveld (measures &amp; mapping) Attila Nemes (project lead) ..and with strong support of the OPTAIN core team" />
+
+
+<meta name="date" content="2025-02-28" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="optimization.html"/>
+<link rel="next" href="overview-maps.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.2.2/leaflet.js"></script>
+<script src="libs/leaflet-providers-2.0.0/leaflet-providers_2.0.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.2.2/leaflet-providers-plugin.js"></script>
+<script src="libs/tile1_rasterlayer_4608e7-1/data_stars_tile1_rasterlayer82613c.txt"></script>
+<script src="libs/joda-0.0.1/joda.js"></script>
+<script src="libs/joda-0.0.1/addImageQuery-bindings.js"></script>
+<script src="libs/clipboard-0.0.1/setClipboardText.js"></script>
+<link href="libs/HomeButton-0.0.1/home-button.css" rel="stylesheet" />
+<script src="libs/HomeButton-0.0.1/home-button.js"></script>
+<script src="libs/HomeButton-0.0.1/easy-button-src.min.js"></script>
+<link href="libs/mapviewCSS-0.0.1/mapview-popup.css" rel="stylesheet" />
+<link href="libs/mapviewCSS-0.0.1/mapview.css" rel="stylesheet" />
+<script src="libs/tile2_rasterlayer_d0b7c6-1/data_stars_tile2_rasterlayer18d403.txt"></script>
+<script src="libs/dem_layer_915ecb-1/data_stars_dem_layer92e3a7.txt"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.33/datatables.js"></script>
+<link href="libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
+<link href="libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+<script src="libs/stream_crop_39b072-1/data_stars_stream_crop2d4f69.txt"></script>
+<script src="libs/ws_a1945d-1/data_stars_ws4efda1.txt"></script>
+<script src="libs/rglWebGL-binding-1.3.17/rglWebGL.js"></script>
+<link href="libs/rglwidgetClass-1.3.17/rgl.css" rel="stylesheet" />
+<script src="libs/rglwidgetClass-1.3.17/rglClass.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.17/utils.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.17/buffer.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.17/subscenes.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.17/shaders.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.17/shadersrc.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.17/textures.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.17/projection.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.17/mouse.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.17/init.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.17/pieces.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.17/draw.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.17/controls.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.17/selection.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.17/rglTimer.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.17/pretty.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.17/axes.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.17/animation.src.js"></script>
+<script src="libs/CanvasMatrix4-1.3.17/CanvasMatrix.src.js"></script>
+<script src="libs/plotly-binding-4.10.4/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+<link href="libs/dt-ext-scroller-1.13.6/css/scroller.dataTables.min.css" rel="stylesheet" />
+<script src="libs/dt-ext-scroller-1.13.6/js/dataTables.scroller.min.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">The OPTAIN-CS10 Project</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="1" data-path="input-data-preparation.html"><a href="input-data-preparation.html"><i class="fa fa-check"></i><b>1</b> Input Data Preparation</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="input-data-preparation.html"><a href="input-data-preparation.html#digital-elevation-model"><i class="fa fa-check"></i><b>1.1</b> Digital Elevation Model</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="input-data-preparation.html"><a href="input-data-preparation.html#high-resolution-dem"><i class="fa fa-check"></i><b>1.1.1</b> High resolution DEM</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="input-data-preparation.html"><a href="input-data-preparation.html#soil-data"><i class="fa fa-check"></i><b>1.2</b> Soil Data</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="input-data-preparation.html"><a href="input-data-preparation.html#high-resolution-soil-maps"><i class="fa fa-check"></i><b>1.2.1</b> High resolution soil maps</a></li>
+<li class="chapter" data-level="1.2.2" data-path="input-data-preparation.html"><a href="input-data-preparation.html#data-source"><i class="fa fa-check"></i><b>1.2.2</b> Data source</a></li>
+<li class="chapter" data-level="1.2.3" data-path="input-data-preparation.html"><a href="input-data-preparation.html#combining-jordsmonn-and-loesmasser"><i class="fa fa-check"></i><b>1.2.3</b> Combining Jordsmonn and Loesmasser</a></li>
+<li class="chapter" data-level="1.2.4" data-path="input-data-preparation.html"><a href="input-data-preparation.html#detailed-soil-map"><i class="fa fa-check"></i><b>1.2.4</b> Detailed Soil Map</a></li>
+<li class="chapter" data-level="1.2.5" data-path="input-data-preparation.html"><a href="input-data-preparation.html#reclassification"><i class="fa fa-check"></i><b>1.2.5</b> Reclassification</a></li>
+<li class="chapter" data-level="1.2.6" data-path="input-data-preparation.html"><a href="input-data-preparation.html#simplifying-geometries"><i class="fa fa-check"></i><b>1.2.6</b> Simplifying Geometries</a></li>
+<li class="chapter" data-level="1.2.7" data-path="input-data-preparation.html"><a href="input-data-preparation.html#writing-vector-layer"><i class="fa fa-check"></i><b>1.2.7</b> Writing vector layer</a></li>
+<li class="chapter" data-level="1.2.8" data-path="input-data-preparation.html"><a href="input-data-preparation.html#lookup-table"><i class="fa fa-check"></i><b>1.2.8</b> Lookup Table</a></li>
+<li class="chapter" data-level="1.2.9" data-path="input-data-preparation.html"><a href="input-data-preparation.html#rasterization"><i class="fa fa-check"></i><b>1.2.9</b> Rasterization</a></li>
+<li class="chapter" data-level="1.2.10" data-path="input-data-preparation.html"><a href="input-data-preparation.html#usersoil"><i class="fa fa-check"></i><b>1.2.10</b> Usersoil</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="input-data-preparation.html"><a href="input-data-preparation.html#watershed-boundary"><i class="fa fa-check"></i><b>1.3</b> Watershed Boundary</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="input-data-preparation.html"><a href="input-data-preparation.html#hydrological-preperation"><i class="fa fa-check"></i><b>1.3.1</b> Hydrological preperation</a></li>
+<li class="chapter" data-level="1.3.2" data-path="input-data-preparation.html"><a href="input-data-preparation.html#pour-points"><i class="fa fa-check"></i><b>1.3.2</b> Pour Points</a></li>
+<li class="chapter" data-level="1.3.3" data-path="input-data-preparation.html"><a href="input-data-preparation.html#streams"><i class="fa fa-check"></i><b>1.3.3</b> Streams</a></li>
+<li class="chapter" data-level="1.3.4" data-path="input-data-preparation.html"><a href="input-data-preparation.html#watershed-delineation"><i class="fa fa-check"></i><b>1.3.4</b> Watershed Delineation</a></li>
+<li class="chapter" data-level="1.3.5" data-path="input-data-preparation.html"><a href="input-data-preparation.html#bonus-section"><i class="fa fa-check"></i><b>1.3.5</b> Bonus Section</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="input-data-preparation.html"><a href="input-data-preparation.html#land-object-input"><i class="fa fa-check"></i><b>1.4</b> Land object input</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="input-data-preparation.html"><a href="input-data-preparation.html#data-sources"><i class="fa fa-check"></i><b>1.4.1</b> Data sources</a></li>
+<li class="chapter" data-level="1.4.2" data-path="input-data-preparation.html"><a href="input-data-preparation.html#delineation-of-land-objects"><i class="fa fa-check"></i><b>1.4.2</b> Delineation of land objects</a></li>
+<li class="chapter" data-level="1.4.3" data-path="input-data-preparation.html"><a href="input-data-preparation.html#standing-water-bodies-and-the-landuse-type-watr"><i class="fa fa-check"></i><b>1.4.3</b> Standing water bodies and the landuse type = ‘watr’</a></li>
+<li class="chapter" data-level="1.4.4" data-path="input-data-preparation.html"><a href="input-data-preparation.html#tile-drainage-option"><i class="fa fa-check"></i><b>1.4.4</b> Tile drainage option</a></li>
+<li class="chapter" data-level="1.4.5" data-path="input-data-preparation.html"><a href="input-data-preparation.html#existing-and-potential-structures-to-retain-water-and-nutrients"><i class="fa fa-check"></i><b>1.4.5</b> Existing and potential structures to retain water and nutrients</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="input-data-preparation.html"><a href="input-data-preparation.html#channel-object-input"><i class="fa fa-check"></i><b>1.5</b> Channel object input</a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="input-data-preparation.html"><a href="input-data-preparation.html#data-sources-and-data-processing"><i class="fa fa-check"></i><b>1.5.1</b> Data sources and data processing</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="input-data-preparation.html"><a href="input-data-preparation.html#point-sources-locations"><i class="fa fa-check"></i><b>1.6</b> Point sources locations</a>
+<ul>
+<li class="chapter" data-level="1.6.1" data-path="input-data-preparation.html"><a href="input-data-preparation.html#point-source-source-data"><i class="fa fa-check"></i><b>1.6.1</b> Point source source data</a></li>
+<li class="chapter" data-level="1.6.2" data-path="input-data-preparation.html"><a href="input-data-preparation.html#point-source-data-files"><i class="fa fa-check"></i><b>1.6.2</b> Point source data files</a></li>
+</ul></li>
+<li class="chapter" data-level="1.7" data-path="input-data-preparation.html"><a href="input-data-preparation.html#aquifer-objects"><i class="fa fa-check"></i><b>1.7</b> Aquifer Objects</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html"><i class="fa fa-check"></i><b>2</b> Model Setup (SWATbuildR)</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#buildr-setup"><i class="fa fa-check"></i><b>2.1</b> BuildR Setup</a></li>
+<li class="chapter" data-level="2.2" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#processing-input-data"><i class="fa fa-check"></i><b>2.2</b> Processing input data</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#high-resolution-digital-elevation-model-dem"><i class="fa fa-check"></i><b>2.2.1</b> High-Resolution Digital Elevation Model (DEM)</a></li>
+<li class="chapter" data-level="2.2.2" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#processing-the-basin-boundary"><i class="fa fa-check"></i><b>2.2.2</b> Processing the Basin Boundary</a></li>
+<li class="chapter" data-level="2.2.3" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#processing-the-land-layer"><i class="fa fa-check"></i><b>2.2.3</b> Processing the Land layer</a></li>
+<li class="chapter" data-level="2.2.4" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#processing-the-channels"><i class="fa fa-check"></i><b>2.2.4</b> Processing the Channels</a></li>
+<li class="chapter" data-level="2.2.5" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#processing-the-dem"><i class="fa fa-check"></i><b>2.2.5</b> Processing the DEM</a></li>
+<li class="chapter" data-level="2.2.6" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#processing-soil-data"><i class="fa fa-check"></i><b>2.2.6</b> Processing Soil Data</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#calculating-cocoa"><i class="fa fa-check"></i><b>2.3</b> Calculating COCOA</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#calculating-land-unit-connectivity"><i class="fa fa-check"></i><b>2.3.1</b> Calculating land unit connectivity</a></li>
+<li class="chapter" data-level="2.3.2" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#calculating-channelreservoir-connectivity"><i class="fa fa-check"></i><b>2.3.2</b> Calculating channel/reservoir connectivity</a></li>
+<li class="chapter" data-level="2.3.3" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#checking-the-water-objects-for-infinite-loops"><i class="fa fa-check"></i><b>2.3.3</b> Checking the water objects for infinite loops</a></li>
+<li class="chapter" data-level="2.3.4" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#terrain-properties"><i class="fa fa-check"></i><b>2.3.4</b> Terrain properties</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#generate-swat-input"><i class="fa fa-check"></i><b>2.4</b> Generate SWAT+ input</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#generate-land-object-swat-input-tables"><i class="fa fa-check"></i><b>2.4.1</b> Generate land object SWAT+ input tables</a></li>
+<li class="chapter" data-level="2.4.2" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#generate-water-object-swat-input-tables"><i class="fa fa-check"></i><b>2.4.2</b> Generate water object SWAT+ input tables</a></li>
+<li class="chapter" data-level="2.4.3" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#build-aquifer-input"><i class="fa fa-check"></i><b>2.4.3</b> Build aquifer input</a></li>
+<li class="chapter" data-level="2.4.4" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#add-point-source-inputs"><i class="fa fa-check"></i><b>2.4.4</b> Add point source inputs</a></li>
+<li class="chapter" data-level="2.4.5" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#create-swat-sqlite-database"><i class="fa fa-check"></i><b>2.4.5</b> Create SWAT+ sqlite database</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="weather-input.html"><a href="weather-input.html"><i class="fa fa-check"></i><b>3</b> Weather Input</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="weather-input.html"><a href="weather-input.html#loading-data"><i class="fa fa-check"></i><b>3.1</b> Loading Data</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="weather-input.html"><a href="weather-input.html#required-packages"><i class="fa fa-check"></i><b>3.1.1</b> Required packages</a></li>
+<li class="chapter" data-level="3.1.2" data-path="weather-input.html"><a href="weather-input.html#load-in-the-files-and-load-svatools-template"><i class="fa fa-check"></i><b>3.1.2</b> Load in the file(s) and load svatools template</a></li>
+<li class="chapter" data-level="3.1.3" data-path="weather-input.html"><a href="weather-input.html#proof-the-station"><i class="fa fa-check"></i><b>3.1.3</b> Proof the station</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="weather-input.html"><a href="weather-input.html#weather-generator"><i class="fa fa-check"></i><b>3.2</b> Weather Generator</a></li>
+<li class="chapter" data-level="3.3" data-path="weather-input.html"><a href="weather-input.html#adding-data-to-swat"><i class="fa fa-check"></i><b>3.3</b> Adding data to SWAT+</a></li>
+<li class="chapter" data-level="3.4" data-path="weather-input.html"><a href="weather-input.html#atmospheric-deposition"><i class="fa fa-check"></i><b>3.4</b> Atmospheric Deposition</a></li>
+<li class="chapter" data-level="3.5" data-path="weather-input.html"><a href="weather-input.html#re-analysis-weather"><i class="fa fa-check"></i><b>3.5</b> Re-analysis Weather</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="writing-input-files.html"><a href="writing-input-files.html"><i class="fa fa-check"></i><b>4</b> Writing Input Files</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="writing-input-files.html"><a href="writing-input-files.html#via-python"><i class="fa fa-check"></i><b>4.1</b> Via Python</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="writing-input-files.html"><a href="writing-input-files.html#swat-test-run"><i class="fa fa-check"></i><b>4.1.1</b> SWAT+ Test Run</a></li>
+<li class="chapter" data-level="4.1.2" data-path="writing-input-files.html"><a href="writing-input-files.html#link-aquifers-and-channels-with-geomorphic-flow"><i class="fa fa-check"></i><b>4.1.2</b> Link aquifers and channels with geomorphic flow</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="writing-input-files.html"><a href="writing-input-files.html#via-swat-editor"><i class="fa fa-check"></i><b>4.2</b> Via SWAT Editor</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="writing-input-files.html"><a href="writing-input-files.html#loading-the-project-in-swat-editor"><i class="fa fa-check"></i><b>4.2.1</b> Loading the project in SWAT+ Editor</a></li>
+<li class="chapter" data-level="4.2.2" data-path="writing-input-files.html"><a href="writing-input-files.html#writing-input-files-1"><i class="fa fa-check"></i><b>4.2.2</b> Writing input files</a></li>
+<li class="chapter" data-level="4.2.3" data-path="writing-input-files.html"><a href="writing-input-files.html#post-write-changes"><i class="fa fa-check"></i><b>4.2.3</b> Post-write Changes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="crop-map.html"><a href="crop-map.html"><i class="fa fa-check"></i><b>5</b> Crop Map</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="crop-map.html"><a href="crop-map.html#calculating-field-area"><i class="fa fa-check"></i><b>5.1</b> Calculating Field Area</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="crop-map.html"><a href="crop-map.html#calculate-field-area-and-assign-ids"><i class="fa fa-check"></i><b>5.1.1</b> Calculate Field Area and Assign IDs</a></li>
+<li class="chapter" data-level="5.1.2" data-path="crop-map.html"><a href="crop-map.html#calculate-field-area-and-assign-ids-1"><i class="fa fa-check"></i><b>5.1.2</b> Calculate Field area and assign IDs</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="crop-map.html"><a href="crop-map.html#generating-the-crop-rotation"><i class="fa fa-check"></i><b>5.2</b> Generating the Crop Rotation</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="crop-map.html"><a href="crop-map.html#tidy-up-the-source-data"><i class="fa fa-check"></i><b>5.2.1</b> Tidy up the source data:</a></li>
+<li class="chapter" data-level="5.2.2" data-path="crop-map.html"><a href="crop-map.html#tidy-up-the-buildr-output"><i class="fa fa-check"></i><b>5.2.2</b> Tidy up the BuildR output</a></li>
+<li class="chapter" data-level="5.2.3" data-path="crop-map.html"><a href="crop-map.html#field-classification"><i class="fa fa-check"></i><b>5.2.3</b> Field classification</a></li>
+<li class="chapter" data-level="5.2.4" data-path="crop-map.html"><a href="crop-map.html#extrapolating-the-crop-rotation"><i class="fa fa-check"></i><b>5.2.4</b> Extrapolating the Crop Rotation</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="crop-map.html"><a href="crop-map.html#merging-with-swatbuildr"><i class="fa fa-check"></i><b>5.3</b> Merging with SWATbuildR</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html"><i class="fa fa-check"></i><b>6</b> Landuse Parameterization</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#data-preperation"><i class="fa fa-check"></i><b>6.1</b> Data preperation</a></li>
+<li class="chapter" data-level="6.2" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#assigning-landuse-values"><i class="fa fa-check"></i><b>6.2</b> Assigning landuse values</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#setting-cal_group"><i class="fa fa-check"></i><b>6.2.1</b> Setting <code>cal_group</code></a></li>
+<li class="chapter" data-level="6.2.2" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#setting-plnt_com"><i class="fa fa-check"></i><b>6.2.2</b> Setting <code>plnt_com</code></a></li>
+<li class="chapter" data-level="6.2.3" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#setting-mgt"><i class="fa fa-check"></i><b>6.2.3</b> Setting <code>mgt</code></a></li>
+<li class="chapter" data-level="6.2.4" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#setting-urb_ro"><i class="fa fa-check"></i><b>6.2.4</b> Setting <code>urb_ro</code></a></li>
+<li class="chapter" data-level="6.2.5" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#setting-urban"><i class="fa fa-check"></i><b>6.2.5</b> Setting <code>urban</code></a></li>
+<li class="chapter" data-level="6.2.6" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#setting-mannings-n-ovn"><i class="fa fa-check"></i><b>6.2.6</b> Setting Manning’s n (<code>ovn</code>)</a></li>
+<li class="chapter" data-level="6.2.7" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#setting-cn2"><i class="fa fa-check"></i><b>6.2.7</b> Setting <code>cn2</code>:</a></li>
+<li class="chapter" data-level="6.2.8" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#setting-cons_prac"><i class="fa fa-check"></i><b>6.2.8</b> Setting <code>cons_prac</code></a></li>
+<li class="chapter" data-level="6.2.9" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#setting-tile"><i class="fa fa-check"></i><b>6.2.9</b> Setting <code>tile</code></a></li>
+<li class="chapter" data-level="6.2.10" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#setting-sep"><i class="fa fa-check"></i><b>6.2.10</b> Setting <code>sep</code></a></li>
+<li class="chapter" data-level="6.2.11" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#setting-vfs"><i class="fa fa-check"></i><b>6.2.11</b> Setting <code>vfs</code></a></li>
+<li class="chapter" data-level="6.2.12" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#setting-grww"><i class="fa fa-check"></i><b>6.2.12</b> Setting <code>grww</code></a></li>
+<li class="chapter" data-level="6.2.13" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#setting-bmp"><i class="fa fa-check"></i><b>6.2.13</b> Setting <code>bmp</code></a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#writing-changes"><i class="fa fa-check"></i><b>6.3</b> Writing Changes</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="field-site-loggers.html"><a href="field-site-loggers.html"><i class="fa fa-check"></i><b>7</b> Field Site Loggers</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="field-site-loggers.html"><a href="field-site-loggers.html#introduction-1"><i class="fa fa-check"></i><b>7.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="field-site-loggers.html"><a href="field-site-loggers.html#prerequisites"><i class="fa fa-check"></i><b>7.1.1</b> Prerequisites</a></li>
+<li class="chapter" data-level="7.1.2" data-path="field-site-loggers.html"><a href="field-site-loggers.html#locations"><i class="fa fa-check"></i><b>7.1.2</b> Locations</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="field-site-loggers.html"><a href="field-site-loggers.html#data-processing"><i class="fa fa-check"></i><b>7.2</b> Data Processing</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="field-site-loggers.html"><a href="field-site-loggers.html#loading-data-1"><i class="fa fa-check"></i><b>7.2.1</b> Loading Data</a></li>
+<li class="chapter" data-level="7.2.2" data-path="field-site-loggers.html"><a href="field-site-loggers.html#data-re-structuring"><i class="fa fa-check"></i><b>7.2.2</b> Data Re-structuring</a></li>
+<li class="chapter" data-level="7.2.3" data-path="field-site-loggers.html"><a href="field-site-loggers.html#summarize-to-daily-means"><i class="fa fa-check"></i><b>7.2.3</b> Summarize to Daily Means</a></li>
+<li class="chapter" data-level="7.2.4" data-path="field-site-loggers.html"><a href="field-site-loggers.html#including-air-temperature-and-precipitation-data"><i class="fa fa-check"></i><b>7.2.4</b> Including Air Temperature and Precipitation Data</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="field-site-loggers.html"><a href="field-site-loggers.html#data-quality-check"><i class="fa fa-check"></i><b>7.3</b> Data quality check</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="field-site-loggers.html"><a href="field-site-loggers.html#logger-600409-deep-rocky-sand"><i class="fa fa-check"></i><b>7.3.1</b> Logger 600409 “Deep Rocky Sand”</a></li>
+<li class="chapter" data-level="7.3.2" data-path="field-site-loggers.html"><a href="field-site-loggers.html#logger-600410-tormods-farm"><i class="fa fa-check"></i><b>7.3.2</b> Logger 600410 “Tormods farm”</a></li>
+<li class="chapter" data-level="7.3.3" data-path="field-site-loggers.html"><a href="field-site-loggers.html#logger-600411-john-ivar-lower-area"><i class="fa fa-check"></i><b>7.3.3</b> Logger 600411 “John Ivar Lower Area”</a></li>
+<li class="chapter" data-level="7.3.4" data-path="field-site-loggers.html"><a href="field-site-loggers.html#logger-600413-john-ivar-behind-the-barn"><i class="fa fa-check"></i><b>7.3.4</b> Logger 600413 “John Ivar behind the barn”</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="field-site-loggers.html"><a href="field-site-loggers.html#data-cleanup"><i class="fa fa-check"></i><b>7.4</b> Data Cleanup</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="field-site-loggers.html"><a href="field-site-loggers.html#general-cleanup"><i class="fa fa-check"></i><b>7.4.1</b> General cleanup</a></li>
+<li class="chapter" data-level="7.4.2" data-path="field-site-loggers.html"><a href="field-site-loggers.html#logger-specific-cleanup"><i class="fa fa-check"></i><b>7.4.2</b> Logger specific cleanup</a></li>
+<li class="chapter" data-level="7.4.3" data-path="field-site-loggers.html"><a href="field-site-loggers.html#saving-the-cleaned-data"><i class="fa fa-check"></i><b>7.4.3</b> Saving the cleaned data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="field-site-properties.html"><a href="field-site-properties.html"><i class="fa fa-check"></i><b>8</b> Field Site Properties</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="field-site-properties.html"><a href="field-site-properties.html#determining-hsg"><i class="fa fa-check"></i><b>8.1</b> Determining HSG</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html"><i class="fa fa-check"></i><b>9</b> Antecedent Precipitation Index</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html#introduction-2"><i class="fa fa-check"></i><b>9.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html#pre-requirements"><i class="fa fa-check"></i><b>9.1.1</b> Pre-requirements</a></li>
+<li class="chapter" data-level="9.1.2" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html#setting-up-python-for-rrmarkdown"><i class="fa fa-check"></i><b>9.1.2</b> Setting up Python for R/Rmarkdown</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html#antecedent-precipitation-index-1"><i class="fa fa-check"></i><b>9.2</b> Antecedent Precipitation Index</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html#loading-data-2"><i class="fa fa-check"></i><b>9.2.1</b> Loading data</a></li>
+<li class="chapter" data-level="9.2.2" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html#calculating-the-total-water-content"><i class="fa fa-check"></i><b>9.2.2</b> Calculating the total water content</a></li>
+<li class="chapter" data-level="9.2.3" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html#defining-api-model"><i class="fa fa-check"></i><b>9.2.3</b> Defining API model</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html#conclusions"><i class="fa fa-check"></i><b>9.3</b> Conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="model-parameterization.html"><a href="model-parameterization.html"><i class="fa fa-check"></i><b>10</b> Model Parameterization</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="model-parameterization.html"><a href="model-parameterization.html#parameter-changes"><i class="fa fa-check"></i><b>10.1</b> Parameter Changes</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="model-parameterization.html"><a href="model-parameterization.html#channel-parameters-revised"><i class="fa fa-check"></i><b>10.1.1</b> Channel parameters revised</a></li>
+<li class="chapter" data-level="10.1.2" data-path="model-parameterization.html"><a href="model-parameterization.html#crop-parameters-verified"><i class="fa fa-check"></i><b>10.1.2</b> Crop parameters verified</a></li>
+<li class="chapter" data-level="10.1.3" data-path="model-parameterization.html"><a href="model-parameterization.html#soil-physical-parameters-in-final-form"><i class="fa fa-check"></i><b>10.1.3</b> Soil physical parameters in final form</a></li>
+<li class="chapter" data-level="10.1.4" data-path="model-parameterization.html"><a href="model-parameterization.html#soil-chemical-parameters-in-final-form"><i class="fa fa-check"></i><b>10.1.4</b> Soil chemical parameters in final form</a></li>
+<li class="chapter" data-level="10.1.5" data-path="model-parameterization.html"><a href="model-parameterization.html#impoundment-parameters-defined"><i class="fa fa-check"></i><b>10.1.5</b> Impoundment parameters defined</a></li>
+<li class="chapter" data-level="10.1.6" data-path="model-parameterization.html"><a href="model-parameterization.html#water-diversions-defined"><i class="fa fa-check"></i><b>10.1.6</b> Water diversions defined</a></li>
+<li class="chapter" data-level="10.1.7" data-path="model-parameterization.html"><a href="model-parameterization.html#point-sources-parameters-added"><i class="fa fa-check"></i><b>10.1.7</b> Point sources parameters added</a></li>
+<li class="chapter" data-level="10.1.8" data-path="model-parameterization.html"><a href="model-parameterization.html#tile-drainage-parameters-defined"><i class="fa fa-check"></i><b>10.1.8</b> Tile drainage parameters defined</a></li>
+<li class="chapter" data-level="10.1.9" data-path="model-parameterization.html"><a href="model-parameterization.html#atmospheric-deposition-defined"><i class="fa fa-check"></i><b>10.1.9</b> Atmospheric deposition defined</a></li>
+<li class="chapter" data-level="10.1.10" data-path="model-parameterization.html"><a href="model-parameterization.html#additional-settings-verified"><i class="fa fa-check"></i><b>10.1.10</b> Additional settings verified</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="model-parameterization.html"><a href="model-parameterization.html#fixing-tiledrain"><i class="fa fa-check"></i><b>10.2</b> Fixing tiledrain</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="model-parameterization.html"><a href="model-parameterization.html#finding-the-problem-hrus"><i class="fa fa-check"></i><b>10.2.1</b> Finding the problem HRUs</a></li>
+<li class="chapter" data-level="10.2.2" data-path="model-parameterization.html"><a href="model-parameterization.html#fixing-the-problem-hrus"><i class="fa fa-check"></i><b>10.2.2</b> Fixing the problem HRUs</a></li>
+<li class="chapter" data-level="10.2.3" data-path="model-parameterization.html"><a href="model-parameterization.html#checking-changes"><i class="fa fa-check"></i><b>10.2.3</b> Checking changes</a></li>
+<li class="chapter" data-level="10.2.4" data-path="model-parameterization.html"><a href="model-parameterization.html#writing-modified-changes"><i class="fa fa-check"></i><b>10.2.4</b> Writing modified changes</a></li>
+<li class="chapter" data-level="10.2.5" data-path="model-parameterization.html"><a href="model-parameterization.html#re-enabling-tiledrain"><i class="fa fa-check"></i><b>10.2.5</b> Re-enabling tiledrain</a></li>
+<li class="chapter" data-level="10.2.6" data-path="model-parameterization.html"><a href="model-parameterization.html#testing-swat"><i class="fa fa-check"></i><b>10.2.6</b> Testing SWAT+</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="model-parameterization.html"><a href="model-parameterization.html#soil-phosphorous"><i class="fa fa-check"></i><b>10.3</b> Soil Phosphorous</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="management-swatfarmr.html"><a href="management-swatfarmr.html"><i class="fa fa-check"></i><b>11</b> Management (SWATfarmR)</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="management-swatfarmr.html"><a href="management-swatfarmr.html#pre-processing-crop-rotation"><i class="fa fa-check"></i><b>11.1</b> Pre-processing crop rotation</a>
+<ul>
+<li class="chapter" data-level="11.1.1" data-path="management-swatfarmr.html"><a href="management-swatfarmr.html#input-files"><i class="fa fa-check"></i><b>11.1.1</b> Input files</a></li>
+<li class="chapter" data-level="11.1.2" data-path="management-swatfarmr.html"><a href="management-swatfarmr.html#settings"><i class="fa fa-check"></i><b>11.1.2</b> Settings</a></li>
+<li class="chapter" data-level="11.1.3" data-path="management-swatfarmr.html"><a href="management-swatfarmr.html#checks"><i class="fa fa-check"></i><b>11.1.3</b> Checks</a></li>
+<li class="chapter" data-level="11.1.4" data-path="management-swatfarmr.html"><a href="management-swatfarmr.html#writing-input-data"><i class="fa fa-check"></i><b>11.1.4</b> Writing input data</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="management-swatfarmr.html"><a href="management-swatfarmr.html#initializing-farmr"><i class="fa fa-check"></i><b>11.2</b> Initializing FarmR</a></li>
+<li class="chapter" data-level="11.3" data-path="management-swatfarmr.html"><a href="management-swatfarmr.html#calculating-api"><i class="fa fa-check"></i><b>11.3</b> Calculating API</a></li>
+<li class="chapter" data-level="11.4" data-path="management-swatfarmr.html"><a href="management-swatfarmr.html#scheduling-operations"><i class="fa fa-check"></i><b>11.4</b> Scheduling Operations</a>
+<ul>
+<li class="chapter" data-level="11.4.1" data-path="management-swatfarmr.html"><a href="management-swatfarmr.html#write-operations"><i class="fa fa-check"></i><b>11.4.1</b> Write Operations</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="model-verification-swatdoctr.html"><a href="model-verification-swatdoctr.html"><i class="fa fa-check"></i><b>12</b> Model Verification (SWATdoctR)</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="model-verification-swatdoctr.html"><a href="model-verification-swatdoctr.html#climate-variables"><i class="fa fa-check"></i><b>12.1</b> Climate Variables</a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="model-verification-swatdoctr.html"><a href="model-verification-swatdoctr.html#lapse-rate"><i class="fa fa-check"></i><b>12.1.1</b> Lapse rate</a></li>
+<li class="chapter" data-level="12.1.2" data-path="model-verification-swatdoctr.html"><a href="model-verification-swatdoctr.html#climate-variables-1"><i class="fa fa-check"></i><b>12.1.2</b> Climate variables</a></li>
+<li class="chapter" data-level="12.1.3" data-path="model-verification-swatdoctr.html"><a href="model-verification-swatdoctr.html#snowfall-and-snowmelt"><i class="fa fa-check"></i><b>12.1.3</b> Snowfall and Snowmelt</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="model-verification-swatdoctr.html"><a href="model-verification-swatdoctr.html#management-operations"><i class="fa fa-check"></i><b>12.2</b> Management operations</a></li>
+<li class="chapter" data-level="12.3" data-path="model-verification-swatdoctr.html"><a href="model-verification-swatdoctr.html#unconstrained-plant-growth"><i class="fa fa-check"></i><b>12.3</b> Unconstrained plant growth</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="soft-calibration.html"><a href="soft-calibration.html"><i class="fa fa-check"></i><b>13</b> Soft Calibration</a></li>
+<li class="chapter" data-level="14" data-path="hard-calibration.html"><a href="hard-calibration.html"><i class="fa fa-check"></i><b>14</b> Hard Calibration</a></li>
+<li class="chapter" data-level="15" data-path="landuse-scenarios.html"><a href="landuse-scenarios.html"><i class="fa fa-check"></i><b>15</b> Landuse Scenarios</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="landuse-scenarios.html"><a href="landuse-scenarios.html#scenarios"><i class="fa fa-check"></i><b>15.1</b> Scenarios</a>
+<ul>
+<li class="chapter" data-level="15.1.1" data-path="landuse-scenarios.html"><a href="landuse-scenarios.html#status-quo"><i class="fa fa-check"></i><b>15.1.1</b> Status Quo</a></li>
+<li class="chapter" data-level="15.1.2" data-path="landuse-scenarios.html"><a href="landuse-scenarios.html#no-autumn-tillage"><i class="fa fa-check"></i><b>15.1.2</b> No Autumn Tillage</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="update-of-the-swatfarmr-input-input-files.html"><a href="update-of-the-swatfarmr-input-input-files.html"><i class="fa fa-check"></i><b>16</b> Update of the SWATfarmR input input files</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="update-of-the-swatfarmr-input-input-files.html"><a href="update-of-the-swatfarmr-input-input-files.html#setup"><i class="fa fa-check"></i><b>16.1</b> Setup</a></li>
+<li class="chapter" data-level="16.2" data-path="update-of-the-swatfarmr-input-input-files.html"><a href="update-of-the-swatfarmr-input-input-files.html#documenting-changes-in-the-txt-inputs-files-of-calibrated-model-setup"><i class="fa fa-check"></i><b>16.2</b> Documenting changes in the txt inputs files of calibrated model setup</a>
+<ul>
+<li class="chapter" data-level="16.2.1" data-path="update-of-the-swatfarmr-input-input-files.html"><a href="update-of-the-swatfarmr-input-input-files.html#preparation-of-swatfarmr-management-input-files"><i class="fa fa-check"></i><b>16.2.1</b> Preparation of <code>SWATfarmR</code> management input files</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="climate-scenarios.html"><a href="climate-scenarios.html"><i class="fa fa-check"></i><b>17</b> Climate Scenarios</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="climate-scenarios.html"><a href="climate-scenarios.html#introduction-3"><i class="fa fa-check"></i><b>17.1</b> Introduction</a></li>
+<li class="chapter" data-level="17.2" data-path="climate-scenarios.html"><a href="climate-scenarios.html#setup-1"><i class="fa fa-check"></i><b>17.2</b> Setup</a>
+<ul>
+<li class="chapter" data-level="17.2.1" data-path="climate-scenarios.html"><a href="climate-scenarios.html#re-calculating-management"><i class="fa fa-check"></i><b>17.2.1</b> Re-Calculating Management</a></li>
+</ul></li>
+<li class="chapter" data-level="17.3" data-path="climate-scenarios.html"><a href="climate-scenarios.html#executing-model"><i class="fa fa-check"></i><b>17.3</b> Executing model</a></li>
+<li class="chapter" data-level="17.4" data-path="climate-scenarios.html"><a href="climate-scenarios.html#processing-results"><i class="fa fa-check"></i><b>17.4</b> Processing Results</a></li>
+<li class="chapter" data-level="17.5" data-path="climate-scenarios.html"><a href="climate-scenarios.html#output-analysis"><i class="fa fa-check"></i><b>17.5</b> Output Analysis</a>
+<ul>
+<li class="chapter" data-level="17.5.1" data-path="climate-scenarios.html"><a href="climate-scenarios.html#saving-rds"><i class="fa fa-check"></i><b>17.5.1</b> Saving RDS</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="measures-swatmeasr.html"><a href="measures-swatmeasr.html"><i class="fa fa-check"></i><b>18</b> Measures (SWATmeasR)</a></li>
+<li class="chapter" data-level="19" data-path="measure-implementation.html"><a href="measure-implementation.html"><i class="fa fa-check"></i><b>19</b> Measure Implementation</a></li>
+<li class="chapter" data-level="20" data-path="measure-scenarios.html"><a href="measure-scenarios.html"><i class="fa fa-check"></i><b>20</b> Measure Scenarios</a></li>
+<li class="chapter" data-level="21" data-path="measure-classification.html"><a href="measure-classification.html"><i class="fa fa-check"></i><b>21</b> Measure Classification</a>
+<ul>
+<li class="chapter" data-level="21.1" data-path="measure-classification.html"><a href="measure-classification.html#introduction-4"><i class="fa fa-check"></i><b>21.1</b> Introduction</a></li>
+<li class="chapter" data-level="21.2" data-path="measure-classification.html"><a href="measure-classification.html#determining-classification"><i class="fa fa-check"></i><b>21.2</b> Determining Classification</a></li>
+<li class="chapter" data-level="21.3" data-path="measure-classification.html"><a href="measure-classification.html#applying-classification"><i class="fa fa-check"></i><b>21.3</b> Applying Classification</a>
+<ul>
+<li class="chapter" data-level="21.3.1" data-path="measure-classification.html"><a href="measure-classification.html#gullies-grassed-water-ways"><i class="fa fa-check"></i><b>21.3.1</b> Gullies (grassed water ways)</a></li>
+<li class="chapter" data-level="21.3.2" data-path="measure-classification.html"><a href="measure-classification.html#buffer-strips"><i class="fa fa-check"></i><b>21.3.2</b> Buffer Strips</a></li>
+<li class="chapter" data-level="21.3.3" data-path="measure-classification.html"><a href="measure-classification.html#ponds"><i class="fa fa-check"></i><b>21.3.3</b> Ponds</a></li>
+<li class="chapter" data-level="21.3.4" data-path="measure-classification.html"><a href="measure-classification.html#notill-management-measure"><i class="fa fa-check"></i><b>21.3.4</b> NoTill (management measure)</a></li>
+</ul></li>
+<li class="chapter" data-level="21.4" data-path="measure-classification.html"><a href="measure-classification.html#hru-scenario-table"><i class="fa fa-check"></i><b>21.4</b> HRU Scenario Table</a>
+<ul>
+<li class="chapter" data-level="21.4.1" data-path="measure-classification.html"><a href="measure-classification.html#merging-into-landuse-map"><i class="fa fa-check"></i><b>21.4.1</b> Merging into Landuse Map</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="optimization.html"><a href="optimization.html"><i class="fa fa-check"></i><b>22</b> Optimization</a>
+<ul>
+<li class="chapter" data-level="22.1" data-path="optimization.html"><a href="optimization.html#introduction-5"><i class="fa fa-check"></i><b>22.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="22.1.1" data-path="optimization.html"><a href="optimization.html#comola"><i class="fa fa-check"></i><b>22.1.1</b> CoMOLA</a></li>
+<li class="chapter" data-level="22.1.2" data-path="optimization.html"><a href="optimization.html#the-pareto-frontier"><i class="fa fa-check"></i><b>22.1.2</b> The Pareto Frontier</a></li>
+<li class="chapter" data-level="22.1.3" data-path="optimization.html"><a href="optimization.html#nsga-ii"><i class="fa fa-check"></i><b>22.1.3</b> NSGA-II</a></li>
+<li class="chapter" data-level="22.1.4" data-path="optimization.html"><a href="optimization.html#the-objective-space"><i class="fa fa-check"></i><b>22.1.4</b> The Objective Space</a></li>
+</ul></li>
+<li class="chapter" data-level="22.2" data-path="optimization.html"><a href="optimization.html#measure-implementation-1"><i class="fa fa-check"></i><b>22.2</b> Measure Implementation</a>
+<ul>
+<li class="chapter" data-level="22.2.1" data-path="optimization.html"><a href="optimization.html#swatmeasr-project-setup"><i class="fa fa-check"></i><b>22.2.1</b> SWATmeasR project setup</a></li>
+</ul></li>
+<li class="chapter" data-level="22.3" data-path="optimization.html"><a href="optimization.html#economic-model-setup"><i class="fa fa-check"></i><b>22.3</b> Economic Model Setup</a></li>
+<li class="chapter" data-level="22.4" data-path="optimization.html"><a href="optimization.html#comola-setup"><i class="fa fa-check"></i><b>22.4</b> CoMOLA Setup</a>
+<ul>
+<li class="chapter" data-level="22.4.1" data-path="optimization.html"><a href="optimization.html#python-installation"><i class="fa fa-check"></i><b>22.4.1</b> Python Installation</a></li>
+<li class="chapter" data-level="22.4.2" data-path="optimization.html"><a href="optimization.html#comola-files"><i class="fa fa-check"></i><b>22.4.2</b> CoMOLA Files</a></li>
+</ul></li>
+<li class="chapter" data-level="22.5" data-path="optimization.html"><a href="optimization.html#running-comola"><i class="fa fa-check"></i><b>22.5</b> Running CoMOLA</a></li>
+<li class="chapter" data-level="22.6" data-path="optimization.html"><a href="optimization.html#results-visualization"><i class="fa fa-check"></i><b>22.6</b> Results Visualization</a>
+<ul>
+<li class="chapter" data-level="22.6.1" data-path="optimization.html"><a href="optimization.html#references"><i class="fa fa-check"></i><b>22.6.1</b> References</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="land-object-input-abandoned.html"><a href="land-object-input-abandoned.html"><i class="fa fa-check"></i><b>23</b> Land Object Input (abandoned)</a>
+<ul>
+<li class="chapter" data-level="23.0.1" data-path="land-object-input-abandoned.html"><a href="land-object-input-abandoned.html#data-sources-1"><i class="fa fa-check"></i><b>23.0.1</b> Data sources</a></li>
+<li class="chapter" data-level="23.0.2" data-path="land-object-input-abandoned.html"><a href="land-object-input-abandoned.html#delineation-of-land-objects-1"><i class="fa fa-check"></i><b>23.0.2</b> Delineation of land objects</a></li>
+<li class="chapter" data-level="23.0.3" data-path="land-object-input-abandoned.html"><a href="land-object-input-abandoned.html#standing-water-bodies-and-the-land-use-type-watr"><i class="fa fa-check"></i><b>23.0.3</b> Standing water bodies and the land use type = ‘watr’</a></li>
+<li class="chapter" data-level="23.0.4" data-path="land-object-input-abandoned.html"><a href="land-object-input-abandoned.html#tile-drainage-option-1"><i class="fa fa-check"></i><b>23.0.4</b> Tile drainage option</a></li>
+<li class="chapter" data-level="23.0.5" data-path="land-object-input-abandoned.html"><a href="land-object-input-abandoned.html#ar5"><i class="fa fa-check"></i><b>23.0.5</b> AR5</a></li>
+<li class="chapter" data-level="23.0.6" data-path="land-object-input-abandoned.html"><a href="land-object-input-abandoned.html#manual-simplification"><i class="fa fa-check"></i><b>23.0.6</b> Manual Simplification</a></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="overview-maps.html"><a href="overview-maps.html"><i class="fa fa-check"></i><b>24</b> Overview Maps</a></li>
+<li class="chapter" data-level="" data-path="annex.html"><a href="annex.html"><i class="fa fa-check"></i>Annex</a>
+<ul>
+<li class="chapter" data-level="24.1" data-path="annex.html"><a href="annex.html#packages"><i class="fa fa-check"></i><b>24.1</b> Packages</a></li>
+<li class="chapter" data-level="24.2" data-path="annex.html"><a href="annex.html#computer-specs"><i class="fa fa-check"></i><b>24.2</b> Computer Specs</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references-1.html"><a href="references-1.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://www.optain.eu/" target="blank">optain.eu</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">OPTAIN CS10: Kråkstad SWAT+ Modelling Workflow</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="land-object-input-abandoned" class="section level1 hasAnchor" number="23">
+<h1><span class="header-section-number">Section 23</span> Land Object Input (abandoned)<a href="land-object-input-abandoned.html#land-object-input-abandoned" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<blockquote>
+<p>Note, the following pursuit was abandoned. However it shows some initial steps in preparing the land use map.</p>
+</blockquote>
+<div class="sourceCode" id="cb664"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb664-1"><a href="land-object-input-abandoned.html#cb664-1" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span>
+<span id="cb664-2"><a href="land-object-input-abandoned.html#cb664-2" tabindex="-1"></a><span class="fu">require</span>(mapview)</span>
+<span id="cb664-3"><a href="land-object-input-abandoned.html#cb664-3" tabindex="-1"></a><span class="fu">require</span>(sf)</span>
+<span id="cb664-4"><a href="land-object-input-abandoned.html#cb664-4" tabindex="-1"></a><span class="fu">require</span>(dplyr)</span>
+<span id="cb664-5"><a href="land-object-input-abandoned.html#cb664-5" tabindex="-1"></a>RUN_THIS_CHAPTER <span class="ot">=</span> <span class="cn">FALSE</span></span></code></pre></div>
+<p>In the OPTAIN project, the land use layer must fulfill the following requirements:</p>
+<ul>
+<li><p>100% coverage of the watershed and define all relevant surfaces (Including existing <strong>and potential</strong> NSWRMs)</p></li>
+<li><p>Shape file format, with an <code>id</code> column, a <code>type</code> column defining the land use, and an optional drainage column defining the ID of the channel receiving tile drained water. (see figure REF)</p></li>
+</ul>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:luexamplejpg"></span>
+<img src="figures/drainage.jpg" alt="Land object polygons with attribute table. a) shows a land layer without tile drainage implemented. b) shows a case where the agricultural field with the land id = 2 has tile drainage activated and drains the tile flow into the channel id = 23 (From REF)" width="942" />
+<p class="caption">
+Figure 23.1: Land object polygons with attribute table. a) shows a land layer without tile drainage implemented. b) shows a case where the agricultural field with the land id = 2 has tile drainage activated and drains the tile flow into the channel id = 23 (From REF)
+</p>
+</div>
+<div id="data-sources-1" class="section level3 hasAnchor" number="23.0.1">
+<h3><span class="header-section-number">23.0.1</span> Data sources<a href="land-object-input-abandoned.html#data-sources-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="delineation-of-land-objects-1" class="section level3 hasAnchor" number="23.0.2">
+<h3><span class="header-section-number">23.0.2</span> Delineation of land objects<a href="land-object-input-abandoned.html#delineation-of-land-objects-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Our land use map will remain static, bar the crop rotation we define.</p>
+<blockquote>
+<p>As land use change is not the major focus in OPTAIN, the land unit boundaries for other land uses such as urban areas, open water surfaces, or forest land are static in the land layer.</p>
+</blockquote>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:hrudetailjpg"></span>
+<img src="figures/detailhru.jpg" alt="Details of a land object layer. a) shows the division of a large forest (dark green area) into smaller units based on local catchments. b) shows the splitting of long objects e.g. roads into shorter segments based on borders of neighbouring units. (From REF)" width="626" />
+<p class="caption">
+Figure 23.2: Details of a land object layer. a) shows the division of a large forest (dark green area) into smaller units based on local catchments. b) shows the splitting of long objects e.g. roads into shorter segments based on borders of neighbouring units. (From REF)
+</p>
+</div>
+<p>Figure REF shows the level of detail we are aiming for. Notice the agricultural plots are separated, however urban, road networks, and forest land uses are aggregated together, as they are not the focus of OPTAIN.</p>
+<p><u>Each polygon defined here will have negative impact on performance</u>, therefore we need to keep the amount of polygons as low as possible.</p>
+<blockquote>
+<p>“The final land use vector layer should preferably not consist of more than 5,000 - 8,000 polygons”</p>
+</blockquote>
+<p>Also:</p>
+<blockquote>
+<p>“delineated land polygons should not be smaller than two to five times the DEM pixel size.”</p>
+</blockquote>
+<p>Anything smaller can be aggregated.</p>
+<p>One important thing to note, is that very large aggregated blocks need to be avoided as well, as they can cause issues with water connectivity (think huge forest polygon with lots of water, strongly connected to just one agricultural field). This is why in figure REF, the large forest and urban blocks are split into smaller parts</p>
+<blockquote>
+<p>Editors note: how does the COCOA connectivity calculation work? Why would a large HRU dump all its water into a single small HRU? doesn’t it / shouldn’t it direct water proportionally to how the actual landscape is?</p>
+</blockquote>
+<p>Here a suggestion from the protocol:</p>
+<p><em>“A practical approach to split large forests into smaller units is to delineate local catchments in a forest and subdivide a forest into its local catchments (see Figure 2.6 a) as an example). Another approach could be to split a forest based on features such as forest roads (similar to the grouping of urban areas) to form blocks of forest land which eventually result in areas comparable to field plots in size.”</em></p>
+<p>Another thing which must be avoided in the land use map are long polygons, as they can cause unrealistic water routing (Think a long road receiving water from 100 HRUs and dumping it all into one HRU at the end of the road).</p>
+<blockquote>
+<p>Editors note: Again, why is this an issue? shouldn’t the COCOA calculation distribute water proportionally?</p>
+</blockquote>
+<p>Suggestion from the protocol (See figure REF for an example)</p>
+<p><em>“To minimize the effect of unrealistic water transfers, splitting such long land objects at edge points of other polygons is considered good practice”</em></p>
+</div>
+<div id="standing-water-bodies-and-the-land-use-type-watr" class="section level3 hasAnchor" number="23.0.3">
+<h3><span class="header-section-number">23.0.3</span> Standing water bodies and the land use type = ‘watr’<a href="land-object-input-abandoned.html#standing-water-bodies-and-the-land-use-type-watr" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Water surfaces require to have the specific label ‘watr’ for their <code>type</code> column.</p>
+<p>All water surfaces not connected to the channel network will become reservoirs.</p>
+</div>
+<div id="tile-drainage-option-1" class="section level3 hasAnchor" number="23.0.4">
+<h3><span class="header-section-number">23.0.4</span> Tile drainage option<a href="land-object-input-abandoned.html#tile-drainage-option-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Alright enough riff raff lets get started</p>
+</div>
+<div id="ar5" class="section level3 hasAnchor" number="23.0.5">
+<h3><span class="header-section-number">23.0.5</span> AR5<a href="land-object-input-abandoned.html#ar5" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We will use NIBIO’s own AR5 land use map (REF) as a basis for our BuildR ready land use map. You can read more about this map <a href="https://www.nibio.no/tema/jord/arealressurser/arealressurskart-ar5">here</a>.</p>
+<p>The AR5 shapefile is located here:</p>
+<div class="sourceCode" id="cb665"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb665-1"><a href="land-object-input-abandoned.html#cb665-1" tabindex="-1"></a>ar5 <span class="ot">&lt;-</span> <span class="st">&quot;model_data/input/land/ar5_25833.shp&quot;</span></span>
+<span id="cb665-2"><a href="land-object-input-abandoned.html#cb665-2" tabindex="-1"></a>ar5 <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">read_sf</span>(ar5)</span>
+<span id="cb665-3"><a href="land-object-input-abandoned.html#cb665-3" tabindex="-1"></a><span class="fu">plot</span>(ar5)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-130-1.png" width="672" /></p>
+<p>Lets clean that up a bit, and crop it to our watershed extent</p>
+<div class="sourceCode" id="cb666"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb666-1"><a href="land-object-input-abandoned.html#cb666-1" tabindex="-1"></a>ws <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">read_sf</span>(<span class="st">&quot;model_data/input/shape/cs10_basin_1m.shp&quot;</span>)</span>
+<span id="cb666-2"><a href="land-object-input-abandoned.html#cb666-2" tabindex="-1"></a>ar5 <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_crop</span>(ar5, ws)</span></code></pre></div>
+<pre><code>## Warning: attribute variables are assumed to be spatially constant throughout
+## all geometries</code></pre>
+<div class="sourceCode" id="cb668"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb668-1"><a href="land-object-input-abandoned.html#cb668-1" tabindex="-1"></a><span class="fu">plot</span>(ar5)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-131-1.png" width="672" /></p>
+<p>Wonderful, now we need to assign the proper land uses to the AR5 codes..</p>
+<div class="sourceCode" id="cb669"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb669-1"><a href="land-object-input-abandoned.html#cb669-1" tabindex="-1"></a>ar5<span class="sc">$</span>ARTYPE <span class="sc">%&gt;%</span> <span class="fu">unique</span>() <span class="sc">%&gt;%</span> <span class="fu">sort</span>()</span></code></pre></div>
+<pre><code>## [1] 11 12 21 22 23 30 50 60 81</code></pre>
+<div class="sourceCode" id="cb671"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb671-1"><a href="land-object-input-abandoned.html#cb671-1" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co"> figure out the SOMETHINGs</span></span></code></pre></div>
+<ul>
+<li><p>11 is is urban which we will define as <code>urml</code></p></li>
+<li><p>12 is road which we will define as <code>utrn</code></p></li>
+<li><p>21 is agricultural land, which we will define as <code>agri</code> (note this will have to change later to be field specific)</p></li>
+<li><p>22 is SOMETHING which we will define as <code>past</code></p></li>
+<li><p>23 is pasture which we will define as <code>past</code></p></li>
+<li><p>30 is forest, which we will define as <code>frst</code></p></li>
+<li><p>50 is SOMETHING, which we will define as <code>rngb</code></p></li>
+<li><p>60 is SOMETHINH which we will define as <code>wetf</code></p></li>
+<li><p>81 is water which we need to define as <code>watr</code></p></li>
+</ul>
+<div class="sourceCode" id="cb672"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb672-1"><a href="land-object-input-abandoned.html#cb672-1" tabindex="-1"></a>ar5<span class="sc">$</span>type <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb672-2"><a href="land-object-input-abandoned.html#cb672-2" tabindex="-1"></a></span>
+<span id="cb672-3"><a href="land-object-input-abandoned.html#cb672-3" tabindex="-1"></a>ar5<span class="sc">$</span>type[<span class="fu">which</span>(ar5<span class="sc">$</span>ARTYPE<span class="sc">==</span><span class="dv">11</span>)] <span class="ot">=</span> <span class="st">&quot;urml&quot;</span></span>
+<span id="cb672-4"><a href="land-object-input-abandoned.html#cb672-4" tabindex="-1"></a>ar5<span class="sc">$</span>type[<span class="fu">which</span>(ar5<span class="sc">$</span>ARTYPE<span class="sc">==</span><span class="dv">12</span>)] <span class="ot">=</span> <span class="st">&quot;utrn&quot;</span></span>
+<span id="cb672-5"><a href="land-object-input-abandoned.html#cb672-5" tabindex="-1"></a>ar5<span class="sc">$</span>type[<span class="fu">which</span>(ar5<span class="sc">$</span>ARTYPE<span class="sc">==</span><span class="dv">21</span>)] <span class="ot">=</span> <span class="st">&quot;agri&quot;</span></span>
+<span id="cb672-6"><a href="land-object-input-abandoned.html#cb672-6" tabindex="-1"></a>ar5<span class="sc">$</span>type[<span class="fu">which</span>(ar5<span class="sc">$</span>ARTYPE<span class="sc">==</span><span class="dv">22</span>)] <span class="ot">=</span> <span class="st">&quot;past&quot;</span></span>
+<span id="cb672-7"><a href="land-object-input-abandoned.html#cb672-7" tabindex="-1"></a>ar5<span class="sc">$</span>type[<span class="fu">which</span>(ar5<span class="sc">$</span>ARTYPE<span class="sc">==</span><span class="dv">23</span>)] <span class="ot">=</span> <span class="st">&quot;past&quot;</span></span>
+<span id="cb672-8"><a href="land-object-input-abandoned.html#cb672-8" tabindex="-1"></a>ar5<span class="sc">$</span>type[<span class="fu">which</span>(ar5<span class="sc">$</span>ARTYPE<span class="sc">==</span><span class="dv">30</span>)] <span class="ot">=</span> <span class="st">&quot;frst&quot;</span></span>
+<span id="cb672-9"><a href="land-object-input-abandoned.html#cb672-9" tabindex="-1"></a>ar5<span class="sc">$</span>type[<span class="fu">which</span>(ar5<span class="sc">$</span>ARTYPE<span class="sc">==</span><span class="dv">50</span>)] <span class="ot">=</span> <span class="st">&quot;rngb&quot;</span></span>
+<span id="cb672-10"><a href="land-object-input-abandoned.html#cb672-10" tabindex="-1"></a>ar5<span class="sc">$</span>type[<span class="fu">which</span>(ar5<span class="sc">$</span>ARTYPE<span class="sc">==</span><span class="dv">60</span>)] <span class="ot">=</span> <span class="st">&quot;wetf&quot;</span></span>
+<span id="cb672-11"><a href="land-object-input-abandoned.html#cb672-11" tabindex="-1"></a>ar5<span class="sc">$</span>type[<span class="fu">which</span>(ar5<span class="sc">$</span>ARTYPE<span class="sc">==</span><span class="dv">81</span>)] <span class="ot">=</span> <span class="st">&quot;watr&quot;</span></span></code></pre></div>
+<p>Now lets have a look at our map again</p>
+<div class="sourceCode" id="cb673"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb673-1"><a href="land-object-input-abandoned.html#cb673-1" tabindex="-1"></a><span class="fu">plot</span>(ar5 <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(geometry, type))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-135-1.png" width="672" /></p>
+<p>Very nice, how many polygons do we have right now?</p>
+<div class="sourceCode" id="cb674"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb674-1"><a href="land-object-input-abandoned.html#cb674-1" tabindex="-1"></a>ar5<span class="sc">$</span>type <span class="sc">%&gt;%</span> <span class="fu">length</span>()</span></code></pre></div>
+<pre><code>## [1] 5887</code></pre>
+<p>Wow, that is a lot, since we haven’t even split up our fields yet. Why is it so many? Because currently we have a lot of over complicated geometries:</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:figovercomplicated"></span>
+<img src="figures/overcomplication.png" alt=" Overcomplicated map" width="750" />
+<p class="caption">
+Figure 23.3:  Overcomplicated map
+</p>
+</div>
+<p>We currently don’t need all this extra stuff, so we will merge all polygons of the same <code>type</code></p>
+<div class="sourceCode" id="cb676"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb676-1"><a href="land-object-input-abandoned.html#cb676-1" tabindex="-1"></a>ar5 <span class="ot">&lt;-</span> ar5 <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(type) <span class="sc">%&gt;%</span> <span class="fu">summarize</span>()</span>
+<span id="cb676-2"><a href="land-object-input-abandoned.html#cb676-2" tabindex="-1"></a></span>
+<span id="cb676-3"><a href="land-object-input-abandoned.html#cb676-3" tabindex="-1"></a><span class="fu">length</span>(ar5<span class="sc">$</span>type)</span></code></pre></div>
+<p>Just 8, much better. (Don’t worry, we will split these up again when the time comes)</p>
+<p>But.. we can do better. This geometry of the urban / road mix is still much too complicated. There is no sense in having the <strong>roads within urban areas</strong> being separate polygons, therefore we will <strong>temporarily</strong> merge the two. Later on we will need to <strong>manually</strong> separate them again, but we would have to do this anyway because we need to manually clip the roads to be shorter, inline with COCOA best practice.</p>
+<div class="sourceCode" id="cb677"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb677-1"><a href="land-object-input-abandoned.html#cb677-1" tabindex="-1"></a>ar5<span class="sc">$</span>type[<span class="fu">which</span>(ar5<span class="sc">$</span>type<span class="sc">==</span><span class="st">&quot;utrn&quot;</span>)] <span class="ot">=</span> <span class="st">&quot;urml&quot;</span></span>
+<span id="cb677-2"><a href="land-object-input-abandoned.html#cb677-2" tabindex="-1"></a>ar5 <span class="ot">&lt;-</span> ar5 <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(type) <span class="sc">%&gt;%</span> <span class="fu">summarize</span>()</span>
+<span id="cb677-3"><a href="land-object-input-abandoned.html#cb677-3" tabindex="-1"></a><span class="fu">length</span>(ar5<span class="sc">$</span>type)</span>
+<span id="cb677-4"><a href="land-object-input-abandoned.html#cb677-4" tabindex="-1"></a><span class="fu">plot</span>(ar5)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:trackfig"></span>
+<img src="figures/moresimple.png" alt="A track and field site with far too many polygons for our model." width="431" />
+<p class="caption">
+Figure 23.4: A track and field site with far too many polygons for our model.
+</p>
+</div>
+<p>Much more simple, however we will need to do some manual pruning. To minimize the manual work, we will now clip this to the basin extent:</p>
+<div class="sourceCode" id="cb678"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb678-1"><a href="land-object-input-abandoned.html#cb678-1" tabindex="-1"></a>ar5 <span class="ot">&lt;-</span> <span class="fu">st_intersection</span>(ar5, ws) <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(geometry, type)</span></code></pre></div>
+<pre><code>## Warning: attribute variables are assumed to be spatially constant throughout
+## all geometries</code></pre>
+<div class="sourceCode" id="cb680"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb680-1"><a href="land-object-input-abandoned.html#cb680-1" tabindex="-1"></a><span class="fu">plot</span>(ar5)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-139-1.png" width="672" /></p>
+<p>And we will split the multi polygons into single polygons to make deleting small polygons easier</p>
+<div class="sourceCode" id="cb681"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb681-1"><a href="land-object-input-abandoned.html#cb681-1" tabindex="-1"></a>ar5 <span class="ot">&lt;-</span> <span class="fu">st_cast</span>(ar5, <span class="st">&quot;POLYGON&quot;</span>)</span>
+<span id="cb681-2"><a href="land-object-input-abandoned.html#cb681-2" tabindex="-1"></a><span class="fu">length</span>(ar5<span class="sc">$</span>type)</span>
+<span id="cb681-3"><a href="land-object-input-abandoned.html#cb681-3" tabindex="-1"></a><span class="fu">plot</span>(ar5)</span></code></pre></div>
+<p>We are already at 1626 polygons, considering we will be burning in field boundaries, splitting roads, urban, and forests, AND burning in all potential measures – this polygon count is going to rise a lot. Therefore we will try to simplify as much as possible in this early stage.</p>
+<ul>
+<li><p><code>frst</code>= 375 (probably too few. Need to break up large forest polygons.)</p></li>
+<li><p><code>rngb</code>= 503 (too many, many small shrub polygons)</p></li>
+<li><p><code>urml</code>= 168 (too few, urban areas not split)</p></li>
+<li><p><code>utrn</code>= 0 (too few, roads need to split from urban)</p></li>
+<li><p><code>wetf</code> = 8</p></li>
+<li><p><code>watr</code> = 146 (too many, rivers should not be polygons)</p></li>
+<li><p><code>agri</code> = 392 (too few, need to be broken up into fields)</p></li>
+<li><p><code>past</code> = 34</p></li>
+</ul>
+<p>The manual simplification will be done in QGIS, so lets write out our base map</p>
+<div class="sourceCode" id="cb682"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb682-1"><a href="land-object-input-abandoned.html#cb682-1" tabindex="-1"></a><span class="fu">write_sf</span>(ar5, <span class="st">&quot;model_data/input/land/intermediates/ar5_prep.shp&quot;</span>)</span></code></pre></div>
+<p>We will also use satellite imagery to make expert based decisions on polygon simplification</p>
+<div class="sourceCode" id="cb683"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb683-1"><a href="land-object-input-abandoned.html#cb683-1" tabindex="-1"></a><span class="co">#rasters &lt;- list.files(&quot;model_data/input/satellite/&quot;, full.names = T)</span></span>
+<span id="cb683-2"><a href="land-object-input-abandoned.html#cb683-2" tabindex="-1"></a><span class="co">#sat_vrt &lt;- terra::vrt(rasters)</span></span>
+<span id="cb683-3"><a href="land-object-input-abandoned.html#cb683-3" tabindex="-1"></a><span class="co">#plot(sat_vrt)</span></span></code></pre></div>
+</div>
+<div id="manual-simplification" class="section level3 hasAnchor" number="23.0.6">
+<h3><span class="header-section-number">23.0.6</span> Manual Simplification<a href="land-object-input-abandoned.html#manual-simplification" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Simplification work of the base map has been done in QGIS. Something to keep in note for next time: Burn in the potential measures BEFORE you split up large polygons, as the measures will help in splitting things up. And if you do it the other way round, you will end up with many more tiny polygons.</p>
+<div id="urban-areas" class="section level4 hasAnchor" number="23.0.6.1">
+<h4><span class="header-section-number">23.0.6.1</span> Urban Areas<a href="land-object-input-abandoned.html#urban-areas" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Urban areas were kept rather large, as this study is not focusing on them. The max area was kept at 8 ha.</p>
+<p>After simplification, there were <strong>298 urban polygons</strong></p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:skipic"></span>
+<img src="figures/ski.png" alt="The town of Kråstad, urban areas in grey" width="860" />
+<p class="caption">
+Figure 23.5: The town of Kråstad, urban areas in grey
+</p>
+</div>
+</div>
+<div id="roads" class="section level4 hasAnchor" number="23.0.6.2">
+<h4><span class="header-section-number">23.0.6.2</span> Roads<a href="land-object-input-abandoned.html#roads" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The road network within urban areas was removed. The remaining road network was split up to maintain a max perimeter of 600m.</p>
+<p>After simplification, there were <strong>598 road segments</strong></p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:roadsclip"></span>
+<img src="figures/roads.png" alt="Roads (in orange) limited to 600 m perimeter, and removed in urban areas" width="1721" />
+<p class="caption">
+Figure 23.6: Roads (in orange) limited to 600 m perimeter, and removed in urban areas
+</p>
+</div>
+</div>
+<div id="forests" class="section level4 hasAnchor" number="23.0.6.3">
+<h4><span class="header-section-number">23.0.6.3</span> Forests<a href="land-object-input-abandoned.html#forests" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Forests polygons remained rather large, with area limited to 15 hectares. Odd-shaped polygons were avoided. The DEM was considered while splitting up the large forest polygons, to allow for realistic flow calculations.</p>
+<p>After simplifications, <strong>550 forest polygons exist</strong>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:forestpic"></span>
+<img src="figures/forests.png" alt="Forest polygons, with a DEM hillshade" width="860" />
+<p class="caption">
+Figure 23.7: Forest polygons, with a DEM hillshade
+</p>
+</div>
+</div>
+<div id="agricultural-fields" class="section level4 hasAnchor" number="23.0.6.4">
+<h4><span class="header-section-number">23.0.6.4</span> Agricultural Fields<a href="land-object-input-abandoned.html#agricultural-fields" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Fields were intersected by the Norwegian real estate register (“matrikkel”). Due to the mismatching of the two data sets (AR5), many tiny polygons were created. These were eliminated. It was attempted to merge fields with less than 3 ha, however some were in reality that small and could not be removed. The smallest field is currently 0.05 ha, however further reductions might be made when all layers are recombined.</p>
+<p>After simplification, <strong>468 field polygons exist.</strong></p>
+<p><strong>TODO: find source of map</strong></p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:figfieldborder"></span>
+<img src="figures/fieldborders.png" alt="Field borders of the agriculutral fields." width="860" />
+<p class="caption">
+Figure 23.8: Field borders of the agriculutral fields.
+</p>
+</div>
+</div>
+<div id="shrub-land" class="section level4 hasAnchor" number="23.0.6.5">
+<h4><span class="header-section-number">23.0.6.5</span> Shrub land<a href="land-object-input-abandoned.html#shrub-land" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Shrub lands, as with the road network, were limited to a 600m perimeter. This only applied to long and thin polygons, all others were kept at the approximate size of the agricultural fields.</p>
+<p>After simplification and cutting, <strong>864</strong> <strong>shrub polygons exist.</strong></p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:rngbpig"></span>
+<img src="figures/rngb.png" alt="Shrubland segmentation" width="1721" />
+<p class="caption">
+Figure 23.9: Shrubland segmentation
+</p>
+</div>
+<p>We now total <strong>2901</strong> features. After further simplification we get this down to <strong>2867</strong>.</p>
+<p>status: 800+ misalignment. need to see how to merge correctly.</p>
+<p>NEXT:</p>
+<ul>
+<li><p>check fields, only keep relevant column</p></li>
+<li><p>Prune every small thing you can!!!</p></li>
+<li><p>assign drainage</p></li>
+<li><p>potential measures</p></li>
+<li><p>Prune again!!!</p></li>
+<li><p>channels</p></li>
+<li><p>Point sources locations?</p></li>
+<li><p>Aquifer Objects</p></li>
+</ul>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="optimization.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="overview-maps.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://gitlab.nibio.no/moritzshore/swat-cs10/-/edit/main/96-landusemap.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://gitlab.nibio.no/moritzshore/swat-cs10/blob/main/96-landusemap.Rmd",
+"text": null
+},
+"download": ["_main.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

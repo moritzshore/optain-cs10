@@ -4,26 +4,26 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Section 12 Model Verification (SWATdoctR) | The OPTAIN Project: Case study 10</title>
-  <meta name="description" content="A documentation of the project setup for OPTAIN case study 10" />
-  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+  <title>Section 12 Model Verification (SWATdoctR) | OPTAIN CS10: Kråkstad SWAT+ Modelling Workflow</title>
+  <meta name="description" content="A documentation of the project setup for OPTAIN case study 10, Kråkstad" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Section 12 Model Verification (SWATdoctR) | The OPTAIN Project: Case study 10" />
+  <meta property="og:title" content="Section 12 Model Verification (SWATdoctR) | OPTAIN CS10: Kråkstad SWAT+ Modelling Workflow" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://moritzshore.github.io/optain-cs10/figures/banner.png" />
-  <meta property="og:description" content="A documentation of the project setup for OPTAIN case study 10" />
+  <meta property="og:description" content="A documentation of the project setup for OPTAIN case study 10, Kråkstad" />
   <meta name="github-repo" content="moritzshore/optain-cs10" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Section 12 Model Verification (SWATdoctR) | The OPTAIN Project: Case study 10" />
+  <meta name="twitter:title" content="Section 12 Model Verification (SWATdoctR) | OPTAIN CS10: Kråkstad SWAT+ Modelling Workflow" />
   
-  <meta name="twitter:description" content="A documentation of the project setup for OPTAIN case study 10" />
+  <meta name="twitter:description" content="A documentation of the project setup for OPTAIN case study 10, Kråkstad" />
   <meta name="twitter:image" content="https://moritzshore.github.io/optain-cs10/figures/banner.png" />
 
-<meta name="author" content="Moritz Shore, Csilla Farkas, Christoph Schürz" />
+<meta name="author" content="Moritz Shore (workflow author, modelling) Csilla Farkas (lead modeller) Christoph Schürz (modelling) Doninika Krzeminska (measures &amp; stakeholders) Anne-Grete Buseth Blankenberg (measures &amp; stakeholders) Robert Barneveld (measures &amp; mapping) Attila Nemes (project lead) ..and with strong support of the OPTAIN core team" />
 
 
-<meta name="date" content="2024-11-15" />
+<meta name="date" content="2025-02-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -63,7 +63,7 @@
 <script src="libs/leaflet-binding-2.2.2/leaflet.js"></script>
 <script src="libs/leaflet-providers-2.0.0/leaflet-providers_2.0.0.js"></script>
 <script src="libs/leaflet-providers-plugin-2.2.2/leaflet-providers-plugin.js"></script>
-<script src="libs/tile1_rasterlayer_3b9458-1/data_stars_tile1_rasterlayerc9f824.txt"></script>
+<script src="libs/tile1_rasterlayer_4608e7-1/data_stars_tile1_rasterlayer82613c.txt"></script>
 <script src="libs/joda-0.0.1/joda.js"></script>
 <script src="libs/joda-0.0.1/addImageQuery-bindings.js"></script>
 <script src="libs/clipboard-0.0.1/setClipboardText.js"></script>
@@ -72,8 +72,8 @@
 <script src="libs/HomeButton-0.0.1/easy-button-src.min.js"></script>
 <link href="libs/mapviewCSS-0.0.1/mapview-popup.css" rel="stylesheet" />
 <link href="libs/mapviewCSS-0.0.1/mapview.css" rel="stylesheet" />
-<script src="libs/tile2_rasterlayer_645a02-1/data_stars_tile2_rasterlayerdabe25.txt"></script>
-<script src="libs/dem_layer_76a1b0-1/data_stars_dem_layer63570a.txt"></script>
+<script src="libs/tile2_rasterlayer_d0b7c6-1/data_stars_tile2_rasterlayer18d403.txt"></script>
+<script src="libs/dem_layer_915ecb-1/data_stars_dem_layer92e3a7.txt"></script>
 <link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
 <script src="libs/datatables-binding-0.33/datatables.js"></script>
 <link href="libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet" />
@@ -81,29 +81,29 @@
 <script src="libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
 <link href="libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet" />
 <script src="libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
-<script src="libs/stream_crop_ce093f-1/data_stars_stream_cropcad623.txt"></script>
-<script src="libs/ws_c6902d-1/data_stars_ws1b74dc.txt"></script>
-<script src="libs/rglWebGL-binding-1.3.1/rglWebGL.js"></script>
-<link href="libs/rglwidgetClass-1.3.1/rgl.css" rel="stylesheet" />
-<script src="libs/rglwidgetClass-1.3.1/rglClass.src.js"></script>
-<script src="libs/rglwidgetClass-1.3.1/utils.src.js"></script>
-<script src="libs/rglwidgetClass-1.3.1/buffer.src.js"></script>
-<script src="libs/rglwidgetClass-1.3.1/subscenes.src.js"></script>
-<script src="libs/rglwidgetClass-1.3.1/shaders.src.js"></script>
-<script src="libs/rglwidgetClass-1.3.1/shadersrc.src.js"></script>
-<script src="libs/rglwidgetClass-1.3.1/textures.src.js"></script>
-<script src="libs/rglwidgetClass-1.3.1/projection.src.js"></script>
-<script src="libs/rglwidgetClass-1.3.1/mouse.src.js"></script>
-<script src="libs/rglwidgetClass-1.3.1/init.src.js"></script>
-<script src="libs/rglwidgetClass-1.3.1/pieces.src.js"></script>
-<script src="libs/rglwidgetClass-1.3.1/draw.src.js"></script>
-<script src="libs/rglwidgetClass-1.3.1/controls.src.js"></script>
-<script src="libs/rglwidgetClass-1.3.1/selection.src.js"></script>
-<script src="libs/rglwidgetClass-1.3.1/rglTimer.src.js"></script>
-<script src="libs/rglwidgetClass-1.3.1/pretty.src.js"></script>
-<script src="libs/rglwidgetClass-1.3.1/axes.src.js"></script>
-<script src="libs/rglwidgetClass-1.3.1/animation.src.js"></script>
-<script src="libs/CanvasMatrix4-1.3.1/CanvasMatrix.src.js"></script>
+<script src="libs/stream_crop_39b072-1/data_stars_stream_crop2d4f69.txt"></script>
+<script src="libs/ws_a1945d-1/data_stars_ws4efda1.txt"></script>
+<script src="libs/rglWebGL-binding-1.3.17/rglWebGL.js"></script>
+<link href="libs/rglwidgetClass-1.3.17/rgl.css" rel="stylesheet" />
+<script src="libs/rglwidgetClass-1.3.17/rglClass.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.17/utils.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.17/buffer.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.17/subscenes.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.17/shaders.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.17/shadersrc.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.17/textures.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.17/projection.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.17/mouse.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.17/init.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.17/pieces.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.17/draw.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.17/controls.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.17/selection.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.17/rglTimer.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.17/pretty.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.17/axes.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.17/animation.src.js"></script>
+<script src="libs/CanvasMatrix4-1.3.17/CanvasMatrix.src.js"></script>
 <script src="libs/plotly-binding-4.10.4/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
@@ -114,7 +114,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -124,7 +124,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -186,6 +186,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging div.csl-entry {
   margin-left:2em;
@@ -461,63 +462,94 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="13" data-path="soft-calibration.html"><a href="soft-calibration.html"><i class="fa fa-check"></i><b>13</b> Soft Calibration</a></li>
 <li class="chapter" data-level="14" data-path="hard-calibration.html"><a href="hard-calibration.html"><i class="fa fa-check"></i><b>14</b> Hard Calibration</a></li>
-<li class="chapter" data-level="15" data-path="climate-scenarios.html"><a href="climate-scenarios.html"><i class="fa fa-check"></i><b>15</b> Climate Scenarios</a>
+<li class="chapter" data-level="15" data-path="landuse-scenarios.html"><a href="landuse-scenarios.html"><i class="fa fa-check"></i><b>15</b> Landuse Scenarios</a>
 <ul>
-<li class="chapter" data-level="15.1" data-path="climate-scenarios.html"><a href="climate-scenarios.html#introduction-3"><i class="fa fa-check"></i><b>15.1</b> Introduction</a></li>
-<li class="chapter" data-level="15.2" data-path="climate-scenarios.html"><a href="climate-scenarios.html#setup"><i class="fa fa-check"></i><b>15.2</b> Setup</a>
+<li class="chapter" data-level="15.1" data-path="landuse-scenarios.html"><a href="landuse-scenarios.html#scenarios"><i class="fa fa-check"></i><b>15.1</b> Scenarios</a>
 <ul>
-<li class="chapter" data-level="15.2.1" data-path="climate-scenarios.html"><a href="climate-scenarios.html#re-calculating-management"><i class="fa fa-check"></i><b>15.2.1</b> Re-Calculating Management</a></li>
-</ul></li>
-<li class="chapter" data-level="15.3" data-path="climate-scenarios.html"><a href="climate-scenarios.html#executing-model"><i class="fa fa-check"></i><b>15.3</b> Executing model</a></li>
-<li class="chapter" data-level="15.4" data-path="climate-scenarios.html"><a href="climate-scenarios.html#processing-results"><i class="fa fa-check"></i><b>15.4</b> Processing Results</a></li>
-<li class="chapter" data-level="15.5" data-path="climate-scenarios.html"><a href="climate-scenarios.html#output-analysis"><i class="fa fa-check"></i><b>15.5</b> Output Analysis</a>
-<ul>
-<li class="chapter" data-level="15.5.1" data-path="climate-scenarios.html"><a href="climate-scenarios.html#saving-rds"><i class="fa fa-check"></i><b>15.5.1</b> Saving RDS</a></li>
+<li class="chapter" data-level="15.1.1" data-path="landuse-scenarios.html"><a href="landuse-scenarios.html#status-quo"><i class="fa fa-check"></i><b>15.1.1</b> Status Quo</a></li>
+<li class="chapter" data-level="15.1.2" data-path="landuse-scenarios.html"><a href="landuse-scenarios.html#no-autumn-tillage"><i class="fa fa-check"></i><b>15.1.2</b> No Autumn Tillage</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="16" data-path="landuse-scenarios.html"><a href="landuse-scenarios.html"><i class="fa fa-check"></i><b>16</b> Landuse Scenarios</a>
+<li class="chapter" data-level="16" data-path="update-of-the-swatfarmr-input-input-files.html"><a href="update-of-the-swatfarmr-input-input-files.html"><i class="fa fa-check"></i><b>16</b> Update of the SWATfarmR input input files</a>
 <ul>
-<li class="chapter" data-level="16.1" data-path="landuse-scenarios.html"><a href="landuse-scenarios.html#scenarios"><i class="fa fa-check"></i><b>16.1</b> Scenarios</a>
+<li class="chapter" data-level="16.1" data-path="update-of-the-swatfarmr-input-input-files.html"><a href="update-of-the-swatfarmr-input-input-files.html#setup"><i class="fa fa-check"></i><b>16.1</b> Setup</a></li>
+<li class="chapter" data-level="16.2" data-path="update-of-the-swatfarmr-input-input-files.html"><a href="update-of-the-swatfarmr-input-input-files.html#documenting-changes-in-the-txt-inputs-files-of-calibrated-model-setup"><i class="fa fa-check"></i><b>16.2</b> Documenting changes in the txt inputs files of calibrated model setup</a>
 <ul>
-<li class="chapter" data-level="16.1.1" data-path="landuse-scenarios.html"><a href="landuse-scenarios.html#status-quo"><i class="fa fa-check"></i><b>16.1.1</b> Status Quo</a></li>
-<li class="chapter" data-level="16.1.2" data-path="landuse-scenarios.html"><a href="landuse-scenarios.html#no-autumn-tillage"><i class="fa fa-check"></i><b>16.1.2</b> No Autumn Tillage</a></li>
+<li class="chapter" data-level="16.2.1" data-path="update-of-the-swatfarmr-input-input-files.html"><a href="update-of-the-swatfarmr-input-input-files.html#preparation-of-swatfarmr-management-input-files"><i class="fa fa-check"></i><b>16.2.1</b> Preparation of <code>SWATfarmR</code> management input files</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="17" data-path="measures-swatmeasr.html"><a href="measures-swatmeasr.html"><i class="fa fa-check"></i><b>17</b> Measures (SWATmeasR)</a></li>
-<li class="chapter" data-level="18" data-path="measure-implementation.html"><a href="measure-implementation.html"><i class="fa fa-check"></i><b>18</b> Measure Implementation</a></li>
-<li class="chapter" data-level="19" data-path="measure-scenarios.html"><a href="measure-scenarios.html"><i class="fa fa-check"></i><b>19</b> Measure Scenarios</a></li>
-<li class="chapter" data-level="20" data-path="measure-classification.html"><a href="measure-classification.html"><i class="fa fa-check"></i><b>20</b> Measure Classification</a>
+<li class="chapter" data-level="17" data-path="climate-scenarios.html"><a href="climate-scenarios.html"><i class="fa fa-check"></i><b>17</b> Climate Scenarios</a>
 <ul>
-<li class="chapter" data-level="20.1" data-path="measure-classification.html"><a href="measure-classification.html#introduction-4"><i class="fa fa-check"></i><b>20.1</b> Introduction</a></li>
-<li class="chapter" data-level="20.2" data-path="measure-classification.html"><a href="measure-classification.html#determining-classification"><i class="fa fa-check"></i><b>20.2</b> Determining Classification</a></li>
-<li class="chapter" data-level="20.3" data-path="measure-classification.html"><a href="measure-classification.html#applying-classification"><i class="fa fa-check"></i><b>20.3</b> Applying Classification</a>
+<li class="chapter" data-level="17.1" data-path="climate-scenarios.html"><a href="climate-scenarios.html#introduction-3"><i class="fa fa-check"></i><b>17.1</b> Introduction</a></li>
+<li class="chapter" data-level="17.2" data-path="climate-scenarios.html"><a href="climate-scenarios.html#setup-1"><i class="fa fa-check"></i><b>17.2</b> Setup</a>
 <ul>
-<li class="chapter" data-level="20.3.1" data-path="measure-classification.html"><a href="measure-classification.html#gullies-grassed-water-ways"><i class="fa fa-check"></i><b>20.3.1</b> Gullies (grassed water ways)</a></li>
-<li class="chapter" data-level="20.3.2" data-path="measure-classification.html"><a href="measure-classification.html#buffer-strips"><i class="fa fa-check"></i><b>20.3.2</b> Buffer Strips</a></li>
-<li class="chapter" data-level="20.3.3" data-path="measure-classification.html"><a href="measure-classification.html#ponds"><i class="fa fa-check"></i><b>20.3.3</b> Ponds</a></li>
-<li class="chapter" data-level="20.3.4" data-path="measure-classification.html"><a href="measure-classification.html#notill-management-measure"><i class="fa fa-check"></i><b>20.3.4</b> NoTill (management measure)</a></li>
+<li class="chapter" data-level="17.2.1" data-path="climate-scenarios.html"><a href="climate-scenarios.html#re-calculating-management"><i class="fa fa-check"></i><b>17.2.1</b> Re-Calculating Management</a></li>
 </ul></li>
-<li class="chapter" data-level="20.4" data-path="measure-classification.html"><a href="measure-classification.html#hru-scenario-table"><i class="fa fa-check"></i><b>20.4</b> HRU Scenario Table</a>
+<li class="chapter" data-level="17.3" data-path="climate-scenarios.html"><a href="climate-scenarios.html#executing-model"><i class="fa fa-check"></i><b>17.3</b> Executing model</a></li>
+<li class="chapter" data-level="17.4" data-path="climate-scenarios.html"><a href="climate-scenarios.html#processing-results"><i class="fa fa-check"></i><b>17.4</b> Processing Results</a></li>
+<li class="chapter" data-level="17.5" data-path="climate-scenarios.html"><a href="climate-scenarios.html#output-analysis"><i class="fa fa-check"></i><b>17.5</b> Output Analysis</a>
 <ul>
-<li class="chapter" data-level="20.4.1" data-path="measure-classification.html"><a href="measure-classification.html#merging-into-landuse-map"><i class="fa fa-check"></i><b>20.4.1</b> Merging into Landuse Map</a></li>
+<li class="chapter" data-level="17.5.1" data-path="climate-scenarios.html"><a href="climate-scenarios.html#saving-rds"><i class="fa fa-check"></i><b>17.5.1</b> Saving RDS</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="21" data-path="optimization.html"><a href="optimization.html"><i class="fa fa-check"></i><b>21</b> Optimization</a>
+<li class="chapter" data-level="18" data-path="measures-swatmeasr.html"><a href="measures-swatmeasr.html"><i class="fa fa-check"></i><b>18</b> Measures (SWATmeasR)</a></li>
+<li class="chapter" data-level="19" data-path="measure-implementation.html"><a href="measure-implementation.html"><i class="fa fa-check"></i><b>19</b> Measure Implementation</a></li>
+<li class="chapter" data-level="20" data-path="measure-scenarios.html"><a href="measure-scenarios.html"><i class="fa fa-check"></i><b>20</b> Measure Scenarios</a></li>
+<li class="chapter" data-level="21" data-path="measure-classification.html"><a href="measure-classification.html"><i class="fa fa-check"></i><b>21</b> Measure Classification</a>
 <ul>
-<li class="chapter" data-level="21.1" data-path="optimization.html"><a href="optimization.html#introduction-5"><i class="fa fa-check"></i><b>21.1</b> Introduction</a>
+<li class="chapter" data-level="21.1" data-path="measure-classification.html"><a href="measure-classification.html#introduction-4"><i class="fa fa-check"></i><b>21.1</b> Introduction</a></li>
+<li class="chapter" data-level="21.2" data-path="measure-classification.html"><a href="measure-classification.html#determining-classification"><i class="fa fa-check"></i><b>21.2</b> Determining Classification</a></li>
+<li class="chapter" data-level="21.3" data-path="measure-classification.html"><a href="measure-classification.html#applying-classification"><i class="fa fa-check"></i><b>21.3</b> Applying Classification</a>
 <ul>
-<li class="chapter" data-level="21.1.1" data-path="optimization.html"><a href="optimization.html#comola"><i class="fa fa-check"></i><b>21.1.1</b> CoMOLA</a></li>
-<li class="chapter" data-level="21.1.2" data-path="optimization.html"><a href="optimization.html#the-pareto-frontier"><i class="fa fa-check"></i><b>21.1.2</b> The Pareto Frontier</a></li>
-<li class="chapter" data-level="21.1.3" data-path="optimization.html"><a href="optimization.html#nsga-ii"><i class="fa fa-check"></i><b>21.1.3</b> NSGA-II</a></li>
-<li class="chapter" data-level="21.1.4" data-path="optimization.html"><a href="optimization.html#the-objective-space"><i class="fa fa-check"></i><b>21.1.4</b> The Objective Space</a></li>
-<li class="chapter" data-level="21.1.5" data-path="optimization.html"><a href="optimization.html#references"><i class="fa fa-check"></i><b>21.1.5</b> References</a></li>
+<li class="chapter" data-level="21.3.1" data-path="measure-classification.html"><a href="measure-classification.html#gullies-grassed-water-ways"><i class="fa fa-check"></i><b>21.3.1</b> Gullies (grassed water ways)</a></li>
+<li class="chapter" data-level="21.3.2" data-path="measure-classification.html"><a href="measure-classification.html#buffer-strips"><i class="fa fa-check"></i><b>21.3.2</b> Buffer Strips</a></li>
+<li class="chapter" data-level="21.3.3" data-path="measure-classification.html"><a href="measure-classification.html#ponds"><i class="fa fa-check"></i><b>21.3.3</b> Ponds</a></li>
+<li class="chapter" data-level="21.3.4" data-path="measure-classification.html"><a href="measure-classification.html#notill-management-measure"><i class="fa fa-check"></i><b>21.3.4</b> NoTill (management measure)</a></li>
+</ul></li>
+<li class="chapter" data-level="21.4" data-path="measure-classification.html"><a href="measure-classification.html#hru-scenario-table"><i class="fa fa-check"></i><b>21.4</b> HRU Scenario Table</a>
+<ul>
+<li class="chapter" data-level="21.4.1" data-path="measure-classification.html"><a href="measure-classification.html#merging-into-landuse-map"><i class="fa fa-check"></i><b>21.4.1</b> Merging into Landuse Map</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="22" data-path="overview-maps.html"><a href="overview-maps.html"><i class="fa fa-check"></i><b>22</b> Overview Maps</a></li>
+<li class="chapter" data-level="22" data-path="optimization.html"><a href="optimization.html"><i class="fa fa-check"></i><b>22</b> Optimization</a>
+<ul>
+<li class="chapter" data-level="22.1" data-path="optimization.html"><a href="optimization.html#introduction-5"><i class="fa fa-check"></i><b>22.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="22.1.1" data-path="optimization.html"><a href="optimization.html#comola"><i class="fa fa-check"></i><b>22.1.1</b> CoMOLA</a></li>
+<li class="chapter" data-level="22.1.2" data-path="optimization.html"><a href="optimization.html#the-pareto-frontier"><i class="fa fa-check"></i><b>22.1.2</b> The Pareto Frontier</a></li>
+<li class="chapter" data-level="22.1.3" data-path="optimization.html"><a href="optimization.html#nsga-ii"><i class="fa fa-check"></i><b>22.1.3</b> NSGA-II</a></li>
+<li class="chapter" data-level="22.1.4" data-path="optimization.html"><a href="optimization.html#the-objective-space"><i class="fa fa-check"></i><b>22.1.4</b> The Objective Space</a></li>
+</ul></li>
+<li class="chapter" data-level="22.2" data-path="optimization.html"><a href="optimization.html#measure-implementation-1"><i class="fa fa-check"></i><b>22.2</b> Measure Implementation</a>
+<ul>
+<li class="chapter" data-level="22.2.1" data-path="optimization.html"><a href="optimization.html#swatmeasr-project-setup"><i class="fa fa-check"></i><b>22.2.1</b> SWATmeasR project setup</a></li>
+</ul></li>
+<li class="chapter" data-level="22.3" data-path="optimization.html"><a href="optimization.html#economic-model-setup"><i class="fa fa-check"></i><b>22.3</b> Economic Model Setup</a></li>
+<li class="chapter" data-level="22.4" data-path="optimization.html"><a href="optimization.html#comola-setup"><i class="fa fa-check"></i><b>22.4</b> CoMOLA Setup</a>
+<ul>
+<li class="chapter" data-level="22.4.1" data-path="optimization.html"><a href="optimization.html#python-installation"><i class="fa fa-check"></i><b>22.4.1</b> Python Installation</a></li>
+<li class="chapter" data-level="22.4.2" data-path="optimization.html"><a href="optimization.html#comola-files"><i class="fa fa-check"></i><b>22.4.2</b> CoMOLA Files</a></li>
+</ul></li>
+<li class="chapter" data-level="22.5" data-path="optimization.html"><a href="optimization.html#running-comola"><i class="fa fa-check"></i><b>22.5</b> Running CoMOLA</a></li>
+<li class="chapter" data-level="22.6" data-path="optimization.html"><a href="optimization.html#results-visualization"><i class="fa fa-check"></i><b>22.6</b> Results Visualization</a>
+<ul>
+<li class="chapter" data-level="22.6.1" data-path="optimization.html"><a href="optimization.html#references"><i class="fa fa-check"></i><b>22.6.1</b> References</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="land-object-input-abandoned.html"><a href="land-object-input-abandoned.html"><i class="fa fa-check"></i><b>23</b> Land Object Input (abandoned)</a>
+<ul>
+<li class="chapter" data-level="23.0.1" data-path="land-object-input-abandoned.html"><a href="land-object-input-abandoned.html#data-sources-1"><i class="fa fa-check"></i><b>23.0.1</b> Data sources</a></li>
+<li class="chapter" data-level="23.0.2" data-path="land-object-input-abandoned.html"><a href="land-object-input-abandoned.html#delineation-of-land-objects-1"><i class="fa fa-check"></i><b>23.0.2</b> Delineation of land objects</a></li>
+<li class="chapter" data-level="23.0.3" data-path="land-object-input-abandoned.html"><a href="land-object-input-abandoned.html#standing-water-bodies-and-the-land-use-type-watr"><i class="fa fa-check"></i><b>23.0.3</b> Standing water bodies and the land use type = ‘watr’</a></li>
+<li class="chapter" data-level="23.0.4" data-path="land-object-input-abandoned.html"><a href="land-object-input-abandoned.html#tile-drainage-option-1"><i class="fa fa-check"></i><b>23.0.4</b> Tile drainage option</a></li>
+<li class="chapter" data-level="23.0.5" data-path="land-object-input-abandoned.html"><a href="land-object-input-abandoned.html#ar5"><i class="fa fa-check"></i><b>23.0.5</b> AR5</a></li>
+<li class="chapter" data-level="23.0.6" data-path="land-object-input-abandoned.html"><a href="land-object-input-abandoned.html#manual-simplification"><i class="fa fa-check"></i><b>23.0.6</b> Manual Simplification</a></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="overview-maps.html"><a href="overview-maps.html"><i class="fa fa-check"></i><b>24</b> Overview Maps</a></li>
 <li class="chapter" data-level="" data-path="annex.html"><a href="annex.html"><i class="fa fa-check"></i>Annex</a>
 <ul>
-<li class="chapter" data-level="22.1" data-path="annex.html"><a href="annex.html#packages"><i class="fa fa-check"></i><b>22.1</b> Packages</a></li>
-<li class="chapter" data-level="22.2" data-path="annex.html"><a href="annex.html#computer-specs"><i class="fa fa-check"></i><b>22.2</b> Computer Specs</a></li>
+<li class="chapter" data-level="24.1" data-path="annex.html"><a href="annex.html#packages"><i class="fa fa-check"></i><b>24.1</b> Packages</a></li>
+<li class="chapter" data-level="24.2" data-path="annex.html"><a href="annex.html#computer-specs"><i class="fa fa-check"></i><b>24.2</b> Computer Specs</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references-1.html"><a href="references-1.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -532,7 +564,7 @@ div.csl-indent {
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">The OPTAIN Project: Case study 10</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">OPTAIN CS10: Kråkstad SWAT+ Modelling Workflow</a>
           </h1>
         </div>
 
@@ -545,13 +577,13 @@ div.csl-indent {
 <blockquote>
 <p>note: this page is still under construction.</p>
 </blockquote>
-<div class="sourceCode" id="cb503"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb503-1"><a href="model-verification-swatdoctr.html#cb503-1" tabindex="-1"></a>RUN_THIS_CHAPTER <span class="ot">=</span> <span class="cn">FALSE</span></span></code></pre></div>
+<div class="sourceCode" id="cb507"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb507-1"><a href="model-verification-swatdoctr.html#cb507-1" tabindex="-1"></a>RUN_THIS_CHAPTER <span class="ot">=</span> <span class="cn">FALSE</span></span></code></pre></div>
 <p><strong>Preparation</strong></p>
 <p>Loading required packages, defining paths, and loading objects.</p>
-<div class="sourceCode" id="cb504"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb504-1"><a href="model-verification-swatdoctr.html#cb504-1" tabindex="-1"></a><span class="co"># Install/Update SWATdoctR if needed:</span></span>
-<span id="cb504-2"><a href="model-verification-swatdoctr.html#cb504-2" tabindex="-1"></a><span class="co"># remotes::install_git(&#39;https://git.ufz.de/schuerz/swatdoctr&#39;, force = FALSE)</span></span>
-<span id="cb504-3"><a href="model-verification-swatdoctr.html#cb504-3" tabindex="-1"></a><span class="fu">require</span>(SWATdoctR)</span>
-<span id="cb504-4"><a href="model-verification-swatdoctr.html#cb504-4" tabindex="-1"></a><span class="fu">require</span>(DT)</span></code></pre></div>
+<div class="sourceCode" id="cb508"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb508-1"><a href="model-verification-swatdoctr.html#cb508-1" tabindex="-1"></a><span class="co"># Install/Update SWATdoctR if needed:</span></span>
+<span id="cb508-2"><a href="model-verification-swatdoctr.html#cb508-2" tabindex="-1"></a><span class="co"># remotes::install_git(&#39;https://git.ufz.de/schuerz/swatdoctr&#39;, force = FALSE)</span></span>
+<span id="cb508-3"><a href="model-verification-swatdoctr.html#cb508-3" tabindex="-1"></a><span class="fu">require</span>(SWATdoctR)</span>
+<span id="cb508-4"><a href="model-verification-swatdoctr.html#cb508-4" tabindex="-1"></a><span class="fu">require</span>(DT)</span></code></pre></div>
 <p>We copy in our most up to date SWAT input files into our <code>run_swat/</code>
 folder where we can modify them and see the changes in the model setup.
 <strong>At this point in the project, our most up-to-date files are from our
@@ -559,66 +591,66 @@ FarmR setup.</strong> We have set <code>overwrite = FALSE</code> so that no exis
 changes will be overwritten. This also means the existing files in
 <code>run_swat/</code> will not be overwritten, so make sure to delete any you do
 not want anymore.</p>
-<div class="sourceCode" id="cb505"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb505-1"><a href="model-verification-swatdoctr.html#cb505-1" tabindex="-1"></a>status <span class="ot">&lt;-</span> <span class="fu">file.copy</span>(</span>
-<span id="cb505-2"><a href="model-verification-swatdoctr.html#cb505-2" tabindex="-1"></a>  <span class="at">from =</span> <span class="fu">list.files</span>(<span class="st">&quot;model_data/cs10_setup/swat_farmR/&quot;</span>,<span class="at">full.names =</span> T),</span>
-<span id="cb505-3"><a href="model-verification-swatdoctr.html#cb505-3" tabindex="-1"></a>  <span class="at">to =</span> <span class="st">&quot;model_data/cs10_setup/run_swat/&quot;</span>,</span>
-<span id="cb505-4"><a href="model-verification-swatdoctr.html#cb505-4" tabindex="-1"></a>  <span class="at">overwrite =</span> <span class="cn">TRUE</span>, <span class="co"># change to TRUE if you want to overwrite</span></span>
-<span id="cb505-5"><a href="model-verification-swatdoctr.html#cb505-5" tabindex="-1"></a>  <span class="at">recursive =</span> <span class="cn">TRUE</span></span>
-<span id="cb505-6"><a href="model-verification-swatdoctr.html#cb505-6" tabindex="-1"></a>)</span>
-<span id="cb505-7"><a href="model-verification-swatdoctr.html#cb505-7" tabindex="-1"></a></span>
-<span id="cb505-8"><a href="model-verification-swatdoctr.html#cb505-8" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="fu">length</span>(<span class="fu">which</span>(status <span class="sc">==</span> <span class="cn">TRUE</span>)), <span class="st">&quot;files copied out of&quot;</span>, <span class="fu">length</span>(status), <span class="st">&quot;total&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb509"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb509-1"><a href="model-verification-swatdoctr.html#cb509-1" tabindex="-1"></a>status <span class="ot">&lt;-</span> <span class="fu">file.copy</span>(</span>
+<span id="cb509-2"><a href="model-verification-swatdoctr.html#cb509-2" tabindex="-1"></a>  <span class="at">from =</span> <span class="fu">list.files</span>(<span class="st">&quot;model_data/cs10_setup/swat_farmR/&quot;</span>,<span class="at">full.names =</span> T),</span>
+<span id="cb509-3"><a href="model-verification-swatdoctr.html#cb509-3" tabindex="-1"></a>  <span class="at">to =</span> <span class="st">&quot;model_data/cs10_setup/run_swat/&quot;</span>,</span>
+<span id="cb509-4"><a href="model-verification-swatdoctr.html#cb509-4" tabindex="-1"></a>  <span class="at">overwrite =</span> <span class="cn">TRUE</span>, <span class="co"># change to TRUE if you want to overwrite</span></span>
+<span id="cb509-5"><a href="model-verification-swatdoctr.html#cb509-5" tabindex="-1"></a>  <span class="at">recursive =</span> <span class="cn">TRUE</span></span>
+<span id="cb509-6"><a href="model-verification-swatdoctr.html#cb509-6" tabindex="-1"></a>)</span>
+<span id="cb509-7"><a href="model-verification-swatdoctr.html#cb509-7" tabindex="-1"></a></span>
+<span id="cb509-8"><a href="model-verification-swatdoctr.html#cb509-8" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="fu">length</span>(<span class="fu">which</span>(status <span class="sc">==</span> <span class="cn">TRUE</span>)), <span class="st">&quot;files copied out of&quot;</span>, <span class="fu">length</span>(status), <span class="st">&quot;total&quot;</span>))</span></code></pre></div>
 <pre><code>## [1] &quot;85 files copied out of 85 total&quot;</code></pre>
 <p>We also need our exe in this folder.</p>
 <p>We are using the following EXE (feel free to change):</p>
-<div class="sourceCode" id="cb507"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb507-1"><a href="model-verification-swatdoctr.html#cb507-1" tabindex="-1"></a>exe <span class="ot">&lt;-</span> <span class="st">&quot;Rev_60_5_6_64rel.exe&quot;</span></span></code></pre></div>
-<div class="sourceCode" id="cb508"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb508-1"><a href="model-verification-swatdoctr.html#cb508-1" tabindex="-1"></a><span class="fu">file.copy</span>(</span>
-<span id="cb508-2"><a href="model-verification-swatdoctr.html#cb508-2" tabindex="-1"></a>  <span class="at">from =</span> <span class="fu">paste0</span>(<span class="st">&quot;model_data/cs10_setup/&quot;</span>, exe),</span>
-<span id="cb508-3"><a href="model-verification-swatdoctr.html#cb508-3" tabindex="-1"></a>  <span class="at">to =</span> <span class="fu">paste0</span>(<span class="st">&quot;model_data/cs10_setup/run_swat/&quot;</span>, exe), <span class="at">overwrite =</span> T)</span></code></pre></div>
+<div class="sourceCode" id="cb511"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb511-1"><a href="model-verification-swatdoctr.html#cb511-1" tabindex="-1"></a>exe <span class="ot">&lt;-</span> <span class="st">&quot;Rev_60_5_6_64rel.exe&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb512"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb512-1"><a href="model-verification-swatdoctr.html#cb512-1" tabindex="-1"></a><span class="fu">file.copy</span>(</span>
+<span id="cb512-2"><a href="model-verification-swatdoctr.html#cb512-2" tabindex="-1"></a>  <span class="at">from =</span> <span class="fu">paste0</span>(<span class="st">&quot;model_data/cs10_setup/&quot;</span>, exe),</span>
+<span id="cb512-3"><a href="model-verification-swatdoctr.html#cb512-3" tabindex="-1"></a>  <span class="at">to =</span> <span class="fu">paste0</span>(<span class="st">&quot;model_data/cs10_setup/run_swat/&quot;</span>, exe), <span class="at">overwrite =</span> T)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <p>To store any input files we have modified, I have created this directory:</p>
-<div class="sourceCode" id="cb510"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb510-1"><a href="model-verification-swatdoctr.html#cb510-1" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">&quot;model_data/cs10_setup/swat_doctr_mod/&quot;</span>, <span class="at">showWarnings =</span> F)</span></code></pre></div>
+<div class="sourceCode" id="cb514"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb514-1"><a href="model-verification-swatdoctr.html#cb514-1" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">&quot;model_data/cs10_setup/swat_doctr_mod/&quot;</span>, <span class="at">showWarnings =</span> F)</span></code></pre></div>
 <p>Place any modified files you want to keep in there, and remeber to copy them into the <code>run_swat/</code> directory when you want to use them in the setup.</p>
 <p><strong>Setup modifications</strong></p>
 <p>SWATFarmR generates land use labels longer than the max allowed 16
 characters. To remedy this we can use the following function</p>
-<div class="sourceCode" id="cb511"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb511-1"><a href="model-verification-swatdoctr.html#cb511-1" tabindex="-1"></a><span class="fu">update_landuse_labels</span>(<span class="st">&quot;model_data/cs10_setup/run_swat/&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb515"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb515-1"><a href="model-verification-swatdoctr.html#cb515-1" tabindex="-1"></a><span class="fu">update_landuse_labels</span>(<span class="st">&quot;model_data/cs10_setup/run_swat/&quot;</span>)</span></code></pre></div>
 <p>“Plotting of variables at the harvest and kill of a crop requires that
 the management operations ‘harvest’ and ‘kill’ are set separately in the
 management schedules and not as a combined ‘harvest_kill’ operation. The
 following function fixes the issue.”</p>
-<div class="sourceCode" id="cb512"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb512-1"><a href="model-verification-swatdoctr.html#cb512-1" tabindex="-1"></a><span class="fu">add_kill_op</span>(<span class="st">&quot;model_data/cs10_setup/run_swat/&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb516"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb516-1"><a href="model-verification-swatdoctr.html#cb516-1" tabindex="-1"></a><span class="fu">add_kill_op</span>(<span class="st">&quot;model_data/cs10_setup/run_swat/&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;No `hvkl` operations exist in &#39;management.sch&#39;. File was not changed.&quot;</code></pre>
 <div id="climate-variables" class="section level2 hasAnchor" number="12.1">
 <h2><span class="header-section-number">12.1</span> Climate Variables<a href="model-verification-swatdoctr.html#climate-variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We are now ready to start verifying our model setup.</p>
-<div class="sourceCode" id="cb514"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb514-1"><a href="model-verification-swatdoctr.html#cb514-1" tabindex="-1"></a>sim_nostress  <span class="ot">&lt;-</span></span>
-<span id="cb514-2"><a href="model-verification-swatdoctr.html#cb514-2" tabindex="-1"></a>  <span class="fu">run_swat_verification</span>(</span>
-<span id="cb514-3"><a href="model-verification-swatdoctr.html#cb514-3" tabindex="-1"></a>    <span class="at">project_path =</span> <span class="st">&quot;model_data/cs10_setup/run_swat/&quot;</span>,</span>
-<span id="cb514-4"><a href="model-verification-swatdoctr.html#cb514-4" tabindex="-1"></a>    <span class="at">start_date =</span> <span class="st">&quot;2015-01-01&quot;</span>,</span>
-<span id="cb514-5"><a href="model-verification-swatdoctr.html#cb514-5" tabindex="-1"></a>    <span class="at">end_date =</span> <span class="st">&quot;2019-12-31&quot;</span>,</span>
-<span id="cb514-6"><a href="model-verification-swatdoctr.html#cb514-6" tabindex="-1"></a>    <span class="at">years_skip =</span> <span class="dv">1</span>, <span class="co"># first three years skipped</span></span>
-<span id="cb514-7"><a href="model-verification-swatdoctr.html#cb514-7" tabindex="-1"></a>    <span class="at">nostress =</span> <span class="dv">1</span>, <span class="co"># Stress factors OFF @ 1</span></span>
-<span id="cb514-8"><a href="model-verification-swatdoctr.html#cb514-8" tabindex="-1"></a>    <span class="at">keep_folder =</span> <span class="cn">TRUE</span>, <span class="co"># .runverify/ folder will NOT be deleted</span></span>
-<span id="cb514-9"><a href="model-verification-swatdoctr.html#cb514-9" tabindex="-1"></a>    <span class="at">outputs =</span> <span class="fu">c</span>(<span class="st">&quot;wb&quot;</span>, <span class="st">&quot;mgt&quot;</span>, <span class="st">&quot;plt&quot;</span>) <span class="co"># which things will be in output</span></span>
-<span id="cb514-10"><a href="model-verification-swatdoctr.html#cb514-10" tabindex="-1"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb518"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb518-1"><a href="model-verification-swatdoctr.html#cb518-1" tabindex="-1"></a>sim_nostress  <span class="ot">&lt;-</span></span>
+<span id="cb518-2"><a href="model-verification-swatdoctr.html#cb518-2" tabindex="-1"></a>  <span class="fu">run_swat_verification</span>(</span>
+<span id="cb518-3"><a href="model-verification-swatdoctr.html#cb518-3" tabindex="-1"></a>    <span class="at">project_path =</span> <span class="st">&quot;model_data/cs10_setup/run_swat/&quot;</span>,</span>
+<span id="cb518-4"><a href="model-verification-swatdoctr.html#cb518-4" tabindex="-1"></a>    <span class="at">start_date =</span> <span class="st">&quot;2015-01-01&quot;</span>,</span>
+<span id="cb518-5"><a href="model-verification-swatdoctr.html#cb518-5" tabindex="-1"></a>    <span class="at">end_date =</span> <span class="st">&quot;2019-12-31&quot;</span>,</span>
+<span id="cb518-6"><a href="model-verification-swatdoctr.html#cb518-6" tabindex="-1"></a>    <span class="at">years_skip =</span> <span class="dv">1</span>, <span class="co"># first three years skipped</span></span>
+<span id="cb518-7"><a href="model-verification-swatdoctr.html#cb518-7" tabindex="-1"></a>    <span class="at">nostress =</span> <span class="dv">1</span>, <span class="co"># Stress factors OFF @ 1</span></span>
+<span id="cb518-8"><a href="model-verification-swatdoctr.html#cb518-8" tabindex="-1"></a>    <span class="at">keep_folder =</span> <span class="cn">TRUE</span>, <span class="co"># .runverify/ folder will NOT be deleted</span></span>
+<span id="cb518-9"><a href="model-verification-swatdoctr.html#cb518-9" tabindex="-1"></a>    <span class="at">outputs =</span> <span class="fu">c</span>(<span class="st">&quot;wb&quot;</span>, <span class="st">&quot;mgt&quot;</span>, <span class="st">&quot;plt&quot;</span>) <span class="co"># which things will be in output</span></span>
+<span id="cb518-10"><a href="model-verification-swatdoctr.html#cb518-10" tabindex="-1"></a>  )</span></code></pre></div>
 <ul>
 <li>To include all outputs, set <code>outputs = c("wb", "mgt", "plt")</code></li>
 <li>To read more about how this function works, type <code>?run_swat_verification</code> into
 the console.</li>
 </ul>
 <p>We can save this model run like so: (feel free to rename the run)</p>
-<div class="sourceCode" id="cb515"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb515-1"><a href="model-verification-swatdoctr.html#cb515-1" tabindex="-1"></a>run_name <span class="ot">=</span> <span class="st">&quot;stage1&quot;</span></span>
-<span id="cb515-2"><a href="model-verification-swatdoctr.html#cb515-2" tabindex="-1"></a></span>
-<span id="cb515-3"><a href="model-verification-swatdoctr.html#cb515-3" tabindex="-1"></a><span class="fu">saveRDS</span>(sim_nostress,</span>
-<span id="cb515-4"><a href="model-verification-swatdoctr.html#cb515-4" tabindex="-1"></a>        <span class="fu">paste0</span>(<span class="st">&quot;model_data/cs10_setup/verification_runs/&quot;</span>,</span>
-<span id="cb515-5"><a href="model-verification-swatdoctr.html#cb515-5" tabindex="-1"></a>        run_name,</span>
-<span id="cb515-6"><a href="model-verification-swatdoctr.html#cb515-6" tabindex="-1"></a>        <span class="st">&quot;.rds&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb519"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb519-1"><a href="model-verification-swatdoctr.html#cb519-1" tabindex="-1"></a>run_name <span class="ot">=</span> <span class="st">&quot;stage1&quot;</span></span>
+<span id="cb519-2"><a href="model-verification-swatdoctr.html#cb519-2" tabindex="-1"></a></span>
+<span id="cb519-3"><a href="model-verification-swatdoctr.html#cb519-3" tabindex="-1"></a><span class="fu">saveRDS</span>(sim_nostress,</span>
+<span id="cb519-4"><a href="model-verification-swatdoctr.html#cb519-4" tabindex="-1"></a>        <span class="fu">paste0</span>(<span class="st">&quot;model_data/cs10_setup/verification_runs/&quot;</span>,</span>
+<span id="cb519-5"><a href="model-verification-swatdoctr.html#cb519-5" tabindex="-1"></a>        run_name,</span>
+<span id="cb519-6"><a href="model-verification-swatdoctr.html#cb519-6" tabindex="-1"></a>        <span class="st">&quot;.rds&quot;</span>))</span></code></pre></div>
 <p>and we can load it like this (so that we don’t need to re-run).</p>
-<div class="sourceCode" id="cb516"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb516-1"><a href="model-verification-swatdoctr.html#cb516-1" tabindex="-1"></a>run_name <span class="ot">=</span> <span class="st">&quot;stage1&quot;</span> <span class="co"># change this to which run you want to load. </span></span>
-<span id="cb516-2"><a href="model-verification-swatdoctr.html#cb516-2" tabindex="-1"></a></span>
-<span id="cb516-3"><a href="model-verification-swatdoctr.html#cb516-3" tabindex="-1"></a>sim_nostress <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="fu">paste0</span>(<span class="st">&quot;model_data/cs10_setup/verification_runs/&quot;</span>,</span>
-<span id="cb516-4"><a href="model-verification-swatdoctr.html#cb516-4" tabindex="-1"></a>                               run_name, </span>
-<span id="cb516-5"><a href="model-verification-swatdoctr.html#cb516-5" tabindex="-1"></a>                               <span class="st">&quot;.rds&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb520"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb520-1"><a href="model-verification-swatdoctr.html#cb520-1" tabindex="-1"></a>run_name <span class="ot">=</span> <span class="st">&quot;stage1&quot;</span> <span class="co"># change this to which run you want to load. </span></span>
+<span id="cb520-2"><a href="model-verification-swatdoctr.html#cb520-2" tabindex="-1"></a></span>
+<span id="cb520-3"><a href="model-verification-swatdoctr.html#cb520-3" tabindex="-1"></a>sim_nostress <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="fu">paste0</span>(<span class="st">&quot;model_data/cs10_setup/verification_runs/&quot;</span>,</span>
+<span id="cb520-4"><a href="model-verification-swatdoctr.html#cb520-4" tabindex="-1"></a>                               run_name, </span>
+<span id="cb520-5"><a href="model-verification-swatdoctr.html#cb520-5" tabindex="-1"></a>                               <span class="st">&quot;.rds&quot;</span>))</span></code></pre></div>
 <p>Modified from the Protocol:</p>
 <ul>
 <li>The climate variables daily precipitation and daily minimum/maximum
@@ -721,91 +753,91 @@ Figure 12.2: The tlaps and plaps parameters from the REVISION 60.5.4 documentati
 </div>
 <p>Let us check the elevation differences in our catchment to see if these
 parameters could have a meaningful effect.</p>
-<div class="sourceCode" id="cb517"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb517-1"><a href="model-verification-swatdoctr.html#cb517-1" tabindex="-1"></a>dem_path <span class="ot">&lt;-</span> <span class="st">&quot;model_data/cs10_setup/optain-cs10/data/raster/dem.tif&quot;</span></span>
-<span id="cb517-2"><a href="model-verification-swatdoctr.html#cb517-2" tabindex="-1"></a></span>
-<span id="cb517-3"><a href="model-verification-swatdoctr.html#cb517-3" tabindex="-1"></a><span class="fu">library</span>(terra)</span>
-<span id="cb517-4"><a href="model-verification-swatdoctr.html#cb517-4" tabindex="-1"></a>dem_rast <span class="ot">&lt;-</span> <span class="fu">rast</span>(dem_path)</span>
-<span id="cb517-5"><a href="model-verification-swatdoctr.html#cb517-5" tabindex="-1"></a></span>
-<span id="cb517-6"><a href="model-verification-swatdoctr.html#cb517-6" tabindex="-1"></a><span class="fu">minmax</span>(dem_rast)</span></code></pre></div>
+<div class="sourceCode" id="cb521"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb521-1"><a href="model-verification-swatdoctr.html#cb521-1" tabindex="-1"></a>dem_path <span class="ot">&lt;-</span> <span class="st">&quot;model_data/cs10_setup/optain-cs10/data/raster/dem.tif&quot;</span></span>
+<span id="cb521-2"><a href="model-verification-swatdoctr.html#cb521-2" tabindex="-1"></a></span>
+<span id="cb521-3"><a href="model-verification-swatdoctr.html#cb521-3" tabindex="-1"></a><span class="fu">library</span>(terra)</span>
+<span id="cb521-4"><a href="model-verification-swatdoctr.html#cb521-4" tabindex="-1"></a>dem_rast <span class="ot">&lt;-</span> <span class="fu">rast</span>(dem_path)</span>
+<span id="cb521-5"><a href="model-verification-swatdoctr.html#cb521-5" tabindex="-1"></a></span>
+<span id="cb521-6"><a href="model-verification-swatdoctr.html#cb521-6" tabindex="-1"></a><span class="fu">minmax</span>(dem_rast)</span></code></pre></div>
 <pre><code>##     dtm3_ns_v5
 ## min      50.50
 ## max     251.91</code></pre>
 <p>Max elevation change of 200 m is not much, but it could very well have
 an effect on snowfall / vs. precipitation. The max temperature
 adjustment would be:</p>
-<div class="sourceCode" id="cb519"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb519-1"><a href="model-verification-swatdoctr.html#cb519-1" tabindex="-1"></a><span class="fl">6.5</span> <span class="sc">*</span> <span class="fl">0.200</span></span></code></pre></div>
+<div class="sourceCode" id="cb523"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb523-1"><a href="model-verification-swatdoctr.html#cb523-1" tabindex="-1"></a><span class="fl">6.5</span> <span class="sc">*</span> <span class="fl">0.200</span></span></code></pre></div>
 <pre><code>## [1] 1.3</code></pre>
 <p>1.3 Degrees Celsius is significant, therefore we will enable <code>tlaps</code> and
 keep the default value. 200m does not seem like enough to justify using
 the plaps parameter, so we will leave it at 0</p>
 <p>And load in <code>codes.bsn</code> and <code>parameters.bsn</code></p>
-<div class="sourceCode" id="cb521"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb521-1"><a href="model-verification-swatdoctr.html#cb521-1" tabindex="-1"></a><span class="do">### Loading parameters</span></span>
-<span id="cb521-2"><a href="model-verification-swatdoctr.html#cb521-2" tabindex="-1"></a>codes_path <span class="ot">&lt;-</span> <span class="st">&quot;model_data/cs10_setup/run_swat/codes.bsn&quot;</span></span>
-<span id="cb521-3"><a href="model-verification-swatdoctr.html#cb521-3" tabindex="-1"></a>parameters_path <span class="ot">&lt;-</span> <span class="st">&quot;model_data/cs10_setup/run_swat/parameters.bsn&quot;</span></span>
-<span id="cb521-4"><a href="model-verification-swatdoctr.html#cb521-4" tabindex="-1"></a></span>
-<span id="cb521-5"><a href="model-verification-swatdoctr.html#cb521-5" tabindex="-1"></a>codes_bsn <span class="ot">&lt;-</span></span>
-<span id="cb521-6"><a href="model-verification-swatdoctr.html#cb521-6" tabindex="-1"></a>  <span class="fu">read.table</span>(</span>
-<span id="cb521-7"><a href="model-verification-swatdoctr.html#cb521-7" tabindex="-1"></a>    <span class="at">file =</span> codes_path,</span>
-<span id="cb521-8"><a href="model-verification-swatdoctr.html#cb521-8" tabindex="-1"></a>    <span class="at">skip =</span> <span class="dv">1</span>,</span>
-<span id="cb521-9"><a href="model-verification-swatdoctr.html#cb521-9" tabindex="-1"></a>    <span class="at">header =</span> T,</span>
-<span id="cb521-10"><a href="model-verification-swatdoctr.html#cb521-10" tabindex="-1"></a>    <span class="at">sep =</span> <span class="st">&quot;&quot;</span>,</span>
-<span id="cb521-11"><a href="model-verification-swatdoctr.html#cb521-11" tabindex="-1"></a>    <span class="at">colClasses =</span> <span class="st">&quot;character&quot;</span></span>
-<span id="cb521-12"><a href="model-verification-swatdoctr.html#cb521-12" tabindex="-1"></a>  )</span>
-<span id="cb521-13"><a href="model-verification-swatdoctr.html#cb521-13" tabindex="-1"></a>parameters_bsn <span class="ot">&lt;-</span></span>
-<span id="cb521-14"><a href="model-verification-swatdoctr.html#cb521-14" tabindex="-1"></a>  <span class="fu">read.table</span>(</span>
-<span id="cb521-15"><a href="model-verification-swatdoctr.html#cb521-15" tabindex="-1"></a>    <span class="at">file =</span> parameters_path,</span>
-<span id="cb521-16"><a href="model-verification-swatdoctr.html#cb521-16" tabindex="-1"></a>    <span class="at">skip =</span> <span class="dv">1</span>,</span>
-<span id="cb521-17"><a href="model-verification-swatdoctr.html#cb521-17" tabindex="-1"></a>    <span class="at">header =</span> T,</span>
-<span id="cb521-18"><a href="model-verification-swatdoctr.html#cb521-18" tabindex="-1"></a>    <span class="at">sep =</span> <span class="st">&quot;&quot;</span>,</span>
-<span id="cb521-19"><a href="model-verification-swatdoctr.html#cb521-19" tabindex="-1"></a>    <span class="at">quote =</span> <span class="st">&quot;&quot;</span>,</span>
-<span id="cb521-20"><a href="model-verification-swatdoctr.html#cb521-20" tabindex="-1"></a>    <span class="at">colClasses =</span> <span class="st">&quot;character&quot;</span></span>
-<span id="cb521-21"><a href="model-verification-swatdoctr.html#cb521-21" tabindex="-1"></a>  )</span>
-<span id="cb521-22"><a href="model-verification-swatdoctr.html#cb521-22" tabindex="-1"></a><span class="do">### Setting parameters</span></span>
-<span id="cb521-23"><a href="model-verification-swatdoctr.html#cb521-23" tabindex="-1"></a>codes_bsn<span class="sc">$</span>lapse <span class="ot">=</span> <span class="dv">1</span></span>
-<span id="cb521-24"><a href="model-verification-swatdoctr.html#cb521-24" tabindex="-1"></a>parameters_bsn<span class="sc">$</span>tlaps <span class="ot">=</span> <span class="fl">6.5</span></span>
-<span id="cb521-25"><a href="model-verification-swatdoctr.html#cb521-25" tabindex="-1"></a>parameters_bsn<span class="sc">$</span>plaps <span class="ot">=</span> <span class="dv">0</span></span>
-<span id="cb521-26"><a href="model-verification-swatdoctr.html#cb521-26" tabindex="-1"></a></span>
-<span id="cb521-27"><a href="model-verification-swatdoctr.html#cb521-27" tabindex="-1"></a><span class="do">### Writing Headers</span></span>
-<span id="cb521-28"><a href="model-verification-swatdoctr.html#cb521-28" tabindex="-1"></a></span>
-<span id="cb521-29"><a href="model-verification-swatdoctr.html#cb521-29" tabindex="-1"></a>write_path <span class="ot">&lt;-</span> <span class="st">&quot;model_data/cs10_setup/swat_doctr_mod/&quot;</span></span>
-<span id="cb521-30"><a href="model-verification-swatdoctr.html#cb521-30" tabindex="-1"></a></span>
-<span id="cb521-31"><a href="model-verification-swatdoctr.html#cb521-31" tabindex="-1"></a><span class="fu">write.table</span>(</span>
-<span id="cb521-32"><a href="model-verification-swatdoctr.html#cb521-32" tabindex="-1"></a>  <span class="st">&quot;codes.bsn header, modified by CS-10 workflow section 11.1&quot;</span>,</span>
-<span id="cb521-33"><a href="model-verification-swatdoctr.html#cb521-33" tabindex="-1"></a>  <span class="at">file =</span> <span class="fu">paste0</span>(write_path, <span class="st">&quot;codes.bsn&quot;</span>),</span>
-<span id="cb521-34"><a href="model-verification-swatdoctr.html#cb521-34" tabindex="-1"></a>  <span class="at">sep =</span> <span class="st">&quot;   &quot;</span>,</span>
-<span id="cb521-35"><a href="model-verification-swatdoctr.html#cb521-35" tabindex="-1"></a>  <span class="at">row.names =</span> F, </span>
-<span id="cb521-36"><a href="model-verification-swatdoctr.html#cb521-36" tabindex="-1"></a>  <span class="at">col.names =</span> F,</span>
-<span id="cb521-37"><a href="model-verification-swatdoctr.html#cb521-37" tabindex="-1"></a>  <span class="at">append =</span> F,</span>
-<span id="cb521-38"><a href="model-verification-swatdoctr.html#cb521-38" tabindex="-1"></a>  <span class="at">quote =</span> F</span>
-<span id="cb521-39"><a href="model-verification-swatdoctr.html#cb521-39" tabindex="-1"></a>)</span>
-<span id="cb521-40"><a href="model-verification-swatdoctr.html#cb521-40" tabindex="-1"></a><span class="fu">write.table</span>(</span>
-<span id="cb521-41"><a href="model-verification-swatdoctr.html#cb521-41" tabindex="-1"></a>  <span class="st">&quot;parameters.bsn header, modified by CS-10 workflow section 11.1&quot;</span>,</span>
-<span id="cb521-42"><a href="model-verification-swatdoctr.html#cb521-42" tabindex="-1"></a>  <span class="at">file =</span>   <span class="fu">paste0</span>(write_path, <span class="st">&quot;parameters.bsn&quot;</span>),</span>
-<span id="cb521-43"><a href="model-verification-swatdoctr.html#cb521-43" tabindex="-1"></a>  <span class="at">sep =</span> <span class="st">&quot;   &quot;</span>,</span>
-<span id="cb521-44"><a href="model-verification-swatdoctr.html#cb521-44" tabindex="-1"></a>  <span class="at">row.names =</span> F,</span>
-<span id="cb521-45"><a href="model-verification-swatdoctr.html#cb521-45" tabindex="-1"></a>  <span class="at">col.names =</span> F,</span>
-<span id="cb521-46"><a href="model-verification-swatdoctr.html#cb521-46" tabindex="-1"></a>  <span class="at">append =</span> F, </span>
-<span id="cb521-47"><a href="model-verification-swatdoctr.html#cb521-47" tabindex="-1"></a>  <span class="at">quote =</span> F</span>
-<span id="cb521-48"><a href="model-verification-swatdoctr.html#cb521-48" tabindex="-1"></a>)</span>
-<span id="cb521-49"><a href="model-verification-swatdoctr.html#cb521-49" tabindex="-1"></a><span class="do">### Writing file contents</span></span>
-<span id="cb521-50"><a href="model-verification-swatdoctr.html#cb521-50" tabindex="-1"></a><span class="fu">write.table</span>(</span>
-<span id="cb521-51"><a href="model-verification-swatdoctr.html#cb521-51" tabindex="-1"></a>  codes_bsn,</span>
-<span id="cb521-52"><a href="model-verification-swatdoctr.html#cb521-52" tabindex="-1"></a>  <span class="at">file =</span> <span class="fu">paste0</span>(write_path, <span class="st">&quot;codes.bsn&quot;</span>),</span>
-<span id="cb521-53"><a href="model-verification-swatdoctr.html#cb521-53" tabindex="-1"></a>  <span class="at">sep =</span> <span class="st">&quot;   &quot;</span>,</span>
-<span id="cb521-54"><a href="model-verification-swatdoctr.html#cb521-54" tabindex="-1"></a>  <span class="at">row.names =</span> F,</span>
-<span id="cb521-55"><a href="model-verification-swatdoctr.html#cb521-55" tabindex="-1"></a>  <span class="at">col.names =</span> T,</span>
-<span id="cb521-56"><a href="model-verification-swatdoctr.html#cb521-56" tabindex="-1"></a>  <span class="at">append =</span> T,</span>
-<span id="cb521-57"><a href="model-verification-swatdoctr.html#cb521-57" tabindex="-1"></a>  <span class="at">quote =</span> F</span>
-<span id="cb521-58"><a href="model-verification-swatdoctr.html#cb521-58" tabindex="-1"></a>)</span>
-<span id="cb521-59"><a href="model-verification-swatdoctr.html#cb521-59" tabindex="-1"></a><span class="fu">write.table</span>(</span>
-<span id="cb521-60"><a href="model-verification-swatdoctr.html#cb521-60" tabindex="-1"></a>  parameters_bsn,</span>
-<span id="cb521-61"><a href="model-verification-swatdoctr.html#cb521-61" tabindex="-1"></a>  <span class="fu">paste0</span>(write_path, <span class="st">&quot;parameters.bsn&quot;</span>),</span>
-<span id="cb521-62"><a href="model-verification-swatdoctr.html#cb521-62" tabindex="-1"></a>  <span class="at">sep =</span> <span class="st">&quot;   &quot;</span>,</span>
-<span id="cb521-63"><a href="model-verification-swatdoctr.html#cb521-63" tabindex="-1"></a>  <span class="at">row.names =</span> F,</span>
-<span id="cb521-64"><a href="model-verification-swatdoctr.html#cb521-64" tabindex="-1"></a>  <span class="at">col.names =</span> T,</span>
-<span id="cb521-65"><a href="model-verification-swatdoctr.html#cb521-65" tabindex="-1"></a>  <span class="at">append =</span> T,</span>
-<span id="cb521-66"><a href="model-verification-swatdoctr.html#cb521-66" tabindex="-1"></a>  <span class="at">quote =</span> F</span>
-<span id="cb521-67"><a href="model-verification-swatdoctr.html#cb521-67" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb525"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb525-1"><a href="model-verification-swatdoctr.html#cb525-1" tabindex="-1"></a><span class="do">### Loading parameters</span></span>
+<span id="cb525-2"><a href="model-verification-swatdoctr.html#cb525-2" tabindex="-1"></a>codes_path <span class="ot">&lt;-</span> <span class="st">&quot;model_data/cs10_setup/run_swat/codes.bsn&quot;</span></span>
+<span id="cb525-3"><a href="model-verification-swatdoctr.html#cb525-3" tabindex="-1"></a>parameters_path <span class="ot">&lt;-</span> <span class="st">&quot;model_data/cs10_setup/run_swat/parameters.bsn&quot;</span></span>
+<span id="cb525-4"><a href="model-verification-swatdoctr.html#cb525-4" tabindex="-1"></a></span>
+<span id="cb525-5"><a href="model-verification-swatdoctr.html#cb525-5" tabindex="-1"></a>codes_bsn <span class="ot">&lt;-</span></span>
+<span id="cb525-6"><a href="model-verification-swatdoctr.html#cb525-6" tabindex="-1"></a>  <span class="fu">read.table</span>(</span>
+<span id="cb525-7"><a href="model-verification-swatdoctr.html#cb525-7" tabindex="-1"></a>    <span class="at">file =</span> codes_path,</span>
+<span id="cb525-8"><a href="model-verification-swatdoctr.html#cb525-8" tabindex="-1"></a>    <span class="at">skip =</span> <span class="dv">1</span>,</span>
+<span id="cb525-9"><a href="model-verification-swatdoctr.html#cb525-9" tabindex="-1"></a>    <span class="at">header =</span> T,</span>
+<span id="cb525-10"><a href="model-verification-swatdoctr.html#cb525-10" tabindex="-1"></a>    <span class="at">sep =</span> <span class="st">&quot;&quot;</span>,</span>
+<span id="cb525-11"><a href="model-verification-swatdoctr.html#cb525-11" tabindex="-1"></a>    <span class="at">colClasses =</span> <span class="st">&quot;character&quot;</span></span>
+<span id="cb525-12"><a href="model-verification-swatdoctr.html#cb525-12" tabindex="-1"></a>  )</span>
+<span id="cb525-13"><a href="model-verification-swatdoctr.html#cb525-13" tabindex="-1"></a>parameters_bsn <span class="ot">&lt;-</span></span>
+<span id="cb525-14"><a href="model-verification-swatdoctr.html#cb525-14" tabindex="-1"></a>  <span class="fu">read.table</span>(</span>
+<span id="cb525-15"><a href="model-verification-swatdoctr.html#cb525-15" tabindex="-1"></a>    <span class="at">file =</span> parameters_path,</span>
+<span id="cb525-16"><a href="model-verification-swatdoctr.html#cb525-16" tabindex="-1"></a>    <span class="at">skip =</span> <span class="dv">1</span>,</span>
+<span id="cb525-17"><a href="model-verification-swatdoctr.html#cb525-17" tabindex="-1"></a>    <span class="at">header =</span> T,</span>
+<span id="cb525-18"><a href="model-verification-swatdoctr.html#cb525-18" tabindex="-1"></a>    <span class="at">sep =</span> <span class="st">&quot;&quot;</span>,</span>
+<span id="cb525-19"><a href="model-verification-swatdoctr.html#cb525-19" tabindex="-1"></a>    <span class="at">quote =</span> <span class="st">&quot;&quot;</span>,</span>
+<span id="cb525-20"><a href="model-verification-swatdoctr.html#cb525-20" tabindex="-1"></a>    <span class="at">colClasses =</span> <span class="st">&quot;character&quot;</span></span>
+<span id="cb525-21"><a href="model-verification-swatdoctr.html#cb525-21" tabindex="-1"></a>  )</span>
+<span id="cb525-22"><a href="model-verification-swatdoctr.html#cb525-22" tabindex="-1"></a><span class="do">### Setting parameters</span></span>
+<span id="cb525-23"><a href="model-verification-swatdoctr.html#cb525-23" tabindex="-1"></a>codes_bsn<span class="sc">$</span>lapse <span class="ot">=</span> <span class="dv">1</span></span>
+<span id="cb525-24"><a href="model-verification-swatdoctr.html#cb525-24" tabindex="-1"></a>parameters_bsn<span class="sc">$</span>tlaps <span class="ot">=</span> <span class="fl">6.5</span></span>
+<span id="cb525-25"><a href="model-verification-swatdoctr.html#cb525-25" tabindex="-1"></a>parameters_bsn<span class="sc">$</span>plaps <span class="ot">=</span> <span class="dv">0</span></span>
+<span id="cb525-26"><a href="model-verification-swatdoctr.html#cb525-26" tabindex="-1"></a></span>
+<span id="cb525-27"><a href="model-verification-swatdoctr.html#cb525-27" tabindex="-1"></a><span class="do">### Writing Headers</span></span>
+<span id="cb525-28"><a href="model-verification-swatdoctr.html#cb525-28" tabindex="-1"></a></span>
+<span id="cb525-29"><a href="model-verification-swatdoctr.html#cb525-29" tabindex="-1"></a>write_path <span class="ot">&lt;-</span> <span class="st">&quot;model_data/cs10_setup/swat_doctr_mod/&quot;</span></span>
+<span id="cb525-30"><a href="model-verification-swatdoctr.html#cb525-30" tabindex="-1"></a></span>
+<span id="cb525-31"><a href="model-verification-swatdoctr.html#cb525-31" tabindex="-1"></a><span class="fu">write.table</span>(</span>
+<span id="cb525-32"><a href="model-verification-swatdoctr.html#cb525-32" tabindex="-1"></a>  <span class="st">&quot;codes.bsn header, modified by CS-10 workflow section 11.1&quot;</span>,</span>
+<span id="cb525-33"><a href="model-verification-swatdoctr.html#cb525-33" tabindex="-1"></a>  <span class="at">file =</span> <span class="fu">paste0</span>(write_path, <span class="st">&quot;codes.bsn&quot;</span>),</span>
+<span id="cb525-34"><a href="model-verification-swatdoctr.html#cb525-34" tabindex="-1"></a>  <span class="at">sep =</span> <span class="st">&quot;   &quot;</span>,</span>
+<span id="cb525-35"><a href="model-verification-swatdoctr.html#cb525-35" tabindex="-1"></a>  <span class="at">row.names =</span> F, </span>
+<span id="cb525-36"><a href="model-verification-swatdoctr.html#cb525-36" tabindex="-1"></a>  <span class="at">col.names =</span> F,</span>
+<span id="cb525-37"><a href="model-verification-swatdoctr.html#cb525-37" tabindex="-1"></a>  <span class="at">append =</span> F,</span>
+<span id="cb525-38"><a href="model-verification-swatdoctr.html#cb525-38" tabindex="-1"></a>  <span class="at">quote =</span> F</span>
+<span id="cb525-39"><a href="model-verification-swatdoctr.html#cb525-39" tabindex="-1"></a>)</span>
+<span id="cb525-40"><a href="model-verification-swatdoctr.html#cb525-40" tabindex="-1"></a><span class="fu">write.table</span>(</span>
+<span id="cb525-41"><a href="model-verification-swatdoctr.html#cb525-41" tabindex="-1"></a>  <span class="st">&quot;parameters.bsn header, modified by CS-10 workflow section 11.1&quot;</span>,</span>
+<span id="cb525-42"><a href="model-verification-swatdoctr.html#cb525-42" tabindex="-1"></a>  <span class="at">file =</span>   <span class="fu">paste0</span>(write_path, <span class="st">&quot;parameters.bsn&quot;</span>),</span>
+<span id="cb525-43"><a href="model-verification-swatdoctr.html#cb525-43" tabindex="-1"></a>  <span class="at">sep =</span> <span class="st">&quot;   &quot;</span>,</span>
+<span id="cb525-44"><a href="model-verification-swatdoctr.html#cb525-44" tabindex="-1"></a>  <span class="at">row.names =</span> F,</span>
+<span id="cb525-45"><a href="model-verification-swatdoctr.html#cb525-45" tabindex="-1"></a>  <span class="at">col.names =</span> F,</span>
+<span id="cb525-46"><a href="model-verification-swatdoctr.html#cb525-46" tabindex="-1"></a>  <span class="at">append =</span> F, </span>
+<span id="cb525-47"><a href="model-verification-swatdoctr.html#cb525-47" tabindex="-1"></a>  <span class="at">quote =</span> F</span>
+<span id="cb525-48"><a href="model-verification-swatdoctr.html#cb525-48" tabindex="-1"></a>)</span>
+<span id="cb525-49"><a href="model-verification-swatdoctr.html#cb525-49" tabindex="-1"></a><span class="do">### Writing file contents</span></span>
+<span id="cb525-50"><a href="model-verification-swatdoctr.html#cb525-50" tabindex="-1"></a><span class="fu">write.table</span>(</span>
+<span id="cb525-51"><a href="model-verification-swatdoctr.html#cb525-51" tabindex="-1"></a>  codes_bsn,</span>
+<span id="cb525-52"><a href="model-verification-swatdoctr.html#cb525-52" tabindex="-1"></a>  <span class="at">file =</span> <span class="fu">paste0</span>(write_path, <span class="st">&quot;codes.bsn&quot;</span>),</span>
+<span id="cb525-53"><a href="model-verification-swatdoctr.html#cb525-53" tabindex="-1"></a>  <span class="at">sep =</span> <span class="st">&quot;   &quot;</span>,</span>
+<span id="cb525-54"><a href="model-verification-swatdoctr.html#cb525-54" tabindex="-1"></a>  <span class="at">row.names =</span> F,</span>
+<span id="cb525-55"><a href="model-verification-swatdoctr.html#cb525-55" tabindex="-1"></a>  <span class="at">col.names =</span> T,</span>
+<span id="cb525-56"><a href="model-verification-swatdoctr.html#cb525-56" tabindex="-1"></a>  <span class="at">append =</span> T,</span>
+<span id="cb525-57"><a href="model-verification-swatdoctr.html#cb525-57" tabindex="-1"></a>  <span class="at">quote =</span> F</span>
+<span id="cb525-58"><a href="model-verification-swatdoctr.html#cb525-58" tabindex="-1"></a>)</span>
+<span id="cb525-59"><a href="model-verification-swatdoctr.html#cb525-59" tabindex="-1"></a><span class="fu">write.table</span>(</span>
+<span id="cb525-60"><a href="model-verification-swatdoctr.html#cb525-60" tabindex="-1"></a>  parameters_bsn,</span>
+<span id="cb525-61"><a href="model-verification-swatdoctr.html#cb525-61" tabindex="-1"></a>  <span class="fu">paste0</span>(write_path, <span class="st">&quot;parameters.bsn&quot;</span>),</span>
+<span id="cb525-62"><a href="model-verification-swatdoctr.html#cb525-62" tabindex="-1"></a>  <span class="at">sep =</span> <span class="st">&quot;   &quot;</span>,</span>
+<span id="cb525-63"><a href="model-verification-swatdoctr.html#cb525-63" tabindex="-1"></a>  <span class="at">row.names =</span> F,</span>
+<span id="cb525-64"><a href="model-verification-swatdoctr.html#cb525-64" tabindex="-1"></a>  <span class="at">col.names =</span> T,</span>
+<span id="cb525-65"><a href="model-verification-swatdoctr.html#cb525-65" tabindex="-1"></a>  <span class="at">append =</span> T,</span>
+<span id="cb525-66"><a href="model-verification-swatdoctr.html#cb525-66" tabindex="-1"></a>  <span class="at">quote =</span> F</span>
+<span id="cb525-67"><a href="model-verification-swatdoctr.html#cb525-67" tabindex="-1"></a>)</span></code></pre></div>
 </div>
 <div id="climate-variables-1" class="section level3 hasAnchor" number="12.1.2">
 <h3><span class="header-section-number">12.1.2</span> Climate variables<a href="model-verification-swatdoctr.html#climate-variables-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -816,8 +848,8 @@ humidity and wind speed inputs).</p></li>
 <li><p><code>SWATdoctR</code> provides the function <code>plot_climate_annual()</code> to analyse
 the annual simulated basin averages of climate variables.</p></li>
 </ul>
-<div class="sourceCode" id="cb522"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb522-1"><a href="model-verification-swatdoctr.html#cb522-1" tabindex="-1"></a>fig1 <span class="ot">&lt;-</span> <span class="fu">plot_climate_annual</span>(sim_nostress)</span>
-<span id="cb522-2"><a href="model-verification-swatdoctr.html#cb522-2" tabindex="-1"></a><span class="fu">plot</span>(fig1)</span></code></pre></div>
+<div class="sourceCode" id="cb526"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb526-1"><a href="model-verification-swatdoctr.html#cb526-1" tabindex="-1"></a>fig1 <span class="ot">&lt;-</span> <span class="fu">plot_climate_annual</span>(sim_nostress)</span>
+<span id="cb526-2"><a href="model-verification-swatdoctr.html#cb526-2" tabindex="-1"></a><span class="fu">plot</span>(fig1)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:docplotclimate"></span>
 <img src="_main_files/figure-html/docplotclimate-1.png" alt="Climate plot of CS10 generated by SWATDoctR" width="796.8" />
 <p class="caption">
@@ -901,7 +933,7 @@ simulation of snow processes (<code>snofall_tmp</code>, <code>snomelt_tmp</code>
 <p>CS10, a Boreal catchment, is impacted by snow melt – this is relevant
 to the verification</p>
 </blockquote>
-<div class="sourceCode" id="cb523"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb523-1"><a href="model-verification-swatdoctr.html#cb523-1" tabindex="-1"></a><span class="fu">plot_monthly_snow</span>(<span class="at">sim_verify =</span> sim_nostress)</span></code></pre></div>
+<div class="sourceCode" id="cb527"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb527-1"><a href="model-verification-swatdoctr.html#cb527-1" tabindex="-1"></a><span class="fu">plot_monthly_snow</span>(<span class="at">sim_verify =</span> sim_nostress)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:docplotmonthlysnow"></span>
 <img src="_main_files/figure-html/docplotmonthlysnow-1.png" alt="Precipitation and Snowmelt on a monthly average basis, as generated by SWATDoctR" width="672" />
 <p class="caption">
@@ -923,8 +955,8 @@ can be a valid solution.</li>
 <blockquote>
 <p>We do not need a simpler method since we have the required data</p>
 </blockquote>
-<div class="sourceCode" id="cb524"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb524-1"><a href="model-verification-swatdoctr.html#cb524-1" tabindex="-1"></a><span class="fu">plot_waterbalance</span>(sim_nostress)</span></code></pre></div>
-<p><img src="_main_files/figure-html/mv8-1.png" width="672" /></p>
+<div class="sourceCode" id="cb528"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb528-1"><a href="model-verification-swatdoctr.html#cb528-1" tabindex="-1"></a><span class="fu">plot_waterbalance</span>(sim_nostress)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-115-1.png" width="672" /></p>
 <hr />
 </div>
 </div>
@@ -942,22 +974,22 @@ simulated operations for specific HRUs by random sampling.</p>
 <p>For this, we need a SWAT+ run with management outputs. If we have
 already run this code, we do not need to run it again, and can just load
 it in:</p>
-<div class="sourceCode" id="cb525"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb525-1"><a href="model-verification-swatdoctr.html#cb525-1" tabindex="-1"></a>run_name <span class="ot">=</span> <span class="st">&quot;spacing800all&quot;</span></span>
-<span id="cb525-2"><a href="model-verification-swatdoctr.html#cb525-2" tabindex="-1"></a></span>
-<span id="cb525-3"><a href="model-verification-swatdoctr.html#cb525-3" tabindex="-1"></a>veri_mgt <span class="ot">&lt;-</span></span>
-<span id="cb525-4"><a href="model-verification-swatdoctr.html#cb525-4" tabindex="-1"></a>  <span class="fu">readRDS</span>(<span class="fu">paste0</span>(<span class="st">&quot;model_data/swat_doctR/verification_runs/&quot;</span>, run_name, <span class="st">&quot;.rds&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb529"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb529-1"><a href="model-verification-swatdoctr.html#cb529-1" tabindex="-1"></a>run_name <span class="ot">=</span> <span class="st">&quot;spacing800all&quot;</span></span>
+<span id="cb529-2"><a href="model-verification-swatdoctr.html#cb529-2" tabindex="-1"></a></span>
+<span id="cb529-3"><a href="model-verification-swatdoctr.html#cb529-3" tabindex="-1"></a>veri_mgt <span class="ot">&lt;-</span></span>
+<span id="cb529-4"><a href="model-verification-swatdoctr.html#cb529-4" tabindex="-1"></a>  <span class="fu">readRDS</span>(<span class="fu">paste0</span>(<span class="st">&quot;model_data/swat_doctR/verification_runs/&quot;</span>, run_name, <span class="st">&quot;.rds&quot;</span>))</span></code></pre></div>
 <p>Skip this code block, unless you want to re-run SWAT+</p>
-<div class="sourceCode" id="cb526"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb526-1"><a href="model-verification-swatdoctr.html#cb526-1" tabindex="-1"></a>veri_mgt <span class="ot">&lt;-</span></span>
-<span id="cb526-2"><a href="model-verification-swatdoctr.html#cb526-2" tabindex="-1"></a>  <span class="fu">run_swat_verification</span>(</span>
-<span id="cb526-3"><a href="model-verification-swatdoctr.html#cb526-3" tabindex="-1"></a>    <span class="at">project_path =</span> doctr_path,</span>
-<span id="cb526-4"><a href="model-verification-swatdoctr.html#cb526-4" tabindex="-1"></a>    <span class="at">keep_folder =</span> T</span>
-<span id="cb526-5"><a href="model-verification-swatdoctr.html#cb526-5" tabindex="-1"></a>  )</span>
-<span id="cb526-6"><a href="model-verification-swatdoctr.html#cb526-6" tabindex="-1"></a></span>
-<span id="cb526-7"><a href="model-verification-swatdoctr.html#cb526-7" tabindex="-1"></a>run_name <span class="ot">=</span> <span class="st">&quot;spacing800all&quot;</span></span>
-<span id="cb526-8"><a href="model-verification-swatdoctr.html#cb526-8" tabindex="-1"></a><span class="fu">saveRDS</span>(veri_mgt,</span>
-<span id="cb526-9"><a href="model-verification-swatdoctr.html#cb526-9" tabindex="-1"></a>        <span class="fu">paste0</span>(<span class="st">&quot;model_data/swat_doctR/verification_runs/&quot;</span>,</span>
-<span id="cb526-10"><a href="model-verification-swatdoctr.html#cb526-10" tabindex="-1"></a>               run_name,</span>
-<span id="cb526-11"><a href="model-verification-swatdoctr.html#cb526-11" tabindex="-1"></a>               <span class="st">&quot;.rds&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb530"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb530-1"><a href="model-verification-swatdoctr.html#cb530-1" tabindex="-1"></a>veri_mgt <span class="ot">&lt;-</span></span>
+<span id="cb530-2"><a href="model-verification-swatdoctr.html#cb530-2" tabindex="-1"></a>  <span class="fu">run_swat_verification</span>(</span>
+<span id="cb530-3"><a href="model-verification-swatdoctr.html#cb530-3" tabindex="-1"></a>    <span class="at">project_path =</span> doctr_path,</span>
+<span id="cb530-4"><a href="model-verification-swatdoctr.html#cb530-4" tabindex="-1"></a>    <span class="at">keep_folder =</span> T</span>
+<span id="cb530-5"><a href="model-verification-swatdoctr.html#cb530-5" tabindex="-1"></a>  )</span>
+<span id="cb530-6"><a href="model-verification-swatdoctr.html#cb530-6" tabindex="-1"></a></span>
+<span id="cb530-7"><a href="model-verification-swatdoctr.html#cb530-7" tabindex="-1"></a>run_name <span class="ot">=</span> <span class="st">&quot;spacing800all&quot;</span></span>
+<span id="cb530-8"><a href="model-verification-swatdoctr.html#cb530-8" tabindex="-1"></a><span class="fu">saveRDS</span>(veri_mgt,</span>
+<span id="cb530-9"><a href="model-verification-swatdoctr.html#cb530-9" tabindex="-1"></a>        <span class="fu">paste0</span>(<span class="st">&quot;model_data/swat_doctR/verification_runs/&quot;</span>,</span>
+<span id="cb530-10"><a href="model-verification-swatdoctr.html#cb530-10" tabindex="-1"></a>               run_name,</span>
+<span id="cb530-11"><a href="model-verification-swatdoctr.html#cb530-11" tabindex="-1"></a>               <span class="st">&quot;.rds&quot;</span>))</span></code></pre></div>
 <p>From the Protocol:</p>
 <p>“The function <code>report_mgt()</code> generates an overview report where the
 scheduled and triggered operations are matched and compared for each
@@ -973,7 +1005,7 @@ tables will be excluded.”</p>
 simulation outputs returns a table with an overview of the operations
 which were scheduled but not triggered or operations where ‘op_data1’
 differs in the scheduled and triggered operations.”</p>
-<div class="sourceCode" id="cb527"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb527-1"><a href="model-verification-swatdoctr.html#cb527-1" tabindex="-1"></a>mgt_report <span class="ot">&lt;-</span> <span class="fu">report_mgt</span>(veri_mgt, <span class="at">write_report =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb531"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb531-1"><a href="model-verification-swatdoctr.html#cb531-1" tabindex="-1"></a>mgt_report <span class="ot">&lt;-</span> <span class="fu">report_mgt</span>(veri_mgt, <span class="at">write_report =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p>Seems like there are no issues. I am not sure if this is a good or bad
 thing :D.</p>
 <p>“The <code>report_mgt()</code> function is a good starting point to explore the
@@ -985,15 +1017,15 @@ individual HRUs. For selecting HRUs e.g. with a specific management the
 helper function <code>get_hru_id_by_attribute()</code> can be useful. This table
 can be visually compared with the management input table
 (‘management.sch’)”</p>
-<div class="sourceCode" id="cb528"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb528-1"><a href="model-verification-swatdoctr.html#cb528-1" tabindex="-1"></a>table <span class="ot">&lt;-</span> <span class="fu">print_triggered_mgt</span>(<span class="at">sim_verify =</span> veri_mgt, <span class="at">hru_id =</span> <span class="dv">92</span>)</span>
-<span id="cb528-2"><a href="model-verification-swatdoctr.html#cb528-2" tabindex="-1"></a></span>
-<span id="cb528-3"><a href="model-verification-swatdoctr.html#cb528-3" tabindex="-1"></a><span class="fu">datatable</span>(table)</span></code></pre></div>
+<div class="sourceCode" id="cb532"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb532-1"><a href="model-verification-swatdoctr.html#cb532-1" tabindex="-1"></a>table <span class="ot">&lt;-</span> <span class="fu">print_triggered_mgt</span>(<span class="at">sim_verify =</span> veri_mgt, <span class="at">hru_id =</span> <span class="dv">92</span>)</span>
+<span id="cb532-2"><a href="model-verification-swatdoctr.html#cb532-2" tabindex="-1"></a></span>
+<span id="cb532-3"><a href="model-verification-swatdoctr.html#cb532-3" tabindex="-1"></a><span class="fu">datatable</span>(table)</span></code></pre></div>
 <p>To see the operations of a specific management schedule:</p>
-<div class="sourceCode" id="cb529"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb529-1"><a href="model-verification-swatdoctr.html#cb529-1" tabindex="-1"></a>test <span class="ot">&lt;-</span> <span class="fu">get_hru_id_by_attribute</span>(veri_mgt, <span class="at">mgt =</span> <span class="st">&quot;a_001f_1_drn_mgt_1731_1&quot;</span>)</span>
-<span id="cb529-2"><a href="model-verification-swatdoctr.html#cb529-2" tabindex="-1"></a></span>
-<span id="cb529-3"><a href="model-verification-swatdoctr.html#cb529-3" tabindex="-1"></a>tables <span class="ot">&lt;-</span> <span class="fu">print_triggered_mgt</span>(<span class="at">sim_verify =</span> veri_mgt, <span class="at">hru_id =</span> test<span class="sc">$</span>id[<span class="dv">1</span>])</span>
-<span id="cb529-4"><a href="model-verification-swatdoctr.html#cb529-4" tabindex="-1"></a></span>
-<span id="cb529-5"><a href="model-verification-swatdoctr.html#cb529-5" tabindex="-1"></a><span class="fu">datatable</span>(tables)</span></code></pre></div>
+<div class="sourceCode" id="cb533"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb533-1"><a href="model-verification-swatdoctr.html#cb533-1" tabindex="-1"></a>test <span class="ot">&lt;-</span> <span class="fu">get_hru_id_by_attribute</span>(veri_mgt, <span class="at">mgt =</span> <span class="st">&quot;a_001f_1_drn_mgt_1731_1&quot;</span>)</span>
+<span id="cb533-2"><a href="model-verification-swatdoctr.html#cb533-2" tabindex="-1"></a></span>
+<span id="cb533-3"><a href="model-verification-swatdoctr.html#cb533-3" tabindex="-1"></a>tables <span class="ot">&lt;-</span> <span class="fu">print_triggered_mgt</span>(<span class="at">sim_verify =</span> veri_mgt, <span class="at">hru_id =</span> test<span class="sc">$</span>id[<span class="dv">1</span>])</span>
+<span id="cb533-4"><a href="model-verification-swatdoctr.html#cb533-4" tabindex="-1"></a></span>
+<span id="cb533-5"><a href="model-verification-swatdoctr.html#cb533-5" tabindex="-1"></a><span class="fu">datatable</span>(tables)</span></code></pre></div>
 <p>“Operations which are missing in the simulated management schedules must
 be checked in the ‘management.sch’ input file. By answering the
 following questions for the scheduled management operations their proper
@@ -1030,34 +1062,34 @@ defined with <code>op_data2</code> exist in ‘harv.ops’.</li>
 <p>“The function <code>plot_variable_at_harvkill()</code> function summarises the
 state of variables at the time of harvest/kill operations for all crops
 in a model setup and thus provides a general overview”</p>
-<div class="sourceCode" id="cb530"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb530-1"><a href="model-verification-swatdoctr.html#cb530-1" tabindex="-1"></a><span class="fu">plot_variable_at_harvkill</span>(veri_mgt, <span class="st">&quot;yield&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb531"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb531-1"><a href="model-verification-swatdoctr.html#cb531-1" tabindex="-1"></a><span class="fu">plot_variable_at_harvkill</span>(veri_mgt, <span class="st">&quot;phu&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb532"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb532-1"><a href="model-verification-swatdoctr.html#cb532-1" tabindex="-1"></a><span class="fu">plot_variable_at_harvkill</span>(veri_mgt, <span class="st">&quot;bioms&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb533"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb533-1"><a href="model-verification-swatdoctr.html#cb533-1" tabindex="-1"></a><span class="fu">plot_variable_at_harvkill</span>(veri_mgt, <span class="st">&quot;stress&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb534"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb534-1"><a href="model-verification-swatdoctr.html#cb534-1" tabindex="-1"></a><span class="fu">plot_variable_at_harvkill</span>(veri_mgt, <span class="st">&quot;yield&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb535"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb535-1"><a href="model-verification-swatdoctr.html#cb535-1" tabindex="-1"></a><span class="fu">plot_variable_at_harvkill</span>(veri_mgt, <span class="st">&quot;phu&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb536"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb536-1"><a href="model-verification-swatdoctr.html#cb536-1" tabindex="-1"></a><span class="fu">plot_variable_at_harvkill</span>(veri_mgt, <span class="st">&quot;bioms&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb537"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb537-1"><a href="model-verification-swatdoctr.html#cb537-1" tabindex="-1"></a><span class="fu">plot_variable_at_harvkill</span>(veri_mgt, <span class="st">&quot;stress&quot;</span>)</span></code></pre></div>
 <p>“the function <code>plot_hru_pw_day()</code> allows detailed analyses of the daily
 time series of HRU related variables, which then can only be performed
 for a few HRUs of a model setup.”</p>
-<div class="sourceCode" id="cb534"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb534-1"><a href="model-verification-swatdoctr.html#cb534-1" tabindex="-1"></a><span class="fu">plot_hru_pw_day</span>(veri_mgt, <span class="dv">13</span>, <span class="at">var =</span>  <span class="st">&quot;lai&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb535"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb535-1"><a href="model-verification-swatdoctr.html#cb535-1" tabindex="-1"></a><span class="fu">plot_qtile</span>(veri_mgt)</span></code></pre></div>
+<div class="sourceCode" id="cb538"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb538-1"><a href="model-verification-swatdoctr.html#cb538-1" tabindex="-1"></a><span class="fu">plot_hru_pw_day</span>(veri_mgt, <span class="dv">13</span>, <span class="at">var =</span>  <span class="st">&quot;lai&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb539"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb539-1"><a href="model-verification-swatdoctr.html#cb539-1" tabindex="-1"></a><span class="fu">plot_qtile</span>(veri_mgt)</span></code></pre></div>
 <p>update_landuse_labels currently has its issues. See
 <a href="https://git.ufz.de/schuerz/swatdoctr/-/issues/3">here</a></p>
-<div class="sourceCode" id="cb536"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb536-1"><a href="model-verification-swatdoctr.html#cb536-1" tabindex="-1"></a><span class="fu">update_landuse_labels</span>(doctr_path)</span></code></pre></div>
-<div class="sourceCode" id="cb537"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb537-1"><a href="model-verification-swatdoctr.html#cb537-1" tabindex="-1"></a>hru_wb_check <span class="ot">&lt;-</span> <span class="fu">check_hru_waterbalance</span>(</span>
-<span id="cb537-2"><a href="model-verification-swatdoctr.html#cb537-2" tabindex="-1"></a>  veri_mgt,</span>
-<span id="cb537-3"><a href="model-verification-swatdoctr.html#cb537-3" tabindex="-1"></a>  <span class="at">check =</span> <span class="fu">c</span>(<span class="st">&quot;precip&quot;</span>, <span class="st">&quot;et&quot;</span>, <span class="st">&quot;runoff&quot;</span>, <span class="st">&quot;sw&quot;</span>, <span class="st">&quot;cn&quot;</span>),</span>
-<span id="cb537-4"><a href="model-verification-swatdoctr.html#cb537-4" tabindex="-1"></a>  <span class="at">ignore_lum =</span> <span class="cn">NULL</span>,</span>
-<span id="cb537-5"><a href="model-verification-swatdoctr.html#cb537-5" tabindex="-1"></a>  <span class="at">add_values =</span> <span class="cn">TRUE</span></span>
-<span id="cb537-6"><a href="model-verification-swatdoctr.html#cb537-6" tabindex="-1"></a>)</span>
-<span id="cb537-7"><a href="model-verification-swatdoctr.html#cb537-7" tabindex="-1"></a></span>
-<span id="cb537-8"><a href="model-verification-swatdoctr.html#cb537-8" tabindex="-1"></a><span class="fu">datatable</span>(hru_wb_check)</span></code></pre></div>
-<div class="sourceCode" id="cb538"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb538-1"><a href="model-verification-swatdoctr.html#cb538-1" tabindex="-1"></a><span class="fu">plot_basin_var</span>(veri_mgt, <span class="st">&quot;qtile&quot;</span>, <span class="at">period =</span> <span class="st">&quot;day&quot;</span>, <span class="at">fn_summarize =</span> <span class="st">&quot;mean&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb540"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb540-1"><a href="model-verification-swatdoctr.html#cb540-1" tabindex="-1"></a><span class="fu">update_landuse_labels</span>(doctr_path)</span></code></pre></div>
+<div class="sourceCode" id="cb541"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb541-1"><a href="model-verification-swatdoctr.html#cb541-1" tabindex="-1"></a>hru_wb_check <span class="ot">&lt;-</span> <span class="fu">check_hru_waterbalance</span>(</span>
+<span id="cb541-2"><a href="model-verification-swatdoctr.html#cb541-2" tabindex="-1"></a>  veri_mgt,</span>
+<span id="cb541-3"><a href="model-verification-swatdoctr.html#cb541-3" tabindex="-1"></a>  <span class="at">check =</span> <span class="fu">c</span>(<span class="st">&quot;precip&quot;</span>, <span class="st">&quot;et&quot;</span>, <span class="st">&quot;runoff&quot;</span>, <span class="st">&quot;sw&quot;</span>, <span class="st">&quot;cn&quot;</span>),</span>
+<span id="cb541-4"><a href="model-verification-swatdoctr.html#cb541-4" tabindex="-1"></a>  <span class="at">ignore_lum =</span> <span class="cn">NULL</span>,</span>
+<span id="cb541-5"><a href="model-verification-swatdoctr.html#cb541-5" tabindex="-1"></a>  <span class="at">add_values =</span> <span class="cn">TRUE</span></span>
+<span id="cb541-6"><a href="model-verification-swatdoctr.html#cb541-6" tabindex="-1"></a>)</span>
+<span id="cb541-7"><a href="model-verification-swatdoctr.html#cb541-7" tabindex="-1"></a></span>
+<span id="cb541-8"><a href="model-verification-swatdoctr.html#cb541-8" tabindex="-1"></a><span class="fu">datatable</span>(hru_wb_check)</span></code></pre></div>
+<div class="sourceCode" id="cb542"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb542-1"><a href="model-verification-swatdoctr.html#cb542-1" tabindex="-1"></a><span class="fu">plot_basin_var</span>(veri_mgt, <span class="st">&quot;qtile&quot;</span>, <span class="at">period =</span> <span class="st">&quot;day&quot;</span>, <span class="at">fn_summarize =</span> <span class="st">&quot;mean&quot;</span>)</span></code></pre></div>
 <p>plot_waterbalance currently broken, see
 <a href="https://git.ufz.de/schuerz/swatdoctr/-/issues/4">here</a></p>
-<div class="sourceCode" id="cb539"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb539-1"><a href="model-verification-swatdoctr.html#cb539-1" tabindex="-1"></a><span class="fu">plot_waterbalance</span>(veri_mgt)</span></code></pre></div>
-<div class="sourceCode" id="cb540"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb540-1"><a href="model-verification-swatdoctr.html#cb540-1" tabindex="-1"></a>qtile_aa_dt <span class="ot">&lt;-</span> <span class="fu">print_avannual_qtile</span>(veri_mgt)</span>
-<span id="cb540-2"><a href="model-verification-swatdoctr.html#cb540-2" tabindex="-1"></a></span>
-<span id="cb540-3"><a href="model-verification-swatdoctr.html#cb540-3" tabindex="-1"></a><span class="fu">datatable</span>(qtile_aa_dt)</span></code></pre></div>
-<div class="sourceCode" id="cb541"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb541-1"><a href="model-verification-swatdoctr.html#cb541-1" tabindex="-1"></a><span class="fu">plot_ps</span>(veri_mgt)</span></code></pre></div>
+<div class="sourceCode" id="cb543"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb543-1"><a href="model-verification-swatdoctr.html#cb543-1" tabindex="-1"></a><span class="fu">plot_waterbalance</span>(veri_mgt)</span></code></pre></div>
+<div class="sourceCode" id="cb544"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb544-1"><a href="model-verification-swatdoctr.html#cb544-1" tabindex="-1"></a>qtile_aa_dt <span class="ot">&lt;-</span> <span class="fu">print_avannual_qtile</span>(veri_mgt)</span>
+<span id="cb544-2"><a href="model-verification-swatdoctr.html#cb544-2" tabindex="-1"></a></span>
+<span id="cb544-3"><a href="model-verification-swatdoctr.html#cb544-3" tabindex="-1"></a><span class="fu">datatable</span>(qtile_aa_dt)</span></code></pre></div>
+<div class="sourceCode" id="cb545"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb545-1"><a href="model-verification-swatdoctr.html#cb545-1" tabindex="-1"></a><span class="fu">plot_ps</span>(veri_mgt)</span></code></pre></div>
 <p><strong>Related Minor Issues</strong></p>
 <p>Getting drainage yet? -
 <a href="https://gitlab.nibio.no/moritzshore/swat-cs10/-/issues/16">#16</a></p>
