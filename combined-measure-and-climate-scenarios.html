@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Section 23 Combined Measure and Climate Scenarios | OPTAIN CS10: Kråkstad SWAT+ Modelling Workflow</title>
+  <meta name="description" content="A documentation of the project setup for OPTAIN case study 10, Kråkstad" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Section 23 Combined Measure and Climate Scenarios | OPTAIN CS10: Kråkstad SWAT+ Modelling Workflow" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://moritzshore.github.io/optain-cs10/figures/banner.png" />
+  <meta property="og:description" content="A documentation of the project setup for OPTAIN case study 10, Kråkstad" />
+  <meta name="github-repo" content="moritzshore/optain-cs10" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Section 23 Combined Measure and Climate Scenarios | OPTAIN CS10: Kråkstad SWAT+ Modelling Workflow" />
+  
+  <meta name="twitter:description" content="A documentation of the project setup for OPTAIN case study 10, Kråkstad" />
+  <meta name="twitter:image" content="https://moritzshore.github.io/optain-cs10/figures/banner.png" />
+
+<meta name="author" content="Moritz Shore (workflow author, modelling) Csilla Farkas (lead modeller) Christoph Schürz (modelling) Dominika Krzeminska (measures &amp; stakeholders) Anne-Grete Buseth Blankenberg (measures &amp; stakeholders) Robert Barneveld (measures &amp; mapping) Attila Nemes (project lead) ..and with strong support of the OPTAIN core team" />
+
+
+<meta name="date" content="2026-03-12" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="optimization.html"/>
+<link rel="next" href="land-object-input-abandoned.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.2.3/leaflet.js"></script>
+<script src="libs/leaflet-providers-2.0.0/leaflet-providers_2.0.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.2.3/leaflet-providers-plugin.js"></script>
+<script src="libs/tile1_rasterlayer_4b9dc7-1/data_stars_tile1_rasterlayer290c35.txt"></script>
+<script src="libs/joda-0.0.1/joda.js"></script>
+<script src="libs/joda-0.0.1/addImageQuery-bindings.js"></script>
+<script src="libs/clipboard-0.0.1/setClipboardText.js"></script>
+<script src="libs/HomeButton-0.0.1/home-button.js"></script>
+<script src="libs/HomeButton-0.0.1/easy-button-src.min.js"></script>
+<link href="libs/tile1_rasterlayer-CSS-0.0.1/tile1_rasterlayer_home-button.css" rel="stylesheet" />
+<link href="libs/mapviewCSS-0.0.1/mapview-popup.css" rel="stylesheet" />
+<link href="libs/mapviewCSS-0.0.1/mapview.css" rel="stylesheet" />
+<script src="libs/tile2_rasterlayer_a63e09-1/data_stars_tile2_rasterlayer1fe8d0.txt"></script>
+<link href="libs/tile2_rasterlayer-CSS-0.0.1/tile2_rasterlayer_home-button.css" rel="stylesheet" />
+<link href="libs/basin_shp-CSS-0.0.1/basin_shp_home-button.css" rel="stylesheet" />
+<script src="libs/dem_layer_f7d5ea-1/data_stars_dem_layerc639f2.txt"></script>
+<link href="libs/dem_layer-CSS-0.0.1/dem_layer_home-button.css" rel="stylesheet" />
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.34.0/datatables.js"></script>
+<link href="libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
+<link href="libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
+<link href="libs/outlet_point-CSS-0.0.1/outlet_point_home-button.css" rel="stylesheet" />
+<link href="libs/extent-CSS-0.0.1/extent_home-button.css" rel="stylesheet" />
+<script src="libs/stream_crop_b80392-1/data_stars_stream_cropf942be.txt"></script>
+<link href="libs/stream_crop-CSS-0.0.1/stream_crop_home-button.css" rel="stylesheet" />
+<link href="libs/pp-CSS-0.0.1/pp_home-button.css" rel="stylesheet" />
+<script src="libs/ws_084ab3-1/data_stars_wsd86b34.txt"></script>
+<link href="libs/ws-CSS-0.0.1/ws_home-button.css" rel="stylesheet" />
+<link href="libs/wsshape-CSS-0.0.1/wsshape_home-button.css" rel="stylesheet" />
+<link href="libs/dem10m-CSS-0.0.1/dem10m_home-button.css" rel="stylesheet" />
+<script src="libs/rglWebGL-binding-1.3.36/rglWebGL.js"></script>
+<link href="libs/rglwidgetClass-1.3.36/rgl.css" rel="stylesheet" />
+<script src="libs/rglwidgetClass-1.3.36/rglClass.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.36/utils.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.36/buffer.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.36/subscenes.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.36/shaders.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.36/shadersrc.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.36/textures.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.36/projection.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.36/mouse.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.36/init.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.36/pieces.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.36/draw.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.36/controls.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.36/selection.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.36/rglTimer.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.36/pretty.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.36/axes.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.36/animation.src.js"></script>
+<script src="libs/CanvasMatrix4-1.3.36/CanvasMatrix.src.js"></script>
+<link href="libs/lu_drains_____filter_natural_drain____type-CSS-0.0.1/lu_drains_____filter_natural_drain____type_home-button.css" rel="stylesheet" />
+<script src="libs/plotly-binding-4.12.0/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.25.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.25.2/plotly-latest.min.js"></script>
+<link href="libs/stations-CSS-0.0.1/stations_home-button.css" rel="stylesheet" />
+<link href="libs/basin-CSS-0.0.1/basin_home-button.css" rel="stylesheet" />
+<link href="libs/field_sites_shp-CSS-0.0.1/field_sites_shp_home-button.css" rel="stylesheet" />
+<link href="libs/dt-ext-scroller-1.13.6/css/scroller.dataTables.min.css" rel="stylesheet" />
+<script src="libs/dt-ext-scroller-1.13.6/js/dataTables.scroller.min.js"></script>
+<link href="libs/soil_propery_map___HYDGRP-CSS-0.0.1/soil_propery_map___HYDGRP_home-button.css" rel="stylesheet" />
+<link href="libs/Field_Sites-CSS-0.0.1/Field_Sites_home-button.css" rel="stylesheet" />
+<link href="libs/hru_shp___soil-CSS-0.0.1/hru_shp___soil_home-button.css" rel="stylesheet" />
+<link href="libs/Problem_LUs-CSS-0.0.1/Problem_LUs_home-button.css" rel="stylesheet" />
+<link href="libs/Problem_HRUs-CSS-0.0.1/Problem_HRUs_home-button.css" rel="stylesheet" />
+<link href="libs/hru_pal_avg___p_al_mean-CSS-0.0.1/hru_pal_avg___p_al_mean_home-button.css" rel="stylesheet" />
+
+
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">OPTAIN CS10 Kråkstad</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="1" data-path="input-data-preparation.html"><a href="input-data-preparation.html"><i class="fa fa-check"></i><b>1</b> Input Data Preparation</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="input-data-preparation.html"><a href="input-data-preparation.html#digital-elevation-model"><i class="fa fa-check"></i><b>1.1</b> Digital Elevation Model</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="input-data-preparation.html"><a href="input-data-preparation.html#high-resolution-dem"><i class="fa fa-check"></i><b>1.1.1</b> High resolution DEM</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="input-data-preparation.html"><a href="input-data-preparation.html#soil-data"><i class="fa fa-check"></i><b>1.2</b> Soil Data</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="input-data-preparation.html"><a href="input-data-preparation.html#high-resolution-soil-maps"><i class="fa fa-check"></i><b>1.2.1</b> High resolution soil maps</a></li>
+<li class="chapter" data-level="1.2.2" data-path="input-data-preparation.html"><a href="input-data-preparation.html#data-source"><i class="fa fa-check"></i><b>1.2.2</b> Data source</a></li>
+<li class="chapter" data-level="1.2.3" data-path="input-data-preparation.html"><a href="input-data-preparation.html#combining-jordsmonn-and-loesmasser"><i class="fa fa-check"></i><b>1.2.3</b> Combining Jordsmonn and Loesmasser</a></li>
+<li class="chapter" data-level="1.2.4" data-path="input-data-preparation.html"><a href="input-data-preparation.html#detailed-soil-map"><i class="fa fa-check"></i><b>1.2.4</b> Detailed Soil Map</a></li>
+<li class="chapter" data-level="1.2.5" data-path="input-data-preparation.html"><a href="input-data-preparation.html#reclassification"><i class="fa fa-check"></i><b>1.2.5</b> Reclassification</a></li>
+<li class="chapter" data-level="1.2.6" data-path="input-data-preparation.html"><a href="input-data-preparation.html#simplifying-geometries"><i class="fa fa-check"></i><b>1.2.6</b> Simplifying Geometries</a></li>
+<li class="chapter" data-level="1.2.7" data-path="input-data-preparation.html"><a href="input-data-preparation.html#writing-vector-layer"><i class="fa fa-check"></i><b>1.2.7</b> Writing vector layer</a></li>
+<li class="chapter" data-level="1.2.8" data-path="input-data-preparation.html"><a href="input-data-preparation.html#lookup-table"><i class="fa fa-check"></i><b>1.2.8</b> Lookup Table</a></li>
+<li class="chapter" data-level="1.2.9" data-path="input-data-preparation.html"><a href="input-data-preparation.html#rasterization"><i class="fa fa-check"></i><b>1.2.9</b> Rasterization</a></li>
+<li class="chapter" data-level="1.2.10" data-path="input-data-preparation.html"><a href="input-data-preparation.html#usersoil"><i class="fa fa-check"></i><b>1.2.10</b> Usersoil</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="input-data-preparation.html"><a href="input-data-preparation.html#watershed-boundary"><i class="fa fa-check"></i><b>1.3</b> Watershed Boundary</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="input-data-preparation.html"><a href="input-data-preparation.html#hydrological-preperation"><i class="fa fa-check"></i><b>1.3.1</b> Hydrological preperation</a></li>
+<li class="chapter" data-level="1.3.2" data-path="input-data-preparation.html"><a href="input-data-preparation.html#pour-points"><i class="fa fa-check"></i><b>1.3.2</b> Pour Points</a></li>
+<li class="chapter" data-level="1.3.3" data-path="input-data-preparation.html"><a href="input-data-preparation.html#streams"><i class="fa fa-check"></i><b>1.3.3</b> Streams</a></li>
+<li class="chapter" data-level="1.3.4" data-path="input-data-preparation.html"><a href="input-data-preparation.html#watershed-delineation"><i class="fa fa-check"></i><b>1.3.4</b> Watershed Delineation</a></li>
+<li class="chapter" data-level="1.3.5" data-path="input-data-preparation.html"><a href="input-data-preparation.html#bonus-section"><i class="fa fa-check"></i><b>1.3.5</b> Bonus Section</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="input-data-preparation.html"><a href="input-data-preparation.html#land-object-input"><i class="fa fa-check"></i><b>1.4</b> Land object input</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="input-data-preparation.html"><a href="input-data-preparation.html#data-sources"><i class="fa fa-check"></i><b>1.4.1</b> Data sources</a></li>
+<li class="chapter" data-level="1.4.2" data-path="input-data-preparation.html"><a href="input-data-preparation.html#delineation-of-land-objects"><i class="fa fa-check"></i><b>1.4.2</b> Delineation of land objects</a></li>
+<li class="chapter" data-level="1.4.3" data-path="input-data-preparation.html"><a href="input-data-preparation.html#standing-water-bodies-and-the-landuse-type-watr"><i class="fa fa-check"></i><b>1.4.3</b> Standing water bodies and the landuse type = ‘watr’</a></li>
+<li class="chapter" data-level="1.4.4" data-path="input-data-preparation.html"><a href="input-data-preparation.html#tile-drainage-option"><i class="fa fa-check"></i><b>1.4.4</b> Tile drainage option</a></li>
+<li class="chapter" data-level="1.4.5" data-path="input-data-preparation.html"><a href="input-data-preparation.html#existing-and-potential-structures-to-retain-water-and-nutrients"><i class="fa fa-check"></i><b>1.4.5</b> Existing and potential structures to retain water and nutrients</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="input-data-preparation.html"><a href="input-data-preparation.html#channel-object-input"><i class="fa fa-check"></i><b>1.5</b> Channel object input</a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="input-data-preparation.html"><a href="input-data-preparation.html#data-sources-and-data-processing"><i class="fa fa-check"></i><b>1.5.1</b> Data sources and data processing</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="input-data-preparation.html"><a href="input-data-preparation.html#point-sources-locations"><i class="fa fa-check"></i><b>1.6</b> Point sources locations</a>
+<ul>
+<li class="chapter" data-level="1.6.1" data-path="input-data-preparation.html"><a href="input-data-preparation.html#point-source-source-data"><i class="fa fa-check"></i><b>1.6.1</b> Point source source data</a></li>
+<li class="chapter" data-level="1.6.2" data-path="input-data-preparation.html"><a href="input-data-preparation.html#point-source-data-files"><i class="fa fa-check"></i><b>1.6.2</b> Point source data files</a></li>
+</ul></li>
+<li class="chapter" data-level="1.7" data-path="input-data-preparation.html"><a href="input-data-preparation.html#aquifer-objects"><i class="fa fa-check"></i><b>1.7</b> Aquifer Objects</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html"><i class="fa fa-check"></i><b>2</b> Model Setup (SWATbuildR)</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#buildr-setup"><i class="fa fa-check"></i><b>2.1</b> BuildR Setup</a></li>
+<li class="chapter" data-level="2.2" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#processing-input-data"><i class="fa fa-check"></i><b>2.2</b> Processing input data</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#high-resolution-digital-elevation-model-dem"><i class="fa fa-check"></i><b>2.2.1</b> High-Resolution Digital Elevation Model (DEM)</a></li>
+<li class="chapter" data-level="2.2.2" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#processing-the-basin-boundary"><i class="fa fa-check"></i><b>2.2.2</b> Processing the Basin Boundary</a></li>
+<li class="chapter" data-level="2.2.3" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#processing-the-land-layer"><i class="fa fa-check"></i><b>2.2.3</b> Processing the Land layer</a></li>
+<li class="chapter" data-level="2.2.4" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#processing-the-channels"><i class="fa fa-check"></i><b>2.2.4</b> Processing the Channels</a></li>
+<li class="chapter" data-level="2.2.5" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#processing-the-dem"><i class="fa fa-check"></i><b>2.2.5</b> Processing the DEM</a></li>
+<li class="chapter" data-level="2.2.6" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#processing-soil-data"><i class="fa fa-check"></i><b>2.2.6</b> Processing Soil Data</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#calculating-cocoa"><i class="fa fa-check"></i><b>2.3</b> Calculating COCOA</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#calculating-land-unit-connectivity"><i class="fa fa-check"></i><b>2.3.1</b> Calculating land unit connectivity</a></li>
+<li class="chapter" data-level="2.3.2" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#calculating-channelreservoir-connectivity"><i class="fa fa-check"></i><b>2.3.2</b> Calculating channel/reservoir connectivity</a></li>
+<li class="chapter" data-level="2.3.3" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#checking-the-water-objects-for-infinite-loops"><i class="fa fa-check"></i><b>2.3.3</b> Checking the water objects for infinite loops</a></li>
+<li class="chapter" data-level="2.3.4" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#terrain-properties"><i class="fa fa-check"></i><b>2.3.4</b> Terrain properties</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#generate-swat-input"><i class="fa fa-check"></i><b>2.4</b> Generate SWAT+ input</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#generate-land-object-swat-input-tables"><i class="fa fa-check"></i><b>2.4.1</b> Generate land object SWAT+ input tables</a></li>
+<li class="chapter" data-level="2.4.2" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#generate-water-object-swat-input-tables"><i class="fa fa-check"></i><b>2.4.2</b> Generate water object SWAT+ input tables</a></li>
+<li class="chapter" data-level="2.4.3" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#build-aquifer-input"><i class="fa fa-check"></i><b>2.4.3</b> Build aquifer input</a></li>
+<li class="chapter" data-level="2.4.4" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#add-point-source-inputs"><i class="fa fa-check"></i><b>2.4.4</b> Add point source inputs</a></li>
+<li class="chapter" data-level="2.4.5" data-path="model-setup-swatbuildr.html"><a href="model-setup-swatbuildr.html#create-swat-sqlite-database"><i class="fa fa-check"></i><b>2.4.5</b> Create SWAT+ sqlite database</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="weather-input.html"><a href="weather-input.html"><i class="fa fa-check"></i><b>3</b> Weather Input</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="weather-input.html"><a href="weather-input.html#loading-data"><i class="fa fa-check"></i><b>3.1</b> Loading Data</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="weather-input.html"><a href="weather-input.html#required-packages"><i class="fa fa-check"></i><b>3.1.1</b> Required packages</a></li>
+<li class="chapter" data-level="3.1.2" data-path="weather-input.html"><a href="weather-input.html#load-in-the-files-and-load-svatools-template"><i class="fa fa-check"></i><b>3.1.2</b> Load in the file(s) and load svatools template</a></li>
+<li class="chapter" data-level="3.1.3" data-path="weather-input.html"><a href="weather-input.html#proof-the-station"><i class="fa fa-check"></i><b>3.1.3</b> Proof the station</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="weather-input.html"><a href="weather-input.html#weather-generator"><i class="fa fa-check"></i><b>3.2</b> Weather Generator</a></li>
+<li class="chapter" data-level="3.3" data-path="weather-input.html"><a href="weather-input.html#adding-data-to-swat"><i class="fa fa-check"></i><b>3.3</b> Adding data to SWAT+</a></li>
+<li class="chapter" data-level="3.4" data-path="weather-input.html"><a href="weather-input.html#atmospheric-deposition"><i class="fa fa-check"></i><b>3.4</b> Atmospheric Deposition</a></li>
+<li class="chapter" data-level="3.5" data-path="weather-input.html"><a href="weather-input.html#re-analysis-weather"><i class="fa fa-check"></i><b>3.5</b> Re-analysis Weather</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="writing-input-files.html"><a href="writing-input-files.html"><i class="fa fa-check"></i><b>4</b> Writing Input Files</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="writing-input-files.html"><a href="writing-input-files.html#via-python"><i class="fa fa-check"></i><b>4.1</b> Via Python</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="writing-input-files.html"><a href="writing-input-files.html#swat-test-run"><i class="fa fa-check"></i><b>4.1.1</b> SWAT+ Test Run</a></li>
+<li class="chapter" data-level="4.1.2" data-path="writing-input-files.html"><a href="writing-input-files.html#link-aquifers-and-channels-with-geomorphic-flow"><i class="fa fa-check"></i><b>4.1.2</b> Link aquifers and channels with geomorphic flow</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="writing-input-files.html"><a href="writing-input-files.html#via-swat-editor"><i class="fa fa-check"></i><b>4.2</b> Via SWAT Editor</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="writing-input-files.html"><a href="writing-input-files.html#loading-the-project-in-swat-editor"><i class="fa fa-check"></i><b>4.2.1</b> Loading the project in SWAT+ Editor</a></li>
+<li class="chapter" data-level="4.2.2" data-path="writing-input-files.html"><a href="writing-input-files.html#writing-input-files-1"><i class="fa fa-check"></i><b>4.2.2</b> Writing input files</a></li>
+<li class="chapter" data-level="4.2.3" data-path="writing-input-files.html"><a href="writing-input-files.html#post-write-changes"><i class="fa fa-check"></i><b>4.2.3</b> Post-write Changes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="crop-map.html"><a href="crop-map.html"><i class="fa fa-check"></i><b>5</b> Crop Map</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="crop-map.html"><a href="crop-map.html#calculating-field-area"><i class="fa fa-check"></i><b>5.1</b> Calculating Field Area</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="crop-map.html"><a href="crop-map.html#calculate-field-area-and-assign-ids"><i class="fa fa-check"></i><b>5.1.1</b> Calculate Field Area and Assign IDs</a></li>
+<li class="chapter" data-level="5.1.2" data-path="crop-map.html"><a href="crop-map.html#calculate-field-area-and-assign-ids-1"><i class="fa fa-check"></i><b>5.1.2</b> Calculate Field area and assign IDs</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="crop-map.html"><a href="crop-map.html#generating-the-crop-rotation"><i class="fa fa-check"></i><b>5.2</b> Generating the Crop Rotation</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="crop-map.html"><a href="crop-map.html#tidy-up-the-source-data"><i class="fa fa-check"></i><b>5.2.1</b> Tidy up the source data:</a></li>
+<li class="chapter" data-level="5.2.2" data-path="crop-map.html"><a href="crop-map.html#tidy-up-the-buildr-output"><i class="fa fa-check"></i><b>5.2.2</b> Tidy up the BuildR output</a></li>
+<li class="chapter" data-level="5.2.3" data-path="crop-map.html"><a href="crop-map.html#field-classification"><i class="fa fa-check"></i><b>5.2.3</b> Field classification</a></li>
+<li class="chapter" data-level="5.2.4" data-path="crop-map.html"><a href="crop-map.html#extrapolating-the-crop-rotation"><i class="fa fa-check"></i><b>5.2.4</b> Extrapolating the Crop Rotation</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="crop-map.html"><a href="crop-map.html#merging-with-swatbuildr"><i class="fa fa-check"></i><b>5.3</b> Merging with SWATbuildR</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html"><i class="fa fa-check"></i><b>6</b> Landuse Parameterization</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#data-preperation"><i class="fa fa-check"></i><b>6.1</b> Data preperation</a></li>
+<li class="chapter" data-level="6.2" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#assigning-landuse-values"><i class="fa fa-check"></i><b>6.2</b> Assigning landuse values</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#setting-cal_group"><i class="fa fa-check"></i><b>6.2.1</b> Setting <code>cal_group</code></a></li>
+<li class="chapter" data-level="6.2.2" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#setting-plnt_com"><i class="fa fa-check"></i><b>6.2.2</b> Setting <code>plnt_com</code></a></li>
+<li class="chapter" data-level="6.2.3" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#setting-mgt"><i class="fa fa-check"></i><b>6.2.3</b> Setting <code>mgt</code></a></li>
+<li class="chapter" data-level="6.2.4" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#setting-urb_ro"><i class="fa fa-check"></i><b>6.2.4</b> Setting <code>urb_ro</code></a></li>
+<li class="chapter" data-level="6.2.5" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#setting-urban"><i class="fa fa-check"></i><b>6.2.5</b> Setting <code>urban</code></a></li>
+<li class="chapter" data-level="6.2.6" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#setting-mannings-n-ovn"><i class="fa fa-check"></i><b>6.2.6</b> Setting Manning’s n (<code>ovn</code>)</a></li>
+<li class="chapter" data-level="6.2.7" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#setting-cn2"><i class="fa fa-check"></i><b>6.2.7</b> Setting <code>cn2</code>:</a></li>
+<li class="chapter" data-level="6.2.8" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#setting-cons_prac"><i class="fa fa-check"></i><b>6.2.8</b> Setting <code>cons_prac</code></a></li>
+<li class="chapter" data-level="6.2.9" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#setting-tile"><i class="fa fa-check"></i><b>6.2.9</b> Setting <code>tile</code></a></li>
+<li class="chapter" data-level="6.2.10" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#setting-sep"><i class="fa fa-check"></i><b>6.2.10</b> Setting <code>sep</code></a></li>
+<li class="chapter" data-level="6.2.11" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#setting-vfs"><i class="fa fa-check"></i><b>6.2.11</b> Setting <code>vfs</code></a></li>
+<li class="chapter" data-level="6.2.12" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#setting-grww"><i class="fa fa-check"></i><b>6.2.12</b> Setting <code>grww</code></a></li>
+<li class="chapter" data-level="6.2.13" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#setting-bmp"><i class="fa fa-check"></i><b>6.2.13</b> Setting <code>bmp</code></a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="landuse-parameterization.html"><a href="landuse-parameterization.html#writing-changes"><i class="fa fa-check"></i><b>6.3</b> Writing Changes</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="field-site-loggers.html"><a href="field-site-loggers.html"><i class="fa fa-check"></i><b>7</b> Field Site Loggers</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="field-site-loggers.html"><a href="field-site-loggers.html#introduction-1"><i class="fa fa-check"></i><b>7.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="field-site-loggers.html"><a href="field-site-loggers.html#prerequisites"><i class="fa fa-check"></i><b>7.1.1</b> Prerequisites</a></li>
+<li class="chapter" data-level="7.1.2" data-path="field-site-loggers.html"><a href="field-site-loggers.html#locations"><i class="fa fa-check"></i><b>7.1.2</b> Locations</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="field-site-loggers.html"><a href="field-site-loggers.html#data-processing"><i class="fa fa-check"></i><b>7.2</b> Data Processing</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="field-site-loggers.html"><a href="field-site-loggers.html#loading-data-1"><i class="fa fa-check"></i><b>7.2.1</b> Loading Data</a></li>
+<li class="chapter" data-level="7.2.2" data-path="field-site-loggers.html"><a href="field-site-loggers.html#data-re-structuring"><i class="fa fa-check"></i><b>7.2.2</b> Data Re-structuring</a></li>
+<li class="chapter" data-level="7.2.3" data-path="field-site-loggers.html"><a href="field-site-loggers.html#summarize-to-daily-means"><i class="fa fa-check"></i><b>7.2.3</b> Summarize to Daily Means</a></li>
+<li class="chapter" data-level="7.2.4" data-path="field-site-loggers.html"><a href="field-site-loggers.html#including-air-temperature-and-precipitation-data"><i class="fa fa-check"></i><b>7.2.4</b> Including Air Temperature and Precipitation Data</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="field-site-loggers.html"><a href="field-site-loggers.html#data-quality-check"><i class="fa fa-check"></i><b>7.3</b> Data quality check</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="field-site-loggers.html"><a href="field-site-loggers.html#logger-600409-deep-rocky-sand"><i class="fa fa-check"></i><b>7.3.1</b> Logger 600409 “Deep Rocky Sand”</a></li>
+<li class="chapter" data-level="7.3.2" data-path="field-site-loggers.html"><a href="field-site-loggers.html#logger-600410-tormods-farm"><i class="fa fa-check"></i><b>7.3.2</b> Logger 600410 “Tormods farm”</a></li>
+<li class="chapter" data-level="7.3.3" data-path="field-site-loggers.html"><a href="field-site-loggers.html#logger-600411-john-ivar-lower-area"><i class="fa fa-check"></i><b>7.3.3</b> Logger 600411 “John Ivar Lower Area”</a></li>
+<li class="chapter" data-level="7.3.4" data-path="field-site-loggers.html"><a href="field-site-loggers.html#logger-600413-john-ivar-behind-the-barn"><i class="fa fa-check"></i><b>7.3.4</b> Logger 600413 “John Ivar behind the barn”</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="field-site-loggers.html"><a href="field-site-loggers.html#data-cleanup"><i class="fa fa-check"></i><b>7.4</b> Data Cleanup</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="field-site-loggers.html"><a href="field-site-loggers.html#general-cleanup"><i class="fa fa-check"></i><b>7.4.1</b> General cleanup</a></li>
+<li class="chapter" data-level="7.4.2" data-path="field-site-loggers.html"><a href="field-site-loggers.html#logger-specific-cleanup"><i class="fa fa-check"></i><b>7.4.2</b> Logger specific cleanup</a></li>
+<li class="chapter" data-level="7.4.3" data-path="field-site-loggers.html"><a href="field-site-loggers.html#saving-the-cleaned-data"><i class="fa fa-check"></i><b>7.4.3</b> Saving the cleaned data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="field-site-properties.html"><a href="field-site-properties.html"><i class="fa fa-check"></i><b>8</b> Field Site Properties</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="field-site-properties.html"><a href="field-site-properties.html#determining-hsg"><i class="fa fa-check"></i><b>8.1</b> Determining HSG</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html"><i class="fa fa-check"></i><b>9</b> Antecedent Precipitation Index</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html#introduction-2"><i class="fa fa-check"></i><b>9.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html#pre-requirements"><i class="fa fa-check"></i><b>9.1.1</b> Pre-requirements</a></li>
+<li class="chapter" data-level="9.1.2" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html#setting-up-python-for-rrmarkdown"><i class="fa fa-check"></i><b>9.1.2</b> Setting up Python for R/Rmarkdown</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html#antecedent-precipitation-index-1"><i class="fa fa-check"></i><b>9.2</b> Antecedent Precipitation Index</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html#loading-data-2"><i class="fa fa-check"></i><b>9.2.1</b> Loading data</a></li>
+<li class="chapter" data-level="9.2.2" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html#calculating-the-total-water-content"><i class="fa fa-check"></i><b>9.2.2</b> Calculating the total water content</a></li>
+<li class="chapter" data-level="9.2.3" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html#defining-api-model"><i class="fa fa-check"></i><b>9.2.3</b> Defining API model</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="antecedent-precipitation-index.html"><a href="antecedent-precipitation-index.html#conclusions"><i class="fa fa-check"></i><b>9.3</b> Conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="model-parameterization.html"><a href="model-parameterization.html"><i class="fa fa-check"></i><b>10</b> Model Parameterization</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="model-parameterization.html"><a href="model-parameterization.html#parameter-changes"><i class="fa fa-check"></i><b>10.1</b> Parameter Changes</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="model-parameterization.html"><a href="model-parameterization.html#channel-parameters-revised"><i class="fa fa-check"></i><b>10.1.1</b> Channel parameters revised</a></li>
+<li class="chapter" data-level="10.1.2" data-path="model-parameterization.html"><a href="model-parameterization.html#crop-parameters-verified"><i class="fa fa-check"></i><b>10.1.2</b> Crop parameters verified</a></li>
+<li class="chapter" data-level="10.1.3" data-path="model-parameterization.html"><a href="model-parameterization.html#soil-physical-parameters-in-final-form"><i class="fa fa-check"></i><b>10.1.3</b> Soil physical parameters in final form</a></li>
+<li class="chapter" data-level="10.1.4" data-path="model-parameterization.html"><a href="model-parameterization.html#soil-chemical-parameters-in-final-form"><i class="fa fa-check"></i><b>10.1.4</b> Soil chemical parameters in final form</a></li>
+<li class="chapter" data-level="10.1.5" data-path="model-parameterization.html"><a href="model-parameterization.html#impoundment-parameters-defined"><i class="fa fa-check"></i><b>10.1.5</b> Impoundment parameters defined</a></li>
+<li class="chapter" data-level="10.1.6" data-path="model-parameterization.html"><a href="model-parameterization.html#water-diversions-defined"><i class="fa fa-check"></i><b>10.1.6</b> Water diversions defined</a></li>
+<li class="chapter" data-level="10.1.7" data-path="model-parameterization.html"><a href="model-parameterization.html#point-sources-parameters-added"><i class="fa fa-check"></i><b>10.1.7</b> Point sources parameters added</a></li>
+<li class="chapter" data-level="10.1.8" data-path="model-parameterization.html"><a href="model-parameterization.html#tile-drainage-parameters-defined"><i class="fa fa-check"></i><b>10.1.8</b> Tile drainage parameters defined</a></li>
+<li class="chapter" data-level="10.1.9" data-path="model-parameterization.html"><a href="model-parameterization.html#atmospheric-deposition-defined"><i class="fa fa-check"></i><b>10.1.9</b> Atmospheric deposition defined</a></li>
+<li class="chapter" data-level="10.1.10" data-path="model-parameterization.html"><a href="model-parameterization.html#additional-settings-verified"><i class="fa fa-check"></i><b>10.1.10</b> Additional settings verified</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="model-parameterization.html"><a href="model-parameterization.html#fixing-tiledrain"><i class="fa fa-check"></i><b>10.2</b> Fixing tiledrain</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="model-parameterization.html"><a href="model-parameterization.html#finding-the-problem-hrus"><i class="fa fa-check"></i><b>10.2.1</b> Finding the problem HRUs</a></li>
+<li class="chapter" data-level="10.2.2" data-path="model-parameterization.html"><a href="model-parameterization.html#fixing-the-problem-hrus"><i class="fa fa-check"></i><b>10.2.2</b> Fixing the problem HRUs</a></li>
+<li class="chapter" data-level="10.2.3" data-path="model-parameterization.html"><a href="model-parameterization.html#checking-changes"><i class="fa fa-check"></i><b>10.2.3</b> Checking changes</a></li>
+<li class="chapter" data-level="10.2.4" data-path="model-parameterization.html"><a href="model-parameterization.html#writing-modified-changes"><i class="fa fa-check"></i><b>10.2.4</b> Writing modified changes</a></li>
+<li class="chapter" data-level="10.2.5" data-path="model-parameterization.html"><a href="model-parameterization.html#re-enabling-tiledrain"><i class="fa fa-check"></i><b>10.2.5</b> Re-enabling tiledrain</a></li>
+<li class="chapter" data-level="10.2.6" data-path="model-parameterization.html"><a href="model-parameterization.html#testing-swat"><i class="fa fa-check"></i><b>10.2.6</b> Testing SWAT+</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="model-parameterization.html"><a href="model-parameterization.html#soil-phosphorous"><i class="fa fa-check"></i><b>10.3</b> Soil Phosphorous</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="management-swatfarmr.html"><a href="management-swatfarmr.html"><i class="fa fa-check"></i><b>11</b> Management (SWATfarmR)</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="management-swatfarmr.html"><a href="management-swatfarmr.html#pre-processing-crop-rotation"><i class="fa fa-check"></i><b>11.1</b> Pre-processing crop rotation</a>
+<ul>
+<li class="chapter" data-level="11.1.1" data-path="management-swatfarmr.html"><a href="management-swatfarmr.html#input-files"><i class="fa fa-check"></i><b>11.1.1</b> Input files</a></li>
+<li class="chapter" data-level="11.1.2" data-path="management-swatfarmr.html"><a href="management-swatfarmr.html#settings"><i class="fa fa-check"></i><b>11.1.2</b> Settings</a></li>
+<li class="chapter" data-level="11.1.3" data-path="management-swatfarmr.html"><a href="management-swatfarmr.html#checks"><i class="fa fa-check"></i><b>11.1.3</b> Checks</a></li>
+<li class="chapter" data-level="11.1.4" data-path="management-swatfarmr.html"><a href="management-swatfarmr.html#writing-input-data"><i class="fa fa-check"></i><b>11.1.4</b> Writing input data</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="management-swatfarmr.html"><a href="management-swatfarmr.html#initializing-farmr"><i class="fa fa-check"></i><b>11.2</b> Initializing FarmR</a></li>
+<li class="chapter" data-level="11.3" data-path="management-swatfarmr.html"><a href="management-swatfarmr.html#calculating-api"><i class="fa fa-check"></i><b>11.3</b> Calculating API</a></li>
+<li class="chapter" data-level="11.4" data-path="management-swatfarmr.html"><a href="management-swatfarmr.html#scheduling-operations"><i class="fa fa-check"></i><b>11.4</b> Scheduling Operations</a>
+<ul>
+<li class="chapter" data-level="11.4.1" data-path="management-swatfarmr.html"><a href="management-swatfarmr.html#write-operations"><i class="fa fa-check"></i><b>11.4.1</b> Write Operations</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="model-verification-swatdoctr.html"><a href="model-verification-swatdoctr.html"><i class="fa fa-check"></i><b>12</b> Model Verification (SWATdoctR)</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="model-verification-swatdoctr.html"><a href="model-verification-swatdoctr.html#climate-variables"><i class="fa fa-check"></i><b>12.1</b> Climate Variables</a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="model-verification-swatdoctr.html"><a href="model-verification-swatdoctr.html#lapse-rate"><i class="fa fa-check"></i><b>12.1.1</b> Lapse rate</a></li>
+<li class="chapter" data-level="12.1.2" data-path="model-verification-swatdoctr.html"><a href="model-verification-swatdoctr.html#climate-variables-1"><i class="fa fa-check"></i><b>12.1.2</b> Climate variables</a></li>
+<li class="chapter" data-level="12.1.3" data-path="model-verification-swatdoctr.html"><a href="model-verification-swatdoctr.html#snowfall-and-snowmelt"><i class="fa fa-check"></i><b>12.1.3</b> Snowfall and Snowmelt</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="model-verification-swatdoctr.html"><a href="model-verification-swatdoctr.html#management-operations"><i class="fa fa-check"></i><b>12.2</b> Management operations</a></li>
+<li class="chapter" data-level="12.3" data-path="model-verification-swatdoctr.html"><a href="model-verification-swatdoctr.html#unconstrained-plant-growth"><i class="fa fa-check"></i><b>12.3</b> Unconstrained plant growth</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="soft-calibration.html"><a href="soft-calibration.html"><i class="fa fa-check"></i><b>13</b> Soft Calibration</a></li>
+<li class="chapter" data-level="14" data-path="hard-calibration.html"><a href="hard-calibration.html"><i class="fa fa-check"></i><b>14</b> Hard Calibration</a></li>
+<li class="chapter" data-level="15" data-path="landuse-scenarios.html"><a href="landuse-scenarios.html"><i class="fa fa-check"></i><b>15</b> Landuse Scenarios</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="landuse-scenarios.html"><a href="landuse-scenarios.html#scenarios"><i class="fa fa-check"></i><b>15.1</b> Scenarios</a>
+<ul>
+<li class="chapter" data-level="15.1.1" data-path="landuse-scenarios.html"><a href="landuse-scenarios.html#status-quo"><i class="fa fa-check"></i><b>15.1.1</b> Status Quo</a></li>
+<li class="chapter" data-level="15.1.2" data-path="landuse-scenarios.html"><a href="landuse-scenarios.html#no-autumn-tillage"><i class="fa fa-check"></i><b>15.1.2</b> No Autumn Tillage</a></li>
+</ul></li>
+<li class="chapter" data-level="15.2" data-path="landuse-scenarios.html"><a href="landuse-scenarios.html#measurement-scenarios-for-future-climate"><i class="fa fa-check"></i><b>15.2</b> Measurement Scenarios for future climate</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="update-of-the-swatfarmr-input-input-files.html"><a href="update-of-the-swatfarmr-input-input-files.html"><i class="fa fa-check"></i><b>16</b> Update of the SWATfarmR input input files</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="update-of-the-swatfarmr-input-input-files.html"><a href="update-of-the-swatfarmr-input-input-files.html#setup"><i class="fa fa-check"></i><b>16.1</b> Setup</a></li>
+<li class="chapter" data-level="16.2" data-path="update-of-the-swatfarmr-input-input-files.html"><a href="update-of-the-swatfarmr-input-input-files.html#documenting-changes-in-the-txt-inputs-files-of-calibrated-model-setup"><i class="fa fa-check"></i><b>16.2</b> Documenting changes in the txt inputs files of calibrated model setup</a>
+<ul>
+<li class="chapter" data-level="16.2.1" data-path="update-of-the-swatfarmr-input-input-files.html"><a href="update-of-the-swatfarmr-input-input-files.html#preparation-of-swatfarmr-management-input-files"><i class="fa fa-check"></i><b>16.2.1</b> Preparation of <code>SWATfarmR</code> management input files</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="climate-scenarios.html"><a href="climate-scenarios.html"><i class="fa fa-check"></i><b>17</b> Climate Scenarios</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="climate-scenarios.html"><a href="climate-scenarios.html#introduction-3"><i class="fa fa-check"></i><b>17.1</b> Introduction</a></li>
+<li class="chapter" data-level="17.2" data-path="climate-scenarios.html"><a href="climate-scenarios.html#setup-1"><i class="fa fa-check"></i><b>17.2</b> Setup</a>
+<ul>
+<li class="chapter" data-level="17.2.1" data-path="climate-scenarios.html"><a href="climate-scenarios.html#re-calculating-management"><i class="fa fa-check"></i><b>17.2.1</b> Re-Calculating Management</a></li>
+</ul></li>
+<li class="chapter" data-level="17.3" data-path="climate-scenarios.html"><a href="climate-scenarios.html#executing-model"><i class="fa fa-check"></i><b>17.3</b> Executing model</a></li>
+<li class="chapter" data-level="17.4" data-path="climate-scenarios.html"><a href="climate-scenarios.html#processing-results"><i class="fa fa-check"></i><b>17.4</b> Processing Results</a></li>
+<li class="chapter" data-level="17.5" data-path="climate-scenarios.html"><a href="climate-scenarios.html#output-analysis"><i class="fa fa-check"></i><b>17.5</b> Output Analysis</a>
+<ul>
+<li class="chapter" data-level="17.5.1" data-path="climate-scenarios.html"><a href="climate-scenarios.html#saving-rds"><i class="fa fa-check"></i><b>17.5.1</b> Saving RDS</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="measures-swatmeasr.html"><a href="measures-swatmeasr.html"><i class="fa fa-check"></i><b>18</b> Measures (SWATmeasR)</a></li>
+<li class="chapter" data-level="19" data-path="measure-implementation.html"><a href="measure-implementation.html"><i class="fa fa-check"></i><b>19</b> Measure Implementation</a></li>
+<li class="chapter" data-level="20" data-path="measure-scenarios.html"><a href="measure-scenarios.html"><i class="fa fa-check"></i><b>20</b> Measure Scenarios</a></li>
+<li class="chapter" data-level="21" data-path="measure-classification.html"><a href="measure-classification.html"><i class="fa fa-check"></i><b>21</b> Measure Classification</a>
+<ul>
+<li class="chapter" data-level="21.1" data-path="measure-classification.html"><a href="measure-classification.html#introduction-4"><i class="fa fa-check"></i><b>21.1</b> Introduction</a></li>
+<li class="chapter" data-level="21.2" data-path="measure-classification.html"><a href="measure-classification.html#determining-classification"><i class="fa fa-check"></i><b>21.2</b> Determining Classification</a></li>
+<li class="chapter" data-level="21.3" data-path="measure-classification.html"><a href="measure-classification.html#applying-classification"><i class="fa fa-check"></i><b>21.3</b> Applying Classification</a>
+<ul>
+<li class="chapter" data-level="21.3.1" data-path="measure-classification.html"><a href="measure-classification.html#gullies-grassed-water-ways"><i class="fa fa-check"></i><b>21.3.1</b> Gullies (grassed water ways)</a></li>
+<li class="chapter" data-level="21.3.2" data-path="measure-classification.html"><a href="measure-classification.html#buffer-strips"><i class="fa fa-check"></i><b>21.3.2</b> Buffer Strips</a></li>
+<li class="chapter" data-level="21.3.3" data-path="measure-classification.html"><a href="measure-classification.html#ponds"><i class="fa fa-check"></i><b>21.3.3</b> Ponds</a></li>
+<li class="chapter" data-level="21.3.4" data-path="measure-classification.html"><a href="measure-classification.html#notill-management-measure"><i class="fa fa-check"></i><b>21.3.4</b> NoTill (management measure)</a></li>
+</ul></li>
+<li class="chapter" data-level="21.4" data-path="measure-classification.html"><a href="measure-classification.html#hru-scenario-table"><i class="fa fa-check"></i><b>21.4</b> HRU Scenario Table</a>
+<ul>
+<li class="chapter" data-level="21.4.1" data-path="measure-classification.html"><a href="measure-classification.html#merging-into-landuse-map"><i class="fa fa-check"></i><b>21.4.1</b> Merging into Landuse Map</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="optimization.html"><a href="optimization.html"><i class="fa fa-check"></i><b>22</b> Optimization</a>
+<ul>
+<li class="chapter" data-level="22.1" data-path="optimization.html"><a href="optimization.html#introduction-5"><i class="fa fa-check"></i><b>22.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="22.1.1" data-path="optimization.html"><a href="optimization.html#comola"><i class="fa fa-check"></i><b>22.1.1</b> CoMOLA</a></li>
+<li class="chapter" data-level="22.1.2" data-path="optimization.html"><a href="optimization.html#the-pareto-frontier"><i class="fa fa-check"></i><b>22.1.2</b> The Pareto Frontier</a></li>
+<li class="chapter" data-level="22.1.3" data-path="optimization.html"><a href="optimization.html#nsga-ii"><i class="fa fa-check"></i><b>22.1.3</b> NSGA-II</a></li>
+<li class="chapter" data-level="22.1.4" data-path="optimization.html"><a href="optimization.html#the-objective-space"><i class="fa fa-check"></i><b>22.1.4</b> The Objective Space</a></li>
+</ul></li>
+<li class="chapter" data-level="22.2" data-path="optimization.html"><a href="optimization.html#measure-implementation-1"><i class="fa fa-check"></i><b>22.2</b> Measure Implementation</a>
+<ul>
+<li class="chapter" data-level="22.2.1" data-path="optimization.html"><a href="optimization.html#swatmeasr-project-setup"><i class="fa fa-check"></i><b>22.2.1</b> SWATmeasR project setup</a></li>
+</ul></li>
+<li class="chapter" data-level="22.3" data-path="optimization.html"><a href="optimization.html#economic-model-setup"><i class="fa fa-check"></i><b>22.3</b> Economic Model Setup</a></li>
+<li class="chapter" data-level="22.4" data-path="optimization.html"><a href="optimization.html#comola-setup"><i class="fa fa-check"></i><b>22.4</b> CoMOLA Setup</a>
+<ul>
+<li class="chapter" data-level="22.4.1" data-path="optimization.html"><a href="optimization.html#python-installation"><i class="fa fa-check"></i><b>22.4.1</b> Python Installation</a></li>
+<li class="chapter" data-level="22.4.2" data-path="optimization.html"><a href="optimization.html#comola-files"><i class="fa fa-check"></i><b>22.4.2</b> CoMOLA Files</a></li>
+</ul></li>
+<li class="chapter" data-level="22.5" data-path="optimization.html"><a href="optimization.html#running-comola"><i class="fa fa-check"></i><b>22.5</b> Running CoMOLA</a></li>
+<li class="chapter" data-level="22.6" data-path="optimization.html"><a href="optimization.html#results-visualization"><i class="fa fa-check"></i><b>22.6</b> Results Visualization</a>
+<ul>
+<li class="chapter" data-level="22.6.1" data-path="optimization.html"><a href="optimization.html#references"><i class="fa fa-check"></i><b>22.6.1</b> References</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="combined-measure-and-climate-scenarios.html"><a href="combined-measure-and-climate-scenarios.html"><i class="fa fa-check"></i><b>23</b> Combined Measure and Climate Scenarios</a>
+<ul>
+<li class="chapter" data-level="23.1" data-path="combined-measure-and-climate-scenarios.html"><a href="combined-measure-and-climate-scenarios.html#preperation"><i class="fa fa-check"></i><b>23.1</b> Preperation</a>
+<ul>
+<li class="chapter" data-level="23.1.1" data-path="combined-measure-and-climate-scenarios.html"><a href="combined-measure-and-climate-scenarios.html#selection-of-rcm-rcp-combinations"><i class="fa fa-check"></i><b>23.1.1</b> Selection of RCM-RCP combinations</a></li>
+<li class="chapter" data-level="23.1.2" data-path="combined-measure-and-climate-scenarios.html"><a href="combined-measure-and-climate-scenarios.html#copy-your-measr_scenario_simulation-folder-n-times"><i class="fa fa-check"></i><b>23.1.2</b> Copy your measr_scenario_simulation folder n-times</a></li>
+<li class="chapter" data-level="23.1.3" data-path="combined-measure-and-climate-scenarios.html"><a href="combined-measure-and-climate-scenarios.html#remove-existing-measr-project-and-the-cal_files-and-scenario_outputs-folders"><i class="fa fa-check"></i><b>23.1.3</b> Remove existing measr project and the cal_files and scenario_outputs folders</a></li>
+<li class="chapter" data-level="23.1.4" data-path="combined-measure-and-climate-scenarios.html"><a href="combined-measure-and-climate-scenarios.html#replace-all-swat-files-in-the-txt-folder-with-the-ones-from-the-climate-workflow"><i class="fa fa-check"></i><b>23.1.4</b> Replace all SWAT files in the txt folder with the ones from the climate workflow</a></li>
+<li class="chapter" data-level="23.1.5" data-path="combined-measure-and-climate-scenarios.html"><a href="combined-measure-and-climate-scenarios.html#run-swatfarmr"><i class="fa fa-check"></i><b>23.1.5</b> Run SWATFarmR</a></li>
+</ul></li>
+<li class="chapter" data-level="23.2" data-path="combined-measure-and-climate-scenarios.html"><a href="combined-measure-and-climate-scenarios.html#prepare-measure-scenarios"><i class="fa fa-check"></i><b>23.2</b> Prepare measure scenarios</a></li>
+<li class="chapter" data-level="23.3" data-path="combined-measure-and-climate-scenarios.html"><a href="combined-measure-and-climate-scenarios.html#run-measure-scenarios"><i class="fa fa-check"></i><b>23.3</b> Run Measure Scenarios</a></li>
+<li class="chapter" data-level="23.4" data-path="combined-measure-and-climate-scenarios.html"><a href="combined-measure-and-climate-scenarios.html#harmonizing"><i class="fa fa-check"></i><b>23.4</b> Harmonizing</a></li>
+<li class="chapter" data-level="23.5" data-path="combined-measure-and-climate-scenarios.html"><a href="combined-measure-and-climate-scenarios.html#plotting"><i class="fa fa-check"></i><b>23.5</b> PLOTTING</a></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="land-object-input-abandoned.html"><a href="land-object-input-abandoned.html"><i class="fa fa-check"></i><b>24</b> Land Object Input (abandoned)</a>
+<ul>
+<li class="chapter" data-level="24.0.1" data-path="land-object-input-abandoned.html"><a href="land-object-input-abandoned.html#data-sources-1"><i class="fa fa-check"></i><b>24.0.1</b> Data sources</a></li>
+<li class="chapter" data-level="24.0.2" data-path="land-object-input-abandoned.html"><a href="land-object-input-abandoned.html#delineation-of-land-objects-1"><i class="fa fa-check"></i><b>24.0.2</b> Delineation of land objects</a></li>
+<li class="chapter" data-level="24.0.3" data-path="land-object-input-abandoned.html"><a href="land-object-input-abandoned.html#standing-water-bodies-and-the-land-use-type-watr"><i class="fa fa-check"></i><b>24.0.3</b> Standing water bodies and the land use type = ‘watr’</a></li>
+<li class="chapter" data-level="24.0.4" data-path="land-object-input-abandoned.html"><a href="land-object-input-abandoned.html#tile-drainage-option-1"><i class="fa fa-check"></i><b>24.0.4</b> Tile drainage option</a></li>
+<li class="chapter" data-level="24.0.5" data-path="land-object-input-abandoned.html"><a href="land-object-input-abandoned.html#ar5"><i class="fa fa-check"></i><b>24.0.5</b> AR5</a></li>
+<li class="chapter" data-level="24.0.6" data-path="land-object-input-abandoned.html"><a href="land-object-input-abandoned.html#manual-simplification"><i class="fa fa-check"></i><b>24.0.6</b> Manual Simplification</a></li>
+</ul></li>
+<li class="chapter" data-level="25" data-path="overview-maps.html"><a href="overview-maps.html"><i class="fa fa-check"></i><b>25</b> Overview Maps</a></li>
+<li class="chapter" data-level="" data-path="annex.html"><a href="annex.html"><i class="fa fa-check"></i>Annex</a>
+<ul>
+<li class="chapter" data-level="25.1" data-path="annex.html"><a href="annex.html#packages"><i class="fa fa-check"></i><b>25.1</b> Packages</a></li>
+<li class="chapter" data-level="25.2" data-path="annex.html"><a href="annex.html#computer-specs"><i class="fa fa-check"></i><b>25.2</b> Computer Specs</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references-1.html"><a href="references-1.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://www.optain.eu/" target="blank">optain.eu</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">OPTAIN CS10: Kråkstad SWAT+ Modelling Workflow</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="combined-measure-and-climate-scenarios" class="section level1 hasAnchor" number="23">
+<h1><span class="header-section-number">Section 23</span> Combined Measure and Climate Scenarios<a href="combined-measure-and-climate-scenarios.html#combined-measure-and-climate-scenarios" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="preperation" class="section level2 hasAnchor" number="23.1">
+<h2><span class="header-section-number">23.1</span> Preperation<a href="combined-measure-and-climate-scenarios.html#preperation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb665"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb665-1"><a href="combined-measure-and-climate-scenarios.html#cb665-1" tabindex="-1"></a><span class="fu">require</span>(tidyverse)</span>
+<span id="cb665-2"><a href="combined-measure-and-climate-scenarios.html#cb665-2" tabindex="-1"></a>RERUN <span class="ot">=</span> <span class="cn">FALSE</span></span></code></pre></div>
+<p>workflow from Micha (2024-09-16)s</p>
+<div id="selection-of-rcm-rcp-combinations" class="section level3 hasAnchor" number="23.1.1">
+<h3><span class="header-section-number">23.1.1</span> Selection of RCM-RCP combinations<a href="combined-measure-and-climate-scenarios.html#selection-of-rcm-rcp-combinations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<blockquote>
+<p>To limit the modelling effort and for illustrative purposes, 3-4 markedly different climate scenarios should be selected from the ensemble of available RCP-RCM combinations based on projected changes in temperature and precipitation by the end of the century (e.g. a ‘cool &amp; dry’, ‘cool &amp; wet’, ‘warm &amp; wet’, ‘warm &amp; dry’). The term ‘cool’ refers to low levels of warming, as all available scenarios project rising temperatures. Mikolaj did such an analysis for CS1. An easy option would be to use this selection (rcp26-rcm6: cool &amp; dry, rcp45-rcm5: cool &amp; wet, rcm85-rcm4: warm &amp; wet, no scenario was found representing warm &amp; dry), better would be to do the same analysis for your case study - please ask Mikolaj for more details.</p>
+</blockquote>
+<p>Update: Mikolaj has done this for us, and has found the following:</p>
+<p><img src="images/clipboard-34877102.png" /></p>
+<p><img src="images/clipboard-302726632.png" /></p>
+<blockquote>
+<p>notill_fut: I think that the “cool&amp;dry” scenario can works well, but the other two should be changed.</p>
+</blockquote>
+</div>
+<div id="copy-your-measr_scenario_simulation-folder-n-times" class="section level3 hasAnchor" number="23.1.2">
+<h3><span class="header-section-number">23.1.2</span> Copy your measr_scenario_simulation folder n-times<a href="combined-measure-and-climate-scenarios.html#copy-your-measr_scenario_simulation-folder-n-times" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<blockquote>
+<p>Create n copies of your measr_scenario_simluation workflow folder, where n is the number of climate scenarios (selected in step 1) multiplied by 2. Each climate scenario must have its own reference for the historical period (_H). Rename the folders accordingly, e.g.:</p>
+</blockquote>
+<ol style="list-style-type: decimal">
+<li>measr_scenario_simulation_rcp26_rcm6_E</li>
+<li>measr_scenario_simulation_rcp26_rcm6_H</li>
+<li>measr_scenario_simulation_rcp85_rcm5_E</li>
+<li>measr_scenario_simulation_rcp85_rcm5_H</li>
+<li>measr_scenario_simulation_rcp85_rcm6_E</li>
+<li>measr_scenario_simulation_rcp85_rcm6_H</li>
+</ol>
+<div class="sourceCode" id="cb666"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb666-1"><a href="combined-measure-and-climate-scenarios.html#cb666-1" tabindex="-1"></a>todir <span class="ot">=</span> <span class="st">&quot;model_data/notill_fut_setup/scenarios/combined_scenarios/base_dirs/&quot;</span></span>
+<span id="cb666-2"><a href="combined-measure-and-climate-scenarios.html#cb666-2" tabindex="-1"></a>cli_sims <span class="ot">=</span> <span class="fu">c</span>(</span>
+<span id="cb666-3"><a href="combined-measure-and-climate-scenarios.html#cb666-3" tabindex="-1"></a>  <span class="st">&quot;measr_scenario_simulation_rcp26_rcm6_E&quot;</span>,</span>
+<span id="cb666-4"><a href="combined-measure-and-climate-scenarios.html#cb666-4" tabindex="-1"></a>  <span class="st">&quot;measr_scenario_simulation_rcp26_rcm6_H&quot;</span>,</span>
+<span id="cb666-5"><a href="combined-measure-and-climate-scenarios.html#cb666-5" tabindex="-1"></a>  <span class="st">&quot;measr_scenario_simulation_rcp85_rcm5_E&quot;</span>,</span>
+<span id="cb666-6"><a href="combined-measure-and-climate-scenarios.html#cb666-6" tabindex="-1"></a>  <span class="st">&quot;measr_scenario_simulation_rcp85_rcm5_H&quot;</span>,</span>
+<span id="cb666-7"><a href="combined-measure-and-climate-scenarios.html#cb666-7" tabindex="-1"></a>  <span class="st">&quot;measr_scenario_simulation_rcp85_rcm6_E&quot;</span>,</span>
+<span id="cb666-8"><a href="combined-measure-and-climate-scenarios.html#cb666-8" tabindex="-1"></a>   <span class="st">&quot;measr_scenario_simulation_rcp85_rcm6_H&quot;</span>)</span>
+<span id="cb666-9"><a href="combined-measure-and-climate-scenarios.html#cb666-9" tabindex="-1"></a></span>
+<span id="cb666-10"><a href="combined-measure-and-climate-scenarios.html#cb666-10" tabindex="-1"></a>mycopy <span class="ot">&lt;-</span> <span class="cf">function</span>(path) {</span>
+<span id="cb666-11"><a href="combined-measure-and-climate-scenarios.html#cb666-11" tabindex="-1"></a>tocopy <span class="ot">&lt;-</span> R.utils<span class="sc">::</span><span class="fu">copyDirectory</span>(<span class="st">&quot;model_data/cs10_setup/optimization/&quot;</span>, <span class="at">to =</span> path, <span class="at">recursive =</span> T)</span>
+<span id="cb666-12"><a href="combined-measure-and-climate-scenarios.html#cb666-12" tabindex="-1"></a><span class="dv">0</span>}</span>
+<span id="cb666-13"><a href="combined-measure-and-climate-scenarios.html#cb666-13" tabindex="-1"></a>dump <span class="ot">=</span> <span class="fu">lapply</span>(<span class="at">X =</span> <span class="fu">paste0</span>(todir, cli_sims),mycopy)</span></code></pre></div>
+</div>
+<div id="remove-existing-measr-project-and-the-cal_files-and-scenario_outputs-folders" class="section level3 hasAnchor" number="23.1.3">
+<h3><span class="header-section-number">23.1.3</span> Remove existing measr project and the cal_files and scenario_outputs folders<a href="combined-measure-and-climate-scenarios.html#remove-existing-measr-project-and-the-cal_files-and-scenario_outputs-folders" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<blockquote>
+<p>Please remove unnecessary files. You do not need the *measr project file (you need to build a new one), the cal_file ensemble (you need to use only one calibration.cal file) and also no results from previous runs.</p>
+</blockquote>
+<div class="sourceCode" id="cb667"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb667-1"><a href="combined-measure-and-climate-scenarios.html#cb667-1" tabindex="-1"></a>dump <span class="ot">=</span> <span class="fu">list.files</span>(todir, <span class="at">pattern =</span> <span class="st">&quot;.measr&quot;</span>, <span class="at">recursive =</span> T, <span class="at">full.names =</span> T) <span class="sc">%&gt;%</span> <span class="fu">file.remove</span>()</span>
+<span id="cb667-2"><a href="combined-measure-and-climate-scenarios.html#cb667-2" tabindex="-1"></a><span class="fu">paste0</span>(todir, cli_sims, <span class="st">&quot;/measure_scenario_output&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">unlink</span>(<span class="at">recursive =</span> T)</span>
+<span id="cb667-3"><a href="combined-measure-and-climate-scenarios.html#cb667-3" tabindex="-1"></a>alldirs <span class="ot">&lt;-</span> <span class="fu">list.dirs</span>(todir, <span class="at">full.names =</span> T, <span class="at">recursive =</span> T)</span>
+<span id="cb667-4"><a href="combined-measure-and-climate-scenarios.html#cb667-4" tabindex="-1"></a>alldirs[<span class="fu">grepl</span>(<span class="at">x =</span> alldirs, <span class="at">pattern =</span> <span class="st">&quot;selected_parameter&quot;</span>)] <span class="sc">%&gt;%</span> <span class="fu">unlink</span>(<span class="at">recursive =</span> T)</span>
+<span id="cb667-5"><a href="combined-measure-and-climate-scenarios.html#cb667-5" tabindex="-1"></a>dump <span class="ot">=</span> <span class="fu">list.files</span>(todir, <span class="at">pattern =</span> <span class="st">&quot;.txt&quot;</span>, <span class="at">recursive =</span> T, <span class="at">full.names =</span> T)  <span class="sc">%&gt;%</span> <span class="fu">file.remove</span>()</span></code></pre></div>
+</div>
+<div id="replace-all-swat-files-in-the-txt-folder-with-the-ones-from-the-climate-workflow" class="section level3 hasAnchor" number="23.1.4">
+<h3><span class="header-section-number">23.1.4</span> Replace all SWAT files in the txt folder with the ones from the climate workflow<a href="combined-measure-and-climate-scenarios.html#replace-all-swat-files-in-the-txt-folder-with-the-ones-from-the-climate-workflow" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<blockquote>
+<p>Replace all SWAT files in the txt folder with the respective SWAT files created in the climate workflow (e.g.: replace all files in <em>./measr_scenario_simulation_rcp26_rcm6_E/txt</em> with those in <em>./cliwf-sv_dev/results/results/rcp26_rcm6_E</em></p>
+</blockquote>
+<div class="sourceCode" id="cb668"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb668-1"><a href="combined-measure-and-climate-scenarios.html#cb668-1" tabindex="-1"></a>clidir <span class="ot">=</span> <span class="st">&quot;model_data/cs10_setup/scenarios/climate_scenarios/&quot;</span></span>
+<span id="cb668-2"><a href="combined-measure-and-climate-scenarios.html#cb668-2" tabindex="-1"></a>models <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;rcp26_rcm6_H&quot;</span>,</span>
+<span id="cb668-3"><a href="combined-measure-and-climate-scenarios.html#cb668-3" tabindex="-1"></a>           <span class="st">&quot;rcp26_rcm6_E&quot;</span>,</span>
+<span id="cb668-4"><a href="combined-measure-and-climate-scenarios.html#cb668-4" tabindex="-1"></a>            <span class="st">&quot;rcp85_rcm5_E&quot;</span>,</span>
+<span id="cb668-5"><a href="combined-measure-and-climate-scenarios.html#cb668-5" tabindex="-1"></a>            <span class="st">&quot;rcp85_rcm5_H&quot;</span>,</span>
+<span id="cb668-6"><a href="combined-measure-and-climate-scenarios.html#cb668-6" tabindex="-1"></a>            <span class="st">&quot;rcp85_rcm6_E&quot;</span>,</span>
+<span id="cb668-7"><a href="combined-measure-and-climate-scenarios.html#cb668-7" tabindex="-1"></a>            <span class="st">&quot;rcp85_rcm6_H&quot;</span>)</span>
+<span id="cb668-8"><a href="combined-measure-and-climate-scenarios.html#cb668-8" tabindex="-1"></a>getmet <span class="ot">&lt;-</span> <span class="cf">function</span>(model){</span>
+<span id="cb668-9"><a href="combined-measure-and-climate-scenarios.html#cb668-9" tabindex="-1"></a>  oldcode <span class="ot">=</span> model <span class="sc">%&gt;%</span> <span class="fu">str_replace</span>(<span class="st">&quot;_E&quot;</span>, <span class="st">&quot;_F&quot;</span>) <span class="co"># Mikolaj used different codes</span></span>
+<span id="cb668-10"><a href="combined-measure-and-climate-scenarios.html#cb668-10" tabindex="-1"></a>  tocli <span class="ot">=</span> <span class="fu">paste0</span>(todir, <span class="st">&quot;measr_scenario_simulation_&quot;</span>, model, <span class="st">&quot;/txt&quot;</span>)</span>
+<span id="cb668-11"><a href="combined-measure-and-climate-scenarios.html#cb668-11" tabindex="-1"></a>  fromcli <span class="ot">=</span> <span class="fu">paste0</span>(clidir, oldcode)</span>
+<span id="cb668-12"><a href="combined-measure-and-climate-scenarios.html#cb668-12" tabindex="-1"></a>  tocli <span class="sc">%&gt;%</span> <span class="fu">unlink</span>(<span class="at">recursive =</span> T)</span>
+<span id="cb668-13"><a href="combined-measure-and-climate-scenarios.html#cb668-13" tabindex="-1"></a>  R.utils<span class="sc">::</span><span class="fu">copyDirectory</span>(fromcli, tocli)</span>
+<span id="cb668-14"><a href="combined-measure-and-climate-scenarios.html#cb668-14" tabindex="-1"></a>}</span>
+<span id="cb668-15"><a href="combined-measure-and-climate-scenarios.html#cb668-15" tabindex="-1"></a>dump <span class="ot">=</span> <span class="fu">lapply</span>(models, getmet)</span></code></pre></div>
+</div>
+<div id="run-swatfarmr" class="section level3 hasAnchor" number="23.1.5">
+<h3><span class="header-section-number">23.1.5</span> Run SWATFarmR<a href="combined-measure-and-climate-scenarios.html#run-swatfarmr" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<blockquote>
+<p>Replace the files <em>hru-data.dat</em>, <em>plant.ini</em>, and <em>landuse.lum</em> with a former version of those files where there are still the full/long names provided for each land use and management class (corresponding to the farmr_input.csv). Please make sure that the <em>landuse.lum</em> file is fully parameterized. Then run again the SWATfarmR by using your farmR.R script (adjust txt path) which is pointing to your farmr_input.csv (must include management schedules for 33 years).</p>
+<p>If you want to run management NSWRM scenarios under climate change, you need to generate additional *.farmr projects for each of your management scenarios.</p>
+</blockquote>
+<div class="sourceCode" id="cb669"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb669-1"><a href="combined-measure-and-climate-scenarios.html#cb669-1" tabindex="-1"></a><span class="fu">require</span>(SWATfarmR)</span>
+<span id="cb669-2"><a href="combined-measure-and-climate-scenarios.html#cb669-2" tabindex="-1"></a><span class="fu">require</span>(dplyr)</span>
+<span id="cb669-3"><a href="combined-measure-and-climate-scenarios.html#cb669-3" tabindex="-1"></a>txt_path <span class="ot">=</span> <span class="st">&quot;model_data/cs10_setup/scenarios/combined_scenarios/base_dirs/measr_scenario_simulation_rcp26_rcm6_E/txt/&quot;</span></span>
+<span id="cb669-4"><a href="combined-measure-and-climate-scenarios.html#cb669-4" tabindex="-1"></a></span>
+<span id="cb669-5"><a href="combined-measure-and-climate-scenarios.html#cb669-5" tabindex="-1"></a></span>
+<span id="cb669-6"><a href="combined-measure-and-climate-scenarios.html#cb669-6" tabindex="-1"></a><span class="do">## copy over OG LUM, plant, and hrudate</span></span>
+<span id="cb669-7"><a href="combined-measure-and-climate-scenarios.html#cb669-7" tabindex="-1"></a><span class="fu">file.remove</span>(<span class="fu">paste0</span>(txt_path, <span class="st">&quot;landuse.lum&quot;</span>))</span>
+<span id="cb669-8"><a href="combined-measure-and-climate-scenarios.html#cb669-8" tabindex="-1"></a><span class="fu">file.copy</span>(<span class="st">&quot;model_data/cs10_setup/swat_input_mod/landuse.lum&quot;</span>,</span>
+<span id="cb669-9"><a href="combined-measure-and-climate-scenarios.html#cb669-9" tabindex="-1"></a>          <span class="fu">paste0</span>(txt_path, <span class="st">&quot;landuse.lum&quot;</span>))</span>
+<span id="cb669-10"><a href="combined-measure-and-climate-scenarios.html#cb669-10" tabindex="-1"></a><span class="fu">file.remove</span>(<span class="fu">paste0</span>(txt_path, <span class="st">&quot;plant.ini&quot;</span>))</span>
+<span id="cb669-11"><a href="combined-measure-and-climate-scenarios.html#cb669-11" tabindex="-1"></a><span class="fu">file.copy</span>(<span class="st">&quot;model_data/cs10_setup/swat_input/plant.ini&quot;</span>,</span>
+<span id="cb669-12"><a href="combined-measure-and-climate-scenarios.html#cb669-12" tabindex="-1"></a>          <span class="fu">paste0</span>(txt_path, <span class="st">&quot;plant.ini&quot;</span>))</span>
+<span id="cb669-13"><a href="combined-measure-and-climate-scenarios.html#cb669-13" tabindex="-1"></a><span class="fu">file.remove</span>(<span class="fu">paste0</span>(txt_path, <span class="st">&quot;hru-data.hru&quot;</span>))</span>
+<span id="cb669-14"><a href="combined-measure-and-climate-scenarios.html#cb669-14" tabindex="-1"></a><span class="fu">file.copy</span>(<span class="st">&quot;model_data/cs10_setup/swat_input_mod/hru-data.hru&quot;</span>,</span>
+<span id="cb669-15"><a href="combined-measure-and-climate-scenarios.html#cb669-15" tabindex="-1"></a>          <span class="fu">paste0</span>(txt_path, <span class="st">&quot;hru-data.hru&quot;</span>))</span>
+<span id="cb669-16"><a href="combined-measure-and-climate-scenarios.html#cb669-16" tabindex="-1"></a></span>
+<span id="cb669-17"><a href="combined-measure-and-climate-scenarios.html#cb669-17" tabindex="-1"></a></span>
+<span id="cb669-18"><a href="combined-measure-and-climate-scenarios.html#cb669-18" tabindex="-1"></a><span class="fu">file.remove</span>(<span class="fu">paste0</span>(txt_path, <span class="st">&quot;management.sch&quot;</span>))</span>
+<span id="cb669-19"><a href="combined-measure-and-climate-scenarios.html#cb669-19" tabindex="-1"></a></span>
+<span id="cb669-20"><a href="combined-measure-and-climate-scenarios.html#cb669-20" tabindex="-1"></a><span class="fu">file.remove</span>(<span class="fu">paste0</span>(txt_path, <span class="st">&quot;rcp26_rcm6_F.farm&quot;</span>))</span>
+<span id="cb669-21"><a href="combined-measure-and-climate-scenarios.html#cb669-21" tabindex="-1"></a><span class="fu">file.remove</span>(<span class="fu">paste0</span>(txt_path, <span class="st">&quot;rcp26_rcm6_F.mgts&quot;</span>))</span>
+<span id="cb669-22"><a href="combined-measure-and-climate-scenarios.html#cb669-22" tabindex="-1"></a></span>
+<span id="cb669-23"><a href="combined-measure-and-climate-scenarios.html#cb669-23" tabindex="-1"></a></span>
+<span id="cb669-24"><a href="combined-measure-and-climate-scenarios.html#cb669-24" tabindex="-1"></a><span class="fu">new_farmr</span>(<span class="at">project_name =</span> <span class="st">&quot;rcp26_rcm6_F&quot;</span>, <span class="at">project_path =</span> txt_path)</span>
+<span id="cb669-25"><a href="combined-measure-and-climate-scenarios.html#cb669-25" tabindex="-1"></a></span>
+<span id="cb669-26"><a href="combined-measure-and-climate-scenarios.html#cb669-26" tabindex="-1"></a></span>
+<span id="cb669-27"><a href="combined-measure-and-climate-scenarios.html#cb669-27" tabindex="-1"></a>rcp26_rcm6_F<span class="sc">$</span><span class="fu">read_management</span>(<span class="at">file =</span> <span class="st">&quot;model_data/input/management/farmR_input_2067_2099.csv&quot;</span>)</span>
+<span id="cb669-28"><a href="combined-measure-and-climate-scenarios.html#cb669-28" tabindex="-1"></a></span>
+<span id="cb669-29"><a href="combined-measure-and-climate-scenarios.html#cb669-29" tabindex="-1"></a></span>
+<span id="cb669-30"><a href="combined-measure-and-climate-scenarios.html#cb669-30" tabindex="-1"></a>{pcp <span class="ot">&lt;-</span> rcp26_rcm6_F<span class="sc">$</span>.data<span class="sc">$</span>variables<span class="sc">$</span>pcp</span>
+<span id="cb669-31"><a href="combined-measure-and-climate-scenarios.html#cb669-31" tabindex="-1"></a></span>
+<span id="cb669-32"><a href="combined-measure-and-climate-scenarios.html#cb669-32" tabindex="-1"></a><span class="co"># Extract the rcp26_rcm6_F_notill soil group values for all HRUs</span></span>
+<span id="cb669-33"><a href="combined-measure-and-climate-scenarios.html#cb669-33" tabindex="-1"></a>hsg <span class="ot">&lt;-</span> <span class="fu">select</span>(rcp26_rcm6_F<span class="sc">$</span>.data<span class="sc">$</span>meta<span class="sc">$</span>hru_attributes, hru, hyd_grp)</span>
+<span id="cb669-34"><a href="combined-measure-and-climate-scenarios.html#cb669-34" tabindex="-1"></a></span>
+<span id="cb669-35"><a href="combined-measure-and-climate-scenarios.html#cb669-35" tabindex="-1"></a><span class="co"># Calculate api values for the hsg classes A to D</span></span>
+<span id="cb669-36"><a href="combined-measure-and-climate-scenarios.html#cb669-36" tabindex="-1"></a>api_A <span class="ot">&lt;-</span> <span class="fu">variable_decay</span>(<span class="at">variable =</span> pcp, <span class="at">n_steps =</span> <span class="sc">-</span><span class="dv">5</span>, <span class="at">decay_rate =</span> <span class="dv">1</span>)</span>
+<span id="cb669-37"><a href="combined-measure-and-climate-scenarios.html#cb669-37" tabindex="-1"></a>api_B <span class="ot">&lt;-</span> <span class="fu">variable_decay</span>(<span class="at">variable =</span> pcp, <span class="at">n_steps =</span> <span class="sc">-</span><span class="dv">5</span>, <span class="at">decay_rate =</span> <span class="fl">0.8</span>)</span>
+<span id="cb669-38"><a href="combined-measure-and-climate-scenarios.html#cb669-38" tabindex="-1"></a>api_C <span class="ot">&lt;-</span> <span class="fu">variable_decay</span>(<span class="at">variable =</span> pcp, <span class="at">n_steps =</span> <span class="sc">-</span><span class="dv">5</span>, <span class="at">decay_rate =</span> <span class="fl">0.7</span>)</span>
+<span id="cb669-39"><a href="combined-measure-and-climate-scenarios.html#cb669-39" tabindex="-1"></a>api_D <span class="ot">&lt;-</span> <span class="fu">variable_decay</span>(<span class="at">variable =</span> pcp, <span class="at">n_steps =</span> <span class="sc">-</span><span class="dv">5</span>, <span class="at">decay_rate =</span> <span class="fl">0.5</span>)</span>
+<span id="cb669-40"><a href="combined-measure-and-climate-scenarios.html#cb669-40" tabindex="-1"></a></span>
+<span id="cb669-41"><a href="combined-measure-and-climate-scenarios.html#cb669-41" tabindex="-1"></a><span class="co"># Bind the data together into one api table and name them with the hsgs</span></span>
+<span id="cb669-42"><a href="combined-measure-and-climate-scenarios.html#cb669-42" tabindex="-1"></a>api <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(api_A, api_B, api_C, api_D)</span>
+<span id="cb669-43"><a href="combined-measure-and-climate-scenarios.html#cb669-43" tabindex="-1"></a><span class="fu">names</span>(api) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;api_A&#39;</span>, <span class="st">&#39;api_B&#39;</span>, <span class="st">&#39;api_C&#39;</span>, <span class="st">&#39;api_D&#39;</span>)</span>
+<span id="cb669-44"><a href="combined-measure-and-climate-scenarios.html#cb669-44" tabindex="-1"></a></span>
+<span id="cb669-45"><a href="combined-measure-and-climate-scenarios.html#cb669-45" tabindex="-1"></a><span class="co"># To add the variable to the farmR you have to tell it which variables are</span></span>
+<span id="cb669-46"><a href="combined-measure-and-climate-scenarios.html#cb669-46" tabindex="-1"></a><span class="co"># assigned to which HRUs</span></span>
+<span id="cb669-47"><a href="combined-measure-and-climate-scenarios.html#cb669-47" tabindex="-1"></a>hru_asgn <span class="ot">&lt;-</span> <span class="fu">mutate</span>(hsg, <span class="at">api =</span> <span class="fu">paste0</span>(<span class="st">&#39;api_&#39;</span>, hyd_grp)) <span class="sc">%&gt;%</span> <span class="fu">select</span>(hru, api)</span>
+<span id="cb669-48"><a href="combined-measure-and-climate-scenarios.html#cb669-48" tabindex="-1"></a>  </span>
+<span id="cb669-49"><a href="combined-measure-and-climate-scenarios.html#cb669-49" tabindex="-1"></a><span class="co"># Add the variable api to the farmR project</span></span>
+<span id="cb669-50"><a href="combined-measure-and-climate-scenarios.html#cb669-50" tabindex="-1"></a>rcp26_rcm6_F<span class="sc">$</span><span class="fu">add_variable</span>(<span class="at">data =</span> api, <span class="at">name =</span> <span class="st">&#39;api&#39;</span>, <span class="at">assign_unit =</span> hru_asgn, <span class="at">overwrite =</span> T)}</span>
+<span id="cb669-51"><a href="combined-measure-and-climate-scenarios.html#cb669-51" tabindex="-1"></a></span>
+<span id="cb669-52"><a href="combined-measure-and-climate-scenarios.html#cb669-52" tabindex="-1"></a></span>
+<span id="cb669-53"><a href="combined-measure-and-climate-scenarios.html#cb669-53" tabindex="-1"></a>start_year <span class="ot">&lt;-</span> <span class="dv">2067</span> </span>
+<span id="cb669-54"><a href="combined-measure-and-climate-scenarios.html#cb669-54" tabindex="-1"></a>end_year <span class="ot">&lt;-</span> <span class="dv">2098</span></span>
+<span id="cb669-55"><a href="combined-measure-and-climate-scenarios.html#cb669-55" tabindex="-1"></a>rcp26_rcm6_F<span class="sc">$</span><span class="fu">schedule_operations</span>(<span class="at">start_year =</span> start_year, <span class="at">end_year =</span> end_year, <span class="at">replace =</span> <span class="st">&quot;all&quot;</span>, <span class="at">n_schedule =</span> <span class="dv">2</span>)</span>
+<span id="cb669-56"><a href="combined-measure-and-climate-scenarios.html#cb669-56" tabindex="-1"></a></span>
+<span id="cb669-57"><a href="combined-measure-and-climate-scenarios.html#cb669-57" tabindex="-1"></a><span class="co">#rcp26_rcm6_F$reset_files()</span></span>
+<span id="cb669-58"><a href="combined-measure-and-climate-scenarios.html#cb669-58" tabindex="-1"></a></span>
+<span id="cb669-59"><a href="combined-measure-and-climate-scenarios.html#cb669-59" tabindex="-1"></a></span>
+<span id="cb669-60"><a href="combined-measure-and-climate-scenarios.html#cb669-60" tabindex="-1"></a><span class="do">## NOTILL</span></span>
+<span id="cb669-61"><a href="combined-measure-and-climate-scenarios.html#cb669-61" tabindex="-1"></a><span class="fu">file.remove</span>(<span class="fu">paste0</span>(txt_path, <span class="st">&quot;rcp26_rcm6_F_notill.farm&quot;</span>))</span>
+<span id="cb669-62"><a href="combined-measure-and-climate-scenarios.html#cb669-62" tabindex="-1"></a><span class="fu">new_farmr</span>(<span class="at">project_name =</span> <span class="st">&quot;rcp26_rcm6_F_notill&quot;</span>, <span class="at">project_path =</span> txt_path)</span>
+<span id="cb669-63"><a href="combined-measure-and-climate-scenarios.html#cb669-63" tabindex="-1"></a>rcp26_rcm6_F_notill<span class="sc">$</span><span class="fu">read_management</span>(<span class="at">discard_schedule =</span> F, <span class="at">file =</span> <span class="st">&quot;model_data/input/management/farmR_input_stubble_v3_2067_2098.csv&quot;</span>)</span>
+<span id="cb669-64"><a href="combined-measure-and-climate-scenarios.html#cb669-64" tabindex="-1"></a></span>
+<span id="cb669-65"><a href="combined-measure-and-climate-scenarios.html#cb669-65" tabindex="-1"></a></span>
+<span id="cb669-66"><a href="combined-measure-and-climate-scenarios.html#cb669-66" tabindex="-1"></a>{pcp <span class="ot">&lt;-</span> rcp26_rcm6_F_notill<span class="sc">$</span>.data<span class="sc">$</span>variables<span class="sc">$</span>pcp</span>
+<span id="cb669-67"><a href="combined-measure-and-climate-scenarios.html#cb669-67" tabindex="-1"></a></span>
+<span id="cb669-68"><a href="combined-measure-and-climate-scenarios.html#cb669-68" tabindex="-1"></a><span class="co"># Extract the rcp26_rcm6_F_notill soil group values for all HRUs</span></span>
+<span id="cb669-69"><a href="combined-measure-and-climate-scenarios.html#cb669-69" tabindex="-1"></a>hsg <span class="ot">&lt;-</span> <span class="fu">select</span>(rcp26_rcm6_F_notill<span class="sc">$</span>.data<span class="sc">$</span>meta<span class="sc">$</span>hru_attributes, hru, hyd_grp)</span>
+<span id="cb669-70"><a href="combined-measure-and-climate-scenarios.html#cb669-70" tabindex="-1"></a></span>
+<span id="cb669-71"><a href="combined-measure-and-climate-scenarios.html#cb669-71" tabindex="-1"></a><span class="co"># Calculate api values for the hsg classes A to D</span></span>
+<span id="cb669-72"><a href="combined-measure-and-climate-scenarios.html#cb669-72" tabindex="-1"></a>api_A <span class="ot">&lt;-</span> <span class="fu">variable_decay</span>(<span class="at">variable =</span> pcp, <span class="at">n_steps =</span> <span class="sc">-</span><span class="dv">5</span>, <span class="at">decay_rate =</span> <span class="dv">1</span>)</span>
+<span id="cb669-73"><a href="combined-measure-and-climate-scenarios.html#cb669-73" tabindex="-1"></a>api_B <span class="ot">&lt;-</span> <span class="fu">variable_decay</span>(<span class="at">variable =</span> pcp, <span class="at">n_steps =</span> <span class="sc">-</span><span class="dv">5</span>, <span class="at">decay_rate =</span> <span class="fl">0.8</span>)</span>
+<span id="cb669-74"><a href="combined-measure-and-climate-scenarios.html#cb669-74" tabindex="-1"></a>api_C <span class="ot">&lt;-</span> <span class="fu">variable_decay</span>(<span class="at">variable =</span> pcp, <span class="at">n_steps =</span> <span class="sc">-</span><span class="dv">5</span>, <span class="at">decay_rate =</span> <span class="fl">0.7</span>)</span>
+<span id="cb669-75"><a href="combined-measure-and-climate-scenarios.html#cb669-75" tabindex="-1"></a>api_D <span class="ot">&lt;-</span> <span class="fu">variable_decay</span>(<span class="at">variable =</span> pcp, <span class="at">n_steps =</span> <span class="sc">-</span><span class="dv">5</span>, <span class="at">decay_rate =</span> <span class="fl">0.5</span>)</span>
+<span id="cb669-76"><a href="combined-measure-and-climate-scenarios.html#cb669-76" tabindex="-1"></a></span>
+<span id="cb669-77"><a href="combined-measure-and-climate-scenarios.html#cb669-77" tabindex="-1"></a><span class="co"># Bind the data together into one api table and name them with the hsgs</span></span>
+<span id="cb669-78"><a href="combined-measure-and-climate-scenarios.html#cb669-78" tabindex="-1"></a>api <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(api_A, api_B, api_C, api_D)</span>
+<span id="cb669-79"><a href="combined-measure-and-climate-scenarios.html#cb669-79" tabindex="-1"></a><span class="fu">names</span>(api) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;api_A&#39;</span>, <span class="st">&#39;api_B&#39;</span>, <span class="st">&#39;api_C&#39;</span>, <span class="st">&#39;api_D&#39;</span>)</span>
+<span id="cb669-80"><a href="combined-measure-and-climate-scenarios.html#cb669-80" tabindex="-1"></a></span>
+<span id="cb669-81"><a href="combined-measure-and-climate-scenarios.html#cb669-81" tabindex="-1"></a><span class="co"># To add the variable to the farmR you have to tell it which variables are</span></span>
+<span id="cb669-82"><a href="combined-measure-and-climate-scenarios.html#cb669-82" tabindex="-1"></a><span class="co"># assigned to which HRUs</span></span>
+<span id="cb669-83"><a href="combined-measure-and-climate-scenarios.html#cb669-83" tabindex="-1"></a>hru_asgn <span class="ot">&lt;-</span> <span class="fu">mutate</span>(hsg, <span class="at">api =</span> <span class="fu">paste0</span>(<span class="st">&#39;api_&#39;</span>, hyd_grp)) <span class="sc">%&gt;%</span> <span class="fu">select</span>(hru, api)</span>
+<span id="cb669-84"><a href="combined-measure-and-climate-scenarios.html#cb669-84" tabindex="-1"></a>  </span>
+<span id="cb669-85"><a href="combined-measure-and-climate-scenarios.html#cb669-85" tabindex="-1"></a><span class="co"># Add the variable api to the farmR project</span></span>
+<span id="cb669-86"><a href="combined-measure-and-climate-scenarios.html#cb669-86" tabindex="-1"></a>rcp26_rcm6_F_notill<span class="sc">$</span><span class="fu">add_variable</span>(<span class="at">data =</span> api, <span class="at">name =</span> <span class="st">&#39;api&#39;</span>, <span class="at">assign_unit =</span> hru_asgn, <span class="at">overwrite =</span> T)}</span>
+<span id="cb669-87"><a href="combined-measure-and-climate-scenarios.html#cb669-87" tabindex="-1"></a></span>
+<span id="cb669-88"><a href="combined-measure-and-climate-scenarios.html#cb669-88" tabindex="-1"></a></span>
+<span id="cb669-89"><a href="combined-measure-and-climate-scenarios.html#cb669-89" tabindex="-1"></a>start_year <span class="ot">&lt;-</span> <span class="dv">2067</span> </span>
+<span id="cb669-90"><a href="combined-measure-and-climate-scenarios.html#cb669-90" tabindex="-1"></a>end_year <span class="ot">&lt;-</span> <span class="dv">2098</span></span>
+<span id="cb669-91"><a href="combined-measure-and-climate-scenarios.html#cb669-91" tabindex="-1"></a>rcp26_rcm6_F_notill<span class="sc">$</span><span class="fu">schedule_operations</span>(<span class="at">start_year =</span> start_year, <span class="at">end_year =</span> end_year, <span class="at">replace =</span> <span class="st">&quot;all&quot;</span>, <span class="at">n_schedule =</span> <span class="dv">2</span>)</span>
+<span id="cb669-92"><a href="combined-measure-and-climate-scenarios.html#cb669-92" tabindex="-1"></a><span class="co">#rcp26_rcm6_F_notill$write_operations(start_year, end_year)</span></span></code></pre></div>
+</div>
+</div>
+<div id="prepare-measure-scenarios" class="section level2 hasAnchor" number="23.2">
+<h2><span class="header-section-number">23.2</span> Prepare measure scenarios<a href="combined-measure-and-climate-scenarios.html#prepare-measure-scenarios" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb670"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb670-1"><a href="combined-measure-and-climate-scenarios.html#cb670-1" tabindex="-1"></a>txt_path <span class="ot">=</span> <span class="st">&quot;model_data/cs10_setup/scenarios/combined_scenarios/base_dirs/measr_scenario_simulation_rcp26_rcm6_E/txt&quot;</span></span>
+<span id="cb670-2"><a href="combined-measure-and-climate-scenarios.html#cb670-2" tabindex="-1"></a><span class="do">## Running measR</span></span>
+<span id="cb670-3"><a href="combined-measure-and-climate-scenarios.html#cb670-3" tabindex="-1"></a><span class="fu">require</span>(SWATmeasR)</span>
+<span id="cb670-4"><a href="combined-measure-and-climate-scenarios.html#cb670-4" tabindex="-1"></a></span>
+<span id="cb670-5"><a href="combined-measure-and-climate-scenarios.html#cb670-5" tabindex="-1"></a>syns <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">tibble</span>(<span class="at">status_quo =</span> <span class="fu">c</span>(<span class="st">&#39;fldcult&#39;</span>, <span class="st">&#39;harrow&#39;</span>, <span class="st">&#39;rowcult&#39;</span>, <span class="st">&#39;fallplow&#39;</span>),</span>
+<span id="cb670-6"><a href="combined-measure-and-climate-scenarios.html#cb670-6" tabindex="-1"></a>                      <span class="at">scenario   =</span> <span class="fu">c</span>(<span class="st">&#39;notill&#39;</span>, <span class="st">&#39;notill&#39;</span>, <span class="st">&#39;notill&#39;</span>, <span class="st">&#39;notill&#39;</span>))</span>
+<span id="cb670-7"><a href="combined-measure-and-climate-scenarios.html#cb670-7" tabindex="-1"></a>stat_quo_farmR <span class="ot">&lt;-</span> <span class="st">&#39;status_quo&#39;</span></span>
+<span id="cb670-8"><a href="combined-measure-and-climate-scenarios.html#cb670-8" tabindex="-1"></a>scenario_farmR <span class="ot">&lt;-</span> <span class="st">&#39;notill&#39;</span></span>
+<span id="cb670-9"><a href="combined-measure-and-climate-scenarios.html#cb670-9" tabindex="-1"></a>mgt_scen_write_path <span class="ot">=</span> <span class="st">&quot;model_data/scenarios/combined_scenarios/management_scenario_inputs&quot;</span></span>
+<span id="cb670-10"><a href="combined-measure-and-climate-scenarios.html#cb670-10" tabindex="-1"></a></span>
+<span id="cb670-11"><a href="combined-measure-and-climate-scenarios.html#cb670-11" tabindex="-1"></a>start_year <span class="ot">=</span> <span class="dv">2067</span></span>
+<span id="cb670-12"><a href="combined-measure-and-climate-scenarios.html#cb670-12" tabindex="-1"></a>end_year <span class="ot">=</span> <span class="dv">2098</span></span>
+<span id="cb670-13"><a href="combined-measure-and-climate-scenarios.html#cb670-13" tabindex="-1"></a><span class="co">#start_year = 1988</span></span>
+<span id="cb670-14"><a href="combined-measure-and-climate-scenarios.html#cb670-14" tabindex="-1"></a><span class="co">#end_year = 2020</span></span>
+<span id="cb670-15"><a href="combined-measure-and-climate-scenarios.html#cb670-15" tabindex="-1"></a><span class="fu">prepare_management_scenario_inputs</span>(</span>
+<span id="cb670-16"><a href="combined-measure-and-climate-scenarios.html#cb670-16" tabindex="-1"></a>  <span class="at">project_path =</span> txt_path,</span>
+<span id="cb670-17"><a href="combined-measure-and-climate-scenarios.html#cb670-17" tabindex="-1"></a>  <span class="at">status_quo   =</span> stat_quo_farmR,</span>
+<span id="cb670-18"><a href="combined-measure-and-climate-scenarios.html#cb670-18" tabindex="-1"></a>  <span class="at">scenarios    =</span> scenario_farmR,</span>
+<span id="cb670-19"><a href="combined-measure-and-climate-scenarios.html#cb670-19" tabindex="-1"></a>  <span class="at">synonyms =</span> syns,</span>
+<span id="cb670-20"><a href="combined-measure-and-climate-scenarios.html#cb670-20" tabindex="-1"></a>  <span class="at">start_year =</span> start_year,</span>
+<span id="cb670-21"><a href="combined-measure-and-climate-scenarios.html#cb670-21" tabindex="-1"></a>  <span class="at">end_year =</span> end_year,</span>
+<span id="cb670-22"><a href="combined-measure-and-climate-scenarios.html#cb670-22" tabindex="-1"></a>  <span class="at">write_path =</span> mgt_scen_write_path,</span>
+<span id="cb670-23"><a href="combined-measure-and-climate-scenarios.html#cb670-23" tabindex="-1"></a>  <span class="at">write_csv_mgts =</span> <span class="cn">TRUE</span></span>
+<span id="cb670-24"><a href="combined-measure-and-climate-scenarios.html#cb670-24" tabindex="-1"></a>)</span>
+<span id="cb670-25"><a href="combined-measure-and-climate-scenarios.html#cb670-25" tabindex="-1"></a></span>
+<span id="cb670-26"><a href="combined-measure-and-climate-scenarios.html#cb670-26" tabindex="-1"></a>mgt_def_files <span class="ot">&lt;-</span> <span class="fu">list.files</span>(mgt_scen_write_path, <span class="at">pattern =</span> <span class="st">&#39;.rds&#39;</span>)</span>
+<span id="cb670-27"><a href="combined-measure-and-climate-scenarios.html#cb670-27" tabindex="-1"></a>time_stamps <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">gsub</span>(<span class="st">&#39;_&#39;</span>, <span class="st">&#39;&#39;</span>, <span class="fu">substr</span>(mgt_def_files, <span class="dv">1</span>, <span class="dv">13</span>)))</span>
+<span id="cb670-28"><a href="combined-measure-and-climate-scenarios.html#cb670-28" tabindex="-1"></a>last_mgt <span class="ot">&lt;-</span> <span class="fu">which.max</span>(time_stamps)</span>
+<span id="cb670-29"><a href="combined-measure-and-climate-scenarios.html#cb670-29" tabindex="-1"></a>mgt_path  <span class="ot">&lt;-</span> <span class="fu">paste0</span>(mgt_scen_write_path, <span class="st">&#39;/&#39;</span>, mgt_def_files[last_mgt])</span>
+<span id="cb670-30"><a href="combined-measure-and-climate-scenarios.html#cb670-30" tabindex="-1"></a>mgt_path</span>
+<span id="cb670-31"><a href="combined-measure-and-climate-scenarios.html#cb670-31" tabindex="-1"></a></span>
+<span id="cb670-32"><a href="combined-measure-and-climate-scenarios.html#cb670-32" tabindex="-1"></a><span class="fu">new_measr</span>(<span class="st">&quot;combinedscen&quot;</span>, <span class="at">project_path =</span> txt_path)</span>
+<span id="cb670-33"><a href="combined-measure-and-climate-scenarios.html#cb670-33" tabindex="-1"></a>luse_path <span class="ot">&lt;-</span> <span class="st">&quot;model_data/input/measure/parameterisation/measure_landuse_CS10.csv&quot;</span></span>
+<span id="cb670-34"><a href="combined-measure-and-climate-scenarios.html#cb670-34" tabindex="-1"></a>wetl_path <span class="ot">&lt;-</span><span class="st">&#39;model_data/input/measure/parameterisation/measure_wetland_CS10.csv&#39;</span></span>
+<span id="cb670-35"><a href="combined-measure-and-climate-scenarios.html#cb670-35" tabindex="-1"></a></span>
+<span id="cb670-36"><a href="combined-measure-and-climate-scenarios.html#cb670-36" tabindex="-1"></a>combinedscen<span class="sc">$</span><span class="fu">load_nswrm_definition</span>(<span class="at">file_path =</span> luse_path,</span>
+<span id="cb670-37"><a href="combined-measure-and-climate-scenarios.html#cb670-37" tabindex="-1"></a>                                  <span class="at">type =</span> <span class="st">&#39;land_use&#39;</span>,</span>
+<span id="cb670-38"><a href="combined-measure-and-climate-scenarios.html#cb670-38" tabindex="-1"></a>                                  <span class="at">overwrite =</span> T)</span>
+<span id="cb670-39"><a href="combined-measure-and-climate-scenarios.html#cb670-39" tabindex="-1"></a></span>
+<span id="cb670-40"><a href="combined-measure-and-climate-scenarios.html#cb670-40" tabindex="-1"></a>combinedscen<span class="sc">$</span><span class="fu">load_nswrm_definition</span>(wetl_path, <span class="st">&#39;wetland&#39;</span>, <span class="at">overwrite =</span> T)</span>
+<span id="cb670-41"><a href="combined-measure-and-climate-scenarios.html#cb670-41" tabindex="-1"></a></span>
+<span id="cb670-42"><a href="combined-measure-and-climate-scenarios.html#cb670-42" tabindex="-1"></a>combinedscen<span class="sc">$</span><span class="fu">load_nswrm_definition</span>(mgt_path,  <span class="st">&#39;management&#39;</span>, <span class="at">overwrite =</span> T)</span>
+<span id="cb670-43"><a href="combined-measure-and-climate-scenarios.html#cb670-43" tabindex="-1"></a>loca_path <span class="ot">&lt;-</span> <span class="st">&quot;model_data/input/measure/parameterisation/measure_location_CS10.csv&quot;</span></span>
+<span id="cb670-44"><a href="combined-measure-and-climate-scenarios.html#cb670-44" tabindex="-1"></a>combinedscen<span class="sc">$</span><span class="fu">load_nswrm_location</span>(loca_path, <span class="at">overwrite =</span> T)</span>
+<span id="cb670-45"><a href="combined-measure-and-climate-scenarios.html#cb670-45" tabindex="-1"></a></span>
+<span id="cb670-46"><a href="combined-measure-and-climate-scenarios.html#cb670-46" tabindex="-1"></a>combinedscen<span class="sc">$</span><span class="fu">save</span>()</span>
+<span id="cb670-47"><a href="combined-measure-and-climate-scenarios.html#cb670-47" tabindex="-1"></a><span class="fu">rm</span>(combinedscen)</span></code></pre></div>
+</div>
+<div id="run-measure-scenarios" class="section level2 hasAnchor" number="23.3">
+<h2><span class="header-section-number">23.3</span> Run Measure Scenarios<a href="combined-measure-and-climate-scenarios.html#run-measure-scenarios" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb671"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb671-1"><a href="combined-measure-and-climate-scenarios.html#cb671-1" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&#39;model_data/input/measure/calc_Indis.R&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb672"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb672-1"><a href="combined-measure-and-climate-scenarios.html#cb672-1" tabindex="-1"></a><span class="co"># remotes::install_git(&#39;https://git.ufz.de/schuerz/swatmeasr.git&#39;)</span></span>
+<span id="cb672-2"><a href="combined-measure-and-climate-scenarios.html#cb672-2" tabindex="-1"></a><span class="fu">require</span>(SWATmeasR)</span>
+<span id="cb672-3"><a href="combined-measure-and-climate-scenarios.html#cb672-3" tabindex="-1"></a><span class="fu">foo1</span>(<span class="fu">c</span>(<span class="st">&#39;dplyr&#39;</span> , <span class="st">&#39;readr&#39;</span> , <span class="st">&#39;tidyverse&#39;</span>, <span class="st">&#39;data.table&#39;</span>, <span class="st">&#39;remotes&#39;</span>, <span class="st">&#39;devtools&#39;</span>,</span>
+<span id="cb672-4"><a href="combined-measure-and-climate-scenarios.html#cb672-4" tabindex="-1"></a>       <span class="st">&#39;xts&#39;</span>, <span class="st">&#39;dygraphs&#39;</span>, <span class="st">&#39;R.utils&#39;</span>, <span class="st">&#39;foreach&#39;</span>, <span class="st">&#39;doParallel&#39;</span>, <span class="st">&#39;data.table&#39;</span>,</span>
+<span id="cb672-5"><a href="combined-measure-and-climate-scenarios.html#cb672-5" tabindex="-1"></a>       <span class="st">&#39;ggplot2&#39;</span>, <span class="st">&#39;fmsb&#39;</span>, <span class="st">&#39;patchwork&#39;</span>))</span>
+<span id="cb672-6"><a href="combined-measure-and-climate-scenarios.html#cb672-6" tabindex="-1"></a><span class="fu">foo2</span>(<span class="st">&#39;SWATmeasR&#39;</span>)</span>
+<span id="cb672-7"><a href="combined-measure-and-climate-scenarios.html#cb672-7" tabindex="-1"></a><span class="fu">foo3</span>(<span class="st">&#39;hydroGOF&#39;</span>)</span>
+<span id="cb672-8"><a href="combined-measure-and-climate-scenarios.html#cb672-8" tabindex="-1"></a></span>
+<span id="cb672-9"><a href="combined-measure-and-climate-scenarios.html#cb672-9" tabindex="-1"></a></span>
+<span id="cb672-10"><a href="combined-measure-and-climate-scenarios.html#cb672-10" tabindex="-1"></a>measr_name <span class="ot">&lt;-</span> <span class="st">&#39;combinedscen&#39;</span> </span>
+<span id="cb672-11"><a href="combined-measure-and-climate-scenarios.html#cb672-11" tabindex="-1"></a>scen_out <span class="ot">&lt;-</span> <span class="st">&#39;scenario_outputs&#39;</span></span>
+<span id="cb672-12"><a href="combined-measure-and-climate-scenarios.html#cb672-12" tabindex="-1"></a>cha_id <span class="ot">&lt;-</span> <span class="dv">37</span> </span>
+<span id="cb672-13"><a href="combined-measure-and-climate-scenarios.html#cb672-13" tabindex="-1"></a>wd <span class="ot">&lt;-</span> <span class="st">&quot;model_data/cs10_setup/scenarios/combined_scenarios/base_dirs/measr_scenario_simulation_rcp26_rcm6_H/&quot;</span></span>
+<span id="cb672-14"><a href="combined-measure-and-climate-scenarios.html#cb672-14" tabindex="-1"></a>project_path <span class="ot">&lt;-</span> <span class="fu">paste0</span>(wd,<span class="st">&#39;/txt&#39;</span>)</span>
+<span id="cb672-15"><a href="combined-measure-and-climate-scenarios.html#cb672-15" tabindex="-1"></a>cal_files <span class="ot">&lt;-</span> <span class="fu">dir</span>(<span class="fu">paste0</span>(wd,<span class="st">&#39;/cal_files&#39;</span>), <span class="at">full.names =</span> T)</span></code></pre></div>
+<div class="sourceCode" id="cb673"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb673-1"><a href="combined-measure-and-climate-scenarios.html#cb673-1" tabindex="-1"></a><span class="fu">load_measr</span>(<span class="fu">paste0</span>(project_path, <span class="st">&#39;/&#39;</span>, measr_name,<span class="st">&#39;.measr&#39;</span>))</span>
+<span id="cb673-2"><a href="combined-measure-and-climate-scenarios.html#cb673-2" tabindex="-1"></a><span class="fu">assign</span>(<span class="st">&#39;measr&#39;</span>, <span class="fu">get</span>(<span class="fu">gsub</span>(<span class="st">&#39;.measr&#39;</span>, <span class="st">&#39;&#39;</span>, measr_name)))</span>
+<span id="cb673-3"><a href="combined-measure-and-climate-scenarios.html#cb673-3" tabindex="-1"></a>loca <span class="ot">&lt;-</span> measr<span class="sc">$</span>.data<span class="sc">$</span>nswrm_definition<span class="sc">$</span>nswrm_locations</span>
+<span id="cb673-4"><a href="combined-measure-and-climate-scenarios.html#cb673-4" tabindex="-1"></a>measr.list <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;statusquo&#39;</span>,<span class="fu">unique</span>(loca<span class="sc">$</span>nswrm),<span class="st">&#39;all&#39;</span>)</span>
+<span id="cb673-5"><a href="combined-measure-and-climate-scenarios.html#cb673-5" tabindex="-1"></a>measr.list</span>
+<span id="cb673-6"><a href="combined-measure-and-climate-scenarios.html#cb673-6" tabindex="-1"></a><span class="co"># Creating the hru_agr.txt requires detecting agricultural fields. in our case</span></span>
+<span id="cb673-7"><a href="combined-measure-and-climate-scenarios.html#cb673-7" tabindex="-1"></a><span class="co"># this can be done with the janky prefixes _0, a_, _1, _2 . They are janky</span></span>
+<span id="cb673-8"><a href="combined-measure-and-climate-scenarios.html#cb673-8" tabindex="-1"></a><span class="co"># because the SWATxxxxR packages kept truncating them :(. This file is important</span></span>
+<span id="cb673-9"><a href="combined-measure-and-climate-scenarios.html#cb673-9" tabindex="-1"></a><span class="co"># for indicator calculation.</span></span>
+<span id="cb673-10"><a href="combined-measure-and-climate-scenarios.html#cb673-10" tabindex="-1"></a></span>
+<span id="cb673-11"><a href="combined-measure-and-climate-scenarios.html#cb673-11" tabindex="-1"></a>agri_prefix <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;_0&quot;</span>, <span class="st">&quot;a_&quot;</span>, <span class="st">&quot;_1&quot;</span>, <span class="st">&quot;_2&quot;</span>)</span>
+<span id="cb673-12"><a href="combined-measure-and-climate-scenarios.html#cb673-12" tabindex="-1"></a>hru_dat <span class="ot">&lt;-</span> <span class="fu">read_tbl</span>(<span class="st">&#39;hru-data.hru&#39;</span>, project_path, <span class="at">n_skip =</span> <span class="dv">2</span>)</span>
+<span id="cb673-13"><a href="combined-measure-and-climate-scenarios.html#cb673-13" tabindex="-1"></a>hru_agr <span class="ot">&lt;-</span> hru_dat <span class="sc">%&gt;%</span> </span>
+<span id="cb673-14"><a href="combined-measure-and-climate-scenarios.html#cb673-14" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">substring</span>(lu_mgt, <span class="dv">1</span>, <span class="dv">2</span>) <span class="sc">%in%</span> agri_prefix) <span class="sc">%&gt;%</span></span>
+<span id="cb673-15"><a href="combined-measure-and-climate-scenarios.html#cb673-15" tabindex="-1"></a>  <span class="fu">select</span>(<span class="at">hru_id =</span> id)</span>
+<span id="cb673-16"><a href="combined-measure-and-climate-scenarios.html#cb673-16" tabindex="-1"></a><span class="fu">write.table</span>(hru_agr, <span class="fu">paste0</span>(project_path, <span class="st">&#39;/hru_agr.txt&#39;</span>),</span>
+<span id="cb673-17"><a href="combined-measure-and-climate-scenarios.html#cb673-17" tabindex="-1"></a>            <span class="at">quote =</span> F, <span class="at">row.names =</span> F)</span>
+<span id="cb673-18"><a href="combined-measure-and-climate-scenarios.html#cb673-18" tabindex="-1"></a></span>
+<span id="cb673-19"><a href="combined-measure-and-climate-scenarios.html#cb673-19" tabindex="-1"></a></span>
+<span id="cb673-20"><a href="combined-measure-and-climate-scenarios.html#cb673-20" tabindex="-1"></a><span class="fu">run_scenarios</span>(</span>
+<span id="cb673-21"><a href="combined-measure-and-climate-scenarios.html#cb673-21" tabindex="-1"></a>  <span class="at">swat_exe =</span> <span class="st">&#39;Rev_61_0_64rel.exe&#39;</span>,</span>
+<span id="cb673-22"><a href="combined-measure-and-climate-scenarios.html#cb673-22" tabindex="-1"></a>  <span class="at">base_path =</span> <span class="st">&quot;model_data/cs10_setup/scenarios/combined_scenarios/base_dirs/measr_scenario_simulation_rcp26_rcm6_H/&quot;</span>,</span>
+<span id="cb673-23"><a href="combined-measure-and-climate-scenarios.html#cb673-23" tabindex="-1"></a>  <span class="at">scen_output =</span> <span class="st">&quot;model_data/cs10_setupscenarios/combined_scenarios/base_dirs/measr_scenario_simulation_rcp26_rcm6_H/measure_scenario_output&quot;</span>,</span>
+<span id="cb673-24"><a href="combined-measure-and-climate-scenarios.html#cb673-24" tabindex="-1"></a>  <span class="at">measure.list =</span> measr.list,</span>
+<span id="cb673-25"><a href="combined-measure-and-climate-scenarios.html#cb673-25" tabindex="-1"></a>  <span class="at">outflow_reach =</span> cha_id</span>
+<span id="cb673-26"><a href="combined-measure-and-climate-scenarios.html#cb673-26" tabindex="-1"></a>)</span></code></pre></div>
+<p>Diagnostic Plotting</p>
+<div class="sourceCode" id="cb674"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb674-1"><a href="combined-measure-and-climate-scenarios.html#cb674-1" tabindex="-1"></a>ens_results <span class="ot">&lt;-</span> <span class="fu">get_all_ens_results</span>()</span>
+<span id="cb674-2"><a href="combined-measure-and-climate-scenarios.html#cb674-2" tabindex="-1"></a><span class="co"># calculate percentage changes to status quo and derive statistics</span></span>
+<span id="cb674-3"><a href="combined-measure-and-climate-scenarios.html#cb674-3" tabindex="-1"></a><span class="co"># (mean, median, min, max) in case a cal file ensemble has been used</span></span>
+<span id="cb674-4"><a href="combined-measure-and-climate-scenarios.html#cb674-4" tabindex="-1"></a>ens_stats_all <span class="ot">&lt;-</span> <span class="fu">calc_ens_stats</span>()</span>
+<span id="cb674-5"><a href="combined-measure-and-climate-scenarios.html#cb674-5" tabindex="-1"></a></span>
+<span id="cb674-6"><a href="combined-measure-and-climate-scenarios.html#cb674-6" tabindex="-1"></a><span class="co"># plot the scenario results as stacked bars</span></span>
+<span id="cb674-7"><a href="combined-measure-and-climate-scenarios.html#cb674-7" tabindex="-1"></a><span class="co"># default here is to plot the median values (perhaps more robust than mean)</span></span>
+<span id="cb674-8"><a href="combined-measure-and-climate-scenarios.html#cb674-8" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">length</span>(cal_files)<span class="sc">&gt;</span><span class="dv">0</span>){</span>
+<span id="cb674-9"><a href="combined-measure-and-climate-scenarios.html#cb674-9" tabindex="-1"></a>  df <span class="ot">&lt;-</span> ens_stats_all <span class="sc">%&gt;%</span></span>
+<span id="cb674-10"><a href="combined-measure-and-climate-scenarios.html#cb674-10" tabindex="-1"></a>    <span class="fu">filter</span>(stats <span class="sc">==</span> <span class="st">&#39;median&#39;</span>, scen_name <span class="sc">!=</span> <span class="st">&#39;statusquo&#39;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb674-11"><a href="combined-measure-and-climate-scenarios.html#cb674-11" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>stats)</span>
+<span id="cb674-12"><a href="combined-measure-and-climate-scenarios.html#cb674-12" tabindex="-1"></a>}<span class="cf">else</span>{</span>
+<span id="cb674-13"><a href="combined-measure-and-climate-scenarios.html#cb674-13" tabindex="-1"></a>  df <span class="ot">&lt;-</span> ens_stats_all[<span class="sc">-</span><span class="dv">1</span>,]</span>
+<span id="cb674-14"><a href="combined-measure-and-climate-scenarios.html#cb674-14" tabindex="-1"></a>}</span>
+<span id="cb674-15"><a href="combined-measure-and-climate-scenarios.html#cb674-15" tabindex="-1"></a></span>
+<span id="cb674-16"><a href="combined-measure-and-climate-scenarios.html#cb674-16" tabindex="-1"></a>df_plot_long <span class="ot">&lt;-</span> <span class="fu">melt</span>(<span class="fu">setDT</span>(df), <span class="at">id.vars =</span> <span class="fu">c</span>(<span class="st">&quot;scen_name&quot;</span>), <span class="at">variable.name =</span> <span class="st">&quot;indi&quot;</span>)</span>
+<span id="cb674-17"><a href="combined-measure-and-climate-scenarios.html#cb674-17" tabindex="-1"></a></span>
+<span id="cb674-18"><a href="combined-measure-and-climate-scenarios.html#cb674-18" tabindex="-1"></a><span class="co">#plot_indicators(df_plot_long, separate=F)</span></span>
+<span id="cb674-19"><a href="combined-measure-and-climate-scenarios.html#cb674-19" tabindex="-1"></a></span>
+<span id="cb674-20"><a href="combined-measure-and-climate-scenarios.html#cb674-20" tabindex="-1"></a><span class="fu">plot_indicators</span>(df_plot_long, <span class="at">separate=</span>T)</span>
+<span id="cb674-21"><a href="combined-measure-and-climate-scenarios.html#cb674-21" tabindex="-1"></a></span>
+<span id="cb674-22"><a href="combined-measure-and-climate-scenarios.html#cb674-22" tabindex="-1"></a><span class="co"># save as pdf</span></span>
+<span id="cb674-23"><a href="combined-measure-and-climate-scenarios.html#cb674-23" tabindex="-1"></a><span class="fu">pdf</span>(<span class="st">&#39;model_data/results/plot_indicators_all_median.pdf&#39;</span>, <span class="at">width=</span><span class="fl">7.5</span>, <span class="at">height =</span> <span class="dv">10</span>)</span>
+<span id="cb674-24"><a href="combined-measure-and-climate-scenarios.html#cb674-24" tabindex="-1"></a><span class="fu">plot_indicators</span>(df_plot_long, <span class="at">separate=</span>F)</span>
+<span id="cb674-25"><a href="combined-measure-and-climate-scenarios.html#cb674-25" tabindex="-1"></a><span class="fu">dev.off</span>()</span>
+<span id="cb674-26"><a href="combined-measure-and-climate-scenarios.html#cb674-26" tabindex="-1"></a></span>
+<span id="cb674-27"><a href="combined-measure-and-climate-scenarios.html#cb674-27" tabindex="-1"></a><span class="co"># save as pdf</span></span>
+<span id="cb674-28"><a href="combined-measure-and-climate-scenarios.html#cb674-28" tabindex="-1"></a><span class="fu">png</span>(<span class="st">&#39;model_data/results/plot_indicators_all_median.png&#39;</span>, <span class="at">width =</span> <span class="fl">7.5</span>, <span class="at">height =</span> <span class="dv">10</span>, <span class="at">units =</span> <span class="st">&quot;in&quot;</span>, <span class="at">res =</span> <span class="dv">72</span>)</span>
+<span id="cb674-29"><a href="combined-measure-and-climate-scenarios.html#cb674-29" tabindex="-1"></a><span class="fu">plot_indicators</span>(df_plot_long, <span class="at">separate=</span>F)</span>
+<span id="cb674-30"><a href="combined-measure-and-climate-scenarios.html#cb674-30" tabindex="-1"></a><span class="fu">dev.off</span>()</span>
+<span id="cb674-31"><a href="combined-measure-and-climate-scenarios.html#cb674-31" tabindex="-1"></a></span>
+<span id="cb674-32"><a href="combined-measure-and-climate-scenarios.html#cb674-32" tabindex="-1"></a><span class="co"># generate results table</span></span>
+<span id="cb674-33"><a href="combined-measure-and-climate-scenarios.html#cb674-33" tabindex="-1"></a><span class="co"># In case cal file ensemble was used the table shows median, min, and max values</span></span>
+<span id="cb674-34"><a href="combined-measure-and-climate-scenarios.html#cb674-34" tabindex="-1"></a><span class="co"># for % changes to status quo. The status quo itself is shown in absolute values</span></span>
+<span id="cb674-35"><a href="combined-measure-and-climate-scenarios.html#cb674-35" tabindex="-1"></a><span class="co"># in SWAT model units.</span></span>
+<span id="cb674-36"><a href="combined-measure-and-climate-scenarios.html#cb674-36" tabindex="-1"></a></span>
+<span id="cb674-37"><a href="combined-measure-and-climate-scenarios.html#cb674-37" tabindex="-1"></a><span class="fu">write_results_table</span>(<span class="at">outfile =</span> <span class="st">&quot;model_data/cs10_setup/optimization/measure_scenario_output/ind_scenario_results.csv&quot;</span>)</span></code></pre></div>
+</div>
+<div id="harmonizing" class="section level2 hasAnchor" number="23.4">
+<h2><span class="header-section-number">23.4</span> Harmonizing<a href="combined-measure-and-climate-scenarios.html#harmonizing" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb675"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb675-1"><a href="combined-measure-and-climate-scenarios.html#cb675-1" tabindex="-1"></a>path <span class="ot">=</span> <span class="st">&quot;model_data/cs10_setup/scenarios/combined_scenarios/results/&quot;</span></span>
+<span id="cb675-2"><a href="combined-measure-and-climate-scenarios.html#cb675-2" tabindex="-1"></a>df_list <span class="ot">&lt;-</span> <span class="fu">dir</span>(path, <span class="at">pattern=</span><span class="st">&#39;rds&#39;</span>, <span class="at">full.names =</span> T)</span>
+<span id="cb675-3"><a href="combined-measure-and-climate-scenarios.html#cb675-3" tabindex="-1"></a></span>
+<span id="cb675-4"><a href="combined-measure-and-climate-scenarios.html#cb675-4" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(df_list[<span class="dv">1</span>])</span>
+<span id="cb675-5"><a href="combined-measure-and-climate-scenarios.html#cb675-5" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(df_list[<span class="dv">2</span>])</span>
+<span id="cb675-6"><a href="combined-measure-and-climate-scenarios.html#cb675-6" tabindex="-1"></a>df3 <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(df_list[<span class="dv">3</span>])</span>
+<span id="cb675-7"><a href="combined-measure-and-climate-scenarios.html#cb675-7" tabindex="-1"></a>df4 <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(df_list[<span class="dv">4</span>])</span>
+<span id="cb675-8"><a href="combined-measure-and-climate-scenarios.html#cb675-8" tabindex="-1"></a>df5 <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(df_list[<span class="dv">5</span>])</span>
+<span id="cb675-9"><a href="combined-measure-and-climate-scenarios.html#cb675-9" tabindex="-1"></a>df6 <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(df_list[<span class="dv">6</span>])</span>
+<span id="cb675-10"><a href="combined-measure-and-climate-scenarios.html#cb675-10" tabindex="-1"></a></span>
+<span id="cb675-11"><a href="combined-measure-and-climate-scenarios.html#cb675-11" tabindex="-1"></a>df_all <span class="ot">&lt;-</span> <span class="fu">rbind.data.frame</span>(df1,df2,df3,df4,df5,df6)</span>
+<span id="cb675-12"><a href="combined-measure-and-climate-scenarios.html#cb675-12" tabindex="-1"></a></span>
+<span id="cb675-13"><a href="combined-measure-and-climate-scenarios.html#cb675-13" tabindex="-1"></a>df_all <span class="ot">&lt;-</span> df_all <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Period =</span> <span class="fu">if_else</span>(Period <span class="sc">==</span> <span class="st">&quot;Histrorical&quot;</span>, <span class="st">&quot;Historical&quot;</span>, <span class="st">&#39;End of century&#39;</span> ))</span>
+<span id="cb675-14"><a href="combined-measure-and-climate-scenarios.html#cb675-14" tabindex="-1"></a></span>
+<span id="cb675-15"><a href="combined-measure-and-climate-scenarios.html#cb675-15" tabindex="-1"></a><span class="fu">saveRDS</span>(df_all, <span class="at">file =</span> <span class="st">&quot;model_data/cs10_setup/scenarios/combined_scenarios/df_combined_scenarios.rds&quot;</span>)</span></code></pre></div>
+</div>
+<div id="plotting" class="section level2 hasAnchor" number="23.5">
+<h2><span class="header-section-number">23.5</span> PLOTTING<a href="combined-measure-and-climate-scenarios.html#plotting" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb676"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb676-1"><a href="combined-measure-and-climate-scenarios.html#cb676-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb676-2"><a href="combined-measure-and-climate-scenarios.html#cb676-2" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer)</span>
+<span id="cb676-3"><a href="combined-measure-and-climate-scenarios.html#cb676-3" tabindex="-1"></a></span>
+<span id="cb676-4"><a href="combined-measure-and-climate-scenarios.html#cb676-4" tabindex="-1"></a>df_combined_scenarios <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;model_data/cs10_setup/scenarios/combined_scenarios/df_combined_scenarios.rds&quot;</span>)</span>
+<span id="cb676-5"><a href="combined-measure-and-climate-scenarios.html#cb676-5" tabindex="-1"></a></span>
+<span id="cb676-6"><a href="combined-measure-and-climate-scenarios.html#cb676-6" tabindex="-1"></a><span class="fu">unique</span>(df_combined_scenarios<span class="sc">$</span>indi)</span></code></pre></div>
+<pre><code>##  [1] Q_mean         Nload          Pload          Sedload        Q_max         
+##  [6] Q_max_aa       Q_p95          Q_p90          Q_p50          Q_p10         
+## [11] Q_p05          Q_min          Q_min_aa       Q_maxmin       Q_maxmin_aa   
+## [16] Q_low_days     Q_high_days    Nconc_days     Pconc_days     Sedconc_days  
+## [21] N_loss         P_loss         Sed_loss       N_loss_ratio   P_loss_ratio  
+## [26] sw             perc           sw_5_6_7_8_9   sw_5           sw_6          
+## [31] sw_7           sw_8           sw_9           grain_units_aa crops_ha_aa   
+## [36] wwht_ha        oats_ha        swht_ha        pota_ha        barl_ha       
+## [41] wwht_yld_t_ha  oats_yld_t_ha  swht_yld_t_ha  pota_yld_t_ha  barl_yld_t_ha 
+## 45 Levels: Q_mean Nload Pload Sedload Q_max Q_max_aa Q_p95 Q_p90 ... barl_yld_t_ha</code></pre>
+<div class="sourceCode" id="cb678"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb678-1"><a href="combined-measure-and-climate-scenarios.html#cb678-1" tabindex="-1"></a>wb_var  <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;Q_mean&#39;</span>, <span class="st">&#39;Q_max_aa&#39;</span>, <span class="st">&#39;Q_min_aa&#39;</span>, <span class="st">&#39;perc&#39;</span>, <span class="st">&#39;sw&#39;</span>, <span class="st">&#39;sw_5&#39;</span>, <span class="st">&#39;sw_6&#39;</span>)</span>
+<span id="cb678-2"><a href="combined-measure-and-climate-scenarios.html#cb678-2" tabindex="-1"></a>nut_var <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;P_loss&#39;</span>, <span class="st">&#39;Pload&#39;</span>, <span class="st">&#39;Pconc_days&#39;</span>, <span class="st">&#39;Sed_loss&#39;</span>, <span class="st">&#39;Sedload&#39;</span>, <span class="st">&#39;Sedconc_days&#39;</span>)</span>
+<span id="cb678-3"><a href="combined-measure-and-climate-scenarios.html#cb678-3" tabindex="-1"></a>yld_var <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;grain_units_aa&#39;</span>, <span class="st">&#39;crops_ha_aa&#39;</span>, <span class="st">&#39;wwht_yld_t_ha&#39;</span>, <span class="st">&#39;wbar_yld_t_ha&#39;</span>, <span class="st">&#39;swht_yld_t_ha&#39;</span>, <span class="st">&#39;oats_yld_t_ha&#39;</span>)</span>
+<span id="cb678-4"><a href="combined-measure-and-climate-scenarios.html#cb678-4" tabindex="-1"></a></span>
+<span id="cb678-5"><a href="combined-measure-and-climate-scenarios.html#cb678-5" tabindex="-1"></a>msr_var <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;statusquo&#39;</span>, <span class="st">&#39;buffer&#39;</span>, <span class="st">&#39;grassslope&#39;</span>, <span class="st">&#39;notill&#39;</span>, <span class="st">&#39;all&#39;</span>)</span>
+<span id="cb678-6"><a href="combined-measure-and-climate-scenarios.html#cb678-6" tabindex="-1"></a>msr_eng <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;statusquo&#39;</span>, <span class="st">&#39;riparian buffers&#39;</span>, <span class="st">&#39;grassed waterways&#39;</span>, <span class="st">&#39;notill&#39;</span>, <span class="st">&#39;all measures&#39;</span>)</span>
+<span id="cb678-7"><a href="combined-measure-and-climate-scenarios.html#cb678-7" tabindex="-1"></a>scen_nms <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;riparian buffers&#39;</span>, <span class="st">&#39;grassed waterways&#39;</span>, <span class="st">&#39;notill&#39;</span>, <span class="st">&#39;all measures&#39;</span>)</span>
+<span id="cb678-8"><a href="combined-measure-and-climate-scenarios.html#cb678-8" tabindex="-1"></a></span>
+<span id="cb678-9"><a href="combined-measure-and-climate-scenarios.html#cb678-9" tabindex="-1"></a>df <span class="ot">&lt;-</span> df_combined_scenarios <span class="sc">%&gt;%</span> </span>
+<span id="cb678-10"><a href="combined-measure-and-climate-scenarios.html#cb678-10" tabindex="-1"></a>  <span class="fu">filter</span>(indi <span class="sc">%in%</span> <span class="fu">c</span>(wb_var, nut_var, yld_var)) <span class="sc">%&gt;%</span> </span>
+<span id="cb678-11"><a href="combined-measure-and-climate-scenarios.html#cb678-11" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">indi =</span> <span class="fu">factor</span>(indi, <span class="at">levels =</span> <span class="fu">c</span>(wb_var, nut_var, yld_var), <span class="at">labels =</span> <span class="fu">c</span>(wb_var, nut_var, yld_var))) <span class="sc">%&gt;%</span></span>
+<span id="cb678-12"><a href="combined-measure-and-climate-scenarios.html#cb678-12" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">RCM =</span> <span class="fu">ifelse</span>(RCP <span class="sc">==</span> <span class="st">&#39;RCP26&#39;</span>, <span class="fu">paste</span>(RCM, <span class="st">&#39;(cool/dry)&#39;</span>), RCM)) <span class="sc">%&gt;%</span></span>
+<span id="cb678-13"><a href="combined-measure-and-climate-scenarios.html#cb678-13" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">RCM =</span> <span class="fu">ifelse</span>(RCP <span class="sc">==</span> <span class="st">&#39;RCP85&#39;</span> <span class="sc">&amp;</span></span>
+<span id="cb678-14"><a href="combined-measure-and-climate-scenarios.html#cb678-14" tabindex="-1"></a>                        RCM <span class="sc">==</span> <span class="st">&quot;RCM6&quot;</span>, <span class="fu">paste</span>(RCM, <span class="st">&#39;(cool/wet)&#39;</span>), RCM)) <span class="sc">%&gt;%</span></span>
+<span id="cb678-15"><a href="combined-measure-and-climate-scenarios.html#cb678-15" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">RCM =</span> <span class="fu">ifelse</span>(RCP <span class="sc">==</span> <span class="st">&#39;RCP85&#39;</span> <span class="sc">&amp;</span></span>
+<span id="cb678-16"><a href="combined-measure-and-climate-scenarios.html#cb678-16" tabindex="-1"></a>                        RCM <span class="sc">==</span> <span class="st">&quot;RCM5&quot;</span>, <span class="fu">paste</span>(RCM, <span class="st">&#39;(warm/wet)&#39;</span>), RCM)) <span class="sc">%&gt;%</span> </span>
+<span id="cb678-17"><a href="combined-measure-and-climate-scenarios.html#cb678-17" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">RCP =</span> <span class="fu">paste</span>(RCP, RCM, <span class="at">sep =</span> <span class="st">&#39;_&#39;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb678-18"><a href="combined-measure-and-climate-scenarios.html#cb678-18" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">scen_name =</span> <span class="fu">factor</span>(scen_name, <span class="at">levels =</span> msr_var, <span class="at">labels =</span> msr_eng))</span>
+<span id="cb678-19"><a href="combined-measure-and-climate-scenarios.html#cb678-19" tabindex="-1"></a></span>
+<span id="cb678-20"><a href="combined-measure-and-climate-scenarios.html#cb678-20" tabindex="-1"></a>plot_combined_scenario <span class="ot">&lt;-</span> <span class="cf">function</span>(scen_tbl, indicators, scen_names) {</span>
+<span id="cb678-21"><a href="combined-measure-and-climate-scenarios.html#cb678-21" tabindex="-1"></a>  df <span class="ot">&lt;-</span> <span class="fu">filter</span>(scen_tbl, indi <span class="sc">%in%</span> indicators) <span class="sc">%&gt;%</span> </span>
+<span id="cb678-22"><a href="combined-measure-and-climate-scenarios.html#cb678-22" tabindex="-1"></a>    <span class="fu">tibble</span>()</span>
+<span id="cb678-23"><a href="combined-measure-and-climate-scenarios.html#cb678-23" tabindex="-1"></a>  </span>
+<span id="cb678-24"><a href="combined-measure-and-climate-scenarios.html#cb678-24" tabindex="-1"></a>  df_sq <span class="ot">&lt;-</span> <span class="fu">filter</span>(df, scen_name <span class="sc">==</span> <span class="st">&#39;statusquo&#39;</span>)</span>
+<span id="cb678-25"><a href="combined-measure-and-climate-scenarios.html#cb678-25" tabindex="-1"></a>  df_sq <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(<span class="fu">mutate</span>(df_sq, <span class="at">pos =</span> <span class="sc">-</span><span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>), <span class="fu">mutate</span>(df_sq, <span class="at">pos =</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb678-26"><a href="combined-measure-and-climate-scenarios.html#cb678-26" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">Period =</span> <span class="fu">factor</span>(Period, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&#39;Historical&#39;</span>, <span class="st">&#39;End of century&#39;</span>))) <span class="sc">%&gt;%</span> </span>
+<span id="cb678-27"><a href="combined-measure-and-climate-scenarios.html#cb678-27" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">pos =</span> pos <span class="sc">+</span> <span class="fu">as.numeric</span>(Period))</span>
+<span id="cb678-28"><a href="combined-measure-and-climate-scenarios.html#cb678-28" tabindex="-1"></a>  </span>
+<span id="cb678-29"><a href="combined-measure-and-climate-scenarios.html#cb678-29" tabindex="-1"></a>  df_sq_h <span class="ot">&lt;-</span> <span class="fu">filter</span>(df_sq, Period <span class="sc">==</span> <span class="st">&#39;Historical&#39;</span>)</span>
+<span id="cb678-30"><a href="combined-measure-and-climate-scenarios.html#cb678-30" tabindex="-1"></a>  df_sq_c <span class="ot">&lt;-</span> <span class="fu">filter</span>(df_sq, Period <span class="sc">==</span> <span class="st">&#39;End of century&#39;</span>)</span>
+<span id="cb678-31"><a href="combined-measure-and-climate-scenarios.html#cb678-31" tabindex="-1"></a>  </span>
+<span id="cb678-32"><a href="combined-measure-and-climate-scenarios.html#cb678-32" tabindex="-1"></a>  df_pnt <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb678-33"><a href="combined-measure-and-climate-scenarios.html#cb678-33" tabindex="-1"></a>    <span class="fu">filter</span>(scen_name <span class="sc">!=</span> <span class="st">&#39;statusquo&#39;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb678-34"><a href="combined-measure-and-climate-scenarios.html#cb678-34" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">scen_name =</span> <span class="fu">factor</span>(scen_name, <span class="at">levels =</span> scen_names)) <span class="sc">%&gt;%</span> </span>
+<span id="cb678-35"><a href="combined-measure-and-climate-scenarios.html#cb678-35" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">Period =</span> <span class="fu">factor</span>(Period, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&#39;Historical&#39;</span>, <span class="st">&#39;End of century&#39;</span>))) <span class="sc">%&gt;%</span> </span>
+<span id="cb678-36"><a href="combined-measure-and-climate-scenarios.html#cb678-36" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">pos =</span> <span class="fu">as.numeric</span>(<span class="fu">scale</span>(<span class="fu">as.numeric</span>(scen_name)))) <span class="sc">%&gt;%</span> </span>
+<span id="cb678-37"><a href="combined-measure-and-climate-scenarios.html#cb678-37" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">pos =</span> pos<span class="sc">/</span>(<span class="dv">3</span> <span class="sc">*</span> <span class="fu">max</span>(pos)) <span class="sc">+</span> <span class="fu">as.numeric</span>(Period))</span>
+<span id="cb678-38"><a href="combined-measure-and-climate-scenarios.html#cb678-38" tabindex="-1"></a>  </span>
+<span id="cb678-39"><a href="combined-measure-and-climate-scenarios.html#cb678-39" tabindex="-1"></a>  df_base <span class="ot">&lt;-</span> df_sq <span class="sc">%&gt;%</span> </span>
+<span id="cb678-40"><a href="combined-measure-and-climate-scenarios.html#cb678-40" tabindex="-1"></a>    <span class="fu">select</span>(indi, RCP, Period, value) <span class="sc">%&gt;%</span> </span>
+<span id="cb678-41"><a href="combined-measure-and-climate-scenarios.html#cb678-41" tabindex="-1"></a>    <span class="fu">rename</span>(<span class="at">status_quo =</span> value)</span>
+<span id="cb678-42"><a href="combined-measure-and-climate-scenarios.html#cb678-42" tabindex="-1"></a>  </span>
+<span id="cb678-43"><a href="combined-measure-and-climate-scenarios.html#cb678-43" tabindex="-1"></a>  df_rng <span class="ot">&lt;-</span> <span class="fu">left_join</span>(df_pnt, df_base, </span>
+<span id="cb678-44"><a href="combined-measure-and-climate-scenarios.html#cb678-44" tabindex="-1"></a>                      <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&#39;indi&#39;</span>, <span class="st">&#39;RCP&#39;</span>, <span class="st">&#39;Period&#39;</span>),</span>
+<span id="cb678-45"><a href="combined-measure-and-climate-scenarios.html#cb678-45" tabindex="-1"></a>                      <span class="at">relationship =</span> <span class="st">&#39;many-to-many&#39;</span>)</span>
+<span id="cb678-46"><a href="combined-measure-and-climate-scenarios.html#cb678-46" tabindex="-1"></a>  </span>
+<span id="cb678-47"><a href="combined-measure-and-climate-scenarios.html#cb678-47" tabindex="-1"></a>  col_pal <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">brewer.pal</span>(<span class="fu">length</span>(scen_names) <span class="sc">-</span> <span class="dv">1</span>, <span class="st">&#39;Accent&#39;</span>), <span class="st">&#39;black&#39;</span>)</span>
+<span id="cb678-48"><a href="combined-measure-and-climate-scenarios.html#cb678-48" tabindex="-1"></a>  </span>
+<span id="cb678-49"><a href="combined-measure-and-climate-scenarios.html#cb678-49" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb678-50"><a href="combined-measure-and-climate-scenarios.html#cb678-50" tabindex="-1"></a>    <span class="fu">geom_path</span>(<span class="at">data =</span> df_sq_h, <span class="fu">aes</span>(<span class="at">x =</span> pos, <span class="at">y =</span> value, <span class="at">linetype =</span> <span class="st">&#39;Status quo&#39;</span>), <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb678-51"><a href="combined-measure-and-climate-scenarios.html#cb678-51" tabindex="-1"></a>    <span class="fu">geom_path</span>(<span class="at">data =</span> df_sq_c, <span class="fu">aes</span>(<span class="at">x =</span> pos, <span class="at">y =</span> value), <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb678-52"><a href="combined-measure-and-climate-scenarios.html#cb678-52" tabindex="-1"></a>    <span class="fu">geom_linerange</span>(<span class="at">data =</span> df_rng, <span class="fu">aes</span>(<span class="at">x =</span> pos, <span class="at">ymin =</span> status_quo, <span class="at">ymax =</span> value, <span class="at">color =</span> scen_name), <span class="at">linetype =</span> <span class="st">&#39;dotted&#39;</span>) <span class="sc">+</span></span>
+<span id="cb678-53"><a href="combined-measure-and-climate-scenarios.html#cb678-53" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">data =</span> df_pnt, <span class="fu">aes</span>(<span class="at">x =</span> pos, <span class="at">y =</span> value, <span class="at">shape =</span> scen_name, <span class="at">color =</span> scen_name), <span class="at">size =</span> <span class="fl">3.2</span>) <span class="sc">+</span> </span>
+<span id="cb678-54"><a href="combined-measure-and-climate-scenarios.html#cb678-54" tabindex="-1"></a>    <span class="fu">facet_grid</span>(<span class="at">cols =</span> <span class="fu">vars</span>(RCP), <span class="at">rows =</span> <span class="fu">vars</span>(indi), <span class="at">scales =</span> <span class="st">&#39;free_y&#39;</span>, <span class="at">switch =</span> <span class="st">&#39;y&#39;</span>) <span class="sc">+</span> </span>
+<span id="cb678-55"><a href="combined-measure-and-climate-scenarios.html#cb678-55" tabindex="-1"></a>    <span class="fu">scale_shape_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">16</span>, <span class="fu">length</span>(scen_names) <span class="sc">-</span> <span class="dv">1</span>), <span class="dv">4</span>)) <span class="sc">+</span></span>
+<span id="cb678-56"><a href="combined-measure-and-climate-scenarios.html#cb678-56" tabindex="-1"></a>    <span class="fu">scale_color_manual</span>(<span class="at">values =</span>col_pal) <span class="sc">+</span></span>
+<span id="cb678-57"><a href="combined-measure-and-climate-scenarios.html#cb678-57" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="at">labels =</span>  <span class="fu">c</span>(<span class="st">&#39;Historical&#39;</span>, <span class="st">&#39;End century&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb678-58"><a href="combined-measure-and-climate-scenarios.html#cb678-58" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;Period&#39;</span>, <span class="at">color =</span> <span class="st">&#39;NSWRM&#39;</span>, <span class="at">shape =</span> <span class="st">&#39;NSWRM&#39;</span>, <span class="at">linetype =</span> <span class="st">&#39;&#39;</span>) <span class="sc">+</span></span>
+<span id="cb678-59"><a href="combined-measure-and-climate-scenarios.html#cb678-59" tabindex="-1"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb678-60"><a href="combined-measure-and-climate-scenarios.html#cb678-60" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.title.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb678-61"><a href="combined-measure-and-climate-scenarios.html#cb678-61" tabindex="-1"></a>          <span class="at">strip.background =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb678-62"><a href="combined-measure-and-climate-scenarios.html#cb678-62" tabindex="-1"></a>          <span class="at">strip.placement =</span> <span class="st">&quot;outside&quot;</span>,</span>
+<span id="cb678-63"><a href="combined-measure-and-climate-scenarios.html#cb678-63" tabindex="-1"></a>          <span class="at">strip.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>),</span>
+<span id="cb678-64"><a href="combined-measure-and-climate-scenarios.html#cb678-64" tabindex="-1"></a>          <span class="at">strip.text.x =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&#39;bold&#39;</span>, <span class="at">size =</span> <span class="dv">10</span>, <span class="at">hjust =</span> <span class="dv">0</span>))</span>
+<span id="cb678-65"><a href="combined-measure-and-climate-scenarios.html#cb678-65" tabindex="-1"></a>}</span>
+<span id="cb678-66"><a href="combined-measure-and-climate-scenarios.html#cb678-66" tabindex="-1"></a></span>
+<span id="cb678-67"><a href="combined-measure-and-climate-scenarios.html#cb678-67" tabindex="-1"></a></span>
+<span id="cb678-68"><a href="combined-measure-and-climate-scenarios.html#cb678-68" tabindex="-1"></a><span class="fu">plot_combined_scenario</span>(<span class="at">scen_tbl =</span> df,</span>
+<span id="cb678-69"><a href="combined-measure-and-climate-scenarios.html#cb678-69" tabindex="-1"></a>                       <span class="at">indicators =</span> wb_var[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>],</span>
+<span id="cb678-70"><a href="combined-measure-and-climate-scenarios.html#cb678-70" tabindex="-1"></a>                       <span class="at">scen_names =</span> scen_nms) <span class="co"># plot 850 x 640</span></span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-99-1.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb679"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb679-1"><a href="combined-measure-and-climate-scenarios.html#cb679-1" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;model_data/results/combined_scenarios/Q_mean_min_max.png&quot;</span>,</span>
+<span id="cb679-2"><a href="combined-measure-and-climate-scenarios.html#cb679-2" tabindex="-1"></a>       <span class="at">height =</span> <span class="dv">11</span>, <span class="at">width =</span> <span class="dv">20</span>, <span class="at">units =</span> <span class="st">&quot;cm&quot;</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span>
+<span id="cb679-3"><a href="combined-measure-and-climate-scenarios.html#cb679-3" tabindex="-1"></a></span>
+<span id="cb679-4"><a href="combined-measure-and-climate-scenarios.html#cb679-4" tabindex="-1"></a><span class="fu">plot_combined_scenario</span>(df, <span class="at">indicators =</span> wb_var[<span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">7</span>)], <span class="at">scen_names =</span> scen_nms)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-99-2.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb680"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb680-1"><a href="combined-measure-and-climate-scenarios.html#cb680-1" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;model_data/results/combined_scenarios/sw_6_sw_perc.png&quot;</span>,</span>
+<span id="cb680-2"><a href="combined-measure-and-climate-scenarios.html#cb680-2" tabindex="-1"></a>       <span class="at">height =</span> <span class="dv">11</span>, <span class="at">width =</span> <span class="dv">20</span>, <span class="at">units =</span> <span class="st">&quot;cm&quot;</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span>
+<span id="cb680-3"><a href="combined-measure-and-climate-scenarios.html#cb680-3" tabindex="-1"></a></span>
+<span id="cb680-4"><a href="combined-measure-and-climate-scenarios.html#cb680-4" tabindex="-1"></a><span class="fu">plot_combined_scenario</span>(df, <span class="at">indicators =</span> nut_var[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>], <span class="at">scen_names =</span> scen_nms) <span class="co"># plot 850 x 640</span></span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-99-3.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb681"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb681-1"><a href="combined-measure-and-climate-scenarios.html#cb681-1" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;model_data/results/combined_scenarios/Pconc_Pload_P_loss.png&quot;</span>,</span>
+<span id="cb681-2"><a href="combined-measure-and-climate-scenarios.html#cb681-2" tabindex="-1"></a>       <span class="at">height =</span> <span class="dv">11</span>, <span class="at">width =</span> <span class="dv">20</span>, <span class="at">units =</span> <span class="st">&quot;cm&quot;</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span>
+<span id="cb681-3"><a href="combined-measure-and-climate-scenarios.html#cb681-3" tabindex="-1"></a></span>
+<span id="cb681-4"><a href="combined-measure-and-climate-scenarios.html#cb681-4" tabindex="-1"></a><span class="fu">plot_combined_scenario</span>(df, <span class="at">indicators =</span> nut_var[<span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>], <span class="at">scen_names =</span> scen_nms)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-99-4.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb682"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb682-1"><a href="combined-measure-and-climate-scenarios.html#cb682-1" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;model_data/results/combined_scenarios/sedconc_sedload_sedloss.png&quot;</span>,</span>
+<span id="cb682-2"><a href="combined-measure-and-climate-scenarios.html#cb682-2" tabindex="-1"></a>       <span class="at">height =</span> <span class="dv">11</span>, <span class="at">width =</span> <span class="dv">20</span>, <span class="at">units =</span> <span class="st">&quot;cm&quot;</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span>
+<span id="cb682-3"><a href="combined-measure-and-climate-scenarios.html#cb682-3" tabindex="-1"></a></span>
+<span id="cb682-4"><a href="combined-measure-and-climate-scenarios.html#cb682-4" tabindex="-1"></a><span class="fu">plot_combined_scenario</span>(df, <span class="at">indicators =</span> yld_var[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>], <span class="at">scen_names =</span> scen_nms) <span class="co"># plot 862 x 455</span></span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-99-5.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb683"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb683-1"><a href="combined-measure-and-climate-scenarios.html#cb683-1" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;model_data/results/combined_scenarios/crops_ha_grainunits.png&quot;</span>,</span>
+<span id="cb683-2"><a href="combined-measure-and-climate-scenarios.html#cb683-2" tabindex="-1"></a>       <span class="at">height =</span> <span class="dv">11</span>, <span class="at">width =</span> <span class="dv">20</span>, <span class="at">units =</span> <span class="st">&quot;cm&quot;</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span>
+<span id="cb683-3"><a href="combined-measure-and-climate-scenarios.html#cb683-3" tabindex="-1"></a></span>
+<span id="cb683-4"><a href="combined-measure-and-climate-scenarios.html#cb683-4" tabindex="-1"></a><span class="fu">plot_combined_scenario</span>(df, <span class="at">indicators =</span> yld_var[<span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">6</span>)], <span class="at">scen_names =</span> scen_nms) <span class="co"># plot 850 x 640</span></span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-99-6.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb684"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb684-1"><a href="combined-measure-and-climate-scenarios.html#cb684-1" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;model_data/results/combined_scenarios/oats_swht_wwht.png&quot;</span>,</span>
+<span id="cb684-2"><a href="combined-measure-and-climate-scenarios.html#cb684-2" tabindex="-1"></a>       <span class="at">height =</span> <span class="dv">11</span>, <span class="at">width =</span> <span class="dv">20</span>, <span class="at">units =</span> <span class="st">&quot;cm&quot;</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span></code></pre></div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="optimization.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="land-object-input-abandoned.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://gitlab.nibio.no/moritzshore/swat-cs10/-/edit/main/18-combined-measure-climate-scenarios.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": "https://gitlab.nibio.no/moritzshore/swat-cs10/blob/main/18-combined-measure-climate-scenarios.Rmd",
+    "text": null
+  },
+  "download": ["_main.pdf"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

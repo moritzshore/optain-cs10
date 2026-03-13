@@ -15,7 +15,6 @@ fig:soilsimpleplot
 fig:soilsimplegif
 fig:soilidplot
 fig:soilrastplot
-fig:piechartsoildist
 fig:luexamp
 fig:inputgenlomap
 fig:tiledraincomparegif
@@ -258,6 +257,7 @@ running-farmr
 no-autumn-tillage
 running-famr
 stubbe-v2
+measurement-scenarios-for-future-climate
 update-of-the-swatfarmr-input-input-files
 setup
 documenting-changes-in-the-txt-inputs-files-of-calibrated-model-setup
@@ -314,6 +314,17 @@ grain-units
 running-comola
 results-visualization
 references
+combined-measure-and-climate-scenarios
+preperation
+selection-of-rcm-rcp-combinations
+copy-your-measr_scenario_simulation-folder-n-times
+remove-existing-measr-project-and-the-cal_files-and-scenario_outputs-folders
+replace-all-swat-files-in-the-txt-folder-with-the-ones-from-the-climate-workflow
+run-swatfarmr
+prepare-measure-scenarios
+run-measure-scenarios
+harmonizing
+plotting
 land-object-input-abandoned
 data-sources-1
 delineation-of-land-objects-1

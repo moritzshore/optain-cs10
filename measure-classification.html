@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Section 21 Measure Classification | OPTAIN CS10: Kråkstad SWAT+ Modelling Workflow</title>
   <meta name="description" content="A documentation of the project setup for OPTAIN case study 10, Kråkstad" />
-  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Section 21 Measure Classification | OPTAIN CS10: Kråkstad SWAT+ Modelling Workflow" />
   <meta property="og:type" content="book" />
@@ -20,10 +20,10 @@
   <meta name="twitter:description" content="A documentation of the project setup for OPTAIN case study 10, Kråkstad" />
   <meta name="twitter:image" content="https://moritzshore.github.io/optain-cs10/figures/banner.png" />
 
-<meta name="author" content="Moritz Shore (workflow author, modelling) Csilla Farkas (lead modeller) Christoph Schürz (modelling) Doninika Krzeminska (measures &amp; stakeholders) Anne-Grete Buseth Blankenberg (measures &amp; stakeholders) Robert Barneveld (measures &amp; mapping) Attila Nemes (project lead) ..and with strong support of the OPTAIN core team" />
+<meta name="author" content="Moritz Shore (workflow author, modelling) Csilla Farkas (lead modeller) Christoph Schürz (modelling) Dominika Krzeminska (measures &amp; stakeholders) Anne-Grete Buseth Blankenberg (measures &amp; stakeholders) Robert Barneveld (measures &amp; mapping) Attila Nemes (project lead) ..and with strong support of the OPTAIN core team" />
 
 
-<meta name="date" content="2025-02-28" />
+<meta name="date" content="2026-03-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,7 +52,7 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<link href="libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet" />
 <script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
 <link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
 <script src="libs/leaflet-1.3.1/leaflet.js"></script>
@@ -60,61 +60,82 @@
 <script src="libs/proj4-2.6.2/proj4.min.js"></script>
 <script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
 <link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-binding-2.2.2/leaflet.js"></script>
+<script src="libs/leaflet-binding-2.2.3/leaflet.js"></script>
 <script src="libs/leaflet-providers-2.0.0/leaflet-providers_2.0.0.js"></script>
-<script src="libs/leaflet-providers-plugin-2.2.2/leaflet-providers-plugin.js"></script>
-<script src="libs/tile1_rasterlayer_4608e7-1/data_stars_tile1_rasterlayer82613c.txt"></script>
+<script src="libs/leaflet-providers-plugin-2.2.3/leaflet-providers-plugin.js"></script>
+<script src="libs/tile1_rasterlayer_4b9dc7-1/data_stars_tile1_rasterlayer290c35.txt"></script>
 <script src="libs/joda-0.0.1/joda.js"></script>
 <script src="libs/joda-0.0.1/addImageQuery-bindings.js"></script>
 <script src="libs/clipboard-0.0.1/setClipboardText.js"></script>
-<link href="libs/HomeButton-0.0.1/home-button.css" rel="stylesheet" />
 <script src="libs/HomeButton-0.0.1/home-button.js"></script>
 <script src="libs/HomeButton-0.0.1/easy-button-src.min.js"></script>
+<link href="libs/tile1_rasterlayer-CSS-0.0.1/tile1_rasterlayer_home-button.css" rel="stylesheet" />
 <link href="libs/mapviewCSS-0.0.1/mapview-popup.css" rel="stylesheet" />
 <link href="libs/mapviewCSS-0.0.1/mapview.css" rel="stylesheet" />
-<script src="libs/tile2_rasterlayer_d0b7c6-1/data_stars_tile2_rasterlayer18d403.txt"></script>
-<script src="libs/dem_layer_915ecb-1/data_stars_dem_layer92e3a7.txt"></script>
+<script src="libs/tile2_rasterlayer_a63e09-1/data_stars_tile2_rasterlayer1fe8d0.txt"></script>
+<link href="libs/tile2_rasterlayer-CSS-0.0.1/tile2_rasterlayer_home-button.css" rel="stylesheet" />
+<link href="libs/basin_shp-CSS-0.0.1/basin_shp_home-button.css" rel="stylesheet" />
+<script src="libs/dem_layer_f7d5ea-1/data_stars_dem_layerc639f2.txt"></script>
+<link href="libs/dem_layer-CSS-0.0.1/dem_layer_home-button.css" rel="stylesheet" />
 <link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
-<script src="libs/datatables-binding-0.33/datatables.js"></script>
+<script src="libs/datatables-binding-0.34.0/datatables.js"></script>
 <link href="libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet" />
 <link href="libs/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet" />
 <script src="libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
-<link href="libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet" />
-<script src="libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
-<script src="libs/stream_crop_39b072-1/data_stars_stream_crop2d4f69.txt"></script>
-<script src="libs/ws_a1945d-1/data_stars_ws4efda1.txt"></script>
-<script src="libs/rglWebGL-binding-1.3.17/rglWebGL.js"></script>
-<link href="libs/rglwidgetClass-1.3.17/rgl.css" rel="stylesheet" />
-<script src="libs/rglwidgetClass-1.3.17/rglClass.src.js"></script>
-<script src="libs/rglwidgetClass-1.3.17/utils.src.js"></script>
-<script src="libs/rglwidgetClass-1.3.17/buffer.src.js"></script>
-<script src="libs/rglwidgetClass-1.3.17/subscenes.src.js"></script>
-<script src="libs/rglwidgetClass-1.3.17/shaders.src.js"></script>
-<script src="libs/rglwidgetClass-1.3.17/shadersrc.src.js"></script>
-<script src="libs/rglwidgetClass-1.3.17/textures.src.js"></script>
-<script src="libs/rglwidgetClass-1.3.17/projection.src.js"></script>
-<script src="libs/rglwidgetClass-1.3.17/mouse.src.js"></script>
-<script src="libs/rglwidgetClass-1.3.17/init.src.js"></script>
-<script src="libs/rglwidgetClass-1.3.17/pieces.src.js"></script>
-<script src="libs/rglwidgetClass-1.3.17/draw.src.js"></script>
-<script src="libs/rglwidgetClass-1.3.17/controls.src.js"></script>
-<script src="libs/rglwidgetClass-1.3.17/selection.src.js"></script>
-<script src="libs/rglwidgetClass-1.3.17/rglTimer.src.js"></script>
-<script src="libs/rglwidgetClass-1.3.17/pretty.src.js"></script>
-<script src="libs/rglwidgetClass-1.3.17/axes.src.js"></script>
-<script src="libs/rglwidgetClass-1.3.17/animation.src.js"></script>
-<script src="libs/CanvasMatrix4-1.3.17/CanvasMatrix.src.js"></script>
-<script src="libs/plotly-binding-4.10.4/plotly.js"></script>
+<link href="libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
+<link href="libs/outlet_point-CSS-0.0.1/outlet_point_home-button.css" rel="stylesheet" />
+<link href="libs/extent-CSS-0.0.1/extent_home-button.css" rel="stylesheet" />
+<script src="libs/stream_crop_b80392-1/data_stars_stream_cropf942be.txt"></script>
+<link href="libs/stream_crop-CSS-0.0.1/stream_crop_home-button.css" rel="stylesheet" />
+<link href="libs/pp-CSS-0.0.1/pp_home-button.css" rel="stylesheet" />
+<script src="libs/ws_084ab3-1/data_stars_wsd86b34.txt"></script>
+<link href="libs/ws-CSS-0.0.1/ws_home-button.css" rel="stylesheet" />
+<link href="libs/wsshape-CSS-0.0.1/wsshape_home-button.css" rel="stylesheet" />
+<link href="libs/dem10m-CSS-0.0.1/dem10m_home-button.css" rel="stylesheet" />
+<script src="libs/rglWebGL-binding-1.3.36/rglWebGL.js"></script>
+<link href="libs/rglwidgetClass-1.3.36/rgl.css" rel="stylesheet" />
+<script src="libs/rglwidgetClass-1.3.36/rglClass.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.36/utils.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.36/buffer.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.36/subscenes.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.36/shaders.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.36/shadersrc.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.36/textures.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.36/projection.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.36/mouse.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.36/init.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.36/pieces.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.36/draw.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.36/controls.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.36/selection.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.36/rglTimer.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.36/pretty.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.36/axes.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.36/animation.src.js"></script>
+<script src="libs/CanvasMatrix4-1.3.36/CanvasMatrix.src.js"></script>
+<link href="libs/lu_drains_____filter_natural_drain____type-CSS-0.0.1/lu_drains_____filter_natural_drain____type_home-button.css" rel="stylesheet" />
+<script src="libs/plotly-binding-4.12.0/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
-<link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.25.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.25.2/plotly-latest.min.js"></script>
+<link href="libs/stations-CSS-0.0.1/stations_home-button.css" rel="stylesheet" />
+<link href="libs/basin-CSS-0.0.1/basin_home-button.css" rel="stylesheet" />
+<link href="libs/field_sites_shp-CSS-0.0.1/field_sites_shp_home-button.css" rel="stylesheet" />
 <link href="libs/dt-ext-scroller-1.13.6/css/scroller.dataTables.min.css" rel="stylesheet" />
 <script src="libs/dt-ext-scroller-1.13.6/js/dataTables.scroller.min.js"></script>
+<link href="libs/soil_propery_map___HYDGRP-CSS-0.0.1/soil_propery_map___HYDGRP_home-button.css" rel="stylesheet" />
+<link href="libs/Field_Sites-CSS-0.0.1/Field_Sites_home-button.css" rel="stylesheet" />
+<link href="libs/hru_shp___soil-CSS-0.0.1/hru_shp___soil_home-button.css" rel="stylesheet" />
+<link href="libs/Problem_LUs-CSS-0.0.1/Problem_LUs_home-button.css" rel="stylesheet" />
+<link href="libs/Problem_HRUs-CSS-0.0.1/Problem_HRUs_home-button.css" rel="stylesheet" />
+<link href="libs/hru_pal_avg___p_al_mean-CSS-0.0.1/hru_pal_avg___p_al_mean_home-button.css" rel="stylesheet" />
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -124,7 +145,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -218,7 +239,7 @@ div.csl-indent {
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">The OPTAIN-CS10 Project</a></li>
+<li><a href="./">OPTAIN CS10 Kråkstad</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
@@ -469,6 +490,7 @@ div.csl-indent {
 <li class="chapter" data-level="15.1.1" data-path="landuse-scenarios.html"><a href="landuse-scenarios.html#status-quo"><i class="fa fa-check"></i><b>15.1.1</b> Status Quo</a></li>
 <li class="chapter" data-level="15.1.2" data-path="landuse-scenarios.html"><a href="landuse-scenarios.html#no-autumn-tillage"><i class="fa fa-check"></i><b>15.1.2</b> No Autumn Tillage</a></li>
 </ul></li>
+<li class="chapter" data-level="15.2" data-path="landuse-scenarios.html"><a href="landuse-scenarios.html#measurement-scenarios-for-future-climate"><i class="fa fa-check"></i><b>15.2</b> Measurement Scenarios for future climate</a></li>
 </ul></li>
 <li class="chapter" data-level="16" data-path="update-of-the-swatfarmr-input-input-files.html"><a href="update-of-the-swatfarmr-input-input-files.html"><i class="fa fa-check"></i><b>16</b> Update of the SWATfarmR input input files</a>
 <ul>
@@ -536,20 +558,35 @@ div.csl-indent {
 <li class="chapter" data-level="22.6.1" data-path="optimization.html"><a href="optimization.html#references"><i class="fa fa-check"></i><b>22.6.1</b> References</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="23" data-path="land-object-input-abandoned.html"><a href="land-object-input-abandoned.html"><i class="fa fa-check"></i><b>23</b> Land Object Input (abandoned)</a>
+<li class="chapter" data-level="23" data-path="combined-measure-and-climate-scenarios.html"><a href="combined-measure-and-climate-scenarios.html"><i class="fa fa-check"></i><b>23</b> Combined Measure and Climate Scenarios</a>
 <ul>
-<li class="chapter" data-level="23.0.1" data-path="land-object-input-abandoned.html"><a href="land-object-input-abandoned.html#data-sources-1"><i class="fa fa-check"></i><b>23.0.1</b> Data sources</a></li>
-<li class="chapter" data-level="23.0.2" data-path="land-object-input-abandoned.html"><a href="land-object-input-abandoned.html#delineation-of-land-objects-1"><i class="fa fa-check"></i><b>23.0.2</b> Delineation of land objects</a></li>
-<li class="chapter" data-level="23.0.3" data-path="land-object-input-abandoned.html"><a href="land-object-input-abandoned.html#standing-water-bodies-and-the-land-use-type-watr"><i class="fa fa-check"></i><b>23.0.3</b> Standing water bodies and the land use type = ‘watr’</a></li>
-<li class="chapter" data-level="23.0.4" data-path="land-object-input-abandoned.html"><a href="land-object-input-abandoned.html#tile-drainage-option-1"><i class="fa fa-check"></i><b>23.0.4</b> Tile drainage option</a></li>
-<li class="chapter" data-level="23.0.5" data-path="land-object-input-abandoned.html"><a href="land-object-input-abandoned.html#ar5"><i class="fa fa-check"></i><b>23.0.5</b> AR5</a></li>
-<li class="chapter" data-level="23.0.6" data-path="land-object-input-abandoned.html"><a href="land-object-input-abandoned.html#manual-simplification"><i class="fa fa-check"></i><b>23.0.6</b> Manual Simplification</a></li>
+<li class="chapter" data-level="23.1" data-path="combined-measure-and-climate-scenarios.html"><a href="combined-measure-and-climate-scenarios.html#preperation"><i class="fa fa-check"></i><b>23.1</b> Preperation</a>
+<ul>
+<li class="chapter" data-level="23.1.1" data-path="combined-measure-and-climate-scenarios.html"><a href="combined-measure-and-climate-scenarios.html#selection-of-rcm-rcp-combinations"><i class="fa fa-check"></i><b>23.1.1</b> Selection of RCM-RCP combinations</a></li>
+<li class="chapter" data-level="23.1.2" data-path="combined-measure-and-climate-scenarios.html"><a href="combined-measure-and-climate-scenarios.html#copy-your-measr_scenario_simulation-folder-n-times"><i class="fa fa-check"></i><b>23.1.2</b> Copy your measr_scenario_simulation folder n-times</a></li>
+<li class="chapter" data-level="23.1.3" data-path="combined-measure-and-climate-scenarios.html"><a href="combined-measure-and-climate-scenarios.html#remove-existing-measr-project-and-the-cal_files-and-scenario_outputs-folders"><i class="fa fa-check"></i><b>23.1.3</b> Remove existing measr project and the cal_files and scenario_outputs folders</a></li>
+<li class="chapter" data-level="23.1.4" data-path="combined-measure-and-climate-scenarios.html"><a href="combined-measure-and-climate-scenarios.html#replace-all-swat-files-in-the-txt-folder-with-the-ones-from-the-climate-workflow"><i class="fa fa-check"></i><b>23.1.4</b> Replace all SWAT files in the txt folder with the ones from the climate workflow</a></li>
+<li class="chapter" data-level="23.1.5" data-path="combined-measure-and-climate-scenarios.html"><a href="combined-measure-and-climate-scenarios.html#run-swatfarmr"><i class="fa fa-check"></i><b>23.1.5</b> Run SWATFarmR</a></li>
 </ul></li>
-<li class="chapter" data-level="24" data-path="overview-maps.html"><a href="overview-maps.html"><i class="fa fa-check"></i><b>24</b> Overview Maps</a></li>
+<li class="chapter" data-level="23.2" data-path="combined-measure-and-climate-scenarios.html"><a href="combined-measure-and-climate-scenarios.html#prepare-measure-scenarios"><i class="fa fa-check"></i><b>23.2</b> Prepare measure scenarios</a></li>
+<li class="chapter" data-level="23.3" data-path="combined-measure-and-climate-scenarios.html"><a href="combined-measure-and-climate-scenarios.html#run-measure-scenarios"><i class="fa fa-check"></i><b>23.3</b> Run Measure Scenarios</a></li>
+<li class="chapter" data-level="23.4" data-path="combined-measure-and-climate-scenarios.html"><a href="combined-measure-and-climate-scenarios.html#harmonizing"><i class="fa fa-check"></i><b>23.4</b> Harmonizing</a></li>
+<li class="chapter" data-level="23.5" data-path="combined-measure-and-climate-scenarios.html"><a href="combined-measure-and-climate-scenarios.html#plotting"><i class="fa fa-check"></i><b>23.5</b> PLOTTING</a></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="land-object-input-abandoned.html"><a href="land-object-input-abandoned.html"><i class="fa fa-check"></i><b>24</b> Land Object Input (abandoned)</a>
+<ul>
+<li class="chapter" data-level="24.0.1" data-path="land-object-input-abandoned.html"><a href="land-object-input-abandoned.html#data-sources-1"><i class="fa fa-check"></i><b>24.0.1</b> Data sources</a></li>
+<li class="chapter" data-level="24.0.2" data-path="land-object-input-abandoned.html"><a href="land-object-input-abandoned.html#delineation-of-land-objects-1"><i class="fa fa-check"></i><b>24.0.2</b> Delineation of land objects</a></li>
+<li class="chapter" data-level="24.0.3" data-path="land-object-input-abandoned.html"><a href="land-object-input-abandoned.html#standing-water-bodies-and-the-land-use-type-watr"><i class="fa fa-check"></i><b>24.0.3</b> Standing water bodies and the land use type = ‘watr’</a></li>
+<li class="chapter" data-level="24.0.4" data-path="land-object-input-abandoned.html"><a href="land-object-input-abandoned.html#tile-drainage-option-1"><i class="fa fa-check"></i><b>24.0.4</b> Tile drainage option</a></li>
+<li class="chapter" data-level="24.0.5" data-path="land-object-input-abandoned.html"><a href="land-object-input-abandoned.html#ar5"><i class="fa fa-check"></i><b>24.0.5</b> AR5</a></li>
+<li class="chapter" data-level="24.0.6" data-path="land-object-input-abandoned.html"><a href="land-object-input-abandoned.html#manual-simplification"><i class="fa fa-check"></i><b>24.0.6</b> Manual Simplification</a></li>
+</ul></li>
+<li class="chapter" data-level="25" data-path="overview-maps.html"><a href="overview-maps.html"><i class="fa fa-check"></i><b>25</b> Overview Maps</a></li>
 <li class="chapter" data-level="" data-path="annex.html"><a href="annex.html"><i class="fa fa-check"></i>Annex</a>
 <ul>
-<li class="chapter" data-level="24.1" data-path="annex.html"><a href="annex.html#packages"><i class="fa fa-check"></i><b>24.1</b> Packages</a></li>
-<li class="chapter" data-level="24.2" data-path="annex.html"><a href="annex.html#computer-specs"><i class="fa fa-check"></i><b>24.2</b> Computer Specs</a></li>
+<li class="chapter" data-level="25.1" data-path="annex.html"><a href="annex.html#packages"><i class="fa fa-check"></i><b>25.1</b> Packages</a></li>
+<li class="chapter" data-level="25.2" data-path="annex.html"><a href="annex.html#computer-specs"><i class="fa fa-check"></i><b>25.2</b> Computer Specs</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references-1.html"><a href="references-1.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -574,276 +611,276 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="measure-classification" class="section level1 hasAnchor" number="21">
 <h1><span class="header-section-number">Section 21</span> Measure Classification<a href="measure-classification.html#measure-classification" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div class="sourceCode" id="cb583"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb583-1"><a href="measure-classification.html#cb583-1" tabindex="-1"></a>RUN_THIS_CHAPTER <span class="ot">=</span> <span class="cn">FALSE</span></span>
-<span id="cb583-2"><a href="measure-classification.html#cb583-2" tabindex="-1"></a><span class="cf">if</span>(RUN_THIS_CHAPTER){<span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;Chapter last run:&quot;</span>, <span class="fu">Sys.Date</span>()))}</span></code></pre></div>
+<div class="sourceCode" id="cb576"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb576-1"><a href="measure-classification.html#cb576-1" tabindex="-1"></a>RUN_THIS_CHAPTER <span class="ot">=</span> <span class="cn">FALSE</span></span>
+<span id="cb576-2"><a href="measure-classification.html#cb576-2" tabindex="-1"></a><span class="cf">if</span>(RUN_THIS_CHAPTER){<span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;Chapter last run:&quot;</span>, <span class="fu">Sys.Date</span>()))}</span></code></pre></div>
 <div id="introduction-4" class="section level2 hasAnchor" number="21.1">
 <h2><span class="header-section-number">21.1</span> Introduction<a href="measure-classification.html#introduction-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Our measures are too loosely grouped, making it difficult for our optimization. We are aiming to have around 500 measures, currently we have more.</p>
 <p>We will need our HRU ids spatially, as well as our Measures, erosion classes, and property register.</p>
-<div class="sourceCode" id="cb584"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb584-1"><a href="measure-classification.html#cb584-1" tabindex="-1"></a><span class="fu">require</span>(sf)</span>
-<span id="cb584-2"><a href="measure-classification.html#cb584-2" tabindex="-1"></a><span class="fu">require</span>(dplyr)</span>
-<span id="cb584-3"><a href="measure-classification.html#cb584-3" tabindex="-1"></a><span class="fu">require</span>(mapview)</span>
-<span id="cb584-4"><a href="measure-classification.html#cb584-4" tabindex="-1"></a><span class="fu">require</span>(DT)</span></code></pre></div>
+<div class="sourceCode" id="cb577"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb577-1"><a href="measure-classification.html#cb577-1" tabindex="-1"></a><span class="fu">require</span>(sf)</span>
+<span id="cb577-2"><a href="measure-classification.html#cb577-2" tabindex="-1"></a><span class="fu">require</span>(dplyr)</span>
+<span id="cb577-3"><a href="measure-classification.html#cb577-3" tabindex="-1"></a><span class="fu">require</span>(mapview)</span>
+<span id="cb577-4"><a href="measure-classification.html#cb577-4" tabindex="-1"></a><span class="fu">require</span>(DT)</span></code></pre></div>
 <p>Get our maps:</p>
-<div class="sourceCode" id="cb585"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb585-1"><a href="measure-classification.html#cb585-1" tabindex="-1"></a><span class="co"># For measure IDs and location:</span></span>
-<span id="cb585-2"><a href="measure-classification.html#cb585-2" tabindex="-1"></a>lu_map <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(<span class="st">&quot;model_data/input/land/CS10_LU.shp&quot;</span>)</span>
-<span id="cb585-3"><a href="measure-classification.html#cb585-3" tabindex="-1"></a><span class="co"># For HRU IDs:</span></span>
-<span id="cb585-4"><a href="measure-classification.html#cb585-4" tabindex="-1"></a>hru_map <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(<span class="st">&quot;model_data/cs10_setup/optain-cs10/data/vector/hru.shp&quot;</span>)</span>
-<span id="cb585-5"><a href="measure-classification.html#cb585-5" tabindex="-1"></a><span class="co"># For Erosion Risk Levels:</span></span>
-<span id="cb585-6"><a href="measure-classification.html#cb585-6" tabindex="-1"></a>erosion_map <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(<span class="st">&quot;model_data/input/soil/erosionriskclasses_kraakstad.shp&quot;</span>)</span>
-<span id="cb585-7"><a href="measure-classification.html#cb585-7" tabindex="-1"></a><span class="co"># For Farm ownership IDs:</span></span>
-<span id="cb585-8"><a href="measure-classification.html#cb585-8" tabindex="-1"></a>farm_map <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(<span class="st">&quot;model_data/input/property/matrikkel.shp&quot;</span>)</span>
-<span id="cb585-9"><a href="measure-classification.html#cb585-9" tabindex="-1"></a>farm_map <span class="ot">&lt;-</span> <span class="fu">st_transform</span>(farm_map, <span class="fu">st_crs</span>(lu_map))</span></code></pre></div>
+<div class="sourceCode" id="cb578"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb578-1"><a href="measure-classification.html#cb578-1" tabindex="-1"></a><span class="co"># For measure IDs and location:</span></span>
+<span id="cb578-2"><a href="measure-classification.html#cb578-2" tabindex="-1"></a>lu_map <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(<span class="st">&quot;model_data/input/land/CS10_LU.shp&quot;</span>)</span>
+<span id="cb578-3"><a href="measure-classification.html#cb578-3" tabindex="-1"></a><span class="co"># For HRU IDs:</span></span>
+<span id="cb578-4"><a href="measure-classification.html#cb578-4" tabindex="-1"></a>hru_map <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(<span class="st">&quot;model_data/cs10_setup/optain-cs10/data/vector/hru.shp&quot;</span>)</span>
+<span id="cb578-5"><a href="measure-classification.html#cb578-5" tabindex="-1"></a><span class="co"># For Erosion Risk Levels:</span></span>
+<span id="cb578-6"><a href="measure-classification.html#cb578-6" tabindex="-1"></a>erosion_map <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(<span class="st">&quot;model_data/input/soil/erosionriskclasses_kraakstad.shp&quot;</span>)</span>
+<span id="cb578-7"><a href="measure-classification.html#cb578-7" tabindex="-1"></a><span class="co"># For Farm ownership IDs:</span></span>
+<span id="cb578-8"><a href="measure-classification.html#cb578-8" tabindex="-1"></a>farm_map <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(<span class="st">&quot;model_data/input/property/matrikkel.shp&quot;</span>)</span>
+<span id="cb578-9"><a href="measure-classification.html#cb578-9" tabindex="-1"></a>farm_map <span class="ot">&lt;-</span> <span class="fu">st_transform</span>(farm_map, <span class="fu">st_crs</span>(lu_map))</span></code></pre></div>
 <p>Filter data</p>
-<div class="sourceCode" id="cb586"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb586-1"><a href="measure-classification.html#cb586-1" tabindex="-1"></a>lu_filter <span class="ot">&lt;-</span> lu_map <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="st">&quot;buffer_6m_&quot;</span>, <span class="st">&quot;gully&quot;</span>, <span class="st">&quot;wetland&quot;</span>, <span class="st">&quot;dam&quot;</span>, <span class="st">&quot;type&quot;</span>, <span class="st">&quot;geometry&quot;</span>)</span>
-<span id="cb586-2"><a href="measure-classification.html#cb586-2" tabindex="-1"></a>hru_filter <span class="ot">&lt;-</span>  hru_map  <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="st">&quot;name&quot;</span>, <span class="st">&quot;type&quot;</span>)</span>
-<span id="cb586-3"><a href="measure-classification.html#cb586-3" tabindex="-1"></a>erosion_filter <span class="ot">&lt;-</span> erosion_map <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="st">&quot;A_HPKL&quot;</span>, <span class="st">&quot;geometry&quot;</span>)</span>
-<span id="cb586-4"><a href="measure-classification.html#cb586-4" tabindex="-1"></a>farm_filter <span class="ot">&lt;-</span> farm_map <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="st">&quot;GARDSNUMME&quot;</span>, <span class="st">&quot;geometry&quot;</span>)</span>
-<span id="cb586-5"><a href="measure-classification.html#cb586-5" tabindex="-1"></a>farm_dissolved <span class="ot">&lt;-</span> farm_filter <span class="sc">%&gt;%</span></span>
-<span id="cb586-6"><a href="measure-classification.html#cb586-6" tabindex="-1"></a>  <span class="fu">group_by</span>(GARDSNUMME) <span class="sc">%&gt;%</span></span>
-<span id="cb586-7"><a href="measure-classification.html#cb586-7" tabindex="-1"></a>  <span class="fu">summarise</span>()</span>
-<span id="cb586-8"><a href="measure-classification.html#cb586-8" tabindex="-1"></a>erosion_dissolved <span class="ot">&lt;-</span> erosion_filter <span class="sc">%&gt;%</span></span>
-<span id="cb586-9"><a href="measure-classification.html#cb586-9" tabindex="-1"></a>  <span class="fu">group_by</span>(A_HPKL) <span class="sc">%&gt;%</span></span>
-<span id="cb586-10"><a href="measure-classification.html#cb586-10" tabindex="-1"></a>  <span class="fu">summarise</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb579"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb579-1"><a href="measure-classification.html#cb579-1" tabindex="-1"></a>lu_filter <span class="ot">&lt;-</span> lu_map <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="st">&quot;buffer_6m_&quot;</span>, <span class="st">&quot;gully&quot;</span>, <span class="st">&quot;wetland&quot;</span>, <span class="st">&quot;dam&quot;</span>, <span class="st">&quot;type&quot;</span>, <span class="st">&quot;geometry&quot;</span>)</span>
+<span id="cb579-2"><a href="measure-classification.html#cb579-2" tabindex="-1"></a>hru_filter <span class="ot">&lt;-</span>  hru_map  <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="st">&quot;name&quot;</span>, <span class="st">&quot;type&quot;</span>)</span>
+<span id="cb579-3"><a href="measure-classification.html#cb579-3" tabindex="-1"></a>erosion_filter <span class="ot">&lt;-</span> erosion_map <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="st">&quot;A_HPKL&quot;</span>, <span class="st">&quot;geometry&quot;</span>)</span>
+<span id="cb579-4"><a href="measure-classification.html#cb579-4" tabindex="-1"></a>farm_filter <span class="ot">&lt;-</span> farm_map <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="st">&quot;GARDSNUMME&quot;</span>, <span class="st">&quot;geometry&quot;</span>)</span>
+<span id="cb579-5"><a href="measure-classification.html#cb579-5" tabindex="-1"></a>farm_dissolved <span class="ot">&lt;-</span> farm_filter <span class="sc">%&gt;%</span></span>
+<span id="cb579-6"><a href="measure-classification.html#cb579-6" tabindex="-1"></a>  <span class="fu">group_by</span>(GARDSNUMME) <span class="sc">%&gt;%</span></span>
+<span id="cb579-7"><a href="measure-classification.html#cb579-7" tabindex="-1"></a>  <span class="fu">summarise</span>()</span>
+<span id="cb579-8"><a href="measure-classification.html#cb579-8" tabindex="-1"></a>erosion_dissolved <span class="ot">&lt;-</span> erosion_filter <span class="sc">%&gt;%</span></span>
+<span id="cb579-9"><a href="measure-classification.html#cb579-9" tabindex="-1"></a>  <span class="fu">group_by</span>(A_HPKL) <span class="sc">%&gt;%</span></span>
+<span id="cb579-10"><a href="measure-classification.html#cb579-10" tabindex="-1"></a>  <span class="fu">summarise</span>()</span></code></pre></div>
 <p>Map Farm ID</p>
-<div class="sourceCode" id="cb587"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb587-1"><a href="measure-classification.html#cb587-1" tabindex="-1"></a>farm_dissolved<span class="sc">$</span>GARDSNUMME<span class="ot">&lt;-</span><span class="fu">as.factor</span>(farm_dissolved<span class="sc">$</span>GARDSNUMME)</span>
-<span id="cb587-2"><a href="measure-classification.html#cb587-2" tabindex="-1"></a>farmcolors <span class="ot">&lt;-</span> farm_dissolved<span class="sc">$</span>GARDSNUMME <span class="sc">%&gt;%</span> <span class="fu">unique</span>() <span class="sc">%&gt;%</span> <span class="fu">length</span>()</span>
-<span id="cb587-3"><a href="measure-classification.html#cb587-3" tabindex="-1"></a><span class="co"># samples randomizes legend</span></span>
-<span id="cb587-4"><a href="measure-classification.html#cb587-4" tabindex="-1"></a>myfill <span class="ot">&lt;-</span> <span class="fu">hcl.colors</span>(farmcolors, <span class="at">palette =</span> <span class="st">&quot;Dark 3&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">sample</span>()</span>
-<span id="cb587-5"><a href="measure-classification.html#cb587-5" tabindex="-1"></a><span class="fu">mapview</span>(farm_dissolved, <span class="at">zcol =</span> <span class="st">&quot;GARDSNUMME&quot;</span>, <span class="at">legend =</span> <span class="cn">FALSE</span>, <span class="at">col.regions =</span> myfill)</span></code></pre></div>
+<div class="sourceCode" id="cb580"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb580-1"><a href="measure-classification.html#cb580-1" tabindex="-1"></a>farm_dissolved<span class="sc">$</span>GARDSNUMME<span class="ot">&lt;-</span><span class="fu">as.factor</span>(farm_dissolved<span class="sc">$</span>GARDSNUMME)</span>
+<span id="cb580-2"><a href="measure-classification.html#cb580-2" tabindex="-1"></a>farmcolors <span class="ot">&lt;-</span> farm_dissolved<span class="sc">$</span>GARDSNUMME <span class="sc">%&gt;%</span> <span class="fu">unique</span>() <span class="sc">%&gt;%</span> <span class="fu">length</span>()</span>
+<span id="cb580-3"><a href="measure-classification.html#cb580-3" tabindex="-1"></a><span class="co"># samples randomizes legend</span></span>
+<span id="cb580-4"><a href="measure-classification.html#cb580-4" tabindex="-1"></a>myfill <span class="ot">&lt;-</span> <span class="fu">hcl.colors</span>(farmcolors, <span class="at">palette =</span> <span class="st">&quot;Dark 3&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">sample</span>()</span>
+<span id="cb580-5"><a href="measure-classification.html#cb580-5" tabindex="-1"></a><span class="fu">mapview</span>(farm_dissolved, <span class="at">zcol =</span> <span class="st">&quot;GARDSNUMME&quot;</span>, <span class="at">legend =</span> <span class="cn">FALSE</span>, <span class="at">col.regions =</span> myfill)</span></code></pre></div>
 <p>Map Erosion Classes</p>
-<div class="sourceCode" id="cb588"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb588-1"><a href="measure-classification.html#cb588-1" tabindex="-1"></a>myfill <span class="ot">&lt;-</span> <span class="fu">hcl.colors</span>(<span class="dv">4</span>, <span class="at">palette =</span> <span class="st">&quot;Fall&quot;</span>)</span>
-<span id="cb588-2"><a href="measure-classification.html#cb588-2" tabindex="-1"></a>erosion_dissolved<span class="sc">$</span>A_HPKL <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(erosion_dissolved<span class="sc">$</span>A_HPKL)</span>
-<span id="cb588-3"><a href="measure-classification.html#cb588-3" tabindex="-1"></a><span class="fu">mapview</span>(erosion_dissolved, <span class="at">zcol =</span> <span class="st">&quot;A_HPKL&quot;</span>, <span class="at">col.regions =</span> myfill)</span></code></pre></div>
+<div class="sourceCode" id="cb581"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb581-1"><a href="measure-classification.html#cb581-1" tabindex="-1"></a>myfill <span class="ot">&lt;-</span> <span class="fu">hcl.colors</span>(<span class="dv">4</span>, <span class="at">palette =</span> <span class="st">&quot;Fall&quot;</span>)</span>
+<span id="cb581-2"><a href="measure-classification.html#cb581-2" tabindex="-1"></a>erosion_dissolved<span class="sc">$</span>A_HPKL <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(erosion_dissolved<span class="sc">$</span>A_HPKL)</span>
+<span id="cb581-3"><a href="measure-classification.html#cb581-3" tabindex="-1"></a><span class="fu">mapview</span>(erosion_dissolved, <span class="at">zcol =</span> <span class="st">&quot;A_HPKL&quot;</span>, <span class="at">col.regions =</span> myfill)</span></code></pre></div>
 <p>Ideally the above 4 maps would have their attributes spatially joined in R, but since I cannot figure out a nice way to do that, I did it quick and nicely in QGIS:</p>
-<div class="sourceCode" id="cb589"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb589-1"><a href="measure-classification.html#cb589-1" tabindex="-1"></a>mea_map <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(<span class="st">&quot;model_data/input/measure/measure_comola_map.shp&quot;</span>)</span>
-<span id="cb589-2"><a href="measure-classification.html#cb589-2" tabindex="-1"></a>myfill <span class="ot">&lt;-</span> <span class="fu">hcl.colors</span>(<span class="dv">5</span>, <span class="at">palette =</span> <span class="st">&quot;Fall&quot;</span>)</span>
-<span id="cb589-3"><a href="measure-classification.html#cb589-3" tabindex="-1"></a>NA_ahpkl <span class="ot">&lt;-</span> mea_map<span class="sc">$</span>A_HPKL <span class="sc">%&gt;%</span> <span class="fu">is.na</span>() <span class="sc">%&gt;%</span> <span class="fu">which</span>()</span>
-<span id="cb589-4"><a href="measure-classification.html#cb589-4" tabindex="-1"></a>mea_map<span class="sc">$</span>A_HPKL[NA_ahpkl] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb589-5"><a href="measure-classification.html#cb589-5" tabindex="-1"></a><span class="fu">mapview</span>(mea_map, <span class="at">zcol =</span> <span class="st">&quot;A_HPKL&quot;</span>, <span class="at">col.regions =</span> myfill)</span></code></pre></div>
+<div class="sourceCode" id="cb582"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb582-1"><a href="measure-classification.html#cb582-1" tabindex="-1"></a>mea_map <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(<span class="st">&quot;model_data/input/measure/measure_comola_map.shp&quot;</span>)</span>
+<span id="cb582-2"><a href="measure-classification.html#cb582-2" tabindex="-1"></a>myfill <span class="ot">&lt;-</span> <span class="fu">hcl.colors</span>(<span class="dv">5</span>, <span class="at">palette =</span> <span class="st">&quot;Fall&quot;</span>)</span>
+<span id="cb582-3"><a href="measure-classification.html#cb582-3" tabindex="-1"></a>NA_ahpkl <span class="ot">&lt;-</span> mea_map<span class="sc">$</span>A_HPKL <span class="sc">%&gt;%</span> <span class="fu">is.na</span>() <span class="sc">%&gt;%</span> <span class="fu">which</span>()</span>
+<span id="cb582-4"><a href="measure-classification.html#cb582-4" tabindex="-1"></a>mea_map<span class="sc">$</span>A_HPKL[NA_ahpkl] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb582-5"><a href="measure-classification.html#cb582-5" tabindex="-1"></a><span class="fu">mapview</span>(mea_map, <span class="at">zcol =</span> <span class="st">&quot;A_HPKL&quot;</span>, <span class="at">col.regions =</span> myfill)</span></code></pre></div>
 </div>
 <div id="determining-classification" class="section level2 hasAnchor" number="21.2">
 <h2><span class="header-section-number">21.2</span> Determining Classification<a href="measure-classification.html#determining-classification" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We plan to do the following farm based classification:</p>
 <p>70 farms in the catchment could implement gullies:</p>
-<div class="sourceCode" id="cb590"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb590-1"><a href="measure-classification.html#cb590-1" tabindex="-1"></a>gully_farms <span class="ot">&lt;-</span> mea_map <span class="sc">%&gt;%</span> <span class="fu">filter</span>(gully <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(GARDSNUMME) <span class="sc">%&gt;%</span> <span class="fu">unique</span>() <span class="sc">%&gt;%</span> <span class="fu">length</span>()</span>
-<span id="cb590-2"><a href="measure-classification.html#cb590-2" tabindex="-1"></a>gully_farms</span></code></pre></div>
+<div class="sourceCode" id="cb583"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb583-1"><a href="measure-classification.html#cb583-1" tabindex="-1"></a>gully_farms <span class="ot">&lt;-</span> mea_map <span class="sc">%&gt;%</span> <span class="fu">filter</span>(gully <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(GARDSNUMME) <span class="sc">%&gt;%</span> <span class="fu">unique</span>() <span class="sc">%&gt;%</span> <span class="fu">length</span>()</span>
+<span id="cb583-2"><a href="measure-classification.html#cb583-2" tabindex="-1"></a>gully_farms</span></code></pre></div>
 <p>68 farms can implement buffers:</p>
-<div class="sourceCode" id="cb591"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb591-1"><a href="measure-classification.html#cb591-1" tabindex="-1"></a>buffer_farms <span class="ot">&lt;-</span> mea_map <span class="sc">%&gt;%</span> <span class="fu">filter</span>(buffer_6m_ <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(GARDSNUMME) <span class="sc">%&gt;%</span> <span class="fu">unique</span>() <span class="sc">%&gt;%</span> <span class="fu">length</span>()</span>
-<span id="cb591-2"><a href="measure-classification.html#cb591-2" tabindex="-1"></a>buffer_farms</span></code></pre></div>
+<div class="sourceCode" id="cb584"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb584-1"><a href="measure-classification.html#cb584-1" tabindex="-1"></a>buffer_farms <span class="ot">&lt;-</span> mea_map <span class="sc">%&gt;%</span> <span class="fu">filter</span>(buffer_6m_ <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(GARDSNUMME) <span class="sc">%&gt;%</span> <span class="fu">unique</span>() <span class="sc">%&gt;%</span> <span class="fu">length</span>()</span>
+<span id="cb584-2"><a href="measure-classification.html#cb584-2" tabindex="-1"></a>buffer_farms</span></code></pre></div>
 <p>And we can implement 3 ponds.</p>
-<div class="sourceCode" id="cb592"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb592-1"><a href="measure-classification.html#cb592-1" tabindex="-1"></a>dams <span class="ot">&lt;-</span> mea_map <span class="sc">%&gt;%</span> <span class="fu">filter</span>(dam <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(dam) <span class="sc">%&gt;%</span> <span class="fu">unique</span>() <span class="sc">%&gt;%</span> <span class="fu">length</span>()</span>
-<span id="cb592-2"><a href="measure-classification.html#cb592-2" tabindex="-1"></a>dams</span></code></pre></div>
+<div class="sourceCode" id="cb585"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb585-1"><a href="measure-classification.html#cb585-1" tabindex="-1"></a>dams <span class="ot">&lt;-</span> mea_map <span class="sc">%&gt;%</span> <span class="fu">filter</span>(dam <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(dam) <span class="sc">%&gt;%</span> <span class="fu">unique</span>() <span class="sc">%&gt;%</span> <span class="fu">length</span>()</span>
+<span id="cb585-2"><a href="measure-classification.html#cb585-2" tabindex="-1"></a>dams</span></code></pre></div>
 <p>We have 501 agricultural fields to apply no-till to.</p>
-<div class="sourceCode" id="cb593"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb593-1"><a href="measure-classification.html#cb593-1" tabindex="-1"></a>non_agri <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;frst&quot;</span>, <span class="st">&quot;past&quot;</span>, <span class="st">&quot;rngb&quot;</span>, <span class="st">&quot;urml&quot;</span>, <span class="st">&quot;utrn&quot;</span>, <span class="st">&quot;wetf&quot;</span>)</span>
-<span id="cb593-2"><a href="measure-classification.html#cb593-2" tabindex="-1"></a>mea_map <span class="sc">%&gt;%</span> <span class="fu">filter</span>((type <span class="sc">%in%</span> non_agri) <span class="sc">==</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(type) <span class="sc">%&gt;%</span> <span class="fu">unique</span>() <span class="sc">%&gt;%</span> <span class="fu">length</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb586"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb586-1"><a href="measure-classification.html#cb586-1" tabindex="-1"></a>non_agri <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;frst&quot;</span>, <span class="st">&quot;past&quot;</span>, <span class="st">&quot;rngb&quot;</span>, <span class="st">&quot;urml&quot;</span>, <span class="st">&quot;utrn&quot;</span>, <span class="st">&quot;wetf&quot;</span>)</span>
+<span id="cb586-2"><a href="measure-classification.html#cb586-2" tabindex="-1"></a>mea_map <span class="sc">%&gt;%</span> <span class="fu">filter</span>((type <span class="sc">%in%</span> non_agri) <span class="sc">==</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(type) <span class="sc">%&gt;%</span> <span class="fu">unique</span>() <span class="sc">%&gt;%</span> <span class="fu">length</span>()</span></code></pre></div>
 <p>If we group these by farm level, we have 82</p>
-<div class="sourceCode" id="cb594"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb594-1"><a href="measure-classification.html#cb594-1" tabindex="-1"></a>mea_map <span class="sc">%&gt;%</span> <span class="fu">filter</span>((type <span class="sc">%in%</span> non_agri) <span class="sc">==</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(GARDSNUMME) <span class="sc">%&gt;%</span> <span class="fu">unique</span>() <span class="sc">%&gt;%</span> <span class="fu">length</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb587"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb587-1"><a href="measure-classification.html#cb587-1" tabindex="-1"></a>mea_map <span class="sc">%&gt;%</span> <span class="fu">filter</span>((type <span class="sc">%in%</span> non_agri) <span class="sc">==</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(GARDSNUMME) <span class="sc">%&gt;%</span> <span class="fu">unique</span>() <span class="sc">%&gt;%</span> <span class="fu">length</span>()</span></code></pre></div>
 <p>If we expand these to erosion risk, we have:</p>
-<div class="sourceCode" id="cb595"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb595-1"><a href="measure-classification.html#cb595-1" tabindex="-1"></a>class1 <span class="ot">=</span> mea_map <span class="sc">%&gt;%</span> <span class="fu">filter</span>((type <span class="sc">%in%</span> non_agri) <span class="sc">==</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(A_HPKL <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(GARDSNUMME) <span class="sc">%&gt;%</span> <span class="fu">unique</span>() <span class="sc">%&gt;%</span> <span class="fu">length</span>()</span>
-<span id="cb595-2"><a href="measure-classification.html#cb595-2" tabindex="-1"></a>class2 <span class="ot">=</span> mea_map <span class="sc">%&gt;%</span> <span class="fu">filter</span>((type <span class="sc">%in%</span> non_agri) <span class="sc">==</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(A_HPKL <span class="sc">==</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(GARDSNUMME) <span class="sc">%&gt;%</span> <span class="fu">unique</span>() <span class="sc">%&gt;%</span> <span class="fu">length</span>()</span>
-<span id="cb595-3"><a href="measure-classification.html#cb595-3" tabindex="-1"></a>class3 <span class="ot">=</span> mea_map <span class="sc">%&gt;%</span> <span class="fu">filter</span>((type <span class="sc">%in%</span> non_agri) <span class="sc">==</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(A_HPKL <span class="sc">==</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(GARDSNUMME) <span class="sc">%&gt;%</span> <span class="fu">unique</span>() <span class="sc">%&gt;%</span> <span class="fu">length</span>()</span>
-<span id="cb595-4"><a href="measure-classification.html#cb595-4" tabindex="-1"></a>class4 <span class="ot">=</span> mea_map <span class="sc">%&gt;%</span> <span class="fu">filter</span>((type <span class="sc">%in%</span> non_agri) <span class="sc">==</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(A_HPKL <span class="sc">==</span> <span class="dv">4</span>) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(GARDSNUMME) <span class="sc">%&gt;%</span> <span class="fu">unique</span>() <span class="sc">%&gt;%</span> <span class="fu">length</span>()</span>
-<span id="cb595-5"><a href="measure-classification.html#cb595-5" tabindex="-1"></a>class0 <span class="ot">=</span> mea_map <span class="sc">%&gt;%</span> <span class="fu">filter</span>((type <span class="sc">%in%</span> non_agri) <span class="sc">==</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(A_HPKL <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(GARDSNUMME) <span class="sc">%&gt;%</span> <span class="fu">unique</span>() <span class="sc">%&gt;%</span> <span class="fu">length</span>()</span>
-<span id="cb595-6"><a href="measure-classification.html#cb595-6" tabindex="-1"></a>hrus_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span> (</span>
-<span id="cb595-7"><a href="measure-classification.html#cb595-7" tabindex="-1"></a>  <span class="at">c1 =</span> class1,</span>
-<span id="cb595-8"><a href="measure-classification.html#cb595-8" tabindex="-1"></a>  <span class="at">c2 =</span> class2,</span>
-<span id="cb595-9"><a href="measure-classification.html#cb595-9" tabindex="-1"></a>  <span class="at">c3 =</span> class3,</span>
-<span id="cb595-10"><a href="measure-classification.html#cb595-10" tabindex="-1"></a>  <span class="at">c4 =</span> class4,</span>
-<span id="cb595-11"><a href="measure-classification.html#cb595-11" tabindex="-1"></a>  <span class="at">c0 =</span> class0)</span>
-<span id="cb595-12"><a href="measure-classification.html#cb595-12" tabindex="-1"></a>DT<span class="sc">::</span><span class="fu">datatable</span>(hrus_df)</span></code></pre></div>
+<div class="sourceCode" id="cb588"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb588-1"><a href="measure-classification.html#cb588-1" tabindex="-1"></a>class1 <span class="ot">=</span> mea_map <span class="sc">%&gt;%</span> <span class="fu">filter</span>((type <span class="sc">%in%</span> non_agri) <span class="sc">==</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(A_HPKL <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(GARDSNUMME) <span class="sc">%&gt;%</span> <span class="fu">unique</span>() <span class="sc">%&gt;%</span> <span class="fu">length</span>()</span>
+<span id="cb588-2"><a href="measure-classification.html#cb588-2" tabindex="-1"></a>class2 <span class="ot">=</span> mea_map <span class="sc">%&gt;%</span> <span class="fu">filter</span>((type <span class="sc">%in%</span> non_agri) <span class="sc">==</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(A_HPKL <span class="sc">==</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(GARDSNUMME) <span class="sc">%&gt;%</span> <span class="fu">unique</span>() <span class="sc">%&gt;%</span> <span class="fu">length</span>()</span>
+<span id="cb588-3"><a href="measure-classification.html#cb588-3" tabindex="-1"></a>class3 <span class="ot">=</span> mea_map <span class="sc">%&gt;%</span> <span class="fu">filter</span>((type <span class="sc">%in%</span> non_agri) <span class="sc">==</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(A_HPKL <span class="sc">==</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(GARDSNUMME) <span class="sc">%&gt;%</span> <span class="fu">unique</span>() <span class="sc">%&gt;%</span> <span class="fu">length</span>()</span>
+<span id="cb588-4"><a href="measure-classification.html#cb588-4" tabindex="-1"></a>class4 <span class="ot">=</span> mea_map <span class="sc">%&gt;%</span> <span class="fu">filter</span>((type <span class="sc">%in%</span> non_agri) <span class="sc">==</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(A_HPKL <span class="sc">==</span> <span class="dv">4</span>) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(GARDSNUMME) <span class="sc">%&gt;%</span> <span class="fu">unique</span>() <span class="sc">%&gt;%</span> <span class="fu">length</span>()</span>
+<span id="cb588-5"><a href="measure-classification.html#cb588-5" tabindex="-1"></a>class0 <span class="ot">=</span> mea_map <span class="sc">%&gt;%</span> <span class="fu">filter</span>((type <span class="sc">%in%</span> non_agri) <span class="sc">==</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(A_HPKL <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(GARDSNUMME) <span class="sc">%&gt;%</span> <span class="fu">unique</span>() <span class="sc">%&gt;%</span> <span class="fu">length</span>()</span>
+<span id="cb588-6"><a href="measure-classification.html#cb588-6" tabindex="-1"></a>hrus_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span> (</span>
+<span id="cb588-7"><a href="measure-classification.html#cb588-7" tabindex="-1"></a>  <span class="at">c1 =</span> class1,</span>
+<span id="cb588-8"><a href="measure-classification.html#cb588-8" tabindex="-1"></a>  <span class="at">c2 =</span> class2,</span>
+<span id="cb588-9"><a href="measure-classification.html#cb588-9" tabindex="-1"></a>  <span class="at">c3 =</span> class3,</span>
+<span id="cb588-10"><a href="measure-classification.html#cb588-10" tabindex="-1"></a>  <span class="at">c4 =</span> class4,</span>
+<span id="cb588-11"><a href="measure-classification.html#cb588-11" tabindex="-1"></a>  <span class="at">c0 =</span> class0)</span>
+<span id="cb588-12"><a href="measure-classification.html#cb588-12" tabindex="-1"></a>DT<span class="sc">::</span><span class="fu">datatable</span>(hrus_df)</span></code></pre></div>
 <p>In total, that would give us 363 measures to optimize: (well under budget)</p>
-<div class="sourceCode" id="cb596"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb596-1"><a href="measure-classification.html#cb596-1" tabindex="-1"></a>  class1 <span class="sc">+</span> <span class="co"># low erosion risk lowtill farms</span></span>
-<span id="cb596-2"><a href="measure-classification.html#cb596-2" tabindex="-1"></a>  class2 <span class="sc">+</span> <span class="co"># medium erosion risk lowtill farms</span></span>
-<span id="cb596-3"><a href="measure-classification.html#cb596-3" tabindex="-1"></a>  class3 <span class="sc">+</span> <span class="co"># high erosion risk lowtill farms</span></span>
-<span id="cb596-4"><a href="measure-classification.html#cb596-4" tabindex="-1"></a>  class4 <span class="sc">+</span> <span class="co"># very erosion risk lowtill farms</span></span>
-<span id="cb596-5"><a href="measure-classification.html#cb596-5" tabindex="-1"></a>  class0 <span class="sc">+</span> <span class="co"># no erosion risk lowtill farms (not mapped)</span></span>
-<span id="cb596-6"><a href="measure-classification.html#cb596-6" tabindex="-1"></a>  gully_farms <span class="sc">+</span> <span class="co"># gully farms</span></span>
-<span id="cb596-7"><a href="measure-classification.html#cb596-7" tabindex="-1"></a>  buffer_farms <span class="sc">+</span> <span class="co"># buffer strip farms</span></span>
-<span id="cb596-8"><a href="measure-classification.html#cb596-8" tabindex="-1"></a>  dams    <span class="co"># ponds</span></span></code></pre></div>
+<div class="sourceCode" id="cb589"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb589-1"><a href="measure-classification.html#cb589-1" tabindex="-1"></a>  class1 <span class="sc">+</span> <span class="co"># low erosion risk lowtill farms</span></span>
+<span id="cb589-2"><a href="measure-classification.html#cb589-2" tabindex="-1"></a>  class2 <span class="sc">+</span> <span class="co"># medium erosion risk lowtill farms</span></span>
+<span id="cb589-3"><a href="measure-classification.html#cb589-3" tabindex="-1"></a>  class3 <span class="sc">+</span> <span class="co"># high erosion risk lowtill farms</span></span>
+<span id="cb589-4"><a href="measure-classification.html#cb589-4" tabindex="-1"></a>  class4 <span class="sc">+</span> <span class="co"># very erosion risk lowtill farms</span></span>
+<span id="cb589-5"><a href="measure-classification.html#cb589-5" tabindex="-1"></a>  class0 <span class="sc">+</span> <span class="co"># no erosion risk lowtill farms (not mapped)</span></span>
+<span id="cb589-6"><a href="measure-classification.html#cb589-6" tabindex="-1"></a>  gully_farms <span class="sc">+</span> <span class="co"># gully farms</span></span>
+<span id="cb589-7"><a href="measure-classification.html#cb589-7" tabindex="-1"></a>  buffer_farms <span class="sc">+</span> <span class="co"># buffer strip farms</span></span>
+<span id="cb589-8"><a href="measure-classification.html#cb589-8" tabindex="-1"></a>  dams    <span class="co"># ponds</span></span></code></pre></div>
 </div>
 <div id="applying-classification" class="section level2 hasAnchor" number="21.3">
 <h2><span class="header-section-number">21.3</span> Applying Classification<a href="measure-classification.html#applying-classification" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>First we need to <u>allocate</u> incremental IDs to the measures:</p>
-<div class="sourceCode" id="cb597"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb597-1"><a href="measure-classification.html#cb597-1" tabindex="-1"></a>class_1_alloc <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span>class1)</span>
-<span id="cb597-2"><a href="measure-classification.html#cb597-2" tabindex="-1"></a>class_2_alloc <span class="ot">&lt;-</span> <span class="fu">c</span>((<span class="fu">last</span>(class_1_alloc)<span class="sc">+</span><span class="dv">1</span>)<span class="sc">:</span>(<span class="fu">last</span>(class_1_alloc)<span class="sc">+</span>class2))</span>
-<span id="cb597-3"><a href="measure-classification.html#cb597-3" tabindex="-1"></a>class_3_alloc <span class="ot">&lt;-</span> <span class="fu">c</span>((<span class="fu">last</span>(class_2_alloc)<span class="sc">+</span><span class="dv">1</span>)<span class="sc">:</span>(<span class="fu">last</span>(class_2_alloc)<span class="sc">+</span>class3))</span>
-<span id="cb597-4"><a href="measure-classification.html#cb597-4" tabindex="-1"></a>class_4_alloc <span class="ot">&lt;-</span> <span class="fu">c</span>((<span class="fu">last</span>(class_3_alloc)<span class="sc">+</span><span class="dv">1</span>)<span class="sc">:</span>(<span class="fu">last</span>(class_3_alloc)<span class="sc">+</span>class4))</span>
-<span id="cb597-5"><a href="measure-classification.html#cb597-5" tabindex="-1"></a>class_0_alloc <span class="ot">&lt;-</span> <span class="fu">c</span>((<span class="fu">last</span>(class_4_alloc)<span class="sc">+</span><span class="dv">1</span>)<span class="sc">:</span>(<span class="fu">last</span>(class_4_alloc)<span class="sc">+</span>class0))</span>
-<span id="cb597-6"><a href="measure-classification.html#cb597-6" tabindex="-1"></a>gully_alloc <span class="ot">&lt;-</span> <span class="fu">c</span>((<span class="fu">last</span>(class_0_alloc)<span class="sc">+</span><span class="dv">1</span>)<span class="sc">:</span>(<span class="fu">last</span>(class_0_alloc)<span class="sc">+</span>gully_farms))</span>
-<span id="cb597-7"><a href="measure-classification.html#cb597-7" tabindex="-1"></a>buffer_alloc <span class="ot">&lt;-</span> <span class="fu">c</span>((<span class="fu">last</span>(gully_alloc)<span class="sc">+</span><span class="dv">1</span>)<span class="sc">:</span>(<span class="fu">last</span>(gully_alloc)<span class="sc">+</span>buffer_farms))</span>
-<span id="cb597-8"><a href="measure-classification.html#cb597-8" tabindex="-1"></a>dam_alloc <span class="ot">&lt;-</span> <span class="fu">c</span>((<span class="fu">last</span>(buffer_alloc)<span class="sc">+</span><span class="dv">1</span>)<span class="sc">:</span>(<span class="fu">last</span>(buffer_alloc)<span class="sc">+</span>dams))</span>
-<span id="cb597-9"><a href="measure-classification.html#cb597-9" tabindex="-1"></a>full_Series <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb597-10"><a href="measure-classification.html#cb597-10" tabindex="-1"></a>  class_1_alloc,</span>
-<span id="cb597-11"><a href="measure-classification.html#cb597-11" tabindex="-1"></a>  class_2_alloc,</span>
-<span id="cb597-12"><a href="measure-classification.html#cb597-12" tabindex="-1"></a>  class_3_alloc,</span>
-<span id="cb597-13"><a href="measure-classification.html#cb597-13" tabindex="-1"></a>  class_4_alloc,</span>
-<span id="cb597-14"><a href="measure-classification.html#cb597-14" tabindex="-1"></a>  class_0_alloc,</span>
-<span id="cb597-15"><a href="measure-classification.html#cb597-15" tabindex="-1"></a>  gully_alloc,</span>
-<span id="cb597-16"><a href="measure-classification.html#cb597-16" tabindex="-1"></a>  buffer_alloc,</span>
-<span id="cb597-17"><a href="measure-classification.html#cb597-17" tabindex="-1"></a>  dam_alloc)</span>
-<span id="cb597-18"><a href="measure-classification.html#cb597-18" tabindex="-1"></a>full_Series <span class="sc">%&gt;%</span> <span class="fu">length</span>() <span class="co"># same length?</span></span>
-<span id="cb597-19"><a href="measure-classification.html#cb597-19" tabindex="-1"></a>(full_Series<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">363</span>) <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> <span class="fu">all</span>() <span class="co"># all incremental?</span></span></code></pre></div>
+<div class="sourceCode" id="cb590"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb590-1"><a href="measure-classification.html#cb590-1" tabindex="-1"></a>class_1_alloc <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span>class1)</span>
+<span id="cb590-2"><a href="measure-classification.html#cb590-2" tabindex="-1"></a>class_2_alloc <span class="ot">&lt;-</span> <span class="fu">c</span>((<span class="fu">last</span>(class_1_alloc)<span class="sc">+</span><span class="dv">1</span>)<span class="sc">:</span>(<span class="fu">last</span>(class_1_alloc)<span class="sc">+</span>class2))</span>
+<span id="cb590-3"><a href="measure-classification.html#cb590-3" tabindex="-1"></a>class_3_alloc <span class="ot">&lt;-</span> <span class="fu">c</span>((<span class="fu">last</span>(class_2_alloc)<span class="sc">+</span><span class="dv">1</span>)<span class="sc">:</span>(<span class="fu">last</span>(class_2_alloc)<span class="sc">+</span>class3))</span>
+<span id="cb590-4"><a href="measure-classification.html#cb590-4" tabindex="-1"></a>class_4_alloc <span class="ot">&lt;-</span> <span class="fu">c</span>((<span class="fu">last</span>(class_3_alloc)<span class="sc">+</span><span class="dv">1</span>)<span class="sc">:</span>(<span class="fu">last</span>(class_3_alloc)<span class="sc">+</span>class4))</span>
+<span id="cb590-5"><a href="measure-classification.html#cb590-5" tabindex="-1"></a>class_0_alloc <span class="ot">&lt;-</span> <span class="fu">c</span>((<span class="fu">last</span>(class_4_alloc)<span class="sc">+</span><span class="dv">1</span>)<span class="sc">:</span>(<span class="fu">last</span>(class_4_alloc)<span class="sc">+</span>class0))</span>
+<span id="cb590-6"><a href="measure-classification.html#cb590-6" tabindex="-1"></a>gully_alloc <span class="ot">&lt;-</span> <span class="fu">c</span>((<span class="fu">last</span>(class_0_alloc)<span class="sc">+</span><span class="dv">1</span>)<span class="sc">:</span>(<span class="fu">last</span>(class_0_alloc)<span class="sc">+</span>gully_farms))</span>
+<span id="cb590-7"><a href="measure-classification.html#cb590-7" tabindex="-1"></a>buffer_alloc <span class="ot">&lt;-</span> <span class="fu">c</span>((<span class="fu">last</span>(gully_alloc)<span class="sc">+</span><span class="dv">1</span>)<span class="sc">:</span>(<span class="fu">last</span>(gully_alloc)<span class="sc">+</span>buffer_farms))</span>
+<span id="cb590-8"><a href="measure-classification.html#cb590-8" tabindex="-1"></a>dam_alloc <span class="ot">&lt;-</span> <span class="fu">c</span>((<span class="fu">last</span>(buffer_alloc)<span class="sc">+</span><span class="dv">1</span>)<span class="sc">:</span>(<span class="fu">last</span>(buffer_alloc)<span class="sc">+</span>dams))</span>
+<span id="cb590-9"><a href="measure-classification.html#cb590-9" tabindex="-1"></a>full_Series <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb590-10"><a href="measure-classification.html#cb590-10" tabindex="-1"></a>  class_1_alloc,</span>
+<span id="cb590-11"><a href="measure-classification.html#cb590-11" tabindex="-1"></a>  class_2_alloc,</span>
+<span id="cb590-12"><a href="measure-classification.html#cb590-12" tabindex="-1"></a>  class_3_alloc,</span>
+<span id="cb590-13"><a href="measure-classification.html#cb590-13" tabindex="-1"></a>  class_4_alloc,</span>
+<span id="cb590-14"><a href="measure-classification.html#cb590-14" tabindex="-1"></a>  class_0_alloc,</span>
+<span id="cb590-15"><a href="measure-classification.html#cb590-15" tabindex="-1"></a>  gully_alloc,</span>
+<span id="cb590-16"><a href="measure-classification.html#cb590-16" tabindex="-1"></a>  buffer_alloc,</span>
+<span id="cb590-17"><a href="measure-classification.html#cb590-17" tabindex="-1"></a>  dam_alloc)</span>
+<span id="cb590-18"><a href="measure-classification.html#cb590-18" tabindex="-1"></a>full_Series <span class="sc">%&gt;%</span> <span class="fu">length</span>() <span class="co"># same length?</span></span>
+<span id="cb590-19"><a href="measure-classification.html#cb590-19" tabindex="-1"></a>(full_Series<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">363</span>) <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> <span class="fu">all</span>() <span class="co"># all incremental?</span></span></code></pre></div>
 <p>Now we need to translate the gardnummers to the allocated measure IDs..</p>
 <div id="gullies-grassed-water-ways" class="section level3 hasAnchor" number="21.3.1">
 <h3><span class="header-section-number">21.3.1</span> Gullies (grassed water ways)<a href="measure-classification.html#gullies-grassed-water-ways" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Measure range from 223 to 292</p>
-<div class="sourceCode" id="cb598"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb598-1"><a href="measure-classification.html#cb598-1" tabindex="-1"></a><span class="co"># Grabs the measure codes for each gully measure</span></span>
-<span id="cb598-2"><a href="measure-classification.html#cb598-2" tabindex="-1"></a>gully_codes <span class="ot">&lt;-</span> mea_map <span class="sc">%&gt;%</span> <span class="fu">filter</span>(gully <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(gully) </span>
-<span id="cb598-3"><a href="measure-classification.html#cb598-3" tabindex="-1"></a><span class="co"># grabs the farm IDs for each gully measure</span></span>
-<span id="cb598-4"><a href="measure-classification.html#cb598-4" tabindex="-1"></a>gully_farm_ids <span class="ot">&lt;-</span> mea_map <span class="sc">%&gt;%</span> <span class="fu">filter</span>(gully <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(GARDSNUMME)</span>
-<span id="cb598-5"><a href="measure-classification.html#cb598-5" tabindex="-1"></a><span class="co"># Grabs the unique farms which have gully measures</span></span>
-<span id="cb598-6"><a href="measure-classification.html#cb598-6" tabindex="-1"></a>gully_farm_uniq <span class="ot">&lt;-</span> gully_farm_ids <span class="sc">%&gt;%</span> <span class="fu">unique</span>() <span class="sc">%&gt;%</span> <span class="fu">sort</span>()</span>
-<span id="cb598-7"><a href="measure-classification.html#cb598-7" tabindex="-1"></a><span class="co"># A look up table from gully farm IDs to old measure IDs</span></span>
-<span id="cb598-8"><a href="measure-classification.html#cb598-8" tabindex="-1"></a>mea_to_farm <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">farm_id =</span> gully_farm_ids, <span class="at">measure_id =</span> gully_codes)</span>
-<span id="cb598-9"><a href="measure-classification.html#cb598-9" tabindex="-1"></a><span class="co"># A look up table from farm IDs which have gullies, to the gully-allocated IDs</span></span>
-<span id="cb598-10"><a href="measure-classification.html#cb598-10" tabindex="-1"></a>farm_to_alloc <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">farm_id =</span> gully_farm_uniq, <span class="at">gully_alloc =</span> gully_alloc)</span>
-<span id="cb598-11"><a href="measure-classification.html#cb598-11" tabindex="-1"></a><span class="co"># A look up table combined from previous two</span></span>
-<span id="cb598-12"><a href="measure-classification.html#cb598-12" tabindex="-1"></a>lookup <span class="ot">&lt;-</span> <span class="fu">left_join</span>(farm_to_alloc,mea_to_farm, <span class="at">by =</span> <span class="st">&quot;farm_id&quot;</span>, <span class="at">keep =</span> <span class="cn">FALSE</span>, )</span>
-<span id="cb598-13"><a href="measure-classification.html#cb598-13" tabindex="-1"></a><span class="do">## Re-coding IDs</span></span>
-<span id="cb598-14"><a href="measure-classification.html#cb598-14" tabindex="-1"></a><span class="co"># https://stackoverflow.com/questions/66231321/recode-values-based-on-look-up-table-with-dplyr-r</span></span>
-<span id="cb598-15"><a href="measure-classification.html#cb598-15" tabindex="-1"></a>gully_df <span class="ot">=</span> mea_map <span class="sc">%&gt;%</span> st_drop_geometry <span class="sc">%&gt;%</span> <span class="fu">filter</span>(gully <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(id, name, GARDSNUMME, gully)</span>
-<span id="cb598-16"><a href="measure-classification.html#cb598-16" tabindex="-1"></a>recode_vec <span class="ot">&lt;-</span> lookup<span class="sc">$</span>gully_alloc</span>
-<span id="cb598-17"><a href="measure-classification.html#cb598-17" tabindex="-1"></a><span class="fu">names</span>(recode_vec) <span class="ot">&lt;-</span> lookup<span class="sc">$</span>measure_id</span>
-<span id="cb598-18"><a href="measure-classification.html#cb598-18" tabindex="-1"></a><span class="co"># reclassifying</span></span>
-<span id="cb598-19"><a href="measure-classification.html#cb598-19" tabindex="-1"></a>gully_reclassed <span class="ot">&lt;-</span> gully_df <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">gully_new =</span> <span class="fu">recode</span>(gully, <span class="sc">!!!</span>recode_vec))</span>
-<span id="cb598-20"><a href="measure-classification.html#cb598-20" tabindex="-1"></a><span class="fu">datatable</span>(gully_reclassed)</span></code></pre></div>
+<div class="sourceCode" id="cb591"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb591-1"><a href="measure-classification.html#cb591-1" tabindex="-1"></a><span class="co"># Grabs the measure codes for each gully measure</span></span>
+<span id="cb591-2"><a href="measure-classification.html#cb591-2" tabindex="-1"></a>gully_codes <span class="ot">&lt;-</span> mea_map <span class="sc">%&gt;%</span> <span class="fu">filter</span>(gully <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(gully) </span>
+<span id="cb591-3"><a href="measure-classification.html#cb591-3" tabindex="-1"></a><span class="co"># grabs the farm IDs for each gully measure</span></span>
+<span id="cb591-4"><a href="measure-classification.html#cb591-4" tabindex="-1"></a>gully_farm_ids <span class="ot">&lt;-</span> mea_map <span class="sc">%&gt;%</span> <span class="fu">filter</span>(gully <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(GARDSNUMME)</span>
+<span id="cb591-5"><a href="measure-classification.html#cb591-5" tabindex="-1"></a><span class="co"># Grabs the unique farms which have gully measures</span></span>
+<span id="cb591-6"><a href="measure-classification.html#cb591-6" tabindex="-1"></a>gully_farm_uniq <span class="ot">&lt;-</span> gully_farm_ids <span class="sc">%&gt;%</span> <span class="fu">unique</span>() <span class="sc">%&gt;%</span> <span class="fu">sort</span>()</span>
+<span id="cb591-7"><a href="measure-classification.html#cb591-7" tabindex="-1"></a><span class="co"># A look up table from gully farm IDs to old measure IDs</span></span>
+<span id="cb591-8"><a href="measure-classification.html#cb591-8" tabindex="-1"></a>mea_to_farm <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">farm_id =</span> gully_farm_ids, <span class="at">measure_id =</span> gully_codes)</span>
+<span id="cb591-9"><a href="measure-classification.html#cb591-9" tabindex="-1"></a><span class="co"># A look up table from farm IDs which have gullies, to the gully-allocated IDs</span></span>
+<span id="cb591-10"><a href="measure-classification.html#cb591-10" tabindex="-1"></a>farm_to_alloc <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">farm_id =</span> gully_farm_uniq, <span class="at">gully_alloc =</span> gully_alloc)</span>
+<span id="cb591-11"><a href="measure-classification.html#cb591-11" tabindex="-1"></a><span class="co"># A look up table combined from previous two</span></span>
+<span id="cb591-12"><a href="measure-classification.html#cb591-12" tabindex="-1"></a>lookup <span class="ot">&lt;-</span> <span class="fu">left_join</span>(farm_to_alloc,mea_to_farm, <span class="at">by =</span> <span class="st">&quot;farm_id&quot;</span>, <span class="at">keep =</span> <span class="cn">FALSE</span>, )</span>
+<span id="cb591-13"><a href="measure-classification.html#cb591-13" tabindex="-1"></a><span class="do">## Re-coding IDs</span></span>
+<span id="cb591-14"><a href="measure-classification.html#cb591-14" tabindex="-1"></a><span class="co"># https://stackoverflow.com/questions/66231321/recode-values-based-on-look-up-table-with-dplyr-r</span></span>
+<span id="cb591-15"><a href="measure-classification.html#cb591-15" tabindex="-1"></a>gully_df <span class="ot">=</span> mea_map <span class="sc">%&gt;%</span> st_drop_geometry <span class="sc">%&gt;%</span> <span class="fu">filter</span>(gully <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(id, name, GARDSNUMME, gully)</span>
+<span id="cb591-16"><a href="measure-classification.html#cb591-16" tabindex="-1"></a>recode_vec <span class="ot">&lt;-</span> lookup<span class="sc">$</span>gully_alloc</span>
+<span id="cb591-17"><a href="measure-classification.html#cb591-17" tabindex="-1"></a><span class="fu">names</span>(recode_vec) <span class="ot">&lt;-</span> lookup<span class="sc">$</span>measure_id</span>
+<span id="cb591-18"><a href="measure-classification.html#cb591-18" tabindex="-1"></a><span class="co"># reclassifying</span></span>
+<span id="cb591-19"><a href="measure-classification.html#cb591-19" tabindex="-1"></a>gully_reclassed <span class="ot">&lt;-</span> gully_df <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">gully_new =</span> <span class="fu">recode</span>(gully, <span class="sc">!!!</span>recode_vec))</span>
+<span id="cb591-20"><a href="measure-classification.html#cb591-20" tabindex="-1"></a><span class="fu">datatable</span>(gully_reclassed)</span></code></pre></div>
 </div>
 <div id="buffer-strips" class="section level3 hasAnchor" number="21.3.2">
 <h3><span class="header-section-number">21.3.2</span> Buffer Strips<a href="measure-classification.html#buffer-strips" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Same procedure, measure IDs 293 to 360</p>
-<div class="sourceCode" id="cb599"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb599-1"><a href="measure-classification.html#cb599-1" tabindex="-1"></a><span class="co"># Grabs the measure codes for each buffer_6m_  measure</span></span>
-<span id="cb599-2"><a href="measure-classification.html#cb599-2" tabindex="-1"></a>buffer_codes <span class="ot">&lt;-</span> mea_map <span class="sc">%&gt;%</span> <span class="fu">filter</span>(buffer_6m_  <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(buffer_6m_ ) </span>
-<span id="cb599-3"><a href="measure-classification.html#cb599-3" tabindex="-1"></a><span class="co"># grabs the farm IDs for each buffer measure</span></span>
-<span id="cb599-4"><a href="measure-classification.html#cb599-4" tabindex="-1"></a>buffer_farm_ids <span class="ot">&lt;-</span> mea_map <span class="sc">%&gt;%</span> <span class="fu">filter</span>(buffer_6m_  <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(GARDSNUMME)</span>
-<span id="cb599-5"><a href="measure-classification.html#cb599-5" tabindex="-1"></a><span class="co"># Grabs the unique farms which have buffer_6m_  measures</span></span>
-<span id="cb599-6"><a href="measure-classification.html#cb599-6" tabindex="-1"></a>buffer_farm_uniq <span class="ot">&lt;-</span> buffer_farm_ids <span class="sc">%&gt;%</span> <span class="fu">unique</span>() <span class="sc">%&gt;%</span> <span class="fu">sort</span>()</span>
-<span id="cb599-7"><a href="measure-classification.html#cb599-7" tabindex="-1"></a><span class="co"># A look up table from buffer farm IDs to old measure IDs</span></span>
-<span id="cb599-8"><a href="measure-classification.html#cb599-8" tabindex="-1"></a>mea_to_farm <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">farm_id =</span> buffer_farm_ids, <span class="at">measure_id =</span> buffer_codes)</span>
-<span id="cb599-9"><a href="measure-classification.html#cb599-9" tabindex="-1"></a><span class="co"># A look up table from farm IDs which have buffers, to the buffer-allocated IDs</span></span>
-<span id="cb599-10"><a href="measure-classification.html#cb599-10" tabindex="-1"></a>farm_to_alloc <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">farm_id =</span> buffer_farm_uniq, <span class="at">buffer_alloc =</span> buffer_alloc)</span>
-<span id="cb599-11"><a href="measure-classification.html#cb599-11" tabindex="-1"></a><span class="co"># A look up table combined from previous two</span></span>
-<span id="cb599-12"><a href="measure-classification.html#cb599-12" tabindex="-1"></a>lookup <span class="ot">&lt;-</span> <span class="fu">left_join</span>(farm_to_alloc,mea_to_farm, <span class="at">by =</span> <span class="st">&quot;farm_id&quot;</span>, <span class="at">keep =</span> <span class="cn">FALSE</span>, )</span>
-<span id="cb599-13"><a href="measure-classification.html#cb599-13" tabindex="-1"></a><span class="do">## Recoding IDs</span></span>
-<span id="cb599-14"><a href="measure-classification.html#cb599-14" tabindex="-1"></a><span class="co"># https://stackoverflow.com/questions/66231321/recode-values-based-on-look-up-table-with-dplyr-r</span></span>
-<span id="cb599-15"><a href="measure-classification.html#cb599-15" tabindex="-1"></a>buffer_df <span class="ot">=</span> mea_map <span class="sc">%&gt;%</span> st_drop_geometry <span class="sc">%&gt;%</span> <span class="fu">filter</span>(buffer_6m_ <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(id, name, GARDSNUMME, buffer_6m_)</span>
-<span id="cb599-16"><a href="measure-classification.html#cb599-16" tabindex="-1"></a>recode_vec <span class="ot">&lt;-</span> lookup<span class="sc">$</span>buffer_alloc</span>
-<span id="cb599-17"><a href="measure-classification.html#cb599-17" tabindex="-1"></a><span class="fu">names</span>(recode_vec) <span class="ot">&lt;-</span> lookup<span class="sc">$</span>measure_id</span>
-<span id="cb599-18"><a href="measure-classification.html#cb599-18" tabindex="-1"></a><span class="co"># reclassifiying</span></span>
-<span id="cb599-19"><a href="measure-classification.html#cb599-19" tabindex="-1"></a>buffer_reclassed <span class="ot">&lt;-</span> buffer_df <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">buffer_new =</span> <span class="fu">recode</span>(buffer_6m_, <span class="sc">!!!</span>recode_vec))</span>
-<span id="cb599-20"><a href="measure-classification.html#cb599-20" tabindex="-1"></a><span class="fu">datatable</span>(buffer_reclassed)</span></code></pre></div>
+<div class="sourceCode" id="cb592"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb592-1"><a href="measure-classification.html#cb592-1" tabindex="-1"></a><span class="co"># Grabs the measure codes for each buffer_6m_  measure</span></span>
+<span id="cb592-2"><a href="measure-classification.html#cb592-2" tabindex="-1"></a>buffer_codes <span class="ot">&lt;-</span> mea_map <span class="sc">%&gt;%</span> <span class="fu">filter</span>(buffer_6m_  <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(buffer_6m_ ) </span>
+<span id="cb592-3"><a href="measure-classification.html#cb592-3" tabindex="-1"></a><span class="co"># grabs the farm IDs for each buffer measure</span></span>
+<span id="cb592-4"><a href="measure-classification.html#cb592-4" tabindex="-1"></a>buffer_farm_ids <span class="ot">&lt;-</span> mea_map <span class="sc">%&gt;%</span> <span class="fu">filter</span>(buffer_6m_  <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(GARDSNUMME)</span>
+<span id="cb592-5"><a href="measure-classification.html#cb592-5" tabindex="-1"></a><span class="co"># Grabs the unique farms which have buffer_6m_  measures</span></span>
+<span id="cb592-6"><a href="measure-classification.html#cb592-6" tabindex="-1"></a>buffer_farm_uniq <span class="ot">&lt;-</span> buffer_farm_ids <span class="sc">%&gt;%</span> <span class="fu">unique</span>() <span class="sc">%&gt;%</span> <span class="fu">sort</span>()</span>
+<span id="cb592-7"><a href="measure-classification.html#cb592-7" tabindex="-1"></a><span class="co"># A look up table from buffer farm IDs to old measure IDs</span></span>
+<span id="cb592-8"><a href="measure-classification.html#cb592-8" tabindex="-1"></a>mea_to_farm <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">farm_id =</span> buffer_farm_ids, <span class="at">measure_id =</span> buffer_codes)</span>
+<span id="cb592-9"><a href="measure-classification.html#cb592-9" tabindex="-1"></a><span class="co"># A look up table from farm IDs which have buffers, to the buffer-allocated IDs</span></span>
+<span id="cb592-10"><a href="measure-classification.html#cb592-10" tabindex="-1"></a>farm_to_alloc <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">farm_id =</span> buffer_farm_uniq, <span class="at">buffer_alloc =</span> buffer_alloc)</span>
+<span id="cb592-11"><a href="measure-classification.html#cb592-11" tabindex="-1"></a><span class="co"># A look up table combined from previous two</span></span>
+<span id="cb592-12"><a href="measure-classification.html#cb592-12" tabindex="-1"></a>lookup <span class="ot">&lt;-</span> <span class="fu">left_join</span>(farm_to_alloc,mea_to_farm, <span class="at">by =</span> <span class="st">&quot;farm_id&quot;</span>, <span class="at">keep =</span> <span class="cn">FALSE</span>, )</span>
+<span id="cb592-13"><a href="measure-classification.html#cb592-13" tabindex="-1"></a><span class="do">## Recoding IDs</span></span>
+<span id="cb592-14"><a href="measure-classification.html#cb592-14" tabindex="-1"></a><span class="co"># https://stackoverflow.com/questions/66231321/recode-values-based-on-look-up-table-with-dplyr-r</span></span>
+<span id="cb592-15"><a href="measure-classification.html#cb592-15" tabindex="-1"></a>buffer_df <span class="ot">=</span> mea_map <span class="sc">%&gt;%</span> st_drop_geometry <span class="sc">%&gt;%</span> <span class="fu">filter</span>(buffer_6m_ <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(id, name, GARDSNUMME, buffer_6m_)</span>
+<span id="cb592-16"><a href="measure-classification.html#cb592-16" tabindex="-1"></a>recode_vec <span class="ot">&lt;-</span> lookup<span class="sc">$</span>buffer_alloc</span>
+<span id="cb592-17"><a href="measure-classification.html#cb592-17" tabindex="-1"></a><span class="fu">names</span>(recode_vec) <span class="ot">&lt;-</span> lookup<span class="sc">$</span>measure_id</span>
+<span id="cb592-18"><a href="measure-classification.html#cb592-18" tabindex="-1"></a><span class="co"># reclassifiying</span></span>
+<span id="cb592-19"><a href="measure-classification.html#cb592-19" tabindex="-1"></a>buffer_reclassed <span class="ot">&lt;-</span> buffer_df <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">buffer_new =</span> <span class="fu">recode</span>(buffer_6m_, <span class="sc">!!!</span>recode_vec))</span>
+<span id="cb592-20"><a href="measure-classification.html#cb592-20" tabindex="-1"></a><span class="fu">datatable</span>(buffer_reclassed)</span></code></pre></div>
 </div>
 <div id="ponds" class="section level3 hasAnchor" number="21.3.3">
 <h3><span class="header-section-number">21.3.3</span> Ponds<a href="measure-classification.html#ponds" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb600"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb600-1"><a href="measure-classification.html#cb600-1" tabindex="-1"></a><span class="co"># Grabs the measure codes for each dam measure</span></span>
-<span id="cb600-2"><a href="measure-classification.html#cb600-2" tabindex="-1"></a>pond_codes <span class="ot">&lt;-</span> mea_map <span class="sc">%&gt;%</span> <span class="fu">filter</span>(dam <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(dam) </span>
-<span id="cb600-3"><a href="measure-classification.html#cb600-3" tabindex="-1"></a><span class="co"># grabs the farm IDs for each pond measure</span></span>
-<span id="cb600-4"><a href="measure-classification.html#cb600-4" tabindex="-1"></a>pond_farm_ids <span class="ot">&lt;-</span> mea_map <span class="sc">%&gt;%</span> <span class="fu">filter</span>(dam <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(GARDSNUMME)</span>
-<span id="cb600-5"><a href="measure-classification.html#cb600-5" tabindex="-1"></a><span class="co"># Grabs the unique farms which have pond measures</span></span>
-<span id="cb600-6"><a href="measure-classification.html#cb600-6" tabindex="-1"></a>pond_farm_uniq <span class="ot">&lt;-</span> pond_farm_ids <span class="sc">%&gt;%</span> <span class="fu">unique</span>() <span class="sc">%&gt;%</span> <span class="fu">sort</span>()</span>
-<span id="cb600-7"><a href="measure-classification.html#cb600-7" tabindex="-1"></a><span class="co"># A look up table from pond farm IDs to old measure IDs</span></span>
-<span id="cb600-8"><a href="measure-classification.html#cb600-8" tabindex="-1"></a>mea_to_farm <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">farm_id =</span> pond_farm_ids, <span class="at">measure_id =</span> pond_codes)</span>
-<span id="cb600-9"><a href="measure-classification.html#cb600-9" tabindex="-1"></a><span class="co"># A look up table from farm IDs which have gullies, to the pond-allocated IDs</span></span>
-<span id="cb600-10"><a href="measure-classification.html#cb600-10" tabindex="-1"></a>farm_to_alloc <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">farm_id =</span> pond_farm_uniq, <span class="at">pond_alloc =</span> dam_alloc)</span>
-<span id="cb600-11"><a href="measure-classification.html#cb600-11" tabindex="-1"></a><span class="co"># A look up table combined from previous two</span></span>
-<span id="cb600-12"><a href="measure-classification.html#cb600-12" tabindex="-1"></a>lookup <span class="ot">&lt;-</span> <span class="fu">left_join</span>(farm_to_alloc,mea_to_farm, <span class="at">by =</span> <span class="st">&quot;farm_id&quot;</span>, <span class="at">keep =</span> <span class="cn">FALSE</span>, )</span>
-<span id="cb600-13"><a href="measure-classification.html#cb600-13" tabindex="-1"></a><span class="do">## Re-coding IDs</span></span>
-<span id="cb600-14"><a href="measure-classification.html#cb600-14" tabindex="-1"></a><span class="co"># https://stackoverflow.com/questions/66231321/recode-values-based-on-look-up-table-with-dplyr-r</span></span>
-<span id="cb600-15"><a href="measure-classification.html#cb600-15" tabindex="-1"></a>pond_df <span class="ot">=</span> mea_map <span class="sc">%&gt;%</span> <span class="fu">st_drop_geometry</span>() <span class="sc">%&gt;%</span> <span class="fu">filter</span>(dam <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(id, name, GARDSNUMME, dam)</span>
-<span id="cb600-16"><a href="measure-classification.html#cb600-16" tabindex="-1"></a>recode_vec <span class="ot">&lt;-</span> lookup<span class="sc">$</span>pond_alloc</span>
-<span id="cb600-17"><a href="measure-classification.html#cb600-17" tabindex="-1"></a><span class="fu">names</span>(recode_vec) <span class="ot">&lt;-</span> lookup<span class="sc">$</span>measure_id</span>
-<span id="cb600-18"><a href="measure-classification.html#cb600-18" tabindex="-1"></a><span class="co"># reclassifying</span></span>
-<span id="cb600-19"><a href="measure-classification.html#cb600-19" tabindex="-1"></a>pond_reclassed <span class="ot">&lt;-</span> pond_df <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">pond_new =</span> <span class="fu">recode</span>(dam, <span class="sc">!!!</span>recode_vec))</span>
-<span id="cb600-20"><a href="measure-classification.html#cb600-20" tabindex="-1"></a><span class="fu">datatable</span>(pond_reclassed)</span></code></pre></div>
+<div class="sourceCode" id="cb593"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb593-1"><a href="measure-classification.html#cb593-1" tabindex="-1"></a><span class="co"># Grabs the measure codes for each dam measure</span></span>
+<span id="cb593-2"><a href="measure-classification.html#cb593-2" tabindex="-1"></a>pond_codes <span class="ot">&lt;-</span> mea_map <span class="sc">%&gt;%</span> <span class="fu">filter</span>(dam <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(dam) </span>
+<span id="cb593-3"><a href="measure-classification.html#cb593-3" tabindex="-1"></a><span class="co"># grabs the farm IDs for each pond measure</span></span>
+<span id="cb593-4"><a href="measure-classification.html#cb593-4" tabindex="-1"></a>pond_farm_ids <span class="ot">&lt;-</span> mea_map <span class="sc">%&gt;%</span> <span class="fu">filter</span>(dam <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(GARDSNUMME)</span>
+<span id="cb593-5"><a href="measure-classification.html#cb593-5" tabindex="-1"></a><span class="co"># Grabs the unique farms which have pond measures</span></span>
+<span id="cb593-6"><a href="measure-classification.html#cb593-6" tabindex="-1"></a>pond_farm_uniq <span class="ot">&lt;-</span> pond_farm_ids <span class="sc">%&gt;%</span> <span class="fu">unique</span>() <span class="sc">%&gt;%</span> <span class="fu">sort</span>()</span>
+<span id="cb593-7"><a href="measure-classification.html#cb593-7" tabindex="-1"></a><span class="co"># A look up table from pond farm IDs to old measure IDs</span></span>
+<span id="cb593-8"><a href="measure-classification.html#cb593-8" tabindex="-1"></a>mea_to_farm <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">farm_id =</span> pond_farm_ids, <span class="at">measure_id =</span> pond_codes)</span>
+<span id="cb593-9"><a href="measure-classification.html#cb593-9" tabindex="-1"></a><span class="co"># A look up table from farm IDs which have gullies, to the pond-allocated IDs</span></span>
+<span id="cb593-10"><a href="measure-classification.html#cb593-10" tabindex="-1"></a>farm_to_alloc <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">farm_id =</span> pond_farm_uniq, <span class="at">pond_alloc =</span> dam_alloc)</span>
+<span id="cb593-11"><a href="measure-classification.html#cb593-11" tabindex="-1"></a><span class="co"># A look up table combined from previous two</span></span>
+<span id="cb593-12"><a href="measure-classification.html#cb593-12" tabindex="-1"></a>lookup <span class="ot">&lt;-</span> <span class="fu">left_join</span>(farm_to_alloc,mea_to_farm, <span class="at">by =</span> <span class="st">&quot;farm_id&quot;</span>, <span class="at">keep =</span> <span class="cn">FALSE</span>, )</span>
+<span id="cb593-13"><a href="measure-classification.html#cb593-13" tabindex="-1"></a><span class="do">## Re-coding IDs</span></span>
+<span id="cb593-14"><a href="measure-classification.html#cb593-14" tabindex="-1"></a><span class="co"># https://stackoverflow.com/questions/66231321/recode-values-based-on-look-up-table-with-dplyr-r</span></span>
+<span id="cb593-15"><a href="measure-classification.html#cb593-15" tabindex="-1"></a>pond_df <span class="ot">=</span> mea_map <span class="sc">%&gt;%</span> <span class="fu">st_drop_geometry</span>() <span class="sc">%&gt;%</span> <span class="fu">filter</span>(dam <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(id, name, GARDSNUMME, dam)</span>
+<span id="cb593-16"><a href="measure-classification.html#cb593-16" tabindex="-1"></a>recode_vec <span class="ot">&lt;-</span> lookup<span class="sc">$</span>pond_alloc</span>
+<span id="cb593-17"><a href="measure-classification.html#cb593-17" tabindex="-1"></a><span class="fu">names</span>(recode_vec) <span class="ot">&lt;-</span> lookup<span class="sc">$</span>measure_id</span>
+<span id="cb593-18"><a href="measure-classification.html#cb593-18" tabindex="-1"></a><span class="co"># reclassifying</span></span>
+<span id="cb593-19"><a href="measure-classification.html#cb593-19" tabindex="-1"></a>pond_reclassed <span class="ot">&lt;-</span> pond_df <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">pond_new =</span> <span class="fu">recode</span>(dam, <span class="sc">!!!</span>recode_vec))</span>
+<span id="cb593-20"><a href="measure-classification.html#cb593-20" tabindex="-1"></a><span class="fu">datatable</span>(pond_reclassed)</span></code></pre></div>
 </div>
 <div id="notill-management-measure" class="section level3 hasAnchor" number="21.3.4">
 <h3><span class="header-section-number">21.3.4</span> NoTill (management measure)<a href="measure-classification.html#notill-management-measure" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Re-classify for each erosion risk level</p>
-<div class="sourceCode" id="cb601"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb601-1"><a href="measure-classification.html#cb601-1" tabindex="-1"></a>custom_reclass <span class="ot">&lt;-</span> <span class="cf">function</span>(mea_map, erosion_class, mea_alloc) {</span>
-<span id="cb601-2"><a href="measure-classification.html#cb601-2" tabindex="-1"></a>  non_agri <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;frst&quot;</span>, <span class="st">&quot;past&quot;</span>, <span class="st">&quot;rngb&quot;</span>, <span class="st">&quot;urml&quot;</span>, <span class="st">&quot;utrn&quot;</span>, <span class="st">&quot;wetf&quot;</span>)</span>
-<span id="cb601-3"><a href="measure-classification.html#cb601-3" tabindex="-1"></a>  <span class="co"># farm codes of farms with class 1 erosion agricultural fields.</span></span>
-<span id="cb601-4"><a href="measure-classification.html#cb601-4" tabindex="-1"></a>  relevant_data <span class="ot">&lt;-</span> mea_map <span class="sc">%&gt;%</span> st_drop_geometry <span class="sc">%&gt;%</span> <span class="fu">filter</span>((type <span class="sc">%in%</span> non_agri) <span class="sc">==</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(A_HPKL <span class="sc">==</span> erosion_class) <span class="sc">%&gt;%</span> <span class="fu">select</span>(id, name, GARDSNUMME, type)</span>
-<span id="cb601-5"><a href="measure-classification.html#cb601-5" tabindex="-1"></a>  class_X_farms <span class="ot">&lt;-</span> relevant_data<span class="sc">$</span>GARDSNUMME <span class="sc">%&gt;%</span> <span class="fu">unique</span>() <span class="sc">%&gt;%</span> <span class="fu">sort</span>()</span>
-<span id="cb601-6"><a href="measure-classification.html#cb601-6" tabindex="-1"></a>  class_X_hrus <span class="ot">&lt;-</span> relevant_data<span class="sc">$</span>id <span class="sc">%&gt;%</span> <span class="fu">unique</span>() <span class="sc">%&gt;%</span> <span class="fu">sort</span>()</span>
-<span id="cb601-7"><a href="measure-classification.html#cb601-7" tabindex="-1"></a>  recode_vec <span class="ot">&lt;-</span> mea_alloc</span>
-<span id="cb601-8"><a href="measure-classification.html#cb601-8" tabindex="-1"></a>  <span class="fu">names</span>(recode_vec) <span class="ot">&lt;-</span> class_X_farms</span>
-<span id="cb601-9"><a href="measure-classification.html#cb601-9" tabindex="-1"></a>  <span class="co"># reclassifying</span></span>
-<span id="cb601-10"><a href="measure-classification.html#cb601-10" tabindex="-1"></a>  class_X_reclass <span class="ot">&lt;-</span> relevant_data <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">notill =</span> <span class="fu">recode</span>(GARDSNUMME, <span class="sc">!!!</span>recode_vec))</span>
-<span id="cb601-11"><a href="measure-classification.html#cb601-11" tabindex="-1"></a>  <span class="fu">return</span>(class_X_reclass)</span>
-<span id="cb601-12"><a href="measure-classification.html#cb601-12" tabindex="-1"></a>}</span>
-<span id="cb601-13"><a href="measure-classification.html#cb601-13" tabindex="-1"></a>notill_1 <span class="ot">&lt;-</span> <span class="fu">custom_reclass</span>(mea_map, <span class="at">erosion_class =</span> <span class="dv">1</span>, <span class="at">mea_alloc =</span> class_1_alloc)</span>
-<span id="cb601-14"><a href="measure-classification.html#cb601-14" tabindex="-1"></a>notill_2 <span class="ot">&lt;-</span> <span class="fu">custom_reclass</span>(mea_map, <span class="at">erosion_class =</span> <span class="dv">2</span>, <span class="at">mea_alloc =</span> class_2_alloc)</span>
-<span id="cb601-15"><a href="measure-classification.html#cb601-15" tabindex="-1"></a>notill_3 <span class="ot">&lt;-</span> <span class="fu">custom_reclass</span>(mea_map, <span class="at">erosion_class =</span> <span class="dv">3</span>, <span class="at">mea_alloc =</span> class_3_alloc)</span>
-<span id="cb601-16"><a href="measure-classification.html#cb601-16" tabindex="-1"></a>notill_4 <span class="ot">&lt;-</span> <span class="fu">custom_reclass</span>(mea_map, <span class="at">erosion_class =</span> <span class="dv">4</span>, <span class="at">mea_alloc =</span> class_4_alloc)</span>
-<span id="cb601-17"><a href="measure-classification.html#cb601-17" tabindex="-1"></a>notill_0 <span class="ot">&lt;-</span> <span class="fu">custom_reclass</span>(mea_map, <span class="at">erosion_class =</span> <span class="dv">0</span>, <span class="at">mea_alloc =</span> class_0_alloc)</span>
-<span id="cb601-18"><a href="measure-classification.html#cb601-18" tabindex="-1"></a><span class="co"># notill_4$measure_id %&gt;% unique() %&gt;% length() == 10 # check</span></span>
-<span id="cb601-19"><a href="measure-classification.html#cb601-19" tabindex="-1"></a><span class="fu">datatable</span>(notill_3)</span></code></pre></div>
+<div class="sourceCode" id="cb594"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb594-1"><a href="measure-classification.html#cb594-1" tabindex="-1"></a>custom_reclass <span class="ot">&lt;-</span> <span class="cf">function</span>(mea_map, erosion_class, mea_alloc) {</span>
+<span id="cb594-2"><a href="measure-classification.html#cb594-2" tabindex="-1"></a>  non_agri <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;frst&quot;</span>, <span class="st">&quot;past&quot;</span>, <span class="st">&quot;rngb&quot;</span>, <span class="st">&quot;urml&quot;</span>, <span class="st">&quot;utrn&quot;</span>, <span class="st">&quot;wetf&quot;</span>)</span>
+<span id="cb594-3"><a href="measure-classification.html#cb594-3" tabindex="-1"></a>  <span class="co"># farm codes of farms with class 1 erosion agricultural fields.</span></span>
+<span id="cb594-4"><a href="measure-classification.html#cb594-4" tabindex="-1"></a>  relevant_data <span class="ot">&lt;-</span> mea_map <span class="sc">%&gt;%</span> st_drop_geometry <span class="sc">%&gt;%</span> <span class="fu">filter</span>((type <span class="sc">%in%</span> non_agri) <span class="sc">==</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(A_HPKL <span class="sc">==</span> erosion_class) <span class="sc">%&gt;%</span> <span class="fu">select</span>(id, name, GARDSNUMME, type)</span>
+<span id="cb594-5"><a href="measure-classification.html#cb594-5" tabindex="-1"></a>  class_X_farms <span class="ot">&lt;-</span> relevant_data<span class="sc">$</span>GARDSNUMME <span class="sc">%&gt;%</span> <span class="fu">unique</span>() <span class="sc">%&gt;%</span> <span class="fu">sort</span>()</span>
+<span id="cb594-6"><a href="measure-classification.html#cb594-6" tabindex="-1"></a>  class_X_hrus <span class="ot">&lt;-</span> relevant_data<span class="sc">$</span>id <span class="sc">%&gt;%</span> <span class="fu">unique</span>() <span class="sc">%&gt;%</span> <span class="fu">sort</span>()</span>
+<span id="cb594-7"><a href="measure-classification.html#cb594-7" tabindex="-1"></a>  recode_vec <span class="ot">&lt;-</span> mea_alloc</span>
+<span id="cb594-8"><a href="measure-classification.html#cb594-8" tabindex="-1"></a>  <span class="fu">names</span>(recode_vec) <span class="ot">&lt;-</span> class_X_farms</span>
+<span id="cb594-9"><a href="measure-classification.html#cb594-9" tabindex="-1"></a>  <span class="co"># reclassifying</span></span>
+<span id="cb594-10"><a href="measure-classification.html#cb594-10" tabindex="-1"></a>  class_X_reclass <span class="ot">&lt;-</span> relevant_data <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">notill =</span> <span class="fu">recode</span>(GARDSNUMME, <span class="sc">!!!</span>recode_vec))</span>
+<span id="cb594-11"><a href="measure-classification.html#cb594-11" tabindex="-1"></a>  <span class="fu">return</span>(class_X_reclass)</span>
+<span id="cb594-12"><a href="measure-classification.html#cb594-12" tabindex="-1"></a>}</span>
+<span id="cb594-13"><a href="measure-classification.html#cb594-13" tabindex="-1"></a>notill_1 <span class="ot">&lt;-</span> <span class="fu">custom_reclass</span>(mea_map, <span class="at">erosion_class =</span> <span class="dv">1</span>, <span class="at">mea_alloc =</span> class_1_alloc)</span>
+<span id="cb594-14"><a href="measure-classification.html#cb594-14" tabindex="-1"></a>notill_2 <span class="ot">&lt;-</span> <span class="fu">custom_reclass</span>(mea_map, <span class="at">erosion_class =</span> <span class="dv">2</span>, <span class="at">mea_alloc =</span> class_2_alloc)</span>
+<span id="cb594-15"><a href="measure-classification.html#cb594-15" tabindex="-1"></a>notill_3 <span class="ot">&lt;-</span> <span class="fu">custom_reclass</span>(mea_map, <span class="at">erosion_class =</span> <span class="dv">3</span>, <span class="at">mea_alloc =</span> class_3_alloc)</span>
+<span id="cb594-16"><a href="measure-classification.html#cb594-16" tabindex="-1"></a>notill_4 <span class="ot">&lt;-</span> <span class="fu">custom_reclass</span>(mea_map, <span class="at">erosion_class =</span> <span class="dv">4</span>, <span class="at">mea_alloc =</span> class_4_alloc)</span>
+<span id="cb594-17"><a href="measure-classification.html#cb594-17" tabindex="-1"></a>notill_0 <span class="ot">&lt;-</span> <span class="fu">custom_reclass</span>(mea_map, <span class="at">erosion_class =</span> <span class="dv">0</span>, <span class="at">mea_alloc =</span> class_0_alloc)</span>
+<span id="cb594-18"><a href="measure-classification.html#cb594-18" tabindex="-1"></a><span class="co"># notill_4$measure_id %&gt;% unique() %&gt;% length() == 10 # check</span></span>
+<span id="cb594-19"><a href="measure-classification.html#cb594-19" tabindex="-1"></a><span class="fu">datatable</span>(notill_3)</span></code></pre></div>
 <p>Merge into single dataframe</p>
-<div class="sourceCode" id="cb602"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb602-1"><a href="measure-classification.html#cb602-1" tabindex="-1"></a>full_notill <span class="ot">&lt;-</span> <span class="fu">rbind</span>((notill_1 <span class="sc">%&gt;%</span> <span class="fu">select</span>(name, notill)),</span>
-<span id="cb602-2"><a href="measure-classification.html#cb602-2" tabindex="-1"></a>                     (notill_2 <span class="sc">%&gt;%</span> <span class="fu">select</span>(name, notill)),</span>
-<span id="cb602-3"><a href="measure-classification.html#cb602-3" tabindex="-1"></a>                     (notill_3 <span class="sc">%&gt;%</span> <span class="fu">select</span>(name, notill)),</span>
-<span id="cb602-4"><a href="measure-classification.html#cb602-4" tabindex="-1"></a>                     (notill_4 <span class="sc">%&gt;%</span> <span class="fu">select</span>(name, notill)),</span>
-<span id="cb602-5"><a href="measure-classification.html#cb602-5" tabindex="-1"></a>                     (notill_0 <span class="sc">%&gt;%</span> <span class="fu">select</span>(name, notill)))</span>
-<span id="cb602-6"><a href="measure-classification.html#cb602-6" tabindex="-1"></a>full_notill <span class="ot">&lt;-</span> full_notill[<span class="fu">order</span>(full_notill<span class="sc">$</span>name),]</span>
-<span id="cb602-7"><a href="measure-classification.html#cb602-7" tabindex="-1"></a><span class="fu">datatable</span>(full_notill)</span></code></pre></div>
+<div class="sourceCode" id="cb595"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb595-1"><a href="measure-classification.html#cb595-1" tabindex="-1"></a>full_notill <span class="ot">&lt;-</span> <span class="fu">rbind</span>((notill_1 <span class="sc">%&gt;%</span> <span class="fu">select</span>(name, notill)),</span>
+<span id="cb595-2"><a href="measure-classification.html#cb595-2" tabindex="-1"></a>                     (notill_2 <span class="sc">%&gt;%</span> <span class="fu">select</span>(name, notill)),</span>
+<span id="cb595-3"><a href="measure-classification.html#cb595-3" tabindex="-1"></a>                     (notill_3 <span class="sc">%&gt;%</span> <span class="fu">select</span>(name, notill)),</span>
+<span id="cb595-4"><a href="measure-classification.html#cb595-4" tabindex="-1"></a>                     (notill_4 <span class="sc">%&gt;%</span> <span class="fu">select</span>(name, notill)),</span>
+<span id="cb595-5"><a href="measure-classification.html#cb595-5" tabindex="-1"></a>                     (notill_0 <span class="sc">%&gt;%</span> <span class="fu">select</span>(name, notill)))</span>
+<span id="cb595-6"><a href="measure-classification.html#cb595-6" tabindex="-1"></a>full_notill <span class="ot">&lt;-</span> full_notill[<span class="fu">order</span>(full_notill<span class="sc">$</span>name),]</span>
+<span id="cb595-7"><a href="measure-classification.html#cb595-7" tabindex="-1"></a><span class="fu">datatable</span>(full_notill)</span></code></pre></div>
 </div>
 </div>
 <div id="hru-scenario-table" class="section level2 hasAnchor" number="21.4">
 <h2><span class="header-section-number">21.4</span> HRU Scenario Table<a href="measure-classification.html#hru-scenario-table" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We now need to generate the scenario HRU table for COMOLA.</p>
 <p>Find source code here: <a href="https://nc.ufz.de/s/ZExxdbtggBNJFs8?path=%2FWPs%20%26%20Tasks%2FWP4%2FTask%204.4%2FTools%20to%20share%2Fgenerate_measure_location_file">UFZ-CLOUD</a></p>
-<div class="sourceCode" id="cb603"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb603-1"><a href="measure-classification.html#cb603-1" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
-<span id="cb603-2"><a href="measure-classification.html#cb603-2" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
-<span id="cb603-3"><a href="measure-classification.html#cb603-3" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
-<span id="cb603-4"><a href="measure-classification.html#cb603-4" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
-<div class="sourceCode" id="cb604"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb604-1"><a href="measure-classification.html#cb604-1" tabindex="-1"></a><span class="co"># all OPTAIN measures</span></span>
-<span id="cb604-2"><a href="measure-classification.html#cb604-2" tabindex="-1"></a>measures_optain <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="st">&#39;nswrm_code&#39;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&#39;buffer&#39;</span>,</span>
-<span id="cb604-3"><a href="measure-classification.html#cb604-3" tabindex="-1"></a>                                               <span class="st">&#39;edgefilter&#39;</span>,</span>
-<span id="cb604-4"><a href="measure-classification.html#cb604-4" tabindex="-1"></a>                                               <span class="st">&#39;hedge&#39;</span>,</span>
-<span id="cb604-5"><a href="measure-classification.html#cb604-5" tabindex="-1"></a>                                               <span class="st">&#39;grassslope&#39;</span>,</span>
-<span id="cb604-6"><a href="measure-classification.html#cb604-6" tabindex="-1"></a>                                               <span class="st">&#39;grassrchrg&#39;</span>,</span>
-<span id="cb604-7"><a href="measure-classification.html#cb604-7" tabindex="-1"></a>                                               <span class="st">&#39;pond&#39;</span>,</span>
-<span id="cb604-8"><a href="measure-classification.html#cb604-8" tabindex="-1"></a>                                               <span class="st">&#39;afforest&#39;</span>,</span>
-<span id="cb604-9"><a href="measure-classification.html#cb604-9" tabindex="-1"></a>                                               <span class="st">&#39;floodres&#39;</span>,</span>
-<span id="cb604-10"><a href="measure-classification.html#cb604-10" tabindex="-1"></a>                                               <span class="st">&#39;channres&#39;</span>,</span>
-<span id="cb604-11"><a href="measure-classification.html#cb604-11" tabindex="-1"></a>                                               <span class="st">&#39;swale&#39;</span>,</span>
-<span id="cb604-12"><a href="measure-classification.html#cb604-12" tabindex="-1"></a>                                               <span class="st">&#39;wetland&#39;</span>,</span>
-<span id="cb604-13"><a href="measure-classification.html#cb604-13" tabindex="-1"></a>                                               <span class="st">&#39;cdrain&#39;</span>,</span>
-<span id="cb604-14"><a href="measure-classification.html#cb604-14" tabindex="-1"></a>                                               <span class="st">&#39;terrace&#39;</span>,</span>
-<span id="cb604-15"><a href="measure-classification.html#cb604-15" tabindex="-1"></a>                                               <span class="st">&#39;notill&#39;</span>,</span>
-<span id="cb604-16"><a href="measure-classification.html#cb604-16" tabindex="-1"></a>                                               <span class="st">&#39;lowtill&#39;</span>,</span>
-<span id="cb604-17"><a href="measure-classification.html#cb604-17" tabindex="-1"></a>                                               <span class="st">&#39;lowtillcc&#39;</span>,</span>
-<span id="cb604-18"><a href="measure-classification.html#cb604-18" tabindex="-1"></a>                                               <span class="st">&#39;mulching&#39;</span>,</span>
-<span id="cb604-19"><a href="measure-classification.html#cb604-19" tabindex="-1"></a>                                               <span class="st">&#39;subsoiling&#39;</span>,</span>
-<span id="cb604-20"><a href="measure-classification.html#cb604-20" tabindex="-1"></a>                                               <span class="st">&#39;rotation&#39;</span>,</span>
-<span id="cb604-21"><a href="measure-classification.html#cb604-21" tabindex="-1"></a>                                               <span class="st">&#39;intercrop&#39;</span>,</span>
-<span id="cb604-22"><a href="measure-classification.html#cb604-22" tabindex="-1"></a>                                               <span class="st">&#39;covercrop&#39;</span>,</span>
-<span id="cb604-23"><a href="measure-classification.html#cb604-23" tabindex="-1"></a>                                               <span class="st">&#39;earlysow&#39;</span>,</span>
-<span id="cb604-24"><a href="measure-classification.html#cb604-24" tabindex="-1"></a>                                               <span class="st">&#39;droughtplt&#39;</span>),</span>
-<span id="cb604-25"><a href="measure-classification.html#cb604-25" tabindex="-1"></a>                              <span class="st">&#39;description&#39;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&#39;Riparian buffers&#39;</span>,</span>
-<span id="cb604-26"><a href="measure-classification.html#cb604-26" tabindex="-1"></a>                                                <span class="st">&#39;Edge-of-field filter strips&#39;</span>,</span>
-<span id="cb604-27"><a href="measure-classification.html#cb604-27" tabindex="-1"></a>                                                <span class="st">&#39;Hedges/Field division&#39;</span>,</span>
-<span id="cb604-28"><a href="measure-classification.html#cb604-28" tabindex="-1"></a>                                                <span class="st">&#39;Grasland cover on erosive slopes&#39;</span>,</span>
-<span id="cb604-29"><a href="measure-classification.html#cb604-29" tabindex="-1"></a>                                                <span class="st">&#39;Grasland cover in recharge area&#39;</span>,</span>
-<span id="cb604-30"><a href="measure-classification.html#cb604-30" tabindex="-1"></a>                                                <span class="st">&#39;Retention/detention ponds&#39;</span>,</span>
-<span id="cb604-31"><a href="measure-classification.html#cb604-31" tabindex="-1"></a>                                                <span class="st">&#39;Afforestation&#39;</span>,</span>
-<span id="cb604-32"><a href="measure-classification.html#cb604-32" tabindex="-1"></a>                                                <span class="st">&#39;Floodplain restoration&#39;</span>,</span>
-<span id="cb604-33"><a href="measure-classification.html#cb604-33" tabindex="-1"></a>                                                <span class="st">&#39;Channel restoration&#39;</span>,</span>
-<span id="cb604-34"><a href="measure-classification.html#cb604-34" tabindex="-1"></a>                                                <span class="st">&#39;Swales&#39;</span>,</span>
-<span id="cb604-35"><a href="measure-classification.html#cb604-35" tabindex="-1"></a>                                                <span class="st">&#39;Constructed wetlands&#39;</span>,</span>
-<span id="cb604-36"><a href="measure-classification.html#cb604-36" tabindex="-1"></a>                                                <span class="st">&#39;Controlled drainage&#39;</span>,</span>
-<span id="cb604-37"><a href="measure-classification.html#cb604-37" tabindex="-1"></a>                                                <span class="st">&#39;Terracing&#39;</span>,</span>
-<span id="cb604-38"><a href="measure-classification.html#cb604-38" tabindex="-1"></a>                                                <span class="st">&#39;No-till agriculture&#39;</span>,</span>
-<span id="cb604-39"><a href="measure-classification.html#cb604-39" tabindex="-1"></a>                                                <span class="st">&#39;Low-till agriculture&#39;</span>,</span>
-<span id="cb604-40"><a href="measure-classification.html#cb604-40" tabindex="-1"></a>                                                <span class="st">&#39;Low-till agriculture combined with cover crops&#39;</span>,</span>
-<span id="cb604-41"><a href="measure-classification.html#cb604-41" tabindex="-1"></a>                                                <span class="st">&#39;Mulching&#39;</span>,</span>
-<span id="cb604-42"><a href="measure-classification.html#cb604-42" tabindex="-1"></a>                                                <span class="st">&#39;Subsoiling&#39;</span>,</span>
-<span id="cb604-43"><a href="measure-classification.html#cb604-43" tabindex="-1"></a>                                                <span class="st">&#39;Crop rotation&#39;</span>,</span>
-<span id="cb604-44"><a href="measure-classification.html#cb604-44" tabindex="-1"></a>                                                <span class="st">&#39;Intercropping&#39;</span>,</span>
-<span id="cb604-45"><a href="measure-classification.html#cb604-45" tabindex="-1"></a>                                                <span class="st">&#39;Green cover/ catch crops&#39;</span>,</span>
-<span id="cb604-46"><a href="measure-classification.html#cb604-46" tabindex="-1"></a>                                                <span class="st">&#39;Early sowing&#39;</span>,</span>
-<span id="cb604-47"><a href="measure-classification.html#cb604-47" tabindex="-1"></a>                                                <span class="st">&#39;Drought-resistant plants&#39;</span>))</span>
-<span id="cb604-48"><a href="measure-classification.html#cb604-48" tabindex="-1"></a><span class="fu">datatable</span>(measures_optain)</span></code></pre></div>
+<div class="sourceCode" id="cb596"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb596-1"><a href="measure-classification.html#cb596-1" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb596-2"><a href="measure-classification.html#cb596-2" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb596-3"><a href="measure-classification.html#cb596-3" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb596-4"><a href="measure-classification.html#cb596-4" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb597"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb597-1"><a href="measure-classification.html#cb597-1" tabindex="-1"></a><span class="co"># all OPTAIN measures</span></span>
+<span id="cb597-2"><a href="measure-classification.html#cb597-2" tabindex="-1"></a>measures_optain <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="st">&#39;nswrm_code&#39;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&#39;buffer&#39;</span>,</span>
+<span id="cb597-3"><a href="measure-classification.html#cb597-3" tabindex="-1"></a>                                               <span class="st">&#39;edgefilter&#39;</span>,</span>
+<span id="cb597-4"><a href="measure-classification.html#cb597-4" tabindex="-1"></a>                                               <span class="st">&#39;hedge&#39;</span>,</span>
+<span id="cb597-5"><a href="measure-classification.html#cb597-5" tabindex="-1"></a>                                               <span class="st">&#39;grassslope&#39;</span>,</span>
+<span id="cb597-6"><a href="measure-classification.html#cb597-6" tabindex="-1"></a>                                               <span class="st">&#39;grassrchrg&#39;</span>,</span>
+<span id="cb597-7"><a href="measure-classification.html#cb597-7" tabindex="-1"></a>                                               <span class="st">&#39;pond&#39;</span>,</span>
+<span id="cb597-8"><a href="measure-classification.html#cb597-8" tabindex="-1"></a>                                               <span class="st">&#39;afforest&#39;</span>,</span>
+<span id="cb597-9"><a href="measure-classification.html#cb597-9" tabindex="-1"></a>                                               <span class="st">&#39;floodres&#39;</span>,</span>
+<span id="cb597-10"><a href="measure-classification.html#cb597-10" tabindex="-1"></a>                                               <span class="st">&#39;channres&#39;</span>,</span>
+<span id="cb597-11"><a href="measure-classification.html#cb597-11" tabindex="-1"></a>                                               <span class="st">&#39;swale&#39;</span>,</span>
+<span id="cb597-12"><a href="measure-classification.html#cb597-12" tabindex="-1"></a>                                               <span class="st">&#39;wetland&#39;</span>,</span>
+<span id="cb597-13"><a href="measure-classification.html#cb597-13" tabindex="-1"></a>                                               <span class="st">&#39;cdrain&#39;</span>,</span>
+<span id="cb597-14"><a href="measure-classification.html#cb597-14" tabindex="-1"></a>                                               <span class="st">&#39;terrace&#39;</span>,</span>
+<span id="cb597-15"><a href="measure-classification.html#cb597-15" tabindex="-1"></a>                                               <span class="st">&#39;notill&#39;</span>,</span>
+<span id="cb597-16"><a href="measure-classification.html#cb597-16" tabindex="-1"></a>                                               <span class="st">&#39;lowtill&#39;</span>,</span>
+<span id="cb597-17"><a href="measure-classification.html#cb597-17" tabindex="-1"></a>                                               <span class="st">&#39;lowtillcc&#39;</span>,</span>
+<span id="cb597-18"><a href="measure-classification.html#cb597-18" tabindex="-1"></a>                                               <span class="st">&#39;mulching&#39;</span>,</span>
+<span id="cb597-19"><a href="measure-classification.html#cb597-19" tabindex="-1"></a>                                               <span class="st">&#39;subsoiling&#39;</span>,</span>
+<span id="cb597-20"><a href="measure-classification.html#cb597-20" tabindex="-1"></a>                                               <span class="st">&#39;rotation&#39;</span>,</span>
+<span id="cb597-21"><a href="measure-classification.html#cb597-21" tabindex="-1"></a>                                               <span class="st">&#39;intercrop&#39;</span>,</span>
+<span id="cb597-22"><a href="measure-classification.html#cb597-22" tabindex="-1"></a>                                               <span class="st">&#39;covercrop&#39;</span>,</span>
+<span id="cb597-23"><a href="measure-classification.html#cb597-23" tabindex="-1"></a>                                               <span class="st">&#39;earlysow&#39;</span>,</span>
+<span id="cb597-24"><a href="measure-classification.html#cb597-24" tabindex="-1"></a>                                               <span class="st">&#39;droughtplt&#39;</span>),</span>
+<span id="cb597-25"><a href="measure-classification.html#cb597-25" tabindex="-1"></a>                              <span class="st">&#39;description&#39;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&#39;Riparian buffers&#39;</span>,</span>
+<span id="cb597-26"><a href="measure-classification.html#cb597-26" tabindex="-1"></a>                                                <span class="st">&#39;Edge-of-field filter strips&#39;</span>,</span>
+<span id="cb597-27"><a href="measure-classification.html#cb597-27" tabindex="-1"></a>                                                <span class="st">&#39;Hedges/Field division&#39;</span>,</span>
+<span id="cb597-28"><a href="measure-classification.html#cb597-28" tabindex="-1"></a>                                                <span class="st">&#39;Grasland cover on erosive slopes&#39;</span>,</span>
+<span id="cb597-29"><a href="measure-classification.html#cb597-29" tabindex="-1"></a>                                                <span class="st">&#39;Grasland cover in recharge area&#39;</span>,</span>
+<span id="cb597-30"><a href="measure-classification.html#cb597-30" tabindex="-1"></a>                                                <span class="st">&#39;Retention/detention ponds&#39;</span>,</span>
+<span id="cb597-31"><a href="measure-classification.html#cb597-31" tabindex="-1"></a>                                                <span class="st">&#39;Afforestation&#39;</span>,</span>
+<span id="cb597-32"><a href="measure-classification.html#cb597-32" tabindex="-1"></a>                                                <span class="st">&#39;Floodplain restoration&#39;</span>,</span>
+<span id="cb597-33"><a href="measure-classification.html#cb597-33" tabindex="-1"></a>                                                <span class="st">&#39;Channel restoration&#39;</span>,</span>
+<span id="cb597-34"><a href="measure-classification.html#cb597-34" tabindex="-1"></a>                                                <span class="st">&#39;Swales&#39;</span>,</span>
+<span id="cb597-35"><a href="measure-classification.html#cb597-35" tabindex="-1"></a>                                                <span class="st">&#39;Constructed wetlands&#39;</span>,</span>
+<span id="cb597-36"><a href="measure-classification.html#cb597-36" tabindex="-1"></a>                                                <span class="st">&#39;Controlled drainage&#39;</span>,</span>
+<span id="cb597-37"><a href="measure-classification.html#cb597-37" tabindex="-1"></a>                                                <span class="st">&#39;Terracing&#39;</span>,</span>
+<span id="cb597-38"><a href="measure-classification.html#cb597-38" tabindex="-1"></a>                                                <span class="st">&#39;No-till agriculture&#39;</span>,</span>
+<span id="cb597-39"><a href="measure-classification.html#cb597-39" tabindex="-1"></a>                                                <span class="st">&#39;Low-till agriculture&#39;</span>,</span>
+<span id="cb597-40"><a href="measure-classification.html#cb597-40" tabindex="-1"></a>                                                <span class="st">&#39;Low-till agriculture combined with cover crops&#39;</span>,</span>
+<span id="cb597-41"><a href="measure-classification.html#cb597-41" tabindex="-1"></a>                                                <span class="st">&#39;Mulching&#39;</span>,</span>
+<span id="cb597-42"><a href="measure-classification.html#cb597-42" tabindex="-1"></a>                                                <span class="st">&#39;Subsoiling&#39;</span>,</span>
+<span id="cb597-43"><a href="measure-classification.html#cb597-43" tabindex="-1"></a>                                                <span class="st">&#39;Crop rotation&#39;</span>,</span>
+<span id="cb597-44"><a href="measure-classification.html#cb597-44" tabindex="-1"></a>                                                <span class="st">&#39;Intercropping&#39;</span>,</span>
+<span id="cb597-45"><a href="measure-classification.html#cb597-45" tabindex="-1"></a>                                                <span class="st">&#39;Green cover/ catch crops&#39;</span>,</span>
+<span id="cb597-46"><a href="measure-classification.html#cb597-46" tabindex="-1"></a>                                                <span class="st">&#39;Early sowing&#39;</span>,</span>
+<span id="cb597-47"><a href="measure-classification.html#cb597-47" tabindex="-1"></a>                                                <span class="st">&#39;Drought-resistant plants&#39;</span>))</span>
+<span id="cb597-48"><a href="measure-classification.html#cb597-48" tabindex="-1"></a><span class="fu">datatable</span>(measures_optain)</span></code></pre></div>
 <div id="merging-into-landuse-map" class="section level3 hasAnchor" number="21.4.1">
 <h3><span class="header-section-number">21.4.1</span> Merging into Landuse Map<a href="measure-classification.html#merging-into-landuse-map" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>“The land use shapefile must include columns for each measure (names according
@@ -859,78 +896,78 @@ same-measure groupings.</p>
 <p>Lessons learned: In the future if we would want to do scenarios on ie. the
 length of the grassed water ways, or the width of the buffer strips, we would
 have to incorporate this 5_6 thing.</p>
-<div class="sourceCode" id="cb605"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb605-1"><a href="measure-classification.html#cb605-1" tabindex="-1"></a>lu_mea <span class="ot">&lt;-</span> mea_map <span class="sc">%&gt;%</span> <span class="fu">select</span>(name, type)</span>
-<span id="cb605-2"><a href="measure-classification.html#cb605-2" tabindex="-1"></a>lu_mea <span class="ot">&lt;-</span> <span class="fu">left_join</span>(lu_mea, buffer_reclassed <span class="sc">%&gt;%</span> </span>
-<span id="cb605-3"><a href="measure-classification.html#cb605-3" tabindex="-1"></a>                      <span class="fu">select</span>(name, <span class="at">buffer =</span> buffer_new), <span class="at">by=</span> <span class="st">&quot;name&quot;</span>)</span>
-<span id="cb605-4"><a href="measure-classification.html#cb605-4" tabindex="-1"></a>lu_mea <span class="ot">&lt;-</span> <span class="fu">left_join</span>(lu_mea, gully_reclassed <span class="sc">%&gt;%</span> </span>
-<span id="cb605-5"><a href="measure-classification.html#cb605-5" tabindex="-1"></a>                      <span class="fu">select</span>(name, <span class="at">grassslope =</span> gully_new), <span class="at">by=</span> <span class="st">&quot;name&quot;</span>)</span>
-<span id="cb605-6"><a href="measure-classification.html#cb605-6" tabindex="-1"></a>lu_mea <span class="ot">&lt;-</span> <span class="fu">left_join</span>(lu_mea, pond_reclassed <span class="sc">%&gt;%</span> </span>
-<span id="cb605-7"><a href="measure-classification.html#cb605-7" tabindex="-1"></a>                      <span class="fu">select</span>(name, <span class="at">wetland =</span> pond_new), <span class="at">by=</span> <span class="st">&quot;name&quot;</span>)</span>
-<span id="cb605-8"><a href="measure-classification.html#cb605-8" tabindex="-1"></a>lu_mea <span class="ot">&lt;-</span> <span class="fu">left_join</span>(lu_mea, full_notill, <span class="at">by=</span> <span class="st">&quot;name&quot;</span>)</span>
-<span id="cb605-9"><a href="measure-classification.html#cb605-9" tabindex="-1"></a>lu_mea <span class="ot">&lt;-</span> lu_mea <span class="sc">%&gt;%</span>  <span class="fu">select</span>(name, type, grassslope, notill, buffer, wetland, geometry)</span>
-<span id="cb605-10"><a href="measure-classification.html#cb605-10" tabindex="-1"></a><span class="fu">write_sf</span>(lu_mea, <span class="st">&quot;model_data/input/measure/lu_measures_COMOLA.shp&quot;</span>)</span>
-<span id="cb605-11"><a href="measure-classification.html#cb605-11" tabindex="-1"></a>lu_mea <span class="sc">%&gt;%</span> <span class="fu">st_drop_geometry</span>() <span class="sc">%&gt;%</span> <span class="fu">datatable</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb598"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb598-1"><a href="measure-classification.html#cb598-1" tabindex="-1"></a>lu_mea <span class="ot">&lt;-</span> mea_map <span class="sc">%&gt;%</span> <span class="fu">select</span>(name, type)</span>
+<span id="cb598-2"><a href="measure-classification.html#cb598-2" tabindex="-1"></a>lu_mea <span class="ot">&lt;-</span> <span class="fu">left_join</span>(lu_mea, buffer_reclassed <span class="sc">%&gt;%</span> </span>
+<span id="cb598-3"><a href="measure-classification.html#cb598-3" tabindex="-1"></a>                      <span class="fu">select</span>(name, <span class="at">buffer =</span> buffer_new), <span class="at">by=</span> <span class="st">&quot;name&quot;</span>)</span>
+<span id="cb598-4"><a href="measure-classification.html#cb598-4" tabindex="-1"></a>lu_mea <span class="ot">&lt;-</span> <span class="fu">left_join</span>(lu_mea, gully_reclassed <span class="sc">%&gt;%</span> </span>
+<span id="cb598-5"><a href="measure-classification.html#cb598-5" tabindex="-1"></a>                      <span class="fu">select</span>(name, <span class="at">grassslope =</span> gully_new), <span class="at">by=</span> <span class="st">&quot;name&quot;</span>)</span>
+<span id="cb598-6"><a href="measure-classification.html#cb598-6" tabindex="-1"></a>lu_mea <span class="ot">&lt;-</span> <span class="fu">left_join</span>(lu_mea, pond_reclassed <span class="sc">%&gt;%</span> </span>
+<span id="cb598-7"><a href="measure-classification.html#cb598-7" tabindex="-1"></a>                      <span class="fu">select</span>(name, <span class="at">wetland =</span> pond_new), <span class="at">by=</span> <span class="st">&quot;name&quot;</span>)</span>
+<span id="cb598-8"><a href="measure-classification.html#cb598-8" tabindex="-1"></a>lu_mea <span class="ot">&lt;-</span> <span class="fu">left_join</span>(lu_mea, full_notill, <span class="at">by=</span> <span class="st">&quot;name&quot;</span>)</span>
+<span id="cb598-9"><a href="measure-classification.html#cb598-9" tabindex="-1"></a>lu_mea <span class="ot">&lt;-</span> lu_mea <span class="sc">%&gt;%</span>  <span class="fu">select</span>(name, type, grassslope, notill, buffer, wetland, geometry)</span>
+<span id="cb598-10"><a href="measure-classification.html#cb598-10" tabindex="-1"></a><span class="fu">write_sf</span>(lu_mea, <span class="st">&quot;model_data/input/measure/lu_measures_COMOLA.shp&quot;</span>)</span>
+<span id="cb598-11"><a href="measure-classification.html#cb598-11" tabindex="-1"></a>lu_mea <span class="sc">%&gt;%</span> <span class="fu">st_drop_geometry</span>() <span class="sc">%&gt;%</span> <span class="fu">datatable</span>()</span></code></pre></div>
 <p>Now to use the provided script to generate the <code>measure_location_cs10.csv</code></p>
-<div class="sourceCode" id="cb606"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb606-1"><a href="measure-classification.html#cb606-1" tabindex="-1"></a>lu_shp <span class="ot">&lt;-</span> <span class="st">&quot;model_data/input/measure/lu_measures_COMOLA.shp&quot;</span></span>
-<span id="cb606-2"><a href="measure-classification.html#cb606-2" tabindex="-1"></a>hru_shp <span class="ot">&lt;-</span> <span class="st">&quot;model_data/cs10_setup/optain-cs10/data/vector/hru.shp&quot;</span></span>
-<span id="cb606-3"><a href="measure-classification.html#cb606-3" tabindex="-1"></a></span>
-<span id="cb606-4"><a href="measure-classification.html#cb606-4" tabindex="-1"></a><span class="co"># generate scenario hru table (just run the code)--------------------------</span></span>
-<span id="cb606-5"><a href="measure-classification.html#cb606-5" tabindex="-1"></a></span>
-<span id="cb606-6"><a href="measure-classification.html#cb606-6" tabindex="-1"></a>is.integer0 <span class="ot">&lt;-</span> <span class="cf">function</span>(x)</span>
-<span id="cb606-7"><a href="measure-classification.html#cb606-7" tabindex="-1"></a>{</span>
-<span id="cb606-8"><a href="measure-classification.html#cb606-8" tabindex="-1"></a>  <span class="fu">is.integer</span>(x) <span class="sc">&amp;&amp;</span> <span class="fu">length</span>(x) <span class="sc">==</span> <span class="dv">0</span><span class="dt">L</span></span>
-<span id="cb606-9"><a href="measure-classification.html#cb606-9" tabindex="-1"></a>}</span>
-<span id="cb606-10"><a href="measure-classification.html#cb606-10" tabindex="-1"></a></span>
-<span id="cb606-11"><a href="measure-classification.html#cb606-11" tabindex="-1"></a><span class="co"># read in shapefiles</span></span>
-<span id="cb606-12"><a href="measure-classification.html#cb606-12" tabindex="-1"></a>lu <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(lu_shp)</span>
-<span id="cb606-13"><a href="measure-classification.html#cb606-13" tabindex="-1"></a>hru_swat <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(hru_shp)</span>
-<span id="cb606-14"><a href="measure-classification.html#cb606-14" tabindex="-1"></a></span>
-<span id="cb606-15"><a href="measure-classification.html#cb606-15" tabindex="-1"></a><span class="co"># assign measures to SWAT+ hru names</span></span>
-<span id="cb606-16"><a href="measure-classification.html#cb606-16" tabindex="-1"></a>lu_swat <span class="ot">&lt;-</span> <span class="fu">st_drop_geometry</span>(<span class="fu">st_join</span>(hru_swat, lu <span class="sc">%&gt;%</span> <span class="fu">select</span>(type, grassslope, notill, buffer, wetland), <span class="at">largest=</span>T))</span>
-<span id="cb606-17"><a href="measure-classification.html#cb606-17" tabindex="-1"></a>hru <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="st">&#39;hru&#39;</span><span class="ot">=</span>lu_swat<span class="sc">$</span>name)</span>
-<span id="cb606-18"><a href="measure-classification.html#cb606-18" tabindex="-1"></a></span>
-<span id="cb606-19"><a href="measure-classification.html#cb606-19" tabindex="-1"></a><span class="co"># generate hru-scenario table</span></span>
-<span id="cb606-20"><a href="measure-classification.html#cb606-20" tabindex="-1"></a>meas.col <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">colnames</span>(lu_swat) <span class="sc">%in%</span> measures_optain<span class="sc">$</span>nswrm_code)</span>
-<span id="cb606-21"><a href="measure-classification.html#cb606-21" tabindex="-1"></a>hru_scn <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="st">&#39;hru&#39;</span><span class="ot">=</span><span class="cn">NA</span>, <span class="st">&#39;nswrm&#39;</span><span class="ot">=</span><span class="cn">NA</span>, <span class="st">&#39;name&#39;</span><span class="ot">=</span><span class="cn">NA</span>)</span>
-<span id="cb606-22"><a href="measure-classification.html#cb606-22" tabindex="-1"></a></span>
-<span id="cb606-23"><a href="measure-classification.html#cb606-23" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(meas.col)){</span>
-<span id="cb606-24"><a href="measure-classification.html#cb606-24" tabindex="-1"></a>  idx <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(lu_swat[,meas.col[i]]))</span>
-<span id="cb606-25"><a href="measure-classification.html#cb606-25" tabindex="-1"></a>  meas_ <span class="ot">&lt;-</span> <span class="fu">colnames</span>(lu_swat)[meas.col[i]]</span>
-<span id="cb606-26"><a href="measure-classification.html#cb606-26" tabindex="-1"></a>  hru_ <span class="ot">&lt;-</span> hru</span>
-<span id="cb606-27"><a href="measure-classification.html#cb606-27" tabindex="-1"></a>  hru_<span class="sc">$</span>nswrm <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
-<span id="cb606-28"><a href="measure-classification.html#cb606-28" tabindex="-1"></a>  hru_<span class="sc">$</span>nswrm[idx] <span class="ot">&lt;-</span> meas_</span>
-<span id="cb606-29"><a href="measure-classification.html#cb606-29" tabindex="-1"></a>  hru_<span class="sc">$</span>name <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
-<span id="cb606-30"><a href="measure-classification.html#cb606-30" tabindex="-1"></a>  hru_<span class="sc">$</span>name[idx] <span class="ot">&lt;-</span> <span class="fu">paste0</span>(meas_,<span class="st">&#39;_&#39;</span>, <span class="fu">as.matrix</span>(lu_swat[idx,meas.col[i]]))</span>
-<span id="cb606-31"><a href="measure-classification.html#cb606-31" tabindex="-1"></a>  <span class="co"># different grassed waterways on the same hru?</span></span>
-<span id="cb606-32"><a href="measure-classification.html#cb606-32" tabindex="-1"></a>  multiple <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">str_count</span>(hru_<span class="sc">$</span>name, <span class="st">&quot;_&quot;</span>) <span class="sc">&gt;</span> <span class="dv">1</span>)</span>
-<span id="cb606-33"><a href="measure-classification.html#cb606-33" tabindex="-1"></a>  <span class="cf">if</span>(<span class="sc">!</span><span class="fu">is.integer0</span>(multiple)){</span>
-<span id="cb606-34"><a href="measure-classification.html#cb606-34" tabindex="-1"></a>    scn_multiple <span class="ot">&lt;-</span> <span class="fu">str_split_fixed</span>(hru_<span class="sc">$</span>name[multiple],<span class="st">&quot;_&quot;</span>,<span class="dv">3</span>)</span>
-<span id="cb606-35"><a href="measure-classification.html#cb606-35" tabindex="-1"></a>    hru_<span class="sc">$</span>name[multiple] <span class="ot">&lt;-</span> <span class="fu">paste0</span>(meas_,<span class="st">&#39;_&#39;</span>,scn_multiple[,<span class="dv">2</span>])</span>
-<span id="cb606-36"><a href="measure-classification.html#cb606-36" tabindex="-1"></a>    hru_add <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="st">&#39;hru&#39;</span> <span class="ot">=</span> hru_<span class="sc">$</span>hru[multiple],</span>
-<span id="cb606-37"><a href="measure-classification.html#cb606-37" tabindex="-1"></a>                          <span class="st">&#39;nswrm&#39;</span> <span class="ot">=</span> meas_,</span>
-<span id="cb606-38"><a href="measure-classification.html#cb606-38" tabindex="-1"></a>                          <span class="st">&#39;name&#39;</span> <span class="ot">=</span> <span class="fu">paste0</span>(meas_,<span class="st">&#39;_&#39;</span>,scn_multiple[,<span class="dv">3</span>]))</span>
-<span id="cb606-39"><a href="measure-classification.html#cb606-39" tabindex="-1"></a>    hru_ <span class="ot">&lt;-</span> <span class="fu">rbind.data.frame</span>(hru_, hru_add)</span>
-<span id="cb606-40"><a href="measure-classification.html#cb606-40" tabindex="-1"></a>  }</span>
-<span id="cb606-41"><a href="measure-classification.html#cb606-41" tabindex="-1"></a>  hru_ <span class="ot">&lt;-</span> hru_[<span class="sc">-</span><span class="fu">which</span>(<span class="fu">is.na</span>(hru_<span class="sc">$</span>name)),]</span>
-<span id="cb606-42"><a href="measure-classification.html#cb606-42" tabindex="-1"></a>  hru_scn <span class="ot">&lt;-</span> <span class="fu">rbind.data.frame</span>(hru_scn, hru_)</span>
-<span id="cb606-43"><a href="measure-classification.html#cb606-43" tabindex="-1"></a>}</span>
-<span id="cb606-44"><a href="measure-classification.html#cb606-44" tabindex="-1"></a></span>
-<span id="cb606-45"><a href="measure-classification.html#cb606-45" tabindex="-1"></a>hru_scn <span class="ot">&lt;-</span> hru_scn[<span class="sc">-</span><span class="dv">1</span>,]</span>
-<span id="cb606-46"><a href="measure-classification.html#cb606-46" tabindex="-1"></a>hru_scn<span class="sc">$</span>obj_id <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">substr</span>(hru_scn<span class="sc">$</span>hru,<span class="dv">4</span>,<span class="fu">nchar</span>(hru_scn<span class="sc">$</span>hru)))</span>
-<span id="cb606-47"><a href="measure-classification.html#cb606-47" tabindex="-1"></a></span>
-<span id="cb606-48"><a href="measure-classification.html#cb606-48" tabindex="-1"></a>hru_scn2 <span class="ot">&lt;-</span> hru_scn <span class="sc">%&gt;%</span> </span>
-<span id="cb606-49"><a href="measure-classification.html#cb606-49" tabindex="-1"></a>  <span class="fu">group_by</span>(name, nswrm) <span class="sc">%&gt;%</span></span>
-<span id="cb606-50"><a href="measure-classification.html#cb606-50" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">obj_id =</span> <span class="fu">paste</span>(<span class="fu">sort</span>(<span class="fu">unique</span>(obj_id)),<span class="at">collapse=</span><span class="st">&quot;, &quot;</span>))</span>
-<span id="cb606-51"><a href="measure-classification.html#cb606-51" tabindex="-1"></a></span>
-<span id="cb606-52"><a href="measure-classification.html#cb606-52" tabindex="-1"></a>hru_scn2<span class="sc">$</span>id <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(hru_scn2<span class="sc">$</span>name))</span>
-<span id="cb606-53"><a href="measure-classification.html#cb606-53" tabindex="-1"></a>hru_scn2 <span class="ot">&lt;-</span> hru_scn2[,<span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)]</span>
-<span id="cb606-54"><a href="measure-classification.html#cb606-54" tabindex="-1"></a></span>
-<span id="cb606-55"><a href="measure-classification.html#cb606-55" tabindex="-1"></a><span class="co"># write hru-scenario table</span></span>
-<span id="cb606-56"><a href="measure-classification.html#cb606-56" tabindex="-1"></a><span class="fu">write_csv</span>(hru_scn2, <span class="st">&#39;model_data/input/measure/measure_location_CS10.csv&#39;</span>, <span class="at">quote =</span> <span class="st">&quot;needed&quot;</span>, <span class="at">na =</span> <span class="st">&#39;&#39;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb607"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb607-1"><a href="measure-classification.html#cb607-1" tabindex="-1"></a><span class="co"># admire our result:</span></span>
-<span id="cb607-2"><a href="measure-classification.html#cb607-2" tabindex="-1"></a>hru_scn2 <span class="sc">%&gt;%</span> <span class="fu">datatable</span>()</span>
-<span id="cb607-3"><a href="measure-classification.html#cb607-3" tabindex="-1"></a><span class="co"># clean up for next chapter</span></span>
-<span id="cb607-4"><a href="measure-classification.html#cb607-4" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb599"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb599-1"><a href="measure-classification.html#cb599-1" tabindex="-1"></a>lu_shp <span class="ot">&lt;-</span> <span class="st">&quot;model_data/input/measure/lu_measures_COMOLA.shp&quot;</span></span>
+<span id="cb599-2"><a href="measure-classification.html#cb599-2" tabindex="-1"></a>hru_shp <span class="ot">&lt;-</span> <span class="st">&quot;model_data/cs10_setup/optain-cs10/data/vector/hru.shp&quot;</span></span>
+<span id="cb599-3"><a href="measure-classification.html#cb599-3" tabindex="-1"></a></span>
+<span id="cb599-4"><a href="measure-classification.html#cb599-4" tabindex="-1"></a><span class="co"># generate scenario hru table (just run the code)--------------------------</span></span>
+<span id="cb599-5"><a href="measure-classification.html#cb599-5" tabindex="-1"></a></span>
+<span id="cb599-6"><a href="measure-classification.html#cb599-6" tabindex="-1"></a>is.integer0 <span class="ot">&lt;-</span> <span class="cf">function</span>(x)</span>
+<span id="cb599-7"><a href="measure-classification.html#cb599-7" tabindex="-1"></a>{</span>
+<span id="cb599-8"><a href="measure-classification.html#cb599-8" tabindex="-1"></a>  <span class="fu">is.integer</span>(x) <span class="sc">&amp;&amp;</span> <span class="fu">length</span>(x) <span class="sc">==</span> <span class="dv">0</span><span class="dt">L</span></span>
+<span id="cb599-9"><a href="measure-classification.html#cb599-9" tabindex="-1"></a>}</span>
+<span id="cb599-10"><a href="measure-classification.html#cb599-10" tabindex="-1"></a></span>
+<span id="cb599-11"><a href="measure-classification.html#cb599-11" tabindex="-1"></a><span class="co"># read in shapefiles</span></span>
+<span id="cb599-12"><a href="measure-classification.html#cb599-12" tabindex="-1"></a>lu <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(lu_shp)</span>
+<span id="cb599-13"><a href="measure-classification.html#cb599-13" tabindex="-1"></a>hru_swat <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(hru_shp)</span>
+<span id="cb599-14"><a href="measure-classification.html#cb599-14" tabindex="-1"></a></span>
+<span id="cb599-15"><a href="measure-classification.html#cb599-15" tabindex="-1"></a><span class="co"># assign measures to SWAT+ hru names</span></span>
+<span id="cb599-16"><a href="measure-classification.html#cb599-16" tabindex="-1"></a>lu_swat <span class="ot">&lt;-</span> <span class="fu">st_drop_geometry</span>(<span class="fu">st_join</span>(hru_swat, lu <span class="sc">%&gt;%</span> <span class="fu">select</span>(type, grassslope, notill, buffer, wetland), <span class="at">largest=</span>T))</span>
+<span id="cb599-17"><a href="measure-classification.html#cb599-17" tabindex="-1"></a>hru <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="st">&#39;hru&#39;</span><span class="ot">=</span>lu_swat<span class="sc">$</span>name)</span>
+<span id="cb599-18"><a href="measure-classification.html#cb599-18" tabindex="-1"></a></span>
+<span id="cb599-19"><a href="measure-classification.html#cb599-19" tabindex="-1"></a><span class="co"># generate hru-scenario table</span></span>
+<span id="cb599-20"><a href="measure-classification.html#cb599-20" tabindex="-1"></a>meas.col <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">colnames</span>(lu_swat) <span class="sc">%in%</span> measures_optain<span class="sc">$</span>nswrm_code)</span>
+<span id="cb599-21"><a href="measure-classification.html#cb599-21" tabindex="-1"></a>hru_scn <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="st">&#39;hru&#39;</span><span class="ot">=</span><span class="cn">NA</span>, <span class="st">&#39;nswrm&#39;</span><span class="ot">=</span><span class="cn">NA</span>, <span class="st">&#39;name&#39;</span><span class="ot">=</span><span class="cn">NA</span>)</span>
+<span id="cb599-22"><a href="measure-classification.html#cb599-22" tabindex="-1"></a></span>
+<span id="cb599-23"><a href="measure-classification.html#cb599-23" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(meas.col)){</span>
+<span id="cb599-24"><a href="measure-classification.html#cb599-24" tabindex="-1"></a>  idx <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="sc">!</span><span class="fu">is.na</span>(lu_swat[,meas.col[i]]))</span>
+<span id="cb599-25"><a href="measure-classification.html#cb599-25" tabindex="-1"></a>  meas_ <span class="ot">&lt;-</span> <span class="fu">colnames</span>(lu_swat)[meas.col[i]]</span>
+<span id="cb599-26"><a href="measure-classification.html#cb599-26" tabindex="-1"></a>  hru_ <span class="ot">&lt;-</span> hru</span>
+<span id="cb599-27"><a href="measure-classification.html#cb599-27" tabindex="-1"></a>  hru_<span class="sc">$</span>nswrm <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb599-28"><a href="measure-classification.html#cb599-28" tabindex="-1"></a>  hru_<span class="sc">$</span>nswrm[idx] <span class="ot">&lt;-</span> meas_</span>
+<span id="cb599-29"><a href="measure-classification.html#cb599-29" tabindex="-1"></a>  hru_<span class="sc">$</span>name <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb599-30"><a href="measure-classification.html#cb599-30" tabindex="-1"></a>  hru_<span class="sc">$</span>name[idx] <span class="ot">&lt;-</span> <span class="fu">paste0</span>(meas_,<span class="st">&#39;_&#39;</span>, <span class="fu">as.matrix</span>(lu_swat[idx,meas.col[i]]))</span>
+<span id="cb599-31"><a href="measure-classification.html#cb599-31" tabindex="-1"></a>  <span class="co"># different grassed waterways on the same hru?</span></span>
+<span id="cb599-32"><a href="measure-classification.html#cb599-32" tabindex="-1"></a>  multiple <span class="ot">&lt;-</span> <span class="fu">which</span>(<span class="fu">str_count</span>(hru_<span class="sc">$</span>name, <span class="st">&quot;_&quot;</span>) <span class="sc">&gt;</span> <span class="dv">1</span>)</span>
+<span id="cb599-33"><a href="measure-classification.html#cb599-33" tabindex="-1"></a>  <span class="cf">if</span>(<span class="sc">!</span><span class="fu">is.integer0</span>(multiple)){</span>
+<span id="cb599-34"><a href="measure-classification.html#cb599-34" tabindex="-1"></a>    scn_multiple <span class="ot">&lt;-</span> <span class="fu">str_split_fixed</span>(hru_<span class="sc">$</span>name[multiple],<span class="st">&quot;_&quot;</span>,<span class="dv">3</span>)</span>
+<span id="cb599-35"><a href="measure-classification.html#cb599-35" tabindex="-1"></a>    hru_<span class="sc">$</span>name[multiple] <span class="ot">&lt;-</span> <span class="fu">paste0</span>(meas_,<span class="st">&#39;_&#39;</span>,scn_multiple[,<span class="dv">2</span>])</span>
+<span id="cb599-36"><a href="measure-classification.html#cb599-36" tabindex="-1"></a>    hru_add <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="st">&#39;hru&#39;</span> <span class="ot">=</span> hru_<span class="sc">$</span>hru[multiple],</span>
+<span id="cb599-37"><a href="measure-classification.html#cb599-37" tabindex="-1"></a>                          <span class="st">&#39;nswrm&#39;</span> <span class="ot">=</span> meas_,</span>
+<span id="cb599-38"><a href="measure-classification.html#cb599-38" tabindex="-1"></a>                          <span class="st">&#39;name&#39;</span> <span class="ot">=</span> <span class="fu">paste0</span>(meas_,<span class="st">&#39;_&#39;</span>,scn_multiple[,<span class="dv">3</span>]))</span>
+<span id="cb599-39"><a href="measure-classification.html#cb599-39" tabindex="-1"></a>    hru_ <span class="ot">&lt;-</span> <span class="fu">rbind.data.frame</span>(hru_, hru_add)</span>
+<span id="cb599-40"><a href="measure-classification.html#cb599-40" tabindex="-1"></a>  }</span>
+<span id="cb599-41"><a href="measure-classification.html#cb599-41" tabindex="-1"></a>  hru_ <span class="ot">&lt;-</span> hru_[<span class="sc">-</span><span class="fu">which</span>(<span class="fu">is.na</span>(hru_<span class="sc">$</span>name)),]</span>
+<span id="cb599-42"><a href="measure-classification.html#cb599-42" tabindex="-1"></a>  hru_scn <span class="ot">&lt;-</span> <span class="fu">rbind.data.frame</span>(hru_scn, hru_)</span>
+<span id="cb599-43"><a href="measure-classification.html#cb599-43" tabindex="-1"></a>}</span>
+<span id="cb599-44"><a href="measure-classification.html#cb599-44" tabindex="-1"></a></span>
+<span id="cb599-45"><a href="measure-classification.html#cb599-45" tabindex="-1"></a>hru_scn <span class="ot">&lt;-</span> hru_scn[<span class="sc">-</span><span class="dv">1</span>,]</span>
+<span id="cb599-46"><a href="measure-classification.html#cb599-46" tabindex="-1"></a>hru_scn<span class="sc">$</span>obj_id <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">substr</span>(hru_scn<span class="sc">$</span>hru,<span class="dv">4</span>,<span class="fu">nchar</span>(hru_scn<span class="sc">$</span>hru)))</span>
+<span id="cb599-47"><a href="measure-classification.html#cb599-47" tabindex="-1"></a></span>
+<span id="cb599-48"><a href="measure-classification.html#cb599-48" tabindex="-1"></a>hru_scn2 <span class="ot">&lt;-</span> hru_scn <span class="sc">%&gt;%</span> </span>
+<span id="cb599-49"><a href="measure-classification.html#cb599-49" tabindex="-1"></a>  <span class="fu">group_by</span>(name, nswrm) <span class="sc">%&gt;%</span></span>
+<span id="cb599-50"><a href="measure-classification.html#cb599-50" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">obj_id =</span> <span class="fu">paste</span>(<span class="fu">sort</span>(<span class="fu">unique</span>(obj_id)),<span class="at">collapse=</span><span class="st">&quot;, &quot;</span>))</span>
+<span id="cb599-51"><a href="measure-classification.html#cb599-51" tabindex="-1"></a></span>
+<span id="cb599-52"><a href="measure-classification.html#cb599-52" tabindex="-1"></a>hru_scn2<span class="sc">$</span>id <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(hru_scn2<span class="sc">$</span>name))</span>
+<span id="cb599-53"><a href="measure-classification.html#cb599-53" tabindex="-1"></a>hru_scn2 <span class="ot">&lt;-</span> hru_scn2[,<span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)]</span>
+<span id="cb599-54"><a href="measure-classification.html#cb599-54" tabindex="-1"></a></span>
+<span id="cb599-55"><a href="measure-classification.html#cb599-55" tabindex="-1"></a><span class="co"># write hru-scenario table</span></span>
+<span id="cb599-56"><a href="measure-classification.html#cb599-56" tabindex="-1"></a><span class="fu">write_csv</span>(hru_scn2, <span class="st">&#39;model_data/input/measure/measure_location_CS10.csv&#39;</span>, <span class="at">quote =</span> <span class="st">&quot;needed&quot;</span>, <span class="at">na =</span> <span class="st">&#39;&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb600"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb600-1"><a href="measure-classification.html#cb600-1" tabindex="-1"></a><span class="co"># admire our result:</span></span>
+<span id="cb600-2"><a href="measure-classification.html#cb600-2" tabindex="-1"></a>hru_scn2 <span class="sc">%&gt;%</span> <span class="fu">datatable</span>()</span>
+<span id="cb600-3"><a href="measure-classification.html#cb600-3" tabindex="-1"></a><span class="co"># clean up for next chapter</span></span>
+<span id="cb600-4"><a href="measure-classification.html#cb600-4" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span></code></pre></div>
 
 </div>
 </div>
@@ -955,42 +992,42 @@ have to incorporate this 5_6 thing.</p>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": "https://gitlab.nibio.no/moritzshore/swat-cs10/-/edit/main/16d-Measure_Classification.Rmd",
-"text": "Edit"
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": "https://gitlab.nibio.no/moritzshore/swat-cs10/blob/main/16d-Measure_Classification.Rmd",
-"text": null
-},
-"download": ["_main.pdf"],
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-}
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://gitlab.nibio.no/moritzshore/swat-cs10/-/edit/main/16d-Measure_Classification.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": "https://gitlab.nibio.no/moritzshore/swat-cs10/blob/main/16d-Measure_Classification.Rmd",
+    "text": null
+  },
+  "download": ["_main.pdf"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
 });
 });
 </script>

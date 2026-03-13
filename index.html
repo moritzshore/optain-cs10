@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>OPTAIN CS10: Kråkstad SWAT+ Modelling Workflow</title>
   <meta name="description" content="A documentation of the project setup for OPTAIN case study 10, Kråkstad" />
-  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
   <meta property="og:title" content="OPTAIN CS10: Kråkstad SWAT+ Modelling Workflow" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Moritz Shore (workflow author, modelling) Csilla Farkas (lead modeller) Christoph Schürz (modelling) Dominika Krzeminska (measures &amp; stakeholders) Anne-Grete Buseth Blankenberg (measures &amp; stakeholders) Robert Barneveld (measures &amp; mapping) Attila Nemes (project lead) ..and with strong support of the OPTAIN core team" />
 
 
-<meta name="date" content="2025-03-03" />
+<meta name="date" content="2026-03-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,8 +52,151 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.2.3/leaflet.js"></script>
+<script src="libs/leaflet-providers-2.0.0/leaflet-providers_2.0.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.2.3/leaflet-providers-plugin.js"></script>
+<script src="libs/tile1_rasterlayer_4b9dc7-1/data_stars_tile1_rasterlayer290c35.txt"></script>
+<script src="libs/joda-0.0.1/joda.js"></script>
+<script src="libs/joda-0.0.1/addImageQuery-bindings.js"></script>
+<script src="libs/clipboard-0.0.1/setClipboardText.js"></script>
+<script src="libs/HomeButton-0.0.1/home-button.js"></script>
+<script src="libs/HomeButton-0.0.1/easy-button-src.min.js"></script>
+<link href="libs/tile1_rasterlayer-CSS-0.0.1/tile1_rasterlayer_home-button.css" rel="stylesheet" />
+<link href="libs/mapviewCSS-0.0.1/mapview-popup.css" rel="stylesheet" />
+<link href="libs/mapviewCSS-0.0.1/mapview.css" rel="stylesheet" />
+<script src="libs/tile2_rasterlayer_a63e09-1/data_stars_tile2_rasterlayer1fe8d0.txt"></script>
+<link href="libs/tile2_rasterlayer-CSS-0.0.1/tile2_rasterlayer_home-button.css" rel="stylesheet" />
+<link href="libs/basin_shp-CSS-0.0.1/basin_shp_home-button.css" rel="stylesheet" />
+<script src="libs/dem_layer_f7d5ea-1/data_stars_dem_layerc639f2.txt"></script>
+<link href="libs/dem_layer-CSS-0.0.1/dem_layer_home-button.css" rel="stylesheet" />
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.34.0/datatables.js"></script>
+<link href="libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
+<link href="libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
+<link href="libs/outlet_point-CSS-0.0.1/outlet_point_home-button.css" rel="stylesheet" />
+<link href="libs/extent-CSS-0.0.1/extent_home-button.css" rel="stylesheet" />
+<script src="libs/stream_crop_b80392-1/data_stars_stream_cropf942be.txt"></script>
+<link href="libs/stream_crop-CSS-0.0.1/stream_crop_home-button.css" rel="stylesheet" />
+<link href="libs/pp-CSS-0.0.1/pp_home-button.css" rel="stylesheet" />
+<script src="libs/ws_084ab3-1/data_stars_wsd86b34.txt"></script>
+<link href="libs/ws-CSS-0.0.1/ws_home-button.css" rel="stylesheet" />
+<link href="libs/wsshape-CSS-0.0.1/wsshape_home-button.css" rel="stylesheet" />
+<link href="libs/dem10m-CSS-0.0.1/dem10m_home-button.css" rel="stylesheet" />
+<script src="libs/rglWebGL-binding-1.3.36/rglWebGL.js"></script>
+<link href="libs/rglwidgetClass-1.3.36/rgl.css" rel="stylesheet" />
+<script src="libs/rglwidgetClass-1.3.36/rglClass.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.36/utils.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.36/buffer.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.36/subscenes.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.36/shaders.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.36/shadersrc.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.36/textures.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.36/projection.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.36/mouse.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.36/init.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.36/pieces.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.36/draw.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.36/controls.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.36/selection.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.36/rglTimer.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.36/pretty.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.36/axes.src.js"></script>
+<script src="libs/rglwidgetClass-1.3.36/animation.src.js"></script>
+<script src="libs/CanvasMatrix4-1.3.36/CanvasMatrix.src.js"></script>
+<link href="libs/lu_drains_____filter_natural_drain____type-CSS-0.0.1/lu_drains_____filter_natural_drain____type_home-button.css" rel="stylesheet" />
+<script src="libs/plotly-binding-4.12.0/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.25.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.25.2/plotly-latest.min.js"></script>
+<link href="libs/stations-CSS-0.0.1/stations_home-button.css" rel="stylesheet" />
+<link href="libs/basin-CSS-0.0.1/basin_home-button.css" rel="stylesheet" />
+<link href="libs/field_sites_shp-CSS-0.0.1/field_sites_shp_home-button.css" rel="stylesheet" />
+<link href="libs/dt-ext-scroller-1.13.6/css/scroller.dataTables.min.css" rel="stylesheet" />
+<script src="libs/dt-ext-scroller-1.13.6/js/dataTables.scroller.min.js"></script>
+<link href="libs/soil_propery_map___HYDGRP-CSS-0.0.1/soil_propery_map___HYDGRP_home-button.css" rel="stylesheet" />
+<link href="libs/Field_Sites-CSS-0.0.1/Field_Sites_home-button.css" rel="stylesheet" />
+<link href="libs/hru_shp___soil-CSS-0.0.1/hru_shp___soil_home-button.css" rel="stylesheet" />
+<link href="libs/Problem_LUs-CSS-0.0.1/Problem_LUs_home-button.css" rel="stylesheet" />
+<link href="libs/Problem_HRUs-CSS-0.0.1/Problem_HRUs_home-button.css" rel="stylesheet" />
+<link href="libs/hru_pal_avg___p_al_mean-CSS-0.0.1/hru_pal_avg___p_al_mean_home-button.css" rel="stylesheet" />
 
 
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
 
 <style type="text/css">
   
@@ -96,7 +239,7 @@ div.csl-indent {
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">The OPTAIN-CS10 Project</a></li>
+<li><a href="./">OPTAIN CS10 Kråkstad</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Introduction</a></li>
@@ -347,6 +490,7 @@ div.csl-indent {
 <li class="chapter" data-level="15.1.1" data-path="landuse-scenarios.html"><a href="landuse-scenarios.html#status-quo"><i class="fa fa-check"></i><b>15.1.1</b> Status Quo</a></li>
 <li class="chapter" data-level="15.1.2" data-path="landuse-scenarios.html"><a href="landuse-scenarios.html#no-autumn-tillage"><i class="fa fa-check"></i><b>15.1.2</b> No Autumn Tillage</a></li>
 </ul></li>
+<li class="chapter" data-level="15.2" data-path="landuse-scenarios.html"><a href="landuse-scenarios.html#measurement-scenarios-for-future-climate"><i class="fa fa-check"></i><b>15.2</b> Measurement Scenarios for future climate</a></li>
 </ul></li>
 <li class="chapter" data-level="16" data-path="update-of-the-swatfarmr-input-input-files.html"><a href="update-of-the-swatfarmr-input-input-files.html"><i class="fa fa-check"></i><b>16</b> Update of the SWATfarmR input input files</a>
 <ul>
@@ -414,20 +558,35 @@ div.csl-indent {
 <li class="chapter" data-level="22.6.1" data-path="optimization.html"><a href="optimization.html#references"><i class="fa fa-check"></i><b>22.6.1</b> References</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="23" data-path="land-object-input-abandoned.html"><a href="land-object-input-abandoned.html"><i class="fa fa-check"></i><b>23</b> Land Object Input (abandoned)</a>
+<li class="chapter" data-level="23" data-path="combined-measure-and-climate-scenarios.html"><a href="combined-measure-and-climate-scenarios.html"><i class="fa fa-check"></i><b>23</b> Combined Measure and Climate Scenarios</a>
 <ul>
-<li class="chapter" data-level="23.0.1" data-path="land-object-input-abandoned.html"><a href="land-object-input-abandoned.html#data-sources-1"><i class="fa fa-check"></i><b>23.0.1</b> Data sources</a></li>
-<li class="chapter" data-level="23.0.2" data-path="land-object-input-abandoned.html"><a href="land-object-input-abandoned.html#delineation-of-land-objects-1"><i class="fa fa-check"></i><b>23.0.2</b> Delineation of land objects</a></li>
-<li class="chapter" data-level="23.0.3" data-path="land-object-input-abandoned.html"><a href="land-object-input-abandoned.html#standing-water-bodies-and-the-land-use-type-watr"><i class="fa fa-check"></i><b>23.0.3</b> Standing water bodies and the land use type = ‘watr’</a></li>
-<li class="chapter" data-level="23.0.4" data-path="land-object-input-abandoned.html"><a href="land-object-input-abandoned.html#tile-drainage-option-1"><i class="fa fa-check"></i><b>23.0.4</b> Tile drainage option</a></li>
-<li class="chapter" data-level="23.0.5" data-path="land-object-input-abandoned.html"><a href="land-object-input-abandoned.html#ar5"><i class="fa fa-check"></i><b>23.0.5</b> AR5</a></li>
-<li class="chapter" data-level="23.0.6" data-path="land-object-input-abandoned.html"><a href="land-object-input-abandoned.html#manual-simplification"><i class="fa fa-check"></i><b>23.0.6</b> Manual Simplification</a></li>
+<li class="chapter" data-level="23.1" data-path="combined-measure-and-climate-scenarios.html"><a href="combined-measure-and-climate-scenarios.html#preperation"><i class="fa fa-check"></i><b>23.1</b> Preperation</a>
+<ul>
+<li class="chapter" data-level="23.1.1" data-path="combined-measure-and-climate-scenarios.html"><a href="combined-measure-and-climate-scenarios.html#selection-of-rcm-rcp-combinations"><i class="fa fa-check"></i><b>23.1.1</b> Selection of RCM-RCP combinations</a></li>
+<li class="chapter" data-level="23.1.2" data-path="combined-measure-and-climate-scenarios.html"><a href="combined-measure-and-climate-scenarios.html#copy-your-measr_scenario_simulation-folder-n-times"><i class="fa fa-check"></i><b>23.1.2</b> Copy your measr_scenario_simulation folder n-times</a></li>
+<li class="chapter" data-level="23.1.3" data-path="combined-measure-and-climate-scenarios.html"><a href="combined-measure-and-climate-scenarios.html#remove-existing-measr-project-and-the-cal_files-and-scenario_outputs-folders"><i class="fa fa-check"></i><b>23.1.3</b> Remove existing measr project and the cal_files and scenario_outputs folders</a></li>
+<li class="chapter" data-level="23.1.4" data-path="combined-measure-and-climate-scenarios.html"><a href="combined-measure-and-climate-scenarios.html#replace-all-swat-files-in-the-txt-folder-with-the-ones-from-the-climate-workflow"><i class="fa fa-check"></i><b>23.1.4</b> Replace all SWAT files in the txt folder with the ones from the climate workflow</a></li>
+<li class="chapter" data-level="23.1.5" data-path="combined-measure-and-climate-scenarios.html"><a href="combined-measure-and-climate-scenarios.html#run-swatfarmr"><i class="fa fa-check"></i><b>23.1.5</b> Run SWATFarmR</a></li>
 </ul></li>
-<li class="chapter" data-level="24" data-path="overview-maps.html"><a href="overview-maps.html"><i class="fa fa-check"></i><b>24</b> Overview Maps</a></li>
+<li class="chapter" data-level="23.2" data-path="combined-measure-and-climate-scenarios.html"><a href="combined-measure-and-climate-scenarios.html#prepare-measure-scenarios"><i class="fa fa-check"></i><b>23.2</b> Prepare measure scenarios</a></li>
+<li class="chapter" data-level="23.3" data-path="combined-measure-and-climate-scenarios.html"><a href="combined-measure-and-climate-scenarios.html#run-measure-scenarios"><i class="fa fa-check"></i><b>23.3</b> Run Measure Scenarios</a></li>
+<li class="chapter" data-level="23.4" data-path="combined-measure-and-climate-scenarios.html"><a href="combined-measure-and-climate-scenarios.html#harmonizing"><i class="fa fa-check"></i><b>23.4</b> Harmonizing</a></li>
+<li class="chapter" data-level="23.5" data-path="combined-measure-and-climate-scenarios.html"><a href="combined-measure-and-climate-scenarios.html#plotting"><i class="fa fa-check"></i><b>23.5</b> PLOTTING</a></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="land-object-input-abandoned.html"><a href="land-object-input-abandoned.html"><i class="fa fa-check"></i><b>24</b> Land Object Input (abandoned)</a>
+<ul>
+<li class="chapter" data-level="24.0.1" data-path="land-object-input-abandoned.html"><a href="land-object-input-abandoned.html#data-sources-1"><i class="fa fa-check"></i><b>24.0.1</b> Data sources</a></li>
+<li class="chapter" data-level="24.0.2" data-path="land-object-input-abandoned.html"><a href="land-object-input-abandoned.html#delineation-of-land-objects-1"><i class="fa fa-check"></i><b>24.0.2</b> Delineation of land objects</a></li>
+<li class="chapter" data-level="24.0.3" data-path="land-object-input-abandoned.html"><a href="land-object-input-abandoned.html#standing-water-bodies-and-the-land-use-type-watr"><i class="fa fa-check"></i><b>24.0.3</b> Standing water bodies and the land use type = ‘watr’</a></li>
+<li class="chapter" data-level="24.0.4" data-path="land-object-input-abandoned.html"><a href="land-object-input-abandoned.html#tile-drainage-option-1"><i class="fa fa-check"></i><b>24.0.4</b> Tile drainage option</a></li>
+<li class="chapter" data-level="24.0.5" data-path="land-object-input-abandoned.html"><a href="land-object-input-abandoned.html#ar5"><i class="fa fa-check"></i><b>24.0.5</b> AR5</a></li>
+<li class="chapter" data-level="24.0.6" data-path="land-object-input-abandoned.html"><a href="land-object-input-abandoned.html#manual-simplification"><i class="fa fa-check"></i><b>24.0.6</b> Manual Simplification</a></li>
+</ul></li>
+<li class="chapter" data-level="25" data-path="overview-maps.html"><a href="overview-maps.html"><i class="fa fa-check"></i><b>25</b> Overview Maps</a></li>
 <li class="chapter" data-level="" data-path="annex.html"><a href="annex.html"><i class="fa fa-check"></i>Annex</a>
 <ul>
-<li class="chapter" data-level="24.1" data-path="annex.html"><a href="annex.html#packages"><i class="fa fa-check"></i><b>24.1</b> Packages</a></li>
-<li class="chapter" data-level="24.2" data-path="annex.html"><a href="annex.html#computer-specs"><i class="fa fa-check"></i><b>24.2</b> Computer Specs</a></li>
+<li class="chapter" data-level="25.1" data-path="annex.html"><a href="annex.html#packages"><i class="fa fa-check"></i><b>25.1</b> Packages</a></li>
+<li class="chapter" data-level="25.2" data-path="annex.html"><a href="annex.html#computer-specs"><i class="fa fa-check"></i><b>25.2</b> Computer Specs</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references-1.html"><a href="references-1.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -460,7 +619,7 @@ div.csl-indent {
 <strong>Robert Barneveld</strong> (measures &amp; mapping)<br />
 <strong>Attila Nemes</strong> (project lead)<br />
 ..and with strong support of the OPTAIN core team</em></p>
-<p class="date"><em>2025-03-03</em></p>
+<p class="date"><em>2026-03-12</em></p>
 </div>
 <div id="introduction" class="section level1 unnumbered hasAnchor">
 <h1>Introduction<a href="index.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h1>
@@ -481,7 +640,7 @@ div.csl-indent {
 Figure 0.1: An Overview of the CS10 Watershed: Kraakstad
 </p>
 </div>
-<p>The model setup follows the OPTAIN modelling protocols for SWAP <span class="citation">(<a href="#ref-farkas2023">Farkas et al. 2023</a>)</span> and SWAT+ <span class="citation">(<a href="#ref-schürz2022">Schürz et al. 2022</a>)</span>. We begin with SWAT+ and the input file preparation for SWATBuildR, in Section <a href="input-data-preparation.html#input-data-preparation">1</a>.</p>
+<p>The model setup follows the OPTAIN modelling protocols for SWAP <span class="citation">(<a href="#ref-farkas2023">Farkas et al. 2023</a>)</span> and SWAT+ <span class="citation">(<a href="#ref-sch%C3%BCrz2022">Schürz et al. 2022</a>)</span>. We begin with SWAT+ and the input file preparation for SWATBuildR, in Section <a href="input-data-preparation.html#input-data-preparation">1</a>.</p>
 <p><strong>Useful links:</strong></p>
 <ul>
 <li><p>NIBIO <a href="https://www.nibio.no/en/projects/optain">project website</a></p></li>
@@ -499,9 +658,6 @@ Figure 0.1: An Overview of the CS10 Watershed: Kraakstad
 <div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
 <div id="ref-farkas2023" class="csl-entry">
 Farkas, Csilla, Moritz Shore, Gökhan Cüceloglu, Levente Czelnai, Attila Nemes, Brigitta Szabó, Natalja Čerkasova, Rasa Idzelyté, and Sinja Weiland. 2023. <span>“SWAP Field-Scale Modelling Protocol,”</span> May. <a href="https://doi.org/10.5281/ZENODO.7907114">https://doi.org/10.5281/ZENODO.7907114</a>.
-</div>
-<div id="ref-schürz2022" class="csl-entry">
-Schürz, Christoph, Natalja Čerkasova, Csilla Farkas, Attila Nemes, Plunge, Michael Strauch, Brigitta Szabó, and Mikołaj Piniewski. 2022. <span>“SWAT+ Modeling Protocol for the Assessment of Water and Nutrient Retention Measures in Small Agricultural Catchments,”</span> December. <a href="https://doi.org/10.5281/ZENODO.7463395">https://doi.org/10.5281/ZENODO.7463395</a>.
 </div>
 </div>
             </section>
@@ -524,46 +680,60 @@ Schürz, Christoph, Natalja Čerkasova, Csilla Farkas, Attila Nemes, Plunge, Mic
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": "https://gitlab.nibio.no/moritzshore/swat-cs10/-/edit/main/index.Rmd",
-"text": "Edit"
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": "https://gitlab.nibio.no/moritzshore/swat-cs10/blob/main/index.Rmd",
-"text": null
-},
-"download": ["_main.pdf"],
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-}
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://gitlab.nibio.no/moritzshore/swat-cs10/-/edit/main/index.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": "https://gitlab.nibio.no/moritzshore/swat-cs10/blob/main/index.Rmd",
+    "text": null
+  },
+  "download": ["_main.pdf"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
 });
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
